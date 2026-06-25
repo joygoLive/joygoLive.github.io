@@ -131,7 +131,13 @@ h3{font-family:var(--font-sans);font-weight:600;font-size:18px;letter-spacing:-.
 
 /* applications */
 .apps{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:46px}
-.app{display:flex;gap:16px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+.app{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+.app-head{display:flex;gap:16px;align-items:flex-start}
+.app-chart{margin-top:18px;border-top:1px solid var(--border);padding-top:14px}
+.chart-cap{font-family:var(--font-mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
+.mini{width:100%;height:92px;display:block}
+.mini text{font-family:var(--font-mono);font-size:9px;fill:var(--text-dim)}
+.mini text.val{fill:var(--accent-2);font-weight:600;font-size:10px}
 .app .ico{width:28px;height:28px;color:var(--accent);flex-shrink:0;margin-top:2px}
 .app h3{font-size:16px;margin-bottom:4px}
 .app p{font-size:13.5px;color:var(--text2)}
@@ -392,6 +398,37 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
   </div>
 </section>
 
+<!-- AGENT MODE -->
+<section id="agent" class="section alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="ag.tag">Agent mode</div>
+      <h2 data-i18n="ag.h2">Let an AI agent run your quantum workflow</h2>
+      <p class="lead" data-i18n="ag.lead">UQI ships an MCP server, so Claude and other AI agents use it as a tool — analyzing, optimizing, mitigating, pricing, and submitting across vendors from a single natural-language request.</p>
+    </div>
+    <div class="split">
+      <div>
+        <ul class="feature-list">
+          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="ag.1">Natural-language workflow — describe the goal, the agent runs the steps.</span></li>
+          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="ag.2">Every step is a tool — analyze, optimize, mitigate, estimate, submit, compare.</span></li>
+          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="ag.3">Multi-vendor orchestration — the agent selects and runs across backends.</span></li>
+          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="ag.4">Standard MCP — works with Claude and other MCP clients.</span></li>
+        </ul>
+      </div>
+      <div class="terminal">
+        <div class="term-bar"><i></i><i></i><i></i><span class="term-title">agent · MCP</span></div>
+<pre class="term-body"><span class="c-c">You:</span> optimize bell.py, pick the cheapest backend, then mitigate
+<span class="c-a">agent</span>
+  <span class="c-p">→</span> uqi_analyze            2 qubits · depth 2
+  <span class="c-p">→</span> uqi_resource_estimate  ibm_fez <span class="c-v">$0.00</span> (cheapest)
+  <span class="c-p">→</span> uqi_optimize           SABRE-routed
+  <span class="c-p">→</span> uqi_qpu_submit         submitted <span class="c-v">✓</span>
+  <span class="c-p">→</span> uqi_mitigate_readout   approx <span class="c-v">100%</span></pre>
+    </div>
+    </div>
+  </div>
+</section>
+
 <!-- INTELLIGENCE -->
 <section id="intelligence" class="section alt">
   <div class="wrap">
@@ -430,11 +467,32 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
       <p class="lead" data-i18n="app.lead">Domain modules you can run today — each comparable across CPU, GPU, and real QPU backends.</p>
     </div>
     <div class="apps">
-      <div class="app fade"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="5"/><circle cx="17" cy="17" r="2.5"/></svg><div><h3 data-i18n="a1.t">QML anomaly detection</h3><p data-i18n="a1.d">Quantum-kernel outlier detection against a classical baseline.</p></div></div>
-      <div class="app fade"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 18V8M10 18V4M16 18v-6M4 18h14"/></svg><div><h3 data-i18n="a2.t">Quantum finance</h3><p data-i18n="a2.d">QAOA portfolio optimization versus exact and greedy baselines.</p></div></div>
-      <div class="app fade"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="9" ry="4"/><ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(60 12 12)"/></svg><div><h3 data-i18n="a3.t">Quantum chemistry</h3><p data-i18n="a3.d">VQE ground-state energy with noise and mitigation comparison.</p></div></div>
-      <div class="app fade"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="17" r="2"/><path d="M8 6h8M7 8v8M17 9v6M9 18h6"/></svg><div><h3 data-i18n="a4.t">Graph optimization</h3><p data-i18n="a4.d">QAOA for max-cut, independent set, and vertex cover.</p></div></div>
+      <div class="app fade">
+        <div class="app-head"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="5"/><circle cx="17" cy="17" r="2.5"/></svg><div><h3 data-i18n="a1.t">QML anomaly detection</h3><p data-i18n="a1.d">Quantum-kernel outlier detection against a classical baseline.</p></div></div>
+        <div class="app-chart"><div class="chart-cap">Detection quality · AUC</div>
+          <svg class="mini" viewBox="0 0 260 92"><line x1="10" y1="74" x2="250" y2="74" stroke="#e4e9f0"/><rect x="58" y="20" width="54" height="54" rx="3" fill="#0891b2"/><rect x="150" y="32" width="54" height="42" rx="3" fill="#cbd5e1"/><text x="85" y="87" text-anchor="middle">Quantum</text><text x="177" y="87" text-anchor="middle">Classical</text><text x="85" y="13" text-anchor="middle" class="val">0.92</text><text x="177" y="25" text-anchor="middle">0.88</text></svg>
+        </div>
+      </div>
+      <div class="app fade">
+        <div class="app-head"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 18V8M10 18V4M16 18v-6M4 18h14"/></svg><div><h3 data-i18n="a2.t">Quantum finance</h3><p data-i18n="a2.d">QAOA portfolio optimization versus exact and greedy baselines.</p></div></div>
+        <div class="app-chart"><div class="chart-cap">Approx. ratio · CPU / GPU / QPU</div>
+          <svg class="mini" viewBox="0 0 260 92"><line x1="10" y1="74" x2="250" y2="74" stroke="#e4e9f0"/><rect x="36" y="18" width="46" height="56" rx="3" fill="#0891b2"/><rect x="108" y="18" width="46" height="56" rx="3" fill="#0891b2"/><rect x="180" y="23" width="46" height="51" rx="3" fill="#22b8d6"/><text x="59" y="87" text-anchor="middle">CPU</text><text x="131" y="87" text-anchor="middle">GPU</text><text x="203" y="87" text-anchor="middle">QPU</text><text x="59" y="12" text-anchor="middle" class="val">1.00</text><text x="131" y="12" text-anchor="middle" class="val">1.00</text><text x="203" y="17" text-anchor="middle">0.97</text></svg>
+        </div>
+      </div>
+      <div class="app fade">
+        <div class="app-head"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="9" ry="4"/><ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(60 12 12)"/></svg><div><h3 data-i18n="a3.t">Quantum chemistry</h3><p data-i18n="a3.d">VQE ground-state energy with noise and mitigation comparison.</p></div></div>
+        <div class="app-chart"><div class="chart-cap">VQE dissociation curve · H₂</div>
+          <svg class="mini" viewBox="0 0 260 92"><line x1="10" y1="74" x2="250" y2="74" stroke="#e4e9f0"/><path d="M24 24 C 56 26, 74 68, 122 68 C 178 68, 206 50, 244 46" fill="none" stroke="#0891b2" stroke-width="2.5"/><circle cx="122" cy="68" r="3.6" fill="#0891b2"/><text x="122" y="87" text-anchor="middle">equilibrium</text><text x="244" y="40" text-anchor="end">bond length →</text></svg>
+        </div>
+      </div>
+      <div class="app fade">
+        <div class="app-head"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="17" r="2"/><path d="M8 6h8M7 8v8M17 9v6M9 18h6"/></svg><div><h3 data-i18n="a4.t">Graph optimization</h3><p data-i18n="a4.d">QAOA for max-cut, independent set, and vertex cover.</p></div></div>
+        <div class="app-chart"><div class="chart-cap">Max-Cut · 6-cycle</div>
+          <svg class="mini" viewBox="0 0 260 92"><g stroke="#0891b2" stroke-width="1.5" opacity=".55"><line x1="160" y1="42" x2="145" y2="18"/><line x1="145" y1="18" x2="115" y2="18"/><line x1="115" y1="18" x2="100" y2="42"/><line x1="100" y1="42" x2="115" y2="66"/><line x1="115" y1="66" x2="145" y2="66"/><line x1="145" y1="66" x2="160" y2="42"/></g><g><circle cx="160" cy="42" r="7" fill="#0891b2"/><circle cx="145" cy="18" r="7" fill="#0c1622"/><circle cx="115" cy="18" r="7" fill="#0891b2"/><circle cx="100" cy="42" r="7" fill="#0c1622"/><circle cx="115" cy="66" r="7" fill="#0891b2"/><circle cx="145" cy="66" r="7" fill="#0c1622"/></g><text x="130" y="87" text-anchor="middle" class="val">cut = 6 (optimal)</text></svg>
+        </div>
+      </div>
     </div>
+    <p class="note" data-i18n="app.note">Sample results are illustrative, drawn from the bundled catalog datasets — each module is comparable across CPU, GPU, and real QPU backends.</p>
   </div>
 </section>
 
@@ -576,10 +634,11 @@ const _L = {
     "c9.t":"API, CLI & MCP","c9.d":"Full parity across UI, REST API, and CLI — plus an MCP server so AI agents orchestrate runs directly.",
     "c10.badge":"Coming soon","c10.t":"Runtime sessions","c10.d":"Reserve a device and batch many jobs in one session to minimize re-queuing between iterations — in the spirit of vendor runtime sessions. On the roadmap.",
     "dev.tag":"Workflow & developers","dev.h2":"One pipeline — the same power in your terminal","dev.lead":"Every step is independent and scriptable. Run it in the UI, call the REST API, or drive it from the CLI and your CI.","dev.note":"Illustrative output. Costs are pre-submission estimates and vary by vendor and circuit.",
+    "ag.tag":"Agent mode","ag.h2":"Let an AI agent run your quantum workflow","ag.lead":"UQI ships an MCP server, so Claude and other AI agents use it as a tool — analyzing, optimizing, mitigating, pricing, and submitting across vendors from a single natural-language request.","ag.1":"Natural-language workflow — describe the goal, the agent runs the steps.","ag.2":"Every step is a tool — analyze, optimize, mitigate, estimate, submit, compare.","ag.3":"Multi-vendor orchestration — the agent selects and runs across backends.","ag.4":"Standard MCP — works with Claude and other MCP clients.",
     "int.tag":"Intelligence","int.h2":"Read the ecosystem in data, not hype","int.lead":"Every job you run feeds a living view of the hardware landscape — so researchers and decision-makers act on measured reality.",
     "int.1":"Device leaderboard — fidelity ranked fairly across circuit sizes.","int.2":"Device health & drift — best-window trends over time.","int.3":"Playbooks & algorithm insights — best device per circuit class.","int.4":"My benchmarks — your own fidelity, cost, and time from real jobs.",
     "int.panel":"Device leaderboard · fidelity","int.panel2":"Illustrative — drawn from accumulated jobs",
-    "app.tag":"Applications","app.h2":"Ready-to-run quantum application modules","app.lead":"Domain modules you can run today — each comparable across CPU, GPU, and real QPU backends.",
+    "app.tag":"Applications","app.h2":"Ready-to-run quantum application modules","app.lead":"Domain modules you can run today — each comparable across CPU, GPU, and real QPU backends.","app.note":"Sample results are illustrative, drawn from the bundled catalog datasets — each module is comparable across CPU, GPU, and real QPU backends.",
     "a1.t":"QML anomaly detection","a1.d":"Quantum-kernel outlier detection against a classical baseline.","a2.t":"Quantum finance","a2.d":"QAOA portfolio optimization versus exact and greedy baselines.","a3.t":"Quantum chemistry","a3.d":"VQE ground-state energy with noise and mitigation comparison.","a4.t":"Graph optimization","a4.d":"QAOA for max-cut, independent set, and vertex cover.",
     "hw.tag":"Hardware","hw.h2":"Every modality, one platform","hw.lead":"Reach superconducting, trapped-ion, neutral-atom, and photonic processors — and compare and run across them from a single place.",
     "hw.c1":"Vendor","hw.c2":"Modality","hw.c3":"Qubits","hw.c4":"Access","hw.note":"Qubit counts are indicative and provided by the vendors; device availability changes over time.",
@@ -619,10 +678,11 @@ const _L = {
     "c9.t":"API, CLI & MCP","c9.d":"UI·REST API·CLI 완전 패리티 — 그리고 MCP 서버로 AI 에이전트가 실행을 직접 오케스트레이션합니다.",
     "c10.badge":"준비 중","c10.t":"런타임 세션","c10.d":"하나의 세션에 여러 작업을 묶고 장비를 예약해 반복 사이의 재대기를 최소화합니다 — 벤더 런타임 세션과 같은 개념. 로드맵에 있습니다.",
     "dev.tag":"워크플로 & 개발자","dev.h2":"하나의 파이프라인 — 터미널에서도 똑같이","dev.lead":"모든 단계가 독립적이고 스크립트로 다룰 수 있습니다. UI에서 실행하거나 REST API를 호출하거나 CLI와 CI에서 구동하세요.","dev.note":"예시 출력입니다. 비용은 제출 전 추정치이며 벤더·회로에 따라 달라집니다.",
+    "ag.tag":"에이전트 모드","ag.h2":"AI 에이전트가 양자 워크플로를 직접 실행","ag.lead":"UQI는 MCP 서버를 제공해 Claude 등 AI 에이전트가 이를 도구로 사용합니다 — 한 번의 자연어 요청으로 분석, 최적화, 완화, 비용 산정, 제출을 벤더 전반에서 오케스트레이션합니다.","ag.1":"자연어 워크플로 — 목표만 말하면 에이전트가 단계를 실행합니다.","ag.2":"모든 단계가 도구 — 분석, 최적화, 완화, 추정, 제출, 비교.","ag.3":"멀티벤더 오케스트레이션 — 에이전트가 백엔드를 선택해 실행합니다.","ag.4":"표준 MCP — Claude 등 MCP 클라이언트와 동작합니다.",
     "int.tag":"인텔리전스","int.h2":"과대광고가 아니라 데이터로 생태계를 읽으세요","int.lead":"실행하는 모든 작업이 하드웨어 지형의 살아있는 뷰를 만듭니다 — 연구자와 의사결정자가 측정된 현실에 근거해 움직이도록.",
     "int.1":"장비 리더보드 — 회로 크기 편향 없이 공정하게 순위화한 충실도.","int.2":"장비 헬스 & 드리프트 — 시간에 따른 베스트윈도우 추세.","int.3":"플레이북 & 알고리즘 인사이트 — 회로 유형별 최적 장비.","int.4":"My benchmarks — 실제 작업에서 나온 나의 충실도·비용·시각.",
     "int.panel":"장비 리더보드 · 충실도","int.panel2":"예시 — 누적된 작업 기반",
-    "app.tag":"응용","app.h2":"바로 실행하는 양자 응용 모듈","app.lead":"오늘 바로 실행할 수 있는 도메인 모듈 — 각각 CPU·GPU·실 QPU 백엔드에서 비교됩니다.",
+    "app.tag":"응용","app.h2":"바로 실행하는 양자 응용 모듈","app.lead":"오늘 바로 실행할 수 있는 도메인 모듈 — 각각 CPU·GPU·실 QPU 백엔드에서 비교됩니다.","app.note":"표시된 결과는 번들 카탈로그 데이터셋에서 가져온 예시입니다 — 각 모듈은 CPU, GPU, 실 QPU 백엔드 전반에서 비교됩니다.",
     "a1.t":"QML 이상탐지","a1.d":"고전 기준선과 비교하는 양자 커널 이상치 탐지.","a2.t":"양자 금융","a2.d":"정확해·그리디 기준선과 비교하는 QAOA 포트폴리오 최적화.","a3.t":"양자 화학","a3.d":"노이즈·완화 비교를 포함한 VQE 바닥상태 에너지.","a4.t":"그래프 최적화","a4.d":"맥스컷·독립집합·정점덮개를 위한 QAOA.",
     "hw.tag":"하드웨어","hw.h2":"모든 방식, 하나의 플랫폼","hw.lead":"초전도, 이온트랩, 중성원자, 광자 프로세서에 접근하고 한 곳에서 비교·실행합니다.",
     "hw.c1":"벤더","hw.c2":"방식","hw.c3":"큐빗","hw.c4":"접근","hw.note":"큐빗 수는 벤더 제공 참고치이며 장비 가용성은 시점에 따라 달라집니다.",
