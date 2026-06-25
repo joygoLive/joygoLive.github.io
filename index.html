@@ -12,7 +12,7 @@
 <meta name="theme-color" content="#0891b2" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
 <style>
 :root{
   --bg:#ffffff; --alt:#f6f8fb; --surface:#ffffff; --surface-2:#f1f5f9; --border:#e4e9f0;
@@ -20,7 +20,7 @@
   --ink:#0c1622; --text:#26323f; --text2:#5a6776; --text-dim:#8a97a6;
   --font-sans:'Inter','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;
   --font-mono:'JetBrains Mono',ui-monospace,monospace;
-  --font-display:'Syne',var(--font-sans);
+  --font-display:var(--font-sans);
   --maxw:1180px; --radius:12px;
   --shadow:0 1px 2px rgba(12,22,34,.04),0 8px 24px rgba(12,22,34,.05);
 }
@@ -59,12 +59,12 @@ section{padding:88px 0}
 .sec-head{max-width:680px}
 h1{font-family:var(--font-display);font-weight:800;font-size:clamp(36px,5.4vw,62px);line-height:1.04;letter-spacing:-.03em;color:var(--ink)}
 h2{font-family:var(--font-display);font-weight:700;font-size:clamp(28px,3.6vw,40px);line-height:1.08;letter-spacing:-.025em;color:var(--ink)}
-h3{font-family:var(--font-sans);font-weight:650;font-size:18px;letter-spacing:-.02em;color:var(--ink)}
+h3{font-family:var(--font-sans);font-weight:600;font-size:18px;letter-spacing:-.015em;color:var(--ink)}
 .lead{margin-top:18px;font-size:clamp(16px,1.6vw,18px);color:var(--text2);line-height:1.65;max-width:62ch}
 
 /* hero */
 .hero{padding:84px 0 64px;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;top:-220px;right:-120px;width:680px;height:560px;background:radial-gradient(ellipse,rgba(8,145,178,.10),transparent 68%);pointer-events:none}
+.hero::before{content:"";position:absolute;top:-240px;right:-140px;width:660px;height:540px;background:radial-gradient(ellipse,rgba(8,145,178,.06),transparent 70%);pointer-events:none}
 .hero .pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-2);border:1px solid var(--accent-line);background:var(--accent-dim);border-radius:100px;padding:6px 14px;margin-bottom:24px}
 .hero .pill .pulse{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
 .hero h1{max-width:16ch}
@@ -90,7 +90,9 @@ h3{font-family:var(--font-sans);font-weight:650;font-size:18px;letter-spacing:-.
 
 /* capability grid */
 .cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
-.cap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 22px;transition:.18s}
+.cap{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 22px;transition:.18s}
+.cap .soon{position:absolute;top:16px;right:16px;font-family:var(--font-mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent-2);background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:5px;padding:3px 7px;font-weight:600}
+.cap.upcoming{border-style:dashed}
 .cap:hover{border-color:var(--accent-line);box-shadow:var(--shadow);transform:translateY(-2px)}
 .cap .ico{width:26px;height:26px;color:var(--accent);margin-bottom:14px}
 .cap h3{font-size:16.5px;margin-bottom:7px}
@@ -345,6 +347,12 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
         <p data-i18n="c9.d">Full parity across UI, REST API, and CLI — plus an MCP server so AI agents orchestrate runs directly.</p>
         <div class="tags"><span>REST</span><span>CLI</span><span>MCP</span></div>
       </div>
+      <div class="cap upcoming fade">
+        <span class="soon" data-i18n="c10.badge">Coming soon</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v4h-4"/></svg>
+        <h3 data-i18n="c10.t">Runtime sessions</h3>
+        <p data-i18n="c10.d">Reserve a device and batch many jobs in one session to minimize re-queuing between iterations — in the spirit of vendor runtime sessions. On the roadmap.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -572,6 +580,7 @@ const _L = {
     "c7.t":"GPU acceleration","c7.d":"Offload heavy simulation to real H100 / DGX hosts and compare CPU, GPU, and QPU on the same problem.",
     "c8.t":"Knowledge base (RAG)","c8.d":"Hybrid dense + sparse retrieval, re-ranking, and LLM synthesis over quantum docs — with PII scrubbing before any external call.",
     "c9.t":"API, CLI & MCP","c9.d":"Full parity across UI, REST API, and CLI — plus an MCP server so AI agents orchestrate runs directly.",
+    "c10.badge":"Coming soon","c10.t":"Runtime sessions","c10.d":"Reserve a device and batch many jobs in one session to minimize re-queuing between iterations — in the spirit of vendor runtime sessions. On the roadmap.",
     "dev.tag":"Workflow & developers","dev.h2":"One pipeline — the same power in your terminal","dev.lead":"Every step is independent and scriptable. Run it in the UI, call the REST API, or drive it from the CLI and your CI.","dev.note":"Illustrative output. Costs are pre-submission estimates and vary by vendor and circuit.",
     "int.tag":"Intelligence","int.h2":"Read the ecosystem in data, not hype","int.lead":"Every job you run feeds a living view of the hardware landscape — so researchers and decision-makers act on measured reality.",
     "int.1":"Device leaderboard — fidelity ranked fairly across circuit sizes.","int.2":"Device health & drift — best-window trends over time.","int.3":"Playbooks & algorithm insights — best device per circuit class.","int.4":"My benchmarks — your own fidelity, cost, and time from real jobs.",
@@ -614,6 +623,7 @@ const _L = {
     "c7.t":"GPU 가속","c7.d":"무거운 시뮬레이션을 실제 H100 / DGX 호스트로 오프로드하고 같은 문제로 CPU·GPU·QPU를 비교합니다.",
     "c8.t":"지식베이스 (RAG)","c8.d":"하이브리드 dense+sparse 검색, 재순위, LLM 합성을 양자 문서에 적용 — 외부 호출 전 PII를 스크러빙합니다.",
     "c9.t":"API, CLI & MCP","c9.d":"UI·REST API·CLI 완전 패리티 — 그리고 MCP 서버로 AI 에이전트가 실행을 직접 오케스트레이션합니다.",
+    "c10.badge":"준비 중","c10.t":"런타임 세션","c10.d":"하나의 세션에 여러 작업을 묶고 장비를 예약해 반복 사이의 재대기를 최소화합니다 — 벤더 런타임 세션과 같은 개념. 로드맵에 있습니다.",
     "dev.tag":"워크플로 & 개발자","dev.h2":"하나의 파이프라인 — 터미널에서도 똑같이","dev.lead":"모든 단계가 독립적이고 스크립트로 다룰 수 있습니다. UI에서 실행하거나 REST API를 호출하거나 CLI와 CI에서 구동하세요.","dev.note":"예시 출력입니다. 비용은 제출 전 추정치이며 벤더·회로에 따라 달라집니다.",
     "int.tag":"인텔리전스","int.h2":"과대광고가 아니라 데이터로 생태계를 읽으세요","int.lead":"실행하는 모든 작업이 하드웨어 지형의 살아있는 뷰를 만듭니다 — 연구자와 의사결정자가 측정된 현실에 근거해 움직이도록.",
     "int.1":"장비 리더보드 — 회로 크기 편향 없이 공정하게 순위화한 충실도.","int.2":"장비 헬스 & 드리프트 — 시간에 따른 베스트윈도우 추세.","int.3":"플레이북 & 알고리즘 인사이트 — 회로 유형별 최적 장비.","int.4":"My benchmarks — 실제 작업에서 나온 나의 충실도·비용·시각.",
