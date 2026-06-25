@@ -67,6 +67,8 @@ h3{font-family:var(--font-sans);font-weight:600;font-size:18px;letter-spacing:-.
 .hero::before{content:"";position:absolute;top:-240px;right:-140px;width:660px;height:540px;background:radial-gradient(ellipse,rgba(8,145,178,.06),transparent 70%);pointer-events:none}
 .hero .pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-2);border:1px solid var(--accent-line);background:var(--accent-dim);border-radius:100px;padding:6px 14px;margin-bottom:24px}
 .hero .pill .pulse{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+.hero-kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);font-weight:500;margin-bottom:20px}
+.grad{background:linear-gradient(110deg,var(--accent),#7c3aed);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .hero h1{max-width:16ch}
 .hero .lead{font-size:clamp(16px,1.8vw,19px);max-width:56ch}
 .cta-row{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
@@ -129,6 +131,12 @@ h3{font-family:var(--font-sans);font-weight:600;font-size:18px;letter-spacing:-.
 .rag-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--font-mono);font-size:12px}
 .rag-flow .rn{border:1px solid var(--border);border-radius:7px;padding:7px 11px;color:var(--ink);background:var(--surface-2)}
 .rag-flow .ra{color:var(--accent)}
+.intel-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:42px}
+.pb-list{list-style:none;margin-top:2px}
+.pb-list li{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:9px 0;border-bottom:1px solid var(--border)}
+.pb-list li:last-child{border-bottom:0}
+.pb-list li span{font-family:var(--font-mono);font-size:12px;color:var(--text2)}
+.pb-list li b{color:var(--ink);font-weight:600}
 
 /* applications */
 .apps{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:46px}
@@ -203,7 +211,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
   h2{font-size:26px}
   .hero{padding:54px 0 48px}
   .stats{grid-template-columns:1fr 1fr;gap:24px}
-  .pillars,.cap-grid,.apps,.aud-grid,.pts{grid-template-columns:1fr}
+  .pillars,.cap-grid,.apps,.aud-grid,.pts,.intel-grid{grid-template-columns:1fr}
   .term-body{font-size:12px;padding:16px}
   .contact-box{padding:38px 24px}
 }
@@ -237,8 +245,8 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <span class="pill"><span class="pulse"></span><span data-i18n="hero.pill">Vendor-neutral quantum middleware</span></span>
-    <h1 data-i18n="hero.title">Universal Quantum Infrastructure</h1>
+    <div class="hero-kicker mono" data-i18n="hero.kicker">UQI · Universal Quantum Infrastructure</div>
+    <h1 data-i18n-html="hero.title">Universal <span class="grad">Quantum</span> Infrastructure</h1>
     <p class="lead" data-i18n="hero.sub">Connect every framework and vendor, run a full circuit pipeline, mitigate errors, and control cost — all through one consistent UI, API, and CLI. No vendor lock-in, no rewrites per provider.</p>
     <div class="cta-row">
       <a href="#capabilities" class="btn btn-primary" data-i18n="hero.cta1">Explore the platform</a>
@@ -438,24 +446,32 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
       <h2 data-i18n="int.h2">Read the ecosystem in data, not hype</h2>
       <p class="lead" data-i18n="int.lead">Every job you run feeds a living view of the hardware landscape — so researchers and decision-makers act on measured reality.</p>
     </div>
-    <div class="split">
-      <div>
-        <ul class="feature-list">
-          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="int.1">Device leaderboard — fidelity ranked fairly across circuit sizes.</span></li>
-          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="int.2">Device health &amp; drift — best-window trends over time.</span></li>
-          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="int.3">Playbooks &amp; algorithm insights — best device per circuit class.</span></li>
-          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="int.4">My benchmarks — your own fidelity, cost, and time from real jobs.</span></li>
-        </ul>
-      </div>
+    <div class="intel-grid">
       <div class="panel">
-        <div class="pcap" data-i18n="int.panel">Device leaderboard · fidelity</div>
+        <div class="pcap" data-i18n="int.p1">Device leaderboard · fidelity</div>
         <div class="bar-row"><span class="nm">ibm_fez</span><span class="track"><span class="fill" style="width:90%"></span></span><span class="v">0.90</span></div>
         <div class="bar-row"><span class="nm">iqm_emerald</span><span class="track"><span class="fill" style="width:74%"></span></span><span class="v">0.74</span></div>
         <div class="bar-row"><span class="nm">iqm_garnet</span><span class="track"><span class="fill" style="width:61%"></span></span><span class="v">0.61</span></div>
         <div class="bar-row"><span class="nm">rigetti</span><span class="track"><span class="fill" style="width:55%"></span></span><span class="v">0.55</span></div>
-        <div class="pcap" style="margin-top:18px" data-i18n="int.panel2">Illustrative — drawn from accumulated jobs</div>
+      </div>
+      <div class="panel">
+        <div class="pcap" data-i18n="int.p2">Device health · drift over time</div>
+        <svg class="mini" viewBox="0 0 260 104" style="height:104px"><line x1="12" y1="82" x2="250" y2="82" stroke="#e4e9f0"/><polyline points="14,34 50,30 86,44 122,38 158,52 194,46 230,60 248,56" fill="none" stroke="#0891b2" stroke-width="2.5"/><circle cx="248" cy="56" r="3.2" fill="#0891b2"/><text x="14" y="20">fidelity</text><text x="248" y="98" text-anchor="end">time →</text></svg>
+      </div>
+      <div class="panel">
+        <div class="pcap" data-i18n="int.p3">Cost vs fidelity · per device</div>
+        <svg class="mini" viewBox="0 0 260 104" style="height:104px"><line x1="24" y1="84" x2="250" y2="84" stroke="#e4e9f0"/><line x1="24" y1="14" x2="24" y2="84" stroke="#e4e9f0"/><circle cx="44" cy="26" r="4.5" fill="#0891b2"/><circle cx="92" cy="46" r="4.5" fill="#0891b2"/><circle cx="158" cy="36" r="4.5" fill="#22b8d6"/><circle cx="224" cy="62" r="4.5" fill="#22b8d6"/><text x="16" y="18">fid</text><text x="248" y="100" text-anchor="end">cost →</text></svg>
+      </div>
+      <div class="panel">
+        <div class="pcap" data-i18n="int.p4">Playbooks · best device per circuit</div>
+        <ul class="pb-list">
+          <li><span data-i18n="int.pb1">≤10 qubits</span><b>ibm_fez</b></li>
+          <li><span data-i18n="int.pb2">11–20 qubits</span><b>iqm_emerald</b></li>
+          <li><span data-i18n="int.pb3">21–30 qubits</span><b>iqm_sirius</b></li>
+        </ul>
       </div>
     </div>
+    <p class="note" data-i18n="int.note">Illustrative — drawn from accumulated jobs.</p>
   </div>
 </section>
 
@@ -614,7 +630,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
 const _L = {
   en:{
     "nav.platform":"Platform","nav.capabilities":"Capabilities","nav.intelligence":"Intelligence","nav.developers":"Developers","nav.contact":"Contact",
-    "hero.pill":"Vendor-neutral quantum middleware","hero.title":"Universal Quantum Infrastructure",
+    "hero.kicker":"UQI · Universal Quantum Infrastructure","hero.title":"Universal <span class=\"grad\">Quantum</span> Infrastructure",
     "hero.sub":"Connect every framework and vendor, run a full circuit pipeline, mitigate errors, and control cost — all through one consistent UI, API, and CLI. No vendor lock-in, no rewrites per provider.",
     "hero.cta1":"Explore the platform","hero.cta2":"See the workflow","hero.byline":"A service by joygoLive — <b class=\"hl\">Joy</b>, realized when Quantum Computing <b class=\"hl\">go</b>es <b class=\"hl\">Live</b>.","hero.flabel":"Works with your SDK","hero.vlabel":"Multi-vendor by design",
     "stat.vendors":"Hardware vendors","stat.frameworks":"SDK frameworks","stat.steps":"Independent pipeline steps","stat.apps":"Application modules",
@@ -636,9 +652,8 @@ const _L = {
     "c10.badge":"Coming soon","c10.t":"Runtime sessions","c10.d":"Reserve a device and batch many jobs in one session to minimize re-queuing between iterations — in the spirit of vendor runtime sessions. On the roadmap.",
     "dev.tag":"Workflow & developers","dev.h2":"One pipeline — the same power in your terminal","dev.lead":"Every step is independent and scriptable. Run it in the UI, call the REST API, or drive it from the CLI and your CI.","dev.note":"Illustrative output. Costs are pre-submission estimates and vary by vendor and circuit.",
     "ag.tag":"Agent mode","ag.h2":"Let an AI agent run your quantum workflow","ag.lead":"UQI ships an MCP server, so Claude and other AI agents use it as a tool — analyzing, optimizing, mitigating, pricing, and submitting across vendors from a single natural-language request.","ag.1":"Natural-language workflow — describe the goal, the agent runs the steps.","ag.2":"Every step is a tool — analyze, optimize, mitigate, estimate, submit, compare.","ag.3":"Multi-vendor orchestration — the agent selects and runs across backends.","ag.4":"Standard MCP — works with Claude and other MCP clients.",
-    "int.tag":"Intelligence","int.h2":"Read the ecosystem in data, not hype","int.lead":"Every job you run feeds a living view of the hardware landscape — so researchers and decision-makers act on measured reality.",
-    "int.1":"Device leaderboard — fidelity ranked fairly across circuit sizes.","int.2":"Device health & drift — best-window trends over time.","int.3":"Playbooks & algorithm insights — best device per circuit class.","int.4":"My benchmarks — your own fidelity, cost, and time from real jobs.",
-    "int.panel":"Device leaderboard · fidelity","int.panel2":"Illustrative — drawn from accumulated jobs",
+    "int.tag":"Intelligence","int.h2":"Read the ecosystem in data, not hype","int.lead":"Every job you run feeds a living view of the hardware landscape — leaderboards, health, cost, and playbooks, all drawn from real jobs.",
+    "int.p1":"Device leaderboard · fidelity","int.p2":"Device health · drift over time","int.p3":"Cost vs fidelity · per device","int.p4":"Playbooks · best device per circuit","int.pb1":"≤10 qubits","int.pb2":"11–20 qubits","int.pb3":"21–30 qubits","int.note":"Illustrative — drawn from accumulated jobs.",
     "app.tag":"Applications","app.h2":"Ready-to-run quantum application modules","app.lead":"Domain modules you can run today — each comparable across CPU, GPU, and real QPU backends.","app.note":"Sample results are illustrative, drawn from the bundled catalog datasets — each module is comparable across CPU, GPU, and real QPU backends.",
     "a1.t":"QML anomaly detection","a1.d":"Quantum-kernel outlier detection against a classical baseline.","a2.t":"Quantum finance","a2.d":"QAOA portfolio optimization versus exact and greedy baselines.","a3.t":"Quantum chemistry","a3.d":"VQE ground-state energy with noise and mitigation comparison.","a4.t":"Graph optimization","a4.d":"QAOA for max-cut, independent set, and vertex cover.",
     "hw.tag":"Hardware","hw.h2":"Every modality, one platform","hw.lead":"Reach superconducting, trapped-ion, neutral-atom, and photonic processors — and compare and run across them from a single place.",
@@ -658,7 +673,7 @@ const _L = {
   },
   ko:{
     "nav.platform":"플랫폼","nav.capabilities":"기능","nav.intelligence":"인텔리전스","nav.developers":"개발자","nav.contact":"문의",
-    "hero.pill":"벤더 중립 양자 미들웨어","hero.title":"유니버설 양자 인프라",
+    "hero.kicker":"UQI · 유니버설 양자 인프라","hero.title":"유니버설 <span class=\"grad\">양자</span> 인프라",
     "hero.sub":"모든 프레임워크와 벤더를 연결하고, 전체 회로 파이프라인을 실행하고, 오류를 완화하며, 비용까지 제어합니다 — 일관된 UI, API, CLI 하나로. 벤더 종속도, 공급자별 재작성도 없습니다.",
     "hero.cta1":"플랫폼 살펴보기","hero.cta2":"워크플로 보기","hero.byline":"joygoLive가 제공하는 서비스입니다 — <b class=\"hl\">Joy</b>, realized when Quantum Computing <b class=\"hl\">go</b>es <b class=\"hl\">Live</b>.","hero.flabel":"당신의 SDK 그대로","hero.vlabel":"설계부터 멀티벤더",
     "stat.vendors":"하드웨어 벤더","stat.frameworks":"SDK 프레임워크","stat.steps":"독립 파이프라인 단계","stat.apps":"응용 모듈",
@@ -680,9 +695,8 @@ const _L = {
     "c10.badge":"준비 중","c10.t":"런타임 세션","c10.d":"하나의 세션에 여러 작업을 묶고 장비를 예약해 반복 사이의 재대기를 최소화합니다 — 벤더 런타임 세션과 같은 개념. 로드맵에 있습니다.",
     "dev.tag":"워크플로 & 개발자","dev.h2":"하나의 파이프라인 — 터미널에서도 똑같이","dev.lead":"모든 단계가 독립적이고 스크립트로 다룰 수 있습니다. UI에서 실행하거나 REST API를 호출하거나 CLI와 CI에서 구동하세요.","dev.note":"예시 출력입니다. 비용은 제출 전 추정치이며 벤더·회로에 따라 달라집니다.",
     "ag.tag":"에이전트 모드","ag.h2":"AI 에이전트가 양자 워크플로를 직접 실행","ag.lead":"UQI는 MCP 서버를 제공해 Claude 등 AI 에이전트가 이를 도구로 사용합니다 — 한 번의 자연어 요청으로 분석, 최적화, 완화, 비용 산정, 제출을 벤더 전반에서 오케스트레이션합니다.","ag.1":"자연어 워크플로 — 목표만 말하면 에이전트가 단계를 실행합니다.","ag.2":"모든 단계가 도구 — 분석, 최적화, 완화, 추정, 제출, 비교.","ag.3":"멀티벤더 오케스트레이션 — 에이전트가 백엔드를 선택해 실행합니다.","ag.4":"표준 MCP — Claude 등 MCP 클라이언트와 동작합니다.",
-    "int.tag":"인텔리전스","int.h2":"과대광고가 아니라 데이터로 생태계를 읽으세요","int.lead":"실행하는 모든 작업이 하드웨어 지형의 살아있는 뷰를 만듭니다 — 연구자와 의사결정자가 측정된 현실에 근거해 움직이도록.",
-    "int.1":"장비 리더보드 — 회로 크기 편향 없이 공정하게 순위화한 충실도.","int.2":"장비 헬스 & 드리프트 — 시간에 따른 베스트윈도우 추세.","int.3":"플레이북 & 알고리즘 인사이트 — 회로 유형별 최적 장비.","int.4":"My benchmarks — 실제 작업에서 나온 나의 충실도·비용·시각.",
-    "int.panel":"장비 리더보드 · 충실도","int.panel2":"예시 — 누적된 작업 기반",
+    "int.tag":"인텔리전스","int.h2":"과대광고가 아니라 데이터로 생태계를 읽으세요","int.lead":"실행하는 모든 작업이 하드웨어 지형의 살아있는 뷰를 만듭니다 — 리더보드, 헬스, 비용, 플레이북 모두 실제 작업에서.",
+    "int.p1":"장비 리더보드 · 충실도","int.p2":"장비 헬스 · 시간에 따른 드리프트","int.p3":"비용 대 충실도 · 장비별","int.p4":"플레이북 · 회로별 최적 장비","int.pb1":"≤10 큐빗","int.pb2":"11–20 큐빗","int.pb3":"21–30 큐빗","int.note":"예시 — 누적된 작업 기반.",
     "app.tag":"응용","app.h2":"바로 실행하는 양자 응용 모듈","app.lead":"오늘 바로 실행할 수 있는 도메인 모듈 — 각각 CPU·GPU·실 QPU 백엔드에서 비교됩니다.","app.note":"표시된 결과는 번들 카탈로그 데이터셋에서 가져온 예시입니다 — 각 모듈은 CPU, GPU, 실 QPU 백엔드 전반에서 비교됩니다.",
     "a1.t":"QML 이상탐지","a1.d":"고전 기준선과 비교하는 양자 커널 이상치 탐지.","a2.t":"양자 금융","a2.d":"정확해·그리디 기준선과 비교하는 QAOA 포트폴리오 최적화.","a3.t":"양자 화학","a3.d":"노이즈·완화 비교를 포함한 VQE 바닥상태 에너지.","a4.t":"그래프 최적화","a4.d":"맥스컷·독립집합·정점덮개를 위한 QAOA.",
     "hw.tag":"하드웨어","hw.h2":"모든 방식, 하나의 플랫폼","hw.lead":"초전도, 이온트랩, 중성원자, 광자 프로세서에 접근하고 한 곳에서 비교·실행합니다.",
