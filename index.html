@@ -1,59 +1,426 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>joygoLive — Universal Quantum Infrastructure</title>
+<meta name="description" content="joygoLive builds UQI, a vendor-neutral middleware for quantum computing: analyze, optimize, mitigate, and run circuits across multiple hardware vendors through one consistent UI, API, and CLI." />
+<meta property="og:title" content="joygoLive — Universal Quantum Infrastructure" />
+<meta property="og:description" content="UQI: one interface to every quantum backend. Optimize, mitigate, and run across vendors — with cost known before you submit." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#080c10; --surface:#0d1117; --surface-2:#11171f; --border:#21262d;
+  --accent:#00d4ff; --accent-dim:rgba(0,212,255,0.12); --accent-line:rgba(0,212,255,0.30);
+  --text:#e6edf3; --text2:#aab4c0; --text-dim:#6e7b8a;
+  --success:#3fb950; --warn:#f0883e;
+  --grid-line:rgba(0,212,255,0.035); --glow:rgba(0,212,255,0.07);
+  --font-cjk:'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;
+  --font-mono:'JetBrains Mono',var(--font-cjk),monospace;
+  --font-display:'Syne',var(--font-cjk),sans-serif;
+  --radius:10px; --maxw:1080px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--text); font-family:var(--font-mono);
+  font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased;
+  background-image:
+    linear-gradient(var(--grid-line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
+  background-size:44px 44px;
+}
+body.lang-ko{font-family:var(--font-cjk)}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.accent{color:var(--accent)}
 
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
+/* ── header ── */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(8,12,16,0.78);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.nav{display:flex;align-items:center;gap:20px;height:60px}
+.brand{font-family:var(--font-display);font-weight:800;font-size:19px;letter-spacing:-0.5px}
+.brand .dot{color:var(--accent)}
+.nav-links{display:flex;gap:22px;margin-left:auto;align-items:center}
+.nav-links a{font-size:13px;color:var(--text2);transition:color .15s}
+.nav-links a:hover{color:var(--text)}
+.lang-toggle{display:flex;border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.lang-toggle button{
+  background:transparent;border:0;color:var(--text-dim);font-family:var(--font-mono);
+  font-size:11px;font-weight:600;padding:5px 9px;cursor:pointer;transition:.15s
+}
+.lang-toggle button.active{background:var(--accent-dim);color:var(--accent)}
+.gh-link{display:inline-flex;align-items:center;color:var(--text2)}
+.gh-link:hover{color:var(--accent)}
+.menu-btn{display:none;background:none;border:1px solid var(--border);border-radius:6px;color:var(--text2);width:34px;height:32px;cursor:pointer}
 
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+/* ── hero ── */
+.hero{position:relative;padding:96px 0 80px;overflow:hidden}
+.hero::before{
+  content:"";position:absolute;top:-160px;left:50%;transform:translateX(-50%);
+  width:760px;height:420px;background:radial-gradient(ellipse,var(--glow),transparent 70%);
+  pointer-events:none
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:1px;
+  text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-line);
+  border-radius:100px;padding:5px 14px;margin-bottom:24px;background:var(--accent-dim)
+}
+.eyebrow .pulse{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+h1{font-family:var(--font-display);font-weight:800;font-size:clamp(34px,6vw,60px);line-height:1.05;letter-spacing:-1.5px;max-width:13ch}
+.hero p.sub{margin-top:22px;font-size:clamp(15px,2.2vw,18px);color:var(--text2);max-width:60ch;line-height:1.6}
+.cta-row{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-weight:600;
+  font-size:14px;padding:12px 22px;border-radius:8px;cursor:pointer;transition:.18s;border:1px solid transparent
+}
+.btn-primary{background:var(--accent);color:#04222b}
+.btn-primary:hover{box-shadow:0 0 22px var(--accent-dim);transform:translateY(-1px)}
+.btn-ghost{border-color:var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent-line);color:var(--accent)}
+.byline{margin-top:30px;font-size:12px;color:var(--text-dim);letter-spacing:.5px}
 
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="/">
+/* vendor strip */
+.vendors{margin-top:56px;border-top:1px solid var(--border);padding-top:24px}
+.vendors .label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px}
+.vendors .row{display:flex;flex-wrap:wrap;gap:10px 18px}
+.vendors .chip{font-size:13px;color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:5px 12px}
 
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+/* ── sections ── */
+section{padding:78px 0;border-top:1px solid var(--border)}
+.sec-tag{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:14px}
+h2{font-family:var(--font-display);font-weight:700;font-size:clamp(26px,4vw,38px);letter-spacing:-1px;line-height:1.1;max-width:18ch}
+.lead{margin-top:18px;font-size:16px;color:var(--text2);max-width:64ch}
 
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="webapp">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+/* capability grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:42px}
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:24px 22px;transition:.18s;position:relative
+}
+.card:hover{border-color:var(--accent-line);transform:translateY(-2px);background:var(--surface-2)}
+.card .ico{width:30px;height:30px;color:var(--accent);margin-bottom:16px}
+.card h3{font-family:var(--font-display);font-weight:600;font-size:17px;margin-bottom:8px;letter-spacing:-.3px}
+.card p{font-size:13.5px;color:var(--text2);line-height:1.6}
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+/* applications */
+.apps{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:42px}
+.app{display:flex;gap:16px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.app .ico{width:26px;height:26px;color:var(--accent);flex-shrink:0;margin-top:2px}
+.app h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.app p{font-size:13px;color:var(--text2)}
+.apps-note{margin-top:18px;font-size:13px;color:var(--text-dim)}
 
-  <title>webapp</title>
-  <link rel="manifest" href="manifest.json">
+/* why */
+.why-points{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:38px}
+.why-points .pt{border:1px solid var(--border);border-left:2px solid var(--accent);border-radius:8px;padding:16px 16px}
+.why-points .pt b{display:block;font-size:14px;margin-bottom:5px}
+.why-points .pt span{font-size:12.5px;color:var(--text2);line-height:1.55}
 
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = '487810832';
-  </script>
-  <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
+/* contact */
+.contact-box{
+  margin-top:38px;background:linear-gradient(160deg,var(--surface-2),var(--surface));
+  border:1px solid var(--border);border-radius:14px;padding:38px 32px;text-align:center
+}
+.contact-box h3{font-family:var(--font-display);font-weight:700;font-size:24px;margin-bottom:10px}
+.contact-box p{color:var(--text2);font-size:14px;max-width:48ch;margin:0 auto 22px}
+
+/* footer */
+footer{border-top:1px solid var(--border);padding:34px 0;color:var(--text-dim);font-size:12.5px}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.foot .brand{font-size:15px}
+
+.fade{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.fade.in{opacity:1;transform:none}
+
+@media(max-width:860px){
+  .grid{grid-template-columns:1fr 1fr}
+  .why-points{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  h1{font-size:30px;line-height:1.1;max-width:none;overflow-wrap:break-word}
+  .nav-links{display:none}
+  .nav-links.open{display:flex;position:absolute;top:60px;left:0;right:0;flex-direction:column;background:var(--surface);border-bottom:1px solid var(--border);padding:16px 24px;gap:14px;margin-left:0}
+  .menu-btn{display:inline-flex;margin-left:auto;align-items:center;justify-content:center}
+  .lang-toggle{margin-left:0}
+  .grid,.apps,.why-points{grid-template-columns:1fr}
+  section{padding:56px 0}
+  .hero{padding:64px 0 56px}
+}
+</style>
 </head>
 <body>
-  <script>
-    window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
-          });
-        }
-      });
-    });
-  </script>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand">joygo<span class="dot">Live</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#uqi" data-i18n="nav.uqi">UQI</a>
+      <a href="#capabilities" data-i18n="nav.capabilities">Capabilities</a>
+      <a href="#applications" data-i18n="nav.applications">Applications</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+      <a href="https://github.com/joygoLive" class="gh-link" aria-label="GitHub" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.6 18.4.5 12 .5z"/></svg>
+      </a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="language">
+      <button data-lang="en" onclick="setLang('en')">EN</button>
+      <button data-lang="ko" onclick="setLang('ko')">한국어</button>
+    </div>
+    <button class="menu-btn" aria-label="menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero" style="border-top:none">
+  <div class="wrap">
+    <span class="eyebrow"><span class="pulse"></span><span data-i18n="hero.eyebrow">Quantum infrastructure</span></span>
+    <h1 data-i18n="hero.title">Universal Quantum Infrastructure</h1>
+    <p class="sub" data-i18n="hero.sub">One interface to every quantum backend. Analyze, optimize, mitigate, and run circuits across IBM, IQM, IonQ, Rigetti, QuEra, Pasqal, and Quandela — and see the cost before you submit.</p>
+    <div class="cta-row">
+      <a href="#capabilities" class="btn btn-primary" data-i18n="hero.cta1">Explore UQI</a>
+      <a href="#contact" class="btn btn-ghost" data-i18n="hero.cta2">Contact</a>
+    </div>
+    <div class="byline" data-i18n="hero.byline">A service by joygoLive.</div>
+
+    <div class="vendors">
+      <div class="label" data-i18n="vendors.label">Multi-vendor by design</div>
+      <div class="row">
+        <span class="chip">IBM Quantum</span><span class="chip">IQM</span><span class="chip">IonQ</span>
+        <span class="chip">Rigetti</span><span class="chip">QuEra</span><span class="chip">Pasqal</span><span class="chip">Quandela</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS UQI -->
+<section id="uqi">
+  <div class="wrap">
+    <div class="sec-tag" data-i18n="uqi.tag">The platform</div>
+    <h2 data-i18n="uqi.h2">UQI — a vendor-neutral middleware for quantum computing</h2>
+    <p class="lead" data-i18n="uqi.lead">Bring your circuit once. UQI detects the framework, optimizes and noise-checks it, applies error mitigation, and runs it on the backend you choose — all through one consistent UI, API, and CLI. No vendor lock-in, no rewrites per provider.</p>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="capabilities">
+  <div class="wrap">
+    <div class="sec-tag" data-i18n="cap.tag">Capabilities</div>
+    <h2 data-i18n="cap.h2">Everything from circuit to result, in one flow</h2>
+    <div class="grid">
+      <div class="card fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg>
+        <h3 data-i18n="cap.1.t">Multi-vendor access</h3>
+        <p data-i18n="cap.1.d">Seven hardware vendors and six frameworks (Qiskit, PennyLane, Qrisp, CUDA-Q, Perceval, Pulser) behind one workflow.</p>
+      </div>
+      <div class="card fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="4" height="4"/><rect x="10" y="10" width="4" height="4"/><rect x="17" y="16" width="4" height="4"/><path d="M7 6h3M14 12h3"/></svg>
+        <h3 data-i18n="cap.2.t">Independent pipeline</h3>
+        <p data-i18n="cap.2.d">Analyze, optimize, noise-simulate, QEC, GPU execution, QPU submit — each step runs standalone, no prior step required.</p>
+      </div>
+      <div class="card fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M5 8c4 2 10 2 14 0M5 16c4-2 10-2 14 0"/></svg>
+        <h3 data-i18n="cap.3.t">Error mitigation &amp; resilience</h3>
+        <p data-i18n="cap.3.d">Readout-error mitigation and zero-noise extrapolation as a single resilience level — standard techniques, applied consistently across vendors.</p>
+      </div>
+      <div class="card fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+        <h3 data-i18n="cap.4.t">Cost known up-front</h3>
+        <p data-i18n="cap.4.d">Estimate resources and per-vendor cost in credits and USD before you submit — no surprise spend.</p>
+      </div>
+      <div class="card fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+        <h3 data-i18n="cap.5.t">Your own benchmarks</h3>
+        <p data-i18n="cap.5.d">A fidelity, cost, and time view built from your accumulated jobs — compare devices on your real workloads.</p>
+      </div>
+      <div class="card fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg>
+        <h3 data-i18n="cap.6.t">AI-agent native</h3>
+        <p data-i18n="cap.6.d">An MCP server lets Claude and other AI agents orchestrate multi-vendor runs directly — the same capabilities, agent-driven.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATIONS -->
+<section id="applications">
+  <div class="wrap">
+    <div class="sec-tag" data-i18n="app.tag">Applications</div>
+    <h2 data-i18n="app.h2">Ready-to-run quantum application modules</h2>
+    <div class="apps">
+      <div class="app fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="9" r="5"/><circle cx="17" cy="17" r="2.5"/></svg>
+        <div><h3 data-i18n="app.1.t">QML anomaly detection</h3><p data-i18n="app.1.d">Quantum-kernel outlier detection against a classical baseline.</p></div>
+      </div>
+      <div class="app fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 18V8M10 18V4M16 18v-6M4 18h14"/></svg>
+        <div><h3 data-i18n="app.2.t">Quantum finance</h3><p data-i18n="app.2.d">QAOA portfolio optimization versus exact and greedy baselines.</p></div>
+      </div>
+      <div class="app fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="9" ry="4"/><ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(60 12 12)"/></svg>
+        <div><h3 data-i18n="app.3.t">Quantum chemistry</h3><p data-i18n="app.3.d">VQE ground-state energy with noise and mitigation comparison.</p></div>
+      </div>
+      <div class="app fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="17" r="2"/><path d="M8 6h8M7 8v8M17 9v6M9 18h6"/></svg>
+        <div><h3 data-i18n="app.4.t">Graph optimization</h3><p data-i18n="app.4.d">QAOA for max-cut, independent set, and vertex cover.</p></div>
+      </div>
+    </div>
+    <p class="apps-note" data-i18n="app.note">Each module is comparable across CPU, GPU (H100), and real QPU backends.</p>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="wrap">
+    <div class="sec-tag" data-i18n="why.tag">Why UQI</div>
+    <h2 data-i18n="why.h2">The combination is the difference</h2>
+    <p class="lead" data-i18n="why.lead">Individually, these capabilities exist elsewhere. UQI brings them into a single flow.</p>
+    <div class="why-points">
+      <div class="pt fade"><b data-i18n="why.1.t">QEC-aware pipeline</b><span data-i18n="why.1.d">Error-correction analysis sits in the same flow as optimization and execution.</span></div>
+      <div class="pt fade"><b data-i18n="why.2.t">Agent-native execution</b><span data-i18n="why.2.d">Multi-vendor runs orchestrated directly by AI agents over MCP.</span></div>
+      <div class="pt fade"><b data-i18n="why.3.t">Result-quality evaluation</b><span data-i18n="why.3.d">Fidelity and benchmarking grounded in your own job history.</span></div>
+      <div class="pt fade"><b data-i18n="why.4.t">Per-domain policy</b><span data-i18n="why.4.d">White-label control over visible features, devices, and access by domain and plan.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-tag" data-i18n="contact.tag">Contact</div>
+    <h2 data-i18n="contact.h2">Build on quantum, without the vendor maze</h2>
+    <div class="contact-box">
+      <h3 data-i18n="contact.box.t">Get in touch with joygoLive</h3>
+      <p data-i18n="contact.box.d">Interested in UQI for your team or research? Reach out and we'll get back to you.</p>
+      <a href="https://github.com/joygoLive" class="btn btn-primary" target="_blank" rel="noopener" data-i18n="contact.box.cta">Visit our GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand">joygo<span class="dot">Live</span></span>
+    <span data-i18n="footer.tagline">Universal Quantum Infrastructure.</span>
+    <span data-i18n="footer.copy">© 2026 joygoLive. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+const _LOCALES = {
+  en: {
+    "nav.uqi":"UQI","nav.capabilities":"Capabilities","nav.applications":"Applications","nav.contact":"Contact",
+    "hero.eyebrow":"Quantum infrastructure",
+    "hero.title":"Universal Quantum Infrastructure",
+    "hero.sub":"One interface to every quantum backend. Analyze, optimize, mitigate, and run circuits across IBM, IQM, IonQ, Rigetti, QuEra, Pasqal, and Quandela — and see the cost before you submit.",
+    "hero.cta1":"Explore UQI","hero.cta2":"Contact","hero.byline":"A service by joygoLive.",
+    "vendors.label":"Multi-vendor by design",
+    "uqi.tag":"The platform",
+    "uqi.h2":"UQI — a vendor-neutral middleware for quantum computing",
+    "uqi.lead":"Bring your circuit once. UQI detects the framework, optimizes and noise-checks it, applies error mitigation, and runs it on the backend you choose — all through one consistent UI, API, and CLI. No vendor lock-in, no rewrites per provider.",
+    "cap.tag":"Capabilities","cap.h2":"Everything from circuit to result, in one flow",
+    "cap.1.t":"Multi-vendor access","cap.1.d":"Seven hardware vendors and six frameworks (Qiskit, PennyLane, Qrisp, CUDA-Q, Perceval, Pulser) behind one workflow.",
+    "cap.2.t":"Independent pipeline","cap.2.d":"Analyze, optimize, noise-simulate, QEC, GPU execution, QPU submit — each step runs standalone, no prior step required.",
+    "cap.3.t":"Error mitigation & resilience","cap.3.d":"Readout-error mitigation and zero-noise extrapolation as a single resilience level — standard techniques, applied consistently across vendors.",
+    "cap.4.t":"Cost known up-front","cap.4.d":"Estimate resources and per-vendor cost in credits and USD before you submit — no surprise spend.",
+    "cap.5.t":"Your own benchmarks","cap.5.d":"A fidelity, cost, and time view built from your accumulated jobs — compare devices on your real workloads.",
+    "cap.6.t":"AI-agent native","cap.6.d":"An MCP server lets Claude and other AI agents orchestrate multi-vendor runs directly — the same capabilities, agent-driven.",
+    "app.tag":"Applications","app.h2":"Ready-to-run quantum application modules",
+    "app.1.t":"QML anomaly detection","app.1.d":"Quantum-kernel outlier detection against a classical baseline.",
+    "app.2.t":"Quantum finance","app.2.d":"QAOA portfolio optimization versus exact and greedy baselines.",
+    "app.3.t":"Quantum chemistry","app.3.d":"VQE ground-state energy with noise and mitigation comparison.",
+    "app.4.t":"Graph optimization","app.4.d":"QAOA for max-cut, independent set, and vertex cover.",
+    "app.note":"Each module is comparable across CPU, GPU (H100), and real QPU backends.",
+    "why.tag":"Why UQI","why.h2":"The combination is the difference",
+    "why.lead":"Individually, these capabilities exist elsewhere. UQI brings them into a single flow.",
+    "why.1.t":"QEC-aware pipeline","why.1.d":"Error-correction analysis sits in the same flow as optimization and execution.",
+    "why.2.t":"Agent-native execution","why.2.d":"Multi-vendor runs orchestrated directly by AI agents over MCP.",
+    "why.3.t":"Result-quality evaluation","why.3.d":"Fidelity and benchmarking grounded in your own job history.",
+    "why.4.t":"Per-domain policy","why.4.d":"White-label control over visible features, devices, and access by domain and plan.",
+    "contact.tag":"Contact","contact.h2":"Build on quantum, without the vendor maze",
+    "contact.box.t":"Get in touch with joygoLive",
+    "contact.box.d":"Interested in UQI for your team or research? Reach out and we'll get back to you.",
+    "contact.box.cta":"Visit our GitHub",
+    "footer.tagline":"Universal Quantum Infrastructure.","footer.copy":"© 2026 joygoLive. All rights reserved."
+  },
+  ko: {
+    "nav.uqi":"UQI","nav.capabilities":"기능","nav.applications":"응용","nav.contact":"문의",
+    "hero.eyebrow":"양자 인프라",
+    "hero.title":"유니버설 양자 인프라",
+    "hero.sub":"모든 양자 백엔드를 하나의 인터페이스로. IBM·IQM·IonQ·Rigetti·QuEra·Pasqal·Quandela 전반에서 회로를 분석·최적화·완화·실행하고, 제출 전에 비용까지 확인하세요.",
+    "hero.cta1":"UQI 살펴보기","hero.cta2":"문의하기","hero.byline":"joygoLive가 제공하는 서비스입니다.",
+    "vendors.label":"설계부터 멀티벤더",
+    "uqi.tag":"플랫폼",
+    "uqi.h2":"UQI — 벤더 중립 양자 컴퓨팅 미들웨어",
+    "uqi.lead":"회로를 한 번만 올리세요. UQI가 프레임워크를 자동 인식해 최적화·노이즈 점검을 하고 오류완화를 적용한 뒤, 선택한 백엔드에서 실행합니다 — 일관된 UI·API·CLI 하나로. 벤더 종속도, 공급자별 재작성도 없습니다.",
+    "cap.tag":"기능","cap.h2":"회로에서 결과까지, 하나의 흐름으로",
+    "cap.1.t":"멀티벤더 접근","cap.1.d":"7개 하드웨어 벤더와 6개 프레임워크(Qiskit, PennyLane, Qrisp, CUDA-Q, Perceval, Pulser)를 하나의 워크플로로.",
+    "cap.2.t":"독립 실행 파이프라인","cap.2.d":"분석·최적화·노이즈 시뮬레이션·QEC·GPU 실행·QPU 제출 — 각 단계가 이전 단계 없이 독립적으로 동작합니다.",
+    "cap.3.t":"오류완화와 resilience","cap.3.d":"측정 오류완화와 zero-noise extrapolation을 하나의 resilience 레벨로 — 표준 기법을 벤더 전반에 일관되게 적용합니다.",
+    "cap.4.t":"사전 비용 확인","cap.4.d":"제출 전에 자원과 벤더별 비용을 크레딧·USD로 추정 — 예상 못 한 지출이 없습니다.",
+    "cap.5.t":"나만의 벤치마크","cap.5.d":"누적된 작업에서 충실도·비용·시간 뷰를 구성 — 실제 워크로드로 장비를 비교하세요.",
+    "cap.6.t":"AI 에이전트 네이티브","cap.6.d":"MCP 서버로 Claude 등 AI 에이전트가 멀티벤더 실행을 직접 오케스트레이션합니다 — 같은 기능을, 에이전트 주도로.",
+    "app.tag":"응용","app.h2":"바로 실행하는 양자 응용 모듈",
+    "app.1.t":"QML 이상탐지","app.1.d":"고전 기준선과 비교하는 양자 커널 이상치 탐지.",
+    "app.2.t":"양자 금융","app.2.d":"정확해·그리디 기준선과 비교하는 QAOA 포트폴리오 최적화.",
+    "app.3.t":"양자 화학","app.3.d":"노이즈·완화 비교를 포함한 VQE 바닥상태 에너지.",
+    "app.4.t":"그래프 최적화","app.4.d":"맥스컷·독립집합·정점덮개를 위한 QAOA.",
+    "app.note":"각 모듈은 CPU·GPU(H100)·실 QPU 백엔드 전반에서 비교할 수 있습니다.",
+    "why.tag":"UQI를 선택하는 이유","why.h2":"차별점은 ‘조합’에 있습니다",
+    "why.lead":"개별 기능은 다른 곳에도 있습니다. UQI는 이것들을 하나의 흐름으로 묶습니다.",
+    "why.1.t":"QEC 통합 파이프라인","why.1.d":"오류정정 분석이 최적화·실행과 같은 흐름 안에 있습니다.",
+    "why.2.t":"에이전트 네이티브 실행","why.2.d":"멀티벤더 실행을 MCP로 AI 에이전트가 직접 오케스트레이션.",
+    "why.3.t":"결과 품질 평가","why.3.d":"본인의 작업 이력에 기반한 충실도·벤치마킹.",
+    "why.4.t":"도메인별 정책","why.4.d":"도메인·플랜별로 노출 기능·장비·접근을 제어하는 화이트라벨.",
+    "contact.tag":"문의","contact.h2":"벤더 미로 없이, 양자 위에서 만드세요",
+    "contact.box.t":"joygoLive에 문의하기",
+    "contact.box.d":"팀이나 연구에 UQI 도입을 검토 중이신가요? 연락 주시면 회신드리겠습니다.",
+    "contact.box.cta":"GitHub 방문하기",
+    "footer.tagline":"유니버설 양자 인프라.","footer.copy":"© 2026 joygoLive. All rights reserved."
+  }
+};
+
+function setLang(lang){
+  if(!_LOCALES[lang]) lang='en';
+  const dict=_LOCALES[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(dict[k]!=null) el.textContent=dict[k];
+  });
+  document.documentElement.lang=lang;
+  document.body.classList.toggle('lang-ko',lang==='ko');
+  document.querySelectorAll('.lang-toggle button').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('data-lang')===lang);
+  });
+  try{localStorage.setItem('joygo_lang',lang);}catch(e){}
+}
+
+(function init(){
+  let lang='en';
+  try{
+    const saved=localStorage.getItem('joygo_lang');
+    if(saved) lang=saved;
+    else if((navigator.language||'').toLowerCase().startsWith('ko')) lang='ko';
+  }catch(e){}
+  setLang(lang);
+
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.12});
+  document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+  document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+})();
+</script>
 </body>
 </html>
