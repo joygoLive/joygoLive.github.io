@@ -71,6 +71,7 @@ h3{font-family:var(--font-sans);font-weight:600;font-size:18px;letter-spacing:-.
 .hero .lead{font-size:clamp(16px,1.8vw,19px);max-width:56ch}
 .cta-row{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
 .byline{margin-top:26px;font-family:var(--font-mono);font-size:12.5px;color:var(--text-dim)}
+.byline .hl{color:var(--accent-2);font-weight:600}
 .vendor-strip{margin-top:46px;padding-top:24px;border-top:1px solid var(--border)}
 .vendor-strip .vlabel{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px}
 .vendor-strip .row{display:flex;flex-wrap:wrap;gap:9px 12px}
@@ -237,7 +238,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
       <a href="#capabilities" class="btn btn-primary" data-i18n="hero.cta1">Explore the platform</a>
       <a href="#contact" class="btn btn-ghost" data-i18n="hero.cta2">Talk to us</a>
     </div>
-    <div class="byline" data-i18n="hero.byline">A service by joygoLive — Joy, realized when Quantum Computing goes Live.</div>
+    <div class="byline" data-i18n-html="hero.byline">A service by joygoLive — <b class="hl">Joy</b>, realized when Quantum Computing <b class="hl">go</b>es <b class="hl">Live</b>.</div>
     <div class="vendor-strip">
       <div class="vlabel" data-i18n="hero.vlabel">Multi-vendor by design</div>
       <div class="row">
@@ -254,7 +255,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
       <div class="stat"><div class="n">7</div><div class="l" data-i18n="stat.vendors">Hardware vendors</div></div>
       <div class="stat"><div class="n">6</div><div class="l" data-i18n="stat.frameworks">SDK frameworks</div></div>
       <div class="stat"><div class="n">7</div><div class="l" data-i18n="stat.steps">Independent pipeline steps</div></div>
-      <div class="stat"><div class="n">3</div><div class="l" data-i18n="stat.langs">UI languages</div></div>
+      <div class="stat"><div class="n">4</div><div class="l" data-i18n="stat.apps">Application modules</div></div>
     </div>
   </div>
 </section>
@@ -563,8 +564,8 @@ const _L = {
     "nav.platform":"Platform","nav.capabilities":"Capabilities","nav.intelligence":"Intelligence","nav.developers":"Developers","nav.contact":"Contact",
     "hero.pill":"Vendor-neutral quantum middleware","hero.title":"Universal Quantum Infrastructure",
     "hero.sub":"Connect every framework and vendor, run a full circuit pipeline, mitigate errors, and control cost — all through one consistent UI, API, and CLI. No vendor lock-in, no rewrites per provider.",
-    "hero.cta1":"Explore the platform","hero.cta2":"Talk to us","hero.byline":"A service by joygoLive — Joy, realized when Quantum Computing goes Live.","hero.vlabel":"Multi-vendor by design",
-    "stat.vendors":"Hardware vendors","stat.frameworks":"SDK frameworks","stat.steps":"Independent pipeline steps","stat.langs":"UI languages",
+    "hero.cta1":"Explore the platform","hero.cta2":"Talk to us","hero.byline":"A service by joygoLive — <b class=\"hl\">Joy</b>, realized when Quantum Computing <b class=\"hl\">go</b>es <b class=\"hl\">Live</b>.","hero.vlabel":"Multi-vendor by design",
+    "stat.vendors":"Hardware vendors","stat.frameworks":"SDK frameworks","stat.steps":"Independent pipeline steps","stat.apps":"Application modules",
     "plat.tag":"The platform","plat.h2":"One middleware, from circuit to confident result",
     "plat.lead":"Bring your circuit once. UQI detects the framework, optimizes and noise-checks it, applies error mitigation and error correction, prices it across vendors, and runs it on the backend you choose — then turns every run into operational intelligence.",
     "plat.1.t":"Connect everything","plat.1.d":"Six SDK frameworks and seven hardware vendors across superconducting, trapped-ion, neutral-atom, and photonic — behind one interface.",
@@ -606,8 +607,8 @@ const _L = {
     "nav.platform":"플랫폼","nav.capabilities":"기능","nav.intelligence":"인텔리전스","nav.developers":"개발자","nav.contact":"문의",
     "hero.pill":"벤더 중립 양자 미들웨어","hero.title":"유니버설 양자 인프라",
     "hero.sub":"모든 프레임워크와 벤더를 연결하고, 전체 회로 파이프라인을 실행하고, 오류를 완화하며, 비용까지 제어합니다 — 일관된 UI, API, CLI 하나로. 벤더 종속도, 공급자별 재작성도 없습니다.",
-    "hero.cta1":"플랫폼 살펴보기","hero.cta2":"문의하기","hero.byline":"joygoLive가 제공하는 서비스입니다 — Joy, realized when Quantum Computing goes Live.","hero.vlabel":"설계부터 멀티벤더",
-    "stat.vendors":"하드웨어 벤더","stat.frameworks":"SDK 프레임워크","stat.steps":"독립 파이프라인 단계","stat.langs":"UI 언어",
+    "hero.cta1":"플랫폼 살펴보기","hero.cta2":"문의하기","hero.byline":"joygoLive가 제공하는 서비스입니다 — <b class=\"hl\">Joy</b>, realized when Quantum Computing <b class=\"hl\">go</b>es <b class=\"hl\">Live</b>.","hero.vlabel":"설계부터 멀티벤더",
+    "stat.vendors":"하드웨어 벤더","stat.frameworks":"SDK 프레임워크","stat.steps":"독립 파이프라인 단계","stat.apps":"응용 모듈",
     "plat.tag":"플랫폼","plat.h2":"회로에서 신뢰할 수 있는 결과까지, 하나의 미들웨어",
     "plat.lead":"회로를 한 번만 올리세요. UQI가 프레임워크를 인식해 최적화와 노이즈 점검을 거치고, 오류완화와 오류정정을 적용하고, 벤더별 비용을 산정한 뒤 선택한 백엔드에서 실행합니다 — 그리고 모든 실행을 운영 인텔리전스로 바꿉니다.",
     "plat.1.t":"모든 것을 연결","plat.1.d":"6개 SDK 프레임워크와 초전도, 이온트랩, 중성원자, 광자를 아우르는 7개 하드웨어 벤더를 하나의 인터페이스로.",
@@ -650,6 +651,7 @@ function setLang(lang){
   if(!_L[lang]) lang='en';
   const d=_L[lang];
   document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.getAttribute('data-i18n-html');if(d[k]!=null)el.innerHTML=d[k];});
   document.documentElement.lang=lang;
   document.querySelectorAll('.lang-toggle button').forEach(b=>b.classList.toggle('active',b.getAttribute('data-lang')===lang));
   try{localStorage.setItem('joygo_lang',lang);}catch(e){}
