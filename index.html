@@ -4,214 +4,215 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>joygoLive — Universal Quantum Infrastructure</title>
-<meta name="description" content="joygoLive builds UQI, a vendor-neutral middleware for quantum computing: analyze, optimize, mitigate, and run circuits across multiple hardware vendors through one consistent UI, API, and CLI." />
+<meta name="description" content="joygoLive builds UQI, a vendor-neutral middleware for quantum computing: connect every framework and vendor, run a full circuit pipeline, mitigate errors, control cost, and operate at scale — through one consistent UI, API, and CLI." />
 <meta property="og:title" content="joygoLive — Universal Quantum Infrastructure" />
-<meta property="og:description" content="UQI: one interface to every quantum backend. Optimize, mitigate, and run across vendors — with cost known before you submit." />
+<meta property="og:description" content="One platform to connect, run, and operate quantum across every vendor — with error mitigation, cost control, and intelligence built in." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <meta name="theme-color" content="#0891b2" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
 <style>
 :root{
-  --bg:#f7f9fb; --surface:#ffffff; --surface-2:#f1f5f9; --border:#e3e8ee;
-  --accent:#0891b2; --accent-dim:rgba(8,145,178,0.10); --accent-line:rgba(8,145,178,0.28);
-  --text:#0f1923; --text2:#4a5663; --text-dim:#8794a3;
-  --success:#1a7f37; --warn:#9a6700;
-  --glow:rgba(8,145,178,0.10);
-  --font-cjk:'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;
-  --font-mono:'JetBrains Mono',var(--font-cjk),monospace;
-  --font-display:'Syne',var(--font-cjk),sans-serif;
-  --radius:10px; --maxw:1080px;
+  --bg:#ffffff; --alt:#f6f8fb; --surface:#ffffff; --surface-2:#f1f5f9; --border:#e4e9f0;
+  --accent:#0891b2; --accent-2:#0e7490; --accent-dim:rgba(8,145,178,0.09); --accent-line:rgba(8,145,178,0.30);
+  --ink:#0c1622; --text:#26323f; --text2:#5a6776; --text-dim:#8a97a6;
+  --font-sans:'Inter','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,monospace;
+  --font-display:'Syne',var(--font-sans);
+  --maxw:1180px; --radius:12px;
+  --shadow:0 1px 2px rgba(12,22,34,.04),0 8px 24px rgba(12,22,34,.05);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  background:var(--bg); color:var(--text); font-family:var(--font-mono);
-  font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased;
-}
-body.lang-ko{font-family:var(--font-cjk)}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;letter-spacing:-0.01em}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-.accent{color:var(--accent)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.mono{font-family:var(--font-mono)}
+.eyebrow{display:inline-block;font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-2);font-weight:600;margin-bottom:16px}
 
-/* ── header ── */
-header{
-  position:sticky;top:0;z-index:50;
-  background:rgba(255,255,255,0.82);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-}
-.nav{display:flex;align-items:center;gap:20px;height:60px}
-.brand{font-family:var(--font-display);font-weight:800;font-size:19px;letter-spacing:-0.5px}
+/* header */
+header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;gap:26px;height:66px}
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:800;font-size:20px;letter-spacing:-.02em;color:var(--ink)}
 .brand .dot{color:var(--accent)}
-.nav-links{display:flex;gap:22px;margin-left:auto;align-items:center}
-.nav-links a{font-size:13px;color:var(--text2);transition:color .15s}
-.nav-links a:hover{color:var(--text)}
-.lang-toggle{display:flex;border:1px solid var(--border);border-radius:6px;overflow:hidden}
-.lang-toggle button{
-  background:transparent;border:0;color:var(--text-dim);font-family:var(--font-mono);
-  font-size:11px;font-weight:600;padding:5px 9px;cursor:pointer;transition:.15s
-}
-.lang-toggle button.active{background:var(--accent-dim);color:var(--accent)}
-.gh-link{display:inline-flex;align-items:center;color:var(--text2)}
-.gh-link:hover{color:var(--accent)}
-.menu-btn{display:none;background:none;border:1px solid var(--border);border-radius:6px;color:var(--text2);width:34px;height:32px;cursor:pointer}
+.brand svg{width:26px;height:26px;flex-shrink:0}
+.nav-links{display:flex;gap:24px;margin-left:auto;align-items:center}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text2);transition:color .15s}
+.nav-links a:hover{color:var(--ink)}
+.lang-toggle{display:flex;border:1px solid var(--border);border-radius:7px;overflow:hidden}
+.lang-toggle button{background:transparent;border:0;color:var(--text-dim);font-family:var(--font-mono);font-size:11px;font-weight:600;padding:6px 9px;cursor:pointer;transition:.15s;white-space:nowrap}
+.lang-toggle button.active{background:var(--accent-dim);color:var(--accent-2)}
+.menu-btn{display:none;background:none;border:1px solid var(--border);border-radius:7px;color:var(--text2);width:36px;height:34px;cursor:pointer;align-items:center;justify-content:center}
 
-/* ── hero ── */
-.hero{position:relative;padding:96px 0 80px;overflow:hidden}
-.hero::before{
-  content:"";position:absolute;top:-160px;left:50%;transform:translateX(-50%);
-  width:760px;height:420px;background:radial-gradient(ellipse,var(--glow),transparent 70%);
-  pointer-events:none
-}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:1px;
-  text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-line);
-  border-radius:100px;padding:5px 14px;margin-bottom:24px;background:var(--accent-dim)
-}
-.eyebrow .pulse{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
-h1{font-family:var(--font-display);font-weight:800;font-size:clamp(34px,6vw,60px);line-height:1.05;letter-spacing:-1.5px;max-width:13ch}
-.hero p.sub{margin-top:22px;font-size:clamp(15px,2.2vw,18px);color:var(--text2);max-width:60ch;line-height:1.6}
-.cta-row{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
-.btn{
-  display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-weight:600;
-  font-size:14px;padding:12px 22px;border-radius:8px;cursor:pointer;transition:.18s;border:1px solid transparent
-}
-.btn-primary{background:var(--accent);color:#ffffff}
-.btn-primary:hover{box-shadow:0 0 22px var(--accent-dim);transform:translateY(-1px)}
-.btn-ghost{border-color:var(--border);color:var(--text)}
-.btn-ghost:hover{border-color:var(--accent-line);color:var(--accent)}
-.byline{margin-top:30px;font-size:12px;color:var(--text-dim);letter-spacing:.5px}
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-weight:600;font-size:15px;padding:12px 22px;border-radius:9px;cursor:pointer;transition:.18s;border:1px solid transparent;white-space:nowrap}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-2);box-shadow:0 6px 18px var(--accent-dim);transform:translateY(-1px)}
+.btn-ghost{border-color:var(--border);color:var(--ink);background:#fff}
+.btn-ghost:hover{border-color:var(--accent-line);color:var(--accent-2)}
 
-/* vendor strip */
-.vendors{margin-top:56px;border-top:1px solid var(--border);padding-top:24px}
-.vendors .label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px}
-.vendors .row{display:flex;flex-wrap:wrap;gap:10px 18px}
-.vendors .chip{font-size:13px;color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:5px 12px}
+/* section scaffolding */
+section{padding:88px 0}
+.section.alt{background:var(--alt);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.sec-head{max-width:680px}
+h1{font-family:var(--font-display);font-weight:800;font-size:clamp(36px,5.4vw,62px);line-height:1.04;letter-spacing:-.03em;color:var(--ink)}
+h2{font-family:var(--font-display);font-weight:700;font-size:clamp(28px,3.6vw,40px);line-height:1.08;letter-spacing:-.025em;color:var(--ink)}
+h3{font-family:var(--font-sans);font-weight:650;font-size:18px;letter-spacing:-.02em;color:var(--ink)}
+.lead{margin-top:18px;font-size:clamp(16px,1.6vw,18px);color:var(--text2);line-height:1.65;max-width:62ch}
 
-/* ── sections ── */
-section{padding:78px 0;border-top:1px solid var(--border)}
-.sec-tag{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:14px}
-h2{font-family:var(--font-display);font-weight:700;font-size:clamp(26px,4vw,38px);letter-spacing:-1px;line-height:1.1;max-width:18ch}
-.lead{margin-top:18px;font-size:16px;color:var(--text2);max-width:64ch}
+/* hero */
+.hero{padding:84px 0 64px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-220px;right:-120px;width:680px;height:560px;background:radial-gradient(ellipse,rgba(8,145,178,.10),transparent 68%);pointer-events:none}
+.hero .pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-2);border:1px solid var(--accent-line);background:var(--accent-dim);border-radius:100px;padding:6px 14px;margin-bottom:24px}
+.hero .pill .pulse{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+.hero h1{max-width:16ch}
+.hero .lead{font-size:clamp(16px,1.8vw,19px);max-width:56ch}
+.cta-row{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+.byline{margin-top:26px;font-family:var(--font-mono);font-size:12.5px;color:var(--text-dim)}
+.vendor-strip{margin-top:46px;padding-top:24px;border-top:1px solid var(--border)}
+.vendor-strip .vlabel{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px}
+.vendor-strip .row{display:flex;flex-wrap:wrap;gap:9px 12px}
+.chip{font-family:var(--font-mono);font-size:13px;color:var(--text2);border:1px solid var(--border);background:#fff;border-radius:7px;padding:6px 13px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.stat .n{font-family:var(--font-display);font-weight:800;font-size:clamp(32px,4vw,46px);color:var(--accent-2);letter-spacing:-.03em;line-height:1}
+.stat .l{margin-top:8px;font-size:14px;color:var(--text2)}
+
+/* pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:46px}
+.pillar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 26px;box-shadow:var(--shadow)}
+.pillar .ico{width:30px;height:30px;color:var(--accent);margin-bottom:16px}
+.pillar h3{font-size:19px;margin-bottom:8px}
+.pillar p{font-size:14.5px;color:var(--text2);line-height:1.6}
 
 /* capability grid */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:42px}
-.card{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
-  padding:24px 22px;transition:.18s;position:relative
-}
-.card:hover{border-color:var(--accent-line);transform:translateY(-2px);background:var(--surface-2)}
-.card .ico{width:30px;height:30px;color:var(--accent);margin-bottom:16px}
-.card h3{font-family:var(--font-display);font-weight:600;font-size:17px;margin-bottom:8px;letter-spacing:-.3px}
-.card p{font-size:13.5px;color:var(--text2);line-height:1.6}
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+.cap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 22px;transition:.18s}
+.cap:hover{border-color:var(--accent-line);box-shadow:var(--shadow);transform:translateY(-2px)}
+.cap .ico{width:26px;height:26px;color:var(--accent);margin-bottom:14px}
+.cap h3{font-size:16.5px;margin-bottom:7px}
+.cap p{font-size:13.5px;color:var(--text2);line-height:1.58}
+.cap .tags{margin-top:11px;display:flex;flex-wrap:wrap;gap:6px}
+.cap .tags span{font-family:var(--font-mono);font-size:11px;color:var(--text-dim);background:var(--surface-2);border-radius:5px;padding:3px 7px}
+
+/* pipeline */
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:44px}
+.flow .step{display:flex;align-items:center;gap:10px}
+.flow .node{font-family:var(--font-mono);font-size:13px;color:var(--ink);border:1px solid var(--border);background:#fff;border-radius:8px;padding:10px 15px;box-shadow:var(--shadow);white-space:nowrap}
+.flow .arr{color:var(--accent);flex-shrink:0}
+.terminal{margin-top:34px;border:1px solid #1d2b39;border-radius:12px;overflow:hidden;background:#0c1620;box-shadow:0 12px 38px rgba(12,22,34,.16)}
+.term-bar{display:flex;align-items:center;gap:7px;padding:11px 16px;background:#10202c;border-bottom:1px solid #1d2b39}
+.term-bar i{width:11px;height:11px;border-radius:50%;background:#33414f}
+.term-title{margin-left:10px;font-family:var(--font-mono);font-size:12px;color:#7d8ca0}
+.term-body{margin:0;padding:20px 22px;font-family:var(--font-mono);font-size:13px;line-height:1.9;color:#cdd9e5;overflow-x:auto}
+.term-body .c-p{color:#22c0de;font-weight:700}.term-body .c-f{color:#8aa0ff}.term-body .c-v{color:#5fd0a8}.term-body .c-c{color:#6b7888;font-style:italic}.term-body .c-a{color:#22c0de}
+
+/* split feature (intelligence / knowledge) */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;margin-top:46px}
+.feature-list{list-style:none;margin-top:22px;display:flex;flex-direction:column;gap:14px}
+.feature-list li{display:flex;gap:12px;font-size:14.5px;color:var(--text)}
+.feature-list .mk{flex-shrink:0;width:20px;height:20px;color:var(--accent);margin-top:2px}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+.panel .pcap{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;font-size:13px}
+.bar-row .nm{width:108px;color:var(--text);font-family:var(--font-mono);font-size:12px}
+.bar-row .track{flex:1;height:8px;background:var(--surface-2);border-radius:5px;overflow:hidden}
+.bar-row .fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:5px}
+.bar-row .v{width:42px;text-align:right;font-family:var(--font-mono);font-size:12px;color:var(--text2)}
+.rag-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--font-mono);font-size:12px}
+.rag-flow .rn{border:1px solid var(--border);border-radius:7px;padding:7px 11px;color:var(--ink);background:var(--surface-2)}
+.rag-flow .ra{color:var(--accent)}
 
 /* applications */
-.apps{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:42px}
-.app{display:flex;gap:16px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
-.app .ico{width:26px;height:26px;color:var(--accent);flex-shrink:0;margin-top:2px}
-.app h3{font-size:15px;font-weight:600;margin-bottom:4px}
-.app p{font-size:13px;color:var(--text2)}
-.apps-note{margin-top:18px;font-size:13px;color:var(--text-dim)}
+.apps{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:46px}
+.app{display:flex;gap:16px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+.app .ico{width:28px;height:28px;color:var(--accent);flex-shrink:0;margin-top:2px}
+.app h3{font-size:16px;margin-bottom:4px}
+.app p{font-size:13.5px;color:var(--text2)}
+.note{margin-top:20px;font-size:13.5px;color:var(--text-dim)}
 
-/* why */
-.why-points{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:38px}
-.why-points .pt{border:1px solid var(--border);border-left:2px solid var(--accent);border-radius:8px;padding:16px 16px}
-.why-points .pt b{display:block;font-size:14px;margin-bottom:5px}
-.why-points .pt span{font-size:12.5px;color:var(--text2);line-height:1.55}
-
-/* contact */
-.contact-box{
-  margin-top:38px;background:linear-gradient(160deg,var(--surface-2),var(--surface));
-  border:1px solid var(--border);border-radius:14px;padding:38px 32px;text-align:center
-}
-.contact-box h3{font-family:var(--font-display);font-weight:700;font-size:24px;margin-bottom:10px}
-.contact-box p{color:var(--text2);font-size:14px;max-width:48ch;margin:0 auto 22px}
-
-/* footer */
-footer{border-top:1px solid var(--border);padding:34px 0;color:var(--text-dim);font-size:12.5px}
-.foot{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.foot .brand{font-size:15px}
-
-.fade{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
-.fade.in{opacity:1;transform:none}
-
-@media(max-width:860px){
-  .grid{grid-template-columns:1fr 1fr}
-  .why-points{grid-template-columns:1fr 1fr}
-}
-@media(max-width:600px){
-  h1{font-size:30px;line-height:1.1;max-width:none;overflow-wrap:break-word}
-  .nav-links{display:none}
-  .nav-links.open{display:flex;position:absolute;top:60px;left:0;right:0;flex-direction:column;background:var(--surface);border-bottom:1px solid var(--border);padding:16px 24px;gap:14px;margin-left:0}
-  .menu-btn{display:inline-flex;margin-left:auto;align-items:center;justify-content:center}
-  .lang-toggle{margin-left:0}
-  .grid,.apps,.why-points{grid-template-columns:1fr}
-  section{padding:56px 0}
-  .hero{padding:64px 0 56px}
-  .term-body{font-size:12px;padding:16px 16px}
-}
-
-/* ── brand meaning band ── */
-.brand-meaning{border-top:1px solid var(--border);background:var(--surface);padding:24px 0}
-.bm-wrap{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap}
-.brand-mark{width:52px;height:52px;flex-shrink:0}
-.bm-text{font-family:var(--font-display);font-size:clamp(15px,2.4vw,21px);font-weight:600;color:var(--text2);letter-spacing:-.3px;text-align:center;line-height:1.5}
-.bm-text .hl{color:var(--accent);font-weight:800}
-
-/* ── terminal (dark accent block) ── */
-.terminal{margin-top:36px;border:1px solid #1d2b39;border-radius:12px;overflow:hidden;background:#0d1620;box-shadow:0 10px 34px rgba(15,25,35,0.12)}
-.term-bar{display:flex;align-items:center;gap:7px;padding:11px 16px;background:#111d29;border-bottom:1px solid #1d2b39}
-.term-bar i{width:11px;height:11px;border-radius:50%;background:#33414f}
-.term-title{margin-left:10px;font-size:12px;color:#7d8ca0}
-.term-body{margin:0;padding:20px 22px;font-family:var(--font-mono);font-size:13px;line-height:1.85;color:#cdd9e5;overflow-x:auto}
-.term-body .c-p{color:#22b8d6;font-weight:700}
-.term-body .c-f{color:#8aa0ff}
-.term-body .c-v{color:#5fd0a8}
-.term-body .c-c{color:#6b7888;font-style:italic}
-.term-body .c-ok{color:#5fd0a8}
-.term-body .c-a{color:#22b8d6}
-
-/* ── vendor table ── */
-.table-wrap{margin-top:38px;border:1px solid var(--border);border-radius:12px;overflow-x:auto;background:var(--surface)}
-.vtable{width:100%;min-width:560px;border-collapse:collapse;font-size:14px}
-.vtable th{text-align:left;padding:14px 18px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);background:var(--surface-2);font-weight:600}
-.vtable td{padding:13px 18px;border-top:1px solid var(--border);color:var(--text2)}
-.vtable td:first-child{color:var(--text);font-weight:600}
+/* table */
+.table-wrap{margin-top:40px;border:1px solid var(--border);border-radius:var(--radius);overflow-x:auto;background:var(--surface);box-shadow:var(--shadow)}
+.vtable{width:100%;min-width:560px;border-collapse:collapse;font-size:14.5px}
+.vtable th{text-align:left;padding:15px 20px;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);background:var(--surface-2);font-weight:600}
+.vtable td{padding:14px 20px;border-top:1px solid var(--border);color:var(--text2)}
+.vtable td:first-child{color:var(--ink);font-weight:600}
 .vtable tbody tr:hover{background:var(--surface-2)}
 
-/* ── partners ── */
-.partner-grid{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
-.partner{display:flex;flex-direction:column;gap:4px;border:1px solid var(--border);border-radius:10px;padding:18px 22px;background:var(--surface);transition:.18s;min-width:180px}
-.partner:hover{border-color:var(--accent-line);transform:translateY(-2px)}
-.partner-name{font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--text)}
-.partner-url{font-size:12.5px;color:var(--accent)}
-
-/* ── audience ── */
-.aud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:42px}
-.aud{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px 24px;transition:.18s}
-.aud:hover{border-color:var(--accent-line);transform:translateY(-2px)}
+/* audience */
+.aud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
+.aud{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 26px;box-shadow:var(--shadow)}
 .aud .ico{width:28px;height:28px;color:var(--accent);margin-bottom:16px}
-.aud h3{font-family:var(--font-display);font-weight:600;font-size:18px;margin-bottom:9px;letter-spacing:-.3px}
-.aud p{font-size:13.5px;color:var(--text2);line-height:1.65}
-@media(max-width:860px){ .aud-grid{grid-template-columns:1fr 1fr} }
-@media(max-width:600px){ .aud-grid{grid-template-columns:1fr} }
+.aud h3{font-size:18px;margin-bottom:9px}
+.aud p{font-size:14px;color:var(--text2);line-height:1.65}
+
+/* why / security points */
+.pts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:42px}
+.pt{border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:9px;padding:18px;background:var(--surface)}
+.pt b{display:block;font-size:14.5px;color:var(--ink);margin-bottom:6px}
+.pt span{font-size:13px;color:var(--text2);line-height:1.55}
+
+/* partners */
+.partner-grid{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
+.partner{display:flex;flex-direction:column;gap:4px;border:1px solid var(--border);border-radius:11px;padding:20px 24px;background:var(--surface);transition:.18s;min-width:190px;box-shadow:var(--shadow)}
+.partner:hover{border-color:var(--accent-line);transform:translateY(-2px)}
+.partner-name{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--ink)}
+.partner-url{font-family:var(--font-mono);font-size:12.5px;color:var(--accent-2)}
+
+/* contact */
+.contact-box{margin-top:40px;background:linear-gradient(160deg,#0c1622,#10202c);border-radius:16px;padding:52px 40px;text-align:center;color:#e6edf3}
+.contact-box h2{color:#fff}
+.contact-box p{color:#aab9c9;font-size:15px;max-width:52ch;margin:14px auto 0}
+
+/* footer */
+footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;color:var(--text-dim);font-size:13.5px}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.foot .brand{font-size:16px}
+
+.fade{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.fade.in{opacity:1;transform:none}
+
+@media(max-width:980px){
+  .cap-grid{grid-template-columns:1fr 1fr}
+  .pts{grid-template-columns:1fr 1fr}
+  .split{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  .nav{gap:10px}
+  .brand{font-size:17px;gap:7px}
+  .brand svg{width:22px;height:22px}
+  .nav-links{display:none}
+  .nav-links.open{display:flex;position:absolute;top:66px;left:0;right:0;flex-direction:column;background:#fff;border-bottom:1px solid var(--border);padding:18px 28px;gap:16px;margin-left:0}
+  .menu-btn{display:flex;margin-left:auto}
+  .lang-toggle{margin-left:0}
+  section{padding:60px 0}
+  h1{font-size:32px;line-height:1.1;letter-spacing:-.02em}
+  h2{font-size:26px}
+  .hero{padding:54px 0 48px}
+  .stats{grid-template-columns:1fr 1fr;gap:24px}
+  .pillars,.cap-grid,.apps,.aud-grid,.pts{grid-template-columns:1fr}
+  .term-body{font-size:12px;padding:16px}
+  .contact-box{padding:38px 24px}
+}
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap nav">
-    <a href="#top" class="brand">joygo<span class="dot">Live</span></a>
+    <a href="#top" class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0891b2"/><g stroke="#fff" fill="none" stroke-width="1.5" opacity=".95"><ellipse cx="16" cy="16" rx="10.5" ry="4.2"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(120 16 16)"/></g><circle cx="16" cy="16" r="2.6" fill="#fff"/></svg>
+      <span>joygo<span class="dot">Live</span></span>
+    </a>
     <nav class="nav-links" id="navLinks">
-      <a href="#uqi" data-i18n="nav.uqi">UQI</a>
+      <a href="#platform" data-i18n="nav.platform">Platform</a>
       <a href="#capabilities" data-i18n="nav.capabilities">Capabilities</a>
-      <a href="#applications" data-i18n="nav.applications">Applications</a>
+      <a href="#intelligence" data-i18n="nav.intelligence">Intelligence</a>
+      <a href="#developers" data-i18n="nav.developers">Developers</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
-      <a href="https://github.com/joygoLive" class="gh-link" aria-label="GitHub" target="_blank" rel="noopener">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.6 18.4.5 12 .5z"/></svg>
-      </a>
     </nav>
     <div class="lang-toggle" role="group" aria-label="language">
       <button data-lang="en" onclick="setLang('en')">EN</button>
@@ -222,127 +223,148 @@ footer{border-top:1px solid var(--border);padding:34px 0;color:var(--text-dim);f
     </button>
   </div>
 </header>
-
 <a id="top"></a>
 
 <!-- HERO -->
-<section class="hero" style="border-top:none">
+<section class="hero">
   <div class="wrap">
-    <span class="eyebrow"><span class="pulse"></span><span data-i18n="hero.eyebrow">Quantum infrastructure</span></span>
+    <span class="pill"><span class="pulse"></span><span data-i18n="hero.pill">Vendor-neutral quantum middleware</span></span>
     <h1 data-i18n="hero.title">Universal Quantum Infrastructure</h1>
-    <p class="sub" data-i18n="hero.sub">One interface to every quantum backend. Analyze, optimize, mitigate, and run circuits across IBM, IQM, IonQ, Rigetti, QuEra, Pasqal, and Quandela — and see the cost before you submit.</p>
+    <p class="lead" data-i18n="hero.sub">Connect every framework and vendor, run a full circuit pipeline, mitigate errors, and control cost — all through one consistent UI, API, and CLI. No vendor lock-in, no rewrites per provider.</p>
     <div class="cta-row">
-      <a href="#capabilities" class="btn btn-primary" data-i18n="hero.cta1">Explore UQI</a>
-      <a href="#contact" class="btn btn-ghost" data-i18n="hero.cta2">Contact</a>
+      <a href="#capabilities" class="btn btn-primary" data-i18n="hero.cta1">Explore the platform</a>
+      <a href="#contact" class="btn btn-ghost" data-i18n="hero.cta2">Talk to us</a>
     </div>
-    <div class="byline" data-i18n="hero.byline">A service by joygoLive.</div>
-
-    <div class="vendors">
-      <div class="label" data-i18n="vendors.label">Multi-vendor by design</div>
+    <div class="byline" data-i18n="hero.byline">A service by joygoLive — Joy, realized when Quantum Computing goes Live.</div>
+    <div class="vendor-strip">
+      <div class="vlabel" data-i18n="hero.vlabel">Multi-vendor by design</div>
       <div class="row">
-        <span class="chip">IBM Quantum</span><span class="chip">IQM</span><span class="chip">IonQ</span>
-        <span class="chip">Rigetti</span><span class="chip">QuEra</span><span class="chip">Pasqal</span><span class="chip">Quandela</span>
+        <span class="chip">IBM Quantum</span><span class="chip">IQM</span><span class="chip">IonQ</span><span class="chip">Rigetti</span><span class="chip">QuEra</span><span class="chip">Pasqal</span><span class="chip">Quandela</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- BRAND MEANING -->
-<div class="brand-meaning">
-  <div class="wrap bm-wrap">
-    <svg class="brand-mark" viewBox="0 0 56 56" aria-hidden="true">
-      <g fill="none" stroke="#0891b2">
-        <ellipse cx="24" cy="24" rx="11" ry="4.6" stroke-width="1.3" opacity="0.4"/>
-        <ellipse cx="24" cy="24" rx="11" ry="4.6" stroke-width="1.3" opacity="0.4" transform="rotate(60 24 24)"/>
-        <circle cx="24" cy="24" r="16.5" stroke-width="2.4"/>
-        <line x1="35.8" y1="35.8" x2="49" y2="49" stroke-width="4.2" stroke-linecap="round"/>
-      </g>
-      <text x="24" y="31.5" font-family="'Syne',sans-serif" font-size="22" font-weight="800" fill="#0891b2" text-anchor="middle">j</text>
-    </svg>
-    <p class="bm-text" data-i18n-html="brand.meaning"><b class="hl">Joy</b>, realized when Quantum Computing <b class="hl">go</b>es <b class="hl">Live</b>.</p>
-  </div>
-</div>
-
-<!-- WHAT IS UQI -->
-<section id="uqi">
+<!-- STATS -->
+<section class="section alt" style="padding:48px 0">
   <div class="wrap">
-    <div class="sec-tag" data-i18n="uqi.tag">The platform</div>
-    <h2 data-i18n="uqi.h2">UQI — a vendor-neutral middleware for quantum computing</h2>
-    <p class="lead" data-i18n="uqi.lead">Bring your circuit once. UQI detects the framework, optimizes and noise-checks it, applies error mitigation, and runs it on the backend you choose — all through one consistent UI, API, and CLI. No vendor lock-in, no rewrites per provider.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">7</div><div class="l" data-i18n="stat.vendors">Hardware vendors</div></div>
+      <div class="stat"><div class="n">6</div><div class="l" data-i18n="stat.frameworks">SDK frameworks</div></div>
+      <div class="stat"><div class="n">7</div><div class="l" data-i18n="stat.steps">Independent pipeline steps</div></div>
+      <div class="stat"><div class="n">3</div><div class="l" data-i18n="stat.langs">UI languages</div></div>
+    </div>
   </div>
 </section>
 
-<!-- AUDIENCE -->
-<section id="audience">
+<!-- PLATFORM -->
+<section id="platform">
   <div class="wrap">
-    <div class="sec-tag" data-i18n="aud.tag">Who it's for</div>
-    <h2 data-i18n="aud.h2">Value for everyone working with quantum</h2>
-    <div class="aud-grid">
-      <div class="aud fade">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
-        <h3 data-i18n="aud.1.t">Researchers</h3>
-        <p data-i18n="aud.1.d">Come run real circuits and feel the NISQ reality. Compare CPU, GPU, and real QPUs side by side, watch noise appear, and recover signal with error mitigation — hands-on, not in theory.</p>
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="plat.tag">The platform</div>
+      <h2 data-i18n="plat.h2">One middleware, from circuit to confident result</h2>
+      <p class="lead" data-i18n="plat.lead">Bring your circuit once. UQI detects the framework, optimizes and noise-checks it, applies error mitigation and error correction, prices it across vendors, and runs it on the backend you choose — then turns every run into operational intelligence.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M5 8c4 2 10 2 14 0M5 16c4-2 10-2 14 0"/></svg>
+        <h3 data-i18n="plat.1.t">Connect everything</h3>
+        <p data-i18n="plat.1.d">Six SDK frameworks and seven hardware vendors across superconducting, trapped-ion, neutral-atom, and photonic — behind one interface.</p>
       </div>
-      <div class="aud fade">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V4M4 20h16M8 16v-5M12 16V7M16 16v-8"/></svg>
-        <h3 data-i18n="aud.2.t">Institutions &amp; decision-makers</h3>
-        <p data-i18n="aud.2.d">Read the ecosystem in data, not hype. Device leaderboards, drift and health trends, and real cost-versus-fidelity — drawn from actual jobs across vendors — to ground hardware and budget decisions.</p>
+      <div class="pillar fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 6 9 17l-5-5"/></svg>
+        <h3 data-i18n="plat.2.t">Run with confidence</h3>
+        <p data-i18n="plat.2.d">Noise simulation, readout + ZNE mitigation, and QEC analysis make results trustworthy — with cost known before you submit.</p>
       </div>
-      <div class="aud fade">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 8l-4 4 4 4M17 8l4 4-4 4M14 5l-4 14"/></svg>
-        <h3 data-i18n="aud.3.t">Developers</h3>
-        <p data-i18n="aud.3.d">Work from the environment you already know. Circuit-complexity analysis, optimization, cost estimates, and runs are all available over API and CLI — script them, or wire them straight into your tooling and CI.</p>
+      <div class="pillar fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+        <h3 data-i18n="plat.3.t">Operate at scale</h3>
+        <p data-i18n="plat.3.d">Accumulated jobs become benchmarks and device intelligence; per-domain policy, billing, and an AI-agent interface make it run as a service.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CAPABILITIES -->
-<section id="capabilities">
+<section id="capabilities" class="section alt">
   <div class="wrap">
-    <div class="sec-tag" data-i18n="cap.tag">Capabilities</div>
-    <h2 data-i18n="cap.h2">Everything from circuit to result, in one flow</h2>
-    <div class="grid">
-      <div class="card fade">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg>
-        <h3 data-i18n="cap.1.t">Multi-vendor access</h3>
-        <p data-i18n="cap.1.d">Seven hardware vendors and six frameworks (Qiskit, PennyLane, Qrisp, CUDA-Q, Perceval, Pulser) behind one workflow.</p>
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="cap.tag">Capabilities</div>
+      <h2 data-i18n="cap.h2">Everything the quantum workflow needs</h2>
+      <p class="lead" data-i18n="cap.lead">A broad, composable feature set — use any piece on its own, or the whole pipeline end to end.</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        <h3 data-i18n="c1.t">Frameworks &amp; vendors</h3>
+        <p data-i18n="c1.d">Write in your SDK of choice and submit to any supported processor — no per-vendor rewrites.</p>
+        <div class="tags"><span>Qiskit</span><span>PennyLane</span><span>Qrisp</span><span>CUDA-Q</span><span>Perceval</span><span>Pulser</span></div>
       </div>
-      <div class="card fade">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="4" height="4"/><rect x="10" y="10" width="4" height="4"/><rect x="17" y="16" width="4" height="4"/><path d="M7 6h3M14 12h3"/></svg>
-        <h3 data-i18n="cap.2.t">Independent pipeline</h3>
-        <p data-i18n="cap.2.d">Analyze, optimize, noise-simulate, QEC, GPU execution, QPU submit — each step runs standalone, no prior step required.</p>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="4" height="4"/><rect x="10" y="10" width="4" height="4"/><rect x="17" y="16" width="4" height="4"/><path d="M7 6h3M14 12h3"/></svg>
+        <h3 data-i18n="c2.t">Independent pipeline</h3>
+        <p data-i18n="c2.d">Analyze, optimize, noise-simulate, QEC, GPU-execute, QPU-submit — each step runs standalone, with an emulator dry-run option.</p>
+        <div class="tags"><span>analyze</span><span>optimize</span><span>noise</span><span>QEC</span><span>run</span></div>
       </div>
-      <div class="card fade">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M5 8c4 2 10 2 14 0M5 16c4-2 10-2 14 0"/></svg>
-        <h3 data-i18n="cap.3.t">Error mitigation &amp; resilience</h3>
-        <p data-i18n="cap.3.d">Readout-error mitigation and zero-noise extrapolation as a single resilience level — standard techniques, applied consistently across vendors.</p>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 17l5-5 4 4 7-8"/></svg>
+        <h3 data-i18n="c3.t">Circuit optimization</h3>
+        <p data-i18n="c3.d">Transpile and route with multiple engines, mapped to the target device's physical layout.</p>
+        <div class="tags"><span>Qiskit</span><span>TKET</span><span>QuiZX</span><span>SABRE</span></div>
       </div>
-      <div class="card fade">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
-        <h3 data-i18n="cap.4.t">Cost known up-front</h3>
-        <p data-i18n="cap.4.d">Estimate resources and per-vendor cost in credits and USD before you submit — no surprise spend.</p>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M5 8c4 2 10 2 14 0M5 16c4-2 10-2 14 0"/></svg>
+        <h3 data-i18n="c4.t">Error mitigation &amp; resilience</h3>
+        <p data-i18n="c4.d">Readout-error mitigation and zero-noise extrapolation as one resilience level — standard techniques, applied consistently.</p>
       </div>
-      <div class="card fade">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
-        <h3 data-i18n="cap.5.t">Your own benchmarks</h3>
-        <p data-i18n="cap.5.d">A fidelity, cost, and time view built from your accumulated jobs — compare devices on your real workloads.</p>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+        <h3 data-i18n="c5.t">Noise simulation &amp; QEC</h3>
+        <p data-i18n="c5.d">Calibration-based fidelity and TVD, plus error-correction analysis and code application with threshold and logical-error estimates.</p>
+        <div class="tags"><span>fidelity/TVD</span><span>surface</span><span>repetition</span></div>
       </div>
-      <div class="card fade">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg>
-        <h3 data-i18n="cap.6.t">AI-agent native</h3>
-        <p data-i18n="cap.6.d">An MCP server lets Claude and other AI agents orchestrate multi-vendor runs directly — the same capabilities, agent-driven.</p>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+        <h3 data-i18n="c6.t">Cost &amp; resource estimate</h3>
+        <p data-i18n="c6.d">See qubits, depth, gates, and per-vendor cost in credits and USD before submitting — no surprise spend.</p>
+      </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>
+        <h3 data-i18n="c7.t">GPU acceleration</h3>
+        <p data-i18n="c7.d">Offload heavy simulation to real H100 / DGX hosts and compare CPU, GPU, and QPU on the same problem.</p>
+        <div class="tags"><span>H100</span><span>lightning.gpu</span></div>
+      </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <h3 data-i18n="c8.t">Knowledge base (RAG)</h3>
+        <p data-i18n="c8.d">Hybrid dense + sparse retrieval, re-ranking, and LLM synthesis over quantum docs — with PII scrubbing before any external call.</p>
+      </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 8l-4 4 4 4M17 8l4 4-4 4M14 4l-4 16"/></svg>
+        <h3 data-i18n="c9.t">API, CLI &amp; MCP</h3>
+        <p data-i18n="c9.d">Full parity across UI, REST API, and CLI — plus an MCP server so AI agents orchestrate runs directly.</p>
+        <div class="tags"><span>REST</span><span>CLI</span><span>MCP</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how">
+<!-- PIPELINE / DEVELOPERS -->
+<section id="developers">
   <div class="wrap">
-    <div class="sec-tag" data-i18n="how.tag">How it works</div>
-    <h2 data-i18n="how.h2">One workflow — UI, API, and CLI in parity</h2>
-    <p class="lead" data-i18n="how.lead">Estimate cost, optimize, mitigate, and run with the same commands everywhere. Here's the command-line view.</p>
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="dev.tag">Workflow &amp; developers</div>
+      <h2 data-i18n="dev.h2">One pipeline — the same power in your terminal</h2>
+      <p class="lead" data-i18n="dev.lead">Every step is independent and scriptable. Run it in the UI, call the REST API, or drive it from the CLI and your CI.</p>
+    </div>
+    <div class="flow">
+      <div class="step"><span class="node">analyze</span><svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="node">optimize</span><svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="node">noise sim</span><svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="node">QEC</span><svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="node">GPU exec</span><svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="node">QPU submit</span></div>
+    </div>
     <div class="terminal">
       <div class="term-bar"><i></i><i></i><i></i><span class="term-title">uqi — zsh</span></div>
 <pre class="term-body"><span class="c-p">$</span> uqi estimate <span class="c-f">--file</span> bell.py
@@ -350,94 +372,160 @@ footer{border-top:1px solid var(--border);padding:34px 0;color:var(--text-dim);f
   rigetti   <span class="c-v">$0.74</span>     ionq_forte  <span class="c-v">$82.22</span>   <span class="c-c"># cheapest first</span>
 
 <span class="c-p">$</span> uqi catalog optimize <span class="c-f">--graph</span> cycle6 <span class="c-f">--compare</span> <span class="c-f">--resilience</span> full
-  CPU <span class="c-ok">✓</span> optimal      GPU(H100) <span class="c-ok">✓</span> optimal
+  CPU optimal   ·   GPU(H100) optimal
   QPU(iqm_emerald)  fid <span class="c-v">0.74</span> · valid <span class="c-v">100%</span>
-  <span class="c-a">↳ readout-mitigated</span>  approx <span class="c-v">100%</span>   <span class="c-c"># post-processed, no re-run</span></pre>
+  <span class="c-a">readout-mitigated</span>  approx <span class="c-v">100%</span>   <span class="c-c"># post-processed, no re-run</span></pre>
     </div>
-    <p class="apps-note" data-i18n="how.note">Illustrative output. Costs are pre-submission estimates and vary by vendor and circuit.</p>
+    <p class="note" data-i18n="dev.note">Illustrative output. Costs are pre-submission estimates and vary by vendor and circuit.</p>
+  </div>
+</section>
+
+<!-- INTELLIGENCE -->
+<section id="intelligence" class="section alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="int.tag">Intelligence</div>
+      <h2 data-i18n="int.h2">Read the ecosystem in data, not hype</h2>
+      <p class="lead" data-i18n="int.lead">Every job you run feeds a living view of the hardware landscape — so researchers and decision-makers act on measured reality.</p>
+    </div>
+    <div class="split">
+      <div>
+        <ul class="feature-list">
+          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="int.1">Device leaderboard — fidelity ranked fairly across circuit sizes.</span></li>
+          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="int.2">Device health &amp; drift — best-window trends over time.</span></li>
+          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="int.3">Playbooks &amp; algorithm insights — best device per circuit class.</span></li>
+          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="int.4">My benchmarks — your own fidelity, cost, and time from real jobs.</span></li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="pcap" data-i18n="int.panel">Device leaderboard · fidelity</div>
+        <div class="bar-row"><span class="nm">ibm_fez</span><span class="track"><span class="fill" style="width:90%"></span></span><span class="v">0.90</span></div>
+        <div class="bar-row"><span class="nm">iqm_emerald</span><span class="track"><span class="fill" style="width:74%"></span></span><span class="v">0.74</span></div>
+        <div class="bar-row"><span class="nm">iqm_garnet</span><span class="track"><span class="fill" style="width:61%"></span></span><span class="v">0.61</span></div>
+        <div class="bar-row"><span class="nm">rigetti</span><span class="track"><span class="fill" style="width:55%"></span></span><span class="v">0.55</span></div>
+        <div class="pcap" style="margin-top:18px" data-i18n="int.panel2">Illustrative — drawn from accumulated jobs</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- APPLICATIONS -->
 <section id="applications">
   <div class="wrap">
-    <div class="sec-tag" data-i18n="app.tag">Applications</div>
-    <h2 data-i18n="app.h2">Ready-to-run quantum application modules</h2>
-    <div class="apps">
-      <div class="app fade">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="9" r="5"/><circle cx="17" cy="17" r="2.5"/></svg>
-        <div><h3 data-i18n="app.1.t">QML anomaly detection</h3><p data-i18n="app.1.d">Quantum-kernel outlier detection against a classical baseline.</p></div>
-      </div>
-      <div class="app fade">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 18V8M10 18V4M16 18v-6M4 18h14"/></svg>
-        <div><h3 data-i18n="app.2.t">Quantum finance</h3><p data-i18n="app.2.d">QAOA portfolio optimization versus exact and greedy baselines.</p></div>
-      </div>
-      <div class="app fade">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="9" ry="4"/><ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(60 12 12)"/></svg>
-        <div><h3 data-i18n="app.3.t">Quantum chemistry</h3><p data-i18n="app.3.d">VQE ground-state energy with noise and mitigation comparison.</p></div>
-      </div>
-      <div class="app fade">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="17" r="2"/><path d="M8 6h8M7 8v8M17 9v6M9 18h6"/></svg>
-        <div><h3 data-i18n="app.4.t">Graph optimization</h3><p data-i18n="app.4.d">QAOA for max-cut, independent set, and vertex cover.</p></div>
-      </div>
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="app.tag">Applications</div>
+      <h2 data-i18n="app.h2">Ready-to-run quantum application modules</h2>
+      <p class="lead" data-i18n="app.lead">Domain modules you can run today — each comparable across CPU, GPU, and real QPU backends.</p>
     </div>
-    <p class="apps-note" data-i18n="app.note">Each module is comparable across CPU, GPU (H100), and real QPU backends.</p>
+    <div class="apps">
+      <div class="app fade"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="5"/><circle cx="17" cy="17" r="2.5"/></svg><div><h3 data-i18n="a1.t">QML anomaly detection</h3><p data-i18n="a1.d">Quantum-kernel outlier detection against a classical baseline.</p></div></div>
+      <div class="app fade"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 18V8M10 18V4M16 18v-6M4 18h14"/></svg><div><h3 data-i18n="a2.t">Quantum finance</h3><p data-i18n="a2.d">QAOA portfolio optimization versus exact and greedy baselines.</p></div></div>
+      <div class="app fade"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="9" ry="4"/><ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(60 12 12)"/></svg><div><h3 data-i18n="a3.t">Quantum chemistry</h3><p data-i18n="a3.d">VQE ground-state energy with noise and mitigation comparison.</p></div></div>
+      <div class="app fade"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="17" r="2"/><path d="M8 6h8M7 8v8M17 9v6M9 18h6"/></svg><div><h3 data-i18n="a4.t">Graph optimization</h3><p data-i18n="a4.d">QAOA for max-cut, independent set, and vertex cover.</p></div></div>
+    </div>
   </div>
 </section>
 
-<!-- HARDWARE COMPARE -->
-<section id="compare">
+<!-- HARDWARE -->
+<section class="section alt">
   <div class="wrap">
-    <div class="sec-tag" data-i18n="cmp.tag">Hardware</div>
-    <h2 data-i18n="cmp.h2">Every modality, one platform</h2>
-    <p class="lead" data-i18n="cmp.lead">UQI reaches superconducting, trapped-ion, neutral-atom, and photonic processors — and lets you compare and run across them from a single place.</p>
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="hw.tag">Hardware</div>
+      <h2 data-i18n="hw.h2">Every modality, one platform</h2>
+      <p class="lead" data-i18n="hw.lead">Reach superconducting, trapped-ion, neutral-atom, and photonic processors — and compare and run across them from a single place.</p>
+    </div>
     <div class="table-wrap">
       <table class="vtable">
         <thead><tr>
-          <th data-i18n="cmp.col.vendor">Vendor</th>
-          <th data-i18n="cmp.col.modality">Modality</th>
-          <th data-i18n="cmp.col.qubits">Qubits</th>
-          <th data-i18n="cmp.col.access">Access</th>
+          <th data-i18n="hw.c1">Vendor</th><th data-i18n="hw.c2">Modality</th><th data-i18n="hw.c3">Qubits</th><th data-i18n="hw.c4">Access</th>
         </tr></thead>
         <tbody>
-          <tr><td>IBM Quantum</td><td data-i18n="mod.super">Superconducting</td><td>133+</td><td data-i18n="acc.open">Open plan</td></tr>
-          <tr><td>IQM</td><td data-i18n="mod.super">Superconducting</td><td>20–150</td><td data-i18n="acc.credits">Credits</td></tr>
-          <tr><td>IonQ</td><td data-i18n="mod.ion">Trapped-ion</td><td>36</td><td>AWS Braket</td></tr>
-          <tr><td>Rigetti</td><td data-i18n="mod.super">Superconducting</td><td>108</td><td>AWS Braket</td></tr>
-          <tr><td>QuEra</td><td data-i18n="mod.atom">Neutral-atom</td><td>256</td><td>AWS Braket</td></tr>
-          <tr><td>Pasqal</td><td data-i18n="mod.atom">Neutral-atom</td><td>100</td><td>PCS · Azure</td></tr>
-          <tr><td>Quandela</td><td data-i18n="mod.photon">Photonic</td><td>—</td><td data-i18n="acc.free">Free tier</td></tr>
+          <tr><td>IBM Quantum</td><td data-i18n="m.super">Superconducting</td><td>133+</td><td data-i18n="ac.open">Open plan</td></tr>
+          <tr><td>IQM</td><td data-i18n="m.super">Superconducting</td><td>20–150</td><td data-i18n="ac.cred">Credits</td></tr>
+          <tr><td>IonQ</td><td data-i18n="m.ion">Trapped-ion</td><td>36</td><td>AWS Braket</td></tr>
+          <tr><td>Rigetti</td><td data-i18n="m.super">Superconducting</td><td>108</td><td>AWS Braket</td></tr>
+          <tr><td>QuEra</td><td data-i18n="m.atom">Neutral-atom</td><td>256</td><td>AWS Braket</td></tr>
+          <tr><td>Pasqal</td><td data-i18n="m.atom">Neutral-atom</td><td>100</td><td>PCS · Azure</td></tr>
+          <tr><td>Quandela</td><td data-i18n="m.photon">Photonic</td><td>—</td><td data-i18n="ac.free">Free tier</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="apps-note" data-i18n="cmp.note">Qubit counts are indicative and provided by the vendors; device availability changes over time.</p>
+    <p class="note" data-i18n="hw.note">Qubit counts are indicative and provided by the vendors; device availability changes over time.</p>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section id="audience">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="aud.tag">Who it's for</div>
+      <h2 data-i18n="aud.h2">Value for everyone working with quantum</h2>
+    </div>
+    <div class="aud-grid">
+      <div class="aud fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+        <h3 data-i18n="aud.1.t">Researchers</h3>
+        <p data-i18n="aud.1.d">Run real circuits and feel the NISQ reality. Compare CPU, GPU, and real QPUs side by side, watch noise appear, and recover signal with mitigation — hands-on, not in theory.</p>
+      </div>
+      <div class="aud fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V4M4 20h16M8 16v-5M12 16V7M16 16v-8"/></svg>
+        <h3 data-i18n="aud.2.t">Institutions &amp; decision-makers</h3>
+        <p data-i18n="aud.2.d">Read the ecosystem in data, not hype — leaderboards, drift and health, and real cost-versus-fidelity from actual jobs to ground hardware and budget decisions.</p>
+      </div>
+      <div class="aud fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 8l-4 4 4 4M17 8l4 4-4 4M14 5l-4 14"/></svg>
+        <h3 data-i18n="aud.3.t">Developers</h3>
+        <p data-i18n="aud.3.d">Work from the environment you know. Circuit-complexity analysis, optimization, cost estimates, and runs over API and CLI — script them or wire them into CI.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY & GOVERNANCE -->
+<section id="governance" class="section alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="sec.tag">Security &amp; governance</div>
+      <h2 data-i18n="sec.h2">Built to run as a managed service</h2>
+      <p class="lead" data-i18n="sec.lead">Multi-tenant controls, spend safeguards, and isolation are enforced server-side across UI, API, CLI, and MCP — not bolted on.</p>
+    </div>
+    <div class="pts">
+      <div class="pt fade"><b data-i18n="sec.1.t">Per-domain white-label</b><span data-i18n="sec.1.d">Control visible tabs, pipeline steps, devices, and accounts per domain and plan.</span></div>
+      <div class="pt fade"><b data-i18n="sec.2.t">Spend safeguards</b><span data-i18n="sec.2.d">Pre-submission cost estimates, a cost threshold, and a credit ledger with per-job/step billing.</span></div>
+      <div class="pt fade"><b data-i18n="sec.3.t">Code &amp; data isolation</b><span data-i18n="sec.3.d">Static analysis and execution limits on uploads; per-user file and job isolation.</span></div>
+      <div class="pt fade"><b data-i18n="sec.4.t">Auth &amp; privacy</b><span data-i18n="sec.4.d">Session and API-key auth, output escaping, and PII scrubbing before external LLM calls.</span></div>
+    </div>
   </div>
 </section>
 
 <!-- WHY -->
 <section id="why">
   <div class="wrap">
-    <div class="sec-tag" data-i18n="why.tag">Why UQI</div>
-    <h2 data-i18n="why.h2">The combination is the difference</h2>
-    <p class="lead" data-i18n="why.lead">Individually, these capabilities exist elsewhere. UQI brings them into a single flow.</p>
-    <div class="why-points">
-      <div class="pt fade"><b data-i18n="why.1.t">QEC-aware pipeline</b><span data-i18n="why.1.d">Error-correction analysis sits in the same flow as optimization and execution.</span></div>
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="why.tag">Why UQI</div>
+      <h2 data-i18n="why.h2">The combination is the difference</h2>
+      <p class="lead" data-i18n="why.lead">Individually, these capabilities exist elsewhere. UQI brings them into a single flow.</p>
+    </div>
+    <div class="pts">
+      <div class="pt fade"><b data-i18n="why.1.t">QEC-aware pipeline</b><span data-i18n="why.1.d">Error correction sits in the same flow as optimization and execution.</span></div>
       <div class="pt fade"><b data-i18n="why.2.t">Agent-native execution</b><span data-i18n="why.2.d">Multi-vendor runs orchestrated directly by AI agents over MCP.</span></div>
       <div class="pt fade"><b data-i18n="why.3.t">Result-quality evaluation</b><span data-i18n="why.3.d">Fidelity and benchmarking grounded in your own job history.</span></div>
-      <div class="pt fade"><b data-i18n="why.4.t">Per-domain policy</b><span data-i18n="why.4.d">White-label control over visible features, devices, and access by domain and plan.</span></div>
+      <div class="pt fade"><b data-i18n="why.4.t">Per-domain policy</b><span data-i18n="why.4.d">White-label control over features, devices, and access by domain and plan.</span></div>
     </div>
   </div>
 </section>
 
 <!-- PARTNERS -->
-<section id="partners">
+<section id="partners" class="section alt">
   <div class="wrap">
-    <div class="sec-tag" data-i18n="ptn.tag">Partners</div>
-    <h2 data-i18n="ptn.h2">In good company</h2>
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="ptn.tag">Partners</div>
+      <h2 data-i18n="ptn.h2">In good company</h2>
+    </div>
     <div class="partner-grid">
       <a href="https://www.thatgo.live/" target="_blank" rel="noopener" class="partner">
         <span class="partner-name">ThatGo</span>
-        <span class="partner-url">thatgo.live <span aria-hidden="true">↗</span></span>
+        <span class="partner-url">thatgo.live ↗</span>
       </a>
     </div>
   </div>
@@ -446,148 +534,122 @@ footer{border-top:1px solid var(--border);padding:34px 0;color:var(--text-dim);f
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
-    <div class="sec-tag" data-i18n="contact.tag">Contact</div>
-    <h2 data-i18n="contact.h2">Build on quantum, without the vendor maze</h2>
     <div class="contact-box">
-      <h3 data-i18n="contact.box.t">Get in touch with joygoLive</h3>
-      <p data-i18n="contact.box.d" style="margin-bottom:0">Interested in UQI for your team or research? Reach out and we'll get back to you.</p>
+      <h2 data-i18n="ct.h2">Build on quantum, without the vendor maze</h2>
+      <p data-i18n="ct.d">Interested in UQI for your team, lab, or institution? Reach out and we'll get back to you.</p>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap foot">
-    <span class="brand">joygo<span class="dot">Live</span></span>
-    <span data-i18n="footer.tagline">Universal Quantum Infrastructure.</span>
-    <span data-i18n="footer.copy">© 2026 joygoLive. All rights reserved.</span>
+    <span class="brand">joygo<span class="dot" style="color:var(--accent)">Live</span></span>
+    <span data-i18n="ft.tag">Universal Quantum Infrastructure.</span>
+    <span data-i18n="ft.copy">© 2026 joygoLive. All rights reserved.</span>
   </div>
 </footer>
 
 <script>
-const _LOCALES = {
-  en: {
-    "nav.uqi":"UQI","nav.capabilities":"Capabilities","nav.applications":"Applications","nav.contact":"Contact",
-    "hero.eyebrow":"Quantum infrastructure",
-    "hero.title":"Universal Quantum Infrastructure",
-    "hero.sub":"One interface to every quantum backend. Analyze, optimize, mitigate, and run circuits across IBM, IQM, IonQ, Rigetti, QuEra, Pasqal, and Quandela — and see the cost before you submit.",
-    "hero.cta1":"Explore UQI","hero.cta2":"Contact","hero.byline":"A service by joygoLive.",
-    "vendors.label":"Multi-vendor by design",
-    "uqi.tag":"The platform",
-    "uqi.h2":"UQI — a vendor-neutral middleware for quantum computing",
-    "uqi.lead":"Bring your circuit once. UQI detects the framework, optimizes and noise-checks it, applies error mitigation, and runs it on the backend you choose — all through one consistent UI, API, and CLI. No vendor lock-in, no rewrites per provider.",
-    "cap.tag":"Capabilities","cap.h2":"Everything from circuit to result, in one flow",
-    "cap.1.t":"Multi-vendor access","cap.1.d":"Seven hardware vendors and six frameworks (Qiskit, PennyLane, Qrisp, CUDA-Q, Perceval, Pulser) behind one workflow.",
-    "cap.2.t":"Independent pipeline","cap.2.d":"Analyze, optimize, noise-simulate, QEC, GPU execution, QPU submit — each step runs standalone, no prior step required.",
-    "cap.3.t":"Error mitigation & resilience","cap.3.d":"Readout-error mitigation and zero-noise extrapolation as a single resilience level — standard techniques, applied consistently across vendors.",
-    "cap.4.t":"Cost known up-front","cap.4.d":"Estimate resources and per-vendor cost in credits and USD before you submit — no surprise spend.",
-    "cap.5.t":"Your own benchmarks","cap.5.d":"A fidelity, cost, and time view built from your accumulated jobs — compare devices on your real workloads.",
-    "cap.6.t":"AI-agent native","cap.6.d":"An MCP server lets Claude and other AI agents orchestrate multi-vendor runs directly — the same capabilities, agent-driven.",
-    "app.tag":"Applications","app.h2":"Ready-to-run quantum application modules",
-    "app.1.t":"QML anomaly detection","app.1.d":"Quantum-kernel outlier detection against a classical baseline.",
-    "app.2.t":"Quantum finance","app.2.d":"QAOA portfolio optimization versus exact and greedy baselines.",
-    "app.3.t":"Quantum chemistry","app.3.d":"VQE ground-state energy with noise and mitigation comparison.",
-    "app.4.t":"Graph optimization","app.4.d":"QAOA for max-cut, independent set, and vertex cover.",
-    "app.note":"Each module is comparable across CPU, GPU (H100), and real QPU backends.",
-    "why.tag":"Why UQI","why.h2":"The combination is the difference",
-    "why.lead":"Individually, these capabilities exist elsewhere. UQI brings them into a single flow.",
-    "why.1.t":"QEC-aware pipeline","why.1.d":"Error-correction analysis sits in the same flow as optimization and execution.",
-    "why.2.t":"Agent-native execution","why.2.d":"Multi-vendor runs orchestrated directly by AI agents over MCP.",
-    "why.3.t":"Result-quality evaluation","why.3.d":"Fidelity and benchmarking grounded in your own job history.",
-    "why.4.t":"Per-domain policy","why.4.d":"White-label control over visible features, devices, and access by domain and plan.",
-    "contact.tag":"Contact","contact.h2":"Build on quantum, without the vendor maze",
-    "contact.box.t":"Get in touch with joygoLive",
-    "contact.box.d":"Interested in UQI for your team or research? Reach out and we'll get back to you.",
-    "contact.box.cta":"Visit our GitHub",
-    "footer.tagline":"Universal Quantum Infrastructure.","footer.copy":"© 2026 joygoLive. All rights reserved.",
-    "brand.meaning":"<b class=\"hl\">Joy</b>, realized when Quantum Computing <b class=\"hl\">go</b>es <b class=\"hl\">Live</b>.",
-    "how.tag":"How it works","how.h2":"One workflow — UI, API, and CLI in parity","how.lead":"Estimate cost, optimize, mitigate, and run with the same commands everywhere. Here's the command-line view.","how.note":"Illustrative output. Costs are pre-submission estimates and vary by vendor and circuit.",
-    "cmp.tag":"Hardware","cmp.h2":"Every modality, one platform","cmp.lead":"UQI reaches superconducting, trapped-ion, neutral-atom, and photonic processors — and lets you compare and run across them from a single place.","cmp.col.vendor":"Vendor","cmp.col.modality":"Modality","cmp.col.qubits":"Qubits","cmp.col.access":"Access","cmp.note":"Qubit counts are indicative and provided by the vendors; device availability changes over time.",
-    "mod.super":"Superconducting","mod.ion":"Trapped-ion","mod.atom":"Neutral-atom","mod.photon":"Photonic","acc.open":"Open plan","acc.credits":"Credits","acc.free":"Free tier",
-    "ptn.tag":"Partners","ptn.h2":"In good company",
+const _L = {
+  en:{
+    "nav.platform":"Platform","nav.capabilities":"Capabilities","nav.intelligence":"Intelligence","nav.developers":"Developers","nav.contact":"Contact",
+    "hero.pill":"Vendor-neutral quantum middleware","hero.title":"Universal Quantum Infrastructure",
+    "hero.sub":"Connect every framework and vendor, run a full circuit pipeline, mitigate errors, and control cost — all through one consistent UI, API, and CLI. No vendor lock-in, no rewrites per provider.",
+    "hero.cta1":"Explore the platform","hero.cta2":"Talk to us","hero.byline":"A service by joygoLive — Joy, realized when Quantum Computing goes Live.","hero.vlabel":"Multi-vendor by design",
+    "stat.vendors":"Hardware vendors","stat.frameworks":"SDK frameworks","stat.steps":"Independent pipeline steps","stat.langs":"UI languages",
+    "plat.tag":"The platform","plat.h2":"One middleware, from circuit to confident result",
+    "plat.lead":"Bring your circuit once. UQI detects the framework, optimizes and noise-checks it, applies error mitigation and error correction, prices it across vendors, and runs it on the backend you choose — then turns every run into operational intelligence.",
+    "plat.1.t":"Connect everything","plat.1.d":"Six SDK frameworks and seven hardware vendors across superconducting, trapped-ion, neutral-atom, and photonic — behind one interface.",
+    "plat.2.t":"Run with confidence","plat.2.d":"Noise simulation, readout + ZNE mitigation, and QEC analysis make results trustworthy — with cost known before you submit.",
+    "plat.3.t":"Operate at scale","plat.3.d":"Accumulated jobs become benchmarks and device intelligence; per-domain policy, billing, and an AI-agent interface make it run as a service.",
+    "cap.tag":"Capabilities","cap.h2":"Everything the quantum workflow needs","cap.lead":"A broad, composable feature set — use any piece on its own, or the whole pipeline end to end.",
+    "c1.t":"Frameworks & vendors","c1.d":"Write in your SDK of choice and submit to any supported processor — no per-vendor rewrites.",
+    "c2.t":"Independent pipeline","c2.d":"Analyze, optimize, noise-simulate, QEC, GPU-execute, QPU-submit — each step runs standalone, with an emulator dry-run option.",
+    "c3.t":"Circuit optimization","c3.d":"Transpile and route with multiple engines, mapped to the target device's physical layout.",
+    "c4.t":"Error mitigation & resilience","c4.d":"Readout-error mitigation and zero-noise extrapolation as one resilience level — standard techniques, applied consistently.",
+    "c5.t":"Noise simulation & QEC","c5.d":"Calibration-based fidelity and TVD, plus error-correction analysis and code application with threshold and logical-error estimates.",
+    "c6.t":"Cost & resource estimate","c6.d":"See qubits, depth, gates, and per-vendor cost in credits and USD before submitting — no surprise spend.",
+    "c7.t":"GPU acceleration","c7.d":"Offload heavy simulation to real H100 / DGX hosts and compare CPU, GPU, and QPU on the same problem.",
+    "c8.t":"Knowledge base (RAG)","c8.d":"Hybrid dense + sparse retrieval, re-ranking, and LLM synthesis over quantum docs — with PII scrubbing before any external call.",
+    "c9.t":"API, CLI & MCP","c9.d":"Full parity across UI, REST API, and CLI — plus an MCP server so AI agents orchestrate runs directly.",
+    "dev.tag":"Workflow & developers","dev.h2":"One pipeline — the same power in your terminal","dev.lead":"Every step is independent and scriptable. Run it in the UI, call the REST API, or drive it from the CLI and your CI.","dev.note":"Illustrative output. Costs are pre-submission estimates and vary by vendor and circuit.",
+    "int.tag":"Intelligence","int.h2":"Read the ecosystem in data, not hype","int.lead":"Every job you run feeds a living view of the hardware landscape — so researchers and decision-makers act on measured reality.",
+    "int.1":"Device leaderboard — fidelity ranked fairly across circuit sizes.","int.2":"Device health & drift — best-window trends over time.","int.3":"Playbooks & algorithm insights — best device per circuit class.","int.4":"My benchmarks — your own fidelity, cost, and time from real jobs.",
+    "int.panel":"Device leaderboard · fidelity","int.panel2":"Illustrative — drawn from accumulated jobs",
+    "app.tag":"Applications","app.h2":"Ready-to-run quantum application modules","app.lead":"Domain modules you can run today — each comparable across CPU, GPU, and real QPU backends.",
+    "a1.t":"QML anomaly detection","a1.d":"Quantum-kernel outlier detection against a classical baseline.","a2.t":"Quantum finance","a2.d":"QAOA portfolio optimization versus exact and greedy baselines.","a3.t":"Quantum chemistry","a3.d":"VQE ground-state energy with noise and mitigation comparison.","a4.t":"Graph optimization","a4.d":"QAOA for max-cut, independent set, and vertex cover.",
+    "hw.tag":"Hardware","hw.h2":"Every modality, one platform","hw.lead":"Reach superconducting, trapped-ion, neutral-atom, and photonic processors — and compare and run across them from a single place.",
+    "hw.c1":"Vendor","hw.c2":"Modality","hw.c3":"Qubits","hw.c4":"Access","hw.note":"Qubit counts are indicative and provided by the vendors; device availability changes over time.",
+    "m.super":"Superconducting","m.ion":"Trapped-ion","m.atom":"Neutral-atom","m.photon":"Photonic","ac.open":"Open plan","ac.cred":"Credits","ac.free":"Free tier",
     "aud.tag":"Who it's for","aud.h2":"Value for everyone working with quantum",
-    "aud.1.t":"Researchers","aud.1.d":"Come run real circuits and feel the NISQ reality. Compare CPU, GPU, and real QPUs side by side, watch noise appear, and recover signal with error mitigation — hands-on, not in theory.",
-    "aud.2.t":"Institutions & decision-makers","aud.2.d":"Read the ecosystem in data, not hype. Device leaderboards, drift and health trends, and real cost-versus-fidelity — drawn from actual jobs across vendors — to ground hardware and budget decisions.",
-    "aud.3.t":"Developers","aud.3.d":"Work from the environment you already know. Circuit-complexity analysis, optimization, cost estimates, and runs are all available over API and CLI — script them, or wire them straight into your tooling and CI."
+    "aud.1.t":"Researchers","aud.1.d":"Run real circuits and feel the NISQ reality. Compare CPU, GPU, and real QPUs side by side, watch noise appear, and recover signal with mitigation — hands-on, not in theory.",
+    "aud.2.t":"Institutions & decision-makers","aud.2.d":"Read the ecosystem in data, not hype — leaderboards, drift and health, and real cost-versus-fidelity from actual jobs to ground hardware and budget decisions.",
+    "aud.3.t":"Developers","aud.3.d":"Work from the environment you know. Circuit-complexity analysis, optimization, cost estimates, and runs over API and CLI — script them or wire them into CI.",
+    "sec.tag":"Security & governance","sec.h2":"Built to run as a managed service","sec.lead":"Multi-tenant controls, spend safeguards, and isolation are enforced server-side across UI, API, CLI, and MCP — not bolted on.",
+    "sec.1.t":"Per-domain white-label","sec.1.d":"Control visible tabs, pipeline steps, devices, and accounts per domain and plan.","sec.2.t":"Spend safeguards","sec.2.d":"Pre-submission cost estimates, a cost threshold, and a credit ledger with per-job/step billing.","sec.3.t":"Code & data isolation","sec.3.d":"Static analysis and execution limits on uploads; per-user file and job isolation.","sec.4.t":"Auth & privacy","sec.4.d":"Session and API-key auth, output escaping, and PII scrubbing before external LLM calls.",
+    "why.tag":"Why UQI","why.h2":"The combination is the difference","why.lead":"Individually, these capabilities exist elsewhere. UQI brings them into a single flow.",
+    "why.1.t":"QEC-aware pipeline","why.1.d":"Error correction sits in the same flow as optimization and execution.","why.2.t":"Agent-native execution","why.2.d":"Multi-vendor runs orchestrated directly by AI agents over MCP.","why.3.t":"Result-quality evaluation","why.3.d":"Fidelity and benchmarking grounded in your own job history.","why.4.t":"Per-domain policy","why.4.d":"White-label control over features, devices, and access by domain and plan.",
+    "ptn.tag":"Partners","ptn.h2":"In good company",
+    "ct.h2":"Build on quantum, without the vendor maze","ct.d":"Interested in UQI for your team, lab, or institution? Reach out and we'll get back to you.",
+    "ft.tag":"Universal Quantum Infrastructure.","ft.copy":"© 2026 joygoLive. All rights reserved."
   },
-  ko: {
-    "nav.uqi":"UQI","nav.capabilities":"기능","nav.applications":"응용","nav.contact":"문의",
-    "hero.eyebrow":"양자 인프라",
-    "hero.title":"유니버설 양자 인프라",
-    "hero.sub":"모든 양자 백엔드를 하나의 인터페이스로. IBM, IQM, IonQ, Rigetti, QuEra, Pasqal, Quandela까지 — 회로를 분석하고 최적화·완화해 실행하며, 제출 전에 비용까지 확인하세요.",
-    "hero.cta1":"UQI 살펴보기","hero.cta2":"문의하기","hero.byline":"joygoLive가 제공하는 서비스입니다.",
-    "vendors.label":"설계부터 멀티벤더",
-    "uqi.tag":"플랫폼",
-    "uqi.h2":"UQI — 벤더 중립 양자 컴퓨팅 미들웨어",
-    "uqi.lead":"회로를 한 번만 올리세요. UQI가 프레임워크를 자동으로 인식해 최적화와 노이즈 점검을 거치고 오류완화를 적용한 뒤, 선택한 백엔드에서 실행합니다 — 일관된 UI · API · CLI 하나로. 벤더 종속도, 공급자별 재작성도 없습니다.",
-    "cap.tag":"기능","cap.h2":"회로에서 결과까지, 하나의 흐름으로",
-    "cap.1.t":"멀티벤더 접근","cap.1.d":"7개 하드웨어 벤더와 6개 프레임워크(Qiskit, PennyLane, Qrisp, CUDA-Q, Perceval, Pulser)를 하나의 워크플로로.",
-    "cap.2.t":"독립 실행 파이프라인","cap.2.d":"분석, 최적화, 노이즈 시뮬레이션, QEC, GPU 실행, QPU 제출 — 각 단계가 이전 단계 없이 독립적으로 동작합니다.",
-    "cap.3.t":"오류완화와 resilience","cap.3.d":"측정 오류완화와 zero-noise extrapolation을 하나의 resilience 레벨로 — 표준 기법을 벤더 전반에 일관되게 적용합니다.",
-    "cap.4.t":"사전 비용 확인","cap.4.d":"제출 전에 자원과 벤더별 비용을 크레딧·USD로 추정 — 예상 못 한 지출이 없습니다.",
-    "cap.5.t":"나만의 벤치마크","cap.5.d":"누적된 작업에서 충실도·비용·시간 뷰를 구성 — 실제 워크로드로 장비를 비교하세요.",
-    "cap.6.t":"AI 에이전트 네이티브","cap.6.d":"MCP 서버로 Claude 등 AI 에이전트가 멀티벤더 실행을 직접 오케스트레이션합니다 — 같은 기능을, 에이전트 주도로.",
-    "app.tag":"응용","app.h2":"바로 실행하는 양자 응용 모듈",
-    "app.1.t":"QML 이상탐지","app.1.d":"고전 기준선과 비교하는 양자 커널 이상치 탐지.",
-    "app.2.t":"양자 금융","app.2.d":"정확해·그리디 기준선과 비교하는 QAOA 포트폴리오 최적화.",
-    "app.3.t":"양자 화학","app.3.d":"노이즈·완화 비교를 포함한 VQE 바닥상태 에너지.",
-    "app.4.t":"그래프 최적화","app.4.d":"맥스컷·독립집합·정점덮개를 위한 QAOA.",
-    "app.note":"각 모듈은 CPU·GPU(H100)·실 QPU 백엔드 전반에서 비교할 수 있습니다.",
-    "why.tag":"UQI를 선택하는 이유","why.h2":"차별점은 ‘조합’에 있습니다",
-    "why.lead":"개별 기능은 다른 곳에도 있습니다. UQI는 이것들을 하나의 흐름으로 묶습니다.",
-    "why.1.t":"QEC 통합 파이프라인","why.1.d":"오류정정 분석이 최적화·실행과 같은 흐름 안에 있습니다.",
-    "why.2.t":"에이전트 네이티브 실행","why.2.d":"멀티벤더 실행을 MCP로 AI 에이전트가 직접 오케스트레이션.",
-    "why.3.t":"결과 품질 평가","why.3.d":"본인의 작업 이력에 기반한 충실도·벤치마킹.",
-    "why.4.t":"도메인별 정책","why.4.d":"도메인·플랜별로 노출 기능·장비·접근을 제어하는 화이트라벨.",
-    "contact.tag":"문의","contact.h2":"벤더 미로 없이, 양자 위에서 만드세요",
-    "contact.box.t":"joygoLive에 문의하기",
-    "contact.box.d":"팀이나 연구에 UQI 도입을 검토 중이신가요? 연락 주시면 회신드리겠습니다.",
-    "contact.box.cta":"GitHub 방문하기",
-    "footer.tagline":"유니버설 양자 인프라.","footer.copy":"© 2026 joygoLive. All rights reserved.",
-    "brand.meaning":"양자 컴퓨팅이 <b class=\"hl\">Go Live</b> 하는 순간 실현될 <b class=\"hl\">Joy</b>.",
-    "how.tag":"작동 방식","how.h2":"하나의 워크플로 — UI·API·CLI 패리티","how.lead":"비용 추정·최적화·완화·실행을 어디서나 같은 명령으로. 커맨드라인 화면입니다.","how.note":"예시 출력입니다. 비용은 제출 전 추정치이며 벤더·회로에 따라 달라집니다.",
-    "cmp.tag":"하드웨어","cmp.h2":"모든 방식, 하나의 플랫폼","cmp.lead":"UQI는 초전도, 이온트랩, 중성원자, 광자 프로세서에 접근하고, 한 곳에서 비교·실행합니다.","cmp.col.vendor":"벤더","cmp.col.modality":"방식","cmp.col.qubits":"큐빗","cmp.col.access":"접근","cmp.note":"큐빗 수는 벤더 제공 참고치이며 장비 가용성은 시점에 따라 달라집니다.",
-    "mod.super":"초전도","mod.ion":"이온 트랩","mod.atom":"중성 원자","mod.photon":"광자","acc.open":"오픈 플랜","acc.credits":"크레딧","acc.free":"무료 티어",
-    "ptn.tag":"파트너","ptn.h2":"함께하는 곳",
+  ko:{
+    "nav.platform":"플랫폼","nav.capabilities":"기능","nav.intelligence":"인텔리전스","nav.developers":"개발자","nav.contact":"문의",
+    "hero.pill":"벤더 중립 양자 미들웨어","hero.title":"유니버설 양자 인프라",
+    "hero.sub":"모든 프레임워크와 벤더를 연결하고, 전체 회로 파이프라인을 실행하고, 오류를 완화하며, 비용까지 제어합니다 — 일관된 UI, API, CLI 하나로. 벤더 종속도, 공급자별 재작성도 없습니다.",
+    "hero.cta1":"플랫폼 살펴보기","hero.cta2":"문의하기","hero.byline":"joygoLive가 제공하는 서비스입니다 — Joy, realized when Quantum Computing goes Live.","hero.vlabel":"설계부터 멀티벤더",
+    "stat.vendors":"하드웨어 벤더","stat.frameworks":"SDK 프레임워크","stat.steps":"독립 파이프라인 단계","stat.langs":"UI 언어",
+    "plat.tag":"플랫폼","plat.h2":"회로에서 신뢰할 수 있는 결과까지, 하나의 미들웨어",
+    "plat.lead":"회로를 한 번만 올리세요. UQI가 프레임워크를 인식해 최적화와 노이즈 점검을 거치고, 오류완화와 오류정정을 적용하고, 벤더별 비용을 산정한 뒤 선택한 백엔드에서 실행합니다 — 그리고 모든 실행을 운영 인텔리전스로 바꿉니다.",
+    "plat.1.t":"모든 것을 연결","plat.1.d":"6개 SDK 프레임워크와 초전도, 이온트랩, 중성원자, 광자를 아우르는 7개 하드웨어 벤더를 하나의 인터페이스로.",
+    "plat.2.t":"신뢰할 수 있는 실행","plat.2.d":"노이즈 시뮬레이션, 측정·ZNE 완화, QEC 분석으로 결과를 신뢰할 수 있게 — 제출 전에 비용까지 확인합니다.",
+    "plat.3.t":"규모 있는 운영","plat.3.d":"누적된 작업이 벤치마크와 장비 인텔리전스가 되고, 도메인별 정책·과금·AI 에이전트 인터페이스가 이를 서비스로 만듭니다.",
+    "cap.tag":"기능","cap.h2":"양자 워크플로에 필요한 모든 것","cap.lead":"넓고 조합 가능한 기능 세트 — 각각 따로 쓰거나, 전체 파이프라인을 끝까지.",
+    "c1.t":"프레임워크 & 벤더","c1.d":"원하는 SDK로 작성하고 지원되는 어떤 프로세서로든 제출하세요 — 벤더별 재작성이 없습니다.",
+    "c2.t":"독립 파이프라인","c2.d":"분석, 최적화, 노이즈 시뮬레이션, QEC, GPU 실행, QPU 제출 — 각 단계가 독립적으로 동작하며 에뮬레이터 드라이런도 제공합니다.",
+    "c3.t":"회로 최적화","c3.d":"여러 엔진으로 트랜스파일·라우팅하고 대상 장비의 물리 배치에 매핑합니다.",
+    "c4.t":"오류완화 & resilience","c4.d":"측정 오류완화와 zero-noise extrapolation을 하나의 resilience 레벨로 — 표준 기법을 일관되게 적용합니다.",
+    "c5.t":"노이즈 시뮬레이션 & QEC","c5.d":"캘리브레이션 기반 충실도·TVD에 더해, 임계값과 논리오류 추정을 포함한 오류정정 분석·적용까지.",
+    "c6.t":"비용 & 자원 추정","c6.d":"제출 전에 큐빗·깊이·게이트와 벤더별 비용을 크레딧·USD로 확인 — 예상 못 한 지출이 없습니다.",
+    "c7.t":"GPU 가속","c7.d":"무거운 시뮬레이션을 실제 H100 / DGX 호스트로 오프로드하고 같은 문제로 CPU·GPU·QPU를 비교합니다.",
+    "c8.t":"지식베이스 (RAG)","c8.d":"하이브리드 dense+sparse 검색, 재순위, LLM 합성을 양자 문서에 적용 — 외부 호출 전 PII를 스크러빙합니다.",
+    "c9.t":"API, CLI & MCP","c9.d":"UI·REST API·CLI 완전 패리티 — 그리고 MCP 서버로 AI 에이전트가 실행을 직접 오케스트레이션합니다.",
+    "dev.tag":"워크플로 & 개발자","dev.h2":"하나의 파이프라인 — 터미널에서도 똑같이","dev.lead":"모든 단계가 독립적이고 스크립트로 다룰 수 있습니다. UI에서 실행하거나 REST API를 호출하거나 CLI와 CI에서 구동하세요.","dev.note":"예시 출력입니다. 비용은 제출 전 추정치이며 벤더·회로에 따라 달라집니다.",
+    "int.tag":"인텔리전스","int.h2":"과대광고가 아니라 데이터로 생태계를 읽으세요","int.lead":"실행하는 모든 작업이 하드웨어 지형의 살아있는 뷰를 만듭니다 — 연구자와 의사결정자가 측정된 현실에 근거해 움직이도록.",
+    "int.1":"장비 리더보드 — 회로 크기 편향 없이 공정하게 순위화한 충실도.","int.2":"장비 헬스 & 드리프트 — 시간에 따른 베스트윈도우 추세.","int.3":"플레이북 & 알고리즘 인사이트 — 회로 유형별 최적 장비.","int.4":"My benchmarks — 실제 작업에서 나온 나의 충실도·비용·시각.",
+    "int.panel":"장비 리더보드 · 충실도","int.panel2":"예시 — 누적된 작업 기반",
+    "app.tag":"응용","app.h2":"바로 실행하는 양자 응용 모듈","app.lead":"오늘 바로 실행할 수 있는 도메인 모듈 — 각각 CPU·GPU·실 QPU 백엔드에서 비교됩니다.",
+    "a1.t":"QML 이상탐지","a1.d":"고전 기준선과 비교하는 양자 커널 이상치 탐지.","a2.t":"양자 금융","a2.d":"정확해·그리디 기준선과 비교하는 QAOA 포트폴리오 최적화.","a3.t":"양자 화학","a3.d":"노이즈·완화 비교를 포함한 VQE 바닥상태 에너지.","a4.t":"그래프 최적화","a4.d":"맥스컷·독립집합·정점덮개를 위한 QAOA.",
+    "hw.tag":"하드웨어","hw.h2":"모든 방식, 하나의 플랫폼","hw.lead":"초전도, 이온트랩, 중성원자, 광자 프로세서에 접근하고 한 곳에서 비교·실행합니다.",
+    "hw.c1":"벤더","hw.c2":"방식","hw.c3":"큐빗","hw.c4":"접근","hw.note":"큐빗 수는 벤더 제공 참고치이며 장비 가용성은 시점에 따라 달라집니다.",
+    "m.super":"초전도","m.ion":"이온 트랩","m.atom":"중성 원자","m.photon":"광자","ac.open":"오픈 플랜","ac.cred":"크레딧","ac.free":"무료 티어",
     "aud.tag":"누구를 위한 플랫폼인가","aud.h2":"양자를 다루는 모두에게 가치를",
-    "aud.1.t":"연구자","aud.1.d":"직접 회로를 돌리며 NISQ의 현실을 체험하세요. CPU, GPU, 실제 QPU를 나란히 비교하고, 노이즈가 어떻게 나타나는지 보고, 오류완화로 신호를 회복합니다 — 이론이 아니라 직접 손으로.",
-    "aud.2.t":"기관 · 의사결정자","aud.2.d":"과대광고가 아니라 데이터로 생태계를 읽으세요. 장비 리더보드, 드리프트와 헬스 추세, 그리고 실제 작업에서 나온 비용 대 충실도까지 — 벤더 전반의 실측 데이터로 하드웨어와 예산 판단의 근거를 마련합니다.",
-    "aud.3.t":"개발자","aud.3.d":"익숙한 개발 환경에서 그대로 쓰세요. 회로 복잡도 분석, 최적화, 비용 추정, 실행까지 모두 API와 CLI로 제공됩니다 — 스크립트로 자동화하거나 기존 툴체인과 CI에 곧바로 연결하세요."
+    "aud.1.t":"연구자","aud.1.d":"직접 회로를 돌리며 NISQ의 현실을 체험하세요. CPU·GPU·실제 QPU를 나란히 비교하고, 노이즈가 나타나는 과정을 보고, 완화로 신호를 회복합니다 — 이론이 아니라 직접 손으로.",
+    "aud.2.t":"기관 · 의사결정자","aud.2.d":"과대광고가 아니라 데이터로 생태계를 읽으세요 — 리더보드, 드리프트와 헬스, 실제 작업의 비용 대 충실도로 하드웨어와 예산 판단의 근거를 마련합니다.",
+    "aud.3.t":"개발자","aud.3.d":"익숙한 환경에서 그대로 쓰세요. 회로 복잡도 분석, 최적화, 비용 추정, 실행을 API와 CLI로 — 스크립트로 자동화하거나 CI에 연결하세요.",
+    "sec.tag":"보안 & 거버넌스","sec.h2":"관리형 서비스로 운영되도록 설계","sec.lead":"멀티테넌트 제어, 지출 안전장치, 격리가 UI·API·CLI·MCP 전반에 서버측으로 집행됩니다 — 나중에 덧붙인 게 아니라.",
+    "sec.1.t":"도메인별 화이트라벨","sec.1.d":"도메인·플랜별로 노출 탭, 파이프라인 단계, 장비, 계정을 제어합니다.","sec.2.t":"지출 안전장치","sec.2.d":"제출 전 비용 추정, 비용 임계값, 작업·단계별 과금이 있는 크레딧 원장.","sec.3.t":"코드 & 데이터 격리","sec.3.d":"업로드 코드에 정적분석과 실행 제한; 사용자별 파일·작업 격리.","sec.4.t":"인증 & 프라이버시","sec.4.d":"세션·API 키 인증, 출력 이스케이핑, 외부 LLM 호출 전 PII 스크러빙.",
+    "why.tag":"UQI를 선택하는 이유","why.h2":"차별점은 ‘조합’에 있습니다","why.lead":"개별 기능은 다른 곳에도 있습니다. UQI는 이것들을 하나의 흐름으로 묶습니다.",
+    "why.1.t":"QEC 통합 파이프라인","why.1.d":"오류정정이 최적화·실행과 같은 흐름 안에 있습니다.","why.2.t":"에이전트 네이티브 실행","why.2.d":"멀티벤더 실행을 MCP로 AI 에이전트가 직접 오케스트레이션.","why.3.t":"결과 품질 평가","why.3.d":"본인의 작업 이력에 기반한 충실도·벤치마킹.","why.4.t":"도메인별 정책","why.4.d":"도메인·플랜별로 기능·장비·접근을 제어하는 화이트라벨.",
+    "ptn.tag":"파트너","ptn.h2":"함께하는 곳",
+    "ct.h2":"벤더 미로 없이, 양자 위에서 만드세요","ct.d":"팀·연구실·기관에 UQI 도입을 검토 중이신가요? 연락 주시면 회신드리겠습니다.",
+    "ft.tag":"유니버설 양자 인프라.","ft.copy":"© 2026 joygoLive. All rights reserved."
   }
 };
-
 function setLang(lang){
-  if(!_LOCALES[lang]) lang='en';
-  const dict=_LOCALES[lang];
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.getAttribute('data-i18n');
-    if(dict[k]!=null) el.textContent=dict[k];
-  });
-  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
-    const k=el.getAttribute('data-i18n-html');
-    if(dict[k]!=null) el.innerHTML=dict[k];   // 자체 콘텐츠만(브랜드 강조) — 외부 입력 아님
-  });
+  if(!_L[lang]) lang='en';
+  const d=_L[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];});
   document.documentElement.lang=lang;
-  document.body.classList.toggle('lang-ko',lang==='ko');
-  document.querySelectorAll('.lang-toggle button').forEach(b=>{
-    b.classList.toggle('active', b.getAttribute('data-lang')===lang);
-  });
+  document.querySelectorAll('.lang-toggle button').forEach(b=>b.classList.toggle('active',b.getAttribute('data-lang')===lang));
   try{localStorage.setItem('joygo_lang',lang);}catch(e){}
 }
-
-(function init(){
+(function(){
   let lang='en';
-  try{
-    const saved=localStorage.getItem('joygo_lang');
-    if(saved) lang=saved;
-    else if((navigator.language||'').toLowerCase().startsWith('ko')) lang='ko';
-  }catch(e){}
+  try{const s=localStorage.getItem('joygo_lang');if(s)lang=s;else if((navigator.language||'').toLowerCase().startsWith('ko'))lang='ko';}catch(e){}
   setLang(lang);
-
-  const io=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-  },{threshold:0.12});
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
   document.querySelectorAll('.fade').forEach(el=>io.observe(el));
-
   document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
 })();
 </script>
