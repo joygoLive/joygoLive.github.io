@@ -154,7 +154,9 @@ footer{border-top:1px solid var(--border);padding:34px 0;color:var(--text-dim);f
 }
 
 /* ── brand meaning band ── */
-.brand-meaning{border-top:1px solid var(--border);background:var(--surface);padding:26px 0}
+.brand-meaning{border-top:1px solid var(--border);background:var(--surface);padding:24px 0}
+.bm-wrap{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap}
+.brand-mark{width:52px;height:52px;flex-shrink:0}
 .bm-text{font-family:var(--font-display);font-size:clamp(15px,2.4vw,21px);font-weight:600;color:var(--text2);letter-spacing:-.3px;text-align:center;line-height:1.5}
 .bm-text .hl{color:var(--accent);font-weight:800}
 
@@ -185,6 +187,16 @@ footer{border-top:1px solid var(--border);padding:34px 0;color:var(--text-dim);f
 .partner:hover{border-color:var(--accent-line);transform:translateY(-2px)}
 .partner-name{font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--text)}
 .partner-url{font-size:12.5px;color:var(--accent)}
+
+/* ── audience ── */
+.aud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:42px}
+.aud{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px 24px;transition:.18s}
+.aud:hover{border-color:var(--accent-line);transform:translateY(-2px)}
+.aud .ico{width:28px;height:28px;color:var(--accent);margin-bottom:16px}
+.aud h3{font-family:var(--font-display);font-weight:600;font-size:18px;margin-bottom:9px;letter-spacing:-.3px}
+.aud p{font-size:13.5px;color:var(--text2);line-height:1.65}
+@media(max-width:860px){ .aud-grid{grid-template-columns:1fr 1fr} }
+@media(max-width:600px){ .aud-grid{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -237,7 +249,16 @@ footer{border-top:1px solid var(--border);padding:34px 0;color:var(--text-dim);f
 
 <!-- BRAND MEANING -->
 <div class="brand-meaning">
-  <div class="wrap">
+  <div class="wrap bm-wrap">
+    <svg class="brand-mark" viewBox="0 0 56 56" aria-hidden="true">
+      <g fill="none" stroke="#0891b2">
+        <ellipse cx="24" cy="24" rx="11" ry="4.6" stroke-width="1.3" opacity="0.4"/>
+        <ellipse cx="24" cy="24" rx="11" ry="4.6" stroke-width="1.3" opacity="0.4" transform="rotate(60 24 24)"/>
+        <circle cx="24" cy="24" r="16.5" stroke-width="2.4"/>
+        <line x1="35.8" y1="35.8" x2="49" y2="49" stroke-width="4.2" stroke-linecap="round"/>
+      </g>
+      <text x="24" y="31.5" font-family="'Syne',sans-serif" font-size="22" font-weight="800" fill="#0891b2" text-anchor="middle">j</text>
+    </svg>
     <p class="bm-text" data-i18n-html="brand.meaning"><b class="hl">Joy</b>, realized when Quantum Computing <b class="hl">go</b>es <b class="hl">Live</b>.</p>
   </div>
 </div>
@@ -248,6 +269,31 @@ footer{border-top:1px solid var(--border);padding:34px 0;color:var(--text-dim);f
     <div class="sec-tag" data-i18n="uqi.tag">The platform</div>
     <h2 data-i18n="uqi.h2">UQI — a vendor-neutral middleware for quantum computing</h2>
     <p class="lead" data-i18n="uqi.lead">Bring your circuit once. UQI detects the framework, optimizes and noise-checks it, applies error mitigation, and runs it on the backend you choose — all through one consistent UI, API, and CLI. No vendor lock-in, no rewrites per provider.</p>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section id="audience">
+  <div class="wrap">
+    <div class="sec-tag" data-i18n="aud.tag">Who it's for</div>
+    <h2 data-i18n="aud.h2">Value for everyone working with quantum</h2>
+    <div class="aud-grid">
+      <div class="aud fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+        <h3 data-i18n="aud.1.t">Researchers</h3>
+        <p data-i18n="aud.1.d">Come run real circuits and feel the NISQ reality. Compare CPU, GPU, and real QPUs side by side, watch noise appear, and recover signal with error mitigation — hands-on, not in theory.</p>
+      </div>
+      <div class="aud fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V4M4 20h16M8 16v-5M12 16V7M16 16v-8"/></svg>
+        <h3 data-i18n="aud.2.t">Institutions &amp; decision-makers</h3>
+        <p data-i18n="aud.2.d">Read the ecosystem in data, not hype. Device leaderboards, drift and health trends, and real cost-versus-fidelity — drawn from actual jobs across vendors — to ground hardware and budget decisions.</p>
+      </div>
+      <div class="aud fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 8l-4 4 4 4M17 8l4 4-4 4M14 5l-4 14"/></svg>
+        <h3 data-i18n="aud.3.t">Developers</h3>
+        <p data-i18n="aud.3.d">Work from the environment you already know. Circuit-complexity analysis, optimization, cost estimates, and runs are all available over API and CLI — script them, or wire them straight into your tooling and CI.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -404,8 +450,7 @@ footer{border-top:1px solid var(--border);padding:34px 0;color:var(--text-dim);f
     <h2 data-i18n="contact.h2">Build on quantum, without the vendor maze</h2>
     <div class="contact-box">
       <h3 data-i18n="contact.box.t">Get in touch with joygoLive</h3>
-      <p data-i18n="contact.box.d">Interested in UQI for your team or research? Reach out and we'll get back to you.</p>
-      <a href="https://github.com/joygoLive" class="btn btn-primary" target="_blank" rel="noopener" data-i18n="contact.box.cta">Visit our GitHub</a>
+      <p data-i18n="contact.box.d" style="margin-bottom:0">Interested in UQI for your team or research? Reach out and we'll get back to you.</p>
     </div>
   </div>
 </section>
@@ -458,21 +503,25 @@ const _LOCALES = {
     "how.tag":"How it works","how.h2":"One workflow — UI, API, and CLI in parity","how.lead":"Estimate cost, optimize, mitigate, and run with the same commands everywhere. Here's the command-line view.","how.note":"Illustrative output. Costs are pre-submission estimates and vary by vendor and circuit.",
     "cmp.tag":"Hardware","cmp.h2":"Every modality, one platform","cmp.lead":"UQI reaches superconducting, trapped-ion, neutral-atom, and photonic processors — and lets you compare and run across them from a single place.","cmp.col.vendor":"Vendor","cmp.col.modality":"Modality","cmp.col.qubits":"Qubits","cmp.col.access":"Access","cmp.note":"Qubit counts are indicative and provided by the vendors; device availability changes over time.",
     "mod.super":"Superconducting","mod.ion":"Trapped-ion","mod.atom":"Neutral-atom","mod.photon":"Photonic","acc.open":"Open plan","acc.credits":"Credits","acc.free":"Free tier",
-    "ptn.tag":"Partners","ptn.h2":"In good company"
+    "ptn.tag":"Partners","ptn.h2":"In good company",
+    "aud.tag":"Who it's for","aud.h2":"Value for everyone working with quantum",
+    "aud.1.t":"Researchers","aud.1.d":"Come run real circuits and feel the NISQ reality. Compare CPU, GPU, and real QPUs side by side, watch noise appear, and recover signal with error mitigation — hands-on, not in theory.",
+    "aud.2.t":"Institutions & decision-makers","aud.2.d":"Read the ecosystem in data, not hype. Device leaderboards, drift and health trends, and real cost-versus-fidelity — drawn from actual jobs across vendors — to ground hardware and budget decisions.",
+    "aud.3.t":"Developers","aud.3.d":"Work from the environment you already know. Circuit-complexity analysis, optimization, cost estimates, and runs are all available over API and CLI — script them, or wire them straight into your tooling and CI."
   },
   ko: {
     "nav.uqi":"UQI","nav.capabilities":"기능","nav.applications":"응용","nav.contact":"문의",
     "hero.eyebrow":"양자 인프라",
     "hero.title":"유니버설 양자 인프라",
-    "hero.sub":"모든 양자 백엔드를 하나의 인터페이스로. IBM·IQM·IonQ·Rigetti·QuEra·Pasqal·Quandela 전반에서 회로를 분석·최적화·완화·실행하고, 제출 전에 비용까지 확인하세요.",
+    "hero.sub":"모든 양자 백엔드를 하나의 인터페이스로. IBM, IQM, IonQ, Rigetti, QuEra, Pasqal, Quandela까지 — 회로를 분석하고 최적화·완화해 실행하며, 제출 전에 비용까지 확인하세요.",
     "hero.cta1":"UQI 살펴보기","hero.cta2":"문의하기","hero.byline":"joygoLive가 제공하는 서비스입니다.",
     "vendors.label":"설계부터 멀티벤더",
     "uqi.tag":"플랫폼",
     "uqi.h2":"UQI — 벤더 중립 양자 컴퓨팅 미들웨어",
-    "uqi.lead":"회로를 한 번만 올리세요. UQI가 프레임워크를 자동 인식해 최적화·노이즈 점검을 하고 오류완화를 적용한 뒤, 선택한 백엔드에서 실행합니다 — 일관된 UI·API·CLI 하나로. 벤더 종속도, 공급자별 재작성도 없습니다.",
+    "uqi.lead":"회로를 한 번만 올리세요. UQI가 프레임워크를 자동으로 인식해 최적화와 노이즈 점검을 거치고 오류완화를 적용한 뒤, 선택한 백엔드에서 실행합니다 — 일관된 UI · API · CLI 하나로. 벤더 종속도, 공급자별 재작성도 없습니다.",
     "cap.tag":"기능","cap.h2":"회로에서 결과까지, 하나의 흐름으로",
     "cap.1.t":"멀티벤더 접근","cap.1.d":"7개 하드웨어 벤더와 6개 프레임워크(Qiskit, PennyLane, Qrisp, CUDA-Q, Perceval, Pulser)를 하나의 워크플로로.",
-    "cap.2.t":"독립 실행 파이프라인","cap.2.d":"분석·최적화·노이즈 시뮬레이션·QEC·GPU 실행·QPU 제출 — 각 단계가 이전 단계 없이 독립적으로 동작합니다.",
+    "cap.2.t":"독립 실행 파이프라인","cap.2.d":"분석, 최적화, 노이즈 시뮬레이션, QEC, GPU 실행, QPU 제출 — 각 단계가 이전 단계 없이 독립적으로 동작합니다.",
     "cap.3.t":"오류완화와 resilience","cap.3.d":"측정 오류완화와 zero-noise extrapolation을 하나의 resilience 레벨로 — 표준 기법을 벤더 전반에 일관되게 적용합니다.",
     "cap.4.t":"사전 비용 확인","cap.4.d":"제출 전에 자원과 벤더별 비용을 크레딧·USD로 추정 — 예상 못 한 지출이 없습니다.",
     "cap.5.t":"나만의 벤치마크","cap.5.d":"누적된 작업에서 충실도·비용·시간 뷰를 구성 — 실제 워크로드로 장비를 비교하세요.",
@@ -496,9 +545,13 @@ const _LOCALES = {
     "footer.tagline":"유니버설 양자 인프라.","footer.copy":"© 2026 joygoLive. All rights reserved.",
     "brand.meaning":"양자 컴퓨팅이 <b class=\"hl\">Go Live</b> 하는 순간 실현될 <b class=\"hl\">Joy</b>.",
     "how.tag":"작동 방식","how.h2":"하나의 워크플로 — UI·API·CLI 패리티","how.lead":"비용 추정·최적화·완화·실행을 어디서나 같은 명령으로. 커맨드라인 화면입니다.","how.note":"예시 출력입니다. 비용은 제출 전 추정치이며 벤더·회로에 따라 달라집니다.",
-    "cmp.tag":"하드웨어","cmp.h2":"모든 방식, 하나의 플랫폼","cmp.lead":"UQI는 초전도·이온트랩·중성원자·광자 프로세서에 접근하며, 한 곳에서 비교하고 실행합니다.","cmp.col.vendor":"벤더","cmp.col.modality":"방식","cmp.col.qubits":"큐빗","cmp.col.access":"접근","cmp.note":"큐빗 수는 벤더 제공 참고치이며 장비 가용성은 시점에 따라 달라집니다.",
+    "cmp.tag":"하드웨어","cmp.h2":"모든 방식, 하나의 플랫폼","cmp.lead":"UQI는 초전도, 이온트랩, 중성원자, 광자 프로세서에 접근하고, 한 곳에서 비교·실행합니다.","cmp.col.vendor":"벤더","cmp.col.modality":"방식","cmp.col.qubits":"큐빗","cmp.col.access":"접근","cmp.note":"큐빗 수는 벤더 제공 참고치이며 장비 가용성은 시점에 따라 달라집니다.",
     "mod.super":"초전도","mod.ion":"이온 트랩","mod.atom":"중성 원자","mod.photon":"광자","acc.open":"오픈 플랜","acc.credits":"크레딧","acc.free":"무료 티어",
-    "ptn.tag":"파트너","ptn.h2":"함께하는 곳"
+    "ptn.tag":"파트너","ptn.h2":"함께하는 곳",
+    "aud.tag":"누구를 위한 플랫폼인가","aud.h2":"양자를 다루는 모두에게 가치를",
+    "aud.1.t":"연구자","aud.1.d":"직접 회로를 돌리며 NISQ의 현실을 체험하세요. CPU, GPU, 실제 QPU를 나란히 비교하고, 노이즈가 어떻게 나타나는지 보고, 오류완화로 신호를 회복합니다 — 이론이 아니라 직접 손으로.",
+    "aud.2.t":"기관 · 의사결정자","aud.2.d":"과대광고가 아니라 데이터로 생태계를 읽으세요. 장비 리더보드, 드리프트와 헬스 추세, 그리고 실제 작업에서 나온 비용 대 충실도까지 — 벤더 전반의 실측 데이터로 하드웨어와 예산 판단의 근거를 마련합니다.",
+    "aud.3.t":"개발자","aud.3.d":"익숙한 개발 환경에서 그대로 쓰세요. 회로 복잡도 분석, 최적화, 비용 추정, 실행까지 모두 API와 CLI로 제공됩니다 — 스크립트로 자동화하거나 기존 툴체인과 CI에 곧바로 연결하세요."
   }
 };
 
