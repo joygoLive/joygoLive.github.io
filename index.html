@@ -75,7 +75,8 @@ h3{font-family:var(--font-sans);font-weight:600;font-size:18px;letter-spacing:-.
 .vendor-strip{margin-top:46px;padding-top:24px;border-top:1px solid var(--border)}
 .vendor-strip .vlabel{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px}
 .vendor-strip .row{display:flex;flex-wrap:wrap;gap:9px 12px}
-.chip{font-family:var(--font-mono);font-size:13px;color:var(--text2);border:1px solid var(--border);background:#fff;border-radius:7px;padding:6px 13px}
+.chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:13px;color:var(--text2);border:1px solid var(--border);background:#fff;border-radius:7px;padding:6px 12px}
+.vico{width:14px;height:14px;color:var(--accent-2);flex-shrink:0}
 
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
@@ -251,7 +252,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
       </div>
       <div class="vlabel" data-i18n="hero.vlabel">Multi-vendor by design</div>
       <div class="row">
-        <span class="chip">IBM Quantum</span><span class="chip">IQM</span><span class="chip">IonQ</span><span class="chip">Rigetti</span><span class="chip">QuEra</span><span class="chip">Pasqal</span><span class="chip">Quandela</span>
+        <span class="chip"><svg class="vico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="6" width="12" height="12" rx="1.5"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>IBM Quantum</span><span class="chip"><svg class="vico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="6" width="12" height="12" rx="1.5"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>IQM</span><span class="chip"><svg class="vico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/><path d="M7 12h3M14 12h3"/></svg>IonQ</span><span class="chip"><svg class="vico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="6" width="12" height="12" rx="1.5"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>Rigetti</span><span class="chip"><svg class="vico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/></svg>QuEra</span><span class="chip"><svg class="vico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/></svg>Pasqal</span><span class="chip"><svg class="vico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12c2.5-6 5-6 7.5 0s5 6 7.5 0"/><path d="M18 12h4"/></svg>Quandela</span>
       </div>
     </div>
   </div>
