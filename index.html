@@ -215,7 +215,6 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
       <a href="#capabilities" data-i18n="nav.capabilities">Capabilities</a>
       <a href="#intelligence" data-i18n="nav.intelligence">Intelligence</a>
       <a href="#developers" data-i18n="nav.developers">Developers</a>
-      <a href="#contact" data-i18n="nav.contact">Contact</a>
     </nav>
     <div class="lang-toggle" role="group" aria-label="language">
       <button data-lang="en" onclick="setLang('en')">EN</button>
@@ -236,10 +235,14 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
     <p class="lead" data-i18n="hero.sub">Connect every framework and vendor, run a full circuit pipeline, mitigate errors, and control cost — all through one consistent UI, API, and CLI. No vendor lock-in, no rewrites per provider.</p>
     <div class="cta-row">
       <a href="#capabilities" class="btn btn-primary" data-i18n="hero.cta1">Explore the platform</a>
-      <a href="#contact" class="btn btn-ghost" data-i18n="hero.cta2">Talk to us</a>
+      <a href="#developers" class="btn btn-ghost" data-i18n="hero.cta2">See the workflow</a>
     </div>
     <div class="byline" data-i18n-html="hero.byline">A service by joygoLive — <b class="hl">Joy</b>, realized when Quantum Computing <b class="hl">go</b>es <b class="hl">Live</b>.</div>
     <div class="vendor-strip">
+      <div class="vlabel" data-i18n="hero.flabel">Works with your SDK</div>
+      <div class="row" style="margin-bottom:20px">
+        <span class="chip">Qiskit</span><span class="chip">PennyLane</span><span class="chip">Qrisp</span><span class="chip">CUDA-Q</span><span class="chip">Perceval</span><span class="chip">Pulser</span>
+      </div>
       <div class="vlabel" data-i18n="hero.vlabel">Multi-vendor by design</div>
       <div class="row">
         <span class="chip">IBM Quantum</span><span class="chip">IQM</span><span class="chip">IonQ</span><span class="chip">Rigetti</span><span class="chip">QuEra</span><span class="chip">Pasqal</span><span class="chip">Quandela</span>
@@ -540,19 +543,9 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="wrap">
-    <div class="contact-box">
-      <h2 data-i18n="ct.h2">Build on quantum, without the vendor maze</h2>
-      <p data-i18n="ct.d">Interested in UQI for your team, lab, or institution? Reach out and we'll get back to you.</p>
-    </div>
-  </div>
-</section>
-
 <footer>
   <div class="wrap foot">
-    <span class="brand">joygo<span class="dot" style="color:var(--accent)">Live</span></span>
+    <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0891b2"/><g stroke="#fff" fill="none" stroke-width="1.5" opacity=".95"><ellipse cx="16" cy="16" rx="10.5" ry="4.2"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(120 16 16)"/></g><circle cx="16" cy="16" r="2.6" fill="#fff"/></svg>joygo<span class="dot" style="color:var(--accent)">Live</span></span>
     <span data-i18n="ft.tag">Universal Quantum Infrastructure.</span>
     <span data-i18n="ft.copy">© 2026 joygoLive. All rights reserved.</span>
   </div>
@@ -564,7 +557,7 @@ const _L = {
     "nav.platform":"Platform","nav.capabilities":"Capabilities","nav.intelligence":"Intelligence","nav.developers":"Developers","nav.contact":"Contact",
     "hero.pill":"Vendor-neutral quantum middleware","hero.title":"Universal Quantum Infrastructure",
     "hero.sub":"Connect every framework and vendor, run a full circuit pipeline, mitigate errors, and control cost — all through one consistent UI, API, and CLI. No vendor lock-in, no rewrites per provider.",
-    "hero.cta1":"Explore the platform","hero.cta2":"Talk to us","hero.byline":"A service by joygoLive — <b class=\"hl\">Joy</b>, realized when Quantum Computing <b class=\"hl\">go</b>es <b class=\"hl\">Live</b>.","hero.vlabel":"Multi-vendor by design",
+    "hero.cta1":"Explore the platform","hero.cta2":"See the workflow","hero.byline":"A service by joygoLive — <b class=\"hl\">Joy</b>, realized when Quantum Computing <b class=\"hl\">go</b>es <b class=\"hl\">Live</b>.","hero.flabel":"Works with your SDK","hero.vlabel":"Multi-vendor by design",
     "stat.vendors":"Hardware vendors","stat.frameworks":"SDK frameworks","stat.steps":"Independent pipeline steps","stat.apps":"Application modules",
     "plat.tag":"The platform","plat.h2":"One middleware, from circuit to confident result",
     "plat.lead":"Bring your circuit once. UQI detects the framework, optimizes and noise-checks it, applies error mitigation and error correction, prices it across vendors, and runs it on the backend you choose — then turns every run into operational intelligence.",
@@ -607,7 +600,7 @@ const _L = {
     "nav.platform":"플랫폼","nav.capabilities":"기능","nav.intelligence":"인텔리전스","nav.developers":"개발자","nav.contact":"문의",
     "hero.pill":"벤더 중립 양자 미들웨어","hero.title":"유니버설 양자 인프라",
     "hero.sub":"모든 프레임워크와 벤더를 연결하고, 전체 회로 파이프라인을 실행하고, 오류를 완화하며, 비용까지 제어합니다 — 일관된 UI, API, CLI 하나로. 벤더 종속도, 공급자별 재작성도 없습니다.",
-    "hero.cta1":"플랫폼 살펴보기","hero.cta2":"문의하기","hero.byline":"joygoLive가 제공하는 서비스입니다 — <b class=\"hl\">Joy</b>, realized when Quantum Computing <b class=\"hl\">go</b>es <b class=\"hl\">Live</b>.","hero.vlabel":"설계부터 멀티벤더",
+    "hero.cta1":"플랫폼 살펴보기","hero.cta2":"워크플로 보기","hero.byline":"joygoLive가 제공하는 서비스입니다 — <b class=\"hl\">Joy</b>, realized when Quantum Computing <b class=\"hl\">go</b>es <b class=\"hl\">Live</b>.","hero.flabel":"당신의 SDK 그대로","hero.vlabel":"설계부터 멀티벤더",
     "stat.vendors":"하드웨어 벤더","stat.frameworks":"SDK 프레임워크","stat.steps":"독립 파이프라인 단계","stat.apps":"응용 모듈",
     "plat.tag":"플랫폼","plat.h2":"회로에서 신뢰할 수 있는 결과까지, 하나의 미들웨어",
     "plat.lead":"회로를 한 번만 올리세요. UQI가 프레임워크를 인식해 최적화와 노이즈 점검을 거치고, 오류완화와 오류정정을 적용하고, 벤더별 비용을 산정한 뒤 선택한 백엔드에서 실행합니다 — 그리고 모든 실행을 운영 인텔리전스로 바꿉니다.",
