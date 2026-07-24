@@ -19,12 +19,12 @@ python3 -m http.server 8000
 
 The site is intentionally host-agnostic so it can move off GitHub Pages with zero rework:
 
-- **Just two files:** copy `index.html` and `favicon.png` to any static host
+- **Just two files:** copy `index.html` and `favicon.svg` to any static host
   (GitHub Pages, Netlify, Vercel, Cloudflare Pages, S3 + CloudFront, nginx, Apache, …).
 - **No platform-specific config.** `.nojekyll` only matters on GitHub Pages and is harmless
   everywhere else.
 - **All paths are relative** — works at a domain root or under a sub-path.
-- **One external dependency:** Google Fonts (Syne / JetBrains Mono / Noto Sans KR) over CDN.
+- **One external dependency:** Google Fonts (Inter / JetBrains Mono / Noto Sans KR) over CDN.
   This works from any host and is not a lock-in. Korean (Noto Sans KR) is served as a dynamic
   subset by the CDN; self-hosting it would add multiple megabytes, so the CDN is the practical
   choice. The page degrades gracefully to system fonts if the CDN is unavailable.
