@@ -1,6 +1,6 @@
 # joygoLive.github.io
 
-Company homepage for **joygoLive**, introducing **UQI — Universal Quantum Infrastructure**,
+Company homepage for **joygoLive**, introducing **UQI — Universal Quantum Intelligence**,
 joygoLive's vendor-neutral middleware for quantum computing.
 
 ## Stack
