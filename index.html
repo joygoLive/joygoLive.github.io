@@ -432,6 +432,11 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
         <p data-i18n="c9.d">Full parity across UI, REST API, and CLI — plus an MCP server so AI agents orchestrate runs directly.</p>
         <div class="tags"><span>REST</span><span>CLI</span><span>MCP</span></div>
       </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v4h-4"/><path d="M12 8v4l3 2"/></svg>
+        <h3 data-i18n="c11.t">Self-maintaining (AutoOps)</h3>
+        <p data-i18n="c11.d">A scheduled autonomous layer keeps calibration, SDK versions, and device coverage current. Reversible actions auto-apply and log; anything irreversible waits for admin approval.</p>
+      </div>
       <div class="cap upcoming fade">
         <span class="soon" data-i18n="c10.badge">Coming soon</span>
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v4h-4"/></svg>
@@ -622,6 +627,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
       <div class="pt fade"><b data-i18n="sec.2.t">Spend safeguards</b><span data-i18n="sec.2.d">Pre-submission cost estimates, a cost threshold, and a credit ledger with per-job/step billing.</span></div>
       <div class="pt fade"><b data-i18n="sec.3.t">Code &amp; data isolation</b><span data-i18n="sec.3.d">Static analysis and execution limits on uploads; per-user file and job isolation.</span></div>
       <div class="pt fade"><b data-i18n="sec.4.t">Auth &amp; privacy</b><span data-i18n="sec.4.d">Session and API-key auth, output escaping, and PII scrubbing before external LLM calls.</span></div>
+      <div class="pt fade"><b data-i18n="sec.5.t">Abuse defense</b><span data-i18n="sec.5.d">Per-IP flood auto-blocking and IP/account blacklist, enforced across UI, API, CLI, and MCP at a single server chokepoint.</span></div>
     </div>
   </div>
 </section>
@@ -690,6 +696,7 @@ const _L = {
     "c7.t":"GPU acceleration","c7.d":"Offload heavy simulation to real H100 / DGX hosts and compare CPU, GPU, and QPU on the same problem.",
     "c8.t":"Knowledge base (RAG)","c8.d":"Hybrid dense + sparse retrieval, re-ranking, and LLM synthesis over quantum docs — with PII scrubbing before any external call.",
     "c9.t":"API, CLI & MCP","c9.d":"Full parity across UI, REST API, and CLI — plus an MCP server so AI agents orchestrate runs directly.",
+    "c11.t":"Self-maintaining (AutoOps)","c11.d":"A scheduled autonomous layer keeps calibration, SDK versions, and device coverage current. Reversible actions auto-apply and log; anything irreversible waits for admin approval.",
     "c10.badge":"Coming soon","c10.t":"Runtime sessions","c10.d":"Reserve a device and batch many jobs in one session to minimize re-queuing between iterations — in the spirit of vendor runtime sessions. On the roadmap.",
     "dev.tag":"Workflow & developers","dev.h2":"One pipeline — the same power in your terminal","dev.lead":"Every step is independent and scriptable. Run it in the UI, call the REST API, or drive it from the CLI and your CI.","dev.note":"Illustrative output. Costs are pre-submission estimates and vary by vendor and circuit.",
     "ag.tag":"Agent mode","ag.h2":"Let an AI agent run your quantum workflow","ag.lead":"UQI ships an MCP server, so Claude and other AI agents use it as a tool — analyzing, optimizing, mitigating, pricing, and submitting across vendors from a single natural-language request.","ag.1":"Natural-language workflow — describe the goal, the agent runs the steps.","ag.2":"Every step is a tool — analyze, optimize, mitigate, estimate, submit, compare.","ag.3":"Multi-vendor orchestration — the agent selects and runs across backends.","ag.4":"Standard MCP — works with Claude and other MCP clients.",
@@ -706,7 +713,7 @@ const _L = {
     "aud.2.t":"Institutions & decision-makers","aud.2.d":"Read the ecosystem in data, not hype — leaderboards, drift and health, and real cost-versus-fidelity from actual jobs to ground hardware and budget decisions.",
     "aud.3.t":"Developers","aud.3.d":"Work from the environment you know. Circuit-complexity analysis, optimization, cost estimates, and runs over API and CLI — script them or wire them into CI.",
     "sec.tag":"Security & governance","sec.h2":"Built to run as a managed service","sec.lead":"Multi-tenant controls, spend safeguards, and isolation are enforced server-side across UI, API, CLI, and MCP — not bolted on.",
-    "sec.1.t":"Per-domain white-label","sec.1.d":"Control visible tabs, pipeline steps, devices, and accounts per domain and plan.","sec.2.t":"Spend safeguards","sec.2.d":"Pre-submission cost estimates, a cost threshold, and a credit ledger with per-job/step billing.","sec.3.t":"Code & data isolation","sec.3.d":"Static analysis and execution limits on uploads; per-user file and job isolation.","sec.4.t":"Auth & privacy","sec.4.d":"Session and API-key auth, output escaping, and PII scrubbing before external LLM calls.",
+    "sec.1.t":"Per-domain white-label","sec.1.d":"Control visible tabs, pipeline steps, devices, and accounts per domain and plan.","sec.2.t":"Spend safeguards","sec.2.d":"Pre-submission cost estimates, a cost threshold, and a credit ledger with per-job/step billing.","sec.3.t":"Code & data isolation","sec.3.d":"Static analysis and execution limits on uploads; per-user file and job isolation.","sec.4.t":"Auth & privacy","sec.4.d":"Session and API-key auth, output escaping, and PII scrubbing before external LLM calls.","sec.5.t":"Abuse defense","sec.5.d":"Per-IP flood auto-blocking and IP/account blacklist, enforced across UI, API, CLI, and MCP at a single server chokepoint.",
     "why.tag":"Why UQI","why.h2":"The combination is the difference","why.lead":"Individually, these capabilities exist elsewhere. UQI brings them into a single flow.",
     "why.1.t":"QEC-aware pipeline","why.1.d":"Error correction sits in the same flow as optimization and execution.","why.2.t":"Agent-native execution","why.2.d":"Multi-vendor runs orchestrated directly by AI agents over MCP.","why.3.t":"Result-quality evaluation","why.3.d":"Fidelity and benchmarking grounded in your own job history.","why.4.t":"Per-domain policy","why.4.d":"White-label control over features, devices, and access by domain and plan.",
     "ptn.tag":"Partners","ptn.h2":"In good company",
@@ -733,6 +740,7 @@ const _L = {
     "c7.t":"GPU 가속","c7.d":"무거운 시뮬레이션을 실제 H100 / DGX 호스트로 오프로드하고 같은 문제로 CPU·GPU·QPU를 비교합니다.",
     "c8.t":"지식베이스 (RAG)","c8.d":"하이브리드 dense+sparse 검색, 재순위, LLM 합성을 양자 문서에 적용 — 외부 호출 전 PII를 스크러빙합니다.",
     "c9.t":"API, CLI & MCP","c9.d":"UI·REST API·CLI 완전 패리티 — 그리고 MCP 서버로 AI 에이전트가 실행을 직접 오케스트레이션합니다.",
+    "c11.t":"자율 유지보수 (AutoOps)","c11.d":"예약된 자율 계층이 캘리브레이션·SDK 버전·장비 커버리지를 최신으로 유지합니다. 가역적 작업은 자동 적용·기록되고, 비가역적 작업은 관리자 승인을 기다립니다.",
     "c10.badge":"준비 중","c10.t":"런타임 세션","c10.d":"하나의 세션에 여러 작업을 묶고 장비를 예약해 반복 사이의 재대기를 최소화합니다 — 벤더 런타임 세션과 같은 개념. 로드맵에 있습니다.",
     "dev.tag":"워크플로 & 개발자","dev.h2":"하나의 파이프라인 — 터미널에서도 똑같이","dev.lead":"모든 단계가 독립적이고 스크립트로 다룰 수 있습니다. UI에서 실행하거나 REST API를 호출하거나 CLI와 CI에서 구동하세요.","dev.note":"예시 출력입니다. 비용은 제출 전 추정치이며 벤더·회로에 따라 달라집니다.",
     "ag.tag":"에이전트 모드","ag.h2":"AI 에이전트가 양자 워크플로를 직접 실행","ag.lead":"UQI는 MCP 서버를 제공해 Claude 등 AI 에이전트가 이를 도구로 사용합니다 — 한 번의 자연어 요청으로 분석, 최적화, 완화, 비용 산정, 제출을 벤더 전반에서 오케스트레이션합니다.","ag.1":"자연어 워크플로 — 목표만 말하면 에이전트가 단계를 실행합니다.","ag.2":"모든 단계가 도구 — 분석, 최적화, 완화, 추정, 제출, 비교.","ag.3":"멀티벤더 오케스트레이션 — 에이전트가 백엔드를 선택해 실행합니다.","ag.4":"표준 MCP — Claude 등 MCP 클라이언트와 동작합니다.",
@@ -749,7 +757,7 @@ const _L = {
     "aud.2.t":"기관 · 의사결정자","aud.2.d":"과대광고가 아니라 데이터로 생태계를 읽으세요 — 리더보드, 드리프트와 헬스, 실제 작업의 비용 대 충실도로 하드웨어와 예산 판단의 근거를 마련합니다.",
     "aud.3.t":"개발자","aud.3.d":"익숙한 환경에서 그대로 쓰세요. 회로 복잡도 분석, 최적화, 비용 추정, 실행을 API와 CLI로 — 스크립트로 자동화하거나 CI에 연결하세요.",
     "sec.tag":"보안 & 거버넌스","sec.h2":"관리형 서비스로 운영되도록 설계","sec.lead":"멀티테넌트 제어, 지출 안전장치, 격리가 UI·API·CLI·MCP 전반에 서버측으로 집행됩니다 — 나중에 덧붙인 게 아니라.",
-    "sec.1.t":"도메인별 화이트라벨","sec.1.d":"도메인·플랜별로 노출 탭, 파이프라인 단계, 장비, 계정을 제어합니다.","sec.2.t":"지출 안전장치","sec.2.d":"제출 전 비용 추정, 비용 임계값, 작업·단계별 과금이 있는 크레딧 원장.","sec.3.t":"코드 & 데이터 격리","sec.3.d":"업로드 코드에 정적분석과 실행 제한; 사용자별 파일·작업 격리.","sec.4.t":"인증 & 프라이버시","sec.4.d":"세션·API 키 인증, 출력 이스케이핑, 외부 LLM 호출 전 PII 스크러빙.",
+    "sec.1.t":"도메인별 화이트라벨","sec.1.d":"도메인·플랜별로 노출 탭, 파이프라인 단계, 장비, 계정을 제어합니다.","sec.2.t":"지출 안전장치","sec.2.d":"제출 전 비용 추정, 비용 임계값, 작업·단계별 과금이 있는 크레딧 원장.","sec.3.t":"코드 & 데이터 격리","sec.3.d":"업로드 코드에 정적분석과 실행 제한; 사용자별 파일·작업 격리.","sec.4.t":"인증 & 프라이버시","sec.4.d":"세션·API 키 인증, 출력 이스케이핑, 외부 LLM 호출 전 PII 스크러빙.","sec.5.t":"남용 방어","sec.5.d":"IP별 플러딩 자동 차단 + IP·계정 블랙리스트를 UI·API·CLI·MCP 전 경로에서 단일 서버 초크포인트로 집행합니다.",
     "why.tag":"UQI를 선택하는 이유","why.h2":"차별점은 ‘조합’에 있습니다","why.lead":"개별 기능은 다른 곳에도 있습니다. UQI는 이것들을 하나의 흐름으로 묶습니다.",
     "why.1.t":"QEC 통합 파이프라인","why.1.d":"오류정정이 최적화·실행과 같은 흐름 안에 있습니다.","why.2.t":"에이전트 네이티브 실행","why.2.d":"멀티벤더 실행을 MCP로 AI 에이전트가 직접 오케스트레이션.","why.3.t":"결과 품질 평가","why.3.d":"본인의 작업 이력에 기반한 충실도·벤치마킹.","why.4.t":"도메인별 정책","why.4.d":"도메인·플랜별로 기능·장비·접근을 제어하는 화이트라벨.",
     "ptn.tag":"파트너","ptn.h2":"함께하는 곳",
