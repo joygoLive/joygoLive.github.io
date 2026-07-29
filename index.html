@@ -253,7 +253,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
     <div class="vendor-strip">
       <div class="vlabel" data-i18n="hero.flabel">Works with your SDK</div>
       <div class="row" style="margin-bottom:20px">
-        <span class="chip">Qiskit</span><span class="chip">PennyLane</span><span class="chip">Qrisp</span><span class="chip">CUDA-Q</span><span class="chip">Cirq</span><span class="chip">Perceval</span><span class="chip">Pulser</span>
+        <span class="chip">Qiskit</span><span class="chip">PennyLane</span><span class="chip">Qrisp</span><span class="chip">CUDA-Q</span><span class="chip">Cirq</span><span class="chip">Qadence</span><span class="chip">Perceval</span><span class="chip">Pulser</span>
       </div>
       <div class="vlabel" data-i18n="hero.vlabel">Multi-vendor by design</div>
       <div class="row">
@@ -268,7 +268,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
   <div class="wrap">
     <div class="stats">
       <div class="stat"><div class="n">8</div><div class="l" data-i18n="stat.vendors">Hardware vendors</div></div>
-      <div class="stat"><div class="n">7</div><div class="l" data-i18n="stat.frameworks">SDK frameworks</div></div>
+      <div class="stat"><div class="n">8</div><div class="l" data-i18n="stat.frameworks">SDK frameworks</div></div>
       <div class="stat"><div class="n">7</div><div class="l" data-i18n="stat.steps">Independent pipeline steps</div></div>
       <div class="stat"><div class="n">4</div><div class="l" data-i18n="stat.apps">Application modules</div></div>
     </div>
@@ -287,12 +287,12 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
       <div class="pillar fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M5 8c4 2 10 2 14 0M5 16c4-2 10-2 14 0"/></svg>
         <h3 data-i18n="plat.1.t">Connect everything</h3>
-        <p data-i18n="plat.1.d">Seven SDK frameworks and seven hardware vendors across superconducting, trapped-ion, neutral-atom, and photonic — behind one interface.</p>
+        <p data-i18n="plat.1.d">Eight SDK frameworks and seven hardware vendors across superconducting, trapped-ion, neutral-atom, and photonic — behind one interface.</p>
       </div>
       <div class="pillar fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 6 9 17l-5-5"/></svg>
         <h3 data-i18n="plat.2.t">Run with confidence</h3>
-        <p data-i18n="plat.2.d">Noise simulation, readout + ZNE mitigation, and QEC analysis make results trustworthy — with cost known before you submit.</p>
+        <p data-i18n="plat.2.d">Noise simulation, readout + ZNE mitigation, Pauli-check postselection, and QEC analysis make results trustworthy — with cost known before you submit.</p>
       </div>
       <div class="pillar fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
@@ -683,8 +683,8 @@ const _L = {
     "stat.vendors":"Hardware vendors","stat.frameworks":"SDK frameworks","stat.steps":"Independent pipeline steps","stat.apps":"Application modules",
     "plat.tag":"The platform","plat.h2":"One middleware, from circuit to confident result",
     "plat.lead":"Bring your circuit once. UQI detects the framework, optimizes and noise-checks it, applies error mitigation and error correction, prices it across vendors, and runs it on the backend you choose — then turns every run into operational intelligence.",
-    "plat.1.t":"Connect everything","plat.1.d":"Seven SDK frameworks and seven hardware vendors across superconducting, trapped-ion, neutral-atom, and photonic — behind one interface.",
-    "plat.2.t":"Run with confidence","plat.2.d":"Noise simulation, readout + ZNE mitigation, and QEC analysis make results trustworthy — with cost known before you submit.",
+    "plat.1.t":"Connect everything","plat.1.d":"Eight SDK frameworks and seven hardware vendors across superconducting, trapped-ion, neutral-atom, and photonic — behind one interface.",
+    "plat.2.t":"Run with confidence","plat.2.d":"Noise simulation, readout + ZNE mitigation, Pauli-check postselection, and QEC analysis make results trustworthy — with cost known before you submit.",
     "plat.3.t":"Operate at scale","plat.3.d":"Accumulated jobs become benchmarks and device intelligence; per-domain policy, billing, and an AI-agent interface make it run as a service.",
     "cap.tag":"Capabilities","cap.h2":"Everything the quantum workflow needs","cap.lead":"A broad, composable feature set — use any piece on its own, or the whole pipeline end to end.",
     "c1.t":"Frameworks & vendors","c1.d":"Write in your SDK of choice and submit to any supported processor — no per-vendor rewrites.",
@@ -727,8 +727,8 @@ const _L = {
     "stat.vendors":"하드웨어 벤더","stat.frameworks":"SDK 프레임워크","stat.steps":"독립 파이프라인 단계","stat.apps":"응용 모듈",
     "plat.tag":"플랫폼","plat.h2":"회로에서 신뢰할 수 있는 결과까지, 하나의 미들웨어",
     "plat.lead":"회로를 한 번만 올리세요. UQI가 프레임워크를 인식해 최적화와 노이즈 점검을 거치고, 오류완화와 오류정정을 적용하고, 벤더별 비용을 산정한 뒤 선택한 백엔드에서 실행합니다 — 그리고 모든 실행을 운영 인텔리전스로 바꿉니다.",
-    "plat.1.t":"모든 것을 연결","plat.1.d":"7개 SDK 프레임워크와 초전도, 이온트랩, 중성원자, 광자를 아우르는 7개 하드웨어 벤더를 하나의 인터페이스로.",
-    "plat.2.t":"신뢰할 수 있는 실행","plat.2.d":"노이즈 시뮬레이션, 측정·ZNE 완화, QEC 분석으로 결과를 신뢰할 수 있게 — 제출 전에 비용까지 확인합니다.",
+    "plat.1.t":"모든 것을 연결","plat.1.d":"8개 SDK 프레임워크와 초전도, 이온트랩, 중성원자, 광자를 아우르는 7개 하드웨어 벤더를 하나의 인터페이스로.",
+    "plat.2.t":"신뢰할 수 있는 실행","plat.2.d":"노이즈 시뮬레이션, 측정·ZNE 완화, Pauli-체크 포스트셀렉션, QEC 분석으로 결과를 신뢰할 수 있게 — 제출 전에 비용까지 확인합니다.",
     "plat.3.t":"규모 있는 운영","plat.3.d":"누적된 작업이 벤치마크와 장비 인텔리전스가 되고, 도메인별 정책·과금·AI 에이전트 인터페이스가 이를 서비스로 만듭니다.",
     "cap.tag":"기능","cap.h2":"양자 워크플로에 필요한 모든 것","cap.lead":"넓고 조합 가능한 기능 세트 — 각각 따로 쓰거나, 전체 파이프라인을 끝까지.",
     "c1.t":"프레임워크 & 벤더","c1.d":"원하는 SDK로 작성하고 지원되는 어떤 프로세서로든 제출하세요 — 벤더별 재작성이 없습니다.",
