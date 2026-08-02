@@ -385,7 +385,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
         <h3 data-i18n="c1.t">Frameworks &amp; vendors</h3>
         <p data-i18n="c1.d">Write in your SDK of choice and submit to any supported processor — no per-vendor rewrites.</p>
-        <div class="tags"><span>Qiskit</span><span>PennyLane</span><span>Qrisp</span><span>CUDA-Q</span><span>Perceval</span><span>Pulser</span></div>
+        <div class="tags"><span>Qiskit</span><span>PennyLane</span><span>Qrisp</span><span>CUDA-Q</span><span>Cirq</span><span>Qadence</span><span>Perceval</span><span>Pulser</span></div>
       </div>
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="4" height="4"/><rect x="10" y="10" width="4" height="4"/><rect x="17" y="16" width="4" height="4"/><path d="M7 6h3M14 12h3"/></svg>
@@ -396,8 +396,8 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 17l5-5 4 4 7-8"/></svg>
         <h3 data-i18n="c3.t">Circuit optimization</h3>
-        <p data-i18n="c3.d">Transpile and route with multiple engines, mapped to the target device's physical layout.</p>
-        <div class="tags"><span>Qiskit</span><span>TKET</span><span>QuiZX</span><span>SABRE</span></div>
+        <p data-i18n="c3.d">Transpile and route with multiple engines, mapped to the target device's physical layout — and compare every option side by side on resulting complexity, optimization time, and analytical fidelity.</p>
+        <div class="tags"><span>Qiskit</span><span>TKET</span><span>QuiZX</span><span>SABRE</span><span>compare</span></div>
       </div>
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M5 8c4 2 10 2 14 0M5 16c4-2 10-2 14 0"/></svg>
@@ -407,7 +407,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg>
         <h3 data-i18n="c5.t">Noise simulation &amp; QEC</h3>
-        <p data-i18n="c5.d">Calibration-based fidelity and TVD, plus error-correction analysis and code application with threshold and logical-error estimates.</p>
+        <p data-i18n="c5.d">Calibration-based fidelity and TVD with a cross-engine consistency check (Qiskit vs PennyLane), plus error-correction analysis and code application with threshold and logical-error estimates.</p>
         <div class="tags"><span>fidelity/TVD</span><span>surface</span><span>repetition</span></div>
       </div>
       <div class="cap fade">
@@ -490,6 +490,14 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
         <div class="pcap" data-i18n="int.p6">Optimizer leaderboard · depth reduction</div>
         <div class="bar-row"><span class="nm">TKET</span><span class="track"><span class="fill" style="width:70%"></span></span><span class="v">13%</span></div>
         <div class="bar-row"><span class="nm">Qiskit L3</span><span class="track"><span class="fill" style="width:3%"></span></span><span class="v">0%</span></div>
+      </div>
+      <div class="panel">
+        <div class="pcap" data-i18n="int.p7">Reuse or re-submit · calibration drift</div>
+        <ul class="pb-list">
+          <li><span data-i18n="int.d1">Cal stable (&lt;15% drift)</span><b style="color:var(--accent-2)" data-i18n="int.d1v">reuse result</b></li>
+          <li><span data-i18n="int.d2">Cal drifted (≥15%)</span><b data-i18n="int.d2v">re-submit</b></li>
+        </ul>
+        <div style="font-size:12px;opacity:.65;margin-top:10px" data-i18n="int.d3">Every run stores the device calibration — compare it to now and skip the spend when nothing moved.</div>
       </div>
     </div>
     <p class="note" data-i18n="int.note">Illustrative — drawn from accumulated jobs.</p>
@@ -689,9 +697,9 @@ const _L = {
     "cap.tag":"Capabilities","cap.h2":"Everything the quantum workflow needs","cap.lead":"A broad, composable feature set — use any piece on its own, or the whole pipeline end to end.",
     "c1.t":"Frameworks & vendors","c1.d":"Write in your SDK of choice and submit to any supported processor — no per-vendor rewrites.",
     "c2.t":"Independent pipeline","c2.d":"Analyze, optimize, noise-simulate, QEC, GPU-execute, QPU-submit — each step runs standalone, with an emulator dry-run option.",
-    "c3.t":"Circuit optimization","c3.d":"Transpile and route with multiple engines, mapped to the target device's physical layout.",
+    "c3.t":"Circuit optimization","c3.d":"Transpile and route with multiple engines, mapped to the target device's physical layout — and compare every option side by side on resulting complexity, optimization time, and analytical fidelity.",
     "c4.t":"Error mitigation & resilience","c4.d":"Readout-error mitigation and zero-noise extrapolation as one resilience level, plus spacetime Pauli-check postselection for Clifford circuits — standard techniques, applied consistently.",
-    "c5.t":"Noise simulation & QEC","c5.d":"Calibration-based fidelity and TVD, plus error-correction analysis and code application with threshold and logical-error estimates.",
+    "c5.t":"Noise simulation & QEC","c5.d":"Calibration-based fidelity and TVD with a cross-engine consistency check (Qiskit vs PennyLane), plus error-correction analysis and code application with threshold and logical-error estimates.",
     "c6.t":"Cost & resource estimate","c6.d":"See qubits, depth, gates, and per-vendor cost in credits and USD before submitting — no surprise spend.",
     "c7.t":"GPU acceleration","c7.d":"Offload heavy simulation to real H100 / DGX hosts and compare CPU, GPU, and QPU on the same problem.",
     "c8.t":"Knowledge base (RAG)","c8.d":"Hybrid dense + sparse retrieval, re-ranking, and LLM synthesis over quantum docs — with PII scrubbing before any external call.",
@@ -701,7 +709,7 @@ const _L = {
     "dev.tag":"Workflow & developers","dev.h2":"One pipeline — the same power in your terminal","dev.lead":"Every step is independent and scriptable. Run it in the UI, call the REST API, or drive it from the CLI and your CI.","dev.note":"Illustrative output. Costs are pre-submission estimates and vary by vendor and circuit.",
     "ag.tag":"Agent mode","ag.h2":"Let an AI agent run your quantum workflow","ag.lead":"UQI ships an MCP server, so Claude and other AI agents use it as a tool — analyzing, optimizing, mitigating, pricing, and submitting across vendors from a single natural-language request.","ag.1":"Natural-language workflow — describe the goal, the agent runs the steps.","ag.2":"Every step is a tool — analyze, optimize, mitigate, estimate, submit, compare.","ag.3":"Multi-vendor orchestration — the agent selects and runs across backends.","ag.4":"Standard MCP — works with Claude and other MCP clients.",
     "int.tag":"Intelligence","int.h2":"Read the ecosystem in data, not hype","int.lead":"Every job you run feeds a living view of the hardware landscape — device, SDK & optimizer leaderboards, health, cost, and playbooks, all drawn from real jobs.",
-    "int.p1":"Device leaderboard · fidelity","int.p2":"Device health · drift over time","int.p3":"Cost vs fidelity · per device","int.p4":"Playbooks · best device per circuit","int.p5":"SDK leaderboard · composite","int.p6":"Optimizer leaderboard · depth reduction","int.pb1":"≤10 qubits","int.pb2":"11–20 qubits","int.pb3":"21–30 qubits","int.note":"Illustrative — drawn from accumulated jobs.",
+    "int.p1":"Device leaderboard · fidelity","int.p2":"Device health · drift over time","int.p3":"Cost vs fidelity · per device","int.p4":"Playbooks · best device per circuit","int.p5":"SDK leaderboard · composite","int.p6":"Optimizer leaderboard · depth reduction","int.p7":"Reuse or re-submit · calibration drift","int.d1":"Cal stable (<15% drift)","int.d1v":"reuse result","int.d2":"Cal drifted (≥15%)","int.d2v":"re-submit","int.d3":"Every run stores the device calibration — compare it to now and skip the spend when nothing moved.","int.pb1":"≤10 qubits","int.pb2":"11–20 qubits","int.pb3":"21–30 qubits","int.note":"Illustrative — drawn from accumulated jobs.",
     "wb.tag":"Workbench","wb.h2":"One workspace, from upload to result","wb.lead":"Drop in a circuit and UQI detects its framework, previews the metadata, and runs the whole pipeline — analyze, optimize, noise-check, mitigate, submit — without leaving the page.","wb.1":"Framework auto-detection on upload — Qiskit, PennyLane, Qrisp, and more.","wb.2":"Favorites, recents, and inline circuit-metadata preview.","wb.3":"Run any single step or the full pipeline from the UI.","wb.4":"Emulator dry-run to validate before spending credits.",
     "app.tag":"Applications","app.h2":"Ready-to-run quantum application modules","app.lead":"Domain modules you can run today — each comparable across CPU, GPU, and real QPU backends.","app.note":"Sample results are illustrative, drawn from the bundled catalog datasets — each module is comparable across CPU, GPU, and real QPU backends.",
     "a1.t":"QML anomaly detection","a1.d":"Quantum-kernel outlier detection against a classical baseline.","a2.t":"Quantum finance","a2.d":"QAOA portfolio optimization versus exact and greedy baselines.","a3.t":"Quantum chemistry","a3.d":"VQE ground-state energy with noise and mitigation comparison.","a4.t":"Graph optimization","a4.d":"QAOA for max-cut, independent set, and vertex cover.",
@@ -733,9 +741,9 @@ const _L = {
     "cap.tag":"기능","cap.h2":"양자 워크플로에 필요한 모든 것","cap.lead":"넓고 조합 가능한 기능 세트 — 각각 따로 쓰거나, 전체 파이프라인을 끝까지.",
     "c1.t":"프레임워크 & 벤더","c1.d":"원하는 SDK로 작성하고 지원되는 어떤 프로세서로든 제출하세요 — 벤더별 재작성이 없습니다.",
     "c2.t":"독립 파이프라인","c2.d":"분석, 최적화, 노이즈 시뮬레이션, QEC, GPU 실행, QPU 제출 — 각 단계가 독립적으로 동작하며 에뮬레이터 드라이런도 제공합니다.",
-    "c3.t":"회로 최적화","c3.d":"여러 엔진으로 트랜스파일·라우팅하고 대상 장비의 물리 배치에 매핑합니다.",
+    "c3.t":"회로 최적화","c3.d":"여러 엔진으로 트랜스파일·라우팅해 대상 장비 물리 배치에 매핑하고, 옵션별 결과 복잡도·최적화 시간·해석적 피델리티를 나란히 비교합니다.",
     "c4.t":"오류완화 & resilience","c4.d":"측정 오류완화와 zero-noise extrapolation을 하나의 resilience 레벨로, 여기에 Clifford 회로용 Pauli-체크 포스트셀렉션까지 — 표준 기법을 일관되게 적용합니다.",
-    "c5.t":"노이즈 시뮬레이션 & QEC","c5.d":"캘리브레이션 기반 충실도·TVD에 더해, 임계값과 논리오류 추정을 포함한 오류정정 분석·적용까지.",
+    "c5.t":"노이즈 시뮬레이션 & QEC","c5.d":"캘리브레이션 기반 충실도·TVD에 엔진 간 교차검증(Qiskit vs PennyLane)을 더하고, 임계값과 논리오류 추정을 포함한 오류정정 분석·적용까지.",
     "c6.t":"비용 & 자원 추정","c6.d":"제출 전에 큐빗·깊이·게이트와 벤더별 비용을 크레딧·USD로 확인 — 예상 못 한 지출이 없습니다.",
     "c7.t":"GPU 가속","c7.d":"무거운 시뮬레이션을 실제 H100 / DGX 호스트로 오프로드하고 같은 문제로 CPU·GPU·QPU를 비교합니다.",
     "c8.t":"지식베이스 (RAG)","c8.d":"하이브리드 dense+sparse 검색, 재순위, LLM 합성을 양자 문서에 적용 — 외부 호출 전 PII를 스크러빙합니다.",
@@ -745,7 +753,7 @@ const _L = {
     "dev.tag":"워크플로 & 개발자","dev.h2":"하나의 파이프라인 — 터미널에서도 똑같이","dev.lead":"모든 단계가 독립적이고 스크립트로 다룰 수 있습니다. UI에서 실행하거나 REST API를 호출하거나 CLI와 CI에서 구동하세요.","dev.note":"예시 출력입니다. 비용은 제출 전 추정치이며 벤더·회로에 따라 달라집니다.",
     "ag.tag":"에이전트 모드","ag.h2":"AI 에이전트가 양자 워크플로를 직접 실행","ag.lead":"UQI는 MCP 서버를 제공해 Claude 등 AI 에이전트가 이를 도구로 사용합니다 — 한 번의 자연어 요청으로 분석, 최적화, 완화, 비용 산정, 제출을 벤더 전반에서 오케스트레이션합니다.","ag.1":"자연어 워크플로 — 목표만 말하면 에이전트가 단계를 실행합니다.","ag.2":"모든 단계가 도구 — 분석, 최적화, 완화, 추정, 제출, 비교.","ag.3":"멀티벤더 오케스트레이션 — 에이전트가 백엔드를 선택해 실행합니다.","ag.4":"표준 MCP — Claude 등 MCP 클라이언트와 동작합니다.",
     "int.tag":"인텔리전스","int.h2":"과대광고가 아니라 데이터로 생태계를 읽으세요","int.lead":"실행하는 모든 작업이 하드웨어 지형의 살아있는 뷰를 만듭니다 — 디바이스·SDK·옵티마이저 리더보드, 헬스, 비용, 플레이북 모두 실제 작업에서.",
-    "int.p1":"장비 리더보드 · 충실도","int.p2":"장비 헬스 · 시간에 따른 드리프트","int.p3":"비용 대 충실도 · 장비별","int.p4":"플레이북 · 회로별 최적 장비","int.p5":"SDK 리더보드 · 종합","int.p6":"옵티마이저 리더보드 · depth 감소","int.pb1":"≤10 큐빗","int.pb2":"11–20 큐빗","int.pb3":"21–30 큐빗","int.note":"예시 — 누적된 작업 기반.",
+    "int.p1":"장비 리더보드 · 충실도","int.p2":"장비 헬스 · 시간에 따른 드리프트","int.p3":"비용 대 충실도 · 장비별","int.p4":"플레이북 · 회로별 최적 장비","int.p5":"SDK 리더보드 · 종합","int.p6":"옵티마이저 리더보드 · depth 감소","int.p7":"재사용 vs 재제출 · 캘리브레이션 드리프트","int.d1":"드리프트 < 15%","int.d1v":"과거 결과 재사용","int.d2":"드리프트 ≥ 15%","int.d2v":"재제출","int.d3":"매 실행이 장비 캘리브레이션을 저장 — 현재와 비교해 변화가 없으면 지출을 아낍니다.","int.pb1":"≤10 큐빗","int.pb2":"11–20 큐빗","int.pb3":"21–30 큐빗","int.note":"예시 — 누적된 작업 기반.",
     "wb.tag":"워크벤치","wb.h2":"업로드부터 결과까지, 하나의 작업공간","wb.lead":"회로를 올리면 UQI가 프레임워크를 자동 인식하고 메타데이터를 미리 보여준 뒤, 페이지를 떠나지 않고 전체 파이프라인 — 분석, 최적화, 노이즈 점검, 완화, 제출 — 을 실행합니다.","wb.1":"업로드 시 프레임워크 자동 인식 — Qiskit, PennyLane, Qrisp 등.","wb.2":"즐겨찾기, 최근 항목, 인라인 회로 메타데이터 미리보기.","wb.3":"UI에서 단일 단계 또는 전체 파이프라인 실행.","wb.4":"크레딧 소모 전 에뮬레이터 드라이런으로 검증.",
     "app.tag":"응용","app.h2":"바로 실행하는 양자 응용 모듈","app.lead":"오늘 바로 실행할 수 있는 도메인 모듈 — 각각 CPU·GPU·실 QPU 백엔드에서 비교됩니다.","app.note":"표시된 결과는 번들 카탈로그 데이터셋에서 가져온 예시입니다 — 각 모듈은 CPU, GPU, 실 QPU 백엔드 전반에서 비교됩니다.",
     "a1.t":"QML 이상탐지","a1.d":"고전 기준선과 비교하는 양자 커널 이상치 탐지.","a2.t":"양자 금융","a2.d":"정확해·그리디 기준선과 비교하는 QAOA 포트폴리오 최적화.","a3.t":"양자 화학","a3.d":"노이즈·완화 비교를 포함한 VQE 바닥상태 에너지.","a4.t":"그래프 최적화","a4.d":"맥스컷·독립집합·정점덮개를 위한 QAOA.",
