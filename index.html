@@ -253,7 +253,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
     <div class="vendor-strip">
       <div class="vlabel" data-i18n="hero.flabel">Works with your SDK</div>
       <div class="row" style="margin-bottom:20px">
-        <span class="chip">Qiskit</span><span class="chip">PennyLane</span><span class="chip">Qrisp</span><span class="chip">CUDA-Q</span><span class="chip">Cirq</span><span class="chip">Qadence</span><span class="chip">Perceval</span><span class="chip">Pulser</span>
+        <span class="chip">Qiskit</span><span class="chip">PennyLane</span><span class="chip">Qrisp</span><span class="chip">CUDA-Q</span><span class="chip">Cirq</span><span class="chip">Qadence</span><span class="chip">Perceval</span><span class="chip">Pulser</span><span class="chip">Braket-AHS</span>
       </div>
       <div class="vlabel" data-i18n="hero.vlabel">Multi-vendor by design</div>
       <div class="row">
@@ -268,7 +268,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
   <div class="wrap">
     <div class="stats">
       <div class="stat"><div class="n">8</div><div class="l" data-i18n="stat.vendors">Hardware vendors</div></div>
-      <div class="stat"><div class="n">8</div><div class="l" data-i18n="stat.frameworks">SDK frameworks</div></div>
+      <div class="stat"><div class="n">9</div><div class="l" data-i18n="stat.frameworks">SDK frameworks</div></div>
       <div class="stat"><div class="n">7</div><div class="l" data-i18n="stat.steps">Independent pipeline steps</div></div>
       <div class="stat"><div class="n">4</div><div class="l" data-i18n="stat.apps">Application modules</div></div>
     </div>
@@ -287,7 +287,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
       <div class="pillar fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M5 8c4 2 10 2 14 0M5 16c4-2 10-2 14 0"/></svg>
         <h3 data-i18n="plat.1.t">Connect everything</h3>
-        <p data-i18n="plat.1.d">Eight SDK frameworks and seven hardware vendors across superconducting, trapped-ion, neutral-atom, and photonic — behind one interface.</p>
+        <p data-i18n="plat.1.d">Nine SDK frameworks and eight hardware vendors across superconducting, trapped-ion, neutral-atom, and photonic — behind one interface.</p>
       </div>
       <div class="pillar fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 6 9 17l-5-5"/></svg>
@@ -385,7 +385,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
         <h3 data-i18n="c1.t">Frameworks &amp; vendors</h3>
         <p data-i18n="c1.d">Write in your SDK of choice and submit to any supported processor — no per-vendor rewrites.</p>
-        <div class="tags"><span>Qiskit</span><span>PennyLane</span><span>Qrisp</span><span>CUDA-Q</span><span>Cirq</span><span>Qadence</span><span>Perceval</span><span>Pulser</span></div>
+        <div class="tags"><span>Qiskit</span><span>PennyLane</span><span>Qrisp</span><span>CUDA-Q</span><span>Cirq</span><span>Qadence</span><span>Perceval</span><span>Pulser</span><span>Braket-AHS</span></div>
       </div>
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="4" height="4"/><rect x="10" y="10" width="4" height="4"/><rect x="17" y="16" width="4" height="4"/><path d="M7 6h3M14 12h3"/></svg>
@@ -592,6 +592,29 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
       </table>
     </div>
     <p class="note" data-i18n="hw.note">Qubit counts are indicative and provided by the vendors; device availability changes over time.</p>
+
+    <div class="sec-head" style="margin-top:44px">
+      <h2 data-i18n="mx.h2" style="font-size:clamp(20px,2.4vw,26px)">Which SDK reaches which hardware</h2>
+      <p class="lead" data-i18n="mx.lead">Write in the framework you already use. Gate-based circuits reach every gate-based vendor; photonic and analog work stays with the hardware that can express it — the platform refuses the impossible combinations instead of silently degrading them.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="vtable">
+        <thead><tr><th data-i18n="mx.c1">SDK</th><th>IBM</th><th>IQM</th><th>IonQ</th><th>Rigetti</th><th>QuEra</th><th>Pasqal</th><th>Quandela</th></tr></thead>
+        <tbody>
+          <tr><td><b>Qiskit</b></td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td></tr>
+          <tr><td><b>PennyLane</b></td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td></tr>
+          <tr><td><b>Cirq</b></td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td></tr>
+          <tr><td><b>Qrisp</b></td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td></tr>
+          <tr><td><b>Qadence</b></td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td></tr>
+          <tr><td><b>CUDA-Q</b></td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td></tr>
+          <tr><td><b>Perceval</b></td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td><b>Pulser</b></td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--muted)">·</td></tr>
+          <tr><td><b>Braket-AHS</b></td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--muted)">·</td><td style="color:var(--muted)">·</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" data-i18n="mx.note">● = can submit today. Quantinuum is shown above for analysis and recommendation; its cloud is not yet integrated for submission.</p>
+
   </div>
 </section>
 
@@ -691,7 +714,7 @@ const _L = {
     "stat.vendors":"Hardware vendors","stat.frameworks":"SDK frameworks","stat.steps":"Independent pipeline steps","stat.apps":"Application modules",
     "plat.tag":"The platform","plat.h2":"One middleware, from circuit to confident result",
     "plat.lead":"Bring your circuit once. UQH detects the framework, optimizes and noise-checks it, applies error mitigation and error correction, prices it across vendors, and runs it on the backend you choose — then turns every run into operational intelligence.",
-    "plat.1.t":"Connect everything","plat.1.d":"Eight SDK frameworks and seven hardware vendors across superconducting, trapped-ion, neutral-atom, and photonic — behind one interface.",
+    "plat.1.t":"Connect everything","plat.1.d":"Nine SDK frameworks and eight hardware vendors across superconducting, trapped-ion, neutral-atom, and photonic — behind one interface.",
     "plat.2.t":"Run with confidence","plat.2.d":"Noise simulation, readout + ZNE mitigation, Pauli-check postselection, and QEC analysis make results trustworthy — with cost known before you submit.",
     "plat.3.t":"Operate at scale","plat.3.d":"Accumulated jobs become benchmarks and device intelligence; per-domain policy, billing, and an AI-agent interface make it run as a service.",
     "cap.tag":"Capabilities","cap.h2":"Everything the quantum workflow needs","cap.lead":"A broad, composable feature set — use any piece on its own, or the whole pipeline end to end.",
@@ -714,7 +737,7 @@ const _L = {
     "app.tag":"Applications","app.h2":"Ready-to-run quantum application modules","app.lead":"Domain modules you can run today — each comparable across CPU, GPU, and real QPU backends.","app.note":"Sample results are illustrative, drawn from the bundled catalog datasets — each module is comparable across CPU, GPU, and real QPU backends.",
     "a1.t":"QML anomaly detection","a1.d":"Quantum-kernel outlier detection benchmarked against a classical baseline — upload your own CSV; advantage is dataset-dependent.","a2.t":"Quantum finance","a2.d":"QAOA portfolio optimization versus exact and greedy baselines.","a3.t":"Quantum chemistry","a3.d":"VQE ground-state energy with noise and mitigation comparison.","a4.t":"Graph optimization","a4.d":"QAOA for max-cut, independent set, and vertex cover.",
     "hw.tag":"Hardware","hw.h2":"Every modality, one platform","hw.lead":"Reach superconducting, trapped-ion, neutral-atom, and photonic processors — and compare and run across them from a single place.",
-    "hw.c1":"Vendor","hw.c2":"Modality","hw.c3":"Qubits","hw.c4":"Access","hw.note":"Qubit counts are indicative and provided by the vendors; device availability changes over time.",
+    "hw.c1":"Vendor","hw.c2":"Modality","hw.c3":"Qubits","hw.c4":"Access","mx.h2":"Which SDK reaches which hardware","mx.lead":"Write in the framework you already use. Gate-based circuits reach every gate-based vendor; photonic and analog work stays with the hardware that can express it — the platform refuses the impossible combinations instead of silently degrading them.","mx.c1":"SDK","mx.note":"● = can submit today. Quantinuum is shown above for analysis and recommendation; its cloud is not yet integrated for submission.","hw.note":"Qubit counts are indicative and provided by the vendors; device availability changes over time.",
     "m.super":"Superconducting","m.ion":"Trapped-ion","m.atom":"Neutral-atom","m.photon":"Photonic","ac.open":"Open plan","ac.cred":"Credits","ac.free":"Free tier",
     "aud.tag":"Who it's for","aud.h2":"Built for institutions and government — open to every researcher",
     "aud.1.t":"Researchers","aud.1.d":"Individual researchers aren't shut out — a self-serve tier to run real circuits and feel the NISQ reality: compare CPU, GPU, and real QPUs, watch noise appear, and recover signal with mitigation.",
@@ -735,7 +758,7 @@ const _L = {
     "stat.vendors":"하드웨어 벤더","stat.frameworks":"SDK 프레임워크","stat.steps":"독립 파이프라인 단계","stat.apps":"응용 모듈",
     "plat.tag":"플랫폼","plat.h2":"회로에서 신뢰할 수 있는 결과까지, 하나의 미들웨어",
     "plat.lead":"회로를 한 번만 올리세요. UQH가 프레임워크를 인식해 최적화와 노이즈 점검을 거치고, 오류완화와 오류정정을 적용하고, 벤더별 비용을 산정한 뒤 선택한 백엔드에서 실행합니다 — 그리고 모든 실행을 운영 인텔리전스로 바꿉니다.",
-    "plat.1.t":"모든 것을 연결","plat.1.d":"8개 SDK 프레임워크와 초전도, 이온트랩, 중성원자, 광자를 아우르는 7개 하드웨어 벤더를 하나의 인터페이스로.",
+    "plat.1.t":"모든 것을 연결","plat.1.d":"9개 SDK 프레임워크와 초전도, 이온트랩, 중성원자, 광자를 아우르는 8개 하드웨어 벤더를 하나의 인터페이스로.",
     "plat.2.t":"신뢰할 수 있는 실행","plat.2.d":"노이즈 시뮬레이션, 측정·ZNE 완화, Pauli-체크 포스트셀렉션, QEC 분석으로 결과를 신뢰할 수 있게 — 제출 전에 비용까지 확인합니다.",
     "plat.3.t":"규모 있는 운영","plat.3.d":"누적된 작업이 벤치마크와 장비 인텔리전스가 되고, 도메인별 정책·과금·AI 에이전트 인터페이스가 이를 서비스로 만듭니다.",
     "cap.tag":"기능","cap.h2":"양자 워크플로에 필요한 모든 것","cap.lead":"넓고 조합 가능한 기능 세트 — 각각 따로 쓰거나, 전체 파이프라인을 끝까지.",
@@ -758,7 +781,7 @@ const _L = {
     "app.tag":"응용","app.h2":"바로 실행하는 양자 응용 모듈","app.lead":"오늘 바로 실행할 수 있는 도메인 모듈 — 각각 CPU·GPU·실 QPU 백엔드에서 비교됩니다.","app.note":"표시된 결과는 번들 카탈로그 데이터셋에서 가져온 예시입니다 — 각 모듈은 CPU, GPU, 실 QPU 백엔드 전반에서 비교됩니다.",
     "a1.t":"QML 이상탐지","a1.d":"고전 기준선과 벤치마크하는 양자 커널 이상치 탐지 — 직접 CSV 업로드 가능, 우위는 데이터셋에 따라 다릅니다.","a2.t":"양자 금융","a2.d":"정확해·그리디 기준선과 비교하는 QAOA 포트폴리오 최적화.","a3.t":"양자 화학","a3.d":"노이즈·완화 비교를 포함한 VQE 바닥상태 에너지.","a4.t":"그래프 최적화","a4.d":"맥스컷·독립집합·정점덮개를 위한 QAOA.",
     "hw.tag":"하드웨어","hw.h2":"모든 방식, 하나의 플랫폼","hw.lead":"초전도, 이온트랩, 중성원자, 광자 프로세서에 접근하고 한 곳에서 비교·실행합니다.",
-    "hw.c1":"벤더","hw.c2":"방식","hw.c3":"큐빗","hw.c4":"접근","hw.note":"큐빗 수는 벤더 제공 참고치이며 장비 가용성은 시점에 따라 달라집니다.",
+    "hw.c1":"벤더","hw.c2":"방식","hw.c3":"큐빗","hw.c4":"접근","mx.h2":"어떤 SDK가 어떤 하드웨어에 닿는가","mx.lead":"쓰던 프레임워크로 그대로 작성하세요. 게이트 회로는 모든 게이트 기반 벤더에 닿고, 광자·아날로그 작업은 그것을 표현할 수 있는 하드웨어에 남습니다 — 불가능한 조합은 조용히 뭉개는 대신 명시적으로 거절합니다.","mx.c1":"SDK","mx.note":"● = 현재 제출 가능. Quantinuum은 위 표에 분석·추천용으로 노출되며, 자사 클라우드는 아직 제출 연동 전입니다.","hw.note":"큐빗 수는 벤더 제공 참고치이며 장비 가용성은 시점에 따라 달라집니다.",
     "m.super":"초전도","m.ion":"이온 트랩","m.atom":"중성 원자","m.photon":"광자","ac.open":"오픈 플랜","ac.cred":"크레딧","ac.free":"무료 티어",
     "aud.tag":"누구를 위한 플랫폼인가","aud.h2":"기관·정부를 위해, 연구자에게도 열려 있게",
     "aud.1.t":"연구자","aud.1.d":"개인 연구자도 소외되지 않습니다 — 셀프서브 티어로 직접 회로를 돌리며 NISQ의 현실을 체험하세요: CPU·GPU·실제 QPU 비교, 노이즈 관찰, 완화로 신호 회복.",
