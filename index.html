@@ -172,12 +172,6 @@ h3{font-family:var(--font-sans);font-weight:600;font-size:18px;letter-spacing:-.
 .pt b{display:block;font-size:14.5px;color:var(--ink);margin-bottom:6px}
 .pt span{font-size:13px;color:var(--text2);line-height:1.55}
 
-/* partners */
-.partner-grid{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
-.partner{display:flex;flex-direction:column;gap:4px;border:1px solid var(--border);border-radius:11px;padding:20px 24px;background:var(--surface);transition:.18s;min-width:190px;box-shadow:var(--shadow)}
-.partner:hover{border-color:var(--accent-line);transform:translateY(-2px)}
-.partner-name{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--ink)}
-.partner-url{font-family:var(--font-mono);font-size:12.5px;color:var(--accent-2)}
 
 /* contact */
 
@@ -682,22 +676,6 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
   </div>
 </section>
 
-<!-- PARTNERS -->
-<section id="partners" class="section alt">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow" data-i18n="ptn.tag">Partners</div>
-      <h2 data-i18n="ptn.h2">In good company</h2>
-    </div>
-    <div class="partner-grid">
-      <a href="https://www.thatgo.live/" target="_blank" rel="noopener" class="partner">
-        <span class="partner-name">ThatGo</span>
-        <span class="partner-url">thatgo.live ↗</span>
-      </a>
-    </div>
-  </div>
-</section>
-
 <footer>
   <div class="wrap foot">
     <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0891b2"/><g stroke="#fff" fill="none" stroke-width="1.5" opacity=".95"><ellipse cx="16" cy="16" rx="10.5" ry="4.2"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(120 16 16)"/></g><circle cx="16" cy="16" r="2.6" fill="#fff"/></svg><span>joygo<span class="dot" style="color:var(--accent)">Live</span></span></span>
@@ -749,7 +727,7 @@ const _L = {
     "sec.1.t":"Per-domain white-label","sec.1.d":"Control visible tabs, pipeline steps, devices, and accounts per domain and plan.","sec.2.t":"Spend safeguards","sec.2.d":"Pre-submission cost estimates, a cost threshold, and a credit ledger with per-job/step billing.","sec.3.t":"Code & data isolation","sec.3.d":"Static analysis and execution limits on uploads; per-user file and job isolation.","sec.4.t":"Auth & privacy","sec.4.d":"Session and API-key auth, output escaping, and PII scrubbing before external LLM calls.","sec.5.t":"Abuse defense","sec.5.d":"Per-IP flood auto-blocking and IP/account blacklist, enforced across UI, API, CLI, and MCP at a single server chokepoint.",
     "why.tag":"Why UQH","why.h2":"The combination is the difference","why.lead":"Individually, these capabilities exist elsewhere. UQH brings them into a single flow.",
     "why.1.t":"QEC-aware pipeline","why.1.d":"Error correction sits in the same flow as optimization and execution.","why.2.t":"Agent-native execution","why.2.d":"Multi-vendor runs orchestrated directly by AI agents over MCP.","why.3.t":"Result-quality evaluation","why.3.d":"Fidelity and benchmarking grounded in your own job history.","why.4.t":"Per-domain policy","why.4.d":"White-label control over features, devices, and access by domain and plan.",
-    "ptn.tag":"Partners","ptn.h2":"In good company",
+    
     "ft.tag":"Universal Quantum Hub.","ft.copy":"© 2026 joygoLive. All rights reserved."
   },
   ko:{
@@ -793,7 +771,7 @@ const _L = {
     "sec.1.t":"도메인별 화이트라벨","sec.1.d":"도메인·플랜별로 노출 탭, 파이프라인 단계, 장비, 계정을 제어합니다.","sec.2.t":"지출 안전장치","sec.2.d":"제출 전 비용 추정, 비용 임계값, 작업·단계별 과금이 있는 크레딧 원장.","sec.3.t":"코드 & 데이터 격리","sec.3.d":"업로드 코드에 정적분석과 실행 제한; 사용자별 파일·작업 격리.","sec.4.t":"인증 & 프라이버시","sec.4.d":"세션·API 키 인증, 출력 이스케이핑, 외부 LLM 호출 전 PII 스크러빙.","sec.5.t":"남용 방어","sec.5.d":"IP별 플러딩 자동 차단 + IP·계정 블랙리스트를 UI·API·CLI·MCP 전 경로에서 단일 서버 초크포인트로 집행합니다.",
     "why.tag":"UQH를 선택하는 이유","why.h2":"차별점은 ‘조합’에 있습니다","why.lead":"개별 기능은 다른 곳에도 있습니다. UQH는 이것들을 하나의 흐름으로 묶습니다.",
     "why.1.t":"QEC 통합 파이프라인","why.1.d":"오류정정이 최적화·실행과 같은 흐름 안에 있습니다.","why.2.t":"에이전트 네이티브 실행","why.2.d":"멀티벤더 실행을 MCP로 AI 에이전트가 직접 오케스트레이션.","why.3.t":"결과 품질 평가","why.3.d":"본인의 작업 이력에 기반한 충실도·벤치마킹.","why.4.t":"도메인별 정책","why.4.d":"도메인·플랜별로 기능·장비·접근을 제어하는 화이트라벨.",
-    "ptn.tag":"파트너","ptn.h2":"함께하는 곳",
+    
     "ft.tag":"유니버설 양자 허브.","ft.copy":"© 2026 joygoLive. All rights reserved."
   }
 };
