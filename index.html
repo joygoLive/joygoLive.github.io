@@ -419,7 +419,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
         <h3 data-i18n="c8.t">Knowledge base (RAG)</h3>
-        <p data-i18n="c8.d">Hybrid dense + sparse retrieval, re-ranking, and cited LLM answers over the platform's own accumulated runs — measured results, failures and workarounds, not a document corpus. Findings distilled from them are anonymised and searchable by everyone; individual records stay with their owner. PII is scrubbed before any external call.</p>
+        <p data-i18n="c8.d">Ask in your own words — that is the whole interface. Hybrid dense + sparse retrieval, re-ranking, and cited answers over the platform's own accumulated runs: measured results, refusals and workarounds, not a document corpus. Findings distilled from them are anonymised and searchable by everyone; individual records stay with their owner. What the corpus contains is curated by your administrators, not chosen per query.</p>
       </div>
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 8l-4 4 4 4M17 8l4 4-4 4M14 4l-4 16"/></svg>
@@ -625,7 +625,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
       <div class="aud fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V4M4 20h16M8 16v-5M12 16V7M16 16v-8"/></svg>
         <h3 data-i18n="aud.2.t">Institutions &amp; government</h3>
-        <p data-i18n="aud.2.d">The primary fit — national programs, research institutes, and enterprise R&amp;D. One governed, white-label control plane over every vendor: spend safeguards, code and data isolation, audit, and data sovereignty — with leaderboards and real cost-vs-fidelity to ground hardware and budget decisions.</p>
+        <p data-i18n="aud.2.d">The primary fit — national programs, research institutes, and enterprise R&amp;D. One governed, white-label control plane over every vendor: spend safeguards, code and data isolation, curated knowledge scope, security audit of every refused upload, and data sovereignty — with leaderboards and real cost-vs-fidelity to ground hardware and budget decisions.</p>
       </div>
       <div class="aud fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
@@ -705,7 +705,7 @@ const _L = {
     "c5.t":"Noise simulation & QEC","c5.d":"Calibration-based fidelity and TVD with a cross-engine consistency check (Qiskit vs PennyLane), plus error-correction analysis and code application with threshold and logical-error estimates.",
     "c6.t":"Cost & resource estimate","c6.d":"See qubits, depth, gates, and per-vendor cost in credits and USD before submitting — no surprise spend.",
     "c7.t":"GPU acceleration","c7.d":"Offload heavy simulation to real H100 / DGX hosts and compare CPU, GPU, and QPU on the same problem.",
-    "c8.t":"Knowledge base (RAG)","c8.d":"Hybrid dense + sparse retrieval, re-ranking, and cited LLM answers over the platform's own accumulated runs — measured results, failures and workarounds, not a document corpus. Findings distilled from them are anonymised and searchable by everyone; individual records stay with their owner. PII is scrubbed before any external call.",
+    "c8.t":"Knowledge base (RAG)","c8.d":"Ask in your own words — that is the whole interface. Hybrid dense + sparse retrieval, re-ranking, and cited answers over the platform's own accumulated runs: measured results, refusals and workarounds, not a document corpus. Findings distilled from them are anonymised and searchable by everyone; individual records stay with their owner. What the corpus contains is curated by your administrators, not chosen per query.",
     "c9.t":"API, CLI & MCP","c9.d":"Full parity across UI, REST API, and CLI — plus an MCP server so AI agents orchestrate runs directly.",
     "c11.t":"Self-maintaining (AutoOps)","c11.d":"A scheduled autonomous layer keeps calibration, SDK versions, and device coverage current. Reversible actions auto-apply and log; anything irreversible waits for admin approval.",
     "c10.badge":"Coming soon","c10.t":"Runtime sessions","c10.d":"Reserve a device and batch many jobs in one session to minimize re-queuing between iterations — in the spirit of vendor runtime sessions. On the roadmap.",
@@ -721,7 +721,7 @@ const _L = {
     "m.super":"Superconducting","m.ion":"Trapped-ion","m.atom":"Neutral-atom","m.photon":"Photonic","ac.open":"Open plan","ac.cred":"Credits","ac.free":"Free tier",
     "aud.tag":"Who it's for","aud.h2":"Built for institutions and government — open to every researcher",
     "aud.1.t":"Researchers","aud.1.d":"Individual researchers aren't shut out — a self-serve tier to run real circuits and feel the NISQ reality: compare CPU, GPU, and real QPUs, watch noise appear, and recover signal with mitigation.",
-    "aud.2.t":"Institutions & government","aud.2.d":"The primary fit — national programs, research institutes, and enterprise R&D. One governed, white-label control plane over every vendor: spend safeguards, code and data isolation, audit, and data sovereignty — with leaderboards and real cost-vs-fidelity to ground hardware and budget decisions.",
+    "aud.2.t":"Institutions & government","aud.2.d":"The primary fit — national programs, research institutes, and enterprise R&D. One governed, white-label control plane over every vendor: spend safeguards, code and data isolation, curated knowledge scope, security audit of every refused upload, and data sovereignty — with leaderboards and real cost-vs-fidelity to ground hardware and budget decisions.",
     "aud.3.t":"Developers","aud.3.d":"Work from the environment you know. Circuit-complexity analysis, optimization, cost estimates, and runs over API and CLI — script them or wire them into CI.",
     "sec.tag":"Security & governance","sec.h2":"Built to run as a managed service","sec.lead":"Multi-tenant controls, spend safeguards, and isolation are enforced server-side across UI, API, CLI, and MCP — not bolted on.",
     "sec.1.t":"Per-domain white-label","sec.1.d":"Control visible tabs, pipeline steps, devices, and accounts per domain and plan.","sec.2.t":"Spend safeguards","sec.2.d":"Pre-submission cost estimates, a cost threshold, and a credit ledger with per-job/step billing.","sec.3.t":"Code & data isolation","sec.3.d":"Static analysis and execution limits on uploads; per-user file and job isolation.","sec.4.t":"Auth & privacy","sec.4.d":"Session and API-key auth, output escaping, and PII scrubbing before external LLM calls.","sec.5.t":"Abuse defense","sec.5.d":"Per-IP flood auto-blocking and IP/account blacklist, enforced across UI, API, CLI, and MCP at a single server chokepoint.",
@@ -749,7 +749,7 @@ const _L = {
     "c5.t":"노이즈 시뮬레이션 & QEC","c5.d":"캘리브레이션 기반 충실도·TVD에 엔진 간 교차검증(Qiskit vs PennyLane)을 더하고, 임계값과 논리오류 추정을 포함한 오류정정 분석·적용까지.",
     "c6.t":"비용 & 자원 추정","c6.d":"제출 전에 큐빗·깊이·게이트와 벤더별 비용을 크레딧·USD로 확인 — 예상 못 한 지출이 없습니다.",
     "c7.t":"GPU 가속","c7.d":"무거운 시뮬레이션을 실제 H100 / DGX 호스트로 오프로드하고 같은 문제로 CPU·GPU·QPU를 비교합니다.",
-    "c8.t":"지식베이스 (RAG)","c8.d":"하이브리드 dense+sparse 검색, 재순위, 인용 기반 LLM 답변을 플랫폼에 누적된 실행 기록에 적용합니다 — 문서 모음이 아니라 실측 결과·실패·우회입니다. 거기서 증류한 지식은 익명화돼 전원이 검색하고, 개별 레코드는 소유자에게만 보입니다. 외부 호출 전 PII 는 스크러빙합니다.",
+    "c8.t":"지식베이스 (RAG)","c8.d":"평소 말로 물어보면 됩니다 — 그게 인터페이스의 전부입니다. 하이브리드 dense+sparse 검색, 재순위, 인용 기반 답변을 플랫폼에 누적된 실행 기록에 적용합니다: 문서 모음이 아니라 실측 결과·거부·우회입니다. 거기서 증류한 지식은 익명화돼 전원이 검색하고, 개별 레코드는 소유자에게만 보입니다. 무엇을 검색 대상에 둘지는 기관 관리자가 큐레이션합니다.",
     "c9.t":"API, CLI & MCP","c9.d":"UI·REST API·CLI 완전 패리티 — 그리고 MCP 서버로 AI 에이전트가 실행을 직접 오케스트레이션합니다.",
     "c11.t":"자율 유지보수 (AutoOps)","c11.d":"예약된 자율 계층이 캘리브레이션·SDK 버전·장비 커버리지를 최신으로 유지합니다. 가역적 작업은 자동 적용·기록되고, 비가역적 작업은 관리자 승인을 기다립니다.",
     "c10.badge":"준비 중","c10.t":"런타임 세션","c10.d":"하나의 세션에 여러 작업을 묶고 장비를 예약해 반복 사이의 재대기를 최소화합니다 — 벤더 런타임 세션과 같은 개념. 로드맵에 있습니다.",
@@ -765,7 +765,7 @@ const _L = {
     "m.super":"초전도","m.ion":"이온 트랩","m.atom":"중성 원자","m.photon":"광자","ac.open":"오픈 플랜","ac.cred":"크레딧","ac.free":"무료 티어",
     "aud.tag":"누구를 위한 플랫폼인가","aud.h2":"기관·정부를 위해, 연구자에게도 열려 있게",
     "aud.1.t":"연구자","aud.1.d":"개인 연구자도 소외되지 않습니다 — 셀프서브 티어로 직접 회로를 돌리며 NISQ의 현실을 체험하세요: CPU·GPU·실제 QPU 비교, 노이즈 관찰, 완화로 신호 회복.",
-    "aud.2.t":"기관 · 정부","aud.2.d":"주 대상 — 국가 프로그램·연구기관·기업 R&D. 모든 벤더를 하나의 거버넌스·화이트라벨 컨트롤플레인으로: 지출 안전장치, 코드·데이터 격리, 감사, 데이터 주권 — 리더보드와 실제 비용 대 충실도로 하드웨어·예산 판단 근거를 마련합니다.",
+    "aud.2.t":"기관 · 정부","aud.2.d":"주 대상 — 국가 프로그램·연구기관·기업 R&D. 모든 벤더를 하나의 거버넌스·화이트라벨 컨트롤플레인으로: 지출 안전장치, 코드·데이터 격리, 지식 범위 큐레이션, 차단된 업로드 전수 감사, 데이터 주권 — 리더보드와 실제 비용 대 충실도로 하드웨어·예산 판단 근거를 마련합니다.",
     "aud.3.t":"개발자","aud.3.d":"익숙한 환경에서 그대로 쓰세요. 회로 복잡도 분석, 최적화, 비용 추정, 실행을 API와 CLI로 — 스크립트로 자동화하거나 CI에 연결하세요.",
     "sec.tag":"보안 & 거버넌스","sec.h2":"관리형 서비스로 운영되도록 설계","sec.lead":"멀티테넌트 제어, 지출 안전장치, 격리가 UI·API·CLI·MCP 전반에 서버측으로 집행됩니다 — 나중에 덧붙인 게 아니라.",
     "sec.1.t":"도메인별 화이트라벨","sec.1.d":"도메인·플랜별로 노출 탭, 파이프라인 단계, 장비, 계정을 제어합니다.","sec.2.t":"지출 안전장치","sec.2.d":"제출 전 비용 추정, 비용 임계값, 작업·단계별 과금이 있는 크레딧 원장.","sec.3.t":"코드 & 데이터 격리","sec.3.d":"업로드 코드에 정적분석과 실행 제한; 사용자별 파일·작업 격리.","sec.4.t":"인증 & 프라이버시","sec.4.d":"세션·API 키 인증, 출력 이스케이핑, 외부 LLM 호출 전 PII 스크러빙.","sec.5.t":"남용 방어","sec.5.d":"IP별 플러딩 자동 차단 + IP·계정 블랙리스트를 UI·API·CLI·MCP 전 경로에서 단일 서버 초크포인트로 집행합니다.",
