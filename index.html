@@ -364,7 +364,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M7 10h3l1.5-3 2 6 1.5-3h2"/></svg>
         <h3 data-i18n="p4.t">Prove the circuit on GPU first</h3>
-        <p data-i18n="p4.d">Run it on real H100 / DGX simulation before it ever reaches hardware. Logic bugs, wrong observables and bad ansätze are cheaper to find on a GPU than in a QPU queue.</p>
+        <p data-i18n="p4.d">Run it on dedicated GPU simulation hosts before it ever reaches hardware. Logic bugs, wrong observables and bad ansätze are cheaper to find on a GPU than in a QPU queue.</p>
       </div>
     </div>
     <p class="note" data-i18n="pre.note">The fidelity estimate is a first-order model — independent errors, no crosstalk or idle decoherence — so it is built for ranking options against each other, not for predicting an absolute number. That is exactly the question you have before submitting.</p>
@@ -448,8 +448,8 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>
         <h3 data-i18n="c7.t">GPU acceleration</h3>
-        <p data-i18n="c7.d">Offload heavy simulation to real H100 / DGX hosts and compare CPU, GPU, and QPU on the same problem.</p>
-        <div class="tags"><span>H100</span><span>lightning.gpu</span></div>
+        <p data-i18n="c7.d">Offload heavy simulation to dedicated GPU hosts and compare CPU, GPU, and QPU on the same problem.</p>
+        <div class="tags"><span>CUDA</span><span>lightning.gpu</span></div>
       </div>
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
@@ -562,7 +562,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
   rigetti   <span class="c-v">$0.74</span>     ionq_forte1 <span class="c-v">$82.22</span>   <span class="c-c"># cheapest first</span>
 
 <span class="c-p">$</span> uqi catalog optimize <span class="c-f">--graph</span> cycle6 <span class="c-f">--compare</span> <span class="c-f">--resilience</span> full
-  CPU optimal   ·   GPU(H100) optimal
+  CPU optimal   ·   GPU optimal
   QPU(iqm_emerald)  fid <span class="c-v">0.74</span> · valid <span class="c-v">100%</span>
   <span class="c-a">readout-mitigated</span>  approx <span class="c-v">100%</span>   <span class="c-c"># post-processed, no re-run</span></pre>
     </div>
@@ -735,7 +735,7 @@ const _L = {
     "p1.t":"Analytic fidelity estimate","p1.d":"An error-budget calculation from the device's measured 1q, 2q and readout error rates against your circuit's gate counts. No noise simulation, so no qubit ceiling and no wait — it answers for a 100-qubit circuit as fast as a 2-qubit one.",
     "p2.t":"Rank the devices, vendor-neutral","p2.d":"The same circuit scored across every connected processor — expected fidelity, 2q error, coherence headroom, queue depth and cost, side by side. Pick on evidence, not on which vendor you happen to have an account with.",
     "p3.t":"You may have run this already","p3.d":"Submissions are matched by circuit content, not filename, so earlier runs of the same circuit surface before you pay for another one — and an edited circuit correctly stops matching. Re-running is a choice, not an accident.",
-    "p4.t":"Prove the circuit on GPU first","p4.d":"Run it on real H100 / DGX simulation before it ever reaches hardware. Logic bugs, wrong observables and bad ansätze are cheaper to find on a GPU than in a QPU queue.",
+    "p4.t":"Prove the circuit on GPU first","p4.d":"Run it on dedicated GPU simulation hosts before it ever reaches hardware. Logic bugs, wrong observables and bad ansätze are cheaper to find on a GPU than in a QPU queue.",
     "c12.t":"Reproducible results","c12.d":"Export one self-describing file per run: the circuit, the observable, the calibration exactly as it stood at submit time, the result, the noiseless reference and SDK versions. Anything unavailable is named rather than quietly omitted, so the number stays checkable years later — attach it to a paper or hand it to a reviewer.",
     "sec.8.t":"QPU and GPU on one ledger","sec.8.d":"Quantum processors and GPU simulation draw from the same institutional pool and the same caps, so a single budget covers both and one report shows where it went — no separate accounting for the classical half of the workload.",
     "hero.kicker":"UQH · Universal Quantum Hub","hero.title":"Universal <span class=\"grad\">Quantum</span> Hub",
@@ -754,7 +754,7 @@ const _L = {
     "c4.t":"Error mitigation & resilience","c4.d":"Readout-error mitigation and zero-noise extrapolation as one resilience level, plus spacetime Pauli-check postselection for Clifford circuits — standard techniques, applied consistently.",
     "c5.t":"Noise simulation & QEC","c5.d":"Calibration-based fidelity and TVD with a cross-engine consistency check (Qiskit vs PennyLane), plus error-correction analysis and code application with threshold and logical-error estimates.",
     "c6.t":"Cost & resource estimate","c6.d":"See qubits, depth, gates, and per-vendor cost in credits and USD before submitting — no surprise spend.",
-    "c7.t":"GPU acceleration","c7.d":"Offload heavy simulation to real H100 / DGX hosts and compare CPU, GPU, and QPU on the same problem.",
+    "c7.t":"GPU acceleration","c7.d":"Offload heavy simulation to dedicated GPU hosts and compare CPU, GPU, and QPU on the same problem.",
     "c8.t":"Knowledge base (RAG)","c8.d":"Ask in your own words — that is the whole interface. Hybrid dense + sparse retrieval, re-ranking, and cited answers over the platform's own accumulated runs: measured results, refusals and workarounds, not a document corpus. Findings distilled from them are anonymised and searchable by everyone; individual records stay with their owner. What the corpus contains is curated by your administrators, not chosen per query.",
     "c9.t":"API, CLI & MCP","c9.d":"Full parity across UI, REST API, and CLI — plus an MCP server so AI agents orchestrate runs directly.",
     "c11.t":"Self-maintaining (AutoOps)","c11.d":"A scheduled autonomous layer tracks every device's fidelity and error rates over time and flags the ones drifting away from spec, watches SDK releases against your pinned versions, and picks up new hardware as vendors bring it online. Reversible actions auto-apply and log; anything irreversible waits for admin approval.",
@@ -786,7 +786,7 @@ const _L = {
     "p1.t":"해석적 피델리티 추정","p1.d":"장비의 실측 1큐빗·2큐빗·판독 에러율과 회로의 게이트 수로 계산하는 에러 버짓 방식입니다. 노이즈 시뮬레이션을 쓰지 않으므로 큐빗 상한도 대기 시간도 없습니다 — 100큐빗 회로도 2큐빗 회로만큼 빠르게 답이 나옵니다.",
     "p2.t":"벤더 중립 장비 순위","p2.d":"같은 회로를 연결된 모든 프로세서에 얹어 점수화합니다 — 예상 피델리티, 2큐빗 에러, 결맞음 여유, 큐 길이, 비용을 나란히. 마침 계정이 있는 벤더가 아니라 근거로 고르십시오.",
     "p3.t":"이미 돌린 회로일 수 있습니다","p3.d":"제출 이력은 파일명이 아니라 회로 내용으로 대조됩니다. 같은 회로의 이전 실행이 다시 지불하기 전에 드러나고, 회로를 수정했다면 대조에서 정확히 빠집니다. 재실행이 사고가 아니라 선택이 됩니다.",
-    "p4.t":"GPU에서 먼저 검증","p4.d":"실기기에 닿기 전에 실제 H100 / DGX 시뮬레이션으로 돌려봅니다. 로직 버그, 잘못된 관측량, 부적절한 안자츠는 QPU 큐에서보다 GPU에서 찾는 편이 훨씬 쌉니다.",
+    "p4.t":"GPU에서 먼저 검증","p4.d":"실기기에 닿기 전에 전용 GPU 시뮬레이션 호스트에서 돌려봅니다. 로직 버그, 잘못된 관측량, 부적절한 안자츠는 QPU 큐에서보다 GPU에서 찾는 편이 훨씬 쌉니다.",
     "c12.t":"재현 가능한 결과","c12.d":"실행 하나당 자기서술적 파일 하나를 내보냅니다 — 회로, 관측량, 제출 시점 그대로의 캘리브레이션, 결과, 무노이즈 기준값, SDK 버전. 없는 항목은 조용히 빠지지 않고 이름이 남으므로, 그 숫자는 몇 년 뒤에도 검증 가능합니다. 논문에 첨부하거나 리뷰어에게 그대로 건네십시오.",
     "sec.8.t":"QPU와 GPU를 한 원장에서","sec.8.d":"양자 프로세서와 GPU 시뮬레이션이 같은 기관 풀과 같은 상한을 씁니다. 예산 하나로 양쪽을 덮고 보고서 하나로 어디에 쓰였는지 보입니다 — 워크로드의 고전 계산 쪽을 따로 회계할 필요가 없습니다.",
     "hero.kicker":"UQH · 유니버설 양자 허브","hero.title":"유니버설 <span class=\"grad\">양자</span> 허브",
@@ -805,7 +805,7 @@ const _L = {
     "c4.t":"오류완화 & resilience","c4.d":"측정 오류완화와 zero-noise extrapolation을 하나의 resilience 레벨로, 여기에 Clifford 회로용 Pauli-체크 포스트셀렉션까지 — 표준 기법을 일관되게 적용합니다.",
     "c5.t":"노이즈 시뮬레이션 & QEC","c5.d":"캘리브레이션 기반 충실도·TVD에 엔진 간 교차검증(Qiskit vs PennyLane)을 더하고, 임계값과 논리오류 추정을 포함한 오류정정 분석·적용까지.",
     "c6.t":"비용 & 자원 추정","c6.d":"제출 전에 큐빗·깊이·게이트와 벤더별 비용을 크레딧·USD로 확인 — 예상 못 한 지출이 없습니다.",
-    "c7.t":"GPU 가속","c7.d":"무거운 시뮬레이션을 실제 H100 / DGX 호스트로 오프로드하고 같은 문제로 CPU·GPU·QPU를 비교합니다.",
+    "c7.t":"GPU 가속","c7.d":"무거운 시뮬레이션을 전용 GPU 호스트로 오프로드하고 같은 문제로 CPU·GPU·QPU를 비교합니다.",
     "c8.t":"지식베이스 (RAG)","c8.d":"평소 말로 물어보면 됩니다 — 그게 인터페이스의 전부입니다. 하이브리드 dense+sparse 검색, 재순위, 인용 기반 답변을 플랫폼에 누적된 실행 기록에 적용합니다: 문서 모음이 아니라 실측 결과·거부·우회입니다. 거기서 증류한 지식은 익명화돼 전원이 검색하고, 개별 레코드는 소유자에게만 보입니다. 무엇을 검색 대상에 둘지는 기관 관리자가 큐레이션합니다.",
     "c9.t":"API, CLI & MCP","c9.d":"UI·REST API·CLI 완전 패리티 — 그리고 MCP 서버로 AI 에이전트가 실행을 직접 오케스트레이션합니다.",
     "c11.t":"자율 유지보수 (AutoOps)","c11.d":"예약된 자율 계층이 장비별 피델리티와 에러율을 시계열로 추적해 규격에서 이탈하는 장비를 표시하고, 핀된 버전 대비 SDK 릴리스를 감시하며, 벤더가 새 하드웨어를 올리면 자동으로 잡아냅니다. 가역적 작업은 자동 적용·기록되고, 비가역적 작업은 관리자 승인을 기다립니다.",
