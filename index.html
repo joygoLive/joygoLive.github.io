@@ -223,6 +223,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
       <a href="#developers" data-i18n="nav.developers">Developers</a>
       <a href="#agent" data-i18n="nav.agent">Agent</a>
       <a href="#hardware" data-i18n="nav.hardware">Hardware</a>
+      <a href="#access" data-i18n="nav.access">Access</a>
     </nav>
     <div class="lang-toggle" role="group" aria-label="language">
       <button data-lang="en" onclick="setLang('en')">EN</button>
@@ -702,6 +703,42 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
   </div>
 </section>
 
+<!-- ACCESS MODELS -->
+<section id="access" class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="ac.tag">Access models</div>
+      <h2 data-i18n="ac.h2">Three ways to run, one platform</h2>
+      <p class="lead" data-i18n="ac.lead">Everything that costs nothing to run is open to everyone. What costs money — quantum processor time, AI calls, GPU hours — runs either on a small shared allowance or on credentials you bring yourself.</p>
+    </div>
+    <div class="pts" style="grid-template-columns:repeat(3,1fr)">
+      <div class="pt fade"><b data-i18n="ac.t1">Free</b><span data-i18n="ac.d1">No credentials to register. Submissions draw on a monthly shared allowance from the platform's own vendor accounts — first come, first served, and once it is used up nobody draws on it again until the month turns over.</span></div>
+      <div class="pt fade"><b data-i18n="ac.t2">Bring your own</b><span data-i18n="ac.d2">Register your vendor account key and runs execute on it. Accounts with a registered key never touch the platform key or the shared allowance — your quota is your own, and so is the bill.</span></div>
+      <div class="pt fade"><b data-i18n="ac.t3">Institution</b><span data-i18n="ac.d3">The institution registers its credentials once and its members share them, under a shared budget with per-member caps, scoped reporting, and an audit trail.</span></div>
+    </div>
+    <div class="table-wrap">
+      <table class="vtable">
+        <thead><tr>
+          <th data-i18n="ac.c0">Capability</th><th data-i18n="ac.c1">Free</th><th data-i18n="ac.c2">Bring your own</th><th data-i18n="ac.c3">Institution</th>
+        </tr></thead>
+        <tbody>
+          <tr><td data-i18n="ac.r1">Analysis, optimization, noise simulation, QEC</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r2">Vendor-neutral device ranking</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r3">Reproducibility bundle</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r4">API, CLI and MCP access</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r5">Credential registration</td><td style="color:var(--text-dim)">·</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r6">Monthly shared pool for QPU time</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td></tr>
+          <tr><td data-i18n="ac.r7">Institutional budget caps and audit</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r8">Institutional usage report</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r9">Dedicated domain</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)" data-i18n="ac.planned">planned</td></tr>
+          <tr><td data-i18n="ac.r10">Bring your own AI and GPU credentials</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)" data-i18n="ac.planned">planned</td><td style="color:var(--text-dim)" data-i18n="ac.planned">planned</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" data-i18n="ac.note">Analysis, ranking, simulation and reproducibility do not touch vendor hardware, so they are open on every tier. The tiers differ only where real money is spent. Items marked planned are not available yet.</p>
+  </div>
+</section>
+
 <!-- WHY -->
 <section id="why" class="section alt">
   <div class="wrap">
@@ -730,6 +767,32 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
 <script>
 const _L = {
   en:{
+    "ac.tag":"Access models",
+    "ac.h2":"Three ways to run, one platform",
+    "ac.lead":"Everything that costs nothing to run is open to everyone. What costs money — quantum processor time, AI calls, GPU hours — runs either on a small shared allowance or on credentials you bring yourself.",
+    "ac.t1":"Free",
+    "ac.d1":"No credentials to register. Submissions draw on a monthly shared allowance from the platform's own vendor accounts — first come, first served, and once it is used up nobody draws on it again until the month turns over.",
+    "ac.t2":"Bring your own",
+    "ac.d2":"Register your vendor account key and runs execute on it. Accounts with a registered key never touch the platform key or the shared allowance — your quota is your own, and so is the bill.",
+    "ac.t3":"Institution",
+    "ac.d3":"The institution registers its credentials once and its members share them, under a shared budget with per-member caps, scoped reporting, and an audit trail.",
+    "ac.c0":"Capability",
+    "ac.c1":"Free",
+    "ac.c2":"Bring your own",
+    "ac.c3":"Institution",
+    "ac.planned":"planned",
+    "ac.r1":"Analysis, optimization, noise simulation, QEC",
+    "ac.r2":"Vendor-neutral device ranking",
+    "ac.r3":"Reproducibility bundle",
+    "ac.r4":"API, CLI and MCP access",
+    "ac.r5":"Credential registration",
+    "ac.r6":"Monthly shared pool for QPU time",
+    "ac.r7":"Institutional budget caps and audit",
+    "ac.r8":"Institutional usage report",
+    "ac.r9":"Dedicated domain",
+    "ac.r10":"Bring your own AI and GPU credentials",
+    "ac.note":"Analysis, ranking, simulation and reproducibility do not touch vendor hardware, so they are open on every tier. The tiers differ only where real money is spent. Items marked planned are not available yet.",
+    "nav.access":"Access",
     "nav.platform":"Platform","nav.applications":"Applications","nav.preflight":"Pre-flight","nav.workbench":"Workbench","nav.capabilities":"Capabilities","nav.intelligence":"Intelligence","nav.developers":"Developers","nav.agent":"Agent","nav.hardware":"Hardware",
     "pre.tag":"Before you spend a shot","pre.h2":"QPU time is scarce. Spend it on the run that will work.","pre.lead":"Most wasted quantum spend is decided before submission — the wrong device, a circuit too deep for it, or a run you already made last month. UQH answers all three up front.","pre.note":"The fidelity estimate is a first-order model — independent errors, no crosstalk or idle decoherence — so it is built for ranking options against each other, not for predicting an absolute number. That is exactly the question you have before submitting.",
     "p1.t":"Analytic fidelity estimate","p1.d":"An error-budget calculation from the device's measured 1q, 2q and readout error rates against your circuit's gate counts. No noise simulation, so no qubit ceiling and no wait — it answers for a 100-qubit circuit as fast as a 2-qubit one.",
@@ -781,6 +844,32 @@ const _L = {
     "ft.tag":"Universal Quantum Hub.","ft.copy":"© 2026 joygoLive. All rights reserved."
   },
   ko:{
+    "nav.access":"이용 형태",
+    "ac.tag":"이용 형태",
+    "ac.h2":"실행 방식 세 가지, 플랫폼 하나",
+    "ac.lead":"비용이 들지 않는 기능은 모두에게 열려 있습니다. 비용이 드는 구간 — 양자 프로세서 시간, AI 호출, GPU 사용 — 은 소량의 공유 자원으로 쓰거나, 직접 가져온 자격증명으로 실행합니다.",
+    "ac.t1":"무료",
+    "ac.d1":"등록할 자격증명이 없습니다. 제출은 플랫폼이 보유한 벤더 계정의 월별 공유 자원에서 차감되며, 선착순으로 쓰다가 소진되면 다음 달 갱신 전까지 아무도 사용하지 않습니다.",
+    "ac.t2":"자격증명 직접 등록",
+    "ac.d2":"본인 벤더 계정 키를 등록하면 그 키로 실행됩니다. 키를 등록한 계정은 플랫폼 공용 키와 공유 자원을 사용하지 않습니다 — 할당량도 비용도 본인 것입니다.",
+    "ac.t3":"기관",
+    "ac.d3":"기관이 자격증명을 한 번 등록하면 소속 구성원이 공유합니다. 공유 예산·구성원별 상한·기관 범위 보고서·감사 기록이 함께 적용됩니다.",
+    "ac.c0":"항목",
+    "ac.c1":"무료",
+    "ac.c2":"직접 등록",
+    "ac.c3":"기관",
+    "ac.planned":"예정",
+    "ac.r1":"분석 · 최적화 · 노이즈 시뮬레이션 · 오류정정",
+    "ac.r2":"벤더 중립 장비 순위 비교",
+    "ac.r3":"재현성 번들",
+    "ac.r4":"API · CLI · MCP 접근",
+    "ac.r5":"자격증명 등록",
+    "ac.r6":"QPU 시간 월별 공유 자원",
+    "ac.r7":"기관 예산 상한 및 감사",
+    "ac.r8":"기관 사용 보고서",
+    "ac.r9":"전용 도메인",
+    "ac.r10":"AI · GPU 자격증명 직접 등록",
+    "ac.note":"분석 · 순위 비교 · 시뮬레이션 · 재현성은 벤더 하드웨어를 사용하지 않으므로 모든 형태에서 열려 있습니다. 차이는 실제 비용이 발생하는 지점에만 있습니다. '예정' 표시 항목은 아직 제공되지 않습니다.",
     "nav.platform":"플랫폼","nav.applications":"응용","nav.preflight":"사전 평가","nav.workbench":"워크벤치","nav.capabilities":"기능","nav.intelligence":"인텔리전스","nav.developers":"개발자","nav.agent":"에이전트","nav.hardware":"하드웨어",
     "pre.tag":"한 샷도 쓰기 전에","pre.h2":"QPU 시간은 희소합니다. 될 실행에 쓰십시오.","pre.lead":"낭비되는 양자 비용의 대부분은 제출 전에 이미 결정됩니다 — 맞지 않는 장비, 그 장비에 비해 너무 깊은 회로, 혹은 지난달에 이미 돌린 실행. UQH는 이 셋을 제출 전에 답합니다.","pre.note":"피델리티 추정은 1차 근사 모델입니다 — 에러 독립 가정, 크로스토크·유휴 디코히런스 미반영 — 따라서 절대값 예측이 아니라 선택지 간 순위 비교를 위한 것입니다. 제출 직전에 필요한 판단이 정확히 그것입니다.",
     "p1.t":"해석적 피델리티 추정","p1.d":"장비의 실측 1큐빗·2큐빗·판독 에러율과 회로의 게이트 수로 계산하는 에러 버짓 방식입니다. 노이즈 시뮬레이션을 쓰지 않으므로 큐빗 상한도 대기 시간도 없습니다 — 100큐빗 회로도 2큐빗 회로만큼 빠르게 답이 나옵니다.",
