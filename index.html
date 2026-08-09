@@ -731,11 +731,13 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
           <tr><td data-i18n="ac.r7">Institutional budget caps and audit</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
           <tr><td data-i18n="ac.r8">Institutional usage report</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
           <tr><td data-i18n="ac.r9">Dedicated domain</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)" data-i18n="ac.planned">planned</td></tr>
-          <tr><td data-i18n="ac.r10">Bring your own AI and GPU credentials</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)" data-i18n="ac.planned">planned</td><td style="color:var(--text-dim)" data-i18n="ac.planned">planned</td></tr>
+          <tr><td data-i18n="ac.r10">Bring your own AI key</td><td style="color:var(--text-dim)">·</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r11">GPU simulation on shared hosts</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r12">Unmetered use of a GPU host you provide</td><td style="color:var(--text-dim)">·</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="note" data-i18n="ac.note">Analysis, ranking, simulation and reproducibility do not touch vendor hardware, so they are open on every tier. The tiers differ only where real money is spent. Items marked planned are not available yet.</p>
+    <p class="note" data-i18n="ac.note">Analysis, ranking, simulation and reproducibility do not touch vendor hardware, so they are open on every tier. The tiers differ only where real money is spent. GPU hosts are sponsored hardware rather than a tier benefit — while a host is shared it is open to every tier, and if that sponsorship ends it closes for every tier alike. Attaching your own GPU host is arranged with the operator, not self-service.</p>
   </div>
 </section>
 
@@ -790,8 +792,8 @@ const _L = {
     "ac.r7":"Institutional budget caps and audit",
     "ac.r8":"Institutional usage report",
     "ac.r9":"Dedicated domain",
-    "ac.r10":"Bring your own AI and GPU credentials",
-    "ac.note":"Analysis, ranking, simulation and reproducibility do not touch vendor hardware, so they are open on every tier. The tiers differ only where real money is spent. Items marked planned are not available yet.",
+    "ac.r10":"Bring your own AI key","ac.r11":"GPU simulation on shared hosts","ac.r12":"Unmetered use of a GPU host you provide",
+    "ac.note":"Analysis, ranking, simulation and reproducibility do not touch vendor hardware, so they are open on every tier. The tiers differ only where real money is spent. GPU hosts are sponsored hardware rather than a tier benefit — while a host is shared it is open to every tier, and if that sponsorship ends it closes for every tier alike. Attaching your own GPU host is arranged with the operator, not self-service.",
     "nav.access":"Access",
     "nav.platform":"Platform","nav.applications":"Applications","nav.preflight":"Pre-flight","nav.workbench":"Workbench","nav.capabilities":"Capabilities","nav.intelligence":"Intelligence","nav.developers":"Developers","nav.agent":"Agent","nav.hardware":"Hardware",
     "pre.tag":"Before you spend a shot","pre.h2":"QPU time is scarce. Spend it on the run that will work.","pre.lead":"Most wasted quantum spend is decided before submission — the wrong device, a circuit too deep for it, or a run you already made last month. UQH answers all three up front.","pre.note":"The fidelity estimate is a first-order model — independent errors, no crosstalk or idle decoherence — so it is built for ranking options against each other, not for predicting an absolute number. That is exactly the question you have before submitting.",
@@ -868,8 +870,8 @@ const _L = {
     "ac.r7":"기관 예산 상한 및 감사",
     "ac.r8":"기관 사용 보고서",
     "ac.r9":"전용 도메인",
-    "ac.r10":"AI · GPU 자격증명 직접 등록",
-    "ac.note":"분석 · 순위 비교 · 시뮬레이션 · 재현성은 벤더 하드웨어를 사용하지 않으므로 모든 형태에서 열려 있습니다. 차이는 실제 비용이 발생하는 지점에만 있습니다. '예정' 표시 항목은 아직 제공되지 않습니다.",
+    "ac.r10":"AI 자격증명 직접 등록","ac.r11":"공유 호스트 GPU 시뮬레이션","ac.r12":"직접 제공한 GPU 장비 무제한 사용",
+    "ac.note":"분석 · 순위 비교 · 시뮬레이션 · 재현성은 벤더 하드웨어를 사용하지 않으므로 모든 형태에서 열려 있습니다. 차이는 실제 비용이 발생하는 지점에만 있습니다. GPU 호스트는 티어 혜택이 아니라 후원받은 장비입니다 — 공유되는 동안에는 모든 티어에 열려 있고, 후원이 끝나면 모든 티어에서 함께 닫힙니다. 자체 GPU 장비 연결은 self-service 가 아니라 운영자와 협의해 진행합니다.",
     "nav.platform":"플랫폼","nav.applications":"응용","nav.preflight":"사전 평가","nav.workbench":"워크벤치","nav.capabilities":"기능","nav.intelligence":"인텔리전스","nav.developers":"개발자","nav.agent":"에이전트","nav.hardware":"하드웨어",
     "pre.tag":"한 샷도 쓰기 전에","pre.h2":"QPU 시간은 희소합니다. 될 실행에 쓰십시오.","pre.lead":"낭비되는 양자 비용의 대부분은 제출 전에 이미 결정됩니다 — 맞지 않는 장비, 그 장비에 비해 너무 깊은 회로, 혹은 지난달에 이미 돌린 실행. UQH는 이 셋을 제출 전에 답합니다.","pre.note":"피델리티 추정은 1차 근사 모델입니다 — 에러 독립 가정, 크로스토크·유휴 디코히런스 미반영 — 따라서 절대값 예측이 아니라 선택지 간 순위 비교를 위한 것입니다. 제출 직전에 필요한 판단이 정확히 그것입니다.",
     "p1.t":"해석적 피델리티 추정","p1.d":"장비의 실측 1큐빗·2큐빗·판독 에러율과 회로의 게이트 수로 계산하는 에러 버짓 방식입니다. 노이즈 시뮬레이션을 쓰지 않으므로 큐빗 상한도 대기 시간도 없습니다 — 100큐빗 회로도 2큐빗 회로만큼 빠르게 답이 나옵니다.",
