@@ -1,12 +1,13 @@
-import { json, bad, clean, safeAuthor, ipHash, rateOk, newId, isAdmin } from '../../../_shared.js';
+import { json, bad, clean, safeAuthor, ipHash, rateOk, newId, isAdmin, notify, snip } from '../../../_shared.js';
 
 /** 댓글. 운영자 답글은 토큰이 있을 때만 owner 로 표시된다 — 표시가 자칭이면
  *  아무나 운영자인 척할 수 있고, 그러면 «검토 의견»이라는 말이 값을 잃는다. */
-export async function onRequestPost({ request, env, params }) {
+export async function onRequestPost(ctx) {
+  const { request, env, params } = ctx;
   const db = env.DB;
   const ideaId = params.id;
 
-  const found = await db.prepare('SELECT id FROM ideas WHERE id = ? AND hidden = 0').bind(ideaId).all();
+  const found = await db.prepare('SELECT id, title FROM ideas WHERE id = ? AND hidden = 0').bind(ideaId).all();
   if (!found.results?.length) return bad('없는 제안입니다', 404);
 
   const body = await request.json().catch(() => null);
@@ -32,6 +33,17 @@ export async function onRequestPost({ request, env, params }) {
     .prepare('INSERT INTO comments (id, idea_id, ts, author, text, owner) VALUES (?, ?, ?, ?, ?, ?)')
     .bind(row.id, row.idea_id, row.ts, row.author, row.text, owner ? 1 : 0)
     .run();
+
+  // 내가 단 답글은 나에게 알리지 않는다.
+  if (!owner) {
+    notify(
+      ctx, env,
+      `**새 의견** · ${row.author ?? '익명'}\n` +
+        `「${snip(found.results[0].title, 60)}」 에\n` +
+        `${snip(row.text, 160)}\n` +
+        `https://joygolive.pages.dev/#ideas`
+    );
+  }
   return json({ comment: row }, 201);
 }
 

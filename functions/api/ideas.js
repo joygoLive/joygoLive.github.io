@@ -1,4 +1,4 @@
-import { json, bad, clean, safeAuthor, ipHash, rateOk, newId, isAdmin } from '../_shared.js';
+import { json, bad, clean, safeAuthor, ipHash, rateOk, newId, isAdmin, notify, snip } from '../_shared.js';
 
 const LIMITS = { title: 120, problem: 2000, who: 500, outcome: 1000, author: 40 };
 
@@ -32,7 +32,8 @@ export async function onRequestGet({ env }) {
 
 /** 제안 등록. 필요한 것은 한 줄 요약뿐이다 — 양식을 다 채우게 강제하면 «귀찮아서 안
  *  쓴다»가 되고, 그러면 받을 의견이 없다. 나머지는 있으면 좋은 것이다. */
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost(ctx) {
+  const { request, env } = ctx;
   const db = env.DB;
   let body;
   try {
@@ -64,6 +65,14 @@ export async function onRequestPost({ request, env }) {
     )
     .bind(row.id, row.ts, row.author, row.title, row.problem, row.who, row.outcome)
     .run();
+
+  notify(
+    ctx, env,
+    `**새 제안** · ${row.author ?? '익명'}\n` +
+      `「${snip(row.title)}」\n` +
+      (row.problem ? `${snip(row.problem, 160)}\n` : '') +
+      `https://joygolive.pages.dev/#ideas`
+  );
   return json({ idea: { ...row, status: 'open', note: null, comments: [] } }, 201);
 }
 

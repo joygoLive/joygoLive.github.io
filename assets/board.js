@@ -82,6 +82,7 @@
         <button type="submit" class="btn btn-primary btn-sm">${esc(t.submit)}</button>
         <span class="form-msg" id="formMsg"></span>
       </div>`;
+    window.brandify?.(el);
   }
 
   function ideaHtml(i) {
@@ -155,6 +156,7 @@
     el.innerHTML = ideas.length
       ? ideas.map(ideaHtml).join('')
       : `<div class="board-empty">${esc(t.empty)}</div>`;
+    window.brandify?.(el);
   }
 
   async function load() {

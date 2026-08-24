@@ -68,3 +68,32 @@ export function safeAuthor(v, max) {
   if (!s) return null;
   return RESERVED.test(s) ? null : s;   // 사칭이면 이름 없이 = 익명으로 올라간다
 }
+
+/** 새 글이 올라오면 Discord 로 알린다.
+ *
+ * **응답을 붙잡지 않는다.** waitUntil 로 뒤에서 보내므로 Discord 가 느리거나 죽어도
+ * 제안을 올린 사람은 기다리지 않는다. 실패해도 삼킨다 — 알림이 안 간 것보다
+ * **글이 안 올라간 것**이 훨씬 나쁘고, 글은 이미 D1 에 들어가 있다.
+ *
+ * 웹훅이 설정 안 돼 있으면 조용히 넘어간다. 알림은 있으면 좋은 것이지 전제가 아니다.
+ */
+export function notify(ctx, env, text) {
+  const url = env.DISCORD_WEBHOOK_URL;
+  if (!url) return;
+  const mention = env.DISCORD_MENTION_ID ? `<@${env.DISCORD_MENTION_ID}> ` : '';
+  const body = JSON.stringify({
+    content: `${mention}${text}`.slice(0, 1900),
+    // 사용자가 쓴 글이 그대로 들어간다. @everyone 이나 역할 멘션이 섞여 있으면
+    // 채널 전체가 울린다 — 아무나 익명으로 쓸 수 있는 글에 그 힘을 주면 안 된다.
+    allowed_mentions: { parse: [], users: env.DISCORD_MENTION_ID ? [env.DISCORD_MENTION_ID] : [] },
+  });
+  ctx.waitUntil(
+    fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body }).catch(() => {})
+  );
+}
+
+/** 알림 한 줄에 넣을 만큼만 자른다. */
+export const snip = (s, n = 120) => {
+  const t = String(s ?? '').replace(/\s+/g, ' ').trim();
+  return t.length > n ? `${t.slice(0, n - 1)}…` : t;
+};
