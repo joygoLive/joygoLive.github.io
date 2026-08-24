@@ -43,3 +43,18 @@ CREATE TABLE IF NOT EXISTS rate (
   ts      INTEGER NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_rate ON rate(ip_hash, kind, ts);
+
+-- 즉시 현황 요청 큐.
+--
+-- 왜 큐인가: Discord 는 **3초 안에** 응답을 요구하는데, 리포트 수집은 BOR 온체인
+-- 조회까지 있어 그보다 오래 걸린다. 게다가 데이터는 전부 맥에 있다(UQI DB·AMC 로그).
+-- 그래서 접수와 실행을 나눈다 — Cloudflare 가 즉시 «접수했습니다»로 답하고,
+-- 맥이 가져가서 돌린 뒤 웹훅으로 결과를 민다.
+CREATE TABLE IF NOT EXISTS report_requests (
+  id       TEXT PRIMARY KEY,
+  ts       TEXT NOT NULL,
+  who      TEXT,                        -- 누가 눌렀나 (Discord 사용자 이름)
+  status   TEXT NOT NULL DEFAULT 'pending',  -- pending | done
+  done_at  TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_reqs ON report_requests(status, ts);
