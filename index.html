@@ -30,7 +30,7 @@
       <a href="uqh/">UQH</a>
       <a href="amc/">AMC</a>
       <a href="bor/">BOR</a>
-      <a href="#company" data-i18n="nav.company">Company</a>
+      <a href="#ideas" data-i18n="nav.ideas">Bring an idea</a>
     </nav>
     <div class="lang-toggle" role="group" aria-label="language">
       <button data-lang="en" onclick="setLang('en')">EN</button>
@@ -51,7 +51,7 @@
     <p class="lead" data-i18n="hero.sub">The field is never fixed in advance. If it looks worth building, it gets built — and then it gets run. What is already running is below.</p>
     <div class="cta-row">
       <a href="#services" class="btn btn-primary" data-i18n="hero.cta1">See the portfolio</a>
-      <a href="#company" class="btn btn-ghost" data-i18n="hero.cta2">How it gets built</a>
+      <a href="#ideas" class="btn btn-ghost" data-i18n="hero.cta2">Bring an idea</a>
     </div>
     <div class="byline" data-i18n-html="hero.byline"><b class="hl">joy</b>, realized when it <b class="hl">go</b>es <b class="hl">Live</b>.</div>
   </div>
@@ -138,28 +138,45 @@
   </div>
 </section>
 
-<!-- COMPANY -->
-<section id="company">
+<!-- 제안 / 파트너 -->
+<section id="ideas">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow" data-i18n="co.tag">Company</div>
-      <h2 data-i18n="co.h2">AI for the volume, verification for the trust</h2>
-      <p class="lead" data-i18n="co.lead">This much code does not get written without AI. AI also does not decide what is correct — the rest of the method exists to close that gap.</p>
+      <div class="eyebrow" data-i18n="id.tag">Bring an idea</div>
+      <h2 data-i18n-html="id.h2">joygoLive builds and runs it, you plan and sell it, profit splits <span class="grad">in half</span></h2>
+      <p class="lead" data-i18n="id.lead">The scarce half of a product is rarely the code. If you have something worth building and no one to build it, joygoLive covers that half — design, implementation, deployment, and keeping it running afterwards. You carry the planning, the positioning, and getting it in front of people. Profit splits down the middle.</p>
     </div>
+
     <div class="facts">
       <div class="fact fade">
-        <b data-i18n="co.1.t">Self-testing is the precondition, not an extra</b>
-        <span data-i18n="co.1.d">AI produces more code than anyone can vouch for by reading it. So the checking is handed to code as well: BOR carries 143 tests plus symbolic execution over every input; AMC carries 791. A claim nothing verifies does not ship.</span>
+        <b data-i18n="id.1.t">What I bring</b>
+        <span data-i18n="id.1.d">Design, implementation, deployment — and everything after: operating it, keeping it up, fixing it. The services above were built that way in fields that share nothing with each other, so the domain is not the constraint.</span>
       </div>
       <div class="fact fade">
-        <b data-i18n="co.2.t">Evidence travels with the result</b>
-        <span data-i18n="co.2.d">A quantum run exports the calibration it ran under, a coaching report names the reps it could not judge, a draw publishes the beacon it was derived from. In each case the claim ships with the means to check it.</span>
+        <b data-i18n="id.2.t">What you bring</b>
+        <span data-i18n="id.2.d">What it should be and who it is for; the wording, the channel, the people who need to hear about it. Nothing here needs to be a finished plan — a clear problem is enough to start.</span>
       </div>
       <div class="fact fade">
-        <b data-i18n="co.3.t">Limits stated, not buried</b>
-        <span data-i18n="co.3.d">Testnet is called testnet, unaudited is called unaudited, and a service still in development says so. Anything a service cannot do is written down where the claims are.</span>
+        <b data-i18n="id.3.t">Strictly for profit</b>
+        <span data-i18n="id.3.d">Profit splits in half. In return this is not a favour — if something does not look like it can make money, you get told so and it does not get built. Scope and terms are agreed in writing before anything starts.</span>
       </div>
     </div>
+
+    <div class="board">
+      <button class="board-toggle" id="ideaFormToggle" type="button">
+        <span class="sign">+</span><span data-i18n="id.propose">Propose an idea</span>
+      </button>
+      <form class="idea-form" id="ideaForm" hidden></form>
+
+      <button class="board-toggle" id="ideaListToggle" type="button">
+        <span class="sign">+</span><span data-i18n="id.list">Ideas submitted</span>
+        <span class="n" id="ideaCount"></span>
+        <span class="pend" id="ideaPending" hidden></span>
+      </button>
+      <div id="ideaList" hidden></div>
+    </div>
+
+    <p class="note" data-i18n="id.note">Everything posted here is public, and posting needs no account and no contact details — replies come back as comments on this page. Ideas are not deleted once posted; if one has to go, it is hidden rather than erased, so the record of what was asked for and what was answered stays intact.</p>
   </div>
 </section>
 
@@ -231,14 +248,18 @@ const _L = {
     "svc.st.2":"AMC is in development — an MVP under field tuning with community sports organizations. Not open to the public yet.",
     "svc.st.3":"BOR runs on the Base Sepolia testnet and is not audited by a third party. It is a raffle, not an investment: the expected value of a ticket is below what it costs.",
 
-    "co.tag":"Company","co.h2":"AI for the volume, verification for the trust",
-    "co.lead":"This much code does not get written without AI. AI also does not decide what is correct — the rest of the method exists to close that gap.",
-    "co.1.t":"Self-testing is the precondition, not an extra",
-    "co.1.d":"AI produces more code than anyone can vouch for by reading it. So the checking is handed to code as well: BOR carries 143 tests plus symbolic execution over every input; AMC carries 791. A claim nothing verifies does not ship.",
-    "co.2.t":"Evidence travels with the result",
-    "co.2.d":"A quantum run exports the calibration it ran under, a coaching report names the reps it could not judge, a draw publishes the beacon it was derived from. In each case the claim ships with the means to check it.",
-    "co.3.t":"Limits stated, not buried",
-    "co.3.d":"Testnet is called testnet, unaudited is called unaudited, and a service still in development says so. Anything a service cannot do is written down where the claims are.",
+    "nav.ideas":"Bring an idea",
+    "id.tag":"Bring an idea",
+    "id.h2":"joygoLive builds and runs it, you plan and sell it, profit splits <span class=\"grad\">in half</span>",
+    "id.lead":"The scarce half of a product is rarely the code. If you have something worth building and no one to build it, joygoLive covers that half — design, implementation, deployment, and keeping it running afterwards. You carry the planning, the positioning, and getting it in front of people. Profit splits down the middle.",
+    "id.1.t":"joygoLive takes",
+    "id.1.d":"Design, implementation, deployment — and everything after: operating it, keeping it up, fixing it. The services above were built that way in fields that share nothing with each other, so the domain is not the constraint.",
+    "id.2.t":"You take",
+    "id.2.d":"What it should be and who it is for; the wording, the channel, the people who need to hear about it. Nothing here needs to be a finished plan — a clear problem is enough to start.",
+    "id.3.t":"Strictly for profit",
+    "id.3.d":"Profit splits in half. In return this is not a favour — if something does not look like it can make money, you get told so and it does not get built. Scope and terms are agreed in writing before anything starts.",
+    "id.propose":"Propose an idea","id.list":"Ideas submitted",
+    "id.note":"Everything posted here is public, and posting needs no account and no contact details — replies come back as comments on this page. Ideas are not deleted once posted; if one has to go, it is hidden rather than erased, so the record of what was asked for and what was answered stays intact.",
 
     "ct.tag":"Contact","ct.h2":"Get in touch","ct.k1":"Email","ct.k2":"Business reg. no.","ct.k3":"Location",
     "ft.copy":"© 2026 joygoLive. All rights reserved."
@@ -278,14 +299,18 @@ const _L = {
     "svc.st.2":"AMC는 개발 중입니다 — 생활체육 단체와 현장 튜닝 중인 MVP 단계이며, 아직 일반 공개 전입니다.",
     "svc.st.3":"BOR은 Base Sepolia 테스트넷에서 동작하며 제3자 감사를 받지 않았습니다. 투자가 아니라 복권입니다 — 티켓의 기대값은 지불한 금액보다 낮습니다.",
 
-    "co.tag":"회사","co.h2":"AI가 분량을, 검증이 신뢰를",
-    "co.lead":"이 분량의 코드는 AI 없이 나오지 않습니다. 그리고 AI는 무엇이 옳은지 정해 주지 않습니다 — 나머지 방식은 전부 그 간극을 메우려고 있습니다.",
-    "co.1.t":"자체 검증이 선택이 아니라 전제입니다",
-    "co.1.d":"AI는 사람이 읽어서 보증할 수 있는 양보다 많은 코드를 냅니다. 그래서 검사도 코드에 맡깁니다 — BOR은 시험 143건에 모든 입력에 대한 기호 실행까지, AMC는 791건을 안고 갑니다. 아무것도 검증하지 않는 주장은 내보내지 않습니다.",
-    "co.2.t":"근거가 결과와 함께 움직입니다",
-    "co.2.d":"양자 실행은 그때의 캘리브레이션을 함께 내보내고, 코칭 리포트는 판정하지 못한 회차를 밝히고, 추첨은 근거가 된 비콘을 공개합니다. 어느 쪽이든 주장과 검증 수단이 같이 나갑니다.",
-    "co.3.t":"한계를 묻지 않고 적습니다",
-    "co.3.d":"테스트넷은 테스트넷이라 하고, 미감사는 미감사라 하고, 개발 중인 서비스는 개발 중이라고 합니다. 못 하는 것은 주장이 적힌 자리에 함께 적습니다.",
+    "nav.ideas":"제안",
+    "id.tag":"제안",
+    "id.h2":"개발·운영은 joygoLive, 기획·마케팅은 당신, 이익은 <span class=\"grad\">반반</span>",
+    "id.lead":"제품에서 모자란 쪽은 대개 코드가 아닙니다. 만들 만한 것이 있는데 만들 사람이 없다면 그 절반을 joygoLive가 맡습니다 — 설계와 구현, 배포, 그리고 그 뒤로 계속 돌리는 일까지. 기획과 홍보·마케팅을 맡아 주시면 이익은 절반씩 나눕니다.",
+    "id.1.t":"joygoLive가 맡는 것",
+    "id.1.d":"설계·구현·배포, 그리고 그다음 전부 — 운영, 계속 돌리는 것, 고장 나면 고치는 것. 위 서비스들이 그렇게 만들어졌고 서로 공통점이 하나도 없는 분야들입니다. 분야는 제약이 아닙니다.",
+    "id.2.t":"당신이 맡는 것",
+    "id.2.d":"무엇을 만들지와 누구를 위한 것인지, 문구와 채널, 그리고 알아야 할 사람들에게 닿게 하는 일. 완성된 기획서일 필요는 없습니다 — 또렷한 문제 하나면 시작됩니다.",
+    "id.3.t":"철저히 이윤을 봅니다",
+    "id.3.d":"이익은 절반씩입니다. 대신 호의로 만들어 드리는 것이 아닙니다 — 돈이 될 것 같지 않으면 그렇다고 말하고 만들지 않습니다. 범위와 조건은 시작 전에 글로 정합니다.",
+    "id.propose":"아이디어 제안하기","id.list":"들어온 제안",
+    "id.note":"여기 올라온 내용은 전부 공개되며, 올리는 데 계정도 연락처도 필요 없습니다 — 답은 이 페이지의 댓글로 돌아옵니다. 한 번 올라간 제안은 지우지 않습니다. 내려야 할 것은 지우는 대신 가리므로, 무엇을 요청했고 무엇이라 답했는지의 기록은 그대로 남습니다.",
 
     "ct.tag":"연락","ct.h2":"문의하기","ct.k1":"이메일","ct.k2":"사업자등록번호","ct.k3":"소재지",
     "ft.copy":"© 2026 joygoLive. All rights reserved."
@@ -293,6 +318,7 @@ const _L = {
 };
 </script>
 <script src="assets/i18n.js"></script>
+<script src="assets/board.js"></script>
 <!-- Analytics: GoatCounter — privacy-friendly, cookieless (no consent banner needed).
      Dashboard: https://joygolive.goatcounter.com/ -->
 <script data-goatcounter="https://joygolive.goatcounter.com/count"

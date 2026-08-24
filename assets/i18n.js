@@ -6,6 +6,8 @@ function setLang(lang){
   document.documentElement.lang=lang;
   document.querySelectorAll('.lang-toggle button').forEach(b=>b.classList.toggle('active',b.getAttribute('data-lang')===lang));
   try{localStorage.setItem('joygo_lang',lang);}catch(e){}
+  // 동적으로 그리는 것들(아이디어 게시판)은 _L 로 못 덮으므로 알림을 받아 스스로 다시 그린다.
+  document.dispatchEvent(new CustomEvent('joygo:lang',{detail:{lang}}));
 }
 (function(){
   let lang='en';

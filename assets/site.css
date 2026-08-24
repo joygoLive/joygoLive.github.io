@@ -239,3 +239,52 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
   .svc-card{padding:26px 24px}
 }
 .badge.beta{color:#6d28d9;background:rgba(109,40,217,.08);border-color:rgba(109,40,217,.25)}
+
+/* ── 아이디어 게시판 ──────────────────────────────────────────────────── */
+.board{margin-top:40px}
+.board-toggle{display:flex;align-items:center;gap:9px;width:100%;background:none;border:0;border-top:1px solid var(--border);padding:16px 2px;cursor:pointer;font-family:var(--font-sans);font-size:14.5px;font-weight:600;color:var(--ink);text-align:left;transition:color .15s}
+.board-toggle:hover{color:var(--accent-2)}
+.board-toggle .sign{font-family:var(--font-mono);font-size:15px;color:var(--accent);width:12px;flex-shrink:0}
+.board-toggle .n{font-family:var(--font-mono);font-size:12px;color:var(--text-dim);font-weight:500}
+.board-toggle .pend{margin-left:auto;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.04em;color:#b45309;background:rgba(180,83,9,.08);border:1px solid rgba(180,83,9,.24);border-radius:5px;padding:3px 7px}
+
+.idea-form{padding:6px 2px 22px;display:flex;flex-direction:column;gap:16px}
+.ff{display:flex;flex-direction:column;gap:6px}
+.ff label{font-size:13px;font-weight:600;color:var(--ink)}
+.ff .hint{font-size:12.5px;color:var(--text-dim);line-height:1.5}
+.ff input,.ff textarea{font-family:var(--font-sans);font-size:14.5px;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:11px 13px;width:100%;transition:border-color .15s}
+.ff input:focus,.ff textarea:focus{outline:none;border-color:var(--accent-line);box-shadow:0 0 0 3px var(--accent-dim)}
+.ff textarea{resize:vertical;min-height:76px;line-height:1.6}
+.form-note{font-size:12.5px;color:var(--text-dim);line-height:1.6;border-left:2px solid var(--accent-line);padding-left:12px}
+.form-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.form-msg{font-size:13px}
+.form-msg.err{color:#b45309}
+.form-msg.ok{color:var(--accent-2)}
+
+.idea{border-top:1px solid var(--border);padding:18px 2px}
+.idea:first-child{border-top:0}
+.idea-head{display:flex;align-items:flex-start;gap:12px;width:100%;background:none;border:0;padding:0;cursor:pointer;text-align:left;font-family:inherit}
+.idea-head .sign{font-family:var(--font-mono);font-size:14px;color:var(--accent);flex-shrink:0;margin-top:2px;width:12px}
+.idea-title{font-size:15.5px;font-weight:600;color:var(--ink);line-height:1.45}
+.idea-meta{margin-top:5px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-family:var(--font-mono);font-size:11.5px;color:var(--text-dim)}
+.idea-body{margin:16px 0 0 24px;display:flex;flex-direction:column;gap:14px}
+.qa .q{font-size:12px;font-weight:600;color:var(--text-dim);margin-bottom:4px}
+.qa .a{font-size:14px;color:var(--text);line-height:1.65;white-space:pre-wrap}
+.review{border-left:2px solid var(--accent-line);background:var(--surface-2);border-radius:0 8px 8px 0;padding:12px 14px}
+.review .rk{font-size:12px;font-weight:600;color:var(--accent-2);margin-bottom:5px}
+.review .rv{font-size:13.5px;color:var(--text);line-height:1.6;white-space:pre-wrap}
+.cmts{display:flex;flex-direction:column;gap:12px}
+.cmt{border:1px solid var(--border);border-radius:9px;background:var(--surface);padding:12px 14px}
+.cmt.own{border-color:var(--accent-line);background:var(--accent-dim)}
+.cmt-h{display:flex;flex-wrap:wrap;gap:9px;align-items:center;font-family:var(--font-mono);font-size:11.5px;color:var(--text-dim)}
+.cmt-h b{color:var(--ink);font-weight:600}
+.cmt.own .cmt-h b{color:var(--accent-2)}
+.cmt-t{margin-top:7px;font-size:13.5px;color:var(--text);line-height:1.65;white-space:pre-wrap}
+.cmt-form{display:flex;flex-direction:column;gap:9px}
+.st{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;font-weight:600;border-radius:5px;padding:3px 7px;border:1px solid;white-space:nowrap}
+.st.open{color:var(--text-dim);background:var(--surface-2);border-color:var(--border)}
+.st.building{color:var(--accent-2);background:var(--accent-dim);border-color:var(--accent-line)}
+.st.shipped{color:#047857;background:rgba(4,120,87,.08);border-color:rgba(4,120,87,.25)}
+.st.declined{color:#b45309;background:rgba(180,83,9,.08);border-color:rgba(180,83,9,.24)}
+.board-empty{padding:22px 2px;font-size:14px;color:var(--text-dim)}
+.btn-sm{font-size:13.5px;padding:9px 16px;border-radius:8px}

@@ -1,0 +1,4 @@
+# wrangler 로컬 상태 — 로컬 D1 파일이 여기 들어간다. 시험 데이터라 커밋하지 않는다.
+.wrangler/
+node_modules/
+.DS_Store

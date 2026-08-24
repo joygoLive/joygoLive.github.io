@@ -1,0 +1,10 @@
+# Cloudflare Pages 설정. 정적 파일은 저장소 루트를 그대로 쓰고, functions/ 가
+# 자동으로 /api/* 로 매핑된다 — 빌드 단계는 여전히 없다.
+name = "joygolive"
+pages_build_output_dir = "."
+compatibility_date = "2026-08-24"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "joygolive-ideas"
+database_id = "PLACEHOLDER-대시보드에서-만든-뒤-여기에-넣는다"
