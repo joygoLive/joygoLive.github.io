@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BOR — Blockchain On-chain Raffle by joygoLive</title>
+<meta name="description" content="BOR is an on-chain raffle where 90% of ticket sales become the prize. The 10% fee is a constant in the contract, and the drand round each future draw will use is already determined. Running on the Base Sepolia testnet. Not audited." />
+<meta property="og:title" content="BOR — Blockchain On-chain Raffle by joygoLive" />
+<meta property="og:description" content="National lotteries return about 50%. BOR returns 90%, and the 10% is a constant nobody can change. Testnet, on Base Sepolia." />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<meta name="theme-color" content="#0891b2" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/site.css" />
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand-group">
+      <a href="../" class="brand" aria-label="joygoLive">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0891b2"/><g stroke="#fff" fill="none" stroke-width="1.5" opacity=".95"><ellipse cx="16" cy="16" rx="10.5" ry="4.2"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(120 16 16)"/></g><circle cx="16" cy="16" r="2.6" fill="#fff"/></svg>
+        <span>joygo<span class="dot">Live</span></span>
+      </a>
+      <span class="brand-sep" aria-hidden="true">/</span>
+      <a href="./" class="svc-name">BOR</a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#round" data-i18n="nav.round">How a round works</a>
+      <a href="#prize" data-i18n="nav.prize">The prize</a>
+      <a href="#check" data-i18n="nav.check">What you can check</a>
+      <a href="#verify" data-i18n="nav.verify">Verification</a>
+      <a href="#not" data-i18n="nav.not">What this is not</a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="language">
+      <button data-lang="en" onclick="setLang('en')">EN</button>
+      <button data-lang="ko" onclick="setLang('ko')">한국어</button>
+    </div>
+    <button class="menu-btn" aria-label="menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-kicker mono" data-i18n="hero.kicker">BOR · Blockchain On-chain Raffle</div>
+    <h1 data-i18n-html="hero.title">National lotteries return about 50%. <span class="grad">BOR returns 90%</span>.</h1>
+    <p class="lead" data-i18n="hero.sub">The 10% fee is a constant compiled into the contract. There is no function to change it, no proxy to swap the logic, and no path for anyone — including the admin — to move participant funds out. You do not have to take that on trust: it is readable on a block explorer.</p>
+    <div class="cta-row">
+      <a href="#round" class="btn btn-primary" data-i18n="hero.cta1">How a round works</a>
+      <a href="#not" class="btn btn-ghost" data-i18n="hero.cta2">What this is not</a>
+    </div>
+    <div class="byline" data-i18n-html="hero.byline">A service by joygoLive · Base Sepolia testnet · not audited by a third party.</div>
+    <div class="vendor-strip">
+      <div class="vlabel" data-i18n="hero.slabel">Status</div>
+      <div class="row">
+        <span class="chip" data-i18n="hero.s1">Testnet — Base Sepolia</span>
+        <span class="chip" data-i18n="hero.s2">Not audited</span>
+        <span class="chip" data-i18n="hero.s3">Expected value below ticket price</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROUND -->
+<section id="round" class="section alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="rd.tag">How a round works</div>
+      <h2 data-i18n="rd.h2">Seven steps, and only one of them is a call</h2>
+      <p class="lead" data-i18n="rd.lead">A round is a function of time. There is no procedure to open one and none to close one — so there is no procedure that can fail, stall, or be withheld.</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap fade"><h3 data-i18n="rd.1.t">1 · Buy a ticket</h3><p data-i18n="rd.1.d">Fixed price, no cap on how many are sold. Ticket numbers are assigned in purchase order — there are no numbers to pick.</p></div>
+      <div class="cap fade"><h3 data-i18n="rd.2.t">2 · Sales stop on schedule</h3><p data-i18n="rd.2.d">The deadline closes sales because the time arrived, not because someone called a function.</p></div>
+      <div class="cap fade"><h3 data-i18n="rd.3.t">3 · The beacon round is already set</h3><p data-i18n="rd.3.d">The drand round that round will use was fixed at deployment. You can read the one a year out, today.</p></div>
+      <div class="cap fade"><h3 data-i18n="rd.4.t">4 · Anyone submits the beacon</h3><p data-i18n="rd.4.d">Once that drand round publishes, anyone may submit it. The contract verifies the BLS signature on-chain before it counts.</p></div>
+      <div class="cap fade"><h3 data-i18n="rd.5.t">5 · Winners are derived</h3><p data-i18n="rd.5.d">Winning numbers are <span class="mono">keccak256(randomness, i) mod total tickets</span> — one jackpot plus small prizes, all drawn from tickets that were actually sold.</p></div>
+      <div class="cap fade"><h3 data-i18n="rd.6.t">6 · Claim by presenting your purchase</h3><p data-i18n="rd.6.d">The winner claims against their own purchase record. There is no deadline to claim.</p></div>
+      <div class="cap fade"><h3 data-i18n="rd.7.t">7 · Below the minimum, everyone is refunded</h3><p data-i18n="rd.7.d">If a round does not reach its minimum ticket count, it refunds in full and each participant withdraws.</p></div>
+      <div class="cap upcoming fade"><h3 data-i18n="rd.8.t">The only call is draw()</h3><p data-i18n="rd.8.d">Settlement needs exactly one call. Because the deadline and the beacon round were both fixed in advance, the same tickets are drawn no matter who calls it or when.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIZE -->
+<section id="prize">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="pz.tag">The prize</div>
+      <h2 data-i18n="pz.h2">90% of sales, paid out in full every round</h2>
+      <p class="lead" data-i18n="pz.lead">Conventional lotteries hand back about half of what participants paid; the rest goes to operating organizations, retail networks and public funds. BOR has no retail network to pay, so the fee stays at 10% — and it stays there because it is a constant, not a policy.</p>
+    </div>
+    <div class="pts">
+      <div class="pt fade"><b data-i18n="pz.1.t">Payout rate 90%</b><span data-i18n="pz.1.d">Every settled round satisfies prize × 10 == sales × 9, exactly.</span></div>
+      <div class="pt fade"><b data-i18n="pz.2.t">Jackpot is at least 80% of the prize</b><span data-i18n="pz.2.d">The small-prize share is a 20% constant, so the top prize cannot fall below that line.</span></div>
+      <div class="pt fade"><b data-i18n="pz.3.t">No ceiling</b><span data-i18n="pz.3.d">The pot is whatever the round sold, times 0.9. Nothing caps it.</span></div>
+      <div class="pt fade"><b data-i18n="pz.4.t">No rollover</b><span data-i18n="pz.4.d">Jackpot and small prizes both go out every round. Nothing is deferred to a later one.</span></div>
+    </div>
+    <div class="disclose fade">
+      <b data-i18n="pz.d.t">Read the small prizes correctly</b>
+      <ul>
+        <li data-i18n="pz.d.1">Small prizes pay 3× the ticket price, and they appear as a round grows — at 1,000 tickets, 60 of them.</li>
+        <li data-i18n="pz.d.2">More small winners does not make a ticket better. The expected value is 0.9 either way; the small share is carved out of the same 90%, not added to it.</li>
+        <li data-i18n="pz.d.3">Because there is no rollover, the expected value is the same whichever round you join. Splitting across several wallets gains nothing: halve your probability and the prize doubles, exactly cancelling out.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CHECK -->
+<section id="check" class="section alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="ck.tag">What you can check</div>
+      <h2 data-i18n="ck.h2">Two claims anyone can copy, two they cannot</h2>
+      <p class="lead" data-i18n="ck.lead">A payout rate and a prize ceiling are easy to announce. These two are different — they hold because of what the code does not contain, and that is visible from outside.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        <h3 data-i18n="ck.1.t">The fee cannot be moved</h3>
+        <p data-i18n="ck.1.d">10% is a constant in the compiled contract. No setter exists to raise it, no proxy exists to replace the logic that reads it, and no path exists for anyone to withdraw participant funds. That is a property of the deployed bytecode, not a promise about future behaviour.</p>
+      </div>
+      <div class="pillar fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        <h3 data-i18n="ck.2.t">Future randomness is already assigned</h3>
+        <p data-i18n="ck.2.d">Each future draw's drand round is computed from immutable values, so you can read the round a draw a year from now will use — today. It does not exist yet when sales close, which is precisely why the last buyer cannot see the result before buying.</p>
+      </div>
+      <div class="pillar fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>
+        <h3 data-i18n="ck.3.t">The schedule cannot be shifted</h3>
+        <p data-i18n="ck.3.d">No call sequence moves a deadline or a beacon round. Settlement is idempotent in the way that matters: whoever calls draw(), and whenever they call it, the same tickets win.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERIFY -->
+<section id="verify">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="vf.tag">Verification</div>
+      <h2 data-i18n="vf.h2">Not audited — here is what was done instead</h2>
+      <p class="lead" data-i18n="vf.lead">No third party has audited this contract. Saying so is the first line of the section, not a footnote at the bottom. What follows is the self-testing that exists in its place, stated so you can reproduce it.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="vtable">
+        <thead><tr><th data-i18n="vf.c1">What was checked</th><th data-i18n="vf.c2">Result</th></tr></thead>
+        <tbody>
+          <tr><td data-i18n="vf.r1.a">Test suite</td><td data-i18n="vf.r1.b">143 tests pass</td></tr>
+          <tr><td data-i18n="vf.r2.a">Deep randomized runs</td><td data-i18n="vf.r2.b">Fuzz 5,000 runs; invariants 512 runs × 128 depth — all pass</td></tr>
+          <tr><td data-i18n="vf.r3.a">RFC 9380 conformance</td><td data-i18n="vf.r3.b">Official vectors parsed straight out of the RFC (K.1, J.9.1) and passed — not transcribed by hand</td></tr>
+          <tr><td data-i18n="vf.r4.a">Cross-implementation differential</td><td data-i18n="vf.r4.b">The RFC, noble-curves, py_ecc and the on-chain BLS.sol agree across 82 vectors</td></tr>
+          <tr><td data-i18n="vf.r5.a">Symbolic execution</td><td data-i18n="vf.r5.b">halmos proves the bounds, the schedule and purchase accounting over all inputs, not sampled ones</td></tr>
+          <tr><td data-i18n="vf.r6.a">On-chain beacon verification</td><td data-i18n="vf.r6.b">Forged, tampered and round-mismatched signatures are all rejected</td></tr>
+          <tr><td data-i18n="vf.r7.a">No funds can be stranded</td><td data-i18n="vf.r7.b">After random call sequences everyone withdraws and the balance reaches zero</td></tr>
+          <tr><td data-i18n="vf.r8.a">Admin parameter space</td><td data-i18n="vf.r8.b">Fuzzed — no combination of admin settings locks funds</td></tr>
+          <tr><td data-i18n="vf.r9.a">Payout rate in settlement</td><td data-i18n="vf.r9.b">prize × 10 == sales × 9 holds in actual settlement, not just in the description</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" data-i18n="vf.note">For developers: the contract verifies the drand quicknet beacon over BLS12-381 on EIP-2537 precompiles, at roughly 166k gas per verification, and exposes the chain hash and group public key it checks against — so you can compare them with what drand publishes without reading bytecode.</p>
+  </div>
+</section>
+
+<!-- NOT -->
+<section id="not" class="section alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="nt.tag">What this is not</div>
+      <h2 data-i18n="nt.h2">The limits, in the same place as the claims</h2>
+      <p class="lead" data-i18n="nt.lead">Marketing copy inflates when it is repeated. This list exists so the claims above stay attached to what is actually true.</p>
+    </div>
+    <div class="facts">
+      <div class="fact fade">
+        <b data-i18n="nt.1.t">Not an investment</b>
+        <span data-i18n="nt.1.d">The expected value of a ticket is below what it costs. That is what a 90% payout rate means. Nothing here is a return, a yield, or a way to earn.</span>
+      </div>
+      <div class="fact fade">
+        <b data-i18n="nt.2.t">Not audited</b>
+        <span data-i18n="nt.2.d">No third party has reviewed the contract, and the BLS verification code in particular has not been externally audited. The self-testing above is what stands in its place.</span>
+      </div>
+      <div class="fact fade">
+        <b data-i18n="nt.3.t">Not on mainnet</b>
+        <span data-i18n="nt.3.d">BOR runs on the Base Sepolia testnet. It is there to collect feedback, not participants — no real money is at stake and none should be.</span>
+      </div>
+      <div class="fact fade">
+        <b data-i18n="nt.4.t">There is an admin</b>
+        <span data-i18n="nt.4.d">An admin exists and adjusts economic parameters. What it cannot do is change the fee, replace the logic, or withdraw participant funds — that is the claim, and it is narrower than “nobody is running this”.</span>
+      </div>
+      <div class="fact fade">
+        <b data-i18n="nt.5.t">Not fully decentralized</b>
+        <span data-i18n="nt.5.d">The contract has no operator functions, but it settles on a chain with a sequencer. Those are two different statements and only the first one is ours to make.</span>
+      </div>
+      <div class="fact fade">
+        <b data-i18n="nt.6.t">You do not pick numbers</b>
+        <span data-i18n="nt.6.d">Ticket numbers are assigned in purchase order. Winners are derived from the beacon against tickets that were actually sold.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0891b2"/><g stroke="#fff" fill="none" stroke-width="1.5" opacity=".95"><ellipse cx="16" cy="16" rx="10.5" ry="4.2"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(120 16 16)"/></g><circle cx="16" cy="16" r="2.6" fill="#fff"/></svg><span>joygo<span class="dot" style="color:var(--accent)">Live</span></span></span>
+    <nav class="foot-links">
+      <a href="../"><span data-i18n="ft.home">Home</span></a>
+      <a href="../uqh/">UQH</a>
+      <a href="../amc/">AMC</a>
+      <a href="../bor/">BOR</a>
+    </nav>
+    <span data-i18n="ft.copy">© 2026 joygoLive. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+const _L = {
+  en:{
+    "nav.round":"How a round works","nav.prize":"The prize","nav.check":"What you can check","nav.verify":"Verification","nav.not":"What this is not",
+    "hero.kicker":"BOR · Blockchain On-chain Raffle",
+    "hero.title":"National lotteries return about 50%. <span class=\"grad\">BOR returns 90%</span>.",
+    "hero.sub":"The 10% fee is a constant compiled into the contract. There is no function to change it, no proxy to swap the logic, and no path for anyone — including the admin — to move participant funds out. You do not have to take that on trust: it is readable on a block explorer.",
+    "hero.cta1":"How a round works","hero.cta2":"What this is not",
+    "hero.byline":"A service by joygoLive · Base Sepolia testnet · not audited by a third party.",
+    "hero.slabel":"Status","hero.s1":"Testnet — Base Sepolia","hero.s2":"Not audited","hero.s3":"Expected value below ticket price",
+
+    "rd.tag":"How a round works","rd.h2":"Seven steps, and only one of them is a call",
+    "rd.lead":"A round is a function of time. There is no procedure to open one and none to close one — so there is no procedure that can fail, stall, or be withheld.",
+    "rd.1.t":"1 · Buy a ticket","rd.1.d":"Fixed price, no cap on how many are sold. Ticket numbers are assigned in purchase order — there are no numbers to pick.",
+    "rd.2.t":"2 · Sales stop on schedule","rd.2.d":"The deadline closes sales because the time arrived, not because someone called a function.",
+    "rd.3.t":"3 · The beacon round is already set","rd.3.d":"The drand round that round will use was fixed at deployment. You can read the one a year out, today.",
+    "rd.4.t":"4 · Anyone submits the beacon","rd.4.d":"Once that drand round publishes, anyone may submit it. The contract verifies the BLS signature on-chain before it counts.",
+    "rd.5.t":"5 · Winners are derived","rd.5.d":"Winning numbers are keccak256(randomness, i) mod total tickets — one jackpot plus small prizes, all drawn from tickets that were actually sold.",
+    "rd.6.t":"6 · Claim by presenting your purchase","rd.6.d":"The winner claims against their own purchase record. There is no deadline to claim.",
+    "rd.7.t":"7 · Below the minimum, everyone is refunded","rd.7.d":"If a round does not reach its minimum ticket count, it refunds in full and each participant withdraws.",
+    "rd.8.t":"The only call is draw()","rd.8.d":"Settlement needs exactly one call. Because the deadline and the beacon round were both fixed in advance, the same tickets are drawn no matter who calls it or when.",
+
+    "pz.tag":"The prize","pz.h2":"90% of sales, paid out in full every round",
+    "pz.lead":"Conventional lotteries hand back about half of what participants paid; the rest goes to operating organizations, retail networks and public funds. BOR has no retail network to pay, so the fee stays at 10% — and it stays there because it is a constant, not a policy.",
+    "pz.1.t":"Payout rate 90%","pz.1.d":"Every settled round satisfies prize × 10 == sales × 9, exactly.",
+    "pz.2.t":"Jackpot is at least 80% of the prize","pz.2.d":"The small-prize share is a 20% constant, so the top prize cannot fall below that line.",
+    "pz.3.t":"No ceiling","pz.3.d":"The pot is whatever the round sold, times 0.9. Nothing caps it.",
+    "pz.4.t":"No rollover","pz.4.d":"Jackpot and small prizes both go out every round. Nothing is deferred to a later one.",
+    "pz.d.t":"Read the small prizes correctly",
+    "pz.d.1":"Small prizes pay 3× the ticket price, and they appear as a round grows — at 1,000 tickets, 60 of them.",
+    "pz.d.2":"More small winners does not make a ticket better. The expected value is 0.9 either way; the small share is carved out of the same 90%, not added to it.",
+    "pz.d.3":"Because there is no rollover, the expected value is the same whichever round you join. Splitting across several wallets gains nothing: halve your probability and the prize doubles, exactly cancelling out.",
+
+    "ck.tag":"What you can check","ck.h2":"Two claims anyone can copy, two they cannot",
+    "ck.lead":"A payout rate and a prize ceiling are easy to announce. These two are different — they hold because of what the code does not contain, and that is visible from outside.",
+    "ck.1.t":"The fee cannot be moved",
+    "ck.1.d":"10% is a constant in the compiled contract. No setter exists to raise it, no proxy exists to replace the logic that reads it, and no path exists for anyone to withdraw participant funds. That is a property of the deployed bytecode, not a promise about future behaviour.",
+    "ck.2.t":"Future randomness is already assigned",
+    "ck.2.d":"Each future draw's drand round is computed from immutable values, so you can read the round a draw a year from now will use — today. It does not exist yet when sales close, which is precisely why the last buyer cannot see the result before buying.",
+    "ck.3.t":"The schedule cannot be shifted",
+    "ck.3.d":"No call sequence moves a deadline or a beacon round. Settlement is idempotent in the way that matters: whoever calls draw(), and whenever they call it, the same tickets win.",
+
+    "vf.tag":"Verification","vf.h2":"Not audited — here is what was done instead",
+    "vf.lead":"No third party has audited this contract. Saying so is the first line of the section, not a footnote at the bottom. What follows is the self-testing that exists in its place, stated so you can reproduce it.",
+    "vf.c1":"What was checked","vf.c2":"Result",
+    "vf.r1.a":"Test suite","vf.r1.b":"143 tests pass",
+    "vf.r2.a":"Deep randomized runs","vf.r2.b":"Fuzz 5,000 runs; invariants 512 runs × 128 depth — all pass",
+    "vf.r3.a":"RFC 9380 conformance","vf.r3.b":"Official vectors parsed straight out of the RFC (K.1, J.9.1) and passed — not transcribed by hand",
+    "vf.r4.a":"Cross-implementation differential","vf.r4.b":"The RFC, noble-curves, py_ecc and the on-chain BLS.sol agree across 82 vectors",
+    "vf.r5.a":"Symbolic execution","vf.r5.b":"halmos proves the bounds, the schedule and purchase accounting over all inputs, not sampled ones",
+    "vf.r6.a":"On-chain beacon verification","vf.r6.b":"Forged, tampered and round-mismatched signatures are all rejected",
+    "vf.r7.a":"No funds can be stranded","vf.r7.b":"After random call sequences everyone withdraws and the balance reaches zero",
+    "vf.r8.a":"Admin parameter space","vf.r8.b":"Fuzzed — no combination of admin settings locks funds",
+    "vf.r9.a":"Payout rate in settlement","vf.r9.b":"prize × 10 == sales × 9 holds in actual settlement, not just in the description",
+    "vf.note":"For developers: the contract verifies the drand quicknet beacon over BLS12-381 on EIP-2537 precompiles, at roughly 166k gas per verification, and exposes the chain hash and group public key it checks against — so you can compare them with what drand publishes without reading bytecode.",
+
+    "nt.tag":"What this is not","nt.h2":"The limits, in the same place as the claims",
+    "nt.lead":"Marketing copy inflates when it is repeated. This list exists so the claims above stay attached to what is actually true.",
+    "nt.1.t":"Not an investment","nt.1.d":"The expected value of a ticket is below what it costs. That is what a 90% payout rate means. Nothing here is a return, a yield, or a way to earn.",
+    "nt.2.t":"Not audited","nt.2.d":"No third party has reviewed the contract, and the BLS verification code in particular has not been externally audited. The self-testing above is what stands in its place.",
+    "nt.3.t":"Not on mainnet","nt.3.d":"BOR runs on the Base Sepolia testnet. It is there to collect feedback, not participants — no real money is at stake and none should be.",
+    "nt.4.t":"There is an admin","nt.4.d":"An admin exists and adjusts economic parameters. What it cannot do is change the fee, replace the logic, or withdraw participant funds — that is the claim, and it is narrower than “nobody is running this”.",
+    "nt.5.t":"Not fully decentralized","nt.5.d":"The contract has no operator functions, but it settles on a chain with a sequencer. Those are two different statements and only the first one is ours to make.",
+    "nt.6.t":"You do not pick numbers","nt.6.d":"Ticket numbers are assigned in purchase order. Winners are derived from the beacon against tickets that were actually sold.",
+
+    "ft.home":"Home","ft.copy":"© 2026 joygoLive. All rights reserved."
+  },
+  ko:{
+    "nav.round":"회차 진행","nav.prize":"상금","nav.check":"검증 가능한 것","nav.verify":"검증 상태","nav.not":"이것이 아닌 것",
+    "hero.kicker":"BOR · 블록체인 온체인 복권",
+    "hero.title":"국가 복권 환급률은 약 50%. <span class=\"grad\">BOR은 90%</span>입니다.",
+    "hero.sub":"10% 수수료는 컨트랙트에 컴파일된 상수입니다. 그것을 바꾸는 함수도, 로직을 갈아끼울 프록시도, 어드민을 포함해 누구도 참여자 자금을 빼낼 경로도 없습니다. 이 말을 믿을 필요는 없습니다 — 블록 탐색기에서 그대로 읽힙니다.",
+    "hero.cta1":"회차 진행 보기","hero.cta2":"이것이 아닌 것",
+    "hero.byline":"joygoLive의 서비스 · Base Sepolia 테스트넷 · 제3자 감사를 받지 않았습니다.",
+    "hero.slabel":"현재 상태","hero.s1":"테스트넷 — Base Sepolia","hero.s2":"미감사","hero.s3":"기대값은 티켓 가격보다 낮습니다",
+
+    "rd.tag":"회차 진행","rd.h2":"일곱 단계, 그중 호출은 하나뿐",
+    "rd.lead":"회차는 시각의 함수입니다. 여는 절차도 닫는 절차도 없으므로, 실패하거나 지연되거나 보류될 절차 자체가 없습니다.",
+    "rd.1.t":"1 · 티켓 구매","rd.1.d":"고정가이며 판매 수량에 상한이 없습니다. 티켓 번호는 구매 순서대로 배정되므로 고를 번호가 없습니다.",
+    "rd.2.t":"2 · 약속된 시각에 판매 중단","rd.2.d":"마감은 시각이 왔기 때문에 일어납니다. 누가 함수를 불러서가 아닙니다.",
+    "rd.3.t":"3 · 비콘 라운드는 이미 정해져 있습니다","rd.3.d":"그 회차가 쓸 drand 라운드는 배포 시점에 확정됐습니다. 1년 뒤 회차의 것도 오늘 읽을 수 있습니다.",
+    "rd.4.t":"4 · 누구나 비콘을 제출","rd.4.d":"해당 drand 라운드가 나오면 누구나 제출할 수 있습니다. 컨트랙트가 BLS 서명을 온체인에서 검증한 뒤에야 인정합니다.",
+    "rd.5.t":"5 · 당첨 도출","rd.5.d":"당첨 번호는 keccak256(난수, i) mod 총 티켓 — 잭팟 1장과 소액 당첨, 전부 실제로 팔린 티켓 안에서 뽑힙니다.",
+    "rd.6.t":"6 · 구매 건을 제시해 수령","rd.6.d":"당첨자가 자기 구매 기록으로 수령합니다. 수령 기한은 없습니다.",
+    "rd.7.t":"7 · 최소 수량 미만이면 전액 환불","rd.7.d":"회차가 최소 티켓 수에 못 미치면 전액 환불되고 각자 인출합니다.",
+    "rd.8.t":"호출은 draw() 하나뿐","rd.8.d":"정산에 필요한 호출은 정확히 하나입니다. 마감 시각과 비콘 라운드가 이미 확정돼 있으므로, 언제 누가 부르든 같은 티켓이 뽑힙니다.",
+
+    "pz.tag":"상금","pz.h2":"판매액의 90%, 매 회차 전액 지급",
+    "pz.lead":"기존 복권은 참여자가 낸 돈의 절반 정도를 돌려주고, 나머지는 운영 조직·판매망·기금이 가져갑니다. BOR에는 지급할 판매망이 없어 수수료가 10%에 머뭅니다 — 그리고 그것이 정책이 아니라 상수이기 때문에 계속 그 자리에 있습니다.",
+    "pz.1.t":"환급률 90%","pz.1.d":"정산된 모든 회차가 상금 × 10 == 판매액 × 9 를 정확히 만족합니다.",
+    "pz.2.t":"잭팟은 상금의 80% 이상","pz.2.d":"소액 몫이 20% 상수이므로 최고 상금이 그 아래로 내려갈 수 없습니다.",
+    "pz.3.t":"천장이 없습니다","pz.3.d":"상금은 그 회차가 판 금액 × 0.9 입니다. 그것을 제한하는 것이 없습니다.",
+    "pz.4.t":"이월이 없습니다","pz.4.d":"잭팟도 소액도 매 회차 전부 나갑니다. 다음 회차로 미뤄지는 몫이 없습니다.",
+    "pz.d.t":"소액 당첨을 정확히 읽는 법",
+    "pz.d.1":"소액 당첨은 티켓 가격의 3배이며, 회차가 커질수록 생깁니다 — 1,000장이면 60명입니다.",
+    "pz.d.2":"소액 당첨자가 늘어난다고 티켓이 유리해지는 것은 아닙니다. 기대값은 어느 쪽이든 0.9이고, 소액 몫은 같은 90% 안에서 떼어낸 것이지 더해진 것이 아닙니다.",
+    "pz.d.3":"이월이 없으므로 어느 회차에 참여하든 기대값이 같습니다. 지갑을 여러 개로 쪼개도 이점이 없습니다 — 확률이 반이 되면 상금이 두 배가 되어 정확히 상쇄됩니다.",
+
+    "ck.tag":"검증 가능한 것","ck.h2":"누구나 따라 할 수 있는 주장과, 할 수 없는 주장",
+    "ck.lead":"환급률과 상금 천장은 말로 하기 쉽습니다. 아래 둘은 다릅니다 — 코드에 무엇이 없는가로 성립하고, 그것은 밖에서 보입니다.",
+    "ck.1.t":"수수료를 움직일 수 없습니다",
+    "ck.1.d":"10%는 컴파일된 컨트랙트 안의 상수입니다. 올릴 setter가 없고, 그것을 읽는 로직을 교체할 프록시가 없고, 누구도 참여자 자금을 인출할 경로가 없습니다. 이것은 앞으로 그러겠다는 약속이 아니라 배포된 바이트코드의 성질입니다.",
+    "ck.2.t":"미래의 난수가 이미 배정돼 있습니다",
+    "ck.2.d":"각 미래 회차의 drand 라운드는 불변값에서 계산되므로, 1년 뒤 추첨이 쓸 라운드를 오늘 읽을 수 있습니다. 그런데 그것은 판매 마감 시점에 아직 존재하지 않습니다 — 마지막 구매자가 결과를 미리 볼 수 없는 이유가 바로 그것입니다.",
+    "ck.3.t":"시각표를 옮길 수 없습니다",
+    "ck.3.d":"어떤 호출 순서도 마감 시각이나 비콘 라운드를 움직이지 못합니다. 정산은 중요한 의미에서 멱등합니다 — 누가 draw()를 부르든, 언제 부르든 같은 티켓이 당첨됩니다.",
+
+    "vf.tag":"검증 상태","vf.h2":"감사를 받지 않았습니다 — 대신 한 것은 이렇습니다",
+    "vf.lead":"이 컨트랙트를 감사한 제3자는 없습니다. 그 사실을 아래 각주가 아니라 이 절의 첫 줄에 적습니다. 이어지는 것은 그 자리를 대신하는 자체 검증이며, 재현할 수 있도록 그대로 적습니다.",
+    "vf.c1":"검사 항목","vf.c2":"결과",
+    "vf.r1.a":"시험 스위트","vf.r1.b":"143개 통과",
+    "vf.r2.a":"깊은 무작위 회수","vf.r2.b":"fuzz 5,000 runs · invariant 512 runs × 128 depth — 전부 통과",
+    "vf.r3.a":"RFC 9380 표준 적합성","vf.r3.b":"RFC 원문에서 직접 파싱한 공식 벡터(부록 K.1 · J.9.1)를 그대로 통과 — 손으로 옮겨 적지 않았습니다",
+    "vf.r4.a":"구현 간 차분 검증","vf.r4.b":"RFC · noble-curves · py_ecc · 온체인 BLS.sol 이 82개 벡터에서 일치",
+    "vf.r5.a":"기호 실행","vf.r5.b":"halmos가 경계·시각표·구매 회계를 표본이 아니라 모든 입력에 대해 증명",
+    "vf.r6.a":"온체인 비콘 검증","vf.r6.b":"위조·변조·라운드 불일치 서명을 전부 거부",
+    "vf.r7.a":"잠기는 자금이 없음","vf.r7.b":"무작위 호출 시퀀스 후 전원 인출 시 잔고가 0에 도달",
+    "vf.r8.a":"어드민 파라미터 공간","vf.r8.b":"fuzz — 어떤 어드민 설정 조합에서도 자금이 잠기지 않음",
+    "vf.r9.a":"실제 정산에서의 환급률","vf.r9.b":"설명이 아니라 실제 정산에서 상금 × 10 == 판매액 × 9 성립",
+    "vf.note":"개발자용 — 컨트랙트는 EIP-2537 프리컴파일 위에서 BLS12-381로 drand quicknet 비콘을 검증하며 검증 1회당 약 166k gas가 듭니다. 검증에 쓰는 체인 해시와 그룹 공개키를 노출하므로, 바이트코드를 읽지 않고도 drand가 공개하는 값과 대조할 수 있습니다.",
+
+    "nt.tag":"이것이 아닌 것","nt.h2":"한계를, 주장이 적힌 바로 그 자리에",
+    "nt.lead":"홍보 문구는 반복되면서 부풀어 오릅니다. 이 목록은 위의 주장이 실제 사실에 계속 묶여 있게 하려고 있습니다.",
+    "nt.1.t":"투자가 아닙니다","nt.1.d":"티켓의 기대값은 지불한 금액보다 낮습니다. 환급률 90%가 뜻하는 바가 그것입니다. 여기에 수익도, 이자도, 버는 방법도 없습니다.",
+    "nt.2.t":"감사받지 않았습니다","nt.2.d":"제3자가 이 컨트랙트를 검토한 적이 없으며, 특히 BLS 검증 코드는 외부 감사를 받지 않았습니다. 위의 자체 검증이 그 자리를 대신합니다.",
+    "nt.3.t":"메인넷이 아닙니다","nt.3.d":"BOR은 Base Sepolia 테스트넷에서 돕니다. 참여자를 모으려는 것이 아니라 의견을 받으려는 단계입니다 — 실제 돈이 걸려 있지 않고, 걸려서도 안 됩니다.",
+    "nt.4.t":"어드민이 있습니다","nt.4.d":"어드민이 존재하며 경제 파라미터를 조정합니다. 못 하는 것은 수수료 변경, 로직 교체, 참여자 자금 인출입니다 — 저희 주장은 그것이고, 「운영하는 사람이 없다」보다 좁은 말입니다.",
+    "nt.5.t":"완전히 탈중앙이 아닙니다","nt.5.d":"컨트랙트에 운영자 함수가 없다는 것과, 시퀀서가 있는 체인 위에서 정산된다는 것은 서로 다른 이야기입니다. 저희가 할 수 있는 주장은 앞의 것뿐입니다.",
+    "nt.6.t":"번호를 고를 수 없습니다","nt.6.d":"티켓 번호는 구매 순서대로 배정됩니다. 당첨은 실제로 팔린 티켓을 대상으로 비콘에서 도출됩니다.",
+
+    "ft.home":"홈","ft.copy":"© 2026 joygoLive. All rights reserved."
+  }
+};
+</script>
+<script src="../assets/i18n.js"></script>
+<script data-goatcounter="https://joygolive.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

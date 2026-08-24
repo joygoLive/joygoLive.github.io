@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>joygoLive — Universal Quantum Hub</title>
+<meta name="description" content="joygoLive builds UQH, a vendor-neutral middleware for quantum computing: connect every framework and vendor, run a full circuit pipeline, mitigate errors, control cost, and operate at scale — through one consistent UI, API, and CLI." />
+<meta property="og:title" content="joygoLive — Universal Quantum Hub" />
+<meta property="og:description" content="One platform to connect, run, and operate quantum across every vendor — with error mitigation, cost control, and intelligence built in." />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<meta name="theme-color" content="#0891b2" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/site.css" />
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand-group">
+      <a href="../" class="brand" aria-label="joygoLive">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0891b2"/><g stroke="#fff" fill="none" stroke-width="1.5" opacity=".95"><ellipse cx="16" cy="16" rx="10.5" ry="4.2"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(120 16 16)"/></g><circle cx="16" cy="16" r="2.6" fill="#fff"/></svg>
+        <span>joygo<span class="dot">Live</span></span>
+      </a>
+      <span class="brand-sep" aria-hidden="true">/</span>
+      <a href="./" class="svc-name">UQH</a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#platform" data-i18n="nav.platform">Platform</a>
+      <a href="#applications" data-i18n="nav.applications">Applications</a>
+      <a href="#preflight" data-i18n="nav.preflight">Pre-flight</a>
+      <a href="#workbench" data-i18n="nav.workbench">Workbench</a>
+      <a href="#capabilities" data-i18n="nav.capabilities">Capabilities</a>
+      <a href="#intelligence" data-i18n="nav.intelligence">Intelligence</a>
+      <a href="#developers" data-i18n="nav.developers">Developers</a>
+      <a href="#agent" data-i18n="nav.agent">Agent</a>
+      <a href="#hardware" data-i18n="nav.hardware">Hardware</a>
+      <a href="#access" data-i18n="nav.access">Access</a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="language">
+      <button data-lang="en" onclick="setLang('en')">EN</button>
+      <button data-lang="ko" onclick="setLang('ko')">한국어</button>
+    </div>
+    <button class="menu-btn" aria-label="menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-kicker mono" data-i18n="hero.kicker">UQH · Universal Quantum Hub</div>
+    <h1 data-i18n-html="hero.title">Universal <span class="grad">Quantum</span> Hub</h1>
+    <p class="lead" data-i18n="hero.sub">Managed quantum infrastructure for research institutions, national programs, and enterprise R&amp;D. Connect every framework and vendor, run the full pipeline under governance and cost control, and read the hardware landscape in data — no vendor lock-in, no rewrites per provider.</p>
+    <div class="cta-row">
+      <a href="#capabilities" class="btn btn-primary" data-i18n="hero.cta1">Explore the platform</a>
+      <a href="#developers" class="btn btn-ghost" data-i18n="hero.cta2">See the workflow</a>
+    </div>
+    <div class="byline" data-i18n-html="hero.byline">A service by joygoLive — <b class="hl">joy</b>, realized when Quantum Computing <b class="hl">go</b>es <b class="hl">Live</b>.</div>
+    <div class="vendor-strip">
+      <div class="vlabel" data-i18n="hero.flabel">Works with your SDK</div>
+      <div class="row" style="margin-bottom:20px">
+        <span class="chip">Qiskit</span><span class="chip">PennyLane</span><span class="chip">Qrisp</span><span class="chip">CUDA-Q</span><span class="chip">Cirq</span><span class="chip">Qadence</span><span class="chip">Perceval</span><span class="chip">Pulser</span><span class="chip">Braket-AHS</span>
+      </div>
+      <div class="vlabel" data-i18n="hero.vlabel">Multi-vendor by design</div>
+      <div class="row">
+        <span class="chip"><svg class="vico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="6" width="12" height="12" rx="1.5"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>IBM Quantum</span><span class="chip"><svg class="vico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="6" width="12" height="12" rx="1.5"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>IQM</span><span class="chip"><svg class="vico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/><path d="M7 12h3M14 12h3"/></svg>IonQ</span><span class="chip"><svg class="vico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="6" width="12" height="12" rx="1.5"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>Rigetti</span><span class="chip"><svg class="vico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/></svg>QuEra</span><span class="chip"><svg class="vico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/></svg>Pasqal</span><span class="chip"><svg class="vico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12c2.5-6 5-6 7.5 0s5 6 7.5 0"/><path d="M18 12h4"/></svg>Quandela</span><span class="chip"><svg class="vico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/><path d="M7 12h3M14 12h3"/></svg>Quantinuum</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section alt" style="padding:48px 0">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="n">8</div><div class="l" data-i18n="stat.vendors">Hardware vendors</div></div>
+      <div class="stat"><div class="n">9</div><div class="l" data-i18n="stat.frameworks">SDK frameworks</div></div>
+      <div class="stat"><div class="n">7</div><div class="l" data-i18n="stat.steps">Independent pipeline steps</div></div>
+      <div class="stat"><div class="n">4</div><div class="l" data-i18n="stat.apps">Application modules</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section id="platform">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="plat.tag">The platform</div>
+      <h2 data-i18n="plat.h2">One middleware, from circuit to confident result</h2>
+      <p class="lead" data-i18n="plat.lead">Bring your circuit once. UQH detects the framework, optimizes and noise-checks it, applies error mitigation and error correction, prices it across vendors, and runs it on the backend you choose — then turns every run into operational intelligence.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M5 8c4 2 10 2 14 0M5 16c4-2 10-2 14 0"/></svg>
+        <h3 data-i18n="plat.1.t">Connect everything</h3>
+        <p data-i18n="plat.1.d">Nine SDK frameworks and eight hardware vendors across superconducting, trapped-ion, neutral-atom, and photonic — behind one interface.</p>
+      </div>
+      <div class="pillar fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 6 9 17l-5-5"/></svg>
+        <h3 data-i18n="plat.2.t">Run with confidence</h3>
+        <p data-i18n="plat.2.d">Noise simulation, readout + ZNE mitigation, Pauli-check postselection, and QEC analysis make results trustworthy — with cost known before you submit.</p>
+      </div>
+      <div class="pillar fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+        <h3 data-i18n="plat.3.t">Operate at scale</h3>
+        <p data-i18n="plat.3.d">Accumulated jobs become benchmarks and device intelligence; per-domain policy, billing, and an AI-agent interface make it run as a service.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATIONS -->
+<section id="applications" class="section alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="app.tag">Applications</div>
+      <h2 data-i18n="app.h2">Ready-to-run quantum application modules</h2>
+      <p class="lead" data-i18n="app.lead">Domain modules you can run today — each comparable across CPU, GPU, and real QPU backends.</p>
+    </div>
+    <div class="apps">
+      <div class="app fade">
+        <div class="app-head"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="5"/><circle cx="17" cy="17" r="2.5"/></svg><div><h3 data-i18n="a1.t">QML anomaly detection</h3><p data-i18n="a1.d">Quantum-kernel outlier detection benchmarked against a classical baseline — upload your own CSV; advantage is dataset-dependent.</p></div></div>
+        <div class="app-chart"><div class="chart-cap">Detection quality · AUC</div>
+          <svg class="mini" viewBox="0 0 260 92"><line x1="10" y1="74" x2="250" y2="74" stroke="#e4e9f0"/><rect x="58" y="20" width="54" height="54" rx="3" fill="#0891b2"/><rect x="150" y="32" width="54" height="42" rx="3" fill="#cbd5e1"/><text x="85" y="87" text-anchor="middle">Quantum</text><text x="177" y="87" text-anchor="middle">Classical</text><text x="85" y="13" text-anchor="middle" class="val">0.92</text><text x="177" y="25" text-anchor="middle">0.88</text></svg>
+        </div>
+      </div>
+      <div class="app fade">
+        <div class="app-head"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 18V8M10 18V4M16 18v-6M4 18h14"/></svg><div><h3 data-i18n="a2.t">Quantum finance</h3><p data-i18n="a2.d">QAOA portfolio optimization versus exact and greedy baselines.</p></div></div>
+        <div class="app-chart"><div class="chart-cap">Approx. ratio · CPU / GPU / QPU</div>
+          <svg class="mini" viewBox="0 0 260 92"><line x1="10" y1="74" x2="250" y2="74" stroke="#e4e9f0"/><rect x="36" y="18" width="46" height="56" rx="3" fill="#0891b2"/><rect x="108" y="18" width="46" height="56" rx="3" fill="#0891b2"/><rect x="180" y="23" width="46" height="51" rx="3" fill="#22b8d6"/><text x="59" y="87" text-anchor="middle">CPU</text><text x="131" y="87" text-anchor="middle">GPU</text><text x="203" y="87" text-anchor="middle">QPU</text><text x="59" y="12" text-anchor="middle" class="val">1.00</text><text x="131" y="12" text-anchor="middle" class="val">1.00</text><text x="203" y="17" text-anchor="middle">0.97</text></svg>
+        </div>
+      </div>
+      <div class="app fade">
+        <div class="app-head"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="9" ry="4"/><ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(60 12 12)"/></svg><div><h3 data-i18n="a3.t">Quantum chemistry</h3><p data-i18n="a3.d">VQE ground-state energy with noise and mitigation comparison.</p></div></div>
+        <div class="app-chart"><div class="chart-cap">VQE dissociation curve · H₂</div>
+          <svg class="mini" viewBox="0 0 260 92"><line x1="10" y1="74" x2="250" y2="74" stroke="#e4e9f0"/><path d="M24 24 C 56 26, 74 68, 122 68 C 178 68, 206 50, 244 46" fill="none" stroke="#0891b2" stroke-width="2.5"/><circle cx="122" cy="68" r="3.6" fill="#0891b2"/><text x="122" y="87" text-anchor="middle">equilibrium</text><text x="244" y="40" text-anchor="end">bond length →</text></svg>
+        </div>
+      </div>
+      <div class="app fade">
+        <div class="app-head"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="17" r="2"/><path d="M8 6h8M7 8v8M17 9v6M9 18h6"/></svg><div><h3 data-i18n="a4.t">Graph optimization</h3><p data-i18n="a4.d">QAOA for max-cut, independent set, and vertex cover.</p></div></div>
+        <div class="app-chart"><div class="chart-cap">Max-Cut · 6-cycle</div>
+          <svg class="mini" viewBox="0 0 260 92"><g stroke="#0891b2" stroke-width="1.5" opacity=".55"><line x1="160" y1="42" x2="145" y2="18"/><line x1="145" y1="18" x2="115" y2="18"/><line x1="115" y1="18" x2="100" y2="42"/><line x1="100" y1="42" x2="115" y2="66"/><line x1="115" y1="66" x2="145" y2="66"/><line x1="145" y1="66" x2="160" y2="42"/></g><g><circle cx="160" cy="42" r="7" fill="#0891b2"/><circle cx="145" cy="18" r="7" fill="#0c1622"/><circle cx="115" cy="18" r="7" fill="#0891b2"/><circle cx="100" cy="42" r="7" fill="#0c1622"/><circle cx="115" cy="66" r="7" fill="#0891b2"/><circle cx="145" cy="66" r="7" fill="#0c1622"/></g><text x="130" y="87" text-anchor="middle" class="val">cut = 6 (optimal)</text></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREFLIGHT -->
+<section id="preflight" class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="pre.tag">Before you spend a shot</div>
+      <h2 data-i18n="pre.h2">QPU time is scarce. Spend it on the run that will work.</h2>
+      <p class="lead" data-i18n="pre.lead">Most wasted quantum spend is decided before submission — the wrong device, a circuit too deep for it, or a run you already made last month. UQH answers all three up front.</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l5-6 4 4 4-7 5 5"/><path d="M3 21h18"/></svg>
+        <h3 data-i18n="p1.t">Analytic fidelity estimate</h3>
+        <p data-i18n="p1.d">An error-budget calculation from the device's measured 1q, 2q and readout error rates against your circuit's gate counts. No noise simulation, so no qubit ceiling and no wait — it answers for a 100-qubit circuit as fast as a 2-qubit one.</p>
+      </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V9M10 20V4M16 20v-8M22 20H2"/></svg>
+        <h3 data-i18n="p2.t">Rank the devices, vendor-neutral</h3>
+        <p data-i18n="p2.d">The same circuit scored across every connected processor — expected fidelity, 2q error, coherence headroom, queue depth and cost, side by side. Pick on evidence, not on which vendor you happen to have an account with.</p>
+      </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 8v4l3 2"/></svg>
+        <h3 data-i18n="p3.t">You may have run this already</h3>
+        <p data-i18n="p3.d">Submissions are matched by circuit content, not filename, so earlier runs of the same circuit surface before you pay for another one — and an edited circuit correctly stops matching. Re-running is a choice, not an accident.</p>
+      </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M7 10h3l1.5-3 2 6 1.5-3h2"/></svg>
+        <h3 data-i18n="p4.t">Prove the circuit on GPU first</h3>
+        <p data-i18n="p4.d">Run it on dedicated GPU simulation hosts before it ever reaches hardware. Logic bugs, wrong observables and bad ansätze are cheaper to find on a GPU than in a QPU queue.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKBENCH -->
+<section id="workbench" class="section alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="wb.tag">Workbench</div>
+      <h2 data-i18n="wb.h2">One workspace, from upload to result</h2>
+      <p class="lead" data-i18n="wb.lead">Drop in a circuit and UQH detects its framework, previews the metadata, and runs the whole pipeline — analyze, optimize, noise-check, mitigate, submit — without leaving the page.</p>
+    </div>
+    <div class="split">
+      <div>
+        <ul class="feature-list">
+          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wb.1">Framework auto-detection on upload — Qiskit, PennyLane, Qrisp, and more.</span></li>
+          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wb.2">Favorites, recents, and inline circuit-metadata preview.</span></li>
+          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wb.3">Run any single step or the full pipeline from the UI.</span></li>
+          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="wb.4">Emulator dry-run to validate before you spend on real hardware.</span></li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="pcap">Pipeline · bell.py</div>
+        <ul class="pb-list">
+          <li><span>analyze</span><b style="color:var(--accent-2)">done</b></li>
+          <li><span>optimize</span><b style="color:var(--accent-2)">done</b></li>
+          <li><span>noise sim</span><b style="color:var(--accent-2)">done</b></li>
+          <li><span>mitigate</span><b style="color:var(--accent-2)">done</b></li>
+          <li><span>submit</span><b style="color:var(--text-dim)">ready</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="capabilities">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="cap.tag">Capabilities</div>
+      <h2 data-i18n="cap.h2">Everything the quantum workflow needs</h2>
+      <p class="lead" data-i18n="cap.lead">A broad, composable feature set — use any piece on its own, or the whole pipeline end to end.</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        <h3 data-i18n="c1.t">Frameworks &amp; vendors</h3>
+        <p data-i18n="c1.d">Write in your SDK of choice and submit to any supported processor — no per-vendor rewrites.</p>
+        <div class="tags"><span>Qiskit</span><span>PennyLane</span><span>Qrisp</span><span>CUDA-Q</span><span>Cirq</span><span>Qadence</span><span>Perceval</span><span>Pulser</span><span>Braket-AHS</span></div>
+      </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="4" height="4"/><rect x="10" y="10" width="4" height="4"/><rect x="17" y="16" width="4" height="4"/><path d="M7 6h3M14 12h3"/></svg>
+        <h3 data-i18n="c2.t">Independent pipeline</h3>
+        <p data-i18n="c2.d">Analyze, optimize, noise-simulate, QEC, GPU-execute, QPU-submit — each step runs standalone, with an emulator dry-run option.</p>
+        <div class="tags"><span>analyze</span><span>optimize</span><span>noise</span><span>QEC</span><span>run</span></div>
+      </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 17l5-5 4 4 7-8"/></svg>
+        <h3 data-i18n="c3.t">Circuit optimization</h3>
+        <p data-i18n="c3.d">Transpile and route with multiple engines, mapped to the target device's physical layout — and compare every option side by side on resulting complexity, optimization time, and analytical fidelity. Every candidate is verified mathematically equivalent to your original circuit — large circuits offloaded to GPU — and comparisons run in isolation, so timings stay honest and the platform stays responsive.</p>
+        <div class="tags"><span>Qiskit</span><span>TKET</span><span>QuiZX</span><span>BQSKit</span><span>SABRE</span><span>verified</span></div>
+      </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M5 8c4 2 10 2 14 0M5 16c4-2 10-2 14 0"/></svg>
+        <h3 data-i18n="c4.t">Error mitigation &amp; resilience</h3>
+        <p data-i18n="c4.d">Readout-error mitigation and zero-noise extrapolation as one resilience level, plus spacetime Pauli-check postselection for Clifford circuits — standard techniques, applied consistently.</p>
+      </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+        <h3 data-i18n="c5.t">Noise simulation &amp; QEC</h3>
+        <p data-i18n="c5.d">Calibration-based fidelity and TVD with a cross-engine consistency check (Qiskit vs PennyLane), plus error-correction analysis and code application with threshold and logical-error estimates.</p>
+        <div class="tags"><span>fidelity/TVD</span><span>surface</span><span>repetition</span></div>
+      </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+        <h3 data-i18n="c6.t">Cost &amp; resource estimate</h3>
+        <p data-i18n="c6.d">See qubits, depth, gates, and what each vendor bills — in that vendor’s own unit — before submitting. No surprise spend.</p>
+      </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>
+        <h3 data-i18n="c7.t">GPU acceleration</h3>
+        <p data-i18n="c7.d">Offload heavy simulation to dedicated GPU hosts and compare CPU, GPU, and QPU on the same problem.</p>
+        <div class="tags"><span>CUDA</span><span>lightning.gpu</span></div>
+      </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <h3 data-i18n="c8.t">Knowledge base (RAG)</h3>
+        <p data-i18n="c8.d">Ask in your own words — that is the whole interface. Hybrid dense + sparse retrieval, re-ranking, and cited answers over the platform's own accumulated runs: measured results, refusals and workarounds, not a document corpus. Findings distilled from them are anonymised and searchable by everyone; individual records stay with their owner. What the corpus contains is curated by your administrators, not chosen per query.</p>
+      </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 8l-4 4 4 4M17 8l4 4-4 4M14 4l-4 16"/></svg>
+        <h3 data-i18n="c9.t">API, CLI &amp; MCP</h3>
+        <p data-i18n="c9.d">Full parity across UI, REST API, and CLI — plus an MCP server so AI agents orchestrate runs directly.</p>
+        <div class="tags"><span>REST</span><span>CLI</span><span>MCP</span></div>
+      </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v4h-4"/><path d="M12 8v4l3 2"/></svg>
+        <h3 data-i18n="c11.t">Self-maintaining (AutoOps)</h3>
+        <p data-i18n="c11.d">A scheduled autonomous layer tracks every device's fidelity and error rates over time and flags the ones drifting away from spec, watches SDK releases against your pinned versions, and picks up new hardware as vendors bring it online. Reversible actions auto-apply and log; anything irreversible waits for admin approval.</p>
+      </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="8" y="8" width="8" height="8" rx="1"/><path d="M12 2v6M12 16v6M2 12h6M16 12h6"/><circle cx="4" cy="4" r="1.6"/><circle cx="20" cy="20" r="1.6"/></svg>
+        <h3 data-i18n="c13.t">Hybrid-ready execution</h3>
+        <p data-i18n="c13.d">Algorithm files already run on remote compute hosts, and the backend a program names is swapped at run time — a script written for a simulator reaches a GPU host or real hardware without being edited. When tightly coupled GPU-QPU machines arrive, they join as one more target on that same path rather than as a new architecture.</p>
+      </div>
+      <div class="cap fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>
+        <h3 data-i18n="c12.t">Reproducible results</h3>
+        <p data-i18n="c12.d">Export one self-describing file per run: the circuit, the observable, the calibration exactly as it stood at submit time, the result, the noiseless reference and SDK versions. Anything unavailable is named rather than quietly omitted, so the number stays checkable years later — attach it to a paper or hand it to a reviewer.</p>
+      </div>
+      <div class="cap upcoming fade">
+        <span class="soon" data-i18n="c10.badge">Coming soon</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v4h-4"/></svg>
+        <h3 data-i18n="c10.t">Runtime sessions</h3>
+        <p data-i18n="c10.d">Reserve a device and batch many jobs in one session to minimize re-queuing between iterations — in the spirit of vendor runtime sessions. On the roadmap.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTELLIGENCE -->
+<section id="intelligence" class="section alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="int.tag">Intelligence</div>
+      <h2 data-i18n="int.h2">Read the ecosystem in data, not hype</h2>
+      <p class="lead" data-i18n="int.lead">Every job you run feeds a living view of the hardware landscape — so researchers and decision-makers act on measured reality.</p>
+    </div>
+    <div class="intel-grid">
+      <div class="panel">
+        <div class="pcap" data-i18n="int.p1">QPU Fidelity Leaders · fidelity</div>
+        <div class="bar-row"><span class="nm">ibm_fez</span><span class="track"><span class="fill" style="width:90%"></span></span><span class="v">0.90</span></div>
+        <div class="bar-row"><span class="nm">iqm_emerald</span><span class="track"><span class="fill" style="width:74%"></span></span><span class="v">0.74</span></div>
+        <div class="bar-row"><span class="nm">iqm_garnet</span><span class="track"><span class="fill" style="width:61%"></span></span><span class="v">0.61</span></div>
+        <div class="bar-row"><span class="nm">rigetti</span><span class="track"><span class="fill" style="width:55%"></span></span><span class="v">0.55</span></div>
+      </div>
+      <div class="panel">
+        <div class="pcap" data-i18n="int.p2">Device health · drift over time</div>
+        <svg class="mini" viewBox="0 0 260 104" style="height:104px"><line x1="12" y1="82" x2="250" y2="82" stroke="#e4e9f0"/><polyline points="14,34 50,30 86,44 122,38 158,52 194,46 230,60 248,56" fill="none" stroke="#0891b2" stroke-width="2.5"/><circle cx="248" cy="56" r="3.2" fill="#0891b2"/><text x="14" y="20">fidelity</text><text x="248" y="98" text-anchor="end">time →</text></svg>
+      </div>
+      <div class="panel">
+        <div class="pcap" data-i18n="int.p3">Cost vs fidelity · per device</div>
+        <svg class="mini" viewBox="0 0 260 104" style="height:104px"><line x1="24" y1="84" x2="250" y2="84" stroke="#e4e9f0"/><line x1="24" y1="14" x2="24" y2="84" stroke="#e4e9f0"/><circle cx="44" cy="26" r="4.5" fill="#0891b2"/><circle cx="92" cy="46" r="4.5" fill="#0891b2"/><circle cx="158" cy="36" r="4.5" fill="#22b8d6"/><circle cx="224" cy="62" r="4.5" fill="#22b8d6"/><text x="16" y="18">fid</text><text x="248" y="100" text-anchor="end">cost →</text></svg>
+      </div>
+      <div class="panel">
+        <div class="pcap" data-i18n="int.p4">Playbooks · best device per circuit</div>
+        <ul class="pb-list">
+          <li><span data-i18n="int.pb1">≤10 qubits</span><b>ibm_fez</b></li>
+          <li><span data-i18n="int.pb2">11–20 qubits</span><b>iqm_emerald</b></li>
+          <li><span data-i18n="int.pb3">21–30 qubits</span><b>iqm_sirius</b></li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="pcap" data-i18n="int.p5">SDK Leaders · composite</div>
+        <div class="bar-row"><span class="nm">Qiskit</span><span class="track"><span class="fill" style="width:94%"></span></span><span class="v">94</span></div>
+        <div class="bar-row"><span class="nm">PennyLane</span><span class="track"><span class="fill" style="width:83%"></span></span><span class="v">83</span></div>
+        <div class="bar-row"><span class="nm">CUDA-Q</span><span class="track"><span class="fill" style="width:64%"></span></span><span class="v">64</span></div>
+        <div class="bar-row"><span class="nm">Cirq</span><span class="track"><span class="fill" style="width:52%"></span></span><span class="v">52</span></div>
+      </div>
+      <div class="panel">
+        <div class="pcap" data-i18n="int.p6">Optimizer Leaders · depth reduction</div>
+        <div class="bar-row"><span class="nm">TKET</span><span class="track"><span class="fill" style="width:70%"></span></span><span class="v">13%</span></div>
+        <div class="bar-row"><span class="nm">Qiskit L3</span><span class="track"><span class="fill" style="width:3%"></span></span><span class="v">0%</span></div>
+      </div>
+      <div class="panel">
+        <div class="pcap" data-i18n="int.p7">Reuse or re-submit · calibration drift</div>
+        <ul class="pb-list">
+          <li><span data-i18n="int.d1">Cal stable (&lt;15% drift)</span><b style="color:var(--accent-2)" data-i18n="int.d1v">reuse result</b></li>
+          <li><span data-i18n="int.d2">Cal drifted (≥15%)</span><b data-i18n="int.d2v">re-submit</b></li>
+        </ul>
+        <div style="font-size:12px;opacity:.65;margin-top:10px" data-i18n="int.d3">Every run stores the device calibration — compare it to now and skip the spend when nothing moved.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE / DEVELOPERS -->
+<section id="developers">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="dev.tag">Workflow &amp; developers</div>
+      <h2 data-i18n="dev.h2">One pipeline — the same power in your terminal</h2>
+      <p class="lead" data-i18n="dev.lead">Every step is independent and scriptable. Run it in the UI, call the REST API, or drive it from the CLI and your CI.</p>
+    </div>
+    <div class="flow">
+      <div class="step"><span class="node">analyze</span><svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="node">optimize</span><svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="node">noise sim</span><svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="node">QEC</span><svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="node">GPU exec</span><svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="step"><span class="node">QPU submit</span></div>
+    </div>
+    <div class="terminal">
+      <div class="term-bar"><i></i><i></i><i></i><span class="term-title">uqi — zsh</span></div>
+<pre class="term-body"><span class="c-p">$</span> uqi estimate <span class="c-f">--file</span> bell.py
+  ibm_fez   <span class="c-v">$0.00</span>     iqm_garnet  <span class="c-v">$0.30</span>
+  rigetti   <span class="c-v">$0.74</span>     ionq_forte1 <span class="c-v">$82.22</span>   <span class="c-c"># cheapest first</span>
+
+<span class="c-p">$</span> uqi catalog optimize <span class="c-f">--graph</span> cycle6 <span class="c-f">--compare</span> <span class="c-f">--resilience</span> full
+  CPU optimal   ·   GPU optimal
+  QPU(iqm_emerald)  fid <span class="c-v">0.74</span> · valid <span class="c-v">100%</span>
+  <span class="c-a">readout-mitigated</span>  approx <span class="c-v">100%</span>   <span class="c-c"># post-processed, no re-run</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- AGENT MODE -->
+<section id="agent" class="section alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="ag.tag">Agent mode</div>
+      <h2 data-i18n="ag.h2">Let an AI agent run your quantum workflow</h2>
+      <p class="lead" data-i18n="ag.lead">UQH ships an MCP server, so Claude and other AI agents use it as a tool — analyzing, optimizing, mitigating, pricing, and submitting across vendors from a single natural-language request.</p>
+    </div>
+    <div class="split">
+      <div>
+        <ul class="feature-list">
+          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="ag.1">Natural-language workflow — describe the goal, the agent runs the steps.</span></li>
+          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="ag.2">Every step is a tool — analyze, optimize, mitigate, estimate, submit, compare.</span></li>
+          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="ag.3">Multi-vendor orchestration — the agent selects and runs across backends.</span></li>
+          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="ag.4">Standard MCP — works with Claude and other MCP clients.</span></li>
+        </ul>
+      </div>
+      <div class="terminal">
+        <div class="term-bar"><i></i><i></i><i></i><span class="term-title">agent · MCP</span></div>
+<pre class="term-body"><span class="c-c">You:</span> optimize bell.py, pick the cheapest backend, then mitigate
+<span class="c-a">agent</span>
+  <span class="c-p">→</span> uqi_analyze            2 qubits · depth 2
+  <span class="c-p">→</span> uqi_resource_estimate  ibm_fez <span class="c-v">$0.00</span> (cheapest)
+  <span class="c-p">→</span> uqi_optimize           SABRE-routed
+  <span class="c-p">→</span> uqi_qpu_submit         submitted <span class="c-v">✓</span>
+  <span class="c-p">→</span> uqi_mitigate_readout   approx <span class="c-v">100%</span></pre>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- HARDWARE -->
+<section id="hardware">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="hw.tag">Hardware</div>
+      <h2 data-i18n="hw.h2">Every modality, one platform</h2>
+      <p class="lead" data-i18n="hw.lead">Reach superconducting, trapped-ion, neutral-atom, and photonic processors — and compare and run across them from a single place.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="vtable">
+        <thead><tr>
+          <th data-i18n="hw.c1">Vendor</th><th data-i18n="hw.c2">Modality</th><th data-i18n="hw.c3">Qubits</th><th data-i18n="hw.c4">Access</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>IBM Quantum</td><td data-i18n="m.super">Superconducting</td><td>133+</td><td data-i18n="ac.open">Open plan</td></tr>
+          <tr><td>IQM</td><td data-i18n="m.super">Superconducting</td><td>20–150</td><td data-i18n="ac.cred">Credits</td></tr>
+          <tr><td>IonQ</td><td data-i18n="m.ion">Trapped-ion</td><td>36</td><td>AWS Braket · IonQ Cloud</td></tr>
+          <tr><td>Rigetti</td><td data-i18n="m.super">Superconducting</td><td>108</td><td>AWS Braket</td></tr>
+          <tr><td>QuEra</td><td data-i18n="m.atom">Neutral-atom</td><td>256</td><td>AWS Braket</td></tr>
+          <tr><td>Pasqal</td><td data-i18n="m.atom">Neutral-atom</td><td>100</td><td>PCS · Azure</td></tr>
+          <tr><td>Quandela</td><td data-i18n="m.photon">Photonic</td><td>—</td><td data-i18n="ac.free">Free tier</td></tr>
+          <tr><td>Quantinuum</td><td data-i18n="m.ion">Trapped-ion</td><td>20–56</td><td>Azure · HQC</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec-head" style="margin-top:44px">
+      <h2 data-i18n="mx.h2" style="font-size:clamp(20px,2.4vw,26px)">Which SDK reaches which hardware</h2>
+      <p class="lead" data-i18n="mx.lead">Write in the framework you already use. Gate-based circuits reach every gate-based vendor; photonic and analog work stays with the hardware that can express it.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="vtable">
+        <thead><tr><th data-i18n="mx.c1">SDK</th><th>IBM</th><th>IQM</th><th>IonQ</th><th>Rigetti</th><th>QuEra</th><th>Pasqal</th><th>Quandela</th><th style="border-left:2px solid var(--border)" data-i18n="mx.cgpu">GPU sim</th></tr></thead>
+        <tbody>
+          <tr><td><b>Qiskit</b></td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="border-left:2px solid var(--border);color:var(--accent-2);font-weight:700">●<span class="gpu-b">qiskit-aer GPU</span></td></tr>
+          <tr><td><b>PennyLane</b></td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="border-left:2px solid var(--border);color:var(--accent-2);font-weight:700">●<span class="gpu-b">lightning.gpu</span></td></tr>
+          <tr><td><b>Cirq</b></td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="border-left:2px solid var(--border);color:var(--accent-2);font-weight:700">●<span class="gpu-b">qsimcirq</span></td></tr>
+          <tr><td><b>Qrisp</b></td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="border-left:2px solid var(--border);color:var(--accent-2);font-weight:700">●<span class="gpu-b">qiskit-aer GPU</span></td></tr>
+          <tr><td><b>Qadence</b></td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="border-left:2px solid var(--border);color:var(--accent-2);font-weight:700">●<span class="gpu-b">torch CUDA</span></td></tr>
+          <tr><td><b>CUDA-Q</b></td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="border-left:2px solid var(--border);color:var(--accent-2);font-weight:700">●<span class="gpu-b">nvidia target</span></td></tr>
+          <tr><td><b>Perceval</b></td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="border-left:2px solid var(--border);color:var(--text-dim)">·</td></tr>
+          <tr><td><b>Pulser</b></td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--text-dim)">·</td><td style="border-left:2px solid var(--border);color:var(--text-dim)">·</td></tr>
+          <tr><td><b>Braket-AHS</b></td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="border-left:2px solid var(--border);color:var(--text-dim)">·</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section id="audience" class="section alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="aud.tag">Who it's for</div>
+      <h2 data-i18n="aud.h2">Built for institutions and government — open to every researcher</h2>
+    </div>
+    <div class="aud-grid">
+      <div class="aud fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V4M4 20h16M8 16v-5M12 16V7M16 16v-8"/></svg>
+        <h3 data-i18n="aud.2.t">Institutions &amp; government</h3>
+        <p data-i18n="aud.2.d">The primary fit — national programs, research institutes, and enterprise R&amp;D. One governed, white-label control plane over every vendor: spend safeguards, code and data isolation, curated knowledge scope, security audit of every refused upload, and data sovereignty — with Leaders boards and real cost-vs-fidelity to ground hardware and budget decisions.</p>
+      </div>
+      <div class="aud fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+        <h3 data-i18n="aud.1.t">Researchers</h3>
+        <p data-i18n="aud.1.d">Individual researchers aren't shut out — everything up to the point of spending money is self-serve and needs no credential, and once you register your own vendor key the same workspace runs it: compare CPU, GPU and real QPUs, watch noise appear, and recover signal with mitigation.</p>
+      </div>
+      <div class="aud fade">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 8l-4 4 4 4M17 8l4 4-4 4M14 5l-4 14"/></svg>
+        <h3 data-i18n="aud.3.t">Developers</h3>
+        <p data-i18n="aud.3.d">Work from the environment you know. Circuit-complexity analysis, optimization, cost estimates, and runs over API and CLI — script them or wire them into CI.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY & GOVERNANCE -->
+<section id="governance">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="sec.tag">Security &amp; governance</div>
+      <h2 data-i18n="sec.h2">Built to run as a managed service</h2>
+      <p class="lead" data-i18n="sec.lead">Multi-tenant controls, spend safeguards, and isolation are enforced server-side across UI, API, CLI, and MCP.</p>
+    </div>
+    <div class="pts">
+      <div class="pt fade"><b data-i18n="sec.1.t">Per-domain white-label</b><span data-i18n="sec.1.d">Control visible tabs, pipeline steps, devices, and accounts per domain and plan.</span></div>
+      <div class="pt fade"><b data-i18n="sec.2.t">Spend safeguards</b><span data-i18n="sec.2.d">Pre-submission estimates in each vendor’s own billing unit, a cost threshold, and a per-job usage record. Work runs on your own vendor account — we never hold a balance for you.</span></div>
+      <div class="pt fade"><b data-i18n="sec.3.t">Code &amp; data isolation</b><span data-i18n="sec.3.d">Static analysis and execution limits on uploads; per-user file and job isolation.</span></div>
+      <div class="pt fade"><b data-i18n="sec.4.t">Auth &amp; privacy</b><span data-i18n="sec.4.d">Session and API-key auth, output escaping, and PII scrubbing before external LLM calls.</span></div>
+      <div class="pt fade"><b data-i18n="sec.5.t">Abuse defense</b><span data-i18n="sec.5.d">Per-IP flood auto-blocking and IP/account blacklist, enforced across UI, API, CLI, and MCP at a single server chokepoint.</span></div>
+      <div class="pt fade"><b data-i18n="sec.6.t">Institutional governance</b><span data-i18n="sec.6.d">Members register their own vendor credentials, so one person’s allowance is never spent by someone else. Institutions manage membership and access; every admin action is audit-logged.</span></div>
+      <div class="pt fade"><b data-i18n="sec.7.t">Institutional reporting</b><span data-i18n="sec.7.d">On request, export a full account of an institution's activity — every member's quantum, AI and GPU work, with what it cost in each vendor's own unit — over any period or all time, scoped strictly to that institution and carrying its own audit trail.</span></div>
+      <div class="pt fade"><b data-i18n="sec.8.t">Quantum, AI and GPU in one record</b><span data-i18n="sec.8.d">Quantum time, AI calls and GPU runs land in the same institutional record, so one export shows where the work went — no separate accounting for the classical half. Each still bills where it belongs: quantum and AI on the member's own vendor account, GPU on hardware the institution attached and opened to its members.</span></div>
+      <div class="pt fade"><b data-i18n="sec.9.t">Credential vault</b><span data-i18n="sec.9.d">Vendor keys are held encrypted under the account that registered them, and nowhere else — there is no institution key and no platform key to lend, because a vendor allowance is issued to a person. A key can be limited to named devices, and a compromised one is suspended with a reason rather than deleted, so its owner learns why instead of watching it vanish.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS MODELS -->
+<section id="access" class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="ac.tag">Access models</div>
+      <h2 data-i18n="ac.h2">Three ways to run, one platform</h2>
+      <p class="lead" data-i18n="ac.lead">Everything that costs nothing to run is open to everyone, with no credential at all. What costs money — quantum processor time, AI calls — runs on credentials you bring yourself. There is no shared platform allowance to draw on: a vendor allowance is issued to a person, so lending ours would breach that vendor's terms for the holder.</p>
+    </div>
+    <div class="pts" style="grid-template-columns:repeat(3,1fr)">
+      <div class="pt fade"><b data-i18n="ac.t1">No credentials</b><span data-i18n="ac.d1">Everything that costs nothing is yours immediately: analysis, optimization, noise simulation, QEC, device ranking, reproducibility bundles, and the API, CLI and MCP interfaces. Submitting to a real QPU and using AI features are the two things that need a key of your own.</span></div>
+      <div class="pt fade"><b data-i18n="ac.t2">Bring your own</b><span data-i18n="ac.d2">Register your vendor account key and runs execute on it. The vendor enforces its own limit on its own key and bills you directly — we hold no balance for you and never fall back to a platform key.</span></div>
+      <div class="pt fade"><b data-i18n="ac.t3">Institution</b><span data-i18n="ac.d3">Members register their own credentials, as everyone does. What the institution governs is who belongs, what they may reach, and any GPU hardware it attaches and opens to them — with a cap on what one submission may cost, reporting over any period, and an audit trail.</span></div>
+    </div>
+    <div class="table-wrap">
+      <table class="vtable">
+        <thead><tr>
+          <th data-i18n="ac.c0">Capability</th><th data-i18n="ac.c1">No credentials</th><th data-i18n="ac.c2">Bring your own</th><th data-i18n="ac.c3">Institution</th>
+        </tr></thead>
+        <tbody>
+          <tr><td data-i18n="ac.r1">Analysis, optimization, noise simulation, QEC</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r2">Vendor-neutral device ranking</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r3">Reproducibility bundle</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r4">API, CLI and MCP access</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r5">Credential registration</td><td style="color:var(--text-dim)">·</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r13">Restrict a registered key to named devices</td><td style="color:var(--text-dim)">·</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r6">Submit to a real QPU</td><td style="color:var(--text-dim)">·</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r7">Per-submission cost cap and audit trail</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r8">Institutional usage report</td><td style="color:var(--text-dim)">·</td><td style="color:var(--text-dim)">·</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r10">Bring your own AI key</td><td style="color:var(--text-dim)">·</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r11">GPU simulation on shared hosts</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+          <tr><td data-i18n="ac.r12">Unmetered use of a GPU host you provide</td><td style="color:var(--text-dim)">·</td><td style="color:var(--accent-2);font-weight:700">●</td><td style="color:var(--accent-2);font-weight:700">●</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why" class="section alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-i18n="why.tag">Why UQH</div>
+      <h2 data-i18n="why.h2">The combination is the difference</h2>
+      <p class="lead" data-i18n="why.lead">Individually, these capabilities exist elsewhere. UQH brings them into a single flow.</p>
+    </div>
+    <div class="pts">
+      <div class="pt fade"><b data-i18n="why.1.t">QEC-aware pipeline</b><span data-i18n="why.1.d">Error correction sits in the same flow as optimization and execution.</span></div>
+      <div class="pt fade"><b data-i18n="why.2.t">Agent-native execution</b><span data-i18n="why.2.d">Multi-vendor runs orchestrated directly by AI agents over MCP.</span></div>
+      <div class="pt fade"><b data-i18n="why.3.t">Result-quality evaluation</b><span data-i18n="why.3.d">Fidelity and benchmarking grounded in your own job history.</span></div>
+      <div class="pt fade"><b data-i18n="why.4.t">Per-domain policy</b><span data-i18n="why.4.d">White-label control over features, devices, and access by domain and plan.</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0891b2"/><g stroke="#fff" fill="none" stroke-width="1.5" opacity=".95"><ellipse cx="16" cy="16" rx="10.5" ry="4.2"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(120 16 16)"/></g><circle cx="16" cy="16" r="2.6" fill="#fff"/></svg><span>joygo<span class="dot" style="color:var(--accent)">Live</span></span></span>
+    <nav class="foot-links">
+      <a href="../"><span data-i18n="ft.home">Home</span></a>
+      <a href="../uqh/">UQH</a>
+      <a href="../amc/">AMC</a>
+      <a href="../bor/">BOR</a>
+    </nav>
+    <span data-i18n="ft.copy">© 2026 joygoLive. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+const _L = {
+  en:{
+    "ac.tag":"Access models",
+    "ac.h2":"Three ways to run, one platform",
+    "ac.lead":"Everything that costs nothing to run is open to everyone, with no credential at all. What costs money — quantum processor time, AI calls — runs on credentials you bring yourself. There is no shared platform allowance to draw on: a vendor allowance is issued to a person, so lending ours would breach that vendor's terms for the holder.",
+    "ac.t1":"No credentials",
+    "ac.d1":"Everything that costs nothing is yours immediately: analysis, optimization, noise simulation, QEC, device ranking, reproducibility bundles, and the API, CLI and MCP interfaces. Submitting to a real QPU and using AI features are the two things that need a key of your own.",
+    "ac.t2":"Bring your own",
+    "ac.d2":"Register your vendor account key and runs execute on it. The vendor enforces its own limit on its own key and bills you directly — we hold no balance for you and never fall back to a platform key.",
+    "ac.t3":"Institution",
+    "ac.d3":"Members register their own credentials, as everyone does. What the institution governs is who belongs, what they may reach, and any GPU hardware it attaches and opens to them — with a cap on what one submission may cost, reporting over any period, and an audit trail.",
+    "ac.c0":"Capability",
+    "ac.c1":"No credentials",
+    "ac.c2":"Bring your own",
+    "ac.c3":"Institution",
+    
+    "ac.r1":"Analysis, optimization, noise simulation, QEC",
+    "ac.r2":"Vendor-neutral device ranking",
+    "ac.r3":"Reproducibility bundle",
+    "ac.r4":"API, CLI and MCP access",
+    "ac.r5":"Credential registration",
+    "ac.r6":"Submit to a real QPU",
+    "ac.r7":"Per-submission cost cap and audit trail",
+    "ac.r8":"Institutional usage report",
+    
+    "ac.r10":"Bring your own AI key","ac.r11":"GPU simulation on shared hosts","ac.r12":"Unmetered use of a GPU host you provide","ac.r13":"Restrict a registered key to named devices",
+    "nav.access":"Access",
+    "nav.platform":"Platform","nav.applications":"Applications","nav.preflight":"Pre-flight","nav.workbench":"Workbench","nav.capabilities":"Capabilities","nav.intelligence":"Intelligence","nav.developers":"Developers","nav.agent":"Agent","nav.hardware":"Hardware",
+    "pre.tag":"Before you spend a shot","pre.h2":"QPU time is scarce. Spend it on the run that will work.","pre.lead":"Most wasted quantum spend is decided before submission — the wrong device, a circuit too deep for it, or a run you already made last month. UQH answers all three up front.",
+    "p1.t":"Analytic fidelity estimate","p1.d":"An error-budget calculation from the device's measured 1q, 2q and readout error rates against your circuit's gate counts. No noise simulation, so no qubit ceiling and no wait — it answers for a 100-qubit circuit as fast as a 2-qubit one.",
+    "p2.t":"Rank the devices, vendor-neutral","p2.d":"The same circuit scored across every connected processor — expected fidelity, 2q error, coherence headroom, queue depth and cost, side by side. Pick on evidence, not on which vendor you happen to have an account with.",
+    "p3.t":"You may have run this already","p3.d":"Submissions are matched by circuit content, not filename, so earlier runs of the same circuit surface before you pay for another one — and an edited circuit correctly stops matching. Re-running is a choice, not an accident.",
+    "p4.t":"Prove the circuit on GPU first","p4.d":"Run it on dedicated GPU simulation hosts before it ever reaches hardware. Logic bugs, wrong observables and bad ansätze are cheaper to find on a GPU than in a QPU queue.",
+    "c13.t":"Hybrid-ready execution","c13.d":"Algorithm files already run on remote compute hosts, and the backend a program names is swapped at run time — a script written for a simulator reaches a GPU host or real hardware without being edited. When tightly coupled GPU-QPU machines arrive, they join as one more target on that same path rather than as a new architecture.","c12.t":"Reproducible results","c12.d":"Export one self-describing file per run: the circuit, the observable, the calibration exactly as it stood at submit time, the result, the noiseless reference and SDK versions. Anything unavailable is named rather than quietly omitted, so the number stays checkable years later — attach it to a paper or hand it to a reviewer.",
+    "sec.9.t":"Credential vault","sec.9.d":"Vendor keys are held encrypted under the account that registered them, and nowhere else — there is no institution key and no platform key to lend, because a vendor allowance is issued to a person. A key can be limited to named devices, and a compromised one is suspended with a reason rather than deleted, so its owner learns why instead of watching it vanish.","sec.8.t":"Quantum, AI and GPU in one record","sec.8.d":"Quantum time, AI calls and GPU runs land in the same institutional record, so one export shows where the work went — no separate accounting for the classical half. Each still bills where it belongs: quantum and AI on the member's own vendor account, GPU on hardware the institution attached and opened to its members.",
+    "hero.kicker":"UQH · Universal Quantum Hub","hero.title":"Universal <span class=\"grad\">Quantum</span> Hub",
+    "hero.sub":"A unified operating platform for quantum computing, built for research institutions, national programs, and enterprise R&D. Connect every framework and vendor, run the full pipeline under governance and cost control, and read the hardware landscape in data — no vendor lock-in, no rewrites per provider.",
+    "hero.cta1":"Explore the platform","hero.cta2":"See the workflow","hero.byline":"A service by joygoLive — <b class=\"hl\">joy</b>, realized when Quantum Computing <b class=\"hl\">go</b>es <b class=\"hl\">Live</b>.","hero.flabel":"Works with your SDK","hero.vlabel":"Multi-vendor by design",
+    "stat.vendors":"Hardware vendors","stat.frameworks":"SDK frameworks","stat.steps":"Independent pipeline steps","stat.apps":"Application modules",
+    "plat.tag":"The platform","plat.h2":"One middleware, from circuit to confident result",
+    "plat.lead":"Bring your circuit once. UQH detects the framework, optimizes and noise-checks it, applies error mitigation and error correction, prices it across vendors, and runs it on the backend you choose — then turns every run into operational intelligence.",
+    "plat.1.t":"Connect everything","plat.1.d":"Nine SDK frameworks and eight hardware vendors across superconducting, trapped-ion, neutral-atom, and photonic — behind one interface.",
+    "plat.2.t":"Run with confidence","plat.2.d":"Noise simulation, readout + ZNE mitigation, Pauli-check postselection, and QEC analysis make results trustworthy — with cost known before you submit.",
+    "plat.3.t":"Operate at scale","plat.3.d":"Accumulated jobs become benchmarks and device intelligence; per-domain policy, billing, and an AI-agent interface make it run as a service.",
+    "cap.tag":"Capabilities","cap.h2":"Everything the quantum workflow needs","cap.lead":"A broad, composable feature set — use any piece on its own, or the whole pipeline end to end.",
+    "c1.t":"Frameworks & vendors","c1.d":"Write in your SDK of choice and submit to any supported processor — no per-vendor rewrites.",
+    "c2.t":"Independent pipeline","c2.d":"Analyze, optimize, noise-simulate, QEC, GPU-execute, QPU-submit — each step runs standalone, with an emulator dry-run option.",
+    "c3.t":"Circuit optimization","c3.d":"Transpile and route with multiple engines, mapped to the target device's physical layout — and compare every option side by side on resulting complexity, optimization time, and analytical fidelity. Every candidate is verified mathematically equivalent to your original circuit — large circuits offloaded to GPU — and comparisons run in isolation, so timings stay honest and the platform stays responsive.",
+    "c4.t":"Error mitigation & resilience","c4.d":"Readout-error mitigation and zero-noise extrapolation as one resilience level, plus spacetime Pauli-check postselection for Clifford circuits — standard techniques, applied consistently.",
+    "c5.t":"Noise simulation & QEC","c5.d":"Calibration-based fidelity and TVD with a cross-engine consistency check (Qiskit vs PennyLane), plus error-correction analysis and code application with threshold and logical-error estimates.",
+    "c6.t":"Cost & resource estimate","c6.d":"See qubits, depth, gates, and what each vendor bills — in that vendor’s own unit — before submitting. No surprise spend.",
+    "c7.t":"GPU acceleration","c7.d":"Offload heavy simulation to dedicated GPU hosts and compare CPU, GPU, and QPU on the same problem.",
+    "c8.t":"Knowledge base (RAG)","c8.d":"Ask in your own words — that is the whole interface. Hybrid dense + sparse retrieval, re-ranking, and cited answers over the platform's own accumulated runs: measured results, refusals and workarounds, not a document corpus. Findings distilled from them are anonymised and searchable by everyone; individual records stay with their owner. What the corpus contains is curated by your administrators, not chosen per query.",
+    "c9.t":"API, CLI & MCP","c9.d":"Full parity across UI, REST API, and CLI — plus an MCP server so AI agents orchestrate runs directly.",
+    "c11.t":"Self-maintaining (AutoOps)","c11.d":"A scheduled autonomous layer tracks every device's fidelity and error rates over time and flags the ones drifting away from spec, watches SDK releases against your pinned versions, and picks up new hardware as vendors bring it online. Reversible actions auto-apply and log; anything irreversible waits for admin approval.",
+    "c10.badge":"Coming soon","c10.t":"Runtime sessions","c10.d":"Reserve a device and batch many jobs in one session to minimize re-queuing between iterations — in the spirit of vendor runtime sessions. On the roadmap.",
+    "dev.tag":"Workflow & developers","dev.h2":"One pipeline — the same power in your terminal","dev.lead":"Every step is independent and scriptable. Run it in the UI, call the REST API, or drive it from the CLI and your CI.",
+    "ag.tag":"Agent mode","ag.h2":"Let an AI agent run your quantum workflow","ag.lead":"UQH ships an MCP server, so Claude and other AI agents use it as a tool — analyzing, optimizing, mitigating, pricing, and submitting across vendors from a single natural-language request.","ag.1":"Natural-language workflow — describe the goal, the agent runs the steps.","ag.2":"Every step is a tool — analyze, optimize, mitigate, estimate, submit, compare.","ag.3":"Multi-vendor orchestration — the agent selects and runs across backends.","ag.4":"Standard MCP — works with Claude and other MCP clients.",
+    "int.tag":"Intelligence","int.h2":"Read the ecosystem in data, not hype","int.lead":"Every job you run feeds a living view of the hardware landscape — device, SDK, and optimizer Leaders boards, health, cost, and playbooks, all drawn from real jobs.",
+    "int.p1":"QPU Fidelity Leaders · fidelity","int.p2":"Device health · drift over time","int.p3":"Cost vs fidelity · per device","int.p4":"Playbooks · best device per circuit","int.p5":"SDK Leaders · composite","int.p6":"Optimizer Leaders · depth reduction","int.p7":"Reuse or re-submit · calibration drift","int.d1":"Cal stable (<15% drift)","int.d1v":"reuse result","int.d2":"Cal drifted (≥15%)","int.d2v":"re-submit","int.d3":"Every run stores the device calibration — compare it to now and skip the spend when nothing moved.","int.pb1":"≤10 qubits","int.pb2":"11–20 qubits","int.pb3":"21–30 qubits",
+    "wb.tag":"Workbench","wb.h2":"One workspace, from upload to result","wb.lead":"Drop in a circuit and UQH detects its framework, previews the metadata, and runs the whole pipeline — analyze, optimize, noise-check, mitigate, submit — without leaving the page.","wb.1":"Framework auto-detection on upload — Qiskit, PennyLane, Qrisp, and more.","wb.2":"Favorites, recents, and inline circuit-metadata preview.","wb.3":"Run any single step or the full pipeline from the UI.","wb.4":"Emulator dry-run to validate before you spend on real hardware.",
+    "app.tag":"Applications","app.h2":"Ready-to-run quantum application modules","app.lead":"Domain modules you can run today — each comparable across CPU, GPU, and real QPU backends.",
+    "a1.t":"QML anomaly detection","a1.d":"Quantum-kernel outlier detection benchmarked against a classical baseline — upload your own CSV; advantage is dataset-dependent.","a2.t":"Quantum finance","a2.d":"QAOA portfolio optimization versus exact and greedy baselines.","a3.t":"Quantum chemistry","a3.d":"VQE ground-state energy with noise and mitigation comparison.","a4.t":"Graph optimization","a4.d":"QAOA for max-cut, independent set, and vertex cover.",
+    "hw.tag":"Hardware","hw.h2":"Every modality, one platform","hw.lead":"Reach superconducting, trapped-ion, neutral-atom, and photonic processors — and compare and run across them from a single place.",
+    "hw.c1":"Vendor","hw.c2":"Modality","hw.c3":"Qubits","hw.c4":"Access","mx.h2":"Which SDK reaches which hardware","mx.lead":"Write in the framework you already use. Gate-based circuits reach every gate-based vendor; photonic and analog work stays with the hardware that can express it.","mx.c1":"SDK","mx.cgpu":"GPU sim",
+    "m.super":"Superconducting","m.ion":"Trapped-ion","m.atom":"Neutral-atom","m.photon":"Photonic","ac.open":"Open plan","ac.cred":"Credits","ac.free":"Free tier",
+    "aud.tag":"Who it's for","aud.h2":"Built for institutions and government — open to every researcher",
+    "aud.1.t":"Researchers","aud.1.d":"Individual researchers aren't shut out — everything up to the point of spending money is self-serve and needs no credential, and once you register your own vendor key the same workspace runs it: compare CPU, GPU and real QPUs, watch noise appear, and recover signal with mitigation.",
+    "aud.2.t":"Institutions & government","aud.2.d":"The primary fit — national programs, research institutes, and enterprise R&D. One governed, white-label control plane over every vendor: spend safeguards, code and data isolation, curated knowledge scope, security audit of every refused upload, and data sovereignty — with Leaders boards and real cost-vs-fidelity to ground hardware and budget decisions.",
+    "aud.3.t":"Developers","aud.3.d":"Work from the environment you know. Circuit-complexity analysis, optimization, cost estimates, and runs over API and CLI — script them or wire them into CI.",
+    "sec.tag":"Security & governance","sec.h2":"Built to run as a managed service","sec.lead":"Multi-tenant controls, spend safeguards, and isolation are enforced server-side across UI, API, CLI, and MCP.",
+    "sec.1.t":"Per-domain white-label","sec.1.d":"Control visible tabs, pipeline steps, devices, and accounts per domain and plan.","sec.2.t":"Spend safeguards","sec.2.d":"Pre-submission estimates in each vendor’s own billing unit, a cost threshold, and a per-job usage record. Work runs on your own vendor account — we never hold a balance for you.","sec.3.t":"Code & data isolation","sec.3.d":"Static analysis and execution limits on uploads; per-user file and job isolation.","sec.4.t":"Auth & privacy","sec.4.d":"Session and API-key auth, output escaping, and PII scrubbing before external LLM calls.","sec.5.t":"Abuse defense","sec.5.d":"Per-IP flood auto-blocking and IP/account blacklist, enforced across UI, API, CLI, and MCP at a single server chokepoint.","sec.6.t":"Institutional governance","sec.6.d":"Members register their own vendor credentials, so one person’s allowance is never spent by someone else. Institutions manage membership and access; every admin action is audit-logged.","sec.7.t":"Institutional reporting","sec.7.d":"On request, export a full account of an institution's activity — every member's quantum, AI and GPU work, with what it cost in each vendor's own unit — over any period or all time, scoped strictly to that institution and carrying its own audit trail.",
+    "why.tag":"Why UQH","why.h2":"The combination is the difference","why.lead":"Individually, these capabilities exist elsewhere. UQH brings them into a single flow.",
+    "why.1.t":"QEC-aware pipeline","why.1.d":"Error correction sits in the same flow as optimization and execution.","why.2.t":"Agent-native execution","why.2.d":"Multi-vendor runs orchestrated directly by AI agents over MCP.","why.3.t":"Result-quality evaluation","why.3.d":"Fidelity and benchmarking grounded in your own job history.","why.4.t":"Per-domain policy","why.4.d":"White-label control over features, devices, and access by domain and plan.",
+    
+    "ft.home":"Home","ft.copy":"© 2026 joygoLive. All rights reserved."
+  },
+  ko:{
+    "nav.access":"이용 형태",
+    "ac.tag":"이용 형태",
+    "ac.h2":"실행 방식 세 가지, 플랫폼 하나",
+    "ac.lead":"비용이 들지 않는 기능은 자격증명 없이도 모두에게 열려 있습니다. 비용이 드는 구간 — 양자 프로세서 시간, AI 호출 — 은 직접 등록한 자격증명으로 실행합니다. 플랫폼이 나눠 주는 공유 자원은 없습니다: 벤더 할당은 사람 앞으로 발급되므로, 저희 것을 빌려주면 보유자 기준으로 그 벤더 약관을 어기게 됩니다.",
+    "ac.t1":"자격증명 없이",
+    "ac.d1":"비용이 들지 않는 것은 바로 쓸 수 있습니다: 분석, 최적화, 노이즈 시뮬레이션, QEC, 장비 순위, 재현 번들, 그리고 API·CLI·MCP 인터페이스. 본인 키가 필요한 것은 실제 QPU 제출과 AI 기능 두 가지뿐입니다.",
+    "ac.t2":"자격증명 직접 등록",
+    "ac.d2":"본인 벤더 계정 키를 등록하면 그 키로 실행됩니다. 한도는 그 벤더가 자기 키에 집행하고 청구도 본인에게 직접 갑니다 — 저희는 잔액을 들고 있지 않고, 플랫폼 키로 대신 돌려주지도 않습니다.",
+    "ac.t3":"기관",
+    "ac.d3":"자격증명은 다른 모두와 같이 구성원이 각자 등록합니다. 기관이 관리하는 것은 소속·접근 범위, 그리고 기관이 붙여 구성원에게 연 GPU 장비입니다 — 한 번의 제출이 쓸 수 있는 상한, 기간별 보고서, 감사 이력이 함께 갑니다.",
+    "ac.c0":"항목",
+    "ac.c1":"자격증명 없이",
+    "ac.c2":"직접 등록",
+    "ac.c3":"기관",
+    
+    "ac.r1":"분석 · 최적화 · 노이즈 시뮬레이션 · 오류정정",
+    "ac.r2":"벤더 중립 장비 순위 비교",
+    "ac.r3":"재현성 번들",
+    "ac.r4":"API · CLI · MCP 접근",
+    "ac.r5":"자격증명 등록",
+    "ac.r6":"실제 QPU 제출",
+    "ac.r7":"제출당 비용 상한과 감사 이력",
+    "ac.r8":"기관 사용 보고서",
+    
+    "ac.r10":"AI 자격증명 직접 등록","ac.r11":"공유 호스트 GPU 시뮬레이션","ac.r12":"직접 제공한 GPU 장비 무제한 사용","ac.r13":"등록한 키를 지정 장비로 한정",
+    "nav.platform":"플랫폼","nav.applications":"응용","nav.preflight":"사전 평가","nav.workbench":"워크벤치","nav.capabilities":"기능","nav.intelligence":"인텔리전스","nav.developers":"개발자","nav.agent":"에이전트","nav.hardware":"하드웨어",
+    "pre.tag":"한 샷도 쓰기 전에","pre.h2":"QPU 시간은 희소합니다. 될 실행에 쓰십시오.","pre.lead":"낭비되는 양자 비용의 대부분은 제출 전에 이미 결정됩니다 — 맞지 않는 장비, 그 장비에 비해 너무 깊은 회로, 혹은 지난달에 이미 돌린 실행. UQH는 이 셋을 제출 전에 답합니다.",
+    "p1.t":"해석적 피델리티 추정","p1.d":"장비의 실측 1큐빗·2큐빗·판독 에러율과 회로의 게이트 수로 계산하는 에러 버짓 방식입니다. 노이즈 시뮬레이션을 쓰지 않으므로 큐빗 상한도 대기 시간도 없습니다 — 100큐빗 회로도 2큐빗 회로만큼 빠르게 답이 나옵니다.",
+    "p2.t":"벤더 중립 장비 순위","p2.d":"같은 회로를 연결된 모든 프로세서에 얹어 점수화합니다 — 예상 피델리티, 2큐빗 에러, 결맞음 여유, 큐 길이, 비용을 나란히. 마침 계정이 있는 벤더가 아니라 근거로 고르십시오.",
+    "p3.t":"이미 돌린 회로일 수 있습니다","p3.d":"제출 이력은 파일명이 아니라 회로 내용으로 대조됩니다. 같은 회로의 이전 실행이 다시 지불하기 전에 드러나고, 회로를 수정했다면 대조에서 정확히 빠집니다. 재실행이 사고가 아니라 선택이 됩니다.",
+    "p4.t":"GPU에서 먼저 검증","p4.d":"실기기에 닿기 전에 전용 GPU 시뮬레이션 호스트에서 돌려봅니다. 로직 버그, 잘못된 관측량, 부적절한 안자츠는 QPU 큐에서보다 GPU에서 찾는 편이 훨씬 쌉니다.",
+    "c13.t":"하이브리드 대응","c13.d":"알고리즘 파일은 이미 원격 연산 호스트에서 실행되고, 프로그램이 지목한 백엔드는 실행 시점에 교체됩니다 — 시뮬레이터용으로 쓴 코드가 손대지 않은 채 GPU 호스트나 실기기에 닿습니다. GPU·QPU 밀결합 장비가 나오면 새 구조가 아니라 같은 경로의 대상 하나로 편입됩니다.","c12.t":"재현 가능한 결과","c12.d":"실행 하나당 자기서술적 파일 하나를 내보냅니다 — 회로, 관측량, 제출 시점 그대로의 캘리브레이션, 결과, 무노이즈 기준값, SDK 버전. 없는 항목은 조용히 빠지지 않고 이름이 남으므로, 그 숫자는 몇 년 뒤에도 검증 가능합니다. 논문에 첨부하거나 리뷰어에게 그대로 건네십시오.",
+    "sec.9.t":"자격증명 금고","sec.9.d":"벤더 키는 등록한 본인 계정 아래에만 암호화 보관됩니다. 기관 키도 플랫폼 키도 없습니다 — 벤더 할당은 사람 앞으로 발급되므로 빌려줄 것이 애초에 없습니다. 키는 지정 장비로만 쓰도록 한정할 수 있고, 유출이 의심되면 삭제가 아니라 사유와 함께 정지되어 소유자가 이유를 알 수 있습니다.","sec.8.t":"양자·AI·GPU를 한 기록으로","sec.8.d":"양자 실행·AI 호출·GPU 실행이 같은 기관 기록에 남아, 한 번의 내보내기로 작업이 어디에 쓰였는지 보입니다 — 워크로드의 고전 계산 쪽을 따로 회계할 필요가 없습니다. 청구는 각자 제자리로 갑니다: 양자와 AI 는 멤버 본인 벤더 계정, GPU 는 기관이 붙여 구성원에게 연 장비입니다.",
+    "hero.kicker":"UQH · 유니버설 양자 허브","hero.title":"유니버설 <span class=\"grad\">양자</span> 허브",
+    "hero.sub":"연구기관·국가 프로그램·기업 R&D를 위한 양자 컴퓨팅 통합 운영 플랫폼. 모든 프레임워크와 벤더를 연결하고, 거버넌스와 비용 통제 아래 전체 파이프라인을 실행하며, 하드웨어 지형을 데이터로 읽습니다 — 벤더 종속도, 공급자별 재작성도 없습니다.",
+    "hero.cta1":"플랫폼 살펴보기","hero.cta2":"워크플로 보기","hero.byline":"joygoLive가 제공하는 서비스입니다 — <b class=\"hl\">joy</b>, realized when Quantum Computing <b class=\"hl\">go</b>es <b class=\"hl\">Live</b>.","hero.flabel":"당신의 SDK 그대로","hero.vlabel":"설계부터 멀티벤더",
+    "stat.vendors":"하드웨어 벤더","stat.frameworks":"SDK 프레임워크","stat.steps":"독립 파이프라인 단계","stat.apps":"응용 모듈",
+    "plat.tag":"플랫폼","plat.h2":"회로에서 신뢰할 수 있는 결과까지, 하나의 미들웨어",
+    "plat.lead":"회로를 한 번만 올리세요. UQH가 프레임워크를 인식해 최적화와 노이즈 점검을 거치고, 오류완화와 오류정정을 적용하고, 벤더별 비용을 산정한 뒤 선택한 백엔드에서 실행합니다 — 그리고 모든 실행을 운영 인텔리전스로 바꿉니다.",
+    "plat.1.t":"모든 것을 연결","plat.1.d":"9개 SDK 프레임워크와 초전도, 이온트랩, 중성원자, 광자를 아우르는 8개 하드웨어 벤더를 하나의 인터페이스로.",
+    "plat.2.t":"신뢰할 수 있는 실행","plat.2.d":"노이즈 시뮬레이션, 측정·ZNE 완화, Pauli-체크 포스트셀렉션, QEC 분석으로 결과를 신뢰할 수 있게 — 제출 전에 비용까지 확인합니다.",
+    "plat.3.t":"규모 있는 운영","plat.3.d":"누적된 작업이 벤치마크와 장비 인텔리전스가 되고, 도메인별 정책·과금·AI 에이전트 인터페이스가 이를 서비스로 만듭니다.",
+    "cap.tag":"기능","cap.h2":"양자 워크플로에 필요한 모든 것","cap.lead":"넓고 조합 가능한 기능 세트 — 각각 따로 쓰거나, 전체 파이프라인을 끝까지.",
+    "c1.t":"프레임워크 & 벤더","c1.d":"원하는 SDK로 작성하고 지원되는 어떤 프로세서로든 제출하세요 — 벤더별 재작성이 없습니다.",
+    "c2.t":"독립 파이프라인","c2.d":"분석, 최적화, 노이즈 시뮬레이션, QEC, GPU 실행, QPU 제출 — 각 단계가 독립적으로 동작하며 에뮬레이터 드라이런도 제공합니다.",
+    "c3.t":"회로 최적화","c3.d":"여러 엔진으로 트랜스파일·라우팅해 대상 장비 물리 배치에 매핑하고, 옵션별 결과 복잡도·최적화 시간·해석적 피델리티를 나란히 비교합니다. 모든 후보는 원 회로와 수학적 등가임이 검증되고 — 큰 회로는 GPU 로 위임 — 비교는 격리 실행되어 시간 측정이 정직하고 플랫폼 응답성도 유지됩니다.",
+    "c4.t":"오류완화 & resilience","c4.d":"측정 오류완화와 zero-noise extrapolation을 하나의 resilience 레벨로, 여기에 Clifford 회로용 Pauli-체크 포스트셀렉션까지 — 표준 기법을 일관되게 적용합니다.",
+    "c5.t":"노이즈 시뮬레이션 & QEC","c5.d":"캘리브레이션 기반 충실도·TVD에 엔진 간 교차검증(Qiskit vs PennyLane)을 더하고, 임계값과 논리오류 추정을 포함한 오류정정 분석·적용까지.",
+    "c6.t":"비용 & 자원 추정","c6.d":"제출 전에 큐빗·깊이·게이트와 각 벤더가 청구하는 값을 그 벤더의 단위로 확인 — 예상 못 한 지출이 없습니다.",
+    "c7.t":"GPU 가속","c7.d":"무거운 시뮬레이션을 전용 GPU 호스트로 오프로드하고 같은 문제로 CPU·GPU·QPU를 비교합니다.",
+    "c8.t":"지식베이스 (RAG)","c8.d":"평소 말로 물어보면 됩니다 — 그게 인터페이스의 전부입니다. 하이브리드 dense+sparse 검색, 재순위, 인용 기반 답변을 플랫폼에 누적된 실행 기록에 적용합니다: 문서 모음이 아니라 실측 결과·거부·우회입니다. 거기서 증류한 지식은 익명화돼 전원이 검색하고, 개별 레코드는 소유자에게만 보입니다. 무엇을 검색 대상에 둘지는 기관 관리자가 큐레이션합니다.",
+    "c9.t":"API, CLI & MCP","c9.d":"UI·REST API·CLI 완전 패리티 — 그리고 MCP 서버로 AI 에이전트가 실행을 직접 오케스트레이션합니다.",
+    "c11.t":"자율 유지보수 (AutoOps)","c11.d":"예약된 자율 계층이 장비별 피델리티와 에러율을 시계열로 추적해 규격에서 이탈하는 장비를 표시하고, 핀된 버전 대비 SDK 릴리스를 감시하며, 벤더가 새 하드웨어를 올리면 자동으로 잡아냅니다. 가역적 작업은 자동 적용·기록되고, 비가역적 작업은 관리자 승인을 기다립니다.",
+    "c10.badge":"준비 중","c10.t":"런타임 세션","c10.d":"하나의 세션에 여러 작업을 묶고 장비를 예약해 반복 사이의 재대기를 최소화합니다 — 벤더 런타임 세션과 같은 개념. 로드맵에 있습니다.",
+    "dev.tag":"워크플로 & 개발자","dev.h2":"하나의 파이프라인 — 터미널에서도 똑같이","dev.lead":"모든 단계가 독립적이고 스크립트로 다룰 수 있습니다. UI에서 실행하거나 REST API를 호출하거나 CLI와 CI에서 구동하세요.",
+    "ag.tag":"에이전트 모드","ag.h2":"AI 에이전트가 양자 워크플로를 직접 실행","ag.lead":"UQH는 MCP 서버를 제공해 Claude 등 AI 에이전트가 이를 도구로 사용합니다 — 한 번의 자연어 요청으로 분석, 최적화, 완화, 비용 산정, 제출을 벤더 전반에서 오케스트레이션합니다.","ag.1":"자연어 워크플로 — 목표만 말하면 에이전트가 단계를 실행합니다.","ag.2":"모든 단계가 도구 — 분석, 최적화, 완화, 추정, 제출, 비교.","ag.3":"멀티벤더 오케스트레이션 — 에이전트가 백엔드를 선택해 실행합니다.","ag.4":"표준 MCP — Claude 등 MCP 클라이언트와 동작합니다.",
+    "int.tag":"인텔리전스","int.h2":"과대광고가 아니라 데이터로 생태계를 읽으세요","int.lead":"실행하는 모든 작업이 하드웨어 지형의 살아있는 뷰를 만듭니다 — 디바이스·SDK·옵티마이저 Leaders 보드, 헬스, 비용, 플레이북 모두 실제 작업에서.",
+    "int.p1":"QPU Fidelity Leaders · 충실도","int.p2":"장비 헬스 · 시간에 따른 드리프트","int.p3":"비용 대 충실도 · 장비별","int.p4":"플레이북 · 회로별 최적 장비","int.p5":"SDK Leaders · 종합","int.p6":"Optimizer Leaders · depth 감소","int.p7":"재사용 vs 재제출 · 캘리브레이션 드리프트","int.d1":"드리프트 < 15%","int.d1v":"과거 결과 재사용","int.d2":"드리프트 ≥ 15%","int.d2v":"재제출","int.d3":"매 실행이 장비 캘리브레이션을 저장 — 현재와 비교해 변화가 없으면 지출을 아낍니다.","int.pb1":"≤10 큐빗","int.pb2":"11–20 큐빗","int.pb3":"21–30 큐빗",
+    "wb.tag":"워크벤치","wb.h2":"업로드부터 결과까지, 하나의 작업공간","wb.lead":"회로를 올리면 UQH가 프레임워크를 자동 인식하고 메타데이터를 미리 보여준 뒤, 페이지를 떠나지 않고 전체 파이프라인 — 분석, 최적화, 노이즈 점검, 완화, 제출 — 을 실행합니다.","wb.1":"업로드 시 프레임워크 자동 인식 — Qiskit, PennyLane, Qrisp 등.","wb.2":"즐겨찾기, 최근 항목, 인라인 회로 메타데이터 미리보기.","wb.3":"UI에서 단일 단계 또는 전체 파이프라인 실행.","wb.4":"실기기에 쓰기 전에 에뮬레이터 드라이런으로 검증.",
+    "app.tag":"응용","app.h2":"바로 실행하는 양자 응용 모듈","app.lead":"오늘 바로 실행할 수 있는 도메인 모듈 — 각각 CPU·GPU·실 QPU 백엔드에서 비교됩니다.",
+    "a1.t":"QML 이상탐지","a1.d":"고전 기준선과 벤치마크하는 양자 커널 이상치 탐지 — 직접 CSV 업로드 가능, 우위는 데이터셋에 따라 다릅니다.","a2.t":"양자 금융","a2.d":"정확해·그리디 기준선과 비교하는 QAOA 포트폴리오 최적화.","a3.t":"양자 화학","a3.d":"노이즈·완화 비교를 포함한 VQE 바닥상태 에너지.","a4.t":"그래프 최적화","a4.d":"맥스컷·독립집합·정점덮개를 위한 QAOA.",
+    "hw.tag":"하드웨어","hw.h2":"모든 방식, 하나의 플랫폼","hw.lead":"초전도, 이온트랩, 중성원자, 광자 프로세서에 접근하고 한 곳에서 비교·실행합니다.",
+    "hw.c1":"벤더","hw.c2":"방식","hw.c3":"큐빗","hw.c4":"접근","mx.h2":"어떤 SDK가 어떤 하드웨어에 닿는가","mx.lead":"쓰던 프레임워크로 그대로 작성하세요. 게이트 회로는 모든 게이트 기반 벤더에 닿고, 광자·아날로그 작업은 그것을 표현할 수 있는 하드웨어에 남습니다.","mx.c1":"SDK","mx.cgpu":"GPU 시뮬",
+    "m.super":"초전도","m.ion":"이온 트랩","m.atom":"중성 원자","m.photon":"광자","ac.open":"오픈 플랜","ac.cred":"크레딧","ac.free":"무료 티어",
+    "aud.tag":"누구를 위한 플랫폼인가","aud.h2":"기관·정부를 위해, 연구자에게도 열려 있게",
+    "aud.1.t":"연구자","aud.1.d":"개인 연구자도 소외되지 않습니다 — 돈이 드는 지점 전까지는 자격증명 없이 셀프서브로 다 쓰고, 본인 벤더 키를 등록하면 같은 작업 공간에서 그대로 실행됩니다: CPU·GPU·실제 QPU 비교, 노이즈 관찰, 완화로 신호 회복.",
+    "aud.2.t":"기관 · 정부","aud.2.d":"주 대상 — 국가 프로그램·연구기관·기업 R&D. 모든 벤더를 하나의 거버넌스·화이트라벨 컨트롤플레인으로: 지출 안전장치, 코드·데이터 격리, 지식 범위 큐레이션, 차단된 업로드 전수 감사, 데이터 주권 — Leaders 보드와 실제 비용 대 충실도로 하드웨어·예산 판단 근거를 마련합니다.",
+    "aud.3.t":"개발자","aud.3.d":"익숙한 환경에서 그대로 쓰세요. 회로 복잡도 분석, 최적화, 비용 추정, 실행을 API와 CLI로 — 스크립트로 자동화하거나 CI에 연결하세요.",
+    "sec.tag":"보안 & 거버넌스","sec.h2":"관리형 서비스로 운영되도록 설계","sec.lead":"멀티테넌트 제어, 지출 안전장치, 격리가 UI·API·CLI·MCP 전반에 서버측으로 집행됩니다.",
+    "sec.1.t":"도메인별 화이트라벨","sec.1.d":"도메인·플랜별로 노출 탭, 파이프라인 단계, 장비, 계정을 제어합니다.","sec.2.t":"지출 안전장치","sec.2.d":"제출 전 추정을 각 벤더의 청구 단위로, 비용 임계값, 작업별 사용 기록. 작업은 본인 벤더 계정에서 돌고 저희가 잔액을 들고 있지 않습니다.","sec.3.t":"코드 & 데이터 격리","sec.3.d":"업로드 코드에 정적분석과 실행 제한; 사용자별 파일·작업 격리.","sec.4.t":"인증 & 프라이버시","sec.4.d":"세션·API 키 인증, 출력 이스케이핑, 외부 LLM 호출 전 PII 스크러빙.","sec.5.t":"남용 방어","sec.5.d":"IP별 플러딩 자동 차단 + IP·계정 블랙리스트를 UI·API·CLI·MCP 전 경로에서 단일 서버 초크포인트로 집행합니다.","sec.6.t":"기관 거버넌스","sec.6.d":"멤버가 각자 자기 벤더 자격증명을 등록하므로 한 사람의 몫을 다른 사람이 쓰지 않습니다. 기관은 소속과 접근을 관리하고, 모든 관리자 조작은 감사 로그에 남습니다.","sec.7.t":"기관 활동 보고","sec.7.d":"요청 시 기관 활동 전체를 내보냅니다 — 멤버별 양자·AI·GPU 작업과 각 벤더 단위의 비용을, 지정한 기간이든 전체 기간이든 — 해당 기관으로 범위가 엄격히 닫힌 자체 감사 이력과 함께.",
+    "why.tag":"UQH를 선택하는 이유","why.h2":"차별점은 ‘조합’에 있습니다","why.lead":"개별 기능은 다른 곳에도 있습니다. UQH는 이것들을 하나의 흐름으로 묶습니다.",
+    "why.1.t":"QEC 통합 파이프라인","why.1.d":"오류정정이 최적화·실행과 같은 흐름 안에 있습니다.","why.2.t":"에이전트 네이티브 실행","why.2.d":"멀티벤더 실행을 MCP로 AI 에이전트가 직접 오케스트레이션.","why.3.t":"결과 품질 평가","why.3.d":"본인의 작업 이력에 기반한 충실도·벤치마킹.","why.4.t":"도메인별 정책","why.4.d":"도메인·플랜별로 기능·장비·접근을 제어하는 화이트라벨.",
+    
+    "ft.home":"홈","ft.copy":"© 2026 joygoLive. All rights reserved."
+  }
+};
+</script>
+<script src="../assets/i18n.js"></script>
+<!-- Analytics: GoatCounter — privacy-friendly, cookieless (no consent banner needed).
+     Dashboard: https://joygolive.goatcounter.com/ -->
+<script data-goatcounter="https://joygolive.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
