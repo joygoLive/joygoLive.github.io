@@ -1,0 +1,8 @@
+.git
+.wrangler
+node_modules
+schema.sql
+wrangler.toml
+IDEAS-SETUP.md
+.secrets.local
+.gitignore

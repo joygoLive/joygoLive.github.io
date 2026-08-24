@@ -2,3 +2,6 @@
 .wrangler/
 node_modules/
 .DS_Store
+
+# 게시판 비밀값 — 평문. 커밋하지 않는다.
+.secrets.local

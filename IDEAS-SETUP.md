@@ -17,23 +17,39 @@ npx wrangler pages dev . --port 8788 --local
 npx wrangler pages dev . --port 8788 --local --binding ADMIN_TOKEN=아무거나
 ```
 
-## 배포 (계정 필요)
+## 배포 — 끝났다 (2026-08-24)
 
-1. **Cloudflare 계정 생성** → dash.cloudflare.com (무료)
-2. **D1 생성** — Workers & Pages → D1 → Create → 이름 `joygolive-ideas`.
-   만들어진 **Database ID** 를 `wrangler.toml` 의 `database_id` 에 넣는다.
-3. **스키마 적용**
-   ```bash
-   npx wrangler d1 execute joygolive-ideas --remote --file=schema.sql
-   ```
-4. **Pages 프로젝트 연결** — Workers & Pages → Create → Pages → Connect to Git →
-   `joygoLive/joygoLive.github.io` 선택. 빌드 명령 **없음**, 출력 디렉토리 **`/`**.
-5. **바인딩** — 프로젝트 Settings → Functions → D1 bindings 에
-   변수명 `DB` → `joygolive-ideas`.
-6. **비밀값** — Settings → Environment variables 에 (암호화로)
-   - `ADMIN_TOKEN` — 검토 의견을 다는 데 쓴다. **길고 무작위로.**
-   - `RATE_SALT` — IP 해시용 소금. 아무 무작위 문자열.
-7. 배포되면 `*.pages.dev` 주소가 생긴다. 확인 후 Custom domain 을 붙인다.
+```
+계정        iamsehwan@gmail.com  (b51b3d70c5cec181630b9e9c5f87375b)
+D1          joygolive-ideas · f11bac51-950c-4219-bf2e-d69a15d7d3ef · APAC
+Pages       joygolive → https://joygolive.pages.dev
+비밀값      ADMIN_TOKEN · RATE_SALT (Pages 프로덕션 환경에 암호화 저장)
+```
+
+`ADMIN_TOKEN` 과 `RATE_SALT` 의 평문은 **`.secrets.local`** 에 있다 (권한 600,
+`.gitignore` 로 막힘). Cloudflare 쪽은 암호화 저장이라 다시 못 읽으므로, 이 파일을
+잃으면 새로 발급해서 양쪽을 함께 갈아야 한다.
+
+**`RATE_SALT` 를 바꾸면 기존 속도제한 기록이 무의미해진다** — 해시가 달라지므로
+전부 새 사람으로 보인다. 유출이 아니면 굳이 돌리지 않는다.
+
+### 다시 배포하려면
+
+```bash
+npx wrangler pages deploy . --project-name joygolive --branch main --commit-dirty=true
+```
+
+`.assetsignore` 가 정적 자산에서 뺄 것들을 적어 둔다 — 설정·문서·비밀값이
+`*.pages.dev` 로 그대로 새어 나가지 않게.
+
+### 스키마를 고쳤을 때
+
+```bash
+npx wrangler d1 execute joygolive-ideas --remote --file=schema.sql
+```
+
+`CREATE TABLE IF NOT EXISTS` 라 여러 번 돌려도 안전하다. 열을 **추가**하는 변경은
+`ALTER TABLE` 을 따로 써야 한다 — 위 파일은 없는 것만 만들지 있는 것을 고치지 않는다.
 
 ## 관리자 조작 (토큰으로)
 
@@ -41,7 +57,7 @@ npx wrangler pages dev . --port 8788 --local --binding ADMIN_TOKEN=아무거나
 
 ```bash
 TOK=…   # ADMIN_TOKEN
-SITE=https://joygolive.pages.dev
+SITE=https://joygolive.pages.dev   # .secrets.local 의 ADMIN_TOKEN
 
 # 상태 + 검토 의견
 curl -X PATCH $SITE/api/ideas -H 'Content-Type: application/json' -H "X-Admin-Token: $TOK" \
