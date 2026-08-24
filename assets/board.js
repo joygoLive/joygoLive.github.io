@@ -219,9 +219,12 @@
         });
         const j = await r.json().catch(() => ({}));
         if (!r.ok) throw new Error(j.error || t.fail);
-        msg.className = 'form-msg ok';
-        msg.textContent = t.done;
+        // renderForm() 이 폼 innerHTML 을 갈아끼우므로 #formMsg 도 같이 사라진다.
+        // 먼저 다시 그리고, **새로 생긴** 자리에 결과를 적는다 — 순서가 반대면
+        // 「올라갔습니다」가 뜨자마자 지워져서 성공했는지 알 수 없다.
         renderForm();
+        const done = $('formMsg');
+        if (done) { done.className = 'form-msg ok'; done.textContent = t.done; }
         await load();
         const lp = $('ideaList');
         if (lp?.hidden) $('ideaListToggle')?.click();
