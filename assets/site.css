@@ -238,3 +238,4 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
   .svc-grid,.facts{grid-template-columns:1fr}
   .svc-card{padding:26px 24px}
 }
+.badge.beta{color:#6d28d9;background:rgba(109,40,217,.08);border-color:rgba(109,40,217,.25)}

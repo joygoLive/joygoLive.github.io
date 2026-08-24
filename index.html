@@ -73,7 +73,7 @@
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/></svg>
         <div class="svc-head">
           <h3>UQH</h3>
-          <span class="badge live" data-i18n="svc.b.live">In service</span>
+          <span class="badge beta" data-i18n="svc.b.beta">Beta</span>
         </div>
         <span class="svc-full" data-i18n="svc.uqh.full">Universal Quantum Hub · Quantum computing</span>
         <p data-i18n="svc.uqh.d">Vendor-neutral middleware for quantum computing. Write in the SDK you already use, and reach every connected processor through one pipeline — analysis, optimization, noise simulation, error mitigation, QEC, and cost estimation before you submit.</p>
@@ -130,7 +130,7 @@
     <div class="disclose fade">
       <b data-i18n="svc.st.t">Where each one actually stands</b>
       <ul>
-        <li data-i18n="svc.st.1">UQH is in service. What costs nothing to run is open without any credential; quantum processor time and AI calls run on credentials you register yourself.</li>
+        <li data-i18n="svc.st.1">UQH is in beta and open to use. What costs nothing to run needs no credential at all; quantum processor time and AI calls run on credentials you register yourself. Being in beta means the surface can still move — features and limits are not frozen yet.</li>
         <li data-i18n="svc.st.2">AMC is in development — an MVP under field tuning with community sports organizations. Not open to the public yet.</li>
         <li data-i18n="svc.st.3">BOR runs on the Base Sepolia testnet and is not audited by a third party. It is a raffle, not an investment: the expected value of a ticket is below what it costs.</li>
       </ul>
@@ -206,7 +206,7 @@ const _L = {
 
     "svc.tag":"Portfolio","svc.h2":"What has shipped so far",
     "svc.lead":"Fields that share nothing with each other — quantum infrastructure, exercise coaching, an on-chain raffle — already running rather than described. Each was built here and is operated here: not licensed, not resold.",
-    "svc.more":"Read more","svc.b.live":"In service","svc.b.dev":"In development","svc.b.test":"Testnet",
+    "svc.more":"Read more","svc.b.beta":"Beta","svc.b.dev":"In development","svc.b.test":"Testnet",
 
     "svc.uqh.full":"Universal Quantum Hub · Quantum computing",
     "svc.uqh.d":"Vendor-neutral middleware for quantum computing. Write in the SDK you already use, and reach every connected processor through one pipeline — analysis, optimization, noise simulation, error mitigation, QEC, and cost estimation before you submit.",
@@ -227,7 +227,7 @@ const _L = {
     "svc.bor.3":"BLS12-381 beacon verification on-chain, against RFC 9380 vectors",
 
     "svc.st.t":"Where each one actually stands",
-    "svc.st.1":"UQH is in service. What costs nothing to run is open without any credential; quantum processor time and AI calls run on credentials you register yourself.",
+    "svc.st.1":"UQH is in beta and open to use. What costs nothing to run needs no credential at all; quantum processor time and AI calls run on credentials you register yourself. Being in beta means the surface can still move — features and limits are not frozen yet.",
     "svc.st.2":"AMC is in development — an MVP under field tuning with community sports organizations. Not open to the public yet.",
     "svc.st.3":"BOR runs on the Base Sepolia testnet and is not audited by a third party. It is a raffle, not an investment: the expected value of a ticket is below what it costs.",
 
@@ -253,7 +253,7 @@ const _L = {
 
     "svc.tag":"포트폴리오","svc.h2":"지금까지 나온 것",
     "svc.lead":"서로 공통점이 하나도 없는 분야들 — 양자 인프라, 운동 코칭, 온체인 복권 — 에서 설명이 아니라 이미 돌아가고 있습니다. 각각 여기서 만들고 여기서 운영합니다. 라이선스도, 재판매도 아닙니다.",
-    "svc.more":"자세히 보기","svc.b.live":"서비스 중","svc.b.dev":"개발 중","svc.b.test":"테스트넷",
+    "svc.more":"자세히 보기","svc.b.beta":"베타","svc.b.dev":"개발 중","svc.b.test":"테스트넷",
 
     "svc.uqh.full":"Universal Quantum Hub · 양자컴퓨팅",
     "svc.uqh.d":"양자컴퓨팅을 위한 벤더 중립 미들웨어입니다. 쓰던 SDK 그대로 작성하고, 하나의 파이프라인으로 연결된 모든 프로세서에 닿습니다 — 분석, 최적화, 노이즈 시뮬레이션, 오류 완화, QEC, 그리고 제출 전 비용 추정까지.",
@@ -274,7 +274,7 @@ const _L = {
     "svc.bor.3":"BLS12-381 비콘을 온체인 검증 — RFC 9380 공식 벡터 통과",
 
     "svc.st.t":"각각이 지금 어디까지 와 있는가",
-    "svc.st.1":"UQH는 서비스 중입니다. 비용이 들지 않는 기능은 자격증명 없이 열려 있고, 양자 프로세서 시간과 AI 호출은 본인이 등록한 자격증명으로 실행됩니다.",
+    "svc.st.1":"UQH는 베타 서비스 중이며 지금 쓸 수 있습니다. 비용이 들지 않는 기능은 자격증명 없이 열려 있고, 양자 프로세서 시간과 AI 호출은 본인이 등록한 자격증명으로 실행됩니다. 베타이므로 기능과 제약이 아직 고정되지 않았습니다.",
     "svc.st.2":"AMC는 개발 중입니다 — 생활체육 단체와 현장 튜닝 중인 MVP 단계이며, 아직 일반 공개 전입니다.",
     "svc.st.3":"BOR은 Base Sepolia 테스트넷에서 동작하며 제3자 감사를 받지 않았습니다. 투자가 아니라 복권입니다 — 티켓의 기대값은 지불한 금액보다 낮습니다.",
 
