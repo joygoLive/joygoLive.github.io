@@ -322,6 +322,7 @@ footer .brand{user-select:none;-webkit-user-select:none}
    누르게 된다. **보이는 크기는 그대로 두고 눌리는 넓이만** 키운다 — 글자를
    키우면 레이아웃이 흔들리므로 안쪽 여백으로 푼다. */
 @media (max-width:720px){
+  .nav .brand{padding:8px 0;margin:-8px 0}          /* 27 → 43px, 헤더 높이는 그대로 */
   .foot-links{gap:6px}
   .foot-links a{padding:9px 10px;margin:-9px 0}      /* 22 → 40px */
   .lang-toggle button{padding:10px 12px}             /* 27 → 39px */
