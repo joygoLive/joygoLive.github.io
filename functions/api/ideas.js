@@ -5,12 +5,16 @@ const LIMITS = { title: 120, problem: 2000, who: 500, outcome: 1000, author: 40 
 /** 목록. 아이디어와 댓글을 한 번에 준다 — 펼칠 때마다 왕복하면 느리고, 이 규모에서
  *  전부 보내는 편이 단순하다. 숨긴 것은 나가지 않는다(관리자에게도 목록에선 뺀다 —
  *  숨김은 «없던 일»이 아니라 «안 보이게»이고, 되살리려면 DB 를 본다). */
-export async function onRequestGet({ env }) {
+export async function onRequestGet({ request, env }) {
   const db = env.DB;
+  // 관리자가 ?all=1 로 부르면 가린 것까지 준다. 가리기를 되돌리려면 그 글의 id 를
+  // 알아야 하는데, 목록에서 사라진 뒤에는 알 길이 없다 — 되돌릴 수 없는 «가리기»는
+  // 사실상 삭제이고, 그건 이 게시판이 하지 않기로 한 것이다.
+  const all = isAdmin(request, env) && new URL(request.url).searchParams.get('all') === '1';
   const ideas = await db
     .prepare(
-      `SELECT id, ts, author, title, problem, who, outcome, status, note
-         FROM ideas WHERE hidden = 0 ORDER BY ts DESC LIMIT 200`
+      `SELECT id, ts, author, title, problem, who, outcome, status, note, hidden
+         FROM ideas ${all ? '' : 'WHERE hidden = 0'} ORDER BY ts DESC LIMIT 200`
     )
     .all();
   const comments = await db
@@ -26,7 +30,9 @@ export async function onRequestGet({ env }) {
     byIdea.get(c.idea_id).push({ ...c, owner: !!c.owner });
   }
   return json({
-    ideas: (ideas.results ?? []).map((i) => ({ ...i, comments: byIdea.get(i.id) ?? [] })),
+    ideas: (ideas.results ?? []).map((i) => ({
+      ...i, hidden: !!i.hidden, comments: byIdea.get(i.id) ?? [],
+    })),
   });
 }
 
