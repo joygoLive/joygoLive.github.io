@@ -1,4 +1,4 @@
-import { json, bad, ipHash, rateOk } from '../../_shared.js';
+import { json, bad, ipHash, rateOk, rateCount } from '../../_shared.js';
 
 /* 짧은 비밀번호를 긴 토큰으로 바꿔 준다.
  *
@@ -22,6 +22,13 @@ export async function onRequestPost({ request, env }) {
     return bad('시도가 너무 잦습니다. 한 시간 뒤에 다시 해 주세요.', 429);
   }
 
+  // IP별 제한만으로는 짧은 비밀번호를 못 지킨다 — 대리 서버로 IP 를 갈아 가며
+  // 두드리면 시간당 5회가 아무 의미가 없다. 그래서 **실패를 IP 와 무관하게도**
+  // 센다. 성공은 세지 않으므로, 정상적으로 쓰는 사람은 이 한도에 닿지 않는다.
+  if ((await rateCount(env.DB, 'GLOBAL', 'unlock_fail', 3600)) >= 40) {
+    return bad('지금은 잠겨 있습니다. 잠시 뒤에 다시 해 주세요.', 429);
+  }
+
   const body = await request.json().catch(() => null);
   const got = typeof body?.pass === 'string' ? body.pass : '';
 
@@ -31,7 +38,11 @@ export async function onRequestPost({ request, env }) {
   for (let i = 0; i < want.length; i++) {
     diff |= (got.charCodeAt(i) || 0) ^ want.charCodeAt(i);
   }
-  if (diff !== 0) return bad('비밀번호가 다릅니다', 401);
+  if (diff !== 0) {
+    await env.DB.prepare('INSERT INTO rate (ip_hash, kind, ts) VALUES (?, ?, ?)')
+      .bind('GLOBAL', 'unlock_fail', Math.floor(Date.now() / 1000)).run();
+    return bad('비밀번호가 다릅니다', 401);
+  }
 
   return json({ token });
 }

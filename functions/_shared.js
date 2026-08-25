@@ -45,6 +45,18 @@ export async function rateOk(db, hash, kind, limit, windowSec) {
   return true;
 }
 
+/** 세기만 한다 — 기록하지 않는다.
+ *  rateOk 는 확인과 기록을 함께 하므로, «실패만 세고 싶은» 자리에는 쓸 수 없다.
+ *  그대로 쓰면 성공한 시도까지 한도에 쌓여 정상 사용자가 스스로 잠긴다. */
+export async function rateCount(db, hash, kind, windowSec) {
+  const from = Math.floor(Date.now() / 1000) - windowSec;
+  const { results } = await db
+    .prepare('SELECT COUNT(*) AS n FROM rate WHERE ip_hash = ? AND kind = ? AND ts >= ?')
+    .bind(hash, kind, from)
+    .all();
+  return results?.[0]?.n ?? 0;
+}
+
 /** 정렬 가능한 id. 시각이 앞에 오므로 목록 정렬이 id 만으로도 된다. */
 export const newId = () =>
   `${new Date().toISOString().replace(/[-:.TZ]/g, '')}-${Math.random().toString(36).slice(2, 8)}`;
