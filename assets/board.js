@@ -27,7 +27,7 @@
       lock: '의견 잠그기', unlock: '의견 다시 열기',
       hide: '가리기', unhide: '되돌리기', save: '검토 의견 저장',
       reviewPh: '검토 의견 — 왜 그렇게 정했는지. 화면에 그대로 공개됩니다.',
-      tokenAsk: '운영자 토큰을 넣으세요. 이 기기에만 저장되고, 나가기로 지웁니다.',
+      passAsk: '비밀번호를 넣으세요. 이 기기에만 저장되고 12시간 뒤 만료됩니다.',
       adminOn: '운영자 모드 — 가린 글도 보이고, 댓글은 joygoLive 이름으로 올라갑니다 · 12시간 뒤 자동 만료',
       adminOut: '토큰 지우기',
       asVisitor: '방문자로 보기', backAdmin: '운영자로 돌아가기',
@@ -53,7 +53,7 @@
       lock: 'Close comments', unlock: 'Reopen comments',
       hide: 'Hide', unhide: 'Unhide', save: 'Save review',
       reviewPh: 'Review — why it was decided this way. Published as written.',
-      tokenAsk: 'Enter the admin token. Stored on this device only; “Leave” clears it.',
+      passAsk: 'Enter the password. Stored on this device only; expires in 12 hours.',
       adminOn: 'Admin mode — hidden posts are visible and comments post as joygoLive',
       adminOut: 'Clear token',
       asVisitor: 'View as visitor', backAdmin: 'Back to admin',
@@ -376,14 +376,32 @@
     });
 
     // #admin 으로 들어오면 토큰을 묻는다. 취소하면 아무 일도 없다.
-    function enterAdmin() {
-      const v = prompt(t.tokenAsk, admin || '');
+    /* 비밀번호를 받아 서버에서 토큰으로 바꾼다. 40자리를 폰에서 붙여 넣는 것은
+       못 할 짓이고, 못 할 짓은 결국 안 하게 된다.
+       토큰을 그대로 넣는 길도 남긴다 — 비밀번호를 잊었다고 운영을 못 하면 안 된다. */
+    async function enterAdmin() {
+      const v = prompt(t.passAsk, '');
       if (v === null) return;
-      admin = v.trim();
-      asVisitor = false;
-      saveTok(admin);
-      renderBar();
-      load();
+      const pass = v.trim();
+      if (!pass) return;
+
+      if (pass.length >= 32) {          // 토큰을 직접 넣은 경우
+        admin = pass; asVisitor = false; saveTok(admin); renderBar(); load();
+        return;
+      }
+      try {
+        const r = await fetch('/api/admin/unlock', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ pass }),
+        });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok) { alert(j.error || t.fail); return; }
+        admin = j.token; asVisitor = false;
+        saveTok(admin); renderBar(); load();
+      } catch {
+        alert(t.fail);
+      }
     }
     function renderBar() {
       let bar = $('admBar');
