@@ -313,3 +313,6 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
 .adm-lock{font-family:var(--font-mono);font-size:11.5px;padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:#fff;color:var(--text2);cursor:pointer;transition:.15s;margin-left:auto}
 .adm-lock:hover{border-color:var(--accent-line);color:var(--accent-2)}
 .adm-hide{margin-left:0}
+/* 푸터 로고를 연타해도 글자가 잡히지 않게. 커서는 그대로 둔다 — 손가락 모양으로
+   바뀌면 «여기 뭔가 있다»고 알려 주는 셈이라 이스터에그가 아니게 된다. */
+footer .brand{user-select:none;-webkit-user-select:none}
