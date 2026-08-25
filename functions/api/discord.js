@@ -62,11 +62,14 @@ export async function onRequestPost(ctx) {
     const opts = body.data?.options ?? [];
     const undo = !!opts.find((o) => o.name === 'undo')?.value;
     const wantHidden = name === 'hide' && undo;
+    const wantLocked = name === 'lock' ? (undo ? 1 : 0) : null;
     const q = (opts.find((o) => o.focused)?.value ?? '').toString().toLowerCase();
 
     const rows = await env.DB.prepare(
-      `SELECT id, title, status FROM ideas WHERE hidden = ? ORDER BY ts DESC LIMIT 25`
-    ).bind(wantHidden ? 1 : 0).all();
+      `SELECT id, title, status FROM ideas WHERE hidden = ?` +
+        (wantLocked === null ? '' : ' AND locked = ?') +
+        ' ORDER BY ts DESC LIMIT 25'
+    ).bind(...(wantLocked === null ? [wantHidden ? 1 : 0] : [0, wantLocked])).all();
 
     const LABEL = { open: '검토 전', building: '만드는 중', shipped: '만들었음', declined: '안 만듦' };
     const choices = (rows.results ?? [])
@@ -86,7 +89,7 @@ export async function onRequestPost(ctx) {
     // 검토와 가리기는 «joygoLive 가 한 말»이 된다. 서버의 아무나 할 수 있으면
     // 그 이름이 값을 잃는다. 설정 전에는 **아무도** 통과하지 못한다 —
     // «설정 안 함»이 «누구나»가 되면 안 된다.
-    if (name === 'review' || name === 'hide' || name === 'reply') {
+    if (name === 'review' || name === 'hide' || name === 'reply' || name === 'lock') {
       if (!env.DISCORD_ADMIN_ID) {
         return reply(
           `아직 관리자가 지정되지 않았습니다. 이 값을 설정에 넣어 주세요 — 당신의 ID: \`${user.id}\``
@@ -109,6 +112,12 @@ export async function onRequestPost(ctx) {
           "INSERT INTO comments (id, idea_id, ts, author, text, owner) VALUES (?,?,?,?,?,1)"
         ).bind(newId(), id, new Date().toISOString(), 'joygoLive', text).run();
         return reply(`「${title}」 에 답글을 달았습니다.\n${text}`);
+      }
+
+      if (name === 'lock') {
+        const undo = !!arg('undo');
+        await env.DB.prepare('UPDATE ideas SET locked = ? WHERE id = ?').bind(undo ? 0 : 1, id).run();
+        return reply(`${undo ? '의견을 다시 열었습니다' : '의견을 잠갔습니다'} — 「${title}」`);
       }
 
       if (name === 'hide') {

@@ -28,8 +28,10 @@
       hide: '가리기', unhide: '되돌리기', save: '검토 의견 저장',
       reviewPh: '검토 의견 — 왜 그렇게 정했는지. 화면에 그대로 공개됩니다.',
       tokenAsk: '운영자 토큰을 넣으세요. 이 기기에만 저장되고, 나가기로 지웁니다.',
-      adminOn: '운영자 모드 — 가린 글도 보이고, 댓글은 joygoLive 이름으로 올라갑니다',
-      adminOut: '나가기',
+      adminOn: '운영자 모드 — 가린 글도 보이고, 댓글은 joygoLive 이름으로 올라갑니다 · 12시간 뒤 자동 만료',
+      adminOut: '토큰 지우기',
+      asVisitor: '방문자로 보기', backAdmin: '운영자로 돌아가기',
+      visitorOn: '방문자 화면입니다 — 토큰은 그대로 있고, 보이는 것만 일반 사용자와 같습니다',
     },
     en: {
       propose: 'Propose an idea', list: 'Ideas submitted', pending: '%d unreviewed',
@@ -53,7 +55,9 @@
       reviewPh: 'Review — why it was decided this way. Published as written.',
       tokenAsk: 'Enter the admin token. Stored on this device only; “Leave” clears it.',
       adminOn: 'Admin mode — hidden posts are visible and comments post as joygoLive',
-      adminOut: 'Leave',
+      adminOut: 'Clear token',
+      asVisitor: 'View as visitor', backAdmin: 'Back to admin',
+      visitorOn: 'Visitor view — the token is still stored; only what you see changes',
     },
   };
 
@@ -62,9 +66,29 @@
      댓글은 자동으로 «joygoLive» 답글이 된다(서버가 토큰을 보고 정한다).
      **이 기기에만 남는다.** 공용 컴퓨터에서는 쓰지 말 것 — 나가기로 지운다. */
   const TK = 'joygo.admin';
+  const TTL = 12 * 3600 * 1000;   // 12시간 뒤 만료
   let admin = '';
-  try { admin = localStorage.getItem(TK) || ''; } catch { admin = ''; }
-  const H = () => (admin ? { 'X-Admin-Token': admin } : {});
+  let asVisitor = false;          // 토큰은 둔 채 «방문자로 보기» (저장하지 않는다)
+
+  // 만료를 두는 이유: 한 번 넣으면 그 브라우저가 **영영** 운영자로 남는다.
+  // 자리를 비운 사이, 혹은 잊고 지나간 뒤에도 열려 있는 것은 좋지 않다.
+  try {
+    const raw = localStorage.getItem(TK);
+    if (raw) {
+      const v = JSON.parse(raw);
+      if (v && v.t && v.exp > Date.now()) admin = v.t;
+      else localStorage.removeItem(TK);
+    }
+  } catch { admin = ''; }
+
+  const isAdmin = () => !!admin && !asVisitor;
+  const H = () => (isAdmin() ? { 'X-Admin-Token': admin } : {});
+  const saveTok = (t) => {
+    try {
+      if (t) localStorage.setItem(TK, JSON.stringify({ t, exp: Date.now() + TTL }));
+      else localStorage.removeItem(TK);
+    } catch {}
+  };
 
   let lang = document.documentElement.lang === 'en' ? 'en' : 'ko';
   let t = T[lang];
@@ -145,11 +169,11 @@
                       .join('')}</div>`
                   : ''
               }
-              ${admin ? adminBox(i) : ''}
+              ${isAdmin() ? adminBox(i) : ''}
               ${
-                !i.locked || admin
+                !i.locked || isAdmin()
                   ? `<form class="cmt-form" data-cmt="${esc(i.id)}">
-                <textarea rows="2" placeholder="${esc(admin && i.locked ? t.replyOwner : t.reply)}"></textarea>
+                <textarea rows="2" placeholder="${esc(isAdmin() && i.locked ? t.replyOwner : t.reply)}"></textarea>
                 <div class="form-row">
                   <input type="text" placeholder="${esc(t.author)} (${esc(t.anon)})" style="max-width:200px" />
                   <button type="submit" class="btn btn-ghost btn-sm">${esc(t.send)}</button>
@@ -208,7 +232,7 @@
 
   async function load() {
     try {
-      const r = await fetch(admin ? `${API}?all=1` : API, { cache: 'no-store', headers: H() });
+      const r = await fetch(isAdmin() ? `${API}?all=1` : API, { cache: 'no-store', headers: H() });
       if (!r.ok) throw new Error(String(r.status));
       ideas = (await r.json()).ideas ?? [];
       loadFailed = false;
@@ -322,7 +346,7 @@
     // 운영자 손잡이
     $('ideaList')?.addEventListener('click', async (e) => {
       const box = e.target.closest('[data-adm]');
-      if (!box || !admin) return;
+      if (!box || !isAdmin()) return;
       const id = box.dataset.adm;
       const msg = box.querySelector('.adm-msg');
       const send = async (body) => {
@@ -356,22 +380,28 @@
       const v = prompt(t.tokenAsk, admin || '');
       if (v === null) return;
       admin = v.trim();
-      try { admin ? localStorage.setItem(TK, admin) : localStorage.removeItem(TK); } catch {}
+      asVisitor = false;
+      saveTok(admin);
       renderBar();
       load();
     }
     function renderBar() {
       let bar = $('admBar');
       if (!admin) { bar?.remove(); return; }
+      // 방문자로 보는 중에도 바는 남긴다 — 돌아올 길이 없으면 갇힌다.
       if (!bar) {
         bar = document.createElement('div');
         bar.id = 'admBar'; bar.className = 'adm-bar';
         $('ideaList')?.parentNode?.insertBefore(bar, $('ideaList'));
       }
-      bar.innerHTML = `<span>${esc(t.adminOn)}</span><button type="button" id="admOut">${esc(t.adminOut)}</button>`;
+      bar.innerHTML =
+        `<span>${esc(asVisitor ? t.visitorOn : t.adminOn)}</span>` +
+        `<button type="button" id="admPeek">${esc(asVisitor ? t.backAdmin : t.asVisitor)}</button>` +
+        `<button type="button" id="admOut">${esc(t.adminOut)}</button>`;
+      $('admPeek').onclick = () => { asVisitor = !asVisitor; renderBar(); load(); };
       $('admOut').onclick = () => {
-        admin = '';
-        try { localStorage.removeItem(TK); } catch {}
+        admin = ''; asVisitor = false;
+        saveTok('');
         renderBar(); load();
       };
     }
