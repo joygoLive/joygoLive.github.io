@@ -22,6 +22,11 @@
       loading: '불러오는 중…', off: '지금은 제안을 받을 수 없습니다. 잠시 뒤 다시 시도해 주세요.',
       review: '검토 의견', cmtN: '의견 %d',
       st: { open: '검토 전', building: '만드는 중', shipped: '만들었음', declined: '안 만듦' },
+      hide: '가리기', unhide: '되돌리기', save: '검토 의견 저장',
+      reviewPh: '검토 의견 — 왜 그렇게 정했는지. 화면에 그대로 공개됩니다.',
+      tokenAsk: '운영자 토큰을 넣으세요. 이 기기에만 저장되고, 나가기로 지웁니다.',
+      adminOn: '운영자 모드 — 가린 글도 보이고, 댓글은 joygoLive 이름으로 올라갑니다',
+      adminOut: '나가기',
     },
     en: {
       propose: 'Propose an idea', list: 'Ideas submitted', pending: '%d unreviewed',
@@ -38,8 +43,22 @@
       loading: 'Loading…', off: 'Submissions are unavailable right now. Please try again shortly.',
       review: 'Review', cmtN: '%d comments',
       st: { open: 'Unreviewed', building: 'Building', shipped: 'Built', declined: 'Not building' },
+      hide: 'Hide', unhide: 'Unhide', save: 'Save review',
+      reviewPh: 'Review — why it was decided this way. Published as written.',
+      tokenAsk: 'Enter the admin token. Stored on this device only; “Leave” clears it.',
+      adminOn: 'Admin mode — hidden posts are visible and comments post as joygoLive',
+      adminOut: 'Leave',
     },
   };
+
+  /* 운영자 모드 — 주소에 #admin 을 붙이면 토큰을 묻고 이 기기에 저장한다.
+     토큰이 있으면 목록에 가린 글까지 나오고, 각 제안에 검토·가리기 손잡이가 붙고,
+     댓글은 자동으로 «joygoLive» 답글이 된다(서버가 토큰을 보고 정한다).
+     **이 기기에만 남는다.** 공용 컴퓨터에서는 쓰지 말 것 — 나가기로 지운다. */
+  const TK = 'joygo.admin';
+  let admin = '';
+  try { admin = localStorage.getItem(TK) || ''; } catch { admin = ''; }
+  const H = () => (admin ? { 'X-Admin-Token': admin } : {});
 
   let lang = document.documentElement.lang === 'en' ? 'en' : 'ko';
   let t = T[lang];
@@ -120,6 +139,7 @@
                       .join('')}</div>`
                   : ''
               }
+              ${admin ? adminBox(i) : ''}
               <form class="cmt-form" data-cmt="${esc(i.id)}">
                 <textarea rows="2" placeholder="${esc(t.reply)}"></textarea>
                 <div class="form-row">
@@ -131,6 +151,22 @@
             </div>`
           : ''
       }
+    </div>`;
+  }
+
+  const ST = ['open', 'building', 'shipped', 'declined'];
+
+  function adminBox(i) {
+    return `<div class="adm" data-adm="${esc(i.id)}">
+      <div class="adm-row">
+        ${ST.map((k) => `<button type="button" class="adm-st${i.status === k ? ' on' : ''}" data-st="${k}">${esc(t.st[k])}</button>`).join('')}
+        <button type="button" class="adm-hide" data-hide="${i.hidden ? '0' : '1'}">${i.hidden ? esc(t.unhide) : esc(t.hide)}</button>
+      </div>
+      <textarea class="adm-note" rows="2" placeholder="${esc(t.reviewPh)}">${esc(i.note ?? '')}</textarea>
+      <div class="adm-row">
+        <button type="button" class="btn btn-ghost btn-sm adm-save">${esc(t.save)}</button>
+        <span class="form-msg adm-msg"></span>
+      </div>
     </div>`;
   }
 
@@ -161,7 +197,7 @@
 
   async function load() {
     try {
-      const r = await fetch(API, { cache: 'no-store' });
+      const r = await fetch(admin ? `${API}?all=1` : API, { cache: 'no-store', headers: H() });
       if (!r.ok) throw new Error(String(r.status));
       ideas = (await r.json()).ideas ?? [];
       loadFailed = false;
@@ -259,7 +295,7 @@
       try {
         const r = await fetch(`${API}/${encodeURIComponent(f.dataset.cmt)}/comments`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', ...H() },
           body: JSON.stringify({ text: ta.value, author: au.value }),
         });
         const j = await r.json().catch(() => ({}));
@@ -271,6 +307,63 @@
         btn.disabled = false;
       }
     });
+
+    // 운영자 손잡이
+    $('ideaList')?.addEventListener('click', async (e) => {
+      const box = e.target.closest('[data-adm]');
+      if (!box || !admin) return;
+      const id = box.dataset.adm;
+      const msg = box.querySelector('.adm-msg');
+      const send = async (body) => {
+        msg.className = 'form-msg';
+        msg.textContent = t.sending;
+        const r = await fetch(API, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json', ...H() },
+          body: JSON.stringify({ id, ...body }),
+        });
+        if (!r.ok) { msg.className = 'form-msg err'; msg.textContent = t.fail; return; }
+        await load();
+      };
+
+      const hide = e.target.closest('[data-hide]');
+      if (hide) return send({ hidden: hide.dataset.hide === '1' });
+
+      const st = e.target.closest('[data-st]');
+      if (st) return send({ status: st.dataset.st });
+
+      if (e.target.closest('.adm-save')) {
+        return send({ note: box.querySelector('.adm-note').value });
+      }
+    });
+
+    // #admin 으로 들어오면 토큰을 묻는다. 취소하면 아무 일도 없다.
+    function enterAdmin() {
+      const v = prompt(t.tokenAsk, admin || '');
+      if (v === null) return;
+      admin = v.trim();
+      try { admin ? localStorage.setItem(TK, admin) : localStorage.removeItem(TK); } catch {}
+      renderBar();
+      load();
+    }
+    function renderBar() {
+      let bar = $('admBar');
+      if (!admin) { bar?.remove(); return; }
+      if (!bar) {
+        bar = document.createElement('div');
+        bar.id = 'admBar'; bar.className = 'adm-bar';
+        $('ideaList')?.parentNode?.insertBefore(bar, $('ideaList'));
+      }
+      bar.innerHTML = `<span>${esc(t.adminOn)}</span><button type="button" id="admOut">${esc(t.adminOut)}</button>`;
+      $('admOut').onclick = () => {
+        admin = '';
+        try { localStorage.removeItem(TK); } catch {}
+        renderBar(); load();
+      };
+    }
+    if (location.hash === '#admin') enterAdmin();
+    window.addEventListener('hashchange', () => { if (location.hash === '#admin') enterAdmin(); });
+    renderBar();
 
     document.addEventListener('joygo:lang', (e) => {
       lang = e.detail.lang === 'en' ? 'en' : 'ko';
