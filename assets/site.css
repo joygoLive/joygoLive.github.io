@@ -313,9 +313,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
 .adm-lock{font-family:var(--font-mono);font-size:11.5px;padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:#fff;color:var(--text2);cursor:pointer;transition:.15s;margin-left:auto}
 .adm-lock:hover{border-color:var(--accent-line);color:var(--accent-2)}
 .adm-hide{margin-left:0}
-/* 푸터 로고를 연타해도 글자가 잡히지 않게. 커서는 그대로 둔다 — 손가락 모양으로
-   바뀌면 «여기 뭔가 있다»고 알려 주는 셈이라 이스터에그가 아니게 된다. */
-footer .brand{user-select:none;-webkit-user-select:none}
+
 
 /* ── 모바일: 손가락 대상 넓히기 ─────────────────────────────────────────
    푸터 링크가 22px, 언어 토글이 27px 이었다. 손끝은 그보다 굵어서 옆 것을
@@ -333,5 +331,6 @@ footer .brand{user-select:none;-webkit-user-select:none}
 }
 
 /* 로고 연타로 이스터에그를 열 때 두 번 눌림이 «두 번 탭해서 확대»로 먹히면
-   화면이 튄다. 모바일 브라우저의 기본 동작이라 꺼야 한다. */
-footer .brand{touch-action:manipulation}
+   화면이 튄다. 모바일 브라우저의 기본 동작이라 꺼야 한다.
+   글자가 잡혀 파랗게 되는 것도 막는다 — 일곱 번 두드리면 반드시 잡힌다. */
+header .brand,footer .brand{touch-action:manipulation;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}

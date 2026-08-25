@@ -423,27 +423,48 @@
         renderBar(); load();
       };
     }
-    /* 들어가는 문은 푸터 로고다. 주소에 #admin 을 치는 것보다 폰에서 편하고,
-       옆에서 보는 사람에게 «관리자 입구»를 알려 주지 않는다.
-       헤더 로고는 링크라 누를 때마다 화면이 튀므로 쓰지 않는다.
+    /* 들어가는 문은 로고다 — 위쪽과 푸터 둘 다. 주소에 #admin 을 치는 것보다
+       폰에서 편하고, 옆에서 보는 사람에게 「관리자 입구」를 알려 주지 않는다.
 
-       **비밀은 아니다.** 다섯 번 누르면 누구나 물음창까지는 온다 — 관문은
-       여전히 토큰이고, 그 토큰의 관문은 서버다. 이건 편의지 보안이 아니다. */
-    const EGG_N = 5, EGG_MS = 2000;
-    let taps = 0, tapAt = 0;
-    document.querySelector('footer .brand')?.addEventListener('click', () => {
-      const now = Date.now();
-      taps = now - tapAt < EGG_MS ? taps + 1 : 1;
-      tapAt = now;
-      if (taps < EGG_N) return;
-      taps = 0;
-      if (!admin) return enterAdmin();          // 토큰이 없으면 묻는다
-      asVisitor = !asVisitor;                   // 있으면 켜고 끄는 토글
-      renderBar();
-      load();
-      const bar = $('admBar');
-      if (bar) bar.scrollIntoView({ block: 'center' });
-    });
+       **비밀은 아니다.** 일곱 번 누르면 누구나 물음창까지는 온다 — 관문은
+       비밀번호이고, 그 비밀번호를 확인하는 것은 서버다. 이건 편의지 보안이 아니다.
+
+       위쪽 로고는 #top 링크라 누를 때마다 화면이 튄다. 그래서 기본 동작을 막고,
+       **더 이상 두드리지 않을 때만** 맨 위로 올린다 — 연타 중에는 가만히 있고
+       한 번만 눌렀을 때는 로고를 누르면 위로 가는 관습이 그대로 살아 있다. */
+    const EGG_N = 7, EGG_MS = 3000, EGG_SETTLE = 400;
+    let taps = 0, tapAt = 0, settle = null;
+
+    function attachEgg(el, isLink) {
+      if (!el) return;
+      el.style.touchAction = 'manipulation';   // 두 번 탭해서 확대 방지
+      el.addEventListener('click', (e) => {
+        if (isLink) e.preventDefault();
+        const now = Date.now();
+        taps = now - tapAt < EGG_MS ? taps + 1 : 1;
+        tapAt = now;
+
+        clearTimeout(settle);
+        if (isLink) {
+          // 연타가 멈춘 뒤에만 위로. 그래서 일곱 번 두드리는 동안은 조용하다.
+          settle = setTimeout(() => {
+            if (taps === 1) window.scrollTo({ top: 0, behavior: 'smooth' });
+          }, EGG_SETTLE);
+        }
+
+        if (taps < EGG_N) return;
+        taps = 0;
+        clearTimeout(settle);
+        if (!admin) return enterAdmin();      // 비밀번호가 없으면 묻는다
+        asVisitor = !asVisitor;               // 있으면 켜고 끄는 토글
+        renderBar();
+        load();
+        $('admBar')?.scrollIntoView({ block: 'center' });
+      });
+    }
+
+    attachEgg(document.querySelector('header .brand'), true);
+    attachEgg(document.querySelector('footer .brand'), false);
 
     if (location.hash === '#admin') enterAdmin();
     window.addEventListener('hashchange', () => { if (location.hash === '#admin') enterAdmin(); });
