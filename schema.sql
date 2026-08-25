@@ -18,7 +18,11 @@ CREATE TABLE IF NOT EXISTS ideas (
   outcome  TEXT,                       -- 되면 무엇이 달라지나
   status   TEXT NOT NULL DEFAULT 'open',   -- open | building | shipped | declined
   note     TEXT,                       -- 검토 의견. declined 면 이유, shipped 면 범위
-  hidden   INTEGER NOT NULL DEFAULT 0  -- 지우지 않고 가린다 (기록은 남는다)
+  hidden   INTEGER NOT NULL DEFAULT 0, -- 지우지 않고 가린다 (기록은 남는다)
+  -- 의견을 닫는다. **상태와 묶지 않는다** — 「만드는 중」은 제안자가 세부를 보태는
+  -- 구간이고 「안 만듦」은 거절 사유에 반론할 자리라, 상태로 일괄해 닫으면 정작
+  -- 필요한 대화가 먼저 막힌다. 소음이 실제로 생긴 글만 골라 잠근다.
+  locked   INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS comments (

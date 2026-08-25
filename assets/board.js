@@ -22,6 +22,9 @@
       loading: '불러오는 중…', off: '지금은 제안을 받을 수 없습니다. 잠시 뒤 다시 시도해 주세요.',
       review: '검토 의견', cmtN: '의견 %d',
       st: { open: '검토 전', building: '만드는 중', shipped: '만들었음', declined: '안 만듦' },
+      closed: '이 제안의 의견은 닫혀 있습니다. 지금까지의 대화는 그대로 남습니다.',
+      replyOwner: '잠긴 제안입니다 — 운영자로 남깁니다',
+      lock: '의견 잠그기', unlock: '의견 다시 열기',
       hide: '가리기', unhide: '되돌리기', save: '검토 의견 저장',
       reviewPh: '검토 의견 — 왜 그렇게 정했는지. 화면에 그대로 공개됩니다.',
       tokenAsk: '운영자 토큰을 넣으세요. 이 기기에만 저장되고, 나가기로 지웁니다.',
@@ -43,6 +46,9 @@
       loading: 'Loading…', off: 'Submissions are unavailable right now. Please try again shortly.',
       review: 'Review', cmtN: '%d comments',
       st: { open: 'Unreviewed', building: 'Building', shipped: 'Built', declined: 'Not building' },
+      closed: 'Comments on this idea are closed. The conversation so far stays.',
+      replyOwner: 'Closed thread — posting as the owner',
+      lock: 'Close comments', unlock: 'Reopen comments',
       hide: 'Hide', unhide: 'Unhide', save: 'Save review',
       reviewPh: 'Review — why it was decided this way. Published as written.',
       tokenAsk: 'Enter the admin token. Stored on this device only; “Leave” clears it.',
@@ -140,14 +146,18 @@
                   : ''
               }
               ${admin ? adminBox(i) : ''}
-              <form class="cmt-form" data-cmt="${esc(i.id)}">
-                <textarea rows="2" placeholder="${esc(t.reply)}"></textarea>
+              ${
+                !i.locked || admin
+                  ? `<form class="cmt-form" data-cmt="${esc(i.id)}">
+                <textarea rows="2" placeholder="${esc(admin && i.locked ? t.replyOwner : t.reply)}"></textarea>
                 <div class="form-row">
                   <input type="text" placeholder="${esc(t.author)} (${esc(t.anon)})" style="max-width:200px" />
                   <button type="submit" class="btn btn-ghost btn-sm">${esc(t.send)}</button>
                   <span class="form-msg"></span>
                 </div>
-              </form>
+              </form>`
+                  : `<p class="cmt-closed">${esc(t.closed)}</p>`
+              }
             </div>`
           : ''
       }
@@ -160,6 +170,7 @@
     return `<div class="adm" data-adm="${esc(i.id)}">
       <div class="adm-row">
         ${ST.map((k) => `<button type="button" class="adm-st${i.status === k ? ' on' : ''}" data-st="${k}">${esc(t.st[k])}</button>`).join('')}
+        <button type="button" class="adm-lock" data-lock="${i.locked ? '0' : '1'}">${i.locked ? esc(t.unlock) : esc(t.lock)}</button>
         <button type="button" class="adm-hide" data-hide="${i.hidden ? '0' : '1'}">${i.hidden ? esc(t.unhide) : esc(t.hide)}</button>
       </div>
       <textarea class="adm-note" rows="2" placeholder="${esc(t.reviewPh)}">${esc(i.note ?? '')}</textarea>
@@ -325,6 +336,9 @@
         if (!r.ok) { msg.className = 'form-msg err'; msg.textContent = t.fail; return; }
         await load();
       };
+
+      const lock = e.target.closest('[data-lock]');
+      if (lock) return send({ locked: lock.dataset.lock === '1' });
 
       const hide = e.target.closest('[data-hide]');
       if (hide) return send({ hidden: hide.dataset.hide === '1' });

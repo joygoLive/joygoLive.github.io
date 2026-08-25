@@ -13,7 +13,7 @@ export async function onRequestGet({ request, env }) {
   const all = isAdmin(request, env) && new URL(request.url).searchParams.get('all') === '1';
   const ideas = await db
     .prepare(
-      `SELECT id, ts, author, title, problem, who, outcome, status, note, hidden
+      `SELECT id, ts, author, title, problem, who, outcome, status, note, hidden, locked
          FROM ideas ${all ? '' : 'WHERE hidden = 0'} ORDER BY ts DESC LIMIT 200`
     )
     .all();
@@ -31,7 +31,7 @@ export async function onRequestGet({ request, env }) {
   }
   return json({
     ideas: (ideas.results ?? []).map((i) => ({
-      ...i, hidden: !!i.hidden, comments: byIdea.get(i.id) ?? [],
+      ...i, hidden: !!i.hidden, locked: !!i.locked, comments: byIdea.get(i.id) ?? [],
     })),
   });
 }
@@ -90,6 +90,9 @@ export async function onRequestPatch({ request, env }) {
   const body = await request.json().catch(() => null);
   if (!body?.id) return bad('id 가 필요합니다');
 
+  if (body.locked !== undefined) {
+    await db.prepare('UPDATE ideas SET locked = ? WHERE id = ?').bind(body.locked ? 1 : 0, body.id).run();
+  }
   if (body.hidden !== undefined) {
     await db.prepare('UPDATE ideas SET hidden = ? WHERE id = ?').bind(body.hidden ? 1 : 0, body.id).run();
   }
