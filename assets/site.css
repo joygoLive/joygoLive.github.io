@@ -316,3 +316,21 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
 /* 푸터 로고를 연타해도 글자가 잡히지 않게. 커서는 그대로 둔다 — 손가락 모양으로
    바뀌면 «여기 뭔가 있다»고 알려 주는 셈이라 이스터에그가 아니게 된다. */
 footer .brand{user-select:none;-webkit-user-select:none}
+
+/* ── 모바일: 손가락 대상 넓히기 ─────────────────────────────────────────
+   푸터 링크가 22px, 언어 토글이 27px 이었다. 손끝은 그보다 굵어서 옆 것을
+   누르게 된다. **보이는 크기는 그대로 두고 눌리는 넓이만** 키운다 — 글자를
+   키우면 레이아웃이 흔들리므로 안쪽 여백으로 푼다. */
+@media (max-width:720px){
+  .foot-links{gap:6px}
+  .foot-links a{padding:9px 10px;margin:-9px 0}      /* 22 → 40px */
+  .lang-toggle button{padding:10px 12px}             /* 27 → 39px */
+  .svc-name{padding:8px 11px}
+  .board-toggle{padding:18px 2px}
+  .adm-st,.adm-hide,.adm-lock{padding:9px 12px}
+  .cmt-form .form-row .btn{padding:11px 18px}
+}
+
+/* 로고 연타로 이스터에그를 열 때 두 번 눌림이 «두 번 탭해서 확대»로 먹히면
+   화면이 튄다. 모바일 브라우저의 기본 동작이라 꺼야 한다. */
+footer .brand{touch-action:manipulation}
