@@ -54,10 +54,78 @@ export async function onRequestPost(ctx) {
   // 대시보드에서 URL 저장 자체가 거부된다.
   if (body.type === 1) return json({ type: 1 });
 
+  // ── 자동완성 (type 4) ────────────────────────────────────────────────────
+  // 폰에서 «20260824235648378-ymc2zz» 를 칠 수는 없다. 제목을 보여 주고 값으로는
+  // id 를 넘긴다 — 고르는 사람은 제목만 보면 된다.
+  if (body.type === 4) {
+    const name = body.data?.name;
+    const opts = body.data?.options ?? [];
+    const undo = !!opts.find((o) => o.name === 'undo')?.value;
+    const wantHidden = name === 'hide' && undo;
+    const q = (opts.find((o) => o.focused)?.value ?? '').toString().toLowerCase();
+
+    const rows = await env.DB.prepare(
+      `SELECT id, title, status FROM ideas WHERE hidden = ? ORDER BY ts DESC LIMIT 25`
+    ).bind(wantHidden ? 1 : 0).all();
+
+    const LABEL = { open: '검토 전', building: '만드는 중', shipped: '만들었음', declined: '안 만듦' };
+    const choices = (rows.results ?? [])
+      .filter((r) => !q || r.title.toLowerCase().includes(q))
+      .slice(0, 25)
+      .map((r) => ({ name: `[${LABEL[r.status] ?? r.status}] ${r.title}`.slice(0, 100), value: r.id }));
+    return json({ type: 8, data: { choices } });
+  }
+
   if (body.type === 2) {
-    const who =
-      body.member?.user?.global_name ?? body.member?.user?.username ??
-      body.user?.global_name ?? body.user?.username ?? null;
+    const user = body.member?.user ?? body.user ?? {};
+    const who = user.global_name ?? user.username ?? null;
+    const name = body.data?.name;
+    const arg = (n) => body.data?.options?.find((o) => o.name === n)?.value;
+    const reply = (content) => json({ type: 4, data: { content, flags: 64 } });  // flags 64 = 나에게만
+
+    // 검토와 가리기는 «joygoLive 가 한 말»이 된다. 서버의 아무나 할 수 있으면
+    // 그 이름이 값을 잃는다. 설정 전에는 **아무도** 통과하지 못한다 —
+    // «설정 안 함»이 «누구나»가 되면 안 된다.
+    if (name === 'review' || name === 'hide' || name === 'reply') {
+      if (!env.DISCORD_ADMIN_ID) {
+        return reply(
+          `아직 관리자가 지정되지 않았습니다. 이 값을 설정에 넣어 주세요 — 당신의 ID: \`${user.id}\``
+        );
+      }
+      if (user.id !== env.DISCORD_ADMIN_ID) return reply('이 명령은 운영자만 쓸 수 있습니다.');
+
+      const id = arg('idea');
+      if (!id) return reply('제안을 고르지 않았습니다.');
+      const found = await env.DB.prepare('SELECT title FROM ideas WHERE id = ?').bind(id).all();
+      if (!found.results?.length) return reply('없는 제안입니다.');
+      const title = found.results[0].title;
+
+      // 검토 의견과 답글은 쓰임이 다르다 — 검토는 **결론**(만들지 말지, 어디까지)이고
+      // 답글은 **대화**(되묻기, 조건 협의)다. 화면에서도 자리가 다르다.
+      if (name === 'reply') {
+        const text = arg('text');
+        if (!text) return reply('내용이 없습니다.');
+        await env.DB.prepare(
+          "INSERT INTO comments (id, idea_id, ts, author, text, owner) VALUES (?,?,?,?,?,1)"
+        ).bind(newId(), id, new Date().toISOString(), 'joygoLive', text).run();
+        return reply(`「${title}」 에 답글을 달았습니다.\n${text}`);
+      }
+
+      if (name === 'hide') {
+        const undo = !!arg('undo');
+        await env.DB.prepare('UPDATE ideas SET hidden = ? WHERE id = ?').bind(undo ? 0 : 1, id).run();
+        return reply(`${undo ? '되돌렸습니다' : '가렸습니다'} — 「${title}」`);
+      }
+
+      const status = arg('status');
+      const note = arg('note') ?? null;
+      await env.DB.prepare(
+        'UPDATE ideas SET status = ?, note = COALESCE(?, note) WHERE id = ?'
+      ).bind(status, note, id).run();
+      const L = { open: '검토 전', building: '만드는 중', shipped: '만들었음', declined: '안 만듦' };
+      return reply(`「${title}」 → **${L[status] ?? status}**${note ? `\n${note}` : ''}`);
+    }
+    if (name !== 'report') return reply('알 수 없는 명령입니다.');
     await env.DB.prepare(
       "INSERT INTO report_requests (id, ts, who, status) VALUES (?, ?, ?, 'pending')"
     ).bind(newId(), new Date().toISOString(), who).run();
