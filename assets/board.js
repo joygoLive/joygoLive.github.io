@@ -14,9 +14,11 @@
       who: '누가 쓰게 될까요', whoH: '본인만 쓸 것인지, 비슷한 사람이 더 있는지.',
       outcome: '되면 무엇이 달라지나요', outcomeH: '만들어졌다고 치고, 그래서 뭐가 좋아지는지.',
       author: '이름', authorH: '비워 두면 익명으로 올라갑니다.',
+      pass: '비밀번호', passH: '이 제안을 다시 열 때 쓰는 비밀번호입니다. 4자 이상. 계정을 만들지 않으므로 **잊으면 되찾을 수 없습니다** — 다시 들어와 내용을 보태거나 답을 보려면 이것이 필요합니다.',
       anon: '익명', submit: '제안 올리기', sending: '올리는 중…',
-      notice: '적으신 내용은 전부 이 페이지에 공개됩니다. 이름·연락처·개인정보는 적지 마세요 — 답은 여기 댓글로 드리므로 연락처가 필요 없습니다. 한 번 올라간 글은 지우지 않고 필요하면 가립니다.',
-      need: '한 줄 요약은 있어야 합니다', done: '올라갔습니다. 검토하고 여기에 답하겠습니다.',
+      notice: '올린 사람과 운영자만 내용을 봅니다. 목록에는 제목 앞부분과 날짜·상태만 남습니다 — 아이디어를 가려 두면서도 「그때 이미 여기 있었다」는 기록은 남기기 위해서입니다. 이름·연락처·개인정보는 적지 마세요. 답은 이 글의 댓글로 드리므로 연락처가 필요 없습니다.',
+      need: '한 줄 요약은 있어야 합니다', needPass: '비밀번호는 4자 이상이어야 합니다',
+      done: '올라갔습니다. 검토하고 여기에 답하겠습니다. 비밀번호를 꼭 기억해 두세요 — 다시 열 때 필요하고, 되찾을 수 없습니다.',
       fail: '보내지 못했습니다', reply: '의견 남기기', send: '남기기',
       empty: '아직 들어온 제안이 없습니다. 처음이 되어 주세요.',
       loading: '불러오는 중…', off: '지금은 제안을 받을 수 없습니다. 잠시 뒤 다시 시도해 주세요.',
@@ -28,6 +30,12 @@
       hide: '가리기', unhide: '되돌리기', save: '검토 의견 저장',
       reviewPh: '검토 의견 — 왜 그렇게 정했는지. 화면에 그대로 공개됩니다.',
       passAsk: '비밀번호를 넣으세요. 이 기기에만 저장되고 12시간 뒤 만료됩니다.',
+      lockedNote: '이 제안은 올린 사람과 운영자만 봅니다. 올릴 때 정한 비밀번호를 넣으면 내용과 답이 열립니다.',
+      lockedTag: '비공개', openPass: '올릴 때 정한 비밀번호', openBtn: '열기',
+      opening: '여는 중…', openBad: '비밀번호가 다릅니다',
+      keyKept: '이 기기에서는 30일 동안 다시 묻지 않습니다.',
+      mine: '내가 연 제안', forget: '이 기기에서 잊기',
+      pub: '공개로 전환', unpub: '다시 비공개로',
       adminOn: '운영자 모드 — 가린 글도 보이고, 댓글은 joygoLive 이름으로 올라갑니다 · 12시간 뒤 자동 만료',
       adminOut: '토큰 지우기',
       asVisitor: '방문자로 보기', backAdmin: '운영자로 돌아가기',
@@ -40,9 +48,11 @@
       who: 'Who would use it', whoH: 'Only you, or are there others like you.',
       outcome: 'What changes if it exists', outcomeH: 'Assume it is built — what gets better.',
       author: 'Name', authorH: 'Leave empty to post anonymously.',
+      pass: 'Password', passH: 'Used to reopen this idea later. Four characters or more. No account is created, so **it cannot be recovered** — you need it to come back, add detail, or read the reply.',
       anon: 'anonymous', submit: 'Post it', sending: 'Posting…',
-      notice: 'Everything you write here is published on this page. Do not include names, contact details, or personal data — replies come as comments here, so no contact details are needed. Posts are not deleted; they are hidden if they have to be.',
-      need: 'The one-line summary is required', done: 'Posted. It will be reviewed and answered here.',
+      notice: 'Only you and the owner can read what you write. The list keeps the start of the title, the date, and the status — enough to show the idea was already here at that time, without giving it away. Do not include names, contact details, or personal data; replies come as comments on this post.',
+      need: 'The one-line summary is required', needPass: 'The password must be at least 4 characters',
+      done: 'Posted. It will be reviewed and answered here. Keep the password — it is needed to reopen this and cannot be recovered.',
       fail: 'Could not send', reply: 'Leave a comment', send: 'Send',
       empty: 'No ideas yet. Be the first.',
       loading: 'Loading…', off: 'Submissions are unavailable right now. Please try again shortly.',
@@ -54,6 +64,12 @@
       hide: 'Hide', unhide: 'Unhide', save: 'Save review',
       reviewPh: 'Review — why it was decided this way. Published as written.',
       passAsk: 'Enter the password. Stored on this device only; expires in 12 hours.',
+      lockedNote: 'Only the person who posted this and the owner can read it. Enter the password set when posting to open the content and the reply.',
+      lockedTag: 'private', openPass: 'Password set when posting', openBtn: 'Open',
+      opening: 'Opening…', openBad: 'Wrong password',
+      keyKept: 'This device will not ask again for 30 days.',
+      mine: 'Opened by you', forget: 'Forget on this device',
+      pub: 'Make public', unpub: 'Make private again',
       adminOn: 'Admin mode — hidden posts are visible and comments post as joygoLive',
       adminOut: 'Clear token',
       asVisitor: 'View as visitor', backAdmin: 'Back to admin',
@@ -90,6 +106,32 @@
     } catch {}
   };
 
+  /* 제안 열쇠 — 잠긴 글을 연 뒤 그 기기에 남는 값.
+     **비밀번호는 저장하지 않는다.** 열쇠는 글 하나에만 듣고 서버가 만든 것이라,
+     이 값이 새더라도 그 글 하나가 열릴 뿐 같은 비밀번호를 쓴 다른 글은 안 열린다.
+
+     운영자 토큰이 12시간인 것과 달리 30일을 준다 — 운영자는 매일 들어오지만
+     제안한 사람은 답이 달릴 때쯤 한 번 돌아온다. 12시간짜리 열쇠는 그 사람에게는
+     사실상 매번 비밀번호를 다시 묻는 것과 같다. */
+  const KS = 'joygo.keys';
+  const KTTL = 30 * 24 * 3600 * 1000;
+  let keys = {};
+  const readKeys = () => {
+    try {
+      const v = JSON.parse(localStorage.getItem(KS) || '{}');
+      const now = Date.now(), out = {};
+      for (const [id, e] of Object.entries(v)) if (e && e.k && e.exp > now) out[id] = e;
+      return out;
+    } catch { return {}; }
+  };
+  const writeKeys = () => { try { localStorage.setItem(KS, JSON.stringify(keys)); } catch {} };
+  keys = readKeys();
+  const keyOf = (id) => keys[id]?.k;
+  const putKey = (id, k) => { keys[id] = { k, exp: Date.now() + KTTL }; writeKeys(); };
+  // 열쇠가 안 듣는다면 지운다 — 안 듣는 열쇠를 들고 있으면 그 글은 영영 「여는 중」에
+  // 머무르고, 비밀번호를 다시 넣을 자리도 안 나온다.
+  const dropKey = (id) => { delete keys[id]; writeKeys(); };
+
   let lang = document.documentElement.lang === 'en' ? 'en' : 'ko';
   let t = T[lang];
   let ideas = null;
@@ -108,12 +150,20 @@
     return `${d.getFullYear()}.${p(d.getMonth() + 1)}.${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
   };
 
+  // 힌트의 **굵게**만 강조로 바꾼다. 잊으면 못 되찾는다는 말은 다른 안내와 같은
+  // 무게로 흘려 읽히면 안 되는데, 그렇다고 힌트 전체를 굵게 하면 아무것도 안 굵다.
+  const bold = (v) => esc(v).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+
   function field(id, key, tag) {
     const hint = t[key + 'H'];
+    const input =
+      tag === 'textarea' ? `<textarea id="${id}" rows="3"></textarea>`
+      : tag === 'password' ? `<input id="${id}" type="password" autocomplete="new-password" />`
+      : `<input id="${id}" type="text" />`;
     return `<div class="ff">
       <label for="${id}">${esc(t[key])}</label>
-      <span class="hint">${esc(hint)}</span>
-      ${tag === 'textarea' ? `<textarea id="${id}" rows="3"></textarea>` : `<input id="${id}" type="text" />`}
+      <span class="hint">${bold(hint)}</span>
+      ${input}
     </div>`;
   }
 
@@ -127,6 +177,7 @@
       ${field('f_who', 'who', 'textarea')}
       ${field('f_outcome', 'outcome', 'textarea')}
       ${field('f_author', 'author')}
+      ${field('f_pass', 'pass', 'password')}
       <div class="form-row">
         <button type="submit" class="btn btn-primary btn-sm">${esc(t.submit)}</button>
         <span class="form-msg" id="formMsg"></span>
@@ -134,7 +185,46 @@
     window.brandify?.(el);
   }
 
+  /* 자물쇠 줄 — 잠긴 글에서 내용 대신 나오는 것. 제목 앞부분·날짜·상태만 있고,
+     펼치면 비밀번호를 넣는 자리가 나온다.
+
+     **목록에서 아예 빼지 않는 이유**가 둘이다. 올린 사람이 자기 글을 찾아 돌아와
+     내용을 보태려면 자리가 있어야 하고, 「그 아이디어가 그때 이미 여기 있었다」는
+     자국이 나중에 선후를 다툴 때의 근거가 된다. */
+  function stubHtml(i) {
+    const open = openSet.has(i.id);
+    return `<div class="idea locked">
+      <button class="idea-head" data-idea="${esc(i.id)}">
+        <span class="sign lock">${open ? '−' : '+'}</span>
+        <span style="flex:1">
+          <span class="idea-title">${esc(i.title)}</span>
+          <span class="idea-meta">
+            <span class="tag-priv">${esc(t.lockedTag)}</span>
+            <span>${when(i.ts)}</span>
+          </span>
+        </span>
+        <span class="st ${esc(i.status)}">${esc(t.st[i.status] ?? i.status)}</span>
+      </button>
+      ${
+        open
+          ? `<div class="idea-body">
+              <p class="cmt-closed">${esc(t.lockedNote)}</p>
+              <form class="open-form" data-open="${esc(i.id)}">
+                <div class="form-row">
+                  <input type="password" autocomplete="current-password"
+                         placeholder="${esc(t.openPass)}" style="max-width:260px" />
+                  <button type="submit" class="btn btn-ghost btn-sm">${esc(t.openBtn)}</button>
+                  <span class="form-msg"></span>
+                </div>
+              </form>
+            </div>`
+          : ''
+      }
+    </div>`;
+  }
+
   function ideaHtml(i) {
+    if (i.stub) return stubHtml(i);
     const open = openSet.has(i.id);
     const cs = i.comments ?? [];
     const qa = (key, val) =>
@@ -145,6 +235,7 @@
         <span style="flex:1">
           <span class="idea-title">${esc(i.title)}</span>
           <span class="idea-meta">
+            ${keyOf(i.id) && !isAdmin() ? `<span class="tag-mine">${esc(t.mine)}</span>` : ''}
             <span>${esc(i.author || t.anon)}</span>
             <span>${when(i.ts)}</span>
             ${cs.length ? `<span>${t.cmtN.replace('%d', cs.length)}</span>` : ''}
@@ -196,6 +287,7 @@
         ${ST.map((k) => `<button type="button" class="adm-st${i.status === k ? ' on' : ''}" data-st="${k}">${esc(t.st[k])}</button>`).join('')}
         <button type="button" class="adm-lock" data-lock="${i.locked ? '0' : '1'}">${i.locked ? esc(t.unlock) : esc(t.lock)}</button>
         <button type="button" class="adm-hide" data-hide="${i.hidden ? '0' : '1'}">${i.hidden ? esc(t.unhide) : esc(t.hide)}</button>
+        <button type="button" class="adm-priv" data-priv="${i.private ? '0' : '1'}">${i.private ? esc(t.pub) : esc(t.unpub)}</button>
       </div>
       <textarea class="adm-note" rows="2" placeholder="${esc(t.reviewPh)}">${esc(i.note ?? '')}</textarea>
       <div class="adm-row">
@@ -230,12 +322,35 @@
     window.brandify?.(el);
   }
 
+  /* 목록은 자물쇠 줄만 준다. 열쇠를 가진 글은 여기서 하나씩 받아 제자리에 끼운다.
+     운영자는 목록에서 이미 전부 받으므로 건너뛴다.
+
+     한 글이 실패해도 나머지는 그대로 간다 — 열쇠 하나가 만료됐다고 화면 전체가
+     「불러오지 못했습니다」가 되면, 정작 멀쩡한 다른 글까지 못 본다. */
+  async function hydrate() {
+    if (isAdmin()) return;
+    const mine = (ideas ?? []).filter((i) => i.stub && keyOf(i.id));
+    await Promise.all(mine.map(async (i) => {
+      try {
+        const r = await fetch(`${API}/${encodeURIComponent(i.id)}`, {
+          cache: 'no-store', headers: { 'X-Idea-Key': keyOf(i.id) },
+        });
+        if (r.status === 404) { dropKey(i.id); return; }   // 안 듣는 열쇠는 들고 있지 않는다
+        if (!r.ok) return;
+        const full = (await r.json()).idea;
+        const at = ideas.findIndex((x) => x.id === i.id);
+        if (at >= 0 && full) ideas[at] = full;
+      } catch {}
+    }));
+  }
+
   async function load() {
     try {
       const r = await fetch(isAdmin() ? `${API}?all=1` : API, { cache: 'no-store', headers: H() });
       if (!r.ok) throw new Error(String(r.status));
       ideas = (await r.json()).ideas ?? [];
       loadFailed = false;
+      await hydrate();
     } catch {
       // 백엔드가 없으면(정적 호스팅) 조용히 «지금은 안 된다»로 둔다. 폼을 그대로
       // 열어 두면 사람이 길게 써서 보냈는데 사라지는 일이 생긴다.
@@ -275,6 +390,13 @@
         msg.textContent = t.need;
         return;
       }
+      // 공백을 털지 않는다 — 사람이 넣은 그대로가 비밀번호다. 서버도 같게 본다.
+      if (v('f_pass').length < 4) {
+        msg.className = 'form-msg err';
+        msg.textContent = t.needPass;
+        $('f_pass')?.focus();
+        return;
+      }
       const btn = e.target.querySelector('button[type=submit]');
       btn.disabled = true;
       msg.className = 'form-msg';
@@ -286,10 +408,15 @@
           body: JSON.stringify({
             title: v('f_title'), problem: v('f_problem'),
             who: v('f_who'), outcome: v('f_outcome'), author: v('f_author'),
+            pass: v('f_pass'),
           }),
         });
         const j = await r.json().catch(() => ({}));
         if (!r.ok) throw new Error(j.error || t.fail);
+        // 올리자마자 열쇠를 받아 둔다. 방금 정한 비밀번호를 그 자리에서 다시 묻는
+        // 것은 사람을 짜증나게 할 뿐이고, 올린 글이 바로 안 보이면 올라갔는지도
+        // 알 수 없다.
+        if (j.key) putKey(j.idea.id, j.key);
         // renderForm() 이 폼 innerHTML 을 갈아끼우므로 #formMsg 도 같이 사라진다.
         // 먼저 다시 그리고, **새로 생긴** 자리에 결과를 적는다 — 순서가 반대면
         // 「올라갔습니다」가 뜨자마자 지워져서 성공했는지 알 수 없다.
@@ -315,6 +442,39 @@
       renderList();
     });
 
+    // 잠긴 글 열기 — 비밀번호를 서버에서 열쇠로 바꿔 이 기기에 둔다.
+    $('ideaList')?.addEventListener('submit', async (e) => {
+      const f = e.target.closest('[data-open]');
+      if (!f) return;
+      e.preventDefault();
+      const id = f.dataset.open;
+      const inp = f.querySelector('input');
+      const msg = f.querySelector('.form-msg');
+      const btn = f.querySelector('button');
+      if (!inp.value) return;
+      btn.disabled = true;
+      msg.className = 'form-msg';
+      msg.textContent = t.opening;
+      try {
+        const r = await fetch(`${API}/${encodeURIComponent(id)}/open`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ pass: inp.value }),
+        });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok || !j.key) throw new Error(j.error || t.openBad);
+        putKey(id, j.key);
+        openSet.add(id);
+        await load();          // 열린 글을 제자리에 끼워 다시 그린다
+        renderList();
+      } catch (err) {
+        msg.className = 'form-msg err';
+        msg.textContent = err.message;
+        btn.disabled = false;
+        inp.select?.();
+      }
+    });
+
     $('ideaList')?.addEventListener('submit', async (e) => {
       const f = e.target.closest('[data-cmt]');
       if (!f) return;
@@ -328,9 +488,16 @@
       msg.className = 'form-msg';
       msg.textContent = t.sending;
       try {
+        const k = keyOf(f.dataset.cmt);
         const r = await fetch(`${API}/${encodeURIComponent(f.dataset.cmt)}/comments`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', ...H() },
+          headers: {
+            'Content-Type': 'application/json',
+            ...H(),
+            // 잠긴 글에는 열쇠를 가진 사람만 남긴다. 서버가 다시 확인하므로 이건
+            // 화면의 예의가 아니라 실제 관문이다.
+            ...(k ? { 'X-Idea-Key': k } : {}),
+          },
           body: JSON.stringify({ text: ta.value, author: au.value }),
         });
         const j = await r.json().catch(() => ({}));
@@ -366,6 +533,11 @@
 
       const hide = e.target.closest('[data-hide]');
       if (hide) return send({ hidden: hide.dataset.hide === '1' });
+
+      // 공개로 돌리는 것 — 비밀번호를 잊었을 때의 탈출구다. 비밀번호는 그대로
+      // 두므로, 다시 비공개로 내려도 올린 사람의 열쇠는 계속 듣는다.
+      const priv = e.target.closest('[data-priv]');
+      if (priv) return send({ private: priv.dataset.priv === '1' });
 
       const st = e.target.closest('[data-st]');
       if (st) return send({ status: st.dataset.st });

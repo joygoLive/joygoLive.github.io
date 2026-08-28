@@ -2,6 +2,7 @@
 .wrangler
 node_modules
 schema.sql
+migrations
 wrangler.toml
 IDEAS-SETUP.md
 .secrets.local

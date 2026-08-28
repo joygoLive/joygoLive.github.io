@@ -19,6 +19,18 @@ CREATE TABLE IF NOT EXISTS ideas (
   status   TEXT NOT NULL DEFAULT 'open',   -- open | building | shipped | declined
   note     TEXT,                       -- 검토 의견. declined 면 이유, shipped 면 범위
   hidden   INTEGER NOT NULL DEFAULT 0, -- 지우지 않고 가린다 (기록은 남는다)
+  -- 올린 사람과 운영자만 본다. 목적은 사생활이 아니라 **도용 방지**다 — 아직
+  -- 만들어지지 않은 아이디어가 공개돼 있으면 먼저 가져가는 사람이 이긴다.
+  -- 잠긴 글도 제목·시각·상태는 목록에 남는다(그 자국이 선후의 근거가 된다).
+  -- 0 으로 내리는 것은 운영자만 할 수 있다 — 비밀번호를 잊었을 때의 탈출구다.
+  private   INTEGER NOT NULL DEFAULT 1,
+  -- 신원 확인은 하지 않는다. **올릴 때 정한 비밀번호를 아는 사람**을 올린 사람으로
+  -- 본다. 되찾을 길은 없다 — 만들려면 연락처를 받아야 하고, 그건 이 게시판이
+  -- 하지 않기로 한 것이다. 반복수를 행마다 두는 이유는 나중에 올려도 옛 글이
+  -- 안 깨지게 하기 위해서다.
+  pass_salt TEXT,
+  pass_hash TEXT,                      -- PBKDF2-SHA256
+  pass_iter INTEGER,
   -- 의견을 닫는다. **상태와 묶지 않는다** — 「만드는 중」은 제안자가 세부를 보태는
   -- 구간이고 「안 만듦」은 거절 사유에 반론할 자리라, 상태로 일괄해 닫으면 정작
   -- 필요한 대화가 먼저 막힌다. 소음이 실제로 생긴 글만 골라 잠근다.

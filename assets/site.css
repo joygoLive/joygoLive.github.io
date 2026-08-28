@@ -334,3 +334,20 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
    화면이 튄다. 모바일 브라우저의 기본 동작이라 꺼야 한다.
    글자가 잡혀 파랗게 되는 것도 막는다 — 일곱 번 두드리면 반드시 잡힌다. */
 header .brand,footer .brand{touch-action:manipulation;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+
+/* 잠긴 제안 — 올린 사람과 운영자만 내용을 본다. 목록에 남는 것은 제목 앞부분과
+   날짜·상태뿐이다.
+
+   **흐리게 그리지 않는다.** 가려진 글은 「덜 중요한 글」이 아니라 「아직 못 여는
+   글」이고, 옅게 깔면 목록 전체가 회색이 되어 게시판이 죽은 것처럼 보인다. 대신
+   제목만 한 톤 내리고 자물쇠 표시로 상태를 말한다. */
+.idea.locked .idea-title{color:var(--text2);font-weight:500}
+.sign.lock{color:var(--text-dim)}
+.tag-priv,.tag-mine{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.03em;border-radius:4px;padding:2px 6px;border:1px solid}
+.tag-priv{color:var(--text-dim);background:var(--surface-2);border-color:var(--border)}
+.tag-mine{color:var(--accent-2);background:var(--accent-dim);border-color:var(--accent-line)}
+.open-form input{font-family:var(--font-sans);font-size:14px;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 12px;transition:border-color .15s}
+.open-form input:focus{outline:none;border-color:var(--accent-line);box-shadow:0 0 0 3px var(--accent-dim)}
+.ff .hint b{color:var(--text2);font-weight:600}
+.adm-priv{font-family:var(--font-mono);font-size:11.5px;padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:#fff;color:var(--text2);cursor:pointer;transition:.15s}
+.adm-priv:hover{border-color:var(--accent-line);color:var(--accent-2)}
