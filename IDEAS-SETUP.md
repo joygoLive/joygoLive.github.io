@@ -39,8 +39,22 @@ Pages       joygolive → https://joygolive.pages.dev
 npx wrangler pages deploy . --project-name joygolive --branch main --commit-dirty=true
 ```
 
-`.assetsignore` 가 정적 자산에서 뺄 것들을 적어 둔다 — 설정·문서·비밀값이
-`*.pages.dev` 로 그대로 새어 나가지 않게.
+### 설정·문서가 밖으로 안 새게
+
+`.assetsignore` 에 뺄 것을 적어 두긴 하지만 **그것만 믿으면 안 된다.**
+2026-08-28 확인 — 거기 적힌 `schema.sql` · `wrangler.toml` · `IDEAS-SETUP.md` 가
+그대로 배포돼 `joygolive.pages.dev/IDEAS-SETUP.md` 로 읽히고 있었다. 이 파일에는
+계정 메일과 Cloudflare 계정 ID · D1 ID 가 적혀 있다(평문 비밀값은 `.secrets.local`
+에 있고 그건 배포에 안 들어갔다 — 샌 것은 없다).
+
+그래서 막는 일을 **`functions/_middleware.js`** 가 한다. 점으로 시작하는 파일,
+`.sql`·`.toml`·`.md`·`.yml`·`.env` 류, `migrations/` 를 404 로 돌린다. 배포에
+무엇이 딸려 올라가든 여기를 지나지 못하면 밖에서 못 읽는다 — 안 올리는 것과
+못 읽게 하는 것 중 하나만 골라야 한다면 후자가 확실하다. 조용히 실패하는 방어는
+방어가 아니고, `.assetsignore` 는 정확히 그렇게 실패했다.
+
+`/.well-known/` 은 열어 둔다 — 인증서 발급·소유 확인이 쓰는 자리다.
+새 파일을 열어야 하면 그 목록을 고친다.
 
 ### 스키마를 고쳤을 때
 
