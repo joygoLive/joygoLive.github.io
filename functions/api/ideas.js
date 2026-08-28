@@ -1,5 +1,5 @@
 import {
-  json, bad, clean, safeAuthor, ipHash, rateOk, newId, isAdmin, notify, snip,
+  json, bad, clean, isReserved, ipHash, rateOk, newId, isAdmin, notify, snip,
   newSalt, derivePass, ideaKey, PASS_ITER, stub,
 } from '../_shared.js';
 
@@ -51,12 +51,19 @@ export async function onRequestGet({ request, env }) {
   });
 }
 
-/** 제안 등록. 필요한 것은 한 줄 요약과 비밀번호뿐이다 — 양식을 다 채우게 강제하면
- *  «귀찮아서 안 쓴다»가 되고, 그러면 받을 의견이 없다. 나머지는 있으면 좋은 것이다.
+/** 제안 등록. **모든 칸이 필수다.**
  *
- *  비밀번호를 «있으면 좋은 것»에 두지 않은 이유: 없이 올라간 글은 올린 사람도 다시
- *  못 여는 글이 된다. 답을 여기 댓글로 준다고 해 놓고 그 답을 볼 수 없게 만드는 것은
- *  받을 수 없는 곳으로 편지를 보내는 것과 같다. */
+ *  문턱이 올라간다는 것은 안다 — 다 채우게 하면 「귀찮아서 안 쓴다」가 늘고, 원래는
+ *  한 줄 요약만 받았다. 대신 이 게시판은 받은 제안을 검토하고 만들어 주겠다는
+ *  약속이라, 무엇이 불편한지·누가 쓸지·되면 뭐가 달라지는지가 비면 판단할 것이
+ *  없어 어차피 되물어야 한다. 되묻는 왕복이 빈칸보다 비싸다.
+ *
+ *  비밀번호가 필수인 이유는 다르다. 없이 올라간 글은 올린 사람도 다시 못 여는
+ *  글이 된다 — 답을 댓글로 준다고 해 놓고 그 답을 볼 수 없게 만드는 것은 받을 수
+ *  없는 곳으로 편지를 보내는 것과 같다.
+ *
+ *  **어느 칸이 빈지 하나씩 말해 준다.** 「입력값이 잘못됐습니다」로 뭉뚱그리면
+ *  사람이 자기 화면을 뒤져 가며 찾아야 한다. */
 export async function onRequestPost(ctx) {
   const { request, env } = ctx;
   const db = env.DB;
@@ -67,8 +74,23 @@ export async function onRequestPost(ctx) {
     return bad('본문을 읽을 수 없습니다');
   }
 
-  const title = clean(body.title, LIMITS.title);
-  if (!title) return bad('한 줄 요약은 있어야 합니다');
+  const need = [
+    ['title', '한 줄 요약을 적어 주세요'],
+    ['problem', '무엇이 불편한지 적어 주세요'],
+    ['who', '누가 쓰게 될지 적어 주세요'],
+    ['outcome', '되면 무엇이 달라지는지 적어 주세요'],
+    ['author', '이름을 적어 주세요'],
+  ];
+  const v = {};
+  for (const [k, msg] of need) {
+    v[k] = clean(body[k], LIMITS[k]);
+    if (!v[k]) return bad(msg);
+  }
+  // 이름이 필수인 자리에서는 사칭을 조용히 익명으로 바꾸지 않는다 — 적은 사람은
+  // 자기 이름이 올라간 줄 아는데 화면에는 「익명」이 떠 있게 된다.
+  // 화면이 이 문구를 「보내지 못했습니다 — …」 뒤에 붙이므로 여기서 또 대시를
+  // 쓰면 한 줄에 대시가 둘이 된다.
+  if (isReserved(v.author)) return bad('그 이름은 쓸 수 없습니다 (운영자로 오해됩니다)');
 
   // 공백을 털지 않는다 — 사람이 넣은 그대로가 비밀번호다. 길이만 본다.
   const pass = typeof body.pass === 'string' ? body.pass : '';
@@ -81,15 +103,7 @@ export async function onRequestPost(ctx) {
 
   const salt = newSalt();
   const passHash = await derivePass(pass, salt);
-  const row = {
-    id: newId(),
-    ts: new Date().toISOString(),
-    author: safeAuthor(body.author, LIMITS.author),
-    title,
-    problem: clean(body.problem, LIMITS.problem),
-    who: clean(body.who, LIMITS.who),
-    outcome: clean(body.outcome, LIMITS.outcome),
-  };
+  const row = { id: newId(), ts: new Date().toISOString(), ...v };
   await db
     .prepare(
       `INSERT INTO ideas (id, ts, author, title, problem, who, outcome, status,
@@ -102,9 +116,9 @@ export async function onRequestPost(ctx) {
 
   notify(
     ctx, env,
-    `**새 제안** · ${row.author ?? '익명'}\n` +
+    `**새 제안** · ${row.author}\n` +
       `「${snip(row.title)}」\n` +
-      (row.problem ? `${snip(row.problem, 160)}\n` : '') +
+      `${snip(row.problem, 160)}\n` +
       `https://joygolive.pages.dev/#ideas`
   );
   // 열쇠를 바로 함께 준다. 올리자마자 비밀번호를 다시 묻는 것은, 방금 정한 것을

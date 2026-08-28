@@ -13,11 +13,14 @@
       problem: '무엇이 불편한가요', problemH: '지금은 어떻게 하고 있고, 어디가 막히는지. 이게 있으면 만들 물건이 훨씬 또렷해집니다.',
       who: '누가 쓰게 될까요', whoH: '본인만 쓸 것인지, 비슷한 사람이 더 있는지.',
       outcome: '되면 무엇이 달라지나요', outcomeH: '만들어졌다고 치고, 그래서 뭐가 좋아지는지.',
-      author: '이름', authorH: '비워 두면 익명으로 올라갑니다.',
-      pass: '비밀번호', passH: '이 제안을 다시 열 때 쓰는 비밀번호입니다. 4자 이상. 계정을 만들지 않으므로 **잊으면 되찾을 수 없습니다** — 다시 들어와 내용을 보태거나 답을 보려면 이것이 필요합니다.',
+      author: '이름', authorH: '부르기 좋은 이름이면 됩니다. 실명이 아니어도 되고, 연락처는 적지 마세요.',
+      pass: '비밀번호', passH: '4자 이상. **잊으면 되찾을 수 없습니다** — 다시 들어와 내용을 보태거나 답을 보려면 이것이 필요합니다.',
+      allNeed: '모든 칸을 채워 주세요. 무엇이 불편한지·누가 쓸지·되면 뭐가 달라지는지가 비면 검토할 것이 없어 결국 되묻게 됩니다.',
       anon: '익명', submit: '제안 올리기', sending: '올리는 중…',
-      notice: '올린 사람과 운영자만 내용을 봅니다. 목록에는 제목 앞부분과 날짜·상태만 남습니다 — 아이디어를 가려 두면서도 「그때 이미 여기 있었다」는 기록은 남기기 위해서입니다. 이름·연락처·개인정보는 적지 마세요. 답은 이 글의 댓글로 드리므로 연락처가 필요 없습니다.',
-      need: '한 줄 요약은 있어야 합니다', needPass: '비밀번호는 4자 이상이어야 합니다',
+      notice: '올린 사람과 운영자만 내용을 봅니다. 목록에는 제목 앞부분과 날짜·상태만 남습니다 — 아이디어를 가려 두면서도 「그때 이미 여기 있었다」는 기록은 남기기 위해서입니다. 연락처·개인정보는 적지 마세요. 답은 이 글의 댓글로 돌아오므로 연락처가 필요 없습니다.',
+      needTitle: '한 줄 요약을 적어 주세요', needProblem: '무엇이 불편한지 적어 주세요',
+      needWho: '누가 쓰게 될지 적어 주세요', needOutcome: '되면 무엇이 달라지는지 적어 주세요',
+      needAuthor: '이름을 적어 주세요', needPass: '비밀번호는 4자 이상이어야 합니다',
       done: '올라갔습니다. 검토하고 여기에 답하겠습니다. 비밀번호를 꼭 기억해 두세요 — 다시 열 때 필요하고, 되찾을 수 없습니다.',
       fail: '보내지 못했습니다', reply: '의견 남기기', send: '남기기',
       empty: '아직 들어온 제안이 없습니다. 처음이 되어 주세요.',
@@ -47,11 +50,14 @@
       problem: 'What is awkward today', problemH: 'How you do it now and where it stalls. This is what makes the thing to build concrete.',
       who: 'Who would use it', whoH: 'Only you, or are there others like you.',
       outcome: 'What changes if it exists', outcomeH: 'Assume it is built — what gets better.',
-      author: 'Name', authorH: 'Leave empty to post anonymously.',
-      pass: 'Password', passH: 'Used to reopen this idea later. Four characters or more. No account is created, so **it cannot be recovered** — you need it to come back, add detail, or read the reply.',
+      author: 'Name', authorH: 'Whatever you would like to be called. It need not be your real name; do not put contact details here.',
+      pass: 'Password', passH: 'Four characters or more. **It cannot be recovered** — you need it to come back, add detail, or read the reply.',
+      allNeed: 'Every field is required. Without the problem, the users, and the outcome there is nothing to review, so it only ends in questions back to you.',
       anon: 'anonymous', submit: 'Post it', sending: 'Posting…',
-      notice: 'Only you and the owner can read what you write. The list keeps the start of the title, the date, and the status — enough to show the idea was already here at that time, without giving it away. Do not include names, contact details, or personal data; replies come as comments on this post.',
-      need: 'The one-line summary is required', needPass: 'The password must be at least 4 characters',
+      notice: 'Only you and the owner can read what you write. The list keeps the start of the title, the date, and the status — enough to show the idea was already here at that time, without giving it away. Do not include contact details or personal data; replies come as comments on this post.',
+      needTitle: 'The one-line summary is required', needProblem: 'Say what is awkward today',
+      needWho: 'Say who would use it', needOutcome: 'Say what changes if it exists',
+      needAuthor: 'A name is required', needPass: 'The password must be at least 4 characters',
       done: 'Posted. It will be reviewed and answered here. Keep the password — it is needed to reopen this and cannot be recovered.',
       fail: 'Could not send', reply: 'Leave a comment', send: 'Send',
       empty: 'No ideas yet. Be the first.',
@@ -160,10 +166,11 @@
       tag === 'textarea' ? `<textarea id="${id}" rows="3"></textarea>`
       : tag === 'password' ? `<input id="${id}" type="password" autocomplete="new-password" />`
       : `<input id="${id}" type="text" />`;
-    return `<div class="ff">
+    return `<div class="ff" data-ff="${id}">
       <label for="${id}">${esc(t[key])}</label>
       <span class="hint">${bold(hint)}</span>
       ${input}
+      <span class="ff-err" id="${id}_err"></span>
     </div>`;
   }
 
@@ -172,12 +179,15 @@
     if (!el) return;
     el.innerHTML = `
       <p class="form-note">${esc(t.notice)}</p>
+      <p class="form-note req">${esc(t.allNeed)}</p>
       ${field('f_title', 'title')}
       ${field('f_problem', 'problem', 'textarea')}
       ${field('f_who', 'who', 'textarea')}
       ${field('f_outcome', 'outcome', 'textarea')}
-      ${field('f_author', 'author')}
-      ${field('f_pass', 'pass', 'password')}
+      <div class="ff-row">
+        ${field('f_author', 'author')}
+        ${field('f_pass', 'pass', 'password')}
+      </div>
       <div class="form-row">
         <button type="submit" class="btn btn-primary btn-sm">${esc(t.submit)}</button>
         <span class="form-msg" id="formMsg"></span>
@@ -381,20 +391,53 @@
     bindToggle('ideaFormToggle', 'ideaForm');
     bindToggle('ideaListToggle', 'ideaList');
 
+    /* 빈 칸 표시. 메시지를 폼 맨 아래에만 두면 긴 폼에서는 화면 밖이라 안 보인다 —
+       그 칸 바로 밑에도 같이 적는다. */
+    const mark = (id, text) => {
+      const box = document.querySelector(`[data-ff="${id}"]`);
+      if (box) box.classList.add('bad');
+      const e = $(`${id}_err`);
+      if (e) e.textContent = text;
+    };
+    const clearMark = (id) => {
+      document.querySelector(`[data-ff="${id}"]`)?.classList.remove('bad');
+      const e = $(`${id}_err`);
+      if (e) e.textContent = '';
+    };
+    const clearMarks = () => {
+      for (const b of document.querySelectorAll('#ideaForm .ff.bad')) clearMark(b.dataset.ff);
+    };
+    // 채우기 시작하면 그 칸의 표시는 바로 지운다. 다 채운 뒤에도 빨간 채로 남아
+    // 있으면 아직 뭔가 잘못된 줄 읽는다.
+    $('ideaForm')?.addEventListener('input', (e) => {
+      const box = e.target.closest('[data-ff]');
+      if (box?.classList.contains('bad')) clearMark(box.dataset.ff);
+    });
+
     $('ideaForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const msg = $('formMsg');
       const v = (id) => $(id)?.value ?? '';
-      if (!v('f_title').trim()) {
+      /* 모든 칸이 필수다. **어느 칸이 빈지 하나씩 말하고 그 칸으로 커서를 옮긴다** —
+         「모두 채워 주세요」만 띄우면 긴 폼에서 사람이 자기 화면을 뒤져야 한다.
+         서버도 같은 순서로 같은 검사를 한다. 여기서 막는 것은 왕복을 아끼는
+         것이지 관문이 아니다. */
+      const need = [
+        ['f_title', 'needTitle'], ['f_problem', 'needProblem'],
+        ['f_who', 'needWho'], ['f_outcome', 'needOutcome'], ['f_author', 'needAuthor'],
+        // 비밀번호만 공백을 안 턴다 — 사람이 넣은 그대로가 비밀번호다. 서버도 같게 본다.
+        ['f_pass', 'needPass', (x) => x.length >= 4],
+      ];
+      clearMarks();
+      // **빈 칸을 전부 표시한다.** 하나씩 알려 주면 채우고 누르기를 반복하게 되는데,
+      // 어차피 다 필요한 칸이라 처음부터 다 보여 주는 편이 왕복이 적다.
+      // 커서는 그중 첫 칸으로 옮긴다 — 표시만 하고 두면 어디부터 볼지 사람이 정해야 한다.
+      const bad = need.filter(([id, , ok]) => !(ok ? ok(v(id)) : v(id).trim()));
+      if (bad.length) {
+        for (const [id, key] of bad) mark(id, t[key]);
         msg.className = 'form-msg err';
-        msg.textContent = t.need;
-        return;
-      }
-      // 공백을 털지 않는다 — 사람이 넣은 그대로가 비밀번호다. 서버도 같게 본다.
-      if (v('f_pass').length < 4) {
-        msg.className = 'form-msg err';
-        msg.textContent = t.needPass;
-        $('f_pass')?.focus();
+        msg.textContent = t[bad[0][1]];
+        $(bad[0][0])?.focus();
         return;
       }
       const btn = e.target.querySelector('button[type=submit]');

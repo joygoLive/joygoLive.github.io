@@ -81,6 +81,12 @@ export function safeAuthor(v, max) {
   return RESERVED.test(s) ? null : s;   // 사칭이면 이름 없이 = 익명으로 올라간다
 }
 
+/** 사칭하는 이름인가. **이름이 필수인 자리에서는 조용히 익명으로 바꾸면 안 된다** —
+ *  적은 사람은 자기 이름이 올라간 줄 아는데 화면에는 「익명」이 떠 있게 된다.
+ *  거기서는 이걸로 먼저 걸러 내고 왜 안 되는지 말해 준다. safeAuthor 의 조용한
+ *  처리는 이름이 원래 없어도 되는 자리(댓글)에서만 맞다. */
+export const isReserved = (v) => RESERVED.test(String(v ?? ''));
+
 /** 새 글이 올라오면 Discord 로 알린다.
  *
  * **응답을 붙잡지 않는다.** waitUntil 로 뒤에서 보내므로 Discord 가 느리거나 죽어도
