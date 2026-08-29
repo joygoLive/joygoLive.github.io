@@ -21,10 +21,32 @@ const BLOCKED = [
 // 인증서 발급·소유 확인이 쓰는 자리. 점으로 시작하지만 이건 열려 있어야 한다.
 const ALLOW = /^\/\.well-known\//;
 
+/* 정규 호스트 — joygolive.com 이 메인이고 pages.dev 로 온 것은 그리로 넘긴다.
+ *
+ * **미리보기 배포는 건드리지 않는다.** Pages 는 배포마다
+ * `<해시>.joygolive.pages.dev` 를 주는데, 그것까지 넘기면 올리기 전에 확인할
+ * 방법이 없어진다. 그래서 와일드카드가 아니라 **프로덕션 호스트 하나**만 본다.
+ *
+ * **302 다.** 301 은 브라우저가 오래 캐시해서, 되돌려야 할 때 이미 한 번 온
+ * 사람에게는 되돌릴 수가 없다. 자리를 잡은 뒤에 301 로 올린다.
+ *
+ * ⚠️ 순서: `joygolive.com` 이 Pages 커스텀 도메인으로 **붙은 뒤에** 배포한다.
+ * 붙기 전에 켜면 pages.dev 는 없는 주소로 보내고 자기는 안 열어 사이트가
+ * 통째로 막힌다.
+ */
+const CANONICAL_HOST = 'joygolive.com';
+const LEGACY_HOST = 'joygolive.pages.dev';
+
 export async function onRequest(ctx) {
-  const p = new URL(ctx.request.url).pathname;
-  if (!ALLOW.test(p) && BLOCKED.some((re) => re.test(p))) {
+  const url = new URL(ctx.request.url);
+  if (!ALLOW.test(url.pathname) && BLOCKED.some((re) => re.test(url.pathname))) {
+    // 막을 경로는 호스트와 무관하게 먼저 막는다 — 리다이렉트로 넘기면 그 경로가
+    // Location 헤더에 그대로 실려 「거기 뭔가 있다」를 알려 주는 셈이 된다.
     return new Response('Not found', { status: 404 });
+  }
+  if (url.hostname === LEGACY_HOST) {
+    url.hostname = CANONICAL_HOST;
+    return Response.redirect(url.toString(), 302);
   }
   return ctx.next();
 }
