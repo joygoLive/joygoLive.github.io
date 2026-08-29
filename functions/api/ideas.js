@@ -119,7 +119,7 @@ export async function onRequestPost(ctx) {
     `**새 제안** · ${row.author}\n` +
       `「${snip(row.title)}」\n` +
       `${snip(row.problem, 160)}\n` +
-      `https://joygolive.pages.dev/#ideas`
+      `https://joygolive.com/#ideas`
   );
   // 열쇠를 바로 함께 준다. 올리자마자 비밀번호를 다시 묻는 것은, 방금 정한 것을
   // 그 자리에서 시험하는 셈이라 사람을 짜증나게 하고 오타를 발견하기만 한다.

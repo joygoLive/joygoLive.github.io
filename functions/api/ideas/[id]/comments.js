@@ -59,7 +59,7 @@ export async function onRequestPost(ctx) {
       `**새 의견** · ${row.author ?? '익명'}\n` +
         `「${snip(idea.title, 60)}」 에\n` +
         `${snip(row.text, 160)}\n` +
-        `https://joygolive.pages.dev/#ideas`
+        `https://joygolive.com/#ideas`
     );
   }
   return json({ comment: row }, 201);

@@ -113,7 +113,7 @@ npx wrangler d1 execute joygolive-ideas --remote --file=migrations/002-private-i
 
 ```bash
 TOK=…   # ADMIN_TOKEN
-SITE=https://joygolive.pages.dev   # .secrets.local 의 ADMIN_TOKEN
+SITE=https://joygolive.com   # .secrets.local 의 ADMIN_TOKEN
 
 # 상태 + 검토 의견
 curl -X PATCH $SITE/api/ideas -H 'Content-Type: application/json' -H "X-Admin-Token: $TOK" \
