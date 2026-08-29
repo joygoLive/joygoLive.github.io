@@ -6,6 +6,25 @@
  * data-i18n 속성으로는 덮이지 않는다. setLang 이 쏘는 joygo:lang 을 받아 다시 그린다. */
 (function () {
   const API = '/api/ideas';
+
+  /** 응답을 **한 번만** 읽어, JSON 이면 객체로·아니면 진단 문구로 돌려준다.
+   *
+   *  예전에는 `r.json().catch(() => ({}))` 로 삼켰다. 그래서 서버가 JSON 이 아닌 것을
+   *  돌려주면 화면에 「보내지 못했습니다 — 보내지 못했습니다」가 떴다 — 같은 말이 두 번
+   *  나오는 것은 **증거를 지운 것**이다. Cloudflare 가 낸 오류 페이지인지 앱이 낸
+   *  오류인지, 무엇 때문인지가 전부 사라진다(실제로 그 때문에 원인을 못 짚었다).
+   *
+   *  이제 상태코드와 본문 앞머리를 남긴다. 태그를 털어 한 줄로 줄이므로 화면이 깨지지 않고,
+   *  Cloudflare 의 오류 번호(예: 1102 — Worker exceeded resource limits)가 그대로 보인다. */
+  const readBody = async (r) => {
+    const txt = await r.text().catch(() => '');
+    try {
+      return { j: JSON.parse(txt) };
+    } catch {
+      const head = txt.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 120);
+      return { j: {}, notJson: head || '(빈 응답)' };
+    }
+  };
   const T = {
     ko: {
       propose: '아이디어 제안하기', list: '들어온 제안', pending: '검토 전 %d',
@@ -454,8 +473,9 @@
             pass: v('f_pass'),
           }),
         });
-        const j = await r.json().catch(() => ({}));
-        if (!r.ok) throw new Error(j.error || t.fail);
+        const { j, notJson } = await readBody(r);
+        if (!r.ok)
+          throw new Error(j.error || (notJson ? `서버 응답 ${r.status} · ${notJson}` : `서버 응답 ${r.status}`));
         // 올리자마자 열쇠를 받아 둔다. 방금 정한 비밀번호를 그 자리에서 다시 묻는
         // 것은 사람을 짜증나게 할 뿐이고, 올린 글이 바로 안 보이면 올라갔는지도
         // 알 수 없다.
@@ -504,8 +524,15 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ pass: inp.value }),
         });
-        const j = await r.json().catch(() => ({}));
-        if (!r.ok || !j.key) throw new Error(j.error || t.openBad);
+        const { j, notJson } = await readBody(r);
+        // 서버가 JSON 이 아닌 것을 돌려줬는데 「비밀번호가 다릅니다」로 보이면 거짓말이 된다.
+        // 다만 진단 문구는 **응답이 실패일 때만** 쓴다 — 200 인데 열쇠만 없는 경우까지
+        // 「서버 응답 200」으로 덮으면 원래 맞는 말(비밀번호가 다릅니다)이 사라진다.
+        if (!r.ok || !j.key)
+          throw new Error(
+            j.error ||
+              (!r.ok ? (notJson ? `서버 응답 ${r.status} · ${notJson}` : `서버 응답 ${r.status}`) : t.openBad)
+          );
         putKey(id, j.key);
         openSet.add(id);
         await load();          // 열린 글을 제자리에 끼워 다시 그린다
@@ -543,8 +570,9 @@
           },
           body: JSON.stringify({ text: ta.value, author: au.value }),
         });
-        const j = await r.json().catch(() => ({}));
-        if (!r.ok) throw new Error(j.error || t.fail);
+        const { j, notJson } = await readBody(r);
+        if (!r.ok)
+          throw new Error(j.error || (notJson ? `서버 응답 ${r.status} · ${notJson}` : `서버 응답 ${r.status}`));
         await load();
       } catch (err) {
         msg.className = 'form-msg err';
@@ -567,7 +595,11 @@
           headers: { 'Content-Type': 'application/json', ...H() },
           body: JSON.stringify({ id, ...body }),
         });
-        if (!r.ok) { msg.className = 'form-msg err'; msg.textContent = t.fail; return; }
+        if (!r.ok) {
+          msg.className = 'form-msg err';
+          msg.textContent = j.error || (notJson ? `서버 응답 ${r.status} · ${notJson}` : `서버 응답 ${r.status}`);
+          return;
+        }
         await load();
       };
 
@@ -610,8 +642,8 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ pass }),
         });
-        const j = await r.json().catch(() => ({}));
-        if (!r.ok) { alert(j.error || t.fail); return; }
+        const { j, notJson } = await readBody(r);
+        if (!r.ok) { alert(j.error || (notJson ? `서버 응답 ${r.status} · ${notJson}` : `서버 응답 ${r.status}`)); return; }
         admin = j.token; asVisitor = false;
         saveTok(admin); renderBar(); load();
       } catch {
