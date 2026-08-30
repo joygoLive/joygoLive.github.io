@@ -44,6 +44,15 @@
 .mstat{display:flex;align-items:baseline;gap:6px;margin-bottom:10px}
 .mstat b{font-size:30px;font-weight:800;line-height:1;letter-spacing:-.02em}
 .mstat span{font-size:12px;color:var(--text-dim)}
+
+/* 참여하면 무엇을 돌려받는지. **각주로 보이면 안 된다** — 처음엔 작은 회색 글씨로
+   뒀더니 안내문처럼 읽혔다. 버튼 바로 아래에서 제안으로 보이도록 테두리를 준다. */
+.reward{margin:18px 0 0;padding:13px 16px;max-width:46em;
+  font-size:13.5px;line-height:1.7;color:var(--text2);
+  background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:var(--radius)}
+.reward b{color:var(--text);font-weight:700}
+.reward::before{content:'↩';float:left;margin:0 10px 0 0;font-size:15px;color:var(--accent);font-weight:700}
+.cta-note{font-size:12.5px;color:var(--text-dim);align-self:center}
 </style>
 <script>
 /* 숫자는 도구에서 읽어 온다. 못 읽으면 블록을 감춘 채로 둔다 —
@@ -149,6 +158,7 @@
       <a href="https://wcp.joygolive.com" class="btn btn-primary" data-i18n="hero.cta1">Run it on your device</a>
       <a href="#found" class="btn btn-ghost" data-i18n="hero.cta2">What we found</a>
     </div>
+    <p class="reward" data-i18n-html="hero.reward"><b>Send the result and you get one back.</b> Where your device sits in the sample — upper, middle, or lower — and which capabilities opened, needed permission, or were closed on it.</p>
     <div class="byline" data-i18n-html="hero.byline">A measurement tool by joygoLive. Open the link on the device you want measured.</div>
   </div>
 </section>
@@ -282,6 +292,7 @@
     </div>
     <div class="cta-row">
       <a href="https://wcp.joygolive.com" class="btn btn-primary" data-i18n="limits.cta">Measure your own device</a>
+      <span class="cta-note" data-i18n="limits.ctanote">Takes about a minute. You get your tier and a full breakdown back.</span>
     </div>
   </div>
 </section>
@@ -308,6 +319,8 @@ const _L = {
     "hero.title":"What your device <span class=\"grad\">actually gives the web</span>.",
     "hero.sub":"Every capability is invoked in your own browser and the result recorded. Not a support table, not a feature-detection list, because a browser answering \"yes\" and a browser doing the thing are two different answers.",
     "hero.cta1":"Run it on your device","hero.cta2":"What we found",
+    "hero.reward":"<b>Send the result and you get one back.</b> Where your device sits in the sample — upper, middle, or lower — and which capabilities opened, needed permission, or were closed on it.",
+    "limits.ctanote":"Takes about a minute. You get your tier and a full breakdown back.",
     "hero.byline":"A measurement tool by joygoLive. Open the link on the device you want measured.",
     "why.tag":"Premise","why.h2":"Declared support, working support",
     "why.lead":"A capability table answers \"is it in the spec\". It cannot answer \"does it work on this phone, in this browser, right now\". Between the two sit the OS, the browser's own policy, the app hosting the WebView, and the response headers of the site itself.",
@@ -366,6 +379,8 @@ const _L = {
     "hero.title":"내 기기가 웹에 <span class=\"grad\">실제로 열어 주는 것</span>.",
     "hero.sub":"항목마다 브라우저에서 실제로 호출하고 그 결과를 기록합니다. 지원표도, 기능 감지 목록도 아닙니다. 「된다」는 대답과 실제로 되는 것은 다른 대답이기 때문입니다.",
     "hero.cta1":"내 기기에서 실행","hero.cta2":"측정 결과 보기",
+    "hero.reward":"<b>보내 주시면 돌려드립니다.</b> 이 표본 안에서 그 기기가 상위·보통·하위 중 어디인지, 그리고 어떤 기능이 열리고 어떤 것이 권한을 요구하거나 막혔는지를 항목별로 보여드립니다.",
+    "limits.ctanote":"1분이면 됩니다. 티어와 항목별 결과를 그 자리에서 받습니다.",
     "hero.byline":"joygoLive 의 측정 도구. 재고 싶은 기기에서 링크를 여세요.",
     "why.tag":"문제","why.h2":"선언된 지원과 동작하는 지원",
     "why.lead":"지원표는 「표준에 있는가」에 답합니다. 「이 폰, 이 브라우저에서 지금 되는가」에는 답하지 못합니다. 둘 사이에 운영체제, 브라우저의 정책, WebView 를 띄운 앱, 그리고 사이트 자신의 응답 헤더가 있습니다.",
