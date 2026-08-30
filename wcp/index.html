@@ -92,18 +92,18 @@
 <section id="found" class="section alt">
   <div class="wrap">
     <div class="eyebrow" data-i18n="found.tag">Current sample</div>
-    <h2 data-i18n="found.h2">6 devices, 14 environments</h2>
-    <p class="lead" data-i18n="found.lead">A small sample, stated as such. What it already shows:</p>
+    <h2 data-i18n="found.h2">9 devices, 16 environments</h2>
+    <p class="lead" data-i18n="found.lead">A small sample, stated as such. Figures below are as of 2026-08-30 and move as measurements arrive.</p>
     <div class="cap-grid">
       <div class="cap fade"><b>59%</b><span data-i18n="found.c1">of the 70 items every environment measured are open</span></div>
-      <div class="cap fade"><b>31</b><span data-i18n="found.c2">items where the environment decides, not the hardware</span></div>
-      <div class="cap fade"><b>4</b><span data-i18n="found.c3">of the 11 unavailable items are a real native gap</span></div>
-      <div class="cap fade"><b>316</b><span data-i18n="found.c4">GFLOPS at the top, against 8 at the bottom of the same sample</span></div>
+      <div class="cap fade"><b>32</b><span data-i18n="found.c2">items where the environment decides, not the hardware</span></div>
+      <div class="cap fade"><b>5</b><span data-i18n="found.c3">of the 12 unavailable items are a real native gap</span></div>
+      <div class="cap fade"><b>384</b><span data-i18n="found.c4">GFLOPS at the top, against 8 at the bottom of the same sample</span></div>
     </div>
     <ul class="feature-list">
-      <li data-i18n="found.1"><b>Most closed doors are not gaps.</b> Of 11 unavailable items, 5 are deliberate refusals against fingerprinting, 1 is an unfinished standard, and 1 is closed to native code as well. The genuine gap is 4.</li>
+      <li data-i18n="found.1"><b>Most closed doors are not gaps.</b> Of 12 unavailable items, 5 are deliberate refusals against fingerprinting, 1 is an unfinished standard, and 1 is closed to native code as well. The genuine gap is 5.</li>
       <li data-i18n="found.2"><b>On iOS the browser choice is cosmetic.</b> Safari, Chrome, and Edge on the same iPhone returned byte-identical measurements. All three are WebKit.</li>
-      <li data-i18n="found.3"><b>In-app browsers close six capabilities</b> that the same phone opens in a standalone browser. A link opened from a messenger is a different device, as far as the web can tell.</li>
+      <li data-i18n="found.3"><b>In-app browsers close seven capabilities</b> that the same phone opens in a standalone browser. A link opened from a messenger is a different device, as far as the web can tell.</li>
       <li data-i18n="found.4"><b>Open and fast are not the same device.</b> The most open environment in this sample is not the fastest one.</li>
     </ul>
   </div>
@@ -132,7 +132,7 @@
     <h2 data-i18n="limits.h2">What this will not claim</h2>
     <div class="disclose fade">
       <ul class="feature-list">
-        <li data-i18n="limits.1"><b>The sample is small.</b> 6 devices and 14 environments, most of them ours. Treat the numbers as a direction, not a population statistic.</li>
+        <li data-i18n="limits.1"><b>The sample is small.</b> 9 devices and 16 environments, most of them ours. Treat the numbers as a direction, not a population statistic.</li>
         <li data-i18n="limits.2"><b>A web app cannot see outside itself.</b> Running processes, installed apps, battery history, storage breakdown: all invisible from a page. Anything claiming otherwise from a browser is guessing.</li>
         <li data-i18n="limits.3"><b>The native comparison is knowledge, not measurement.</b> No native app was built to compare against, so that classification is documented rather than measured, and labelled as such.</li>
         <li data-i18n="limits.4"><b>Numbers move between runs.</b> Heat, low-power mode, other load, charging state. A single reading is not a property of the device.</li>
@@ -177,15 +177,15 @@ const _L = {
     "what.2":"<b>Five states, not two.</b> Open · permission required · broken · absent · unmeasured. Collapsing these to yes/no loses the case that matters most.",
     "what.3":"<b>A control group.</b> The same page is served twice, once with cross-origin isolation headers, to separate device limits from server configuration.",
     "what.4":"<b>Nothing identifying is asked for.</b> No account, no contact details. Device model, browser, and measurements only.",
-    "found.tag":"Current sample","found.h2":"6 devices, 14 environments",
-    "found.lead":"A small sample, stated as such. What it already shows:",
+    "found.tag":"Current sample","found.h2":"9 devices, 16 environments",
+    "found.lead":"A small sample, stated as such. Figures below are as of 2026-08-30 and move as measurements arrive.",
     "found.c1":"of the 70 items every environment measured are open",
     "found.c2":"items where the environment decides, not the hardware",
-    "found.c3":"of the 11 unavailable items are a real native gap",
+    "found.c3":"of the 12 unavailable items are a real native gap",
     "found.c4":"GFLOPS at the top, against 8 at the bottom of the same sample",
-    "found.1":"<b>Most closed doors are not gaps.</b> Of 11 unavailable items, 5 are deliberate refusals against fingerprinting, 1 is an unfinished standard, and 1 is closed to native code as well. The genuine gap is 4.",
+    "found.1":"<b>Most closed doors are not gaps.</b> Of 12 unavailable items, 5 are deliberate refusals against fingerprinting, 1 is an unfinished standard, and 1 is closed to native code as well. The genuine gap is 5.",
     "found.2":"<b>On iOS the browser choice is cosmetic.</b> Safari, Chrome, and Edge on the same iPhone returned byte-identical measurements. All three are WebKit.",
-    "found.3":"<b>In-app browsers close six capabilities</b> that the same phone opens in a standalone browser. A link opened from a messenger is a different device, as far as the web can tell.",
+    "found.3":"<b>In-app browsers close seven capabilities</b> that the same phone opens in a standalone browser. A link opened from a messenger is a different device, as far as the web can tell.",
     "found.4":"<b>Open and fast are not the same device.</b> The most open environment in this sample is not the fastest one.",
     "layers.tag":"Diagnosis","layers.h2":"Five places a capability dies",
     "layers.lead":"\"It does not work\" is one sentence covering five different causes. Only the first is about the device.",
@@ -195,7 +195,7 @@ const _L = {
     "layers.4.t":"Host app restricts it","layers.4.d":"An in-app WebView, narrower than the browser it is built on.",
     "layers.5.t":"Our own headers","layers.5.d":"The site's own response, closing what the device was ready to give.",
     "limits.tag":"Limits","limits.h2":"What this will not claim",
-    "limits.1":"<b>The sample is small.</b> 6 devices and 14 environments, most of them ours. Treat the numbers as a direction, not a population statistic.",
+    "limits.1":"<b>The sample is small.</b> 9 devices and 16 environments, most of them ours. Treat the numbers as a direction, not a population statistic.",
     "limits.2":"<b>A web app cannot see outside itself.</b> Running processes, installed apps, battery history, storage breakdown: all invisible from a page. Anything claiming otherwise from a browser is guessing.",
     "limits.3":"<b>The native comparison is knowledge, not measurement.</b> No native app was built to compare against, so that classification is documented rather than measured, and labelled as such.",
     "limits.4":"<b>Numbers move between runs.</b> Heat, low-power mode, other load, charging state. A single reading is not a property of the device.",
@@ -220,15 +220,15 @@ const _L = {
     "what.2":"<b>상태는 둘이 아니라 다섯.</b> 열림 · 권한 필요 · 깨짐 · 없음 · 미측정. 예/아니오로 뭉개면 가장 중요한 경우가 사라집니다.",
     "what.3":"<b>대조군.</b> 같은 페이지를 헤더만 달리해 두 번 제공합니다. 기기의 한계와 서버 설정을 가르기 위해서입니다.",
     "what.4":"<b>신원을 묻지 않습니다.</b> 계정도 연락처도 없습니다. 기기 모델, 브라우저, 측정값뿐입니다.",
-    "found.tag":"현재 표본","found.h2":"기기 6대, 환경 14개",
-    "found.lead":"작은 표본이며, 작다고 밝힙니다. 지금까지 나온 것:",
+    "found.tag":"현재 표본","found.h2":"기기 9대, 환경 16개",
+    "found.lead":"작은 표본이며, 작다고 밝힙니다. 아래 숫자는 2026-08-30 기준이며 측정이 쌓이면 움직입니다.",
     "found.c1":"모든 환경이 잰 공통 70항목 중 열린 비율",
     "found.c2":"하드웨어가 아니라 환경이 가르는 항목 수",
-    "found.c3":"안 되는 11개 중 실제 네이티브 갭",
+    "found.c3":"안 되는 12개 중 실제 네이티브 갭",
     "found.c4":"GFLOPS. 같은 표본의 최하위는 8",
-    "found.1":"<b>막힌 문 대부분은 갭이 아닙니다.</b> 안 되는 11개 중 5개는 지문 채취를 막으려는 의도적 거절, 1개는 미완성 표준, 1개는 네이티브에도 막혀 있습니다. 진짜 갭은 4개입니다.",
+    "found.1":"<b>막힌 문 대부분은 갭이 아닙니다.</b> 안 되는 12개 중 5개는 지문 채취를 막으려는 의도적 거절, 1개는 미완성 표준, 1개는 네이티브에도 막혀 있습니다. 진짜 갭은 5개입니다.",
     "found.2":"<b>iOS 에서 브라우저 선택은 표면적입니다.</b> 같은 아이폰의 Safari·Chrome·Edge 가 바이트 단위로 같은 측정값을 냈습니다. 셋 다 WebKit 입니다.",
-    "found.3":"<b>인앱 브라우저는 6개 기능을 닫습니다.</b> 같은 폰이 일반 브라우저에서는 여는 것들입니다. 메신저에서 연 링크는 웹이 보기에 다른 기기입니다.",
+    "found.3":"<b>인앱 브라우저는 7개 기능을 닫습니다.</b> 같은 폰이 일반 브라우저에서는 여는 것들입니다. 메신저에서 연 링크는 웹이 보기에 다른 기기입니다.",
     "found.4":"<b>가장 열린 곳과 가장 빠른 곳은 다릅니다.</b> 이 표본에서 개방률 1위와 성능 1위는 같은 기기가 아닙니다.",
     "layers.tag":"진단","layers.h2":"기능이 죽는 다섯 자리",
     "layers.lead":"「안 됩니다」 한 문장이 다섯 가지 원인을 덮고 있습니다. 기기 탓인 것은 첫 번째뿐입니다.",
@@ -238,7 +238,7 @@ const _L = {
     "layers.4.t":"앱이 제한","layers.4.d":"인앱 WebView. 기반이 된 브라우저보다 좁습니다.",
     "layers.5.t":"우리 헤더","layers.5.d":"사이트 자신의 응답이, 기기가 줄 준비가 된 것을 닫습니다.",
     "limits.tag":"한계","limits.h2":"주장하지 않는 것",
-    "limits.1":"<b>표본이 작습니다.</b> 기기 6대, 환경 14개이며 대부분 저희 것입니다. 모집단 통계가 아니라 방향으로 읽어 주세요.",
+    "limits.1":"<b>표본이 작습니다.</b> 기기 9대, 환경 16개이며 대부분 저희 것입니다. 모집단 통계가 아니라 방향으로 읽어 주세요.",
     "limits.2":"<b>웹앱은 자기 밖을 못 봅니다.</b> 실행 중인 프로세스, 설치된 앱, 배터리 이력, 저장소 내역. 페이지에서는 전부 보이지 않습니다. 브라우저에서 그걸 안다고 하면 추측입니다.",
     "limits.3":"<b>네이티브 대비는 측정이 아니라 아는 것입니다.</b> 비교용 네이티브 앱을 만들지 않았으므로, 그 분류는 측정이 아니라 문서화이며 그렇게 표기합니다.",
     "limits.4":"<b>수치는 회차마다 움직입니다.</b> 발열, 저전력 모드, 다른 부하, 충전 상태. 한 번의 값은 기기의 성질이 아닙니다.",
