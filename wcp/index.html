@@ -53,6 +53,22 @@
 .reward b{color:var(--text);font-weight:700}
 .reward::before{content:'↩';float:left;margin:0 10px 0 0;font-size:15px;color:var(--accent);font-weight:700}
 .cta-note{font-size:12.5px;color:var(--text-dim);align-self:center}
+
+/* 갈린 사건. 기기는 안 나가고 항목·방향·엔진 판만 나간다. */
+.chg{margin-top:26px;padding:20px 19px;background:var(--surface);
+  border:1px solid var(--border);border-radius:var(--radius)}
+.chg .mk{font-size:14.5px;font-weight:700;margin-bottom:8px}
+.chg p{font-size:13px;color:var(--text2);line-height:1.62;margin:0 0 12px}
+.chgt{width:100%;border-collapse:collapse}
+.chgt td{padding:7px 0;border-top:1px solid var(--border);font-size:13px;vertical-align:middle}
+.chgt tr:first-child td{border-top:0}
+.chg-w{width:64px;color:var(--text-dim);font-family:var(--font-mono);font-size:11.5px;white-space:nowrap}
+.chg-e{width:96px;color:var(--text-dim);font-family:var(--font-mono);font-size:11.5px;white-space:nowrap}
+.chg-a{width:112px;white-space:nowrap;text-align:right}
+.chg-s{font-size:11px;font-weight:700;padding:2px 7px;border-radius:20px;background:var(--surface-2);color:var(--text2)}
+.chg-open .chg-a .chg-s:last-child{background:rgba(26,158,75,.16);color:#0a7d3f}
+.chg-shut .chg-a .chg-s:last-child{background:rgba(176,74,47,.14);color:#b04a2f}
+.chg-ar{margin:0 5px;color:var(--text-dim);font-size:11px}
 </style>
 <script>
 /* 숫자는 도구에서 읽어 온다. 못 읽으면 블록을 감춘 채로 둔다 —
@@ -101,6 +117,24 @@
         mk('wcpEngines', d.engines, 'e', 'n', null);
         var bd = document.getElementById('wcpBands');
         if (bd && d.bands != null) bd.textContent = d.bands;
+
+        // 갈린 사건. 아직 하나도 없으면 절을 아예 안 띄운다.
+        var cw = document.getElementById('wcpChanges'), cr = document.getElementById('wcpChangeRows');
+        if (cw && cr && d.changes && d.changes.length) {
+          var W = {ok:['열림','open'], perm:['권한','permission'],
+                   no:['없음','absent'], bad:['깨짐','broken']};
+          cr.innerHTML = d.changes.map(function(c){
+            var f = W[c.from] ? W[c.from][ko ? 0 : 1] : c.from;
+            var t = W[c.to] ? W[c.to][ko ? 0 : 1] : c.to;
+            var cls = c.to === 'ok' ? 'chg-open' : (c.from === 'ok' ? 'chg-shut' : '');
+            return '<tr class="' + cls + '"><td class="chg-w">' + (c.at || '') + '</td>' +
+                   '<td>' + c.name + '</td>' +
+                   '<td class="chg-e">' + (c.engine || '') + '</td>' +
+                   '<td class="chg-a"><span class="chg-s">' + f + '</span>' +
+                   '<span class="chg-ar">→</span><span class="chg-s">' + t + '</span></td></tr>';
+          }).join('');
+          cw.hidden = false;
+        }
       })();
 
       var box = document.getElementById('wcpStats');
@@ -255,6 +289,13 @@
       </div>
 
     </div>
+
+    <!-- 갈린 사건. 비어 있으면 절째로 안 나온다 — 「아직 없다」를 굳이 보여 줄 이유가 없다. -->
+    <div class="chg" id="wcpChanges" hidden>
+      <div class="mk" data-i18n="method.chg.t">Capabilities that flipped</div>
+      <p data-i18n="method.chg.d">Recorded when the same device and browser is measured twice and an item changes state. Browser updates open things, and occasionally close them.</p>
+      <table class="chgt"><tbody id="wcpChangeRows"></tbody></table>
+    </div>
   </div>
 </section>
 
@@ -346,6 +387,8 @@ const _L = {
     "found.2":"<b>On iOS the browser choice is cosmetic.</b> Safari, Chrome, and Edge on the same iPhone returned byte-identical measurements. All three are WebKit.",
     "found.3":"<b>In-app browsers close capabilities</b> that the same phone opens in a standalone browser. A link opened from a messenger is a different device, as far as the web can tell.",
     "found.4":"<b>Open and fast are not the same device.</b> The most open environment in this sample is not the fastest one.",
+    "method.chg.t":"Capabilities that flipped",
+    "method.chg.d":"Recorded when the same device and browser is measured twice and an item changes state. Browser updates open things, and occasionally close them.",
     "method.tag":"Method","method.h2":"How it is kept",
     "method.lead":"A number is only worth what the method behind it is worth. This is the method, and it does not change when the numbers do.",
     "method.1.t":"Five states, not two",
@@ -406,6 +449,8 @@ const _L = {
     "found.2":"<b>iOS 에서 브라우저 선택은 표면적입니다.</b> 같은 아이폰의 Safari·Chrome·Edge 가 바이트 단위로 같은 측정값을 냈습니다. 셋 다 WebKit 입니다.",
     "found.3":"<b>인앱 브라우저는 기능을 닫습니다.</b> 같은 폰이 일반 브라우저에서는 여는 것들입니다. 메신저에서 연 링크는 웹이 보기에 다른 기기입니다.",
     "found.4":"<b>가장 열린 곳과 가장 빠른 곳은 다릅니다.</b> 이 표본에서 개방률 1위와 성능 1위는 같은 기기가 아닙니다.",
+    "method.chg.t":"갈린 항목",
+    "method.chg.d":"같은 기기·같은 브라우저를 두 번 재서 상태가 달라졌을 때 기록됩니다. 브라우저가 판올림되며 열리기도 하고, 가끔은 닫히기도 합니다.",
     "method.tag":"방법","method.h2":"어떻게 관리하나",
     "method.lead":"숫자는 그 뒤의 방법만큼만 값어치가 있습니다. 아래는 그 방법이고, 숫자가 바뀌어도 이건 안 바뀝니다.",
     "method.1.t":"상태는 둘이 아니라 다섯",
