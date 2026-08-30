@@ -244,15 +244,6 @@
         <p data-i18n="method.4.d">History is stored per month × engine build × OS, not per device, so ten samples and ten thousand produce the same number of rows. Kept for five years by default.</p>
       </div>
 
-      <div class="mcard mfull">
-        <div class="mk" data-i18n="method.5.t">A control group, on the same page</div>
-        <p data-i18n="method.5.d">The same page is served twice, once with cross-origin isolation headers. If a capability differs between the two, the limit was never the device: it was the response header. That is how SharedArrayBuffer was found to be closed by our own configuration rather than by the phone.</p>
-      </div>
-
-      <div class="mcard mfull">
-        <div class="mk" data-i18n="method.6.t">What is deliberately not claimed</div>
-        <p data-i18n="method.6.d">Network readings are excluded from any score, because they measure the line at that moment rather than the device. The native comparison is documented, not measured, because no native app was built. A capability that could only be feature-detected is marked as detected, never as executed.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -284,7 +275,9 @@
         <li data-i18n-html="limits.1"><b>The sample is small.</b> Most of the sample is ours. Treat the numbers as a direction, not a population statistic.</li>
         <li data-i18n-html="limits.2"><b>A web app cannot see outside itself.</b> Running processes, installed apps, battery history, storage breakdown: all invisible from a page. Anything claiming otherwise from a browser is guessing.</li>
         <li data-i18n-html="limits.3"><b>The native comparison is knowledge, not measurement.</b> No native app was built to compare against, so that classification is documented rather than measured, and labelled as such.</li>
-        <li data-i18n-html="limits.4"><b>Numbers move between runs.</b> Heat, low-power mode, other load, charging state. A single reading is not a property of the device.</li>
+        <li data-i18n-html="limits.5"><b>Network readings are excluded from every score.</b> They measure the line at that moment, not the device. A phone on good Wi-Fi would otherwise outrank a faster one.</li>
+      <li data-i18n-html="limits.6"><b>Detected is not executed.</b> Where a capability can only be checked for existence, never invoked, it is recorded as detected and labelled that way.</li>
+      <li data-i18n-html="limits.4"><b>Numbers move between runs.</b> Heat, low-power mode, other load, charging state. A single reading is not a property of the device.</li>
       </ul>
     </div>
     <div class="cta-row">
@@ -350,10 +343,6 @@ const _L = {
     "method.3.d":"The UA engine token is frozen and useless (537.36, 605.1.15). What decides is the Chrome build or the OS build, so that is what gets recorded.",
     "method.4.t":"A ledger that does not grow with the sample","method.4.u":"bands kept",
     "method.4.d":"History is stored per month × engine build × OS, not per device, so ten samples and ten thousand produce the same number of rows. Kept for five years by default.",
-    "method.5.t":"A control group, on the same page",
-    "method.5.d":"The same page is served twice, once with cross-origin isolation headers. If a capability differs between the two, the limit was never the device: it was the response header. That is how SharedArrayBuffer was found to be closed by our own configuration rather than by the phone.",
-    "method.6.t":"What is deliberately not claimed",
-    "method.6.d":"Network readings are excluded from any score, because they measure the line at that moment rather than the device. The native comparison is documented, not measured, because no native app was built. A capability that could only be feature-detected is marked as detected, never as executed.",
     "layers.tag":"Diagnosis","layers.h2":"Five places a capability dies",
     "layers.lead":"\"It does not work\" is one sentence covering five different causes. Only the first is about the device.",
     "layers.1.t":"No silicon","layers.1.d":"The part is not in the device. Nothing above can fix it.",
@@ -365,6 +354,8 @@ const _L = {
     "limits.1":"<b>The sample is small.</b> Most of the sample is ours. Treat the numbers as a direction, not a population statistic.",
     "limits.2":"<b>A web app cannot see outside itself.</b> Running processes, installed apps, battery history, storage breakdown: all invisible from a page. Anything claiming otherwise from a browser is guessing.",
     "limits.3":"<b>The native comparison is knowledge, not measurement.</b> No native app was built to compare against, so that classification is documented rather than measured, and labelled as such.",
+    "limits.5":"<b>Network readings are excluded from every score.</b> They measure the line at that moment, not the device. A phone on good Wi-Fi would otherwise outrank a faster one.",
+    "limits.6":"<b>Detected is not executed.</b> Where a capability can only be checked for existence, never invoked, it is recorded as detected and labelled that way.",
     "limits.4":"<b>Numbers move between runs.</b> Heat, low-power mode, other load, charging state. A single reading is not a property of the device.",
     "limits.cta":"Measure your own device",
     "ft.home":"Home","ft.copy":"© 2026 joygoLive. All rights reserved.",
@@ -410,10 +401,6 @@ const _L = {
     "method.3.d":"UA 의 엔진 토큰은 동결돼 쓸 수 없습니다(537.36, 605.1.15). 실제로 판을 가르는 것은 Chrome 판이거나 OS 판이고, 기록하는 것도 그것입니다.",
     "method.4.t":"표본이 늘어도 안 늘어나는 원장","method.4.u":"개 밴드 보관",
     "method.4.d":"이력을 기기별이 아니라 달 × 엔진 판 × OS 로 쌓습니다. 표본이 열이든 만이든 줄 수가 같습니다. 기본 5년치를 둡니다.",
-    "method.5.t":"같은 페이지에 둔 대조군",
-    "method.5.d":"같은 페이지를 헤더만 달리해 두 번 제공합니다. 두 결과가 다르면 한계는 기기가 아니라 응답 헤더였다는 뜻입니다. SharedArrayBuffer 가 막혀 있던 것이 폰 탓이 아니라 우리 설정 탓이었음을 이렇게 찾았습니다.",
-    "method.6.t":"일부러 주장하지 않는 것",
-    "method.6.d":"네트워크 측정치는 어떤 점수에도 넣지 않습니다. 기기가 아니라 그때 그 회선을 잰 값이기 때문입니다. 네이티브 대비는 측정이 아니라 문서화입니다. 비교용 네이티브 앱을 만들지 않았습니다. 실행해 볼 수 없어 존재만 확인한 항목은 실행이 아니라 확인으로 표기합니다.",
     "layers.tag":"진단","layers.h2":"기능이 죽는 다섯 자리",
     "layers.lead":"「안 됩니다」 한 문장이 다섯 가지 원인을 덮고 있습니다. 기기 탓인 것은 첫 번째뿐입니다.",
     "layers.1.t":"부품이 없음","layers.1.d":"기기에 그 부품이 없습니다. 위쪽에서 해결할 방법이 없습니다.",
@@ -425,6 +412,8 @@ const _L = {
     "limits.1":"<b>표본이 작습니다.</b> 표본의 대부분이 저희 기기입니다. 모집단 통계가 아니라 방향으로 읽어 주세요.",
     "limits.2":"<b>웹앱은 자기 밖을 못 봅니다.</b> 실행 중인 프로세스, 설치된 앱, 배터리 이력, 저장소 내역. 페이지에서는 전부 보이지 않습니다. 브라우저에서 그걸 안다고 하면 추측입니다.",
     "limits.3":"<b>네이티브 대비는 측정이 아니라 아는 것입니다.</b> 비교용 네이티브 앱을 만들지 않았으므로, 그 분류는 측정이 아니라 문서화이며 그렇게 표기합니다.",
+    "limits.5":"<b>네트워크 측정치는 모든 점수에서 뺐습니다.</b> 기기가 아니라 그때 그 회선을 잰 값입니다. 넣으면 좋은 Wi-Fi 에서 잰 폰이 더 빠른 폰을 이기는 순위가 됩니다.",
+    "limits.6":"<b>확인은 실행이 아닙니다.</b> 존재만 볼 수 있고 실행해 볼 수 없는 항목은 실행이 아니라 확인으로 기록하고, 화면에도 그렇게 적습니다.",
     "limits.4":"<b>수치는 회차마다 움직입니다.</b> 발열, 저전력 모드, 다른 부하, 충전 상태. 한 번의 값은 기기의 성질이 아닙니다.",
     "limits.cta":"내 기기 측정하기",
     "ft.home":"홈","ft.copy":"© 2026 joygoLive. All rights reserved.",
