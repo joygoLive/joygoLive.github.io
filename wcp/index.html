@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WCP — Web Capability Probe by joygoLive</title>
+<meta name="description" content="WCP runs 79 checks in your browser and reports what your device actually exposes to the web. Execution, not feature detection. Declared support and working support are not the same thing." />
+<meta property="og:title" content="WCP — Web Capability Probe by joygoLive" />
+<meta property="og:description" content="79 checks, executed in the browser. What your phone actually gives the web, and what it refuses." />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<meta name="theme-color" content="#0891b2" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/site.css" />
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand-group">
+      <a href="../" class="brand" aria-label="joygoLive">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0891b2"/><g stroke="#fff" fill="none" stroke-width="1.5" opacity=".95"><ellipse cx="16" cy="16" rx="10.5" ry="4.2"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(120 16 16)"/></g><circle cx="16" cy="16" r="2.6" fill="#fff"/></svg>
+        <span>joygo<span class="dot">Live</span></span>
+      </a>
+      <span class="brand-sep" aria-hidden="true">/</span>
+      <a href="./" class="svc-name">WCP</a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#why" data-i18n="nav.why">Why</a>
+      <a href="#what" data-i18n="nav.what">What it measures</a>
+      <a href="#found" data-i18n="nav.found">Findings</a>
+      <a href="#layers" data-i18n="nav.layers">Why it fails</a>
+      <a href="#limits" data-i18n="nav.limits">Limits</a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="language">
+      <button data-lang="en" onclick="setLang('en')">EN</button>
+      <button data-lang="ko" onclick="setLang('ko')">한국어</button>
+    </div>
+    <button class="menu-btn" aria-label="menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-kicker mono" data-i18n="hero.kicker">WCP · Web Capability Probe</div>
+    <h1 data-i18n-html="hero.title">What your device <span class="grad">actually gives the web</span>.</h1>
+    <p class="lead" data-i18n="hero.sub">79 checks, run in your own browser. Not a support table, not a feature-detection list. Each capability is invoked and the result recorded, because a browser answering "yes" and a browser doing the thing are two different answers.</p>
+    <div class="cta-row">
+      <a href="https://wcp.joygolive.com" class="btn btn-primary" data-i18n="hero.cta1">Run it on your device</a>
+      <a href="#found" class="btn btn-ghost" data-i18n="hero.cta2">What we found</a>
+    </div>
+    <div class="byline" data-i18n-html="hero.byline">A measurement tool by joygoLive. Open the link on the device you want measured.</div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why" class="section alt">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="why.tag">Premise</div>
+    <h2 data-i18n="why.h2">Declared support, working support</h2>
+    <p class="lead" data-i18n="why.lead">A capability table answers "is it in the spec". It cannot answer "does it work on this phone, in this browser, right now". Between the two sit the OS, the browser's own policy, the app hosting the WebView, and the response headers of the site itself.</p>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="why.f1.t">Declaration present, execution failed</b><span data-i18n="why.f1.d">The API answers, the call fails. More dangerous than absence: code takes that path believing it works.</span></div>
+      <div class="fact fade"><b data-i18n="why.f2.t">Same hardware, different answer</b><span data-i18n="why.f2.d">One device, four browsers, four results. The variable is not the silicon.</span></div>
+      <div class="fact fade"><b data-i18n="why.f3.t">Our own headers, counted as absence</b><span data-i18n="why.f3.d">SharedArrayBuffer read as closed until COOP and COEP were added. The device was never the limit.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT -->
+<section id="what">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="what.tag">Scope</div>
+    <h2 data-i18n="what.h2">79 checks, nine groups</h2>
+    <p class="lead" data-i18n="what.lead">Sensors, GPU and NPU, codecs, radios, storage, permissions, network, security context, and identity. Numbers where a number exists: GPU matrix multiply in GFLOPS, buffer ceilings in MB, refresh rate in Hz.</p>
+    <ul class="feature-list">
+      <li data-i18n="what.1"><b>Execution, not enumeration.</b> Each item is invoked. A result is a return value or a thrown error, never a capability string.</li>
+      <li data-i18n="what.2"><b>Five states, not two.</b> Open · permission required · broken · absent · unmeasured. Collapsing these to yes/no loses the case that matters most.</li>
+      <li data-i18n="what.3"><b>A control group.</b> The same page is served twice, once with cross-origin isolation headers, to separate device limits from server configuration.</li>
+      <li data-i18n="what.4"><b>Nothing identifying is asked for.</b> No account, no contact details. Device model, browser, and measurements only.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FINDINGS -->
+<section id="found" class="section alt">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="found.tag">Current sample</div>
+    <h2 data-i18n="found.h2">6 devices, 14 environments</h2>
+    <p class="lead" data-i18n="found.lead">A small sample, stated as such. What it already shows:</p>
+    <div class="cap-grid">
+      <div class="cap fade"><b>59%</b><span data-i18n="found.c1">of the 70 items every environment measured are open</span></div>
+      <div class="cap fade"><b>31</b><span data-i18n="found.c2">items where the environment decides, not the hardware</span></div>
+      <div class="cap fade"><b>4</b><span data-i18n="found.c3">of the 11 unavailable items are a real native gap</span></div>
+      <div class="cap fade"><b>316</b><span data-i18n="found.c4">GFLOPS at the top, against 8 at the bottom of the same sample</span></div>
+    </div>
+    <ul class="feature-list">
+      <li data-i18n="found.1"><b>Most closed doors are not gaps.</b> Of 11 unavailable items, 5 are deliberate refusals against fingerprinting, 1 is an unfinished standard, and 1 is closed to native code as well. The genuine gap is 4.</li>
+      <li data-i18n="found.2"><b>On iOS the browser choice is cosmetic.</b> Safari, Chrome, and Edge on the same iPhone returned byte-identical measurements. All three are WebKit.</li>
+      <li data-i18n="found.3"><b>In-app browsers close six capabilities</b> that the same phone opens in a standalone browser. A link opened from a messenger is a different device, as far as the web can tell.</li>
+      <li data-i18n="found.4"><b>Open and fast are not the same device.</b> The most open environment in this sample is not the fastest one.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- LAYERS -->
+<section id="layers">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="layers.tag">Diagnosis</div>
+    <h2 data-i18n="layers.h2">Five places a capability dies</h2>
+    <p class="lead" data-i18n="layers.lead">"It does not work" is one sentence covering five different causes. Only the first is about the device.</p>
+    <div class="flow">
+      <div class="step fade"><span class="mk">1</span><b data-i18n="layers.1.t">No silicon</b><span data-i18n="layers.1.d">The part is not in the device. Nothing above can fix it.</span></div>
+      <div class="step fade"><span class="mk">2</span><b data-i18n="layers.2.t">OS does not expose it</b><span data-i18n="layers.2.d">Present in hardware, absent from the platform API.</span></div>
+      <div class="step fade"><span class="mk">3</span><b data-i18n="layers.3.t">Browser refuses</b><span data-i18n="layers.3.d">Exposed by the OS, withheld by policy. Usually fingerprinting.</span></div>
+      <div class="step fade"><span class="mk">4</span><b data-i18n="layers.4.t">Host app restricts it</b><span data-i18n="layers.4.d">An in-app WebView, narrower than the browser it is built on.</span></div>
+      <div class="step fade"><span class="mk">5</span><b data-i18n="layers.5.t">Our own headers</b><span data-i18n="layers.5.d">The site's own response, closing what the device was ready to give.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIMITS -->
+<section id="limits" class="section alt">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="limits.tag">Limits</div>
+    <h2 data-i18n="limits.h2">What this will not claim</h2>
+    <div class="disclose fade">
+      <ul class="feature-list">
+        <li data-i18n="limits.1"><b>The sample is small.</b> 6 devices and 14 environments, most of them ours. Treat the numbers as a direction, not a population statistic.</li>
+        <li data-i18n="limits.2"><b>A web app cannot see outside itself.</b> Running processes, installed apps, battery history, storage breakdown: all invisible from a page. Anything claiming otherwise from a browser is guessing.</li>
+        <li data-i18n="limits.3"><b>The native comparison is knowledge, not measurement.</b> No native app was built to compare against, so that classification is documented rather than measured, and labelled as such.</li>
+        <li data-i18n="limits.4"><b>Numbers move between runs.</b> Heat, low-power mode, other load, charging state. A single reading is not a property of the device.</li>
+      </ul>
+    </div>
+    <div class="cta-row">
+      <a href="https://wcp.joygolive.com" class="btn btn-primary" data-i18n="limits.cta">Measure your own device</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0891b2"/><g stroke="#fff" fill="none" stroke-width="1.5" opacity=".95"><ellipse cx="16" cy="16" rx="10.5" ry="4.2"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(120 16 16)"/></g><circle cx="16" cy="16" r="2.6" fill="#fff"/></svg><span>joygo<span class="dot" style="color:var(--accent)">Live</span></span></span>
+    <nav class="foot-links">
+      <a href="../"><span data-i18n="ft.home">Home</span></a>
+      <a href="../uqh/">UQH</a>
+      <a href="../amc/">AMC</a>
+      <a href="../bor/">BOR</a>
+    </nav>
+    <span data-i18n="ft.copy">© 2026 joygoLive. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+const _L = {
+  en:{
+    "nav.why":"Why","nav.what":"What it measures","nav.found":"Findings","nav.layers":"Why it fails","nav.limits":"Limits",
+    "hero.kicker":"WCP · Web Capability Probe",
+    "hero.title":"What your device <span class=\"grad\">actually gives the web</span>.",
+    "hero.sub":"79 checks, run in your own browser. Not a support table, not a feature-detection list. Each capability is invoked and the result recorded, because a browser answering \"yes\" and a browser doing the thing are two different answers.",
+    "hero.cta1":"Run it on your device","hero.cta2":"What we found",
+    "hero.byline":"A measurement tool by joygoLive. Open the link on the device you want measured.",
+    "why.tag":"Premise","why.h2":"Declared support, working support",
+    "why.lead":"A capability table answers \"is it in the spec\". It cannot answer \"does it work on this phone, in this browser, right now\". Between the two sit the OS, the browser's own policy, the app hosting the WebView, and the response headers of the site itself.",
+    "why.f1.t":"Declaration present, execution failed","why.f1.d":"The API answers, the call fails. More dangerous than absence: code takes that path believing it works.",
+    "why.f2.t":"Same hardware, different answer","why.f2.d":"One device, four browsers, four results. The variable is not the silicon.",
+    "why.f3.t":"Our own headers, counted as absence","why.f3.d":"SharedArrayBuffer read as closed until COOP and COEP were added. The device was never the limit.",
+    "what.tag":"Scope","what.h2":"79 checks, nine groups",
+    "what.lead":"Sensors, GPU and NPU, codecs, radios, storage, permissions, network, security context, and identity. Numbers where a number exists: GPU matrix multiply in GFLOPS, buffer ceilings in MB, refresh rate in Hz.",
+    "what.1":"<b>Execution, not enumeration.</b> Each item is invoked. A result is a return value or a thrown error, never a capability string.",
+    "what.2":"<b>Five states, not two.</b> Open · permission required · broken · absent · unmeasured. Collapsing these to yes/no loses the case that matters most.",
+    "what.3":"<b>A control group.</b> The same page is served twice, once with cross-origin isolation headers, to separate device limits from server configuration.",
+    "what.4":"<b>Nothing identifying is asked for.</b> No account, no contact details. Device model, browser, and measurements only.",
+    "found.tag":"Current sample","found.h2":"6 devices, 14 environments",
+    "found.lead":"A small sample, stated as such. What it already shows:",
+    "found.c1":"of the 70 items every environment measured are open",
+    "found.c2":"items where the environment decides, not the hardware",
+    "found.c3":"of the 11 unavailable items are a real native gap",
+    "found.c4":"GFLOPS at the top, against 8 at the bottom of the same sample",
+    "found.1":"<b>Most closed doors are not gaps.</b> Of 11 unavailable items, 5 are deliberate refusals against fingerprinting, 1 is an unfinished standard, and 1 is closed to native code as well. The genuine gap is 4.",
+    "found.2":"<b>On iOS the browser choice is cosmetic.</b> Safari, Chrome, and Edge on the same iPhone returned byte-identical measurements. All three are WebKit.",
+    "found.3":"<b>In-app browsers close six capabilities</b> that the same phone opens in a standalone browser. A link opened from a messenger is a different device, as far as the web can tell.",
+    "found.4":"<b>Open and fast are not the same device.</b> The most open environment in this sample is not the fastest one.",
+    "layers.tag":"Diagnosis","layers.h2":"Five places a capability dies",
+    "layers.lead":"\"It does not work\" is one sentence covering five different causes. Only the first is about the device.",
+    "layers.1.t":"No silicon","layers.1.d":"The part is not in the device. Nothing above can fix it.",
+    "layers.2.t":"OS does not expose it","layers.2.d":"Present in hardware, absent from the platform API.",
+    "layers.3.t":"Browser refuses","layers.3.d":"Exposed by the OS, withheld by policy. Usually fingerprinting.",
+    "layers.4.t":"Host app restricts it","layers.4.d":"An in-app WebView, narrower than the browser it is built on.",
+    "layers.5.t":"Our own headers","layers.5.d":"The site's own response, closing what the device was ready to give.",
+    "limits.tag":"Limits","limits.h2":"What this will not claim",
+    "limits.1":"<b>The sample is small.</b> 6 devices and 14 environments, most of them ours. Treat the numbers as a direction, not a population statistic.",
+    "limits.2":"<b>A web app cannot see outside itself.</b> Running processes, installed apps, battery history, storage breakdown: all invisible from a page. Anything claiming otherwise from a browser is guessing.",
+    "limits.3":"<b>The native comparison is knowledge, not measurement.</b> No native app was built to compare against, so that classification is documented rather than measured, and labelled as such.",
+    "limits.4":"<b>Numbers move between runs.</b> Heat, low-power mode, other load, charging state. A single reading is not a property of the device.",
+    "limits.cta":"Measure your own device",
+    "ft.home":"Home","ft.copy":"© 2026 joygoLive. All rights reserved.",
+  },
+  ko:{
+    "nav.why":"문제","nav.what":"측정 범위","nav.found":"결과","nav.layers":"원인","nav.limits":"한계",
+    "hero.kicker":"WCP · Web Capability Probe",
+    "hero.title":"내 기기가 웹에 <span class=\"grad\">실제로 열어 주는 것</span>.",
+    "hero.sub":"브라우저에서 직접 도는 79개 항목. 지원표도, 기능 감지 목록도 아닙니다. 항목마다 실제로 호출하고 그 결과를 기록합니다. 「된다」는 대답과 실제로 되는 것은 다른 대답입니다.",
+    "hero.cta1":"내 기기에서 실행","hero.cta2":"측정 결과 보기",
+    "hero.byline":"joygoLive 의 측정 도구. 재고 싶은 기기에서 링크를 여세요.",
+    "why.tag":"문제","why.h2":"선언된 지원과 동작하는 지원",
+    "why.lead":"지원표는 「표준에 있는가」에 답합니다. 「이 폰, 이 브라우저에서 지금 되는가」에는 답하지 못합니다. 둘 사이에 운영체제, 브라우저의 정책, WebView 를 띄운 앱, 그리고 사이트 자신의 응답 헤더가 있습니다.",
+    "why.f1.t":"선언은 있고 실행은 실패","why.f1.d":"API 는 답하는데 호출이 실패합니다. 없는 것보다 위험합니다. 되는 줄 알고 그 경로를 택하기 때문입니다.",
+    "why.f2.t":"같은 하드웨어, 다른 대답","why.f2.d":"기기 하나에 브라우저 넷, 결과도 넷. 변수는 실리콘이 아닙니다.",
+    "why.f3.t":"우리 헤더가 「없음」으로 집계","why.f3.d":"SharedArrayBuffer 가 막힌 것으로 읽혔습니다. COOP·COEP 를 붙이자 열렸습니다. 기기의 한계가 아니었습니다.",
+    "what.tag":"범위","what.h2":"79개 항목, 9개 그룹",
+    "what.lead":"센서, GPU·NPU, 코덱, 무선, 저장소, 권한, 네트워크, 보안 컨텍스트, 신원. 수치가 있는 곳은 수치로 냅니다. GPU 행렬곱 GFLOPS, 버퍼 상한 MB, 화면 주사율 Hz.",
+    "what.1":"<b>열거가 아니라 실행.</b> 항목마다 실제로 호출합니다. 결과는 반환값이거나 던져진 오류이며, 지원 문자열이 아닙니다.",
+    "what.2":"<b>상태는 둘이 아니라 다섯.</b> 열림 · 권한 필요 · 깨짐 · 없음 · 미측정. 예/아니오로 뭉개면 가장 중요한 경우가 사라집니다.",
+    "what.3":"<b>대조군.</b> 같은 페이지를 헤더만 달리해 두 번 제공합니다. 기기의 한계와 서버 설정을 가르기 위해서입니다.",
+    "what.4":"<b>신원을 묻지 않습니다.</b> 계정도 연락처도 없습니다. 기기 모델, 브라우저, 측정값뿐입니다.",
+    "found.tag":"현재 표본","found.h2":"기기 6대, 환경 14개",
+    "found.lead":"작은 표본이며, 작다고 밝힙니다. 지금까지 나온 것:",
+    "found.c1":"모든 환경이 잰 공통 70항목 중 열린 비율",
+    "found.c2":"하드웨어가 아니라 환경이 가르는 항목 수",
+    "found.c3":"안 되는 11개 중 실제 네이티브 갭",
+    "found.c4":"GFLOPS. 같은 표본의 최하위는 8",
+    "found.1":"<b>막힌 문 대부분은 갭이 아닙니다.</b> 안 되는 11개 중 5개는 지문 채취를 막으려는 의도적 거절, 1개는 미완성 표준, 1개는 네이티브에도 막혀 있습니다. 진짜 갭은 4개입니다.",
+    "found.2":"<b>iOS 에서 브라우저 선택은 표면적입니다.</b> 같은 아이폰의 Safari·Chrome·Edge 가 바이트 단위로 같은 측정값을 냈습니다. 셋 다 WebKit 입니다.",
+    "found.3":"<b>인앱 브라우저는 6개 기능을 닫습니다.</b> 같은 폰이 일반 브라우저에서는 여는 것들입니다. 메신저에서 연 링크는 웹이 보기에 다른 기기입니다.",
+    "found.4":"<b>가장 열린 곳과 가장 빠른 곳은 다릅니다.</b> 이 표본에서 개방률 1위와 성능 1위는 같은 기기가 아닙니다.",
+    "layers.tag":"진단","layers.h2":"기능이 죽는 다섯 자리",
+    "layers.lead":"「안 됩니다」 한 문장이 다섯 가지 원인을 덮고 있습니다. 기기 탓인 것은 첫 번째뿐입니다.",
+    "layers.1.t":"부품이 없음","layers.1.d":"기기에 그 부품이 없습니다. 위쪽에서 해결할 방법이 없습니다.",
+    "layers.2.t":"OS 가 안 열어 줌","layers.2.d":"하드웨어에는 있고 플랫폼 API 에는 없습니다.",
+    "layers.3.t":"브라우저가 거절","layers.3.d":"OS 는 열어 줬으나 정책으로 막습니다. 대개 지문 채취 방지입니다.",
+    "layers.4.t":"앱이 제한","layers.4.d":"인앱 WebView. 기반이 된 브라우저보다 좁습니다.",
+    "layers.5.t":"우리 헤더","layers.5.d":"사이트 자신의 응답이, 기기가 줄 준비가 된 것을 닫습니다.",
+    "limits.tag":"한계","limits.h2":"주장하지 않는 것",
+    "limits.1":"<b>표본이 작습니다.</b> 기기 6대, 환경 14개이며 대부분 저희 것입니다. 모집단 통계가 아니라 방향으로 읽어 주세요.",
+    "limits.2":"<b>웹앱은 자기 밖을 못 봅니다.</b> 실행 중인 프로세스, 설치된 앱, 배터리 이력, 저장소 내역. 페이지에서는 전부 보이지 않습니다. 브라우저에서 그걸 안다고 하면 추측입니다.",
+    "limits.3":"<b>네이티브 대비는 측정이 아니라 아는 것입니다.</b> 비교용 네이티브 앱을 만들지 않았으므로, 그 분류는 측정이 아니라 문서화이며 그렇게 표기합니다.",
+    "limits.4":"<b>수치는 회차마다 움직입니다.</b> 발열, 저전력 모드, 다른 부하, 충전 상태. 한 번의 값은 기기의 성질이 아닙니다.",
+    "limits.cta":"내 기기 측정하기",
+    "ft.home":"홈","ft.copy":"© 2026 joygoLive. All rights reserved.",
+  },
+};
+</script>
+<script src="../assets/i18n.js"></script>
+</body>
+</html>
