@@ -137,6 +137,7 @@
     </div>
 
     <ul class="feature-list">
+      <li data-i18n-html="found.0"><b>Wi-Fi is not restricted on the web. It is absent.</b> No scan, no signal strength, no channel, no security mode. The one related reading is whether the connection is Wi-Fi or cellular, and that answers only on Android Blink. Every iOS environment in the sample returns nothing.</li>
       <li data-i18n-html="found.1"><b>Most closed doors are not gaps.</b> Deliberate refusals against fingerprinting outnumber genuine native gaps in this sample. Counting every unavailable item as a gap inflates the number.</li>
       <li data-i18n-html="found.2"><b>On iOS the browser choice is cosmetic.</b> Safari, Chrome, and Edge on the same iPhone returned byte-identical measurements. All three are WebKit.</li>
       <li data-i18n-html="found.3"><b>In-app browsers close capabilities</b> that the same phone opens in a standalone browser. A link opened from a messenger is a different device, as far as the web can tell.</li>
@@ -158,6 +159,7 @@
       <div class="step fade"><span class="mk">4</span><b data-i18n="layers.4.t">Host app restricts it</b><span data-i18n="layers.4.d">An in-app WebView, narrower than the browser it is built on.</span></div>
       <div class="step fade"><span class="mk">5</span><b data-i18n="layers.5.t">Our own headers</b><span data-i18n="layers.5.d">The site's own response, closing what the device was ready to give.</span></div>
     </div>
+    <p class="lead" data-i18n-html="layers.none"><b>Wi-Fi belongs to none of the five.</b> There is no Wi-Fi API in the web platform to refuse in the first place, so the question of which layer blocks it never arises. That is a different answer from "closed", and the tool reports it as such.</p>
   </div>
 </section>
 
@@ -220,6 +222,8 @@ const _L = {
     "found.c2":"items where the environment decides, not the hardware",
     "found.c3":"a real native gap, out of the unavailable ones",
     "found.c4":"GFLOPS at the top of the sample",
+    "found.0":"<b>Wi-Fi is not restricted on the web. It is absent.</b> No scan, no signal strength, no channel, no security mode. The one related reading is whether the connection is Wi-Fi or cellular, and that answers only on Android Blink. Every iOS environment in the sample returns nothing.",
+    "layers.none":"<b>Wi-Fi belongs to none of the five.</b> There is no Wi-Fi API in the web platform to refuse in the first place, so the question of which layer blocks it never arises. That is a different answer from \"closed\", and the tool reports it as such.",
     "found.1":"<b>Most closed doors are not gaps.</b> Deliberate refusals against fingerprinting outnumber genuine native gaps in this sample. Counting every unavailable item as a gap inflates the number.",
     "found.snote":"Sample","found.sdev":"devices","found.senv":"environments","found.sasof":"as of",
     "found.2":"<b>On iOS the browser choice is cosmetic.</b> Safari, Chrome, and Edge on the same iPhone returned byte-identical measurements. All three are WebKit.",
@@ -264,6 +268,8 @@ const _L = {
     "found.c2":"하드웨어가 아니라 환경이 가르는 항목 수",
     "found.c3":"안 되는 항목 중 실제 네이티브 갭",
     "found.c4":"표본 최고 GPU 성능",
+    "found.0":"<b>Wi-Fi 는 웹에서 막힌 것이 아니라 없습니다.</b> 주변 AP 스캔도, 신호 세기도, 채널도, 암호화 방식도 없습니다. 관련해서 읽을 수 있는 값은 「지금 Wi-Fi 인가 셀룰러인가」 하나뿐이고, 그마저 안드로이드 Blink 에서만 답합니다. 표본의 iOS 환경은 전부 아무것도 주지 않았습니다.",
+    "layers.none":"<b>Wi-Fi 는 다섯 자리 중 어디에도 없습니다.</b> 거절할 Wi-Fi API 자체가 웹 표준에 없어서, 어느 층이 막았나를 물을 일이 생기지 않습니다. 「닫혀 있다」와는 다른 대답이고, 그대로 그렇게 적습니다.",
     "found.1":"<b>막힌 문 대부분은 갭이 아닙니다.</b> 지문 채취를 막으려는 의도적 거절이 진짜 네이티브 갭보다 많습니다. 안 되는 것을 전부 갭으로 세면 부풀려집니다.",
     "found.snote":"표본","found.sdev":"대","found.senv":"개 환경","found.sasof":"기준일",
     "found.2":"<b>iOS 에서 브라우저 선택은 표면적입니다.</b> 같은 아이폰의 Safari·Chrome·Edge 가 바이트 단위로 같은 측정값을 냈습니다. 셋 다 WebKit 입니다.",
