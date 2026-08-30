@@ -21,6 +21,10 @@ export async function onRequestPost(ctx) {
   if (!owner && !(await canOpen(request, idea))) return bad('없는 제안입니다', 404);
 
   const body = await request.json().catch(() => null);
+  // 상한 초과는 자르지 않고 돌려보낸다(ideas.js 의 같은 이유).
+  const rawText = typeof body?.text === 'string' ? body.text.trim() : '';
+  if (rawText.length > 2000)
+    return bad(`의견이 너무 깁니다. 2000자까지 쓸 수 있는데 ${rawText.length}자입니다`);
   const text = clean(body?.text, 2000);
   if (!text) return bad('내용을 적어 주세요');
 

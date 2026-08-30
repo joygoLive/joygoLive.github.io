@@ -179,17 +179,27 @@
   // 무게로 흘려 읽히면 안 되는데, 그렇다고 힌트 전체를 굵게 하면 아무것도 안 굵다.
   const bold = (v) => esc(v).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
 
+  /* 글자수 상한. **서버(functions/api/ideas.js 의 LIMITS)와 같은 값이어야 한다.**
+     여기까지가 방어가 아니라 안내다 — 서버가 진짜 관문이고, 여기서 막는 것은
+     사람이 다 쓰고 나서 잘려 나가는 것을 미리 알리기 위해서다. */
+  const MAX = { title: 120, problem: 2000, who: 500, outcome: 1000, author: 40, pass: 100 };
+  const MAX_COMMENT = 2000;
+
   function field(id, key, tag) {
     const hint = t[key + 'H'];
+    const lim = MAX[key] ? ` maxlength="${MAX[key]}"` : '';
     const input =
-      tag === 'textarea' ? `<textarea id="${id}" rows="3"></textarea>`
-      : tag === 'password' ? `<input id="${id}" type="password" autocomplete="new-password" />`
-      : `<input id="${id}" type="text" />`;
+      tag === 'textarea' ? `<textarea id="${id}" rows="3"${lim}></textarea>`
+      : tag === 'password' ? `<input id="${id}" type="password" autocomplete="new-password"${lim} />`
+      : `<input id="${id}" type="text"${lim} />`;
+    // 세는 칸은 비밀번호에는 안 붙인다 — 남은 글자수가 보이면 길이가 새어 나간다.
+    const cnt = (MAX[key] && tag !== 'password')
+      ? `<span class="ff-cnt" data-cnt="${id}" data-max="${MAX[key]}"></span>` : '';
     return `<div class="ff" data-ff="${id}">
       <label for="${id}">${esc(t[key])}</label>
       <span class="hint">${bold(hint)}</span>
       ${input}
-      <span class="ff-err" id="${id}_err"></span>
+      <span class="ff-err" id="${id}_err"></span>${cnt}
     </div>`;
   }
 
@@ -293,7 +303,7 @@
               ${
                 !i.locked || isAdmin()
                   ? `<form class="cmt-form" data-cmt="${esc(i.id)}">
-                <textarea rows="2" placeholder="${esc(isAdmin() && i.locked ? t.replyOwner : t.reply)}"></textarea>
+                <textarea rows="2" maxlength="${MAX_COMMENT}" placeholder="${esc(isAdmin() && i.locked ? t.replyOwner : t.reply)}"></textarea>
                 <div class="form-row">
                   <input type="text" placeholder="${esc(t.author)} (${esc(t.anon)})" style="max-width:200px" />
                   <button type="submit" class="btn btn-ghost btn-sm">${esc(t.send)}</button>
@@ -318,7 +328,7 @@
         <button type="button" class="adm-hide" data-hide="${i.hidden ? '0' : '1'}">${i.hidden ? esc(t.unhide) : esc(t.hide)}</button>
         <button type="button" class="adm-priv" data-priv="${i.private ? '0' : '1'}">${i.private ? esc(t.pub) : esc(t.unpub)}</button>
       </div>
-      <textarea class="adm-note" rows="2" placeholder="${esc(t.reviewPh)}">${esc(i.note ?? '')}</textarea>
+      <textarea class="adm-note" rows="2" maxlength="${MAX_COMMENT}" placeholder="${esc(t.reviewPh)}">${esc(i.note ?? '')}</textarea>
       <div class="adm-row">
         <button type="button" class="btn btn-ghost btn-sm adm-save">${esc(t.save)}</button>
         <span class="form-msg adm-msg"></span>
@@ -409,6 +419,28 @@
 
     bindToggle('ideaFormToggle', 'ideaForm');
     bindToggle('ideaListToggle', 'ideaList');
+
+    /* 남은 글자수. **가까워졌을 때만 보여 준다** — 첫 글자부터 「0/2000」이 떠 있으면
+       분량을 채우라는 지시처럼 읽힌다. 여기서 하고 싶은 말은 그 반대다.
+       maxlength 가 이미 넘겨 치는 것을 막고 있으므로, 이 표시는 **왜 더 안 써지는지**를
+       설명하는 자리다. 그것이 안 보이면 사람은 키보드가 고장난 줄 안다. */
+    const wireCount = (root) => {
+      (root || document).querySelectorAll('[data-cnt]').forEach((cnt) => {
+        const el = document.getElementById(cnt.getAttribute('data-cnt'));
+        const max = +cnt.getAttribute('data-max');
+        if (!el || !max || el.dataset.cntBound) return;
+        el.dataset.cntBound = '1';
+        const draw = () => {
+          const n = el.value.length;
+          const near = n >= Math.floor(max * 0.8);
+          cnt.textContent = near ? `${n} / ${max}` : '';
+          cnt.classList.toggle('full', n >= max);
+        };
+        el.addEventListener('input', draw);
+        draw();
+      });
+    };
+    wireCount();
 
     /* 빈 칸 표시. 메시지를 폼 맨 아래에만 두면 긴 폼에서는 화면 밖이라 안 보인다 —
        그 칸 바로 밑에도 같이 적는다. */

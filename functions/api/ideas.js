@@ -74,6 +74,10 @@ export async function onRequestPost(ctx) {
     return bad('본문을 읽을 수 없습니다');
   }
 
+  // 검토 의견도 자르지 않고 돌려보낸다(아래 본문 필드와 같은 이유).
+  if (typeof body?.note === 'string' && body.note.trim().length > 2000)
+    return bad(`검토 의견이 너무 깁니다. 2000자까지 쓸 수 있는데 ${body.note.trim().length}자입니다`);
+
   const need = [
     ['title', '한 줄 요약을 적어 주세요'],
     ['problem', '무엇이 불편한지 적어 주세요'],
@@ -81,6 +85,18 @@ export async function onRequestPost(ctx) {
     ['outcome', '되면 무엇이 달라지는지 적어 주세요'],
     ['author', '이름을 적어 주세요'],
   ];
+  // 상한을 넘으면 **자르지 않고 돌려보낸다.** clean() 은 slice 라 조용히 잘리는데,
+  // 2500자를 쓴 사람에게 「올라갔습니다」를 띄우고 500자를 버리는 것은 거짓말이다.
+  // 잘린 것을 나중에 알 방법도 없다(원본은 어디에도 안 남는다).
+  const LABEL = { title: '한 줄 요약', problem: '무엇이 불편한지', who: '누가 쓰게 될지',
+                  outcome: '되면 무엇이 달라지는지', author: '이름' };
+  for (const k of Object.keys(LIMITS)) {
+    if (k === 'pass') continue;                  // 비밀번호는 아래에서 따로 본다
+    const raw = typeof body[k] === 'string' ? body[k].trim() : '';
+    if (raw.length > LIMITS[k])
+      return bad(`${LABEL[k] || k}이(가) 너무 깁니다. ${LIMITS[k]}자까지 쓸 수 있는데 ${raw.length}자입니다`);
+  }
+
   const v = {};
   for (const [k, msg] of need) {
     v[k] = clean(body[k], LIMITS[k]);

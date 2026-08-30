@@ -28,6 +28,10 @@ export async function onRequestPost({ request, env, params }) {
 
   const body = await request.json().catch(() => null);
   const pass = typeof body?.pass === 'string' ? body.pass : '';
+  // **길이를 먼저 본다.** 이 값은 PBKDF2 로 들어가므로, 1MB 짜리를 던지면 해시 한 번에
+  // Worker CPU 예산이 날아간다(전에 1102 로 겪었다). 맞는 비밀번호는 100자를 넘지
+  // 않으므로(등록 때 LIMITS.pass 로 막는다) 길면 볼 것도 없이 틀린 값이다.
+  if (pass.length > 100) return bad('비밀번호가 다릅니다', 401);
 
   const found = await db
     .prepare('SELECT id, pass_salt, pass_hash, pass_iter, private FROM ideas WHERE id = ? AND hidden = 0')
