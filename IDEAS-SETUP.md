@@ -26,9 +26,13 @@ Pages       joygolive → https://joygolive.pages.dev
 비밀값      ADMIN_TOKEN · RATE_SALT (Pages 프로덕션 환경에 암호화 저장)
 ```
 
-`ADMIN_TOKEN` 과 `RATE_SALT` 의 평문은 **`.secrets.local`** 에 있다 (권한 600,
-`.gitignore` 로 막힘). Cloudflare 쪽은 암호화 저장이라 다시 못 읽으므로, 이 파일을
-잃으면 새로 발급해서 양쪽을 함께 갈아야 한다.
+`ADMIN_TOKEN` 과 `RATE_SALT` 의 평문은 **저장소 밖 `../.secrets.homepage`** 에 있다
+(권한 600). 예전에는 저장소 루트의 `.secrets.local` 이었는데 `.assetsignore` 가 안 듣는
+탓에 **배포에 딸려 올라가고 있었고**, 그래서 밖으로 뺐다(2026-08-31). 상위 디렉토리는
+git 저장소가 아니라 실수로 커밋될 수도 없다.
+
+Cloudflare 쪽은 암호화 저장이라 다시 못 읽으므로, 이 파일을 잃으면 새로 발급해서
+양쪽을 함께 갈아야 한다.
 
 **`RATE_SALT` 를 바꾸면 기존 속도제한 기록이 무의미해진다** — 해시가 달라지므로
 전부 새 사람으로 보인다. 유출이 아니면 굳이 돌리지 않는다.
@@ -44,8 +48,15 @@ npx wrangler pages deploy . --project-name joygolive --branch main --commit-dirt
 `.assetsignore` 에 뺄 것을 적어 두긴 하지만 **그것만 믿으면 안 된다.**
 2026-08-28 확인 — 거기 적힌 `schema.sql` · `wrangler.toml` · `IDEAS-SETUP.md` 가
 그대로 배포돼 `joygolive.pages.dev/IDEAS-SETUP.md` 로 읽히고 있었다. 이 파일에는
-계정 메일과 Cloudflare 계정 ID · D1 ID 가 적혀 있다(평문 비밀값은 `.secrets.local`
-에 있고 그건 배포에 안 들어갔다 — 샌 것은 없다).
+계정 메일과 Cloudflare 계정 ID · D1 ID 가 적혀 있다.
+
+**2026-08-31 재확인 — wrangler 4.127.1 에서도 그대로다.** 배포 로그의 `19 files` 를
+세어 보면 `.git` · `.wrangler` · `node_modules` · `functions/` 만 빠진 저장소 전체다
+(`.assetsignore` 가 실제로 적용됐다면 11 이어야 한다). 그때 **`.secrets.local` 도 같이
+올라가고 있었다** — 이 문단에 예전에 「그건 배포에 안 들어갔다」고 적혀 있었는데
+사실이 아니었다. 지금은 밖으로 옮겨서 올라갈 파일 자체가 없다.
+
+숫자만 보고 「걸러졌나 보다」 판단하면 틀린다. 세어서 맞춰 봐야 안다.
 
 그래서 막는 일을 **`functions/_middleware.js`** 가 한다. 점으로 시작하는 파일,
 `.sql`·`.toml`·`.md`·`.yml`·`.env` 류, `migrations/` 를 404 로 돌린다. 배포에
@@ -112,8 +123,8 @@ npx wrangler d1 execute joygolive-ideas --remote --file=migrations/002-private-i
 검토 의견을 달고 상태를 바꾼다.
 
 ```bash
-TOK=…   # ADMIN_TOKEN
-SITE=https://joygolive.com   # .secrets.local 의 ADMIN_TOKEN
+TOK=…   # ../.secrets.homepage 의 ADMIN_TOKEN
+SITE=https://joygolive.com
 
 # 상태 + 검토 의견
 curl -X PATCH $SITE/api/ideas -H 'Content-Type: application/json' -H "X-Admin-Token: $TOK" \
