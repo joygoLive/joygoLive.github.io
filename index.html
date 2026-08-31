@@ -3,16 +3,21 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>joygoLive — AI incubation lab</title>
-<meta name="description" content="joygoLive is an AI incubation lab. Quantum computing middleware, AI motion coaching for community sports, and an on-chain raffle. All built here, all running." />
-<meta property="og:title" content="joygoLive — AI incubation lab" />
-<meta property="og:description" content="Quantum infrastructure, motion coaching, an on-chain raffle. Unrelated fields, all built here and already running." />
+<title>joygoLive — Service incubation lab</title>
+<meta name="description" content="joygoLive is a service incubation lab. Bring an idea; it gets built small, tested, and run until it runs on its own. Quantum middleware, motion coaching, an on-chain raffle, web measurement — all built here, all running." />
+<meta property="og:title" content="joygoLive — Service incubation lab" />
+<meta property="og:description" content="Bring an idea. Fields with nothing in common, every one built here and run here." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-<meta name="theme-color" content="#0891b2" />
+<meta name="theme-color" content="#0e7490" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0b0e11" media="(prefers-color-scheme: dark)" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<!-- Pretendard: 한글이 기본값처럼 보이지 않게 하는 단일 최대 효과. Google Fonts 에 없어 jsdelivr 를 쓴다.
+     dynamic-subset 이라 쓰인 글자만 내려온다 — 한글 전체를 받으면 수 MB 다. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
@@ -21,8 +26,8 @@
   <div class="wrap nav">
     <div class="brand-group">
       <a href="#top" class="brand" aria-label="joygoLive">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0891b2"/><g stroke="#fff" fill="none" stroke-width="1.5" opacity=".95"><ellipse cx="16" cy="16" rx="10.5" ry="4.2"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(120 16 16)"/></g><circle cx="16" cy="16" r="2.6" fill="#fff"/></svg>
-        <span>joygo<span class="dot">Live</span></span>
+        
+        <span><span class="w-joy">joy</span><span class="w-go">go</span><span class="w-live">Live</span></span>
       </a>
     </div>
     <nav class="nav-links" id="navLinks">
@@ -47,14 +52,13 @@
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <div class="hero-kicker mono" data-i18n="hero.kicker">joygoLive</div>
-    <h1 data-i18n-html="hero.title">AI <span class="grad">incubation lab</span></h1>
-    <p class="lead" data-i18n="hero.sub">The field is never fixed in advance. If it looks worth building, it gets built, and run until it can run on its own. What is already running is below.</p>
+    <h1 data-i18n-html="hero.title"><span class="grad">Service</span> incubation lab</h1>
+    <p class="lead" data-i18n="hero.sub">No field is fixed in advance. If it looks worth building, it gets built — and run until it runs on its own.</p>
     <div class="cta-row">
       <a href="#services" class="btn btn-primary" data-i18n="hero.cta1">See the portfolio</a>
       <a href="#ideas" class="btn btn-ghost" data-i18n="hero.cta2">Bring an idea</a>
     </div>
-    <div class="byline" data-i18n-html="hero.byline"><b class="hl">joy</b>, realized when it <b class="hl">go</b>es <b class="hl">Live</b>.</div>
+    <div class="byline" data-i18n-html="hero.byline"><b class="hl">joy</b> is the point &middot; <b class="hl">go</b> is the process &middot; <b class="hl">Live</b> is the result</div>
   </div>
 </section>
 
@@ -63,8 +67,8 @@
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow" data-i18n="svc.tag">Portfolio</div>
-      <h2 data-i18n="svc.h2">What has shipped so far</h2>
-      <p class="lead" data-i18n="svc.lead">Quantum infrastructure, exercise coaching, an on-chain raffle. Fields that share nothing with each other, already running rather than described. Each was built here and is operated here: not licensed, not resold.</p>
+      <h2 data-i18n="svc.h2">What has shipped</h2>
+      <p class="lead" data-i18n="svc.lead">Fields with nothing in common. Every one built here and run here — not licensed, not resold.</p>
     </div>
 
     <div class="svc-grid">
@@ -157,21 +161,21 @@
     <div class="sec-head">
       <div class="eyebrow" data-i18n="id.tag">Bring an idea</div>
       <h2 data-i18n-html="id.h2">joygoLive builds and runs it<br />You plan and sell it<br />Whether it works, <span class="grad">we find out together</span></h2>
-      <p class="lead" data-i18n="id.lead">The scarce half of a product is rarely the code. If you have something worth building and no one to build it, joygoLive covers that half: design, implementation, deployment, and running it for as long as it runs on its own. You carry the planning, the positioning, and getting it in front of people.</p>
+      <p class="lead" data-i18n="id.lead">The scarce half of a product is rarely the code. If you have something worth building and no one to build it, that half is covered.</p>
     </div>
 
     <div class="facts">
       <div class="fact fade">
         <b data-i18n="id.1.t">What I bring</b>
-        <span data-i18n="id.1.d">Working out whether it can be done at all, and how. Then design, implementation, deployment, and everything after: operating it, keeping it up, fixing it. The services above were built that way in fields that share nothing with each other, so the domain is not the constraint.</span>
+        <span data-i18n="id.1.d">Feasibility first — whether it can be done at all, and how. Then design, build, deploy, operate, repair. Four unrelated fields above were built this way; the domain is not the constraint.</span>
       </div>
       <div class="fact fade">
         <b data-i18n="id.2.t">What you bring</b>
-        <span data-i18n="id.2.d">What it should be and who it is for; the wording, the channel, the people who need to hear about it. Nothing here needs to be a finished plan. A clear problem is enough to start.</span>
+        <span data-i18n="id.2.d">What it should be and who it is for. The wording, the channel, the people who need to hear it. No finished plan required — a clear problem is enough.</span>
       </div>
       <div class="fact fade">
         <b data-i18n="id.3.t">Build it together</b>
-        <span data-i18n="id.3.d">Bring it as it is: an idea you find interesting, or a problem you want solved. It does not have to be a business plan. We build a small version first and find out together whether it holds up; if it does not look like it can work, you hear that early rather than late.</span>
+        <span data-i18n="id.3.d">Bring it as it is — an idea you find interesting, or a problem you want solved. We build a small version first and find out together. If it does not look like it can work, you hear that early rather than late.</span>
       </div>
     </div>
 
@@ -193,28 +197,10 @@
   </div>
 </section>
 
-<!--
-  CONTACT — 사용자 확인 후 채울 것. 아래 블록의 주석을 풀고 실제 값을 넣으세요.
-  필요한 정보: 대표 이메일 · 사업자등록번호 · 소재지 · 설립연도 (넣을 것만 남기고 나머지 행 삭제)
-
-<section id="contact" class="section alt">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow" data-i18n="ct.tag">Contact</div>
-      <h2 data-i18n="ct.h2">Get in touch</h2>
-    </div>
-    <div class="contact-row">
-      <div><div class="ck" data-i18n="ct.k1">Email</div><div class="cv"><a href="mailto:____@joygolive.com">____@joygolive.com</a></div></div>
-      <div><div class="ck" data-i18n="ct.k2">Business reg. no.</div><div class="cv">___-__-_____</div></div>
-      <div><div class="ck" data-i18n="ct.k3">Location</div><div class="cv">____</div></div>
-    </div>
-  </div>
-</section>
--->
 
 <footer>
   <div class="wrap foot">
-    <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0891b2"/><g stroke="#fff" fill="none" stroke-width="1.5" opacity=".95"><ellipse cx="16" cy="16" rx="10.5" ry="4.2"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(120 16 16)"/></g><circle cx="16" cy="16" r="2.6" fill="#fff"/></svg><span>joygo<span class="dot" style="color:var(--accent)">Live</span></span></span>
+    <span class="brand"><span><span class="w-joy">joy</span><span class="w-go">go</span><span class="w-live">Live</span></span></span>
     <nav class="foot-links">
       <a href="uqh/">UQH</a>
       <a href="amc/">AMC</a>
@@ -229,14 +215,13 @@
 const _L = {
   en:{
     "nav.services":"Portfolio","nav.company":"Company",
-    "hero.kicker":"joygoLive",
     "hero.title":"AI <span class=\"grad\">incubation lab</span>",
-    "hero.sub":"The field is never fixed in advance. If it looks worth building, it gets built, and run until it can run on its own. What is already running is below.",
+    "hero.sub":"No field is fixed in advance. If it looks worth building, it gets built — and run until it runs on its own.",
     "hero.cta1":"See the portfolio","hero.cta2":"How it gets built",
     "hero.byline":"<b class=\"hl\">joy</b>, realized when it <b class=\"hl\">go</b>es <b class=\"hl\">Live</b>.",
 
-    "svc.tag":"Portfolio","svc.h2":"What has shipped so far",
-    "svc.lead":"Quantum infrastructure, exercise coaching, an on-chain raffle. Fields that share nothing with each other, already running rather than described. Each was built here and is operated here: not licensed, not resold.",
+    "svc.tag":"Portfolio","svc.h2":"What has shipped",
+    "svc.lead":"Fields with nothing in common. Every one built here and run here — not licensed, not resold.",
     "svc.more":"Read more","svc.b.beta":"Beta","svc.b.dev":"In development","svc.b.test":"Testnet",
 
     "svc.uqh.full":"Universal Quantum Hub · Quantum computing",
@@ -266,13 +251,13 @@ const _L = {
     "nav.ideas":"Bring an idea",
     "id.tag":"Bring an idea",
     "id.h2":"joygoLive builds and runs it<br />You plan and sell it<br />Whether it works, <span class=\"grad\">we find out together</span>",
-    "id.lead":"The scarce half of a product is rarely the code. If you have something worth building and no one to build it, joygoLive covers that half: design, implementation, deployment, and running it for as long as it runs on its own. You carry the planning, the positioning, and getting it in front of people.",
+    "id.lead":"The scarce half of a product is rarely the code. If you have something worth building and no one to build it, that half is covered.",
     "id.1.t":"joygoLive takes",
-    "id.1.d":"Working out whether it can be done at all, and how. Then design, implementation, deployment, and everything after: operating it, keeping it up, fixing it. The services above were built that way in fields that share nothing with each other, so the domain is not the constraint.",
+    "id.1.d":"Feasibility first — whether it can be done at all, and how. Then design, build, deploy, operate, repair. Four unrelated fields above were built this way; the domain is not the constraint.",
     "id.2.t":"You take",
-    "id.2.d":"What it should be and who it is for; the wording, the channel, the people who need to hear about it. Nothing here needs to be a finished plan. A clear problem is enough to start.",
+    "id.2.d":"What it should be and who it is for. The wording, the channel, the people who need to hear it. No finished plan required — a clear problem is enough.",
     "id.3.t":"Build it together",
-    "id.3.d":"Bring it as it is: an idea you find interesting, or a problem you want solved. It does not have to be a business plan. We build a small version first and find out together whether it holds up; if it does not look like it can work, you hear that early rather than late.",
+    "id.3.d":"Bring it as it is — an idea you find interesting, or a problem you want solved. We build a small version first and find out together. If it does not look like it can work, you hear that early rather than late.",
     "id.propose":"Propose an idea","id.list":"Ideas submitted",
     "id.note":"An idea you post is readable only by you and joygoLive. The list keeps the start of the title, the date, and the status, so the record that it was already here stays without giving the idea away. Posting needs no account and no contact details; you set a password instead, and replies come back as comments on your own post. Ideas are not deleted once posted.",
 
@@ -281,48 +266,47 @@ const _L = {
   },
   ko:{
     "nav.services":"포트폴리오","nav.company":"회사",
-    "hero.kicker":"joygoLive",
-    "hero.title":"AI <span class=\"grad\">인큐베이션 랩</span>",
-    "hero.sub":"분야를 미리 정해 두지 않습니다. 만들 만하다고 판단하면 만들고, 스스로 굴러갈 때까지 직접 끌고 갑니다. 이미 돌아가고 있는 것은 아래에 있습니다.",
-    "hero.cta1":"포트폴리오 보기","hero.cta2":"만드는 방식",
-    "hero.byline":"<b class=\"hl\">joy</b>, 그것이 <b class=\"hl\">Live</b>로 <b class=\"hl\">go</b> 할 때 실현됩니다.",
+    "hero.title":"<span class=\"grad\">서비스</span> 인큐베이션 랩",
+    "hero.sub":"분야를 미리 정하지 않는 랩. 만들 만하다는 판단이 서면 착수, 스스로 굴러갈 때까지 직접 운영.",
+    "hero.cta1":"포트폴리오","hero.cta2":"제안하기",
+    "hero.byline":"<b class=\"hl\">joy</b> 가 목적 · <b class=\"hl\">go</b> 는 공정 · <b class=\"hl\">Live</b> 는 결과",
 
     "svc.tag":"포트폴리오","svc.h2":"지금까지 나온 것",
-    "svc.lead":"양자 인프라, 운동 코칭, 온체인 복권. 공통점 없는 분야들이 설명이 아니라 이미 돌아가고 있습니다. 각각 여기서 만들고 여기서 운영합니다. 라이선스도, 재판매도 아닙니다.",
+    "svc.lead":"공통점 없는 분야들. 전부 자체 개발·자체 운영. 라이선스도 재판매도 아님.",
     "svc.more":"자세히 보기","svc.b.beta":"베타","svc.b.dev":"개발 중","svc.b.test":"테스트넷",
 
     "svc.uqh.full":"Universal Quantum Hub · 양자컴퓨팅",
-    "svc.uqh.d":"양자컴퓨팅을 위한 벤더 중립 미들웨어입니다. 쓰던 SDK 그대로 작성하고, 하나의 파이프라인으로 연결된 모든 프로세서에 닿습니다. 분석, 최적화, 노이즈 시뮬레이션, 오류 완화, QEC, 제출 전 비용 추정까지.",
+    "svc.uqh.d":"양자컴퓨팅 벤더 중립 미들웨어. 쓰던 SDK 그대로, 하나의 파이프라인으로 연결된 모든 프로세서까지. 분석 · 최적화 · 노이즈 시뮬레이션 · 오류 완화 · QEC · 제출 전 비용 추정.",
     "svc.uqh.1":"9개 SDK 프레임워크, 8개 하드웨어 벤더를 하나의 인터페이스로",
-    "svc.uqh.2":"QPU 시간을 쓰기 전에 근거로 장비를 줄 세웁니다",
+    "svc.uqh.2":"QPU 시간 쓰기 전, 근거 기반 장비 순위",
     "svc.uqh.3":"UI · REST API · CLI, 그리고 AI 에이전트를 위한 MCP 서버",
 
     "svc.amc.full":"AI Motion Coaching · 생활체육",
-    "svc.amc.d":"스마트폰 카메라 한 대로 운동 자세를 실시간 코칭합니다. 트레이너의 판정 기준을 관절각 규칙으로 코드화하고 개인의 신체 기준선으로 보정하기 때문에, 읽을 수 없는 유사도 점수 대신 무엇을 고쳐야 하는지를 말해 줍니다.",
-    "svc.amc.1":"기기 안에서 판정. 영상은 휴대폰을 떠나지 않습니다",
+    "svc.amc.d":"스마트폰 카메라 한 대로 운동 자세 실시간 코칭. 트레이너 판정 기준을 관절각 규칙으로 코드화하고 개인 신체 기준선으로 보정. 읽을 수 없는 유사도 점수 대신 고칠 지점을 지목.",
+    "svc.amc.1":"기기 안에서 판정 · 영상 외부 전송 없음",
     "svc.amc.2":"세트 중에는 음성 큐 하나, 끝나면 상세 리포트",
-    "svc.amc.3":"판정하지 못한 회차는 조용히 세지 않고 사유를 밝힙니다",
+    "svc.amc.3":"판정 불가 회차는 사유 명시 · 조용히 세지 않음",
 
     "svc.bor.full":"Blockchain On-chain Raffle · Base",
-    "svc.bor.d":"판매액의 90%가 상금이 되는 온체인 복권입니다. 10% 수수료는 컨트랙트에 상수로 박혀 있고, 미래 각 회차가 사용할 drand 라운드는 이미 정해져 있습니다. 추첨을 믿는 대신 검증할 수 있습니다.",
+    "svc.bor.d":"판매액 90%가 상금이 되는 온체인 복권. 10% 수수료는 컨트랙트 상수, 미래 각 회차의 drand 라운드는 이미 확정. 믿는 대신 검증.",
     "svc.bor.1":"국가 복권 환급률은 약 50%, BOR은 90%",
-    "svc.bor.2":"수수료를 바꾸는 함수도, 로직을 갈아끼울 프록시도 없습니다",
+    "svc.bor.2":"수수료 변경 함수 없음 · 로직 교체 프록시 없음",
     "svc.bor.3":"BLS12-381 비콘 온체인 검증, RFC 9380 공식 벡터 통과",
 
     "svc.wcp.full":"Web Capability Probe · 실측",
-    "svc.wcp.d":"브라우저에서 직접 도는 항목들로, 기기가 웹에 실제로 열어 주는 것을 확인합니다. 항목마다 조회가 아니라 호출합니다. 「된다」는 대답과 실제로 되는 것은 다른 대답이기 때문입니다.",
+    "svc.wcp.d":"브라우저에서 직접 도는 항목들로 기기가 웹에 실제로 여는 것을 확인. 조회가 아니라 호출 — 「된다」는 대답과 실제로 되는 것은 다른 대답.",
     "svc.wcp.1":"지원표가 아니라 실행. 예/아니오가 아니라 다섯 상태",
-    "svc.wcp.2":"기기의 한계와 브라우저 정책, 우리 헤더를 갈라 봅니다",
-    "svc.wcp.3":"측정을 보내면 그 기기의 티어와 항목별 결과를 돌려드립니다",
+    "svc.wcp.2":"기기 한계 · 브라우저 정책 · 자체 헤더 분리",
+    "svc.wcp.3":"측정 전송 시 기기 티어와 항목별 결과 회신",
 
     "nav.ideas":"제안",
     "id.tag":"제안",
     "id.h2":"개발·운영은 joygoLive<br />기획·마케팅은 당신<br />가능성은 <span class=\"grad\">같이 확인합니다</span>",
-    "id.lead":"제품에서 모자란 쪽은 대개 코드가 아닙니다. 만들 만한 것이 있는데 만들 사람이 없다면 그 절반을 joygoLive가 맡습니다. 설계와 구현, 배포, 스스로 굴러가는 동안의 운영까지. 기획과 홍보·마케팅을 맡아 주시면 됩니다.",
+    "id.lead":"제품에서 모자란 쪽은 대개 코드가 아닙니다. 만들 만한 것이 있는데 만들 사람이 없다면, 그 절반을 맡습니다.",
     "id.1.t":"joygoLive가 맡는 것",
-    "id.1.d":"기술로 되는 일인지, 된다면 어떻게 할지부터 같이 따져 봅니다. 그다음 설계·구현·배포, 운영과 수리까지. 위 서비스들이 그렇게 만들어졌고 서로 공통점이 하나도 없는 분야들입니다. 분야는 제약이 아닙니다.",
+    "id.1.d":"기술로 되는 일인지, 된다면 어떻게 할지부터. 그다음 설계 · 구현 · 배포 · 운영 · 수리. 위 넷이 그렇게 나왔고 서로 공통점이 없습니다 — 분야는 제약이 아닙니다.",
     "id.2.t":"당신이 맡는 것",
-    "id.2.d":"무엇을 만들지와 누구를 위한 것인지, 문구와 채널, 그리고 알아야 할 사람들에게 닿게 하는 일. 완성된 기획서일 필요는 없습니다. 또렷한 문제 하나면 시작됩니다.",
+    "id.2.d":"무엇을 만들지와 누구를 위한 것인지. 문구와 채널, 닿아야 할 사람들. 완성된 기획서일 필요는 없습니다.",
     "id.3.t":"같이 만들어 봅니다",
     "id.3.d":"재밌는 아이디어든 풀고 싶은 문제든 허심탄회하게 가져와 주세요. 사업계획일 필요는 없습니다. 작게 먼저 만들어 보고 될지 안 될지를 같이 확인합니다. 안 될 것 같으면 늦게가 아니라 일찍 말씀드립니다.",
     "id.propose":"아이디어 제안하기","id.list":"들어온 제안",

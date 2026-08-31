@@ -12,7 +12,11 @@
 <meta name="theme-color" content="#0891b2" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<!-- Pretendard: 한글이 기본값처럼 보이지 않게 하는 단일 최대 효과. Google Fonts 에 없어 jsdelivr 를 쓴다.
+     dynamic-subset 이라 쓰인 글자만 내려온다 — 한글 전체를 받으면 수 MB 다. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../assets/site.css" />
 <style>
 /* 라이브 수치 블록. 값은 wcp.joygolive.com/stats.json 에서 읽는다 —
@@ -157,8 +161,8 @@
   <div class="wrap nav">
     <div class="brand-group">
       <a href="../" class="brand" aria-label="joygoLive">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0891b2"/><g stroke="#fff" fill="none" stroke-width="1.5" opacity=".95"><ellipse cx="16" cy="16" rx="10.5" ry="4.2"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(120 16 16)"/></g><circle cx="16" cy="16" r="2.6" fill="#fff"/></svg>
-        <span>joygo<span class="dot">Live</span></span>
+        
+        <span><span class="w-joy">joy</span><span class="w-go">go</span><span class="w-live">Live</span></span>
       </a>
       <span class="brand-sep" aria-hidden="true">/</span>
       <a href="./" class="svc-name">WCP</a>
@@ -340,7 +344,7 @@
 
 <footer>
   <div class="wrap foot">
-    <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0891b2"/><g stroke="#fff" fill="none" stroke-width="1.5" opacity=".95"><ellipse cx="16" cy="16" rx="10.5" ry="4.2"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(120 16 16)"/></g><circle cx="16" cy="16" r="2.6" fill="#fff"/></svg><span>joygo<span class="dot" style="color:var(--accent)">Live</span></span></span>
+    <span class="brand"><span><span class="w-joy">joy</span><span class="w-go">go</span><span class="w-live">Live</span></span></span>
     <nav class="foot-links">
       <a href="../"><span data-i18n="ft.home">Home</span></a>
       <a href="../uqh/">UQH</a>
