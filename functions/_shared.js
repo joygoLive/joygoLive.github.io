@@ -98,10 +98,12 @@ export const isReserved = (v) => RESERVED.test(String(v ?? ''));
 export function notify(ctx, env, text) {
   const url = env.DISCORD_WEBHOOK_URL;
   if (!url) return;
-  // 멘션 대상. DISCORD_ADMIN_ID 로 물러난다 — 운영자 한 사람뿐인 채널에서 굳이
-  // 변수를 둘 두게 하면, 실제로 그랬듯 **하나만 설정되고 알림은 조용히 안 울린다.**
-  // 제안이 비공개가 된 뒤로 디스코드가 새 글을 아는 유일한 길이라 더 그렇다.
-  const who = env.DISCORD_MENTION_ID || env.DISCORD_ADMIN_ID;
+  // 멘션 대상은 **명시할 때만** 잡는다. DISCORD_ADMIN_ID 로 물러나지 않는다 —
+  // 그 변수는 api/discord.js 에서 슬래시 커맨드 운영자 인증에 쓰이므로 의미가 다르고,
+  // 겸용하면 인증을 지우려다 멘션이 같이 사라지고 그 반대도 된다.
+  // 예전 주석이 걱정한 「조용히 안 울린다」는 이제 의도된 기본값이다 — 알림 자체는
+  // 멘션과 무관하게 채널에 남으므로, 울릴 사람이 있을 때만 MENTION_ID 를 적는다.
+  const who = env.DISCORD_MENTION_ID;
   const mention = who ? `<@${who}> ` : '';
   const body = JSON.stringify({
     content: `${mention}${text}`.slice(0, 1900),
