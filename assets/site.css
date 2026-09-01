@@ -468,3 +468,20 @@ header .brand,footer .brand{touch-action:manipulation;user-select:none;-webkit-u
    들쭉날쭉함이 여백으로 읽혀 불안정했고, 잉크로 채우면 헤더에서 너무 무거웠다. */
 .mk-bg{fill:var(--surface-2);stroke:var(--border);stroke-width:1.2}
 .brand:hover .mk-bg{stroke:var(--accent-line)}
+
+/* ── 브랜드 색이 문맥 규칙에 지고 있었다 ──────────────────────────────────
+   `.fact span{color:var(--text2)}` 같은 문맥 규칙이 (0,1,1) 이라 `.bi-joy`(0,1,0)
+   를 이겼다. 카드 제목의 joygoLive 가 회색으로 나왔고, go 만 멀쩡했는데 그건
+   다크 규칙이 우연히 (0,2,0) 이었기 때문이다 — 즉 라이트에서는 셋 다 회색이었다.
+
+   클래스를 두 번 써서 (0,2,0) 으로 올린다. !important 를 쓰면 그다음에 무엇을
+   덮으려 해도 못 덮는다 — 명시도로 이기는 편이 뒤탈이 없다. */
+.bi-joy.bi-joy{color:var(--ink)}
+.bi-go.bi-go{color:#c2410c}
+.bi.bi{color:var(--accent)}
+.t-joy.t-joy{color:var(--ink)}
+.t-go.t-go{color:#c2410c}
+.t-live.t-live{color:var(--accent)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .bi-go.bi-go,
+  :root:not([data-theme="light"]) .t-go.t-go{color:#e8873f}}
+:root[data-theme="dark"] .bi-go.bi-go,:root[data-theme="dark"] .t-go.t-go{color:#e8873f}
