@@ -9,12 +9,17 @@
 <meta property="og:description" content="National lotteries return about 50%. BOR returns 90%, and the 10% is a constant nobody can change. Testnet, on Base Sepolia." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
-<meta name="theme-color" content="#0891b2" />
+<meta name="theme-color" id="themeColor" content="#ffffff" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../assets/site.css" />
-<script>try{var t=localStorage.getItem('joygo_theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<script>try{var t=localStorage.getItem('joygo_theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}
+/* 주소창 색은 첫 칠 전에 정해야 한다 — 나중에 고치면 흰 띠가 한 번 번쩍인다.
+   media 속성으로 두 줄 두는 방법도 있지만 그건 OS 설정만 본다. 토글로 고른
+   테마는 못 따라와서, 라이트 OS 에서 다크를 고른 사람은 주소창만 하얗게 남는다. */
+try{var d=document.documentElement.getAttribute('data-theme');
+document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(prefers-color-scheme:dark)').matches))?'#0b0e11':'#ffffff';}catch(e){}</script>
 </head>
 <body>
 

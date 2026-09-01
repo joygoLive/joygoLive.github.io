@@ -91,7 +91,18 @@ function setTheme(t){
   else { document.documentElement.setAttribute('data-theme',t); }
   try{ t? localStorage.setItem('joygo_theme',t) : localStorage.removeItem('joygo_theme'); }catch(e){}
   paintThemeButtons();
+  syncThemeColor();
 }
+/** 주소창 색. 첫 값은 <head> 인라인이 정하고(첫 칠 전이어야 하므로), 그 뒤로는
+ *  여기가 맡는다 — 토글로 고른 것과 OS 가 바뀐 것 둘 다. 세 상태를 두 색으로
+ *  접는 자리라 **고정이 없을 때만** OS 를 본다. */
+function syncThemeColor(){
+  const m=document.getElementById('themeColor'); if(!m) return;
+  const d=document.documentElement.getAttribute('data-theme');
+  const dark = d==='dark' || (!d && matchMedia('(prefers-color-scheme:dark)').matches);
+  m.setAttribute('content', dark?'#0b0e11':'#ffffff');
+}
+try{ matchMedia('(prefers-color-scheme:dark)').addEventListener('change',syncThemeColor); }catch(e){}
 function paintThemeButtons(){
   const cur=document.documentElement.getAttribute('data-theme');
   document.querySelectorAll('.theme-toggle button').forEach(b=>
