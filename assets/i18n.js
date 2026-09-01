@@ -61,8 +61,26 @@ window.brandify=brandify;
   setLang(lang);
   const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
   document.querySelectorAll('.fade').forEach(el=>io.observe(el));
-  document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+  document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',closeNav));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNav();});
 })();
+
+/** 모바일 서랍. 예전에는 `#navLinks` 에 직접 open 을 걸었는데, 지금은 언어·테마
+ *  토글까지 같이 열려야 한다. 그 셋의 공통 부모가 `.nav` 라서 **상태를 부모가 든다** —
+ *  형제를 하나씩 켜고 끄면 새 컨트롤이 붙을 때마다 여기를 고쳐야 한다.
+ *  aria-expanded 를 같이 돌린다: 화면을 못 보는 쪽에는 이것이 열림의 유일한 신호다. */
+function toggleNav(btn){
+  const nav=btn.closest('.nav'); if(!nav) return;
+  const open=nav.classList.toggle('open');
+  btn.setAttribute('aria-expanded',open?'true':'false');
+}
+function closeNav(){
+  document.querySelectorAll('.nav.open').forEach(n=>{
+    n.classList.remove('open');
+    const b=n.querySelector('.menu-btn'); if(b) b.setAttribute('aria-expanded','false');
+  });
+}
+window.toggleNav=toggleNav;
 
 /** 테마. 세 상태다 — 시스템(기본) · 라이트 고정 · 다크 고정.
  *  같은 버튼을 다시 누르면 고정이 풀려 시스템으로 돌아간다. 「끄는 법」이 없으면
