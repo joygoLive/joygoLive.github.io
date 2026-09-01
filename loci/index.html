@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LOCI — Method of Loci by joygoLive</title>
+<meta name="description" content="A 3D memory-training room built on the method of loci, and a testbed for the whole pipeline: a room is one JSON file, four interchangeable runtimes draw it, and every session reports what the device did with it." />
+<meta property="og:title" content="LOCI — Method of Loci by joygoLive" />
+<meta property="og:description" content="A room you look around and place things in. The 3D is the method, not decoration." />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
+<meta name="theme-color" content="#0891b2" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+/* 런타임 넷 비교. **값을 표로 두는 이유** — 문장으로 적으면 「가볍다/무겁다」가 되고,
+   그건 다음에 하나가 더 붙었을 때 고쳐야 하는 말이 된다. */
+.rt{width:100%;border-collapse:collapse;margin:26px 0 8px;font-size:13.5px}
+.rt th,.rt td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+.rt th{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
+.rt td.n,.rt th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rt tr:last-child td{border-bottom:0}
+.rt .nm{font-weight:700;white-space:nowrap}
+.rt .mono{font-family:var(--font-mono);font-size:12.5px}
+.tnote{font-size:12.5px;color:var(--text-dim);margin:0 0 26px}
+
+/* 공정 넷. 한 줄에 「누가·무엇을·무엇으로 막나」 */
+.pipe{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:32px}
+.pcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 19px}
+.pcard .pn{font-family:var(--font-mono);font-size:11.5px;color:var(--accent);font-weight:700;margin-bottom:8px}
+.pcard .pk{font-size:14.5px;font-weight:700;margin-bottom:9px}
+.pcard p{font-size:13px;color:var(--text2);line-height:1.62;margin:0}
+.pcard .pg{margin-top:11px;padding-top:11px;border-top:1px solid var(--border);
+  font-size:12.5px;color:var(--text-dim);line-height:1.55}
+.pcard .pg b{color:var(--text2);font-weight:700}
+
+/* 실측 수치 */
+.stats{display:flex;flex-wrap:wrap;gap:14px 42px;margin:30px 0 26px}
+.stat{min-width:0}
+.stat b{display:block;font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.stat span{display:block;margin-top:5px;font-size:13px;color:var(--text2);max-width:19em;line-height:1.5}
+
+/* 짓지 않은 것 — 각주로 보이면 안 된다 */
+.reward{margin:18px 0 0;padding:13px 16px;max-width:46em;
+  font-size:13.5px;line-height:1.7;color:var(--text2);
+  background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:var(--radius)}
+.reward b{color:var(--text);font-weight:700}
+.cta-note{font-size:12.5px;color:var(--text-dim);align-self:center}
+</style>
+
+<script>
+/* 숫자는 도구에서 읽어 온다. 못 읽으면 블록을 감춘 채로 둔다 —
+   본문 서술만으로도 절이 성립하도록 써 두었으므로 화면이 깨지지 않는다.
+   실패를 조용히 넘기는 이유: 홈페이지가 집 안 서버의 가동 여부에 매이면 안 된다. */
+(function(){
+  fetch('https://wcp.joygolive.com/stats.json', {mode:'cors'})
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function(d){
+      // ── 방법 절의 라이브 조각. 없으면 조용히 빠진다. ──
+      (function(){
+        var bk = d.buckets, bar = document.getElementById('wcpBuckets'),
+            leg = document.getElementById('wcpBucketLegend');
+        if (bk && bar && leg) {
+          var tot = bk.always + bk.permAll + bk.split + bk.never;
+          var seg = [['mb-a', bk.always, '전 환경 개방', 'Open everywhere'],
+                     ['mb-p', bk.permAll, '권한 필요', 'Permission'],
+                     ['mb-s', bk.split, '환경별 갈림', 'Environment decides'],
+                     ['mb-n', bk.never, '전 환경 차단', 'Closed everywhere']];
+          var ko = document.documentElement.lang !== 'en';
+          seg.forEach(function(x, i){
+            var el = bar.children[i];
+            if (el) el.style.flex = String(Math.max(x[1], 0));
+          });
+          leg.innerHTML = seg.map(function(x){
+            return '<span><b>' + x[1] + '</b> ' + (ko ? x[2] : x[3]) + '</span>';
+          }).join('');
+          bar.hidden = false; leg.hidden = false;
+        }
+        // 갈래 키는 코드용 이름이라 그대로 띄우면 안 읽힌다.
+        var GN = {radio:['무선·근접','Radios'], compute:['컴퓨트','Compute'],
+                  motion:['모션·자세','Motion'], dev:['기기·환경','Device'],
+                  io:['화면·입출력','Screen & I/O'], store:['저장·백그라운드','Storage'],
+                  cam:['카메라·비전','Camera'], audio:['오디오','Audio'], geo:['위치','Location']};
+        var ko2 = document.documentElement.lang !== 'en';
+        var mk = function(id, arr, key, cnt, names){
+          var el = document.getElementById(id);
+          if (!el || !arr || !arr.length) return;
+          el.innerHTML = arr.map(function(x){
+            var nm = names && names[x[key]] ? names[x[key]][ko2 ? 0 : 1] : x[key];
+            return '<span class="mchip">' + nm + '<s>· ' + x[cnt] + '</s></span>';
+          }).join('');
+          el.hidden = false;
+        };
+        mk('wcpGroups', d.groups, 'g', 'n', GN);
+        mk('wcpEngines', d.engines, 'e', 'n', null);
+        var bd = document.getElementById('wcpBands');
+        if (bd && d.bands != null) bd.textContent = d.bands;
+
+        // 갈린 사건. 아직 하나도 없으면 절을 아예 안 띄운다.
+        var cw = document.getElementById('wcpChanges'), cr = document.getElementById('wcpChangeRows');
+        if (cw && cr && d.changes && d.changes.length) {
+          var W = {ok:['열림','open'], perm:['권한','permission'],
+                   no:['없음','absent'], bad:['깨짐','broken']};
+          cr.innerHTML = d.changes.map(function(c){
+            var f = W[c.from] ? W[c.from][ko ? 0 : 1] : c.from;
+            var t = W[c.to] ? W[c.to][ko ? 0 : 1] : c.to;
+            var cls = c.to === 'ok' ? 'chg-open' : (c.from === 'ok' ? 'chg-shut' : '');
+            return '<tr class="' + cls + '"><td class="chg-w">' + (c.at || '') + '</td>' +
+                   '<td>' + c.name + '</td>' +
+                   '<td class="chg-e">' + (c.engine || '') + '</td>' +
+                   '<td class="chg-a"><span class="chg-s">' + f + '</span>' +
+                   '<span class="chg-ar">→</span><span class="chg-s">' + t + '</span></td></tr>';
+          }).join('');
+          cw.hidden = false;
+        }
+      })();
+
+      var box = document.getElementById('wcpStats');
+      if (!box) return;
+      var ok = true;
+      box.querySelectorAll('[data-s]').forEach(function(el){
+        var v = d[el.getAttribute('data-s')];
+        if (v === null || v === undefined) { ok = false; return; }
+        el.textContent = v + (el.getAttribute('data-suffix') || '');
+      });
+      if (ok) box.hidden = false;
+    })
+    .catch(function(){ /* 조용히 둔다 */ });
+})();
+</script>
+<script>try{var t=localStorage.getItem('joygo_theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand-group">
+      <a href="../" class="brand" aria-label="joygoLive">
+        <svg viewBox="0 0 32 32" aria-hidden="true" class="mk"><rect class="mk-bg" x=".6" y=".6" width="30.8" height="30.8" rx="6.6"/><rect class="mk-joy" x="6.5" y="12.5" width="5" height="13.5" rx="1"/><rect class="mk-go" x="13.5" y="17" width="5" height="9" rx="1"/><rect class="mk-live" x="20.5" y="8" width="5" height="18" rx="1"/></svg>
+        <span>joy<span class="go">go</span><span class="dot">Live</span></span>
+      </a>
+      <span class="brand-sep" aria-hidden="true">/</span>
+      <a href="./" class="svc-name">LOCI</a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#why" data-i18n="nav.why">Why</a>
+      <a href="#what" data-i18n="nav.what">What it is</a>
+      <a href="#pipe" data-i18n="nav.pipe">Pipeline</a>
+      <a href="#found" data-i18n="nav.found">Findings</a>
+      <a href="#limits" data-i18n="nav.limits">Limits</a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="language">
+      <button data-lang="en" onclick="setLang('en')">EN</button>
+      <button data-lang="ko" onclick="setLang('ko')">한국어</button>
+    </div>
+    <div class="theme-toggle" role="group" aria-label="theme">
+      <button data-theme-set="light" onclick="setTheme('light')" aria-label="Light" title="Light">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button data-theme-set="dark" onclick="setTheme('dark')" aria-label="Dark" title="Dark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+    <button class="menu-btn" aria-label="menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-kicker mono" data-i18n="hero.kicker">LOCI · Method of Loci</div>
+    <h1 data-i18n-html="hero.title">A room you can <span class="grad">walk your memory through</span>.</h1>
+    <p class="lead" data-i18n="hero.sub">Objects sit in places. You look around, then answer what was where. The 3D is not decoration — the method of loci has been spatial since antiquity, so the room is the method itself.</p>
+    <div class="cta-row">
+      <a href="https://loci.joygolive.com" class="btn btn-primary" data-i18n="hero.cta1">Try a room</a>
+      <a href="#found" class="btn btn-ghost" data-i18n="hero.cta2">What we measured</a>
+    </div>
+    <p class="reward" data-i18n-html="hero.reward"><b>It is also a testbed.</b> A room is one JSON file, four interchangeable runtimes draw the same scene, and every session reports frames, jank, input lag and load time from the device that ran it.</p>
+    <div class="byline" data-i18n-html="hero.byline">An MVP by joygoLive. Open it on the device you want to see it on.</div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why" class="section alt">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="why.tag">Premise</div>
+    <h2 data-i18n="why.h2">Serving 3D content on the web</h2>
+    <p class="lead" data-i18n="why.lead">The question was not whether a browser can draw a room. It can. The question is what it costs to author one, hand it to development, put it in front of a phone, and find out what that phone did with it. LOCI exists to run that loop once, end to end.</p>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="why.f1.t">Content outside the code</b><span data-i18n="why.f1.d">If a new room needs a developer, planning does not own the content. A room is one file, and the folder is the catalogue.</span></div>
+      <div class="fact fade"><b data-i18n="why.f2.t">The runtime is a choice, not a foundation</b><span data-i18n="why.f2.d">Assets and content sit outside the renderer, so swapping engines changes one module. Four already do.</span></div>
+      <div class="fact fade"><b data-i18n="why.f3.t">The device answers, not the spec sheet</b><span data-i18n="why.f3.d">Every session sends back what actually happened on it. Guesses about phone performance were wrong twice already.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT -->
+<section id="what">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="what.tag">Scope</div>
+    <h2 data-i18n="what.h2">What is built</h2>
+    <p class="lead" data-i18n="what.lead">A room is a box with furniture, places on the furniture, and objects on the places. Everything about it — size, light, furniture, places, objects, learning time, price tier — lives in one JSON file that planning edits in a visual editor with the same renderer beside it.</p>
+    <ul class="feature-list">
+      <li data-i18n-html="what.1"><b>One contract, three readers.</b> The validation rules live in a single file used by the editor, the command line, and the page itself. Two copies drift, and then something passes review and breaks on screen.</li>
+      <li data-i18n-html="what.2"><b>Rules that are conditions, not taste.</b> Places must differ in height, or they stop being distinct places and nothing attaches. Two items may not share a word, or scoring has no answer. A training room may not exceed sixteen places, because past that no one is memorising anything.</li>
+      <li data-i18n-html="what.3"><b>Four runtimes, one scene.</b> Raw WebGL2, three.js, raw WebGPU and Canvas 2D draw the same room from the same bytes. The library is fetched only when chosen, so the transfer comparison stays honest.</li>
+      <li data-i18n-html="what.4"><b>Nothing ships without review.</b> Planning uploads, validation gates it, and it waits until development approves. Uploads, rejections and approvals are appended to a ledger everyone reads.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section id="pipe" class="section alt">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="pipe.tag">Pipeline</div>
+    <h2 data-i18n="pipe.h2">Authoring to operations, once through</h2>
+    <p class="lead" data-i18n="pipe.lead">Four stages, each with something that stops the next one from inheriting a mistake.</p>
+    <div class="pipe">
+      <div class="pcard fade">
+        <div class="pn">01</div>
+        <div class="pk" data-i18n="pipe.1.t">Authoring</div>
+        <p data-i18n="pipe.1.d">A form with the live scene next to it. Furniture comes from presets whose positions are computed against the room size, and a place snaps onto a surface rather than being typed as coordinates.</p>
+        <div class="pg" data-i18n-html="pipe.1.g"><b>Gate:</b> validation runs while you type. Failing means the upload button will not press.</div>
+      </div>
+      <div class="pcard fade">
+        <div class="pn">02</div>
+        <div class="pk" data-i18n="pipe.2.t">Handoff</div>
+        <p data-i18n="pipe.2.d">Upload puts the room in review, not in front of users. Development opens it at a staged address that requires a login, and either approves or rejects with a reason planning reads.</p>
+        <div class="pg" data-i18n-html="pipe.2.g"><b>Gate:</b> validation runs again at approval. What passed an hour ago is not what is being published now.</div>
+      </div>
+      <div class="pcard fade">
+        <div class="pn">03</div>
+        <div class="pk" data-i18n="pipe.3.t">Serving</div>
+        <p data-i18n="pipe.3.d">Static files, no install, no store. The user picks the room and the runtime on the first screen. Everything is precompressed with brotli and served that way.</p>
+        <div class="pg" data-i18n-html="pipe.3.g"><b>Gate:</b> the server serves an allow-list. Anything not named is a 404, including the directory listing.</div>
+      </div>
+      <div class="pcard fade">
+        <div class="pn">04</div>
+        <div class="pk" data-i18n="pipe.4.t">Operations</div>
+        <p data-i18n="pipe.4.d">Each session reports frames, worst 1%, jank, input lag, thermal drift, load breakdown and per-place results, split by runtime. Feedback is left on the section it is about, and acceptance is decided and recorded.</p>
+        <div class="pg" data-i18n-html="pipe.4.g"><b>Gate:</b> the ledger is append-only. There is no code path that deletes from it.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUND -->
+<section id="found">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="found.tag">Measured</div>
+    <h2 data-i18n="found.h2">What the phone said</h2>
+    <p class="lead" data-i18n="found.lead">One iPhone, one stress room: 40 places, 80 pieces of furniture, 2.46 million triangles. Every runtime drew it, and the numbers came back from the device.</p>
+
+    <div class="stats">
+      <div class="stat"><b>60fps</b><span data-i18n="found.s1">All four runtimes, 17 ms median, on 2.46 M triangles</span></div>
+      <div class="stat"><b>4 → 137</b><span data-i18n="found.s2">Draw calls across the four. The frame time did not move</span></div>
+      <div class="stat"><b>2.0 → 4.1s</b><span data-i18n="found.s3">Time to first frame. The only axis that separated them</span></div>
+      <div class="stat"><b>35.8 KB</b><span data-i18n="found.s4">Shared transfer. The runtime adds 2.9 to 153 KB on top</span></div>
+    </div>
+
+    <table class="rt">
+      <tr><th data-i18n="found.t.rt">Runtime</th><th data-i18n="found.t.api">API</th>
+          <th class="n" data-i18n="found.t.dc">Draw calls</th><th class="n" data-i18n="found.t.fr">Frame</th>
+          <th class="n" data-i18n="found.t.ttff">First frame</th><th class="n" data-i18n="found.t.lib">Library</th></tr>
+      <tr><td class="nm">Raw WebGL2</td><td class="mono">WebGL2</td><td class="n">4</td><td class="n">17 ms</td><td class="n">2.5 s</td><td class="n">4.6 KB</td></tr>
+      <tr><td class="nm">Raw WebGPU</td><td class="mono">WebGPU</td><td class="n">4</td><td class="n">17 ms</td><td class="n">2.0 s</td><td class="n">5.1 KB</td></tr>
+      <tr><td class="nm">three.js</td><td class="mono">WebGL2</td><td class="n">33</td><td class="n">17 ms</td><td class="n">4.1 s</td><td class="n">153 KB</td></tr>
+      <tr><td class="nm">Canvas 2D</td><td class="mono">Canvas 2D</td><td class="n">137</td><td class="n">17 ms</td><td class="n">2.5 s</td><td class="n">2.9 KB</td></tr>
+    </table>
+    <p class="tnote" data-i18n="found.tnote">iPhone 14 Pro / 15 / 16 class, viewport 1179 × 1995, over the public address. Library size is what crossed the wire, brotli compressed.</p>
+
+    <ul class="feature-list">
+      <li data-i18n-html="found.1"><b>Runtime choice is not a frame-rate decision.</b> Draw calls varied by a factor of thirty-four and the median frame time stayed at 17 ms. Even without a 3D pipeline at all, Canvas 2D held the same rate.</li>
+      <li data-i18n-html="found.2"><b>The only axis that separated them was loading</b>, and three.js was twice as slow because of its library — the one place where picking a runtime shows up for the user.</li>
+      <li data-i18n-html="found.3"><b>Compression did not fix loading.</b> Precompressing the mesh took it from 365 KB to 73 KB, and time to first frame did not move. Transfer was not the bottleneck: parsing, shader compilation and GPU upload were. The assumption was wrong and the measurement said so.</li>
+      <li data-i18n-html="found.4"><b>The first run costs more than the second.</b> Same device, same room, same runtime: 22 ms and 24 ms of input lag on the first pass, 17 ms and 12 ms on the next. Shader compilation and cold caches are paid once, by the person opening it for the first time.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- LIMITS -->
+<section id="limits" class="section alt">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="limits.tag">Limits</div>
+    <h2 data-i18n="limits.h2">What this does not claim</h2>
+    <ul class="feature-list">
+      <li data-i18n-html="limits.1"><b>No claim that it improves memory.</b> The method of loci is a technique, and LOCI is a place to practise it. Nothing here has been trialled, and no cognitive, medical or preventive benefit is asserted.</li>
+      <li data-i18n-html="limits.2"><b>The sample is two devices.</b> One phone and one laptop. Read it as direction, not as population statistics.</li>
+      <li data-i18n-html="limits.3"><b>Unity and Unreal are not measured.</b> Unity needs its editor to build and has not been attached; Unreal has had no official web target since 4.24. Their figures on the admin side are published estimates and are labelled as such.</li>
+      <li data-i18n-html="limits.4"><b>Payment is a seam, not a feature.</b> Tier and price are in the contract and the operations view shows the columns, but nothing charges anything and the numbers are simulated.</li>
+      <li data-i18n-html="limits.5"><b>Assets that reach a browser cannot be protected.</b> Anything drawn has to arrive. What can be done is gate it before sending, watermark to trace a leak, and keep the value in what does not travel.</li>
+    </ul>
+    <div class="cta-row" style="margin-top:30px">
+      <a href="https://loci.joygolive.com" class="btn btn-primary" data-i18n="limits.cta">Open a room</a>
+      <span class="cta-note" data-i18n="limits.ctanote">A minute. Six places, thirty seconds, then answer what was where.</span>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap foot">
+    <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true" class="mk"><rect class="mk-bg" x=".6" y=".6" width="30.8" height="30.8" rx="6.6"/><rect class="mk-joy" x="6.5" y="12.5" width="5" height="13.5" rx="1"/><rect class="mk-go" x="13.5" y="17" width="5" height="9" rx="1"/><rect class="mk-live" x="20.5" y="8" width="5" height="18" rx="1"/></svg><span>joy<span class="go">go</span><span class="dot" style="color:var(--accent)">Live</span></span></span>
+    <nav class="foot-links">
+      <a href="../"><span data-i18n="ft.home">Home</span></a>
+      <a href="../uqh/">UQH</a>
+      <a href="../amc/">AMC</a>
+      <a href="../bor/">BOR</a>
+      <a href="./">WCP</a>
+    </nav>
+    <span data-i18n="ft.copy">© 2026 joygoLive. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+const _L = {
+  en:{
+    "nav.why":"Why","nav.what":"What it is","nav.pipe":"Pipeline","nav.found":"Findings","nav.limits":"Limits",
+    "ft.home":"Home","ft.copy":"© 2026 joygoLive. All rights reserved.",
+  },
+  ko:{
+    "nav.why":"왜","nav.what":"무엇인가","nav.pipe":"공정","nav.found":"실측","nav.limits":"한계",
+    "hero.kicker":"LOCI · 장소법",
+    "hero.title":"기억이 <span class=\"grad\">걸어 다니는 방</span>.",
+    "hero.sub":"물건이 자리에 놓입니다. 둘러본 뒤, 무엇이 어디 있었는지 답합니다. 3D 는 장식이 아닙니다 — 장소법은 고대부터 공간을 쓰는 방법이었고, 그래서 방이 곧 방법입니다.",
+    "hero.cta1":"방 하나 해보기","hero.cta2":"무엇을 쟀나",
+    "hero.reward":"<b>동시에 시험대입니다.</b> 방 하나가 JSON 한 장이고, 같은 장면을 네 런타임이 그리며, 한 판마다 프레임·끊김·입력 지연·로딩이 그 기기에서 기록됩니다.",
+    "hero.byline":"joygoLive 의 MVP. 보고 싶은 기기에서 열어 보세요.",
+
+    "why.tag":"전제","why.h2":"웹에서 3D 콘텐츠를 서비스한다는 것",
+    "why.lead":"질문은 「브라우저가 방을 그릴 수 있는가」가 아니었습니다. 그건 됩니다. 질문은 방 하나를 만들어 개발에 넘기고, 폰 앞에 올리고, 그 폰이 그걸로 무엇을 했는지 알아내는 데 무엇이 드느냐입니다. LOCI 는 그 한 바퀴를 실제로 돌려 보려고 있습니다.",
+    "why.f1.t":"콘텐츠가 코드 밖에",
+    "why.f1.d":"새 방에 개발이 필요하면 기획이 콘텐츠를 가진 게 아닙니다. 방 하나가 파일 하나고, 폴더가 곧 목록입니다.",
+    "why.f2.t":"런타임은 토대가 아니라 선택",
+    "why.f2.d":"에셋과 콘텐츠가 렌더러 밖에 있어 엔진을 바꾸면 모듈 하나만 바뀝니다. 이미 넷이 그렇게 돕니다.",
+    "why.f3.t":"사양표가 아니라 기기가 답한다",
+    "why.f3.d":"한 판마다 그 기기에서 실제로 벌어진 것이 돌아옵니다. 폰 성능에 대한 짐작은 이미 두 번 틀렸습니다.",
+
+    "what.tag":"범위","what.h2":"무엇을 지었나",
+    "what.lead":"방은 가구가 놓인 상자이고, 가구 위에 자리가, 자리에 물건이 놓입니다. 크기·빛·가구·자리·물건·학습 시간·등급까지 전부 JSON 한 장에 있고, 기획은 실제 렌더러가 옆에서 도는 편집기로 그걸 고칩니다.",
+    "what.1":"<b>계약 하나, 읽는 곳 셋.</b> 검증 규칙이 한 파일에 있고 편집기·명령줄·화면이 같이 씁니다. 두 벌이면 갈라지고, 그러면 검수를 통과한 것이 화면에서 깨집니다.",
+    "what.2":"<b>취향이 아니라 성립 조건인 규칙.</b> 자리는 높이가 달라야 합니다 — 같으면 자리로 구분되지 않아 기억이 안 붙습니다. 같은 단어가 둘이면 채점에 답이 없습니다. 훈련용 방은 자리 열여섯을 못 넘습니다. 그 위로는 아무도 외우고 있지 않기 때문입니다.",
+    "what.3":"<b>런타임 넷, 장면 하나.</b> 원시 WebGL2·three.js·원시 WebGPU·Canvas 2D 가 같은 바이트로 같은 방을 그립니다. 라이브러리는 고른 것만 받으므로 전송량 비교가 정직하게 남습니다.",
+    "what.4":"<b>검토 없이는 안 나갑니다.</b> 기획이 올리면 검증이 거르고, 개발이 승인할 때까지 기다립니다. 올림·반려·승인은 전원이 읽는 이력에 덧붙습니다.",
+
+    "pipe.tag":"공정","pipe.h2":"제작에서 운영까지, 한 바퀴",
+    "pipe.lead":"네 단계, 각각 다음 단계가 실수를 물려받지 않게 막는 것이 하나씩 있습니다.",
+    "pipe.1.t":"제작",
+    "pipe.1.d":"폼 옆에서 실제 장면이 같이 돕니다. 가구는 방 크기에 맞춰 위치가 계산되는 프리셋에서 오고, 자리는 좌표를 적는 게 아니라 가구 위에 붙습니다.",
+    "pipe.1.g":"<b>관문:</b> 타이핑하는 동안 검증이 돕니다. 통과 못 하면 올리기 단추가 안 눌립니다.",
+    "pipe.2.t":"인수",
+    "pipe.2.d":"올리면 사용자 앞이 아니라 검토로 갑니다. 개발이 로그인해야 열리는 주소에서 미리 보고, 승인하거나 기획이 읽을 사유와 함께 반려합니다.",
+    "pipe.2.g":"<b>관문:</b> 승인 직전에 다시 검증합니다. 한 시간 전에 통과한 것과 지금 나가는 것은 다릅니다.",
+    "pipe.3.t":"서비스",
+    "pipe.3.d":"정적 파일, 설치 없음, 스토어 없음. 첫 화면에서 방과 런타임을 사용자가 고릅니다. 전부 brotli 로 미리 압축해 두고 그대로 내줍니다.",
+    "pipe.3.g":"<b>관문:</b> 서버는 허용 목록만 내줍니다. 적히지 않은 것은 디렉토리 목록까지 전부 404 입니다.",
+    "pipe.4.t":"운영",
+    "pipe.4.d":"한 판마다 프레임·최악 1%·끊김·입력 지연·발열 저하·로딩 구간·자리별 정답이 런타임별로 나뉘어 들어옵니다. 의견은 그 화면의 섹션에 남고, 수용 여부가 정해져 기록됩니다.",
+    "pipe.4.g":"<b>관문:</b> 이력은 추가 전용입니다. 지우는 코드 경로가 없습니다.",
+
+    "found.tag":"실측","found.h2":"폰이 말한 것",
+    "found.lead":"아이폰 한 대, 부하 방 하나 — 자리 40, 가구 80, 삼각형 246만. 네 런타임이 모두 그렸고, 숫자는 그 기기에서 돌아왔습니다.",
+    "found.s1":"네 런타임 모두 중앙값 17ms, 삼각형 246만에서",
+    "found.s2":"넷의 드로우콜 폭. 프레임은 움직이지 않았습니다",
+    "found.s3":"첫 프레임까지. 넷을 가른 유일한 축",
+    "found.s4":"공통 전송량. 런타임이 2.9~153KB 를 더 얹습니다",
+    "found.t.rt":"런타임","found.t.api":"API","found.t.dc":"드로우콜","found.t.fr":"프레임",
+    "found.t.ttff":"첫 프레임","found.t.lib":"라이브러리",
+    "found.tnote":"아이폰 14 Pro / 15 / 16 급, 뷰포트 1179 × 1995, 공개 주소를 통해. 라이브러리 크기는 회선을 실제로 지나간 brotli 압축 값입니다.",
+    "found.1":"<b>런타임 선택은 프레임 문제가 아닙니다.</b> 드로우콜이 34배 차이인데 중앙값은 17ms 로 같았습니다. 3D 파이프라인이 아예 없는 Canvas 2D 도 같은 속도를 냈습니다.",
+    "found.2":"<b>넷을 가른 유일한 축은 로딩</b>이었고, three.js 가 라이브러리 때문에 두 배 느렸습니다 — 런타임 선택이 사용자에게 드러나는 유일한 자리입니다.",
+    "found.3":"<b>압축은 로딩을 못 고쳤습니다.</b> 메시를 365KB 에서 73KB 로 줄였는데 첫 프레임은 그대로였습니다. 병목이 전송이 아니라 파싱·셰이더 컴파일·GPU 업로드에 있었습니다. 가정이 틀렸고 측정이 그렇게 말했습니다.",
+    "found.4":"<b>첫 판이 둘째 판보다 비쌉니다.</b> 같은 기기·같은 방·같은 런타임에서 첫 판은 22ms 에 입력 지연 24ms, 다음 판은 17ms 에 12ms. 셰이더 컴파일과 찬 캐시의 값은 처음 여는 사람이 냅니다.",
+
+    "limits.tag":"한계","limits.h2":"주장하지 않는 것",
+    "limits.1":"<b>기억력이 좋아진다고 주장하지 않습니다.</b> 장소법은 기법이고 LOCI 는 그걸 연습하는 자리입니다. 여기서 시험된 것은 없으며, 인지·의학·예방 효과를 주장하지 않습니다.",
+    "limits.2":"<b>표본이 기기 두 대입니다.</b> 폰 하나와 노트북 하나. 모집단 통계가 아니라 방향으로 읽어 주세요.",
+    "limits.3":"<b>유니티와 언리얼은 재지 않았습니다.</b> 유니티는 빌드에 에디터가 필요해 아직 안 붙였고, 언리얼은 4.24 이후 공식 웹 타깃이 없습니다. 어드민의 그 수치는 공개 자료 기준이며 그렇게 표기돼 있습니다.",
+    "limits.4":"<b>결제는 기능이 아니라 자리입니다.</b> 등급과 가격이 계약에 있고 운영 화면에 칸이 있지만, 아무것도 청구하지 않으며 숫자는 모의입니다.",
+    "limits.5":"<b>브라우저에 닿은 에셋은 못 지킵니다.</b> 그리려면 도착해야 하기 때문입니다. 할 수 있는 것은 보내기 전에 막고, 유출을 추적할 표를 남기고, 값어치를 옮겨 다니지 않는 곳에 두는 것입니다.",
+    "limits.cta":"방 열어 보기",
+    "limits.ctanote":"1분이면 됩니다. 자리 여섯, 30초, 그리고 무엇이 어디 있었는지.",
+    "ft.home":"홈","ft.copy":"© 2026 joygoLive. All rights reserved.",
+  },
+};
+</script>
+<script src="../assets/i18n.js"></script>
+</body>
+</html>

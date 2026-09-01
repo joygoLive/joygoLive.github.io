@@ -32,6 +32,7 @@
       <a href="amc/">AMC</a>
       <a href="bor/">BOR</a>
       <a href="wcp/">WCP</a>
+      <a href="loci/">LOCI</a>
       <a href="#ideas" data-i18n="nav.ideas">Bring an idea</a>
     </nav>
     <div class="lang-toggle" role="group" aria-label="language">
@@ -156,6 +157,25 @@
         </div>
       </a>
 
+      <!-- LOCI -->
+      <a class="svc-card fade" href="loci/">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="3.5" r="1.6" fill="currentColor" stroke="none"/><circle cx="19.4" cy="7.8" r="1.4" fill="currentColor" stroke="none"/><circle cx="19.4" cy="16.2" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="20.5" r="1.6" fill="currentColor" stroke="none"/><circle cx="4.6" cy="16.2" r="1.4" fill="currentColor" stroke="none"/><circle cx="4.6" cy="7.8" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/></svg>
+        <div class="svc-head">
+          <h3>LOCI</h3>
+          <span class="badge dev" data-i18n="svc.b.dev">In development</span>
+        </div>
+        <span class="svc-full" data-i18n="svc.loci.full">Method of Loci · 3D memory training</span>
+        <p data-i18n="svc.loci.d">A room you look around and place things in, then recall where they were. The 3D is not decoration: the method of loci is spatial to begin with. Built as a testbed for the whole pipeline — authoring, handoff, serving, and measuring what a device does with it.</p>
+        <ul class="svc-points">
+          <li data-i18n="svc.loci.1">A room is one JSON file. Planning edits it; development never touches code for a new room</li>
+          <li data-i18n="svc.loci.2">Four interchangeable runtimes draw the same scene — WebGL2, three.js, WebGPU, Canvas 2D</li>
+          <li data-i18n="svc.loci.3">Every session reports frames, jank, input lag and load time from the device itself</li>
+        </ul>
+        <div class="svc-foot">
+          <span class="svc-go"><span data-i18n="svc.more">Read more</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
 
     </div>
 
@@ -231,6 +251,7 @@
       <a href="amc/">AMC</a>
       <a href="bor/">BOR</a>
       <a href="wcp/">WCP</a>
+      <a href="loci/">LOCI</a>
     </nav>
     <span data-i18n="ft.copy">© 2026 joygoLive. All rights reserved.</span>
   </div>
@@ -273,6 +294,11 @@ const _L = {
     "svc.wcp.1":"Execution, not a support table. Five states, not yes/no",
     "svc.wcp.2":"Separates device limits from browser policy and our own headers",
     "svc.wcp.3":"Send a measurement and get your device's tier and full breakdown back",
+    "svc.loci.full":"Method of Loci · 3D memory training",
+    "svc.loci.d":"A room you look around and place things in, then recall where they were. The 3D is not decoration: the method of loci is spatial to begin with. Built as a testbed for the whole pipeline — authoring, handoff, serving, and measuring what a device does with it.",
+    "svc.loci.1":"A room is one JSON file. Planning edits it; development never touches code for a new room",
+    "svc.loci.2":"Four interchangeable runtimes draw the same scene — WebGL2, three.js, WebGPU, Canvas 2D",
+    "svc.loci.3":"Every session reports frames, jank, input lag and load time from the device itself",
 
     "nav.ideas":"Bring an idea",
     "id.tag":"Bring an idea",
@@ -325,6 +351,11 @@ const _L = {
     "svc.wcp.1":"지원표가 아니라 실행. 예/아니오가 아니라 다섯 상태",
     "svc.wcp.2":"기기의 한계와 브라우저 정책, 우리 헤더를 갈라 봅니다",
     "svc.wcp.3":"측정을 보내면 그 기기의 티어와 항목별 결과를 돌려드립니다",
+    "svc.loci.full":"장소법 · 3D 기억 훈련",
+    "svc.loci.d":"둘러보며 물건을 놓고, 자리만 남았을 때 무엇이었는지 답하는 방입니다. 3D 는 장식이 아닙니다 — 장소법은 본래 공간을 씁니다. 제작부터 인수·서비스·계측까지 공정 전체를 돌려 보는 자리로 지었습니다.",
+    "svc.loci.1":"방 하나가 JSON 한 장. 기획이 고치고, 새 방에 개발이 안 붙습니다",
+    "svc.loci.2":"같은 방을 네 런타임이 그립니다 — WebGL2·three.js·WebGPU·Canvas 2D",
+    "svc.loci.3":"한 판마다 프레임·끊김·입력 지연·로딩이 그 기기에서 기록됩니다",
 
     "nav.ideas":"제안",
     "id.tag":"제안",
