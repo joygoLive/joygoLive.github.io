@@ -25,7 +25,9 @@ function brandify(root){
   const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(n){
     if(!n.nodeValue||n.nodeValue.indexOf('joygoLive')<0) return NodeFilter.FILTER_REJECT;
     for(let p=n.parentElement;p;p=p.parentElement){
-      if(SKIP.test(p.tagName)||p.classList.contains('brand')||p.classList.contains('bi'))
+      if(SKIP.test(p.tagName)||p.classList.contains('brand')
+         ||p.classList.contains('bi')||p.classList.contains('bi-go')
+         ||p.classList.contains('bi-joy'))
         return NodeFilter.FILTER_REJECT;
     }
     return NodeFilter.FILTER_ACCEPT;
@@ -36,7 +38,14 @@ function brandify(root){
     const frag=document.createDocumentFragment();
     t.nodeValue.split('joygoLive').forEach((seg,i)=>{
       if(i){
-        frag.appendChild(document.createTextNode('joygo'));
+        // 세 단어로 나눈다 — joy(그대로) · go(앰버) · Live(시안). 로고와 같은 규칙이라
+        // 본문 가운데 낀 이름도 헤더와 같은 대비로 읽힌다.
+        // joy 도 감싼다. 안 감싸면 주변 문단 색을 그대로 물려받아 자리마다 달라진다 —
+        // 헤더에서는 잉크, 흐린 문단에서는 흐린 회색이 되어 같은 이름이 두 색으로 읽힌다.
+        const j=document.createElement('span'); j.className='bi-joy'; j.textContent='joy';
+        frag.appendChild(j);
+        const g=document.createElement('span'); g.className='bi-go'; g.textContent='go';
+        frag.appendChild(g);
         const b=document.createElement('span'); b.className='bi'; b.textContent='Live';
         frag.appendChild(b);
       }
@@ -54,3 +63,22 @@ window.brandify=brandify;
   document.querySelectorAll('.fade').forEach(el=>io.observe(el));
   document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
 })();
+
+/** 테마. 세 상태다 — 시스템(기본) · 라이트 고정 · 다크 고정.
+ *  같은 버튼을 다시 누르면 고정이 풀려 시스템으로 돌아간다. 「끄는 법」이 없으면
+ *  한 번 고정한 사람은 OS 를 바꿔도 사이트만 따라오지 않는다. */
+function setTheme(t){
+  const cur=document.documentElement.getAttribute('data-theme');
+  if(cur===t){ document.documentElement.removeAttribute('data-theme'); t=null; }
+  else { document.documentElement.setAttribute('data-theme',t); }
+  try{ t? localStorage.setItem('joygo_theme',t) : localStorage.removeItem('joygo_theme'); }catch(e){}
+  paintThemeButtons();
+}
+function paintThemeButtons(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  document.querySelectorAll('.theme-toggle button').forEach(b=>
+    b.classList.toggle('active', b.getAttribute('data-theme-set')===cur));
+}
+window.setTheme=setTheme;
+document.addEventListener('DOMContentLoaded',paintThemeButtons);
+paintThemeButtons();

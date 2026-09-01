@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/site.css" />
+<script>try{var t=localStorage.getItem('joygo_theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 </head>
 <body>
 
@@ -21,8 +22,8 @@
   <div class="wrap nav">
     <div class="brand-group">
       <a href="#top" class="brand" aria-label="joygoLive">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0891b2"/><g stroke="#fff" fill="none" stroke-width="1.5" opacity=".95"><ellipse cx="16" cy="16" rx="10.5" ry="4.2"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(120 16 16)"/></g><circle cx="16" cy="16" r="2.6" fill="#fff"/></svg>
-        <span>joygo<span class="dot">Live</span></span>
+        <svg viewBox="0 0 32 32" aria-hidden="true" class="mk"><rect class="mk-bg" x=".6" y=".6" width="30.8" height="30.8" rx="6.6"/><rect class="mk-joy" x="6.5" y="12.5" width="5" height="13.5" rx="1"/><rect class="mk-go" x="13.5" y="17" width="5" height="9" rx="1"/><rect class="mk-live" x="20.5" y="8" width="5" height="18" rx="1"/></svg>
+        <span>joy<span class="go">go</span><span class="dot">Live</span></span>
       </a>
     </div>
     <nav class="nav-links" id="navLinks">
@@ -37,6 +38,14 @@
       <button data-lang="en" onclick="setLang('en')">EN</button>
       <button data-lang="ko" onclick="setLang('ko')">한국어</button>
     </div>
+    <div class="theme-toggle" role="group" aria-label="theme">
+      <button data-theme-set="light" onclick="setTheme('light')" aria-label="Light" title="Light">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button data-theme-set="dark" onclick="setTheme('dark')" aria-label="Dark" title="Dark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
     <button class="menu-btn" aria-label="menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
@@ -47,14 +56,16 @@
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <div class="hero-kicker mono" data-i18n="hero.kicker">joygoLive</div>
-    <h1 data-i18n-html="hero.title">Service <span class="grad">incubation lab</span></h1>
+    <div class="hero-top">
+      <div class="hero-kicker mono" data-i18n="hero.kicker">joygoLive</div>
+      <div class="byline" data-i18n-html="hero.byline"><b class="t-joy">joy</b>, realized when it <b class="t-go">go</b>es <b class="t-live">Live</b>.</div>
+    </div>
+    <h1 data-i18n-html="hero.title"><span class="t-joy">Service</span> <span class="t-go">incubation</span> <span class="t-live">lab</span></h1>
     <p class="lead" data-i18n="hero.sub">The field is never fixed in advance. If it looks worth building, it gets built, and run until it can run on its own. What is already running is below.</p>
     <div class="cta-row">
       <a href="#services" class="btn btn-primary" data-i18n="hero.cta1">See the portfolio</a>
       <a href="#ideas" class="btn btn-ghost" data-i18n="hero.cta2">Bring an idea</a>
     </div>
-    <div class="byline" data-i18n-html="hero.byline"><b class="hl">joy</b>, realized when it <b class="hl">go</b>es <b class="hl">Live</b>.</div>
   </div>
 </section>
 
@@ -64,7 +75,7 @@
     <div class="sec-head">
       <div class="eyebrow" data-i18n="svc.tag">Portfolio</div>
       <h2 data-i18n="svc.h2">What has shipped so far</h2>
-      <p class="lead" data-i18n="svc.lead">Quantum infrastructure, exercise coaching, an on-chain raffle. Fields that share nothing with each other, already running rather than described. Each was built here and is operated here: not licensed, not resold.</p>
+      <p class="lead" data-i18n="svc.lead">Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement. Fields that share nothing with each other, already running rather than described. Each was built here and is operated here: not licensed, not resold.</p>
     </div>
 
     <div class="svc-grid">
@@ -214,7 +225,7 @@
 
 <footer>
   <div class="wrap foot">
-    <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0891b2"/><g stroke="#fff" fill="none" stroke-width="1.5" opacity=".95"><ellipse cx="16" cy="16" rx="10.5" ry="4.2"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="10.5" ry="4.2" transform="rotate(120 16 16)"/></g><circle cx="16" cy="16" r="2.6" fill="#fff"/></svg><span>joygo<span class="dot" style="color:var(--accent)">Live</span></span></span>
+    <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true" class="mk"><rect class="mk-bg" x=".6" y=".6" width="30.8" height="30.8" rx="6.6"/><rect class="mk-joy" x="6.5" y="12.5" width="5" height="13.5" rx="1"/><rect class="mk-go" x="13.5" y="17" width="5" height="9" rx="1"/><rect class="mk-live" x="20.5" y="8" width="5" height="18" rx="1"/></svg><span>joy<span class="go">go</span><span class="dot" style="color:var(--accent)">Live</span></span></span>
     <nav class="foot-links">
       <a href="uqh/">UQH</a>
       <a href="amc/">AMC</a>
@@ -230,13 +241,13 @@ const _L = {
   en:{
     "nav.services":"Portfolio","nav.company":"Company",
     "hero.kicker":"joygoLive",
-    "hero.title":"Service <span class=\"grad\">incubation lab</span>",
+    "hero.title":"<span class=\"t-joy\">Service</span> <span class=\"t-go\">incubation</span> <span class=\"t-live\">lab</span>",
     "hero.sub":"The field is never fixed in advance. If it looks worth building, it gets built, and run until it can run on its own. What is already running is below.",
     "hero.cta1":"See the portfolio","hero.cta2":"How it gets built",
-    "hero.byline":"<b class=\"hl\">joy</b>, realized when it <b class=\"hl\">go</b>es <b class=\"hl\">Live</b>.",
+    "hero.byline":"<b class=\"t-joy\">joy</b>, realized when it <b class=\"t-go\">go</b>es <b class=\"t-live\">Live</b>.",
 
     "svc.tag":"Portfolio","svc.h2":"What has shipped so far",
-    "svc.lead":"Quantum infrastructure, exercise coaching, an on-chain raffle. Fields that share nothing with each other, already running rather than described. Each was built here and is operated here: not licensed, not resold.",
+    "svc.lead":"Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement. Fields that share nothing with each other, already running rather than described. Each was built here and is operated here: not licensed, not resold.",
     "svc.more":"Read more","svc.b.beta":"Beta","svc.b.dev":"In development","svc.b.test":"Testnet",
 
     "svc.uqh.full":"Universal Quantum Hub · Quantum computing",
@@ -282,13 +293,13 @@ const _L = {
   ko:{
     "nav.services":"포트폴리오","nav.company":"회사",
     "hero.kicker":"joygoLive",
-    "hero.title":"서비스 <span class=\"grad\">인큐베이션 랩</span>",
+    "hero.title":"<span class=\"t-joy\">서비스</span> <span class=\"t-go\">인큐베이션</span> <span class=\"t-live\">랩</span>",
     "hero.sub":"분야를 미리 정해 두지 않습니다. 만들 만하다고 판단하면 만들고, 스스로 굴러갈 때까지 직접 끌고 갑니다. 이미 돌아가고 있는 것은 아래에 있습니다.",
     "hero.cta1":"포트폴리오 보기","hero.cta2":"만드는 방식",
-    "hero.byline":"<b class=\"hl\">joy</b>, 그것이 <b class=\"hl\">Live</b>로 <b class=\"hl\">go</b> 할 때 실현됩니다.",
+    "hero.byline":"<b class=\"t-joy\">joy</b>, realized when it <b class=\"t-go\">go</b>es <b class=\"t-live\">Live</b>.",
 
     "svc.tag":"포트폴리오","svc.h2":"지금까지 나온 것",
-    "svc.lead":"양자 인프라, 운동 코칭, 온체인 복권. 공통점 없는 분야들이 설명이 아니라 이미 돌아가고 있습니다. 각각 여기서 만들고 여기서 운영합니다. 라이선스도, 재판매도 아닙니다.",
+    "svc.lead":"양자 인프라, 운동 코칭, 온체인 복권, 웹 실측. 공통점 없는 분야들이 설명이 아니라 이미 돌아가고 있습니다. 각각 여기서 만들고 여기서 운영합니다. 라이선스도, 재판매도 아닙니다.",
     "svc.more":"자세히 보기","svc.b.beta":"베타","svc.b.dev":"개발 중","svc.b.test":"테스트넷",
 
     "svc.uqh.full":"Universal Quantum Hub · 양자컴퓨팅",
