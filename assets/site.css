@@ -1,56 +1,12 @@
-/* ─────────────────────────────────────────────────────────────────────────
-   토큰. 이름을 **역할**로 짓는다(shadcn 규율) — `--ink`·`--text2` 처럼 밝기로
-   지으면 다크에서 이름이 거짓말이 되고, 다크를 넣을 때 전 파일을 다시 읽어야 한다.
-   역할로 지으면 아래 한 블록만 다시 정의하면 따라온다.
-
-   상태는 네 개를 다 정의한다(Material 규율) — hover 만 있으면 키보드로 다니는
-   사람에게는 지금 어디 있는지가 안 보인다. `:focus-visible` 은 마우스에는 안 뜬다.
-   ───────────────────────────────────────────────────────────────────────── */
 :root{
-  color-scheme:light;
-  --background:#ffffff;   --foreground:#0d1417;
-  --card:#ffffff;         --card-foreground:#2b3640;
-  --muted:#f4f6f8;        --muted-foreground:#5c6874;  --subtle-foreground:#8b97a3;
-  --border:#e3e8ee;       --border-strong:#cfd8e1;
-  --brand:#0e7490;        --brand-hover:#0b5f75;
-  --brand-soft:rgba(14,116,144,.08); --brand-line:rgba(14,116,144,.26);
-  --ring:rgba(14,116,144,.48);
-  --warn:#b45309;         --warn-soft:rgba(180,83,9,.08);  --warn-line:rgba(180,83,9,.24);
-  --ok:#047857;           --ok-soft:rgba(4,120,87,.08);    --ok-line:rgba(4,120,87,.25);
-  --info:#6d28d9;         --info-soft:rgba(109,40,217,.08);--info-line:rgba(109,40,217,.25);
-
-  --radius:6px; --radius-sm:4px; --radius-lg:10px;
-  --maxw:1180px;
-  --shadow:0 1px 2px rgba(13,20,23,.05);
-
-  --font-sans:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo',system-ui,-apple-system,sans-serif;
-  --font-mono:'IBM Plex Mono',ui-monospace,'SF Mono',monospace;
+  --bg:#ffffff; --alt:#f6f8fb; --surface:#ffffff; --surface-2:#f1f5f9; --border:#e4e9f0;
+  --accent:#0891b2; --accent-2:#0e7490; --accent-dim:rgba(8,145,178,0.09); --accent-line:rgba(8,145,178,0.30);
+  --ink:#0c1622; --text:#26323f; --text2:#5a6776; --text-dim:#8a97a6;
+  --font-sans:'Inter','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,monospace;
   --font-display:var(--font-sans);
-
-  /* 기존 이름은 역할 토큰의 별칭으로만 남긴다 — 371 줄을 한꺼번에 고치지 않기 위해서다.
-     새로 쓰는 규칙은 위쪽 역할 이름을 쓴다. */
-  --bg:var(--background); --alt:var(--muted); --surface:var(--card); --surface-2:var(--muted);
-  --ink:var(--foreground); --text:var(--card-foreground);
-  --text2:var(--muted-foreground); --text-dim:var(--subtle-foreground);
-  --accent:var(--brand); --accent-2:var(--brand-hover);
-  --accent-dim:var(--brand-soft); --accent-line:var(--brand-line);
-}
-
-@media(prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    color-scheme:dark;
-    --background:#0b0e11;   --foreground:#e8edf2;
-    --card:#12161a;         --card-foreground:#c8d1da;
-    --muted:#171c21;        --muted-foreground:#93a0ac;  --subtle-foreground:#6b7885;
-    --border:#232a31;       --border-strong:#333c45;
-    --brand:#22b8cf;        --brand-hover:#4dd0e1;
-    --brand-soft:rgba(34,184,207,.10); --brand-line:rgba(34,184,207,.30);
-    --ring:rgba(34,184,207,.55);
-    --warn:#f0a03c;         --warn-soft:rgba(240,160,60,.10); --warn-line:rgba(240,160,60,.28);
-    --ok:#34d399;           --ok-soft:rgba(52,211,153,.10);   --ok-line:rgba(52,211,153,.28);
-    --info:#a78bfa;         --info-soft:rgba(167,139,250,.10);--info-line:rgba(167,139,250,.28);
-    --shadow:0 1px 2px rgba(0,0,0,.4);
-  }
+  --maxw:1180px; --radius:12px;
+  --shadow:0 1px 2px rgba(12,22,34,.04),0 8px 24px rgba(12,22,34,.05);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -92,18 +48,9 @@ h3{font-family:var(--font-sans);font-weight:600;font-size:18px;letter-spacing:-.
 
 /* hero */
 .hero{padding:84px 0 64px;position:relative;overflow:hidden}
-/* 히어로 뒤 격자. 예전의 radial glow 를 걷어냈다 — 번지는 빛은 2021 SaaS 표식이고
-   무엇보다 아무것도 뜻하지 않는다. 격자는 최소한 「재는 곳」이라고 말한다. */
-.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
-  background-size:64px 64px;
-  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 78% 8%,#000,transparent 72%);
-  mask-image:radial-gradient(ellipse 80% 60% at 78% 8%,#000,transparent 72%);
-  opacity:.55}
+.hero::before{content:"";position:absolute;top:-240px;right:-140px;width:660px;height:540px;background:radial-gradient(ellipse,rgba(8,145,178,.06),transparent 70%);pointer-events:none}
 .hero-kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);font-weight:500;margin-bottom:20px}
-/* 강조 어구. 시안→보라 그라데이션 텍스트였다 — 2021 SaaS 표식이라 걷어냈다.
-   클래스 이름은 HTML 5 파일 15 곳에 박혀 있어 그대로 두고 **정의만** 바꾼다. */
-.grad{color:var(--brand)}
+.grad{background:linear-gradient(110deg,var(--accent),#7c3aed);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .hero h1{max-width:16ch}
 .hero .lead{font-size:clamp(16px,1.8vw,19px);max-width:56ch}
 .cta-row{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
@@ -422,90 +369,3 @@ header .brand,footer .brand{touch-action:manipulation;user-select:none;-webkit-u
 .ff-cnt{display:block;margin-top:5px;text-align:right;font-family:var(--font-mono);
   font-size:11px;color:var(--text-dim)}
 .ff-cnt.full{color:var(--accent-2);font-weight:600}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   상태 규율 · 다크 보정 (2026-09-01)
-
-   앞쪽 371 줄은 라이트 전용으로 쓰여 있어 흰색과 상태색이 값으로 박혀 있다.
-   그것들을 전부 찾아 고치는 대신 **뒤에서 덮는다** — 앞쪽은 원래 구조 그대로
-   두고, 여기만 읽으면 무엇을 바꿨는지가 한눈에 보인다.
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/* ── 포커스. Material 규율 중 실제로 없던 것 ──────────────────────────────
-   hover 만 있었다. 키보드로 다니면 지금 어디 있는지가 안 보였다.
-   :focus-visible 이라 마우스 클릭에는 안 뜬다 — 필요한 사람에게만 보인다. */
-a:focus-visible,button:focus-visible,input:focus-visible,
-textarea:focus-visible,select:focus-visible,[tabindex]:focus-visible{
-  outline:2px solid var(--ring);outline-offset:2px;border-radius:var(--radius-sm)}
-.btn:focus-visible,.svc-card:focus-visible{outline-offset:3px}
-
-/* ── 값으로 박힌 흰색 → 토큰 ─────────────────────────────────────────────── */
-header{background:color-mix(in srgb,var(--background) 86%,transparent)}
-.btn-ghost{background:var(--card)}
-.chip,.flow .node{background:var(--card)}
-.btn-primary{background:var(--brand);color:var(--background)}
-.btn-primary:hover{background:var(--brand-hover);box-shadow:none;transform:none}
-.svc-name:hover{color:var(--background)}
-.adm-hide:hover{color:var(--background)}
-
-/* ── 상태색 → 토큰 (다크에서 채도를 낮춘 값으로 갈린다) ──────────────────── */
-.badge.testnet,.st.declined{color:var(--warn);background:var(--warn-soft);border-color:var(--warn-line)}
-.badge.beta{color:var(--info);background:var(--info-soft);border-color:var(--info-line)}
-.st.shipped{color:var(--ok);background:var(--ok-soft);border-color:var(--ok-line)}
-.form-note.req{border-left-color:var(--warn)}
-.ff-err,.form-msg.err{color:var(--warn)}
-.ff.bad input:focus,.ff.bad textarea:focus{border-color:var(--warn);box-shadow:0 0 0 3px var(--warn-soft)}
-.adm-hide{color:var(--warn);border-color:var(--warn-line)}
-.adm-hide:hover{background:var(--warn);border-color:var(--warn)}
-
-/* ── 모서리와 그림자. 12px 라운드와 떠 있는 카드는 2020 년대 초반 값이다.
-      테두리로 세우고 그림자는 거의 없앤다. ─────────────────────────────── */
-.svc-card,.pillar,.cap,.panel,.fact,.disclose,.terminal,.board-toggle{border-radius:var(--radius)}
-.btn,.chip,.flow .node,.lang-toggle,.menu-btn{border-radius:var(--radius)}
-.badge,.svc-name,.cap .soon{border-radius:var(--radius-sm)}
-.svc-card,.pillar,.panel{box-shadow:none}
-.svc-card:hover{transform:none;box-shadow:none;border-color:var(--brand-line);background:var(--muted)}
-.cap:hover{transform:none;box-shadow:none;border-color:var(--brand-line)}
-.fact{border-left-width:2px}
-
-/* ── 움직임을 줄여 달라고 한 사람에게는 줄인다 ───────────────────────────── */
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
-  html{scroll-behavior:auto}
-}
-
-/* ── 워드마크. joy · go · Live 세 단어의 조합임을 형태로 말한다 ──────────────
-   목적(joy) 은 가장 무겁게, 동작(go) 은 모노스페이스로 코드처럼, 상태(Live) 는
-   브랜드색으로. 예전에는 Live 만 강조돼 두 덩어리로 읽혔다.
-   ★ 추구하는 것은 joy 이므로 무게의 정점이 거기다. */
-.brand .w-joy{font-weight:700;letter-spacing:-.025em}
-.brand .w-go{font-family:var(--font-mono);font-weight:500;font-size:.8em;
-  color:var(--subtle-foreground);letter-spacing:0;padding:0 .02em}
-.brand .w-live{font-weight:600;color:var(--brand);letter-spacing:-.02em}
-
-/* ── 타이포 스케일. Pretendard 는 Inter 보다 자폭이 넓고 한글이 붙으므로
-      음수 자간을 덜 준다 — Inter 기준 값(-.03em)을 그대로 두면 한글이 붙어 보인다.
-      굵기도 800 → 700 으로 내린다. 「정확함」은 두께가 아니라 정렬에서 온다. ── */
-body{letter-spacing:-.005em;font-size:15.5px}
-h1{font-weight:700;letter-spacing:-.025em;line-height:1.08}
-h2{font-weight:700;letter-spacing:-.02em;line-height:1.14}
-h3{font-weight:600;letter-spacing:-.01em}
-.brand{font-weight:600;letter-spacing:-.02em}
-.svc-card h3{font-weight:700;letter-spacing:-.02em}
-.eyebrow,.svc-full,.hero-kicker{font-variant-numeric:tabular-nums}
-.lead{line-height:1.7}
-
-/* ── 포트폴리오는 계속 늘어난다. 3 열 고정이면 4 번째가 고아가 되고 그 뒤로는
-      더 나빠진다. auto-fit 이라 몇 개가 되든 균형이 잡힌다. ─────────────── */
-.svc-grid{grid-template-columns:repeat(auto-fit,minmax(288px,1fr));gap:16px}
-@media(min-width:1100px){.svc-grid{grid-template-columns:repeat(auto-fit,minmax(268px,1fr))}}
-.facts{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-
-/* 격자가 히어로 아래 끝에서 직선으로 잘려 이음매가 보였다. 아래쪽으로도 흐리게 뺀다. */
-.hero::before{
-  -webkit-mask-image:radial-gradient(ellipse 90% 75% at 74% 0%,#000 10%,transparent 76%);
-  mask-image:radial-gradient(ellipse 90% 75% at 74% 0%,#000 10%,transparent 76%);
-  opacity:.4}
-/* 마크가 빠졌으므로 워드마크만으로 서게 한다 */
-.brand{gap:0;font-size:21px}
-.foot .brand{font-size:19px}
