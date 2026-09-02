@@ -111,8 +111,13 @@ h3{font-family:var(--font-sans);font-weight:600;font-size:18px;letter-spacing:-.
 /* split feature (intelligence / knowledge) */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;margin-top:46px}
 .feature-list{list-style:none;margin-top:22px;display:flex;flex-direction:column;gap:14px}
-.feature-list li{display:flex;gap:12px;font-size:14.5px;color:var(--text)}
-.feature-list .mk{flex-shrink:0;width:20px;height:20px;color:var(--accent);margin-top:2px}
+/* **flex 가 아니라 block 이다.** 원래는 아이콘(.mk) + 글 두 칸을 만들려던 것인데
+   아이콘을 쓰는 페이지가 하나도 없다. 그래서 남은 효과는 「굵은 머리말」이 제 폭만큼
+   한 칸을 차지하는 것뿐이었고, 머리말 길이가 항목마다 달라(실측 42~220px) 본문
+   시작 위치가 줄마다 어긋났다. 한국어처럼 머리말이 둘인 문장은 세 칸으로 쪼개져
+   문장 자체가 끊겨 보였다. 글은 흐르게 두고, 아이콘은 쓰면 띄우는 쪽으로 받는다. */
+.feature-list li{display:block;font-size:14.5px;color:var(--text)}
+.feature-list .mk{float:left;width:20px;height:20px;color:var(--accent);margin:2px 12px 0 0}
 .panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
 .panel .pcap{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px}
 .bar-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;font-size:13px}

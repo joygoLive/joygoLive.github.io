@@ -18,7 +18,9 @@
 /* 위험 신호 목록. **표가 아니라 카드로 두는 이유** — 다섯 개가 서로 등급이 다르고
    (개방 40점, 약한암호 10점) 각각 「나에게 무슨 일이 생기나」가 붙어야 한다.
    표에 넣으면 그 설명이 칸에 눌려 한 줄로 잘린다. */
-.sig{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:30px}
+/* 다섯 장이라 열 수가 중요하다. 250 이면 넓은 화면에서 4열이 잡혀 **4+1** 로
+   갈리고 마지막 한 장이 외따로 남는다. 290 이면 3열이라 3+2 로 떨어진다. */
+.sig{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;margin-top:30px}
 .scard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:19px 18px}
 .scard .sw{display:flex;align-items:baseline;gap:9px;margin-bottom:9px}
 .scard .sk{font-size:14.5px;font-weight:700}
@@ -27,10 +29,13 @@
 .scard p{font-size:13px;color:var(--text2);line-height:1.62;margin:0}
 
 /* 표본 수치 */
-.stats{display:flex;flex-wrap:wrap;gap:14px 42px;margin:30px 0 22px}
+/* **flex 로 두지 않는다.** 그러면 칸 폭이 글자 길이대로 정해져 네 값의 왼쪽이
+   71·358·510·774 로 제각각 서고, 눈에는 그냥 들쭉날쭉으로 보인다.
+   site.css 의 `.stats` 4열 그리드(좁으면 2열)에 맡기고 여백만 얹는다. */
+.stats{margin:30px 0 22px}
 .stat{min-width:0}
 .stat b{display:block;font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
-.stat span{display:block;margin-top:5px;font-size:13px;color:var(--text2);max-width:19em;line-height:1.5}
+.stat span{display:block;margin-top:5px;font-size:13px;color:var(--text2);line-height:1.5}
 
 .rt{width:100%;border-collapse:collapse;margin:22px 0 8px;font-size:13.5px}
 .rt th,.rt td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
