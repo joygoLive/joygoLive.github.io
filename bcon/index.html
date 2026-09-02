@@ -52,6 +52,25 @@
 .reward b{color:var(--text);font-weight:700}
 .cta-note{font-size:12.5px;color:var(--text-dim);align-self:center}
 </style>
+<script>
+/* 실측 수치는 수집기에서 읽어 온다. **정적 페이지에 숫자를 박아 두면 잴 때마다 그
+   숫자가 틀린 말이 된다** — 실제로 AP 52·위험 30.8 로 박아 뒀다가 세는 법을 고치자
+   전부 어긋났다. 못 읽으면 마크업의 마지막 값이 그대로 남는다(감추지 않는다) —
+   근거 절이라 숫자가 사라지면 문단이 성립하지 않기 때문이다. */
+(function(){
+  fetch('https://bcon.joygolive.com/stats.json', {mode:'cors'})
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function(d){
+      if (d.empty) return;
+      document.querySelectorAll('[data-s]').forEach(function(el){
+        var v = d[el.getAttribute('data-s')];
+        if (v === null || v === undefined) return;
+        el.textContent = v + (el.getAttribute('data-suffix') || '');
+      });
+    })
+    .catch(function(){ /* 조용히 둔다 — 홈페이지가 집 안 수집기의 가동에 매이면 안 된다 */ });
+})();
+</script>
 <script>try{var t=localStorage.getItem('joygo_theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}
 /* 주소창 색은 첫 칠 전에 정해야 한다 — 나중에 고치면 흰 띠가 한 번 번쩍인다.
    media 속성으로 두 줄 두는 방법도 있지만 그건 OS 설정만 본다. 토글로 고른
@@ -181,31 +200,31 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="found">
   <div class="wrap">
     <div class="eyebrow" data-i18n="found.tag">Measured</div>
-    <h2 data-i18n="found.h2">One residential block, as it actually is</h2>
+    <h2 data-i18n="found.h2">What answers, and what of it can reach you</h2>
     <p class="lead" data-i18n="found.lead">Fifty-two access points within range of a single point in a housing complex, read over about an hour. This is not a statement about one household — it is the shared air of a block, which is what anyone standing in it is exposed to. It is also the plainest argument for why the check has to end in an instruction.</p>
 
-    <div class="stats">
-      <div class="stat"><b>52</b><span data-i18n="found.s1">Access points in range of one point, 40 of them named</span></div>
-      <div class="stat"><b>97.5%</b><span data-i18n="found.s2">Without management-frame protection</span></div>
-      <div class="stat"><b>0%</b><span data-i18n="found.s3">On WPA3 — not one, out of forty</span></div>
-      <div class="stat"><b>30.8<span style="font-size:20px;font-weight:600">/100</span></b><span data-i18n="found.s4">Risk for the place, and half of it is one item</span></div>
+    <div class="stats" id="bcStats">
+      <div class="stat"><b data-s="reach_count">170</b><span data-i18n="found.s1">Access points that answered at all — inflated by things that merely passed by</span></div>
+      <div class="stat"><b data-s="joinable_count">49</b><span data-i18n="found.s2">Of those, actually strong enough to join. The rest cannot reach you</span></div>
+      <div class="stat"><b data-s="pmf_none_pct" data-suffix="%">100</b><span data-i18n="found.s3">Of the joinable ones, without management-frame protection</span></div>
+      <div class="stat"><b data-s="wpa3_pct" data-suffix="%">0</b><span data-i18n="found.s4">On WPA3 — the one setting that would fix the line above</span></div>
     </div>
 
     <table class="rt">
       <tr><th data-i18n="found.t.sig">Signal</th><th class="n" data-i18n="found.t.share">Share</th><th data-i18n="found.t.read">What it means here</th></tr>
-      <tr><td class="nm" data-i18n="found.r1">No PMF</td><td class="n">97.5%</td><td data-i18n="found.r1d">Nearly everything can be knocked offline and made to reconnect</td></tr>
-      <tr><td class="nm" data-i18n="found.r2">Default name</td><td class="n">65.0%</td><td data-i18n="found.r2d">Circumstantial: the box was probably never configured</td></tr>
-      <tr><td class="nm" data-i18n="found.r3">WPS on</td><td class="n">60.0%</td><td data-i18n="found.r3d">A pairing path around the passphrase, left switched on</td></tr>
-      <tr><td class="nm" data-i18n="found.r4">WPA3</td><td class="n">0.0%</td><td data-i18n="found.r4d">Not one. Four offered it only as a mixed-mode option</td></tr>
-      <tr><td class="nm" data-i18n="found.r5">Open</td><td class="n">5</td><td data-i18n="found.r5d">Five networks with no encryption, reachable without moving</td></tr>
-      <tr><td class="nm" data-i18n="found.r6">Twin candidates</td><td class="n">4</td><td data-i18n="found.r6d">All look like mesh systems, which is why they are candidates</td></tr>
+      <tr><td class="nm" data-i18n="found.r1">No PMF</td><td class="n"><span data-s="pmf_none_pct" data-suffix="%">100</span></td><td data-i18n="found.r1d">Nearly everything can be knocked offline and made to reconnect</td></tr>
+      <tr><td class="nm" data-i18n="found.r2">Default name</td><td class="n"><span data-s="default_pct" data-suffix="%">63.2</span></td><td data-i18n="found.r2d">Circumstantial: the box was probably never configured</td></tr>
+      <tr><td class="nm" data-i18n="found.r3">WPS on</td><td class="n"><span data-s="wps_pct" data-suffix="%">47.4</span></td><td data-i18n="found.r3d">A pairing path around the passphrase, left switched on</td></tr>
+      <tr><td class="nm" data-i18n="found.r4">Weak cipher</td><td class="n"><span data-s="tkip_pct" data-suffix="%">7.9</span></td><td data-i18n="found.r4d">TKIP still in the mix on equipment old enough to have been forgotten</td></tr>
+      <tr><td class="nm" data-i18n="found.r5">Open</td><td class="n"><span data-s="open_count">4</span></td><td data-i18n="found.r5d">Networks with no encryption at all, within range</td></tr>
+      <tr><td class="nm" data-i18n="found.r6">Twin candidates</td><td class="n"><span data-s="twin_count">2</span></td><td data-i18n="found.r6d">One name answering from several radios — usually mesh, hence candidates</td></tr>
     </table>
-    <p class="tnote" data-i18n="found.tnote">One location in one housing complex, read over roughly an hour. Percentages are of the 40 named access points. One block is one block: this is evidence that the situation is worth checking, not a survey of anywhere.</p>
+    <p class="tnote" data-i18n-html="found.tnote">Live from the collector: <b><span data-s="scans">187</span></b> scans across <b><span data-s="place_count">1</span></b> place. Percentages are of the joinable set, not of everything that answered. One place is one place — this is evidence that the situation is worth checking, not a survey of anywhere.</p>
 
     <ul class="feature-list">
-      <li data-i18n-html="found.1"><b>One item carried half the score.</b> Missing management-frame protection contributed 14.6 of 30.8. A single number would have hidden that; showing the parts makes the one thing worth acting on obvious immediately.</li>
-      <li data-i18n-html="found.2"><b>Not one access point on WPA3.</b> Out of forty named networks, zero. The 97.5% without management-frame protection is the direct consequence, since WPA3 is what makes it mandatory.</li>
-      <li data-i18n-html="found.3"><b>This is why the answer is behavioural.</b> Practically every device in that reading belongs to somebody else. No amount of tightening your own settings changes their equipment, so the useful output is a rule about what your phone is allowed to join.</li>
+      <li data-i18n-html="found.1"><b>Counting has to be honest before anything else is.</b> Most of what answers a scan is too weak to connect to, and the same router answers twice on two bands. Count all of it and the risk score falls as the neighbourhood gets noisier — which is backwards. The score above is computed only over what is actually joinable.</li>
+      <li data-i18n-html="found.2"><b>Management-frame protection is the single biggest item, everywhere so far.</b> It is what stops someone knocking you off the network to make you reconnect somewhere else, and WPA3 is what makes it mandatory. So far the WPA3 figure above has stayed at zero.</li>
+      <li data-i18n-html="found.3"><b>This is why the answer is behavioural.</b> Practically every device in a reading belongs to somebody else. No amount of tightening your own settings changes their equipment, so the useful output is a rule about what your phone is allowed to join.</li>
     </ul>
   </div>
 </section>
@@ -294,23 +313,23 @@ const _L = {
     "fix.4":"<b>PMF 없음 → 장비가 되면 WPA3 로 올립니다.</b> WPA3 는 관리 프레임 보호를 의무화하므로, 이 항목을 없애는 단 하나의 변경입니다. 장비가 못 하면 지시는 행동 쪽입니다 — 끊겼다 딴 데로 끌려가도 괜찮지 않은 일은 그 망에서 하지 않습니다.",
     "fix.5":"<b>기본 이름·구식 암호 → 나머지도 기본값이라고 봅니다.</b> 공장 이름을 그대로 달고 있다는 것은 관리자 비밀번호도 안 바꿨다는 정황입니다. 내 장비면 둘 다 바꾸고 TKIP·WEP 에서 AES 로 옮깁니다. 남의 장비면 그 공유기가 어떻게 관리되는지의 신호로 읽습니다.",
 
-    "found.tag":"실측","found.h2":"주거 단지 한 곳, 실제 상태",
+    "found.tag":"실측","found.h2":"무엇이 잡히고, 그중 무엇이 나에게 닿나",
     "found.lead":"주거 단지 안 한 지점의 반경에서 잡힌 AP 52대를 약 한 시간 읽었습니다. 어느 한 세대의 이야기가 아니라 그 일대가 함께 쓰는 공기이고, 거기 서 있는 사람이면 누구나 그것에 노출됩니다. 점검이 왜 지시로 끝나야 하는지에 대한 가장 단순한 근거이기도 합니다.",
-    "found.s1":"한 지점 반경의 AP 수. 그중 이름이 있는 것 40대",
-    "found.s2":"관리 프레임 보호 없음",
-    "found.s3":"WPA3 비율 — 마흔 대 중 한 대도 없습니다",
-    "found.s4":"이 장소의 위험 점수. 절반이 한 항목에서 나왔습니다",
+    "found.s1":"응답한 AP 전부 — 스쳐 지나간 것까지 세어 부풀려진 값",
+    "found.s2":"그중 실제로 붙을 만큼 신호가 센 것. 나머지는 닿지도 못합니다",
+    "found.s3":"붙을 수 있는 것 중 관리 프레임 보호가 없는 비율",
+    "found.s4":"WPA3 비율 — 위 줄을 없앨 단 하나의 설정",
     "found.t.sig":"신호","found.t.share":"비율","found.t.read":"여기서 무슨 뜻인가",
     "found.r1":"PMF 없음","found.r1d":"거의 전부가 끊겨 나갔다가 다시 붙게 만들 수 있습니다",
     "found.r2":"기본 이름","found.r2d":"정황 — 공유기를 설정한 적이 없을 가능성이 큽니다",
     "found.r3":"WPS 켜짐","found.r3d":"비밀번호를 도는 연결 통로가 켜진 채 남아 있습니다",
-    "found.r4":"WPA3","found.r4d":"한 대도 없습니다. 네 대가 혼용 모드로만 제공합니다",
-    "found.r5":"개방망","found.r5d":"움직이지 않고 닿는 거리에 암호 없는 망이 다섯",
-    "found.r6":"트윈 후보","found.r6d":"전부 메시로 보입니다 — 그래서 단정이 아니라 후보입니다",
-    "found.tnote":"주거 단지 한 곳의 한 지점, 약 한 시간. 백분율은 이름이 있는 AP 40대 기준입니다. 한 단지는 한 단지입니다 — 확인해 볼 만하다는 근거이지, 어딘가에 대한 조사가 아닙니다.",
-    "found.1":"<b>한 항목이 점수의 절반을 끌고 갔습니다.</b> 관리 프레임 보호 없음이 30.8 중 14.6 이었습니다. 숫자 하나만 냈으면 묻혔을 사실이고, 구성을 같이 내니 손댈 곳이 즉시 보입니다.",
-    "found.2":"<b>WPA3 가 한 대도 없습니다.</b> 이름이 있는 마흔 대 중 0 입니다. PMF 없음 97.5% 는 그 직접적인 결과입니다 — 그것을 의무화하는 것이 WPA3 이기 때문입니다.",
-    "found.3":"<b>그래서 답이 행동 쪽입니다.</b> 이 관측의 거의 모든 장비가 남의 것입니다. 내 설정을 아무리 조여도 그쪽 장비는 그대로이므로, 쓸모 있는 결과물은 **내 폰이 무엇에 붙어도 되는가**에 대한 규칙입니다.",
+    "found.r4":"약한 암호","found.r4d":"잊힐 만큼 오래된 장비에 TKIP 가 아직 섞여 있습니다",
+    "found.r5":"개방망","found.r5d":"반경 안에 암호가 아예 없는 망",
+    "found.r6":"트윈 후보","found.r6d":"한 이름이 여러 무전기에서 답함 — 대개 메시라 「후보」입니다",
+    "found.tnote":"수집기에서 바로 읽어 옵니다 — 스캔 <b><span data-s=\"scans\">187</span></b>회, 장소 <b><span data-s=\"place_count\">1</span></b>곳. 백분율은 <b>붙을 수 있는 것</b> 기준이지 응답한 전부가 아닙니다. 한 곳은 한 곳입니다 — 확인해 볼 만하다는 근거이지 어딘가에 대한 조사가 아닙니다.",
+    "found.1":"<b>세는 법이 먼저 정직해야 합니다.</b> 스캔에 응답하는 것 대부분은 너무 약해 붙을 수가 없고, 같은 공유기가 두 대역에서 두 번 답합니다. 그걸 다 세면 동네가 시끄러울수록 위험 점수가 내려가는 역설이 생깁니다. 위 점수는 <b>실제로 붙을 수 있는 것</b>만으로 냅니다.",
+    "found.2":"<b>관리 프레임 보호 없음이 어디서나 가장 큰 항목입니다.</b> 누가 나를 끊어 내 다른 데로 붙게 만드는 것을 막는 장치이고, 그것을 의무화하는 것이 WPA3 입니다. 지금까지 위 WPA3 수치는 0 에서 움직인 적이 없습니다.",
+    "found.3":"<b>그래서 답이 행동 쪽입니다.</b> 관측되는 거의 모든 장비가 남의 것입니다. 내 설정을 아무리 조여도 그쪽 장비는 그대로이므로, 쓸모 있는 결과물은 **내 폰이 무엇에 붙어도 되는가**에 대한 규칙입니다.",
 
     "limits.tag":"한계","limits.h2":"주장하지 않는 것",
     "limits.1":"<b>남을 겨누지 않습니다.</b> 결과는 노출에 관한 것이지 잘잘못에 관한 것이 아닙니다. 망의 순위도, 소유자 지목도, 특정 AP 에 책임이 있다는 말도 없습니다. 화면에 뜨는 것으로는 그 AP 를 찾아갈 수 없게 일부러 모자라게 냅니다.",
