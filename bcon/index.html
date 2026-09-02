@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BCON — Wireless self-protection by joygoLive</title>
+<meta name="description" content="BCON reads what the air broadcasts along the routes you already take, and answers one question: are you exposed? A spare phone collects passively, the summary is per place, and individual access points are never identified on screen." />
+<meta property="og:title" content="BCON — Wireless self-protection by joygoLive" />
+<meta property="og:description" content="Not whether someone else is vulnerable. Whether you are exposed. A spare phone rides along and reads what the air already broadcasts." />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
+<meta name="theme-color" id="themeColor" content="#ffffff" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+/* 위험 신호 목록. **표가 아니라 카드로 두는 이유** — 다섯 개가 서로 등급이 다르고
+   (개방 40점, 약한암호 10점) 각각 「나에게 무슨 일이 생기나」가 붙어야 한다.
+   표에 넣으면 그 설명이 칸에 눌려 한 줄로 잘린다. */
+.sig{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:30px}
+.scard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:19px 18px}
+.scard .sw{display:flex;align-items:baseline;gap:9px;margin-bottom:9px}
+.scard .sk{font-size:14.5px;font-weight:700}
+/* 배점은 모노·작게 — 값이지 제목이 아니다 */
+.scard .sp{font-family:var(--font-mono);font-size:11.5px;color:var(--accent);font-weight:700;margin-left:auto}
+.scard p{font-size:13px;color:var(--text2);line-height:1.62;margin:0}
+
+/* 수집 3단계 */
+.pipe{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:32px}
+.pcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 19px}
+.pcard .pn{font-family:var(--font-mono);font-size:11.5px;color:var(--accent);font-weight:700;margin-bottom:8px}
+.pcard .pk{font-size:14.5px;font-weight:700;margin-bottom:9px}
+.pcard p{font-size:13px;color:var(--text2);line-height:1.62;margin:0}
+.pcard .pg{margin-top:11px;padding-top:11px;border-top:1px solid var(--border);
+  font-size:12.5px;color:var(--text-dim);line-height:1.55}
+.pcard .pg b{color:var(--text2);font-weight:700}
+
+/* 첫 수집 수치 */
+.stats{display:flex;flex-wrap:wrap;gap:14px 42px;margin:30px 0 22px}
+.stat{min-width:0}
+.stat b{display:block;font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.stat span{display:block;margin-top:5px;font-size:13px;color:var(--text2);max-width:19em;line-height:1.5}
+
+.rt{width:100%;border-collapse:collapse;margin:22px 0 8px;font-size:13.5px}
+.rt th,.rt td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+.rt th{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
+.rt td.n,.rt th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rt tr:last-child td{border-bottom:0}
+.rt .nm{font-weight:700}
+.tnote{font-size:12.5px;color:var(--text-dim);margin:0 0 26px}
+
+/* 「남을 겨누지 않는다」 — 각주로 보이면 안 된다. 이 서비스의 성격 자체다. */
+.reward{margin:18px 0 0;padding:13px 16px;max-width:46em;
+  font-size:13.5px;line-height:1.7;color:var(--text2);
+  background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:var(--radius)}
+.reward b{color:var(--text);font-weight:700}
+.cta-note{font-size:12.5px;color:var(--text-dim);align-self:center}
+</style>
+<script>try{var t=localStorage.getItem('joygo_theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}
+/* 주소창 색은 첫 칠 전에 정해야 한다 — 나중에 고치면 흰 띠가 한 번 번쩍인다.
+   media 속성으로 두 줄 두는 방법도 있지만 그건 OS 설정만 본다. 토글로 고른
+   테마는 못 따라와서, 라이트 OS 에서 다크를 고른 사람은 주소창만 하얗게 남는다. */
+try{var d=document.documentElement.getAttribute('data-theme');
+document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(prefers-color-scheme:dark)').matches))?'#0b0e11':'#ffffff';}catch(e){}</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand-group">
+      <a href="../" class="brand" aria-label="joygoLive">
+        <svg viewBox="0 0 32 32" aria-hidden="true" class="mk"><rect class="mk-bg" x=".6" y=".6" width="30.8" height="30.8" rx="6.6"/><rect class="mk-joy" x="6.5" y="12.5" width="5" height="13.5" rx="1"/><rect class="mk-go" x="13.5" y="17" width="5" height="9" rx="1"/><rect class="mk-live" x="20.5" y="8" width="5" height="18" rx="1"/></svg>
+        <span>joy<span class="go">go</span><span class="dot">Live</span></span>
+      </a>
+      <span class="brand-sep" aria-hidden="true">/</span>
+      <a href="./" class="svc-name">BCON</a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#why" data-i18n="nav.why">Why</a>
+      <a href="#what" data-i18n="nav.what">What it reads</a>
+      <a href="#how" data-i18n="nav.how">How it collects</a>
+      <a href="#found" data-i18n="nav.found">First run</a>
+      <a href="#limits" data-i18n="nav.limits">Limits</a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="language">
+      <button data-lang="en" onclick="setLang('en')">EN</button>
+      <button data-lang="ko" onclick="setLang('ko')">한국어</button>
+    </div>
+    <div class="theme-toggle" role="group" aria-label="theme">
+      <button data-theme-set="light" onclick="setTheme('light')" aria-label="Light" title="Light">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button data-theme-set="dark" onclick="setTheme('dark')" aria-label="Dark" title="Dark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+    <button class="menu-btn" aria-label="menu" aria-expanded="false" aria-controls="navLinks" onclick="toggleNav(this)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-kicker mono" data-i18n="hero.kicker">BCON · Broadcast · Commute · Observation · Networks</div>
+    <h1 data-i18n-html="hero.title">The air on your usual routes, <span class="grad">read for your own risk</span>.</h1>
+    <p class="lead" data-i18n="hero.sub">A spare phone rides along on the routes you already take and reads what the air broadcasts. The question it answers is not whether somebody else is vulnerable. It is whether you are exposed, at the places where you actually spend your hours.</p>
+    <div class="cta-row">
+      <a href="#what" class="btn btn-primary" data-i18n="hero.cta1">What it reads</a>
+      <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">What it will not claim</a>
+    </div>
+    <p class="reward" data-i18n-html="hero.reward"><b>It receives, and nothing else.</b> Beacons are already broadcast in the clear; BCON listens to that and stops there. It never connects, never authenticates, never cracks, and never names an individual access point on screen.</p>
+    <div class="byline" data-i18n-html="hero.byline">An MVP by joygoLive. Private while it is still collecting.</div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why" class="section alt">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="why.tag">Premise</div>
+    <h2 data-i18n="why.h2">Self-protection, not a survey</h2>
+    <p class="lead" data-i18n="why.lead">Reports on how insecure wireless is in general already exist, and knowing the national average changes nothing you do tomorrow. The one thing nobody measures is the route you personally walk every day. That is the only sample where the number is about you.</p>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="why.f1.t">The audience is you</b><span data-i18n="why.f1.d">An aggregate needs a large sample before it means anything. A specific event on your own route means something at n = 1, and it stays worth re-checking because the route is still yours.</span></div>
+      <div class="fact fade"><b data-i18n="why.f2.t">Zero added effort</b><span data-i18n="why.f2.d">Nothing asks you to go somewhere. The phone reads in the background along the way you were going anyway — closer to a dashcam than to a survey.</span></div>
+      <div class="fact fade"><b data-i18n="why.f3.t">Repetition is the dataset</b><span data-i18n="why.f3.d">Going to the same places is usually a limit on coverage. Here it is the point: the same corridor measured again and again becomes a record of how it changed.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT -->
+<section id="what">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="what.tag">Signals</div>
+    <h2 data-i18n="what.h2">Five things that put you at risk</h2>
+    <p class="lead" data-i18n="what.lead">Each carries a weight, because they are not equally dangerous. An open network you might join by accident is worth four times a stale cipher on a network you never touch. The weights add up to one score per place, and the score always shows its parts.</p>
+    <div class="sig">
+      <div class="scard fade">
+        <div class="sw"><span class="sk" data-i18n="what.1.t">Open network</span><span class="sp">40</span></div>
+        <p data-i18n="what.1.d">No encryption at all. The real hazard is not the network but your phone, which may have been told to join something like it before and will do so again without asking.</p>
+      </div>
+      <div class="scard fade">
+        <div class="sw"><span class="sk" data-i18n="what.2.t">Evil twin</span><span class="sp">20</span></div>
+        <p data-i18n="what.2.d">One familiar name answering from several different radios. Mesh systems do this legitimately, so it is reported as a candidate to look at, never as an accusation.</p>
+      </div>
+      <div class="scard fade">
+        <div class="sw"><span class="sk" data-i18n="what.3.t">No management-frame protection</span><span class="sp">15</span></div>
+        <p data-i18n="what.3.d">Without PMF, anyone nearby can knock you off the network — and a forced reconnection is exactly the moment an impostor wants. Optional PMF is flagged separately from absent.</p>
+      </div>
+      <div class="scard fade">
+        <div class="sw"><span class="sk" data-i18n="what.4.t">WPS enabled</span><span class="sp">15</span></div>
+        <p data-i18n="what.4.d">The convenience pairing path, and a way around the passphrase that the passphrase cannot defend against. Usually on because nobody turned it off.</p>
+      </div>
+      <div class="scard fade">
+        <div class="sw"><span class="sk" data-i18n="what.5.t">Weak cipher</span><span class="sp">10</span></div>
+        <p data-i18n="what.5.d">WEP, original WPA, or TKIP still in the mix. Lowest weight because it usually appears on equipment old enough that you were not going to connect to it anyway.</p>
+      </div>
+    </div>
+    <ul class="feature-list" style="margin-top:30px">
+      <li data-i18n-html="what.p1"><b>The unit is a place, not a network.</b> Observations are grouped into cells about 111 m across and sorted by how long you stayed, because the place you linger in is the place you are exposed in. A corridor you pass through in ninety seconds is not the same risk as the desk you sit at all day.</li>
+      <li data-i18n-html="what.p2"><b>Guesswork is labelled as guesswork.</b> Default network names, vendor from the address prefix, and device type from the name are all inference. They are printed as circumstantial, and a randomised address returns no vendor at all rather than a wrong one.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how" class="section alt">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="how.tag">Pipeline</div>
+    <h2 data-i18n="how.h2">Three stages, each with a line it does not cross</h2>
+    <p class="lead" data-i18n="how.lead">Collection has to survive a phone in a pocket with no cable attached, and the summary has to be useful without holding a register of who owns what.</p>
+    <div class="pipe">
+      <div class="pcard fade">
+        <div class="pn">01</div>
+        <div class="pk" data-i18n="how.1.t">Collect</div>
+        <p data-i18n="how.1.d">A logger on the spare phone asks the system for a scan and writes what comes back, reusing the location fix that is already running. It is detached from the session that started it, so unplugging the cable and walking out does not stop it.</p>
+        <div class="pg" data-i18n-html="how.1.g"><b>Line:</b> receive only. No association, no authentication, no probing of anything.</div>
+      </div>
+      <div class="pcard fade">
+        <div class="pn">02</div>
+        <div class="pk" data-i18n="how.2.t">Accumulate</div>
+        <p data-i18n="how.2.d">The phone pushes lines to a server at home over a tunnel, so it keeps reporting from a mobile connection rather than waiting until it is back on the desk. The raw log is appended to and never rewritten.</p>
+        <div class="pg" data-i18n-html="how.2.g"><b>Line:</b> the server binds to loopback. Only the tunnel reaches it, and the dashboard is behind a password.</div>
+      </div>
+      <div class="pcard fade">
+        <div class="pn">03</div>
+        <div class="pk" data-i18n="how.3.t">Summarise</div>
+        <p data-i18n="how.3.d">One score per place with its parts shown, plus every access point folded to a single row carrying only what matters to you: how it is secured, what kind of device it looks like, and what is unusual about it.</p>
+        <div class="pg" data-i18n-html="how.3.g"><b>Line:</b> hardware addresses are used to detect twins and are not shown. The screen carries a fragment, never the whole.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUND -->
+<section id="found">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="found.tag">First run</div>
+    <h2 data-i18n="found.h2">Twenty minutes, one place</h2>
+    <p class="lead" data-i18n="found.lead">The first collection ran at home and nowhere else. It is a shakedown of the pipeline, not a finding about anywhere — but the shape of what came back is already the point of the whole thing.</p>
+
+    <div class="stats">
+      <div class="stat"><b>802</b><span data-i18n="found.s1">Observations in twenty minutes, from one spare phone</span></div>
+      <div class="stat"><b>44</b><span data-i18n="found.s2">Distinct access points reachable, 33 of them named</span></div>
+      <div class="stat"><b>29<span style="font-size:20px;font-weight:600">/100</span></b><span data-i18n="found.s3">Risk for the place, and half of it is one item</span></div>
+      <div class="stat"><b>97%</b><span data-i18n="found.s4">Without management-frame protection — that one item</span></div>
+    </div>
+
+    <table class="rt">
+      <tr><th data-i18n="found.t.sig">Signal</th><th class="n" data-i18n="found.t.share">Share</th><th data-i18n="found.t.read">What it means here</th></tr>
+      <tr><td class="nm" data-i18n="found.r1">No PMF</td><td class="n">97.0%</td><td data-i18n="found.r1d">Nearly everything can be knocked offline and made to reconnect</td></tr>
+      <tr><td class="nm" data-i18n="found.r2">Default name</td><td class="n">63.6%</td><td data-i18n="found.r2d">Circumstantial: the box was probably never configured</td></tr>
+      <tr><td class="nm" data-i18n="found.r3">WPS on</td><td class="n">54.5%</td><td data-i18n="found.r3d">A pairing path around the passphrase, left switched on</td></tr>
+      <tr><td class="nm" data-i18n="found.r4">WPA3</td><td class="n">0.0%</td><td data-i18n="found.r4d">Not one. Three offered it only as a mixed-mode option</td></tr>
+      <tr><td class="nm" data-i18n="found.r5">Open</td><td class="n">4</td><td data-i18n="found.r5d">Four networks with no encryption within range of a sofa</td></tr>
+      <tr><td class="nm" data-i18n="found.r6">Twin candidates</td><td class="n">2</td><td data-i18n="found.r6d">Both look like mesh systems, which is why they are candidates</td></tr>
+    </table>
+    <p class="tnote" data-i18n="found.tnote">One location, one twenty-minute window, one device. Percentages are of the 33 named access points. Read it as a working pipeline, not as a statement about anywhere.</p>
+
+    <ul class="feature-list">
+      <li data-i18n-html="found.1"><b>One item carried half the score.</b> Missing management-frame protection contributed 14.5 of 29.0. A single score would have hidden that; showing the parts makes the one thing worth acting on obvious immediately.</li>
+      <li data-i18n-html="found.2"><b>The exposure is other people's equipment.</b> Almost none of this is yours to fix, which is exactly why the answer is "know it and behave accordingly" rather than "harden it".</li>
+      <li data-i18n-html="found.3"><b>Detached collection was the part that had to be proven.</b> With the cable pulled and the debugging session killed, the log kept growing. Collection that only works while tethered to a desk would measure the one place that needs it least.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- LIMITS -->
+<section id="limits" class="section alt">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="limits.tag">Limits</div>
+    <h2 data-i18n="limits.h2">What this does not claim</h2>
+    <ul class="feature-list">
+      <li data-i18n-html="limits.1"><b>Nobody else is a target.</b> The output is about your exposure. There is no ranking of networks, no naming of an owner, and no notion that a particular access point is at fault. What is on screen is deliberately not enough to go and find one.</li>
+      <li data-i18n-html="limits.2"><b>Inference is not identification.</b> Device type, vendor and "default name" are read off broadcast text and address prefixes. They are frequently right and sometimes wrong, and are labelled so you can tell which claim you are looking at.</li>
+      <li data-i18n-html="limits.3"><b>The sample is one person's routes.</b> That is the design, not a shortfall — but it means nothing here generalises. It is not a survey of a city, a carrier, or a manufacturer, and it should never be quoted as one.</li>
+      <li data-i18n-html="limits.4"><b>None of the technique is new.</b> A phone that scans and logs is twenty years old, and mapping projects have covered the world with it. What is different is only the question being asked of the data, and that is a thinner advantage than a technical one.</li>
+      <li data-i18n-html="limits.5"><b>It is not public, and going public is a separate decision.</b> The MVP collects privately. Publishing anything derived from location has its own rules to satisfy first, and that review has not been done — so it has not been published.</li>
+    </ul>
+    <div class="cta-row" style="margin-top:30px">
+      <a href="../" class="btn btn-primary" data-i18n="limits.cta">See the rest of the portfolio</a>
+      <span class="cta-note" data-i18n="limits.ctanote">Five other services, each built here and operated here.</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true" class="mk"><rect class="mk-bg" x=".6" y=".6" width="30.8" height="30.8" rx="6.6"/><rect class="mk-joy" x="6.5" y="12.5" width="5" height="13.5" rx="1"/><rect class="mk-go" x="13.5" y="17" width="5" height="9" rx="1"/><rect class="mk-live" x="20.5" y="8" width="5" height="18" rx="1"/></svg><span>joy<span class="go">go</span><span class="dot" style="color:var(--accent)">Live</span></span></span>
+    <nav class="foot-links">
+      <a href="../"><span data-i18n="ft.home">Home</span></a>
+      <a href="../uqh/">UQH</a>
+      <a href="../amc/">AMC</a>
+      <a href="../bor/">BOR</a>
+      <a href="../wcp/">WCP</a>
+      <a href="../loci/">LOCI</a>
+      <a href="../bcon/">BCON</a>
+    </nav>
+    <span data-i18n="ft.copy">© 2026 joygoLive. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+const _L = {
+  en:{
+    "nav.why":"Why","nav.what":"What it reads","nav.how":"How it collects","nav.found":"First run","nav.limits":"Limits",
+    "ft.home":"Home","ft.copy":"© 2026 joygoLive. All rights reserved.",
+  },
+  ko:{
+    "nav.why":"왜","nav.what":"재는 것","nav.how":"수집","nav.found":"첫 수집","nav.limits":"한계",
+
+    "hero.kicker":"BCON · Broadcast · Commute · Observation · Networks",
+    "hero.title":"늘 다니는 길의 공기를, <span class=\"grad\">내 위험 기준으로</span> 읽습니다.",
+    "hero.sub":"공기계가 원래 다니던 길에 얹혀 가며 공기 중에 방송되는 것을 읽습니다. 답하는 질문은 「남이 취약한가」가 아닙니다. 내가 실제로 시간을 보내는 자리에서 내가 노출돼 있는가입니다.",
+    "hero.cta1":"무엇을 재나",
+    "hero.cta2":"주장하지 않는 것",
+    "hero.reward":"<b>받기만 합니다.</b> 비콘은 원래 평문으로 방송되는 것이고, BCON 은 그것을 듣는 데서 멈춥니다. 접속하지 않고, 인증하지 않고, 뚫지 않으며, 개별 AP 를 화면에 지목하지 않습니다.",
+    "hero.byline":"joygoLive 의 MVP. 수집하는 동안은 비공개입니다.",
+
+    "why.tag":"전제","why.h2":"조사가 아니라 자기보호",
+    "why.lead":"무선이 전반적으로 얼마나 허술한지에 대한 보고서는 이미 있고, 전국 평균을 안다고 내일 할 일이 바뀌지 않습니다. 아무도 재지 않는 것은 내가 매일 걷는 그 길입니다. 숫자가 나에 관한 것이 되는 유일한 표본입니다.",
+    "why.f1.t":"청중이 본인",
+    "why.f1.d":"집계는 표본이 커져야 뜻이 생깁니다. 내 동선의 개별 사건은 n=1 에서도 뜻이 있고, 그 길이 계속 내 길이라 다시 볼 이유도 남습니다.",
+    "why.f2.t":"추가 노력 0",
+    "why.f2.d":"어디로 가라고 시키지 않습니다. 가던 길에서 폰이 배경으로 읽습니다 — 조사보다 블랙박스에 가깝습니다.",
+    "why.f3.t":"반복이 곧 데이터",
+    "why.f3.d":"같은 데만 다니는 것은 보통 취재 범위의 한계입니다. 여기서는 그게 핵심입니다 — 같은 길을 거듭 재면 그 길이 어떻게 변했는지가 남습니다.",
+
+    "what.tag":"위험 신호","what.h2":"나를 위험하게 만드는 다섯",
+    "what.lead":"각각 가중치가 다릅니다. 똑같이 위험하지 않기 때문입니다. 실수로 붙을 수 있는 개방망은, 붙을 일도 없는 장비의 낡은 암호보다 네 배입니다. 가중치를 더해 장소마다 점수 하나가 나오고, 점수는 언제나 구성을 같이 냅니다.",
+    "what.1.t":"개방망",
+    "what.1.d":"암호가 아예 없습니다. 진짜 위험은 그 망이 아니라 내 폰입니다 — 예전에 비슷한 이름에 붙으라고 배운 적이 있으면 묻지 않고 다시 붙습니다.",
+    "what.2.t":"이블 트윈",
+    "what.2.d":"익숙한 이름 하나가 서로 다른 무전기 여러 대에서 답합니다. 메시 공유기가 원래 그렇게 하므로 **후보**로만 냅니다 — 단정하지 않습니다.",
+    "what.3.t":"PMF 미적용",
+    "what.3.d":"관리 프레임 보호가 없으면 근처의 누구든 나를 끊어 낼 수 있고, 강제로 재접속하는 그 순간이 위장 AP 가 노리는 자리입니다. 「선택 적용」은 「미적용」과 따로 표시합니다.",
+    "what.4.t":"WPS 켜짐",
+    "what.4.d":"간편 연결 통로이자, 비밀번호로는 막을 수 없는 비밀번호 우회로입니다. 대개 아무도 끄지 않아서 켜져 있습니다.",
+    "what.5.t":"약한 암호",
+    "what.5.d":"WEP·초기 WPA·TKIP 가 아직 섞여 있는 경우. 가중치가 가장 낮은 이유는, 보통 애초에 붙을 일 없는 오래된 장비에서 나오기 때문입니다.",
+    "what.p1":"<b>단위는 망이 아니라 장소입니다.</b> 관측을 약 111m 격자로 묶고 <b>머문 시간 순</b>으로 세웁니다 — 오래 머무는 곳이 곧 오래 노출되는 곳이기 때문입니다. 90초 만에 지나가는 복도와 하루 종일 앉는 자리는 같은 위험이 아닙니다.",
+    "what.p2":"<b>추측은 추측이라고 적습니다.</b> 기본 SSID·주소 앞자리로 본 제조사·이름으로 본 기기 종류는 전부 정황입니다. 정황이라고 표시해서 내고, 주소가 무작위화된 경우에는 틀린 제조사를 대는 대신 아무것도 대지 않습니다.",
+
+    "how.tag":"공정","how.h2":"세 단계, 각각 넘지 않는 선",
+    "how.lead":"수집은 케이블 없이 주머니 속 폰에서 살아남아야 하고, 요약은 누가 무엇을 가졌는지 대장을 만들지 않고도 쓸모가 있어야 합니다.",
+    "how.1.t":"수집",
+    "how.1.d":"공기계의 로거가 시스템에 스캔을 요청하고 돌아온 것을 적습니다. 이미 돌고 있는 위치 값을 재사용합니다. 자기를 띄운 세션에서 분리돼 있어서, 케이블을 뽑고 나가도 멈추지 않습니다.",
+    "how.1.g":"<b>선:</b> 받기만 합니다. 결합도, 인증도, 무엇을 찔러 보는 일도 없습니다.",
+    "how.2.t":"축적",
+    "how.2.d":"폰이 터널을 통해 집 서버로 줄을 밀어 넣습니다. 그래서 책상에 돌아올 때까지 기다리지 않고 이동 회선에서도 계속 보고합니다. 원본 로그는 덧붙이기만 하고 고쳐 쓰지 않습니다.",
+    "how.2.g":"<b>선:</b> 서버는 루프백에만 붙습니다. 밖에서 닿는 길은 터널뿐이고, 대시보드는 비밀번호 뒤에 있습니다.",
+    "how.3.t":"요약",
+    "how.3.d":"장소마다 구성을 밝힌 점수 하나, 그리고 AP 를 한 줄로 접어 나에게 중요한 것만 남깁니다 — 어떻게 잠겨 있나, 어떤 기기로 보이나, 무엇이 특이한가.",
+    "how.3.g":"<b>선:</b> 하드웨어 주소는 트윈 판정에만 쓰고 화면에 안 냅니다. 화면에는 조각만 갑니다.",
+
+    "found.tag":"첫 수집","found.h2":"20분, 장소 하나",
+    "found.lead":"첫 수집은 집에서만 돌았습니다. 어디에 관한 결론이 아니라 공정을 한 번 돌려 본 것입니다 — 다만 돌아온 것의 모양이 이미 이 서비스의 요지입니다.",
+    "found.s1":"20분 동안의 관측 수, 공기계 한 대에서",
+    "found.s2":"닿은 AP 수. 그중 이름이 있는 것 33대",
+    "found.s3":"이 장소의 위험 점수. 절반이 한 항목에서 나왔습니다",
+    "found.s4":"관리 프레임 보호 없음 — 그 한 항목",
+    "found.t.sig":"신호","found.t.share":"비율","found.t.read":"여기서 무슨 뜻인가",
+    "found.r1":"PMF 없음","found.r1d":"거의 전부가 끊겨 나갔다가 다시 붙게 만들 수 있습니다",
+    "found.r2":"기본 이름","found.r2d":"정황 — 공유기를 설정한 적이 없을 가능성이 큽니다",
+    "found.r3":"WPS 켜짐","found.r3d":"비밀번호를 도는 연결 통로가 켜진 채 남아 있습니다",
+    "found.r4":"WPA3","found.r4d":"한 대도 없습니다. 세 대가 혼용 모드로만 제공합니다",
+    "found.r5":"개방망","found.r5d":"소파에서 닿는 거리에 암호 없는 망이 넷",
+    "found.r6":"트윈 후보","found.r6d":"둘 다 메시로 보입니다 — 그래서 단정이 아니라 후보입니다",
+    "found.tnote":"장소 하나, 20분 한 구간, 기기 한 대. 백분율은 이름이 있는 AP 33대 기준입니다. 어딘가에 대한 진술이 아니라 돌아가는 공정으로 읽어 주세요.",
+    "found.1":"<b>한 항목이 점수의 절반을 끌고 갔습니다.</b> 관리 프레임 보호 없음이 29.0 중 14.5 였습니다. 점수 하나만 냈으면 묻혔을 사실이고, 구성을 같이 내니 손댈 곳이 즉시 보입니다.",
+    "found.2":"<b>노출을 만드는 건 남의 장비입니다.</b> 여기서 내가 고칠 수 있는 것은 거의 없습니다. 그래서 답이 「강화한다」가 아니라 「알고 그에 맞게 행동한다」인 것입니다.",
+    "found.3":"<b>증명해야 했던 건 분리된 수집이었습니다.</b> 케이블을 뽑고 디버깅 세션을 죽인 뒤에도 로그가 계속 늘었습니다. 책상에 묶여 있어야만 되는 수집은, 정작 가장 필요 없는 한 곳만 재게 됩니다.",
+
+    "limits.tag":"한계","limits.h2":"주장하지 않는 것",
+    "limits.1":"<b>남을 겨누지 않습니다.</b> 결과는 내 노출에 관한 것입니다. 망의 순위도, 소유자 지목도, 특정 AP 에 잘못이 있다는 판정도 없습니다. 화면에 있는 것으로는 그 AP 를 찾아갈 수 없게 일부러 모자라게 냅니다.",
+    "limits.2":"<b>추론은 식별이 아닙니다.</b> 기기 종류·제조사·「기본 이름」은 방송되는 문자열과 주소 앞자리에서 읽은 것입니다. 자주 맞고 가끔 틀리며, 지금 보는 것이 어느 쪽 주장인지 알 수 있게 표시합니다.",
+    "limits.3":"<b>표본이 한 사람의 동선뿐입니다.</b> 모자라서가 아니라 그렇게 설계한 것입니다 — 대신 여기 있는 어떤 것도 일반화되지 않습니다. 도시·통신사·제조사에 대한 조사가 아니며 그렇게 인용돼서도 안 됩니다.",
+    "limits.4":"<b>기술적으로 새로운 것은 없습니다.</b> 폰으로 스캔해서 기록하는 일은 20년 됐고, 매핑 프로젝트들이 이미 전 세계를 덮었습니다. 다른 것은 그 데이터에 던지는 질문뿐이고, 그건 기술적 우위보다 얇은 방어선입니다.",
+    "limits.5":"<b>공개가 아니고, 공개는 별도의 결정입니다.</b> MVP 는 비공개로 수집합니다. 위치에서 파생된 것을 내놓으려면 먼저 지켜야 할 규칙이 따로 있고, 그 검토를 아직 안 했습니다 — 그래서 내놓지 않았습니다.",
+    "limits.cta":"포트폴리오 보기",
+    "limits.ctanote":"다른 다섯. 각각 여기서 만들고 여기서 운영합니다.",
+    "ft.home":"홈","ft.copy":"© 2026 joygoLive. All rights reserved.",
+  },
+};
+</script>
+<script src="../assets/i18n.js"></script>
+</body>
+</html>
