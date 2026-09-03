@@ -1,8 +1,26 @@
+/* 페이지에 박혀 있던 원문. **사전은 한쪽만 갖고 있다** — 본문 영어는 HTML 에
+   그대로 적혀 있고 `_L.en` 에는 메뉴 몇 줄뿐이다. 그래서 한국어로 한 번 바꾸면
+   영어로 되돌릴 것이 없어, 새로고침 전까지 EN 을 눌러도 한국어가 남았다.
+   덮기 전에 한 번 담아 두고, 사전에 없는 키는 여기서 되돌린다. */
+const _ORIG={t:{},h:{}};
+let _snapped=false;
+function _snapshot(){
+  if(_snapped) return; _snapped=true;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n'); if(!(k in _ORIG.t)) _ORIG.t[k]=el.textContent;});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+    const k=el.getAttribute('data-i18n-html'); if(!(k in _ORIG.h)) _ORIG.h[k]=el.innerHTML;});
+}
+
 function setLang(lang){
   if(!_L[lang]) lang='en';
   const d=_L[lang];
-  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];});
-  document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.getAttribute('data-i18n-html');if(d[k]!=null)el.innerHTML=d[k];});
+  _snapshot();
+  // 나중에 그려진 것은 원문을 담아 둔 적이 없다 — 그때는 건드리지 않는다(비우면 사라진다)
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');
+    const v=d[k]!=null?d[k]:_ORIG.t[k]; if(v!=null)el.textContent=v;});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.getAttribute('data-i18n-html');
+    const v=d[k]!=null?d[k]:_ORIG.h[k]; if(v!=null)el.innerHTML=v;});
   document.documentElement.lang=lang;
   document.querySelectorAll('.lang-toggle button').forEach(b=>b.classList.toggle('active',b.getAttribute('data-lang')===lang));
   try{localStorage.setItem('joygo_lang',lang);}catch(e){}

@@ -167,10 +167,10 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <table class="vtable">
         <thead><tr><th data-i18n="vf.c1">What was checked</th><th data-i18n="vf.c2">Result</th></tr></thead>
         <tbody>
-          <tr><td data-i18n="vf.r1.a">Test suite</td><td data-i18n="vf.r1.b">143 tests pass</td></tr>
+          <tr><td data-i18n="vf.r1.a">Test suite</td><td data-i18n="vf.r1.b">Full suite passing</td></tr>
           <tr><td data-i18n="vf.r2.a">Deep randomized runs</td><td data-i18n="vf.r2.b">Fuzz 5,000 runs; invariants 512 runs × 128 depth: all pass</td></tr>
           <tr><td data-i18n="vf.r3.a">RFC 9380 conformance</td><td data-i18n="vf.r3.b">Official vectors parsed straight out of the RFC (K.1, J.9.1) and passed, not transcribed by hand</td></tr>
-          <tr><td data-i18n="vf.r4.a">Cross-implementation differential</td><td data-i18n="vf.r4.b">The RFC, noble-curves, py_ecc and the on-chain BLS.sol agree across 82 vectors</td></tr>
+          <tr><td data-i18n="vf.r4.a">Cross-implementation differential</td><td data-i18n="vf.r4.b">The RFC, noble-curves, py_ecc and the on-chain BLS.sol agree across every vector</td></tr>
           <tr><td data-i18n="vf.r5.a">Symbolic execution</td><td data-i18n="vf.r5.b">halmos proves the bounds, the schedule and purchase accounting over all inputs, not sampled ones</td></tr>
           <tr><td data-i18n="vf.r6.a">On-chain beacon verification</td><td data-i18n="vf.r6.b">Forged, tampered and round-mismatched signatures are all rejected</td></tr>
           <tr><td data-i18n="vf.r7.a">No funds can be stranded</td><td data-i18n="vf.r7.b">After random call sequences everyone withdraws and the balance reaches zero</td></tr>
@@ -281,10 +281,10 @@ const _L = {
     "vf.tag":"Verification","vf.h2":"Not audited: here is what was done instead",
     "vf.lead":"No third party has audited this contract. Saying so is the first line of the section, not a footnote at the bottom. What follows is the self-testing that exists in its place, stated so you can reproduce it.",
     "vf.c1":"What was checked","vf.c2":"Result",
-    "vf.r1.a":"Test suite","vf.r1.b":"143 tests pass",
+    "vf.r1.a":"Test suite","vf.r1.b":"Full suite passing",
     "vf.r2.a":"Deep randomized runs","vf.r2.b":"Fuzz 5,000 runs; invariants 512 runs × 128 depth: all pass",
     "vf.r3.a":"RFC 9380 conformance","vf.r3.b":"Official vectors parsed straight out of the RFC (K.1, J.9.1) and passed, not transcribed by hand",
-    "vf.r4.a":"Cross-implementation differential","vf.r4.b":"The RFC, noble-curves, py_ecc and the on-chain BLS.sol agree across 82 vectors",
+    "vf.r4.a":"Cross-implementation differential","vf.r4.b":"The RFC, noble-curves, py_ecc and the on-chain BLS.sol agree across every vector",
     "vf.r5.a":"Symbolic execution","vf.r5.b":"halmos proves the bounds, the schedule and purchase accounting over all inputs, not sampled ones",
     "vf.r6.a":"On-chain beacon verification","vf.r6.b":"Forged, tampered and round-mismatched signatures are all rejected",
     "vf.r7.a":"No funds can be stranded","vf.r7.b":"After random call sequences everyone withdraws and the balance reaches zero",
@@ -346,10 +346,10 @@ const _L = {
     "vf.tag":"검증 상태","vf.h2":"감사를 받지 않았습니다. 대신 한 것은 이렇습니다",
     "vf.lead":"이 컨트랙트를 감사한 제3자는 없습니다. 그 사실을 아래 각주가 아니라 이 절의 첫 줄에 적습니다. 이어지는 것은 그 자리를 대신하는 자체 검증이며, 재현할 수 있도록 그대로 적습니다.",
     "vf.c1":"검사 항목","vf.c2":"결과",
-    "vf.r1.a":"시험 스위트","vf.r1.b":"143개 통과",
+    "vf.r1.a":"시험 스위트","vf.r1.b":"전체 통과",
     "vf.r2.a":"깊은 무작위 회수","vf.r2.b":"fuzz 5,000 runs · invariant 512 runs × 128 depth: 전부 통과",
     "vf.r3.a":"RFC 9380 표준 적합성","vf.r3.b":"RFC 원문에서 직접 파싱한 공식 벡터(부록 K.1 · J.9.1)를 그대로 통과, 손으로 옮겨 적지 않았습니다",
-    "vf.r4.a":"구현 간 차분 검증","vf.r4.b":"RFC · noble-curves · py_ecc · 온체인 BLS.sol 이 82개 벡터에서 일치",
+    "vf.r4.a":"구현 간 차분 검증","vf.r4.b":"RFC · noble-curves · py_ecc · 온체인 BLS.sol 이 전 벡터에서 일치",
     "vf.r5.a":"기호 실행","vf.r5.b":"halmos가 경계·시각표·구매 회계를 표본이 아니라 모든 입력에 대해 증명",
     "vf.r6.a":"온체인 비콘 검증","vf.r6.b":"위조·변조·라운드 불일치 서명을 전부 거부",
     "vf.r7.a":"잠기는 자금이 없음","vf.r7.b":"무작위 호출 시퀀스 후 전원 인출 시 잔고가 0에 도달",
