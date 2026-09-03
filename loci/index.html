@@ -15,8 +15,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../assets/site.css" />
 <style>
-/* 런타임 넷 비교. **값을 표로 두는 이유** — 문장으로 적으면 「가볍다/무겁다」가 되고,
-   그건 다음에 하나가 더 붙었을 때 고쳐야 하는 말이 된다. */
+/* 런타임 다섯 비교. **값을 표로 두는 이유** — 문장으로 적으면 「가볍다/무겁다」가 되고,
+   그건 다음에 하나가 더 붙었을 때 고쳐야 하는 말이 된다.
+   끊김 열이 붙어 일곱 열이다 — 숫자 칸이 줄바꿈을 안 하므로 폰에서는 옆으로 굴린다 */
+.rt-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .rt{width:100%;border-collapse:collapse;margin:26px 0 8px;font-size:13.5px}
 .rt th,.rt td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
 .rt th{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
@@ -185,7 +187,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <a href="https://loci.joygolive.com" class="btn btn-primary" data-i18n="hero.cta1">Try a room</a>
       <a href="#found" class="btn btn-ghost" data-i18n="hero.cta2">What we measured</a>
     </div>
-    <p class="reward" data-i18n-html="hero.reward"><b>It is also a testbed.</b> A room is one JSON file, four interchangeable runtimes draw the same scene, and every session reports frames, jank, input lag and load time from the device that ran it.</p>
+    <p class="reward" data-i18n-html="hero.reward"><b>It is also a testbed.</b> A room is one JSON file, five interchangeable runtimes draw the same scene, and every session reports frames, jank, input lag and load time from the device that ran it.</p>
     <div class="byline" data-i18n-html="hero.byline">In the making at joygoLive. Open it on the device you want to see it on.</div>
   </div>
 </section>
@@ -198,7 +200,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <p class="lead" data-i18n="why.lead">The question was not whether a browser can draw a room. It can. The question is what it costs to author one, hand it to development, put it in front of a phone, and find out what that phone did with it. LOCI exists to run that loop once, end to end.</p>
     <div class="facts">
       <div class="fact fade"><b data-i18n="why.f1.t">Content outside the code</b><span data-i18n="why.f1.d">If a new room needs a developer, planning does not own the content. A room is one file, and the folder is the catalogue.</span></div>
-      <div class="fact fade"><b data-i18n="why.f2.t">The runtime is a choice, not a foundation</b><span data-i18n="why.f2.d">Assets and content sit outside the renderer, so swapping engines changes one module. Four already do.</span></div>
+      <div class="fact fade"><b data-i18n="why.f2.t">The runtime is a choice, not a foundation</b><span data-i18n="why.f2.d">Assets and content sit outside the renderer, so swapping engines changes one module. Five already do, Unity among them.</span></div>
       <div class="fact fade"><b data-i18n="why.f3.t">The device answers, not the spec sheet</b><span data-i18n="why.f3.d">Every session sends back what actually happened on it. Guesses about phone performance were wrong twice already.</span></div>
     </div>
   </div>
@@ -213,7 +215,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <ul class="feature-list">
       <li data-i18n-html="what.1"><b>One contract, three readers.</b> The validation rules live in a single file used by the editor, the command line, and the page itself. Two copies drift, and then something passes review and breaks on screen.</li>
       <li data-i18n-html="what.2"><b>Rules that are conditions, not taste.</b> Places must differ in height, or they stop being distinct places and nothing attaches. Two items may not share a word, or scoring has no answer. A training room may not exceed sixteen places, because past that no one is memorising anything.</li>
-      <li data-i18n-html="what.3"><b>Four runtimes, one scene.</b> Raw WebGL2, three.js, raw WebGPU and Canvas 2D draw the same room from the same bytes. The library is fetched only when chosen, so the transfer comparison stays honest.</li>
+      <li data-i18n-html="what.3"><b>Five runtimes, one scene.</b> Raw WebGL2, three.js, raw WebGPU, Canvas 2D and Unity WebGL draw the same room from the same bytes. The library is fetched only when chosen, so the transfer comparison stays honest.</li>
       <li data-i18n-html="what.4"><b>Nothing ships without review.</b> Planning uploads, validation gates it, and it waits until development approves. Uploads, rejections and approvals are appended to a ledger everyone reads.</li>
     </ul>
   </div>
@@ -259,31 +261,33 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="eyebrow" data-i18n="found.tag">Measured</div>
     <h2 data-i18n="found.h2">What the phone said</h2>
-    <p class="lead" data-i18n="found.lead">One iPhone, one stress room: 40 places, 80 pieces of furniture, 2.46 million triangles. Every runtime drew it, and the numbers came back from the device.</p>
+    <p class="lead" data-i18n="found.lead">One Android phone from 2019, five runtimes, seven rooms — and one room built to break them. Ninety-six sessions on the same scenario, and the numbers came back from the device.</p>
 
     <div class="stats">
-      <div class="stat"><b>60fps</b><span data-i18n="found.s1">All four runtimes, 17 ms median, on 2.46 M triangles</span></div>
-      <div class="stat"><b>4 → 137</b><span data-i18n="found.s2">Draw calls across the four. The frame time did not move</span></div>
-      <div class="stat"><b>2.0 → 4.1s</b><span data-i18n="found.s3">Time to first frame. The only axis that separated them</span></div>
-      <div class="stat"><b>35.8 KB</b><span data-i18n="found.s4">Shared transfer. The runtime adds 2.9 to 153 KB on top</span></div>
+      <div class="stat"><b>60fps</b><span data-i18n="found.s1">All five runtimes, 16.7 ms median, across seven rooms</span></div>
+      <div class="stat"><b>0.8 → 36%</b><span data-i18n="found.s2">Hitching on the Versailles room, 3.7 M triangles. This is where they split</span></div>
+      <div class="stat"><b>3.6 MB</b><span data-i18n="found.s3">What Unity adds on the wire. three.js adds 153 KB</span></div>
+      <div class="stat"><b>723 ms</b><span data-i18n="found.s4">Unity's first frame. The other four: 274 to 350 ms</span></div>
     </div>
 
-    <table class="rt">
+    <div class="rt-wrap"><table class="rt">
       <tr><th data-i18n="found.t.rt">Runtime</th><th data-i18n="found.t.api">API</th>
           <th class="n" data-i18n="found.t.dc">Draw calls</th><th class="n" data-i18n="found.t.fr">Frame</th>
+          <th class="n" data-i18n="found.t.hitch">Hitch</th>
           <th class="n" data-i18n="found.t.ttff">First frame</th><th class="n" data-i18n="found.t.lib">Library</th></tr>
-      <tr><td class="nm">Raw WebGL2</td><td class="mono">WebGL2</td><td class="n">4</td><td class="n">17 ms</td><td class="n">2.5 s</td><td class="n">4.6 KB</td></tr>
-      <tr><td class="nm">Raw WebGPU</td><td class="mono">WebGPU</td><td class="n">4</td><td class="n">17 ms</td><td class="n">2.0 s</td><td class="n">5.1 KB</td></tr>
-      <tr><td class="nm">three.js</td><td class="mono">WebGL2</td><td class="n">33</td><td class="n">17 ms</td><td class="n">4.1 s</td><td class="n">153 KB</td></tr>
-      <tr><td class="nm">Canvas 2D</td><td class="mono">Canvas 2D</td><td class="n">137</td><td class="n">17 ms</td><td class="n">2.5 s</td><td class="n">2.9 KB</td></tr>
-    </table>
-    <p class="tnote" data-i18n="found.tnote">iPhone 14 Pro / 15 / 16 class, viewport 1179 × 1995, over the public address. Library size is what crossed the wire, brotli compressed.</p>
+      <tr><td class="nm">three.js</td><td class="mono">WebGL2</td><td class="n">254</td><td class="n">16.7 ms</td><td class="n">0.8%</td><td class="n">522 ms</td><td class="n">153 KB</td></tr>
+      <tr><td class="nm">Unity 6</td><td class="mono">WebGL2 · wasm</td><td class="n">3</td><td class="n">16.7 ms</td><td class="n">2.6%</td><td class="n">913 ms</td><td class="n">3.6 MB</td></tr>
+      <tr><td class="nm">Canvas 2D</td><td class="mono">Canvas 2D</td><td class="n">1,149</td><td class="n">16.7 ms</td><td class="n">3.6%</td><td class="n">466 ms</td><td class="n">2.9 KB</td></tr>
+      <tr><td class="nm">Raw WebGL2</td><td class="mono">WebGL2</td><td class="n">4</td><td class="n">16.7 ms</td><td class="n">20.8%</td><td class="n">241 ms</td><td class="n">4.6 KB</td></tr>
+      <tr><td class="nm">Raw WebGPU</td><td class="mono">WebGPU</td><td class="n">4</td><td class="n">16.7 ms</td><td class="n">35.9%</td><td class="n">453 ms</td><td class="n">5.1 KB</td></tr>
+    </table></div>
+    <p class="tnote" data-i18n="found.tnote">Galaxy Note10+ 5G (SM-N976N, Android 12), the Versailles room: 60 places, 817 pieces of furniture, 3.7 million triangles, over a local link so the network stays out of it. Hitch is the share of frames over 33 ms. Library size is what crossed the wire, brotli compressed. Median of two runs each.</p>
 
     <ul class="feature-list">
-      <li data-i18n-html="found.1"><b>Runtime choice is not a frame-rate decision.</b> Draw calls varied by a factor of thirty-four and the median frame time stayed at 17 ms. Even without a 3D pipeline at all, Canvas 2D held the same rate.</li>
-      <li data-i18n-html="found.2"><b>The only axis that separated them was loading</b>, and three.js was twice as slow because of its library — the one place where picking a runtime shows up for the user.</li>
-      <li data-i18n-html="found.3"><b>Compression did not fix loading.</b> Precompressing the mesh took it from 365 KB to 73 KB, and time to first frame did not move. Transfer was not the bottleneck: parsing, shader compilation and GPU upload were. The assumption was wrong and the measurement said so.</li>
-      <li data-i18n-html="found.4"><b>The first run costs more than the second.</b> Same device, same room, same runtime: 22 ms and 24 ms of input lag on the first pass, 17 ms and 12 ms on the next. Shader compilation and cold caches are paid once, by the person opening it for the first time.</li>
+      <li data-i18n-html="found.1"><b>Below a certain load, the runtime does not matter.</b> Seven rooms, up to 40 places and 80 pieces of furniture: all five held 16.7 ms on a 2019 phone. Draw calls ranged from 3 to 1,149 and the frame did not move.</li>
+      <li data-i18n-html="found.2"><b>Above it, the hand-written renderers break first.</b> On the Versailles room raw WebGL2 and WebGPU hitched on 21% and 36% of frames with only four draw calls — they push 1.8 million vertices with no culling. three.js splits the same scene into 254 calls and drops what is off screen: 0.8%. That is what the 153 KB buys.</li>
+      <li data-i18n-html="found.3"><b>Unity costs 24× the transfer of three.js and is not faster.</b> 3.6 MB on the wire, 723 ms to first frame against 350, 2.6% hitching on Versailles against 0.8. Once lighting, shadows and geometry were matched it did not look different either. At this content scale an engine has nothing to sell; the wiring stays so it can be re-measured when the rooms get heavier.</li>
+      <li data-i18n-html="found.4"><b>Earlier, on an iPhone over the public address:</b> precompressing the mesh from 365 KB to 73 KB did not move the first frame — parsing, shader compilation and GPU upload were the cost, not transfer — and the first run paid 22–24 ms of input lag the second did not. Both held. The four-runtime tie did not, once the room got big enough.</li>
     </ul>
   </div>
 </section>
@@ -296,7 +300,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <ul class="feature-list">
       <li data-i18n-html="limits.1"><b>No claim that it improves memory.</b> The method of loci is a technique, and LOCI is a place to practise it. Nothing here has been trialled, and no cognitive, medical or preventive benefit is asserted.</li>
       <li data-i18n-html="limits.2"><b>The sample is two devices.</b> One phone and one laptop. Read it as direction, not as population statistics.</li>
-      <li data-i18n-html="limits.3"><b>Unity and Unreal are not measured.</b> Unity needs its editor to build and has not been attached; Unreal has had no official web target since 4.24. Their figures on the admin side are published estimates and are labelled as such.</li>
+      <li data-i18n-html="limits.3"><b>Godot was measured and dropped; Unreal is not measured.</b> Godot 4's empty web export came to 6.7 MB, twice Unity's, with nothing to show for it. Unreal has had no official web target since 4.24. Unity's figure on the admin side is now a measurement, not an estimate.</li>
       <li data-i18n-html="limits.4"><b>Payment is a seam, not a feature.</b> Tier and price are in the contract and the operations view shows the columns, but nothing charges anything and the numbers are simulated.</li>
       <li data-i18n-html="limits.5"><b>Assets that reach a browser cannot be protected.</b> Anything drawn has to arrive. What can be done is gate it before sending, watermark to trace a leak, and keep the value in what does not travel.</li>
     </ul>
@@ -334,7 +338,7 @@ const _L = {
     "hero.title":"기억이 <span class=\"grad\">걸어 다니는 방</span>.",
     "hero.sub":"물건이 자리에 놓입니다. 둘러본 뒤, 무엇이 어디 있었는지 답합니다. 3D 는 장식이 아닙니다 — 장소법은 고대부터 공간을 쓰는 방법이었고, 그래서 방이 곧 방법입니다.",
     "hero.cta1":"방 하나 해보기","hero.cta2":"무엇을 쟀나",
-    "hero.reward":"<b>동시에 시험대입니다.</b> 방 하나가 JSON 한 장이고, 같은 장면을 네 런타임이 그리며, 한 판마다 프레임·끊김·입력 지연·로딩이 그 기기에서 기록됩니다.",
+    "hero.reward":"<b>동시에 시험대입니다.</b> 방 하나가 JSON 한 장이고, 같은 장면을 다섯 런타임이 그리며, 한 판마다 프레임·끊김·입력 지연·로딩이 그 기기에서 기록됩니다.",
     "hero.byline":"joygoLive가 만들고 있는 것. 보고 싶은 기기에서 열어 보세요.",
 
     "why.tag":"전제","why.h2":"웹에서 3D 콘텐츠를 서비스한다는 것",
@@ -342,7 +346,7 @@ const _L = {
     "why.f1.t":"콘텐츠가 코드 밖에",
     "why.f1.d":"새 방에 개발이 필요하면 기획이 콘텐츠를 가진 게 아닙니다. 방 하나가 파일 하나고, 폴더가 곧 목록입니다.",
     "why.f2.t":"런타임은 토대가 아니라 선택",
-    "why.f2.d":"에셋과 콘텐츠가 렌더러 밖에 있어 엔진을 바꾸면 모듈 하나만 바뀝니다. 이미 넷이 그렇게 돕니다.",
+    "why.f2.d":"에셋과 콘텐츠가 렌더러 밖에 있어 엔진을 바꾸면 모듈 하나만 바뀝니다. 이미 다섯이 그렇게 돕니다 — 유니티까지.",
     "why.f3.t":"사양표가 아니라 기기가 답한다",
     "why.f3.d":"한 판마다 그 기기에서 실제로 벌어진 것이 돌아옵니다. 폰 성능에 대한 짐작은 이미 두 번 틀렸습니다.",
 
@@ -350,7 +354,7 @@ const _L = {
     "what.lead":"방은 가구가 놓인 상자이고, 가구 위에 자리가, 자리에 물건이 놓입니다. 크기·빛·가구·자리·물건·학습 시간·등급까지 전부 JSON 한 장에 있고, 기획은 실제 렌더러가 옆에서 도는 편집기로 그걸 고칩니다.",
     "what.1":"<b>계약 하나, 읽는 곳 셋.</b> 검증 규칙이 한 파일에 있고 편집기·명령줄·화면이 같이 씁니다. 두 벌이면 갈라지고, 그러면 검수를 통과한 것이 화면에서 깨집니다.",
     "what.2":"<b>취향이 아니라 성립 조건인 규칙.</b> 자리는 높이가 달라야 합니다 — 같으면 자리로 구분되지 않아 기억이 걸리지 않습니다. 같은 단어가 둘이면 채점에 답이 없습니다. 훈련용 방은 자리 열여섯을 못 넘습니다. 그 위로는 아무도 외우고 있지 않기 때문입니다.",
-    "what.3":"<b>런타임 넷, 장면 하나.</b> 원시 WebGL2·three.js·원시 WebGPU·Canvas 2D 가 같은 바이트로 같은 방을 그립니다. 라이브러리는 고른 것만 받으므로 전송량 비교가 정직하게 남습니다.",
+    "what.3":"<b>런타임 다섯, 장면 하나.</b> 원시 WebGL2·three.js·원시 WebGPU·Canvas 2D·Unity WebGL 이 같은 바이트로 같은 방을 그립니다. 라이브러리는 고른 것만 받으므로 전송량 비교가 정직하게 남습니다.",
     "what.4":"<b>검토 없이는 안 나갑니다.</b> 기획이 올리면 검증이 거르고, 개발이 승인할 때까지 기다립니다. 올림·반려·승인은 전원이 읽는 이력에 덧붙습니다.",
 
     "pipe.tag":"공정","pipe.h2":"제작에서 운영까지, 한 바퀴",
@@ -369,23 +373,23 @@ const _L = {
     "pipe.4.g":"<b>관문:</b> 이력은 추가 전용입니다. 지우는 코드 경로가 없습니다.",
 
     "found.tag":"실측","found.h2":"폰이 말한 것",
-    "found.lead":"아이폰 한 대, 부하 방 하나 — 자리 40, 가구 80, 삼각형 246만. 네 런타임이 모두 그렸고, 숫자는 그 기기에서 돌아왔습니다.",
-    "found.s1":"네 런타임 모두 중앙값 17ms, 삼각형 246만에서",
-    "found.s2":"넷의 드로우콜 폭. 프레임은 움직이지 않았습니다",
-    "found.s3":"첫 프레임까지. 넷을 가른 유일한 축",
-    "found.s4":"공통 전송량. 런타임이 2.9~153KB 를 더 얹습니다",
+    "found.lead":"2019년 안드로이드 폰 한 대, 런타임 다섯, 방 일곱 — 그리고 가르려고 지은 방 하나. 같은 시나리오로 96판, 숫자는 그 기기에서 돌아왔습니다.",
+    "found.s1":"일곱 방에서 다섯 런타임 모두 중앙값 16.7ms",
+    "found.s2":"베르사유 방(삼각형 370만)의 끊김. 여기서 갈렸습니다",
+    "found.s3":"유니티가 회선에 얹는 양. three.js 는 153KB",
+    "found.s4":"유니티 첫 프레임. 나머지 넷은 274~350ms",
     "found.t.rt":"런타임","found.t.api":"API","found.t.dc":"드로우콜","found.t.fr":"프레임",
-    "found.t.ttff":"첫 프레임","found.t.lib":"라이브러리",
-    "found.tnote":"아이폰 14 Pro / 15 / 16 급, 뷰포트 1179 × 1995, 공개 주소를 통해. 라이브러리 크기는 회선을 실제로 지나간 brotli 압축 값입니다.",
-    "found.1":"<b>런타임 선택은 프레임 문제가 아닙니다.</b> 드로우콜이 34배 차이인데 중앙값은 17ms 로 같았습니다. 3D 파이프라인이 아예 없는 Canvas 2D 도 같은 속도를 냈습니다.",
-    "found.2":"<b>넷을 가른 유일한 축은 로딩</b>이었고, three.js 가 라이브러리 때문에 두 배 느렸습니다 — 런타임 선택이 사용자에게 드러나는 유일한 자리입니다.",
-    "found.3":"<b>압축은 로딩을 못 고쳤습니다.</b> 메시를 365KB 에서 73KB 로 줄였는데 첫 프레임은 그대로였습니다. 병목이 전송이 아니라 파싱·셰이더 컴파일·GPU 업로드에 있었습니다. 가정이 틀렸고 측정이 그렇게 말했습니다.",
-    "found.4":"<b>첫 판이 둘째 판보다 비쌉니다.</b> 같은 기기·같은 방·같은 런타임에서 첫 판은 22ms 에 입력 지연 24ms, 다음 판은 17ms 에 12ms. 셰이더 컴파일과 찬 캐시의 값은 처음 여는 사람이 냅니다.",
+    "found.t.hitch":"끊김","found.t.ttff":"첫 프레임","found.t.lib":"라이브러리",
+    "found.tnote":"갤럭시 노트10+ 5G(SM-N976N · Android 12), 베르사유 방 — 자리 60, 가구 817, 삼각형 370만. 회선을 빼려고 로컬 연결로 돌렸습니다. 끊김은 33ms 를 넘긴 프레임의 비율, 라이브러리 크기는 회선을 실제로 지나간 brotli 압축 값, 각 두 판의 중앙값입니다.",
+    "found.1":"<b>어느 짐 아래서는 런타임이 문제가 아닙니다.</b> 방 일곱, 자리 40·가구 80까지 — 2019년 폰에서 다섯이 전부 16.7ms 였습니다. 드로우콜은 3에서 1,149까지 벌어졌는데 프레임은 움직이지 않았습니다.",
+    "found.2":"<b>그 위에서는 직접 짠 쪽이 먼저 무너집니다.</b> 베르사유 방에서 원시 WebGL2·WebGPU 는 드로우콜 넷뿐인데 프레임의 21%·36% 가 끊겼습니다 — 정점 180만을 컬링 없이 통째로 넘기기 때문입니다. three.js 는 같은 장면을 254번으로 나누는 대신 안 보이는 것을 걸러 냅니다: 0.8%. 153KB 가 사는 것이 그것입니다.",
+    "found.3":"<b>유니티는 three.js 의 24배를 받고 더 빠르지도 않습니다.</b> 회선 3.6MB, 첫 프레임 723ms 대 350ms, 베르사유 끊김 2.6% 대 0.8%. 조명·그림자·기하를 맞추고 나니 보기에도 다르지 않았습니다. 이 콘텐츠 규모에서 엔진이 팔 것이 없습니다 — 배선은 남겨 두어 방이 무거워지면 다시 잽니다.",
+    "found.4":"<b>앞서 아이폰·공개 주소에서 본 것:</b> 메시를 365KB 에서 73KB 로 줄여도 첫 프레임은 그대로였고 — 병목은 전송이 아니라 파싱·셰이더 컴파일·GPU 업로드였습니다 — 첫 판만 입력 지연 22~24ms 를 냈습니다. 그 둘은 그대로 섰고, 「넷이 같다」는 방이 커지자 무너졌습니다.",
 
     "limits.tag":"한계","limits.h2":"주장하지 않는 것",
     "limits.1":"<b>기억력이 좋아진다고 주장하지 않습니다.</b> 장소법은 기법이고 LOCI는 그걸 연습하는 자리입니다. 여기서 시험된 것은 없으며, 인지·의학·예방 효과를 주장하지 않습니다.",
     "limits.2":"<b>표본이 기기 두 대입니다.</b> 폰 하나와 노트북 하나. 모집단 통계가 아니라 방향으로 읽어 주세요.",
-    "limits.3":"<b>유니티와 언리얼은 재지 않았습니다.</b> 유니티는 빌드에 에디터가 필요해 아직 안 붙였고, 언리얼은 4.24 이후 공식 웹 타깃이 없습니다. 어드민의 그 수치는 공개 자료 기준이며 그렇게 표기돼 있습니다.",
+    "limits.3":"<b>고도는 재고 뺐고, 언리얼은 재지 않았습니다.</b> 고도 4 의 빈 웹 빌드가 6.7MB 로 유니티의 두 배였고 얻는 것이 없었습니다. 언리얼은 4.24 이후 공식 웹 타깃이 없습니다. 어드민의 유니티 수치는 이제 추정이 아니라 실측입니다.",
     "limits.4":"<b>결제는 기능이 아니라 자리입니다.</b> 등급과 가격이 계약에 있고 운영 화면에 칸이 있지만, 아무것도 청구하지 않으며 숫자는 모의입니다.",
     "limits.5":"<b>브라우저에 닿은 에셋은 못 지킵니다.</b> 그리려면 도착해야 하기 때문입니다. 할 수 있는 것은 보내기 전에 막고, 유출을 추적할 표를 남기고, 값어치 있는 것은 돌아다니지 않는 곳에 두는 것입니다.",
     "limits.cta":"방 열어 보기",
