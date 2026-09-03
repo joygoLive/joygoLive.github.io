@@ -200,29 +200,29 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="found">
   <div class="wrap">
     <div class="eyebrow" data-i18n="found.tag">Measured</div>
-    <h2 data-i18n="found.h2">What answers, and what of it can reach you</h2>
-    <p class="lead" data-i18n="found.lead">Fifty-two access points within range of a single point in a housing complex, read over about an hour. This is not a statement about one household — it is the shared air of a block, which is what anyone standing in it is exposed to. It is also the plainest argument for why the check has to end in an instruction.</p>
+    <h2 data-i18n="found.h2">What is actually in range, place by place</h2>
+    <p class="lead" data-i18n="found.lead">Readings taken standing still, three minutes at a time, at the places a routine actually passes through — a stop, a restaurant, a lobby, a park. Not a survey of anywhere: a record of specific spots, which is the only kind of reading where the number has anything to do with you.</p>
 
     <div class="stats" id="bcStats">
-      <div class="stat"><b data-s="reach_count">170</b><span data-i18n="found.s1">Access points that answered at all — inflated by things that merely passed by</span></div>
-      <div class="stat"><b data-s="joinable_count">49</b><span data-i18n="found.s2">Of those, actually strong enough to join. The rest cannot reach you</span></div>
-      <div class="stat"><b data-s="pmf_none_pct" data-suffix="%">100</b><span data-i18n="found.s3">Of the joinable ones, without management-frame protection</span></div>
+      <div class="stat"><b data-s="place_count">7</b><span data-i18n="found.s1">Places read so far, each one standing still for three minutes</span></div>
+      <div class="stat"><b data-s="joinable_count">229</b><span data-i18n="found.s2">Access points close enough to actually connect to — the figure everything else is measured against</span></div>
+      <div class="stat"><b data-s="pmf_none_pct" data-suffix="%">100</b><span data-i18n="found.s3">Of those, without management-frame protection</span></div>
       <div class="stat"><b data-s="wpa3_pct" data-suffix="%">0</b><span data-i18n="found.s4">On WPA3 — the one setting that would fix the line above</span></div>
     </div>
 
     <table class="rt">
       <tr><th data-i18n="found.t.sig">Signal</th><th class="n" data-i18n="found.t.share">Share</th><th data-i18n="found.t.read">What it means here</th></tr>
       <tr><td class="nm" data-i18n="found.r1">No PMF</td><td class="n"><span data-s="pmf_none_pct" data-suffix="%">100</span></td><td data-i18n="found.r1d">Nearly everything can be knocked offline and made to reconnect</td></tr>
-      <tr><td class="nm" data-i18n="found.r2">Default name</td><td class="n"><span data-s="default_pct" data-suffix="%">63.2</span></td><td data-i18n="found.r2d">Circumstantial: the box was probably never configured</td></tr>
-      <tr><td class="nm" data-i18n="found.r3">WPS on</td><td class="n"><span data-s="wps_pct" data-suffix="%">47.4</span></td><td data-i18n="found.r3d">A pairing path around the passphrase, left switched on</td></tr>
-      <tr><td class="nm" data-i18n="found.r4">Weak cipher</td><td class="n"><span data-s="tkip_pct" data-suffix="%">7.9</span></td><td data-i18n="found.r4d">TKIP still in the mix on equipment old enough to have been forgotten</td></tr>
-      <tr><td class="nm" data-i18n="found.r5">Open</td><td class="n"><span data-s="open_count">4</span></td><td data-i18n="found.r5d">Networks with no encryption at all, within range</td></tr>
-      <tr><td class="nm" data-i18n="found.r6">Twin candidates</td><td class="n"><span data-s="twin_count">2</span></td><td data-i18n="found.r6d">One name answering from several radios — usually mesh, hence candidates</td></tr>
+      <tr><td class="nm" data-i18n="found.r2">Default name</td><td class="n"><span data-s="default_pct" data-suffix="%">28.5</span></td><td data-i18n="found.r2d">Circumstantial: the box was probably never configured</td></tr>
+      <tr><td class="nm" data-i18n="found.r3">WPS on</td><td class="n"><span data-s="wps_pct" data-suffix="%">37.1</span></td><td data-i18n="found.r3d">A pairing path around the passphrase, left switched on</td></tr>
+      <tr><td class="nm" data-i18n="found.r4">Weak cipher</td><td class="n"><span data-s="tkip_pct" data-suffix="%">11.8</span></td><td data-i18n="found.r4d">TKIP still in the mix on equipment old enough to have been forgotten</td></tr>
+      <tr><td class="nm" data-i18n="found.r5">Open</td><td class="n"><span data-s="open_count">41</span></td><td data-i18n="found.r5d">Networks with no encryption at all, within connecting distance</td></tr>
+      <tr><td class="nm" data-i18n="found.r6">Twin candidates</td><td class="n"><span data-s="twin_count">96</span></td><td data-i18n="found.r6d">One name answering from several radios — usually mesh, hence candidates</td></tr>
     </table>
-    <p class="tnote" data-i18n-html="found.tnote">Live from the collector: <b><span data-s="scans">187</span></b> scans across <b><span data-s="place_count">1</span></b> place. Percentages are of the joinable set, not of everything that answered. One place is one place — this is evidence that the situation is worth checking, not a survey of anywhere.</p>
+    <p class="tnote" data-i18n-html="found.tnote">Live from the collector: <b><span data-s="scans">247</span></b> scans across <b><span data-s="place_count">7</span></b> places. Every figure counts only access points within connecting distance — <b><span data-s="reach_count">678</span></b> answered in total, and the rest were too weak to matter.</p>
 
     <ul class="feature-list">
-      <li data-i18n-html="found.1"><b>Counting has to be honest before anything else is.</b> Most of what answers a scan is too weak to connect to, and the same router answers twice on two bands. Count all of it and the risk score falls as the neighbourhood gets noisier — which is backwards. The score above is computed only over what is actually joinable.</li>
+      <li data-i18n-html="found.1"><b>Counting has to be honest before anything else is.</b> Most of what answers a scan is too weak to connect to, and the same router answers twice on two bands. Count all of it and the risk score falls as the neighbourhood gets noisier — which is backwards. Everything here counts only what is within connecting distance.</li>
       <li data-i18n-html="found.2"><b>Management-frame protection is the single biggest item, everywhere so far.</b> It is what stops someone knocking you off the network to make you reconnect somewhere else, and WPA3 is what makes it mandatory. So far the WPA3 figure above has stayed at zero.</li>
       <li data-i18n-html="found.3"><b>This is why the answer is behavioural.</b> Practically every device in a reading belongs to somebody else. No amount of tightening your own settings changes their equipment, so the useful output is a rule about what your phone is allowed to join.</li>
     </ul>
@@ -313,21 +313,21 @@ const _L = {
     "fix.4":"<b>PMF 없음 → 장비가 지원하면 WPA3 로 올립니다.</b> WPA3 는 관리 프레임 보호를 의무화하므로, 이 항목을 없애는 단 하나의 변경입니다. 장비가 못 하면 지시는 행동 쪽입니다 — 끊겼다 딴 데로 끌려가도 괜찮지 않은 일은 그 망에서 하지 않습니다.",
     "fix.5":"<b>기본 이름·구식 암호 → 나머지도 기본값이라고 봅니다.</b> 공장 이름을 그대로 달고 있다는 것은 관리자 비밀번호도 안 바꿨다는 정황입니다. 내 장비면 둘 다 바꾸고 TKIP·WEP 에서 AES 로 옮깁니다. 남의 장비면 그 공유기가 어떻게 관리되는지의 신호로 읽습니다.",
 
-    "found.tag":"실측","found.h2":"무엇이 잡히고, 그중 무엇이 나에게 닿나",
-    "found.lead":"주거 단지 안 한 지점의 반경에서 잡힌 AP 52대를 약 한 시간 읽었습니다. 어느 한 세대의 이야기가 아니라 그 일대가 함께 쓰는 공기이고, 거기 서 있는 사람이면 누구나 그것에 노출됩니다. 점검이 왜 지시로 끝나야 하는지에 대한 가장 단순한 근거이기도 합니다.",
-    "found.s1":"응답한 AP 전부 — 스쳐 지나간 것까지 세어 부풀려진 값",
-    "found.s2":"그중 실제로 붙을 만큼 신호가 센 것. 나머지는 닿지도 못합니다",
-    "found.s3":"붙을 수 있는 것 중 관리 프레임 보호가 없는 비율",
+    "found.tag":"실측","found.h2":"자리마다 실제로 무엇이 곁에 있나",
+    "found.lead":"동선이 실제로 지나는 자리에서 3분씩 서서 잰 값입니다 — 정류장·식당·로비·공원. 어딘가에 대한 조사가 아니라 특정 지점의 기록이고, 숫자가 나와 상관있어지는 유일한 종류입니다.",
+    "found.s1":"지금까지 잰 장소 수. 자리마다 3분씩 서서",
+    "found.s2":"실제로 연결이 성립하는 거리의 AP — 다른 모든 수치의 기준",
+    "found.s3":"그중 관리 프레임 보호가 없는 비율",
     "found.s4":"WPA3 비율 — 위 줄을 없앨 단 하나의 설정",
     "found.t.sig":"신호","found.t.share":"비율","found.t.read":"여기서 무슨 뜻인가",
     "found.r1":"PMF 없음","found.r1d":"거의 전부가 끊겨 나갔다가 다시 붙게 만들 수 있습니다",
     "found.r2":"기본 이름","found.r2d":"정황 — 공유기를 설정한 적이 없을 가능성이 큽니다",
     "found.r3":"WPS 켜짐","found.r3d":"비밀번호를 도는 연결 통로가 켜진 채 남아 있습니다",
     "found.r4":"약한 암호","found.r4d":"잊힐 만큼 오래된 장비에 TKIP 가 아직 섞여 있습니다",
-    "found.r5":"개방망","found.r5d":"반경 안에 암호가 아예 없는 망",
+    "found.r5":"개방망","found.r5d":"연결 가능한 거리에 암호가 아예 없는 망",
     "found.r6":"트윈 후보","found.r6d":"한 이름에 여러 AP 가 응답 — 대개 메시라 「후보」입니다",
-    "found.tnote":"수집기에서 바로 읽어 옵니다 — 스캔 <b><span data-s=\"scans\">187</span></b>회, 장소 <b><span data-s=\"place_count\">1</span></b>곳. 백분율은 <b>붙을 수 있는 것</b> 기준이지 응답한 전부가 아닙니다. 한 곳은 한 곳입니다 — 확인해 볼 만하다는 근거이지 어딘가에 대한 조사가 아닙니다.",
-    "found.1":"<b>세는 법이 먼저 정직해야 합니다.</b> 스캔에 응답하는 것 대부분은 너무 약해 붙을 수가 없고, 같은 공유기가 두 대역에서 두 번 답합니다. 그걸 다 세면 동네가 시끄러울수록 위험 점수가 내려가는 역설이 생깁니다. 위 점수는 <b>실제로 붙을 수 있는 것</b>만으로 냅니다.",
+    "found.tnote":"수집기에서 바로 읽어 옵니다 — 스캔 <b><span data-s=\"scans\">247</span></b>회, 장소 <b><span data-s=\"place_count\">7</span></b>곳. 모든 수치가 <b>연결 가능한 거리의 AP</b>만 셉니다 — 응답 자체는 <b><span data-s=\"reach_count\">678</span></b>건이었고 나머지는 너무 약해 영향을 주지 못합니다.",
+    "found.1":"<b>세는 법이 먼저 정직해야 합니다.</b> 스캔에 응답하는 것 대부분은 너무 약해 붙을 수가 없고, 같은 공유기가 두 대역에서 두 번 답합니다. 그걸 다 세면 동네가 시끄러울수록 위험 점수가 내려가는 역설이 생깁니다. 여기 모든 수치는 <b>연결 가능한 거리</b>의 것만 셉니다.",
     "found.2":"<b>관리 프레임 보호 없음이 어디서나 가장 큰 항목입니다.</b> 누가 나를 끊어 내 다른 데로 붙게 만드는 것을 막는 장치이고, 그것을 의무화하는 것이 WPA3 입니다. 지금까지 위 WPA3 수치는 0 에서 움직인 적이 없습니다.",
     "found.3":"<b>그래서 답이 행동 쪽입니다.</b> 관측되는 거의 모든 장비가 남의 것입니다. 내 설정을 아무리 조여도 그쪽 장비는 그대로이므로, 쓸모 있는 결과물은 <b>내 폰이 무엇에 붙어도 되는가</b>에 대한 규칙입니다.",
 
