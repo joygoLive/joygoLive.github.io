@@ -134,9 +134,10 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <!-- WHY -->
 <section id="why" class="section alt">
   <div class="wrap">
-    <div class="eyebrow" data-i18n="why.tag">Premise</div>
+    <div class="sec-head"><div class="eyebrow" data-i18n="why.tag">Premise</div>
     <h2 data-i18n="why.h2">Almost none of it is yours to fix</h2>
     <p class="lead" data-i18n="why.lead">Reports on how insecure wireless is in general already exist, and a national average changes nothing you do tomorrow. Worse, nearly every device in range belongs to somebody else, so "harden it" is not on the table. What is left is knowing which ones are dangerous and behaving accordingly — which only works if the check ends in an instruction.</p>
+    </div>
     <div class="facts">
       <div class="fact fade"><b data-i18n="why.f1.t">A place, not a population</b><span data-i18n="why.f1.d">An aggregate needs a large sample before it means anything. Something actually picked up in one spot is a fact at n = 1, and it stays worth re-checking as long as you keep going there.</span></div>
       <div class="fact fade"><b data-i18n="why.f2.t">A finding with a next step</b><span data-i18n="why.f2.d">A score on its own is a number to feel bad about. Every item here carries the thing to change: a toggle, a setting, or a rule about what not to do on that network.</span></div>
@@ -148,9 +149,10 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <!-- WHAT -->
 <section id="what">
   <div class="wrap">
-    <div class="eyebrow" data-i18n="what.tag">Checks</div>
+    <div class="sec-head"><div class="eyebrow" data-i18n="what.tag">Checks</div>
     <h2 data-i18n="what.h2">Five things that put you at risk</h2>
     <p class="lead" data-i18n="what.lead">Each carries a weight, because they are not equally dangerous. An open network you might join by accident is worth four times a stale cipher on equipment you were never going to touch. The weights add up to one score per place, and the score always shows its parts.</p>
+    </div>
     <div class="sig">
       <div class="scard fade">
         <div class="sw"><span class="sk" data-i18n="what.1.t">Open network</span><span class="sp">40</span></div>
@@ -183,9 +185,10 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <!-- FIX -->
 <section id="fix" class="section alt">
   <div class="wrap">
-    <div class="eyebrow" data-i18n="fix.tag">Actions</div>
+    <div class="sec-head"><div class="eyebrow" data-i18n="fix.tag">Actions</div>
     <h2 data-i18n="fix.h2">What to change, item by item</h2>
     <p class="lead" data-i18n="fix.lead">Two kinds of instruction come out of a reading. On equipment you administer there is usually a setting to change. On everything else — which is most of it — the fix lives on your own device, in what it is allowed to join automatically.</p>
+    </div>
     <ul class="feature-list">
       <li data-i18n-html="fix.1"><b>Open network → stop joining them by reflex.</b> Turn off automatic connection to open networks. If one has to be used, treat everything on it as readable and put a VPN in front. Some are opened as bait precisely because phones join them unprompted.</li>
       <li data-i18n-html="fix.2"><b>Evil twin candidate → connect by hand, not by memory.</b> If a name you know from home or the office appears somewhere it should not, or answers from several radios at once, turn off auto-join for that name and pick the network deliberately. Most candidates are mesh or a hotspot, which is why they are candidates and not accusations.</li>
@@ -199,9 +202,10 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <!-- EVIDENCE -->
 <section id="found">
   <div class="wrap">
-    <div class="eyebrow" data-i18n="found.tag">Measured</div>
+    <div class="sec-head"><div class="eyebrow" data-i18n="found.tag">Measured</div>
     <h2 data-i18n="found.h2">What is actually in range, place by place</h2>
     <p class="lead" data-i18n="found.lead">Readings taken standing still, three minutes at a time, at the places a routine actually passes through — a stop, a restaurant, a lobby, a park. Not a survey of anywhere: a record of specific spots, which is the only kind of reading where the number has anything to do with you.</p>
+    </div>
 
     <div class="stats" id="bcStats">
       <div class="stat"><b data-s="place_count">7</b><span data-i18n="found.s1">Places read so far, each one standing still for three minutes</span></div>
@@ -232,15 +236,17 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <!-- LIMITS -->
 <section id="limits" class="section alt">
   <div class="wrap">
-    <div class="eyebrow" data-i18n="limits.tag">Limits</div>
+    <div class="sec-head"><div class="eyebrow" data-i18n="limits.tag">Limits</div>
     <h2 data-i18n="limits.h2">What this does not claim</h2>
-    <ul class="feature-list">
-      <li data-i18n-html="limits.1"><b>Nobody else is a target.</b> The output is about exposure, not about fault. There is no ranking of networks, no naming of an owner, and no suggestion that a particular access point is to blame. What appears on screen is deliberately not enough to go and find one.</li>
-      <li data-i18n-html="limits.2"><b>Inference is not identification.</b> Device type, vendor and "default name" are read off broadcast text and address prefixes. They are frequently right and sometimes wrong, and are labelled so you can tell which kind of claim you are looking at.</li>
-      <li data-i18n-html="limits.3"><b>One block is one block.</b> A reading describes the place it was taken in and nothing beyond it. It is not a survey of a city, a carrier or a manufacturer, and a figure from it should never be quoted as one.</li>
-      <li data-i18n-html="limits.4"><b>None of the technique is new.</b> Reading what is broadcast has been possible for twenty years, and mapping projects have covered the world with it. What is different here is the question asked of it and the instruction that comes out — which is a thinner advantage than a technical one.</li>
-      <li data-i18n-html="limits.5"><b>Readings stay with whoever took them.</b> Anything derived from where a person has been carries obligations of its own, so none of it is distributed, sold, or handed to a third party. That is a property of the design, not a policy that could be relaxed later.</li>
-    </ul>
+      <p class="lead" data-i18n="limits.lead">Put the limits anywhere but next to the reading, and a scan report reads as an accusation. Below is the range one reading can speak for.</p>
+    </div>
+    <div class="facts">
+      <div class="fact fade" data-i18n-html="limits.1"><b>Nobody else is a target</b><span>The output is about exposure, not about fault. There is no ranking of networks, no naming of an owner, and no suggestion that a particular access point is to blame. What appears on screen is deliberately not enough to go and find one.</span></div>
+      <div class="fact fade" data-i18n-html="limits.2"><b>Inference is not identification</b><span>Device type, vendor and "default name" are read off broadcast text and address prefixes. They are frequently right and sometimes wrong, and are labelled so you can tell which kind of claim you are looking at.</span></div>
+      <div class="fact fade" data-i18n-html="limits.3"><b>One block is one block</b><span>A reading describes the place it was taken in and nothing beyond it. It is not a survey of a city, a carrier or a manufacturer, and a figure from it should never be quoted as one.</span></div>
+      <div class="fact fade" data-i18n-html="limits.4"><b>None of the technique is new</b><span>Reading what is broadcast has been possible for twenty years, and mapping projects have covered the world with it. What is different here is the question asked of it and the instruction that comes out — which is a thinner advantage than a technical one.</span></div>
+      <div class="fact fade" data-i18n-html="limits.5"><b>Readings stay with whoever took them</b><span>Anything derived from where a person has been carries obligations of its own, so none of it is distributed, sold, or handed to a third party. That is a property of the design, not a policy that could be relaxed later.</span></div>
+    </div>
     <div class="cta-row" style="margin-top:30px">
       <a href="../" class="btn btn-primary" data-i18n="limits.cta">See the rest of the portfolio</a>
       <span class="cta-note" data-i18n="limits.ctanote">Five other services, each built here and operated here.</span>
@@ -331,12 +337,12 @@ const _L = {
     "found.2":"<b>관리 프레임 보호 없음이 어디서나 가장 큰 항목입니다.</b> 누가 나를 끊어 내 다른 데로 붙게 만드는 것을 막는 장치이고, 그것을 의무화하는 것이 WPA3 입니다. 위 WPA3 수치가 그 값입니다.",
     "found.3":"<b>그래서 답이 행동 쪽입니다.</b> 관측되는 거의 모든 장비가 남의 것입니다. 내 설정을 아무리 조여도 그쪽 장비는 그대로이므로, 쓸모 있는 결과물은 <b>내 폰이 무엇에 붙어도 되는가</b>에 대한 규칙입니다.",
 
-    "limits.tag":"한계","limits.h2":"주장하지 않는 것",
-    "limits.1":"<b>남을 겨누지 않습니다.</b> 결과는 노출에 관한 것이지 잘잘못에 관한 것이 아닙니다. 망의 순위도, 소유자 지목도, 특정 AP 에 책임이 있다는 말도 없습니다. 화면에 뜨는 것만으로는 그 AP 를 찾아갈 수 없게, 일부러 덜 냅니다.",
-    "limits.2":"<b>추론은 식별이 아닙니다.</b> 기기 종류·제조사·「기본 이름」은 방송되는 문자열과 주소 앞자리에서 읽은 것입니다. 자주 맞고 가끔 틀리며, 지금 보는 것이 어느 쪽 주장인지 알 수 있게 표시합니다.",
-    "limits.3":"<b>한 단지는 한 단지입니다.</b> 관측은 그것이 찍힌 자리를 설명할 뿐 그 너머를 설명하지 않습니다. 도시·통신사·제조사에 대한 조사가 아니며, 여기 수치가 그렇게 인용돼서도 안 됩니다.",
-    "limits.4":"<b>기술적으로 새로운 것은 없습니다.</b> 방송되는 것을 읽는 일은 20년 됐고, 매핑 프로젝트들이 이미 전 세계를 덮었습니다. 다른 것은 그 데이터에 던지는 질문과 거기서 나오는 지시뿐입니다. 기술로 앞선 것이 아니므로 방어선도 그만큼 얇습니다.",
-    "limits.5":"<b>관측은 그것을 얻은 사람에게 남습니다.</b> 어디에 있었는지에서 나온 기록에는 의무가 따라붙습니다. 그래서 배포하지도, 팔지도, 제3자에게 넘기지도 않습니다. 나중에 풀 수 있는 방침이 아니라 설계의 성질입니다.",
+    "limits.tag":"한계","limits.lead":"한계를 관측 옆에 두지 않으면 스캔 결과는 고발문으로 읽힌다. 아래는 한 번의 관측이 말할 수 있는 범위.","limits.h2":"주장하지 않는 것",
+    "limits.1":"<b>겨냥 대상 없음</b><span>결과는 노출에 관한 것이지 잘잘못에 관한 것이 아닙니다. 망의 순위도, 소유자 지목도, 특정 AP 에 책임이 있다는 말도 없습니다. 화면에 뜨는 것만으로는 그 AP 를 찾아갈 수 없게, 일부러 덜 냅니다.</span>",
+    "limits.2":"<b>추론과 식별은 별개</b><span>기기 종류·제조사·「기본 이름」은 방송되는 문자열과 주소 앞자리에서 읽은 것입니다. 자주 맞고 가끔 틀리며, 지금 보는 것이 어느 쪽 주장인지 알 수 있게 표시합니다.</span>",
+    "limits.3":"<b>관측 범위는 그 한 단지</b><span>관측은 그것이 찍힌 자리를 설명할 뿐 그 너머를 설명하지 않습니다. 도시·통신사·제조사에 대한 조사가 아니며, 여기 수치가 그렇게 인용돼서도 안 됩니다.</span>",
+    "limits.4":"<b>기술적 신규성 없음</b><span>방송되는 것을 읽는 일은 20년 됐고, 매핑 프로젝트들이 이미 전 세계를 덮었습니다. 다른 것은 그 데이터에 던지는 질문과 거기서 나오는 지시뿐입니다. 기술로 앞선 것이 아니므로 방어선도 그만큼 얇습니다.</span>",
+    "limits.5":"<b>관측은 취득자에게 귀속</b><span>어디에 있었는지에서 나온 기록에는 의무가 따라붙습니다. 그래서 배포하지도, 팔지도, 제3자에게 넘기지도 않습니다. 나중에 풀 수 있는 방침이 아니라 설계의 성질입니다.</span>",
     "limits.cta":"포트폴리오 보기",
     "limits.ctanote":"다른 다섯. 각각 여기서 만들고 여기서 운영합니다.",
     "ft.home":"홈","ft.copy":"© 2026 joygoLive. All rights reserved.",

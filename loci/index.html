@@ -195,9 +195,10 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <!-- WHY -->
 <section id="why" class="section alt">
   <div class="wrap">
-    <div class="eyebrow" data-i18n="why.tag">Premise</div>
+    <div class="sec-head"><div class="eyebrow" data-i18n="why.tag">Premise</div>
     <h2 data-i18n="why.h2">Serving 3D content on the web</h2>
     <p class="lead" data-i18n="why.lead">The question was not whether a browser can draw a room. It can. The question is what it costs to author one, hand it to development, put it in front of a phone, and find out what that phone did with it. LOCI exists to run that loop once, end to end.</p>
+    </div>
     <div class="facts">
       <div class="fact fade"><b data-i18n="why.f1.t">Content outside the code</b><span data-i18n="why.f1.d">If a new room needs a developer, planning does not own the content. A room is one file, and the folder is the catalogue.</span></div>
       <div class="fact fade"><b data-i18n="why.f2.t">The runtime is a choice, not a foundation</b><span data-i18n="why.f2.d">Assets and content sit outside the renderer, so swapping engines changes one module. Five already do, Unity among them.</span></div>
@@ -209,9 +210,10 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <!-- WHAT -->
 <section id="what">
   <div class="wrap">
-    <div class="eyebrow" data-i18n="what.tag">Scope</div>
+    <div class="sec-head"><div class="eyebrow" data-i18n="what.tag">Scope</div>
     <h2 data-i18n="what.h2">What is built</h2>
     <p class="lead" data-i18n="what.lead">A room is a box with furniture, places on the furniture, and objects on the places. Everything about it — size, light, furniture, places, objects, learning time, price tier — lives in one JSON file that planning edits in a visual editor with the same renderer beside it.</p>
+    </div>
     <ul class="feature-list">
       <li data-i18n-html="what.1"><b>One contract, three readers.</b> The validation rules live in a single file used by the editor, the command line, and the page itself. Two copies drift, and then something passes review and breaks on screen.</li>
       <li data-i18n-html="what.2"><b>Rules that are conditions, not taste.</b> Places must differ in height, or they stop being distinct places and nothing attaches. Two items may not share a word, or scoring has no answer. A training room may not exceed sixteen places, because past that no one is memorising anything.</li>
@@ -224,9 +226,10 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <!-- PIPELINE -->
 <section id="pipe" class="section alt">
   <div class="wrap">
-    <div class="eyebrow" data-i18n="pipe.tag">Pipeline</div>
+    <div class="sec-head"><div class="eyebrow" data-i18n="pipe.tag">Pipeline</div>
     <h2 data-i18n="pipe.h2">Authoring to operations, once through</h2>
     <p class="lead" data-i18n="pipe.lead">Four stages, each with something that stops the next one from inheriting a mistake.</p>
+    </div>
     <div class="pipe">
       <div class="pcard fade">
         <div class="pn">01</div>
@@ -259,9 +262,10 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <!-- FOUND -->
 <section id="found">
   <div class="wrap">
-    <div class="eyebrow" data-i18n="found.tag">Measured</div>
+    <div class="sec-head"><div class="eyebrow" data-i18n="found.tag">Measured</div>
     <h2 data-i18n="found.h2">What the phone said</h2>
     <p class="lead" data-i18n="found.lead">One Android phone, five runtimes, seven rooms — and one room built to break them. Ninety-six sessions on the same scenario, and the numbers came back from the device.</p>
+    </div>
 
     <div class="stats">
       <div class="stat"><b>60fps</b><span data-i18n="found.s1">All five runtimes, 16.7 ms median, across seven rooms</span></div>
@@ -295,15 +299,17 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <!-- LIMITS -->
 <section id="limits" class="section alt">
   <div class="wrap">
-    <div class="eyebrow" data-i18n="limits.tag">Limits</div>
+    <div class="sec-head"><div class="eyebrow" data-i18n="limits.tag">Limits</div>
     <h2 data-i18n="limits.h2">What this does not claim</h2>
-    <ul class="feature-list">
-      <li data-i18n-html="limits.1"><b>No claim that it improves memory.</b> The method of loci is a technique, and LOCI is a place to practise it. Nothing here has been trialled, and no cognitive, medical or preventive benefit is asserted.</li>
-      <li data-i18n-html="limits.2"><b>The sample is personal hardware.</b> Phones, tablets and laptops on hand — no device matrix, no lab bank. Direction, not population statistics.</li>
-      <li data-i18n-html="limits.3"><b>Godot was measured and dropped; Unreal is not measured.</b> Godot 4's empty web export came to 6.7 MB, twice Unity's, with nothing to show for it. Unreal has had no official web target since 4.24. Unity's figure on the admin side is now a measurement, not an estimate.</li>
-      <li data-i18n-html="limits.4"><b>Payment is a seam, not a feature.</b> Tier and price are in the contract and the operations view shows the columns, but nothing charges anything and the numbers are simulated.</li>
-      <li data-i18n-html="limits.5"><b>Assets that reach a browser cannot be protected.</b> Anything drawn has to arrive. What can be done is gate it before sending, watermark to trace a leak, and keep the value in what does not travel.</li>
-    </ul>
+      <p class="lead" data-i18n="limits.lead">The figures above are measurements. Below is what no measurement here supports.</p>
+    </div>
+    <div class="facts">
+      <div class="fact fade" data-i18n-html="limits.1"><b>No claim that it improves memory</b><span>The method of loci is a technique, and LOCI is a place to practise it. Nothing here has been trialled, and no cognitive, medical or preventive benefit is asserted.</span></div>
+      <div class="fact fade" data-i18n-html="limits.2"><b>The sample is personal hardware</b><span>Phones, tablets and laptops on hand — no device matrix, no lab bank. Direction, not population statistics.</span></div>
+      <div class="fact fade" data-i18n-html="limits.3"><b>Godot was measured and dropped; Unreal is not measured</b><span>Godot 4's empty web export came to 6.7 MB, twice Unity's, with nothing to show for it. Unreal has had no official web target since 4.24. Unity's figure on the admin side is now a measurement, not an estimate.</span></div>
+      <div class="fact fade" data-i18n-html="limits.4"><b>Payment is a seam, not a feature</b><span>Tier and price are in the contract and the operations view shows the columns, but nothing charges anything and the numbers are simulated.</span></div>
+      <div class="fact fade" data-i18n-html="limits.5"><b>Assets that reach a browser cannot be protected</b><span>Anything drawn has to arrive. What can be done is gate it before sending, watermark to trace a leak, and keep the value in what does not travel.</span></div>
+    </div>
     <div class="cta-row" style="margin-top:30px">
       <a href="https://loci.joygolive.com" class="btn btn-primary" data-i18n="limits.cta">Open a room</a>
       <span class="cta-note" data-i18n="limits.ctanote">A minute. Six places, thirty seconds, then answer what was where.</span>
@@ -386,12 +392,12 @@ const _L = {
     "found.3":"<b>유니티는 three.js 의 24배를 받고 더 빠르지도 않습니다.</b> 회선 3.6MB, 첫 프레임 723ms 대 350ms, 베르사유 끊김 2.6% 대 0.8%. 조명·그림자·기하를 맞추고 나니 보기에도 다르지 않았습니다. 이 콘텐츠 규모에서 엔진이 팔 것이 없습니다 — 배선은 남겨 두어 방이 무거워지면 다시 잽니다.",
     "found.4":"<b>앞서 아이폰·공개 주소에서 본 것:</b> 메시를 365KB 에서 73KB 로 줄여도 첫 프레임은 그대로였고 — 병목은 전송이 아니라 파싱·셰이더 컴파일·GPU 업로드였습니다 — 첫 판만 입력 지연 22~24ms 를 냈습니다. 그 둘은 그대로 섰고, 「넷이 같다」는 방이 커지자 무너졌습니다.",
 
-    "limits.tag":"한계","limits.h2":"주장하지 않는 것",
-    "limits.1":"<b>기억력이 좋아진다고 주장하지 않습니다.</b> 장소법은 기법이고 LOCI는 그걸 연습하는 자리입니다. 여기서 시험된 것은 없으며, 인지·의학·예방 효과를 주장하지 않습니다.",
-    "limits.2":"<b>표본은 손에 있는 개인 기기.</b> 폰·태블릿·노트북 — 기기 매트릭스 없음, 장비 뱅크 없음. 모집단 통계가 아닌 방향.",
-    "limits.3":"<b>고도는 재고 뺐고, 언리얼은 재지 않았습니다.</b> 고도 4 의 빈 웹 빌드가 6.7MB 로 유니티의 두 배였고 얻는 것이 없었습니다. 언리얼은 4.24 이후 공식 웹 타깃이 없습니다. 어드민의 유니티 수치는 이제 추정이 아니라 실측입니다.",
-    "limits.4":"<b>결제는 기능이 아니라 자리입니다.</b> 등급과 가격이 계약에 있고 운영 화면에 칸이 있지만, 아무것도 청구하지 않으며 숫자는 모의입니다.",
-    "limits.5":"<b>브라우저에 닿은 에셋은 못 지킵니다.</b> 그리려면 도착해야 하기 때문입니다. 할 수 있는 것은 보내기 전에 막고, 유출을 추적할 표를 남기고, 값어치 있는 것은 돌아다니지 않는 곳에 두는 것입니다.",
+    "limits.tag":"한계","limits.lead":"위는 계측 결과. 아래는 그 계측이 뒷받침하지 않는 것.","limits.h2":"주장하지 않는 것",
+    "limits.1":"<b>기억력 향상 주장 없음</b><span>장소법은 기법이고 LOCI는 그걸 연습하는 자리입니다. 여기서 시험된 것은 없으며, 인지·의학·예방 효과를 주장하지 않습니다.</span>",
+    "limits.2":"<b>표본은 손에 있는 개인 기기</b><span>폰·태블릿·노트북 — 기기 매트릭스 없음, 장비 뱅크 없음. 모집단 통계가 아닌 방향.</span>",
+    "limits.3":"<b>고도는 계측 후 제외, 언리얼은 미계측</b><span>고도 4 의 빈 웹 빌드가 6.7MB 로 유니티의 두 배였고 얻는 것이 없었습니다. 언리얼은 4.24 이후 공식 웹 타깃이 없습니다. 어드민의 유니티 수치는 이제 추정이 아니라 실측입니다.</span>",
+    "limits.4":"<b>결제는 기능 아닌 자리</b><span>등급과 가격이 계약에 있고 운영 화면에 칸이 있지만, 아무것도 청구하지 않으며 숫자는 모의입니다.</span>",
+    "limits.5":"<b>브라우저에 닿은 에셋은 보호 불가</b><span>그리려면 도착해야 하기 때문입니다. 할 수 있는 것은 보내기 전에 막고, 유출을 추적할 표를 남기고, 값어치 있는 것은 돌아다니지 않는 곳에 두는 것입니다.</span>",
     "limits.cta":"방 열어 보기",
     "limits.ctanote":"1분이면 됩니다. 자리 여섯, 30초, 그리고 무엇이 어디 있었는지.",
     "ft.home":"홈","ft.copy":"© 2026 joygoLive. All rights reserved.",
