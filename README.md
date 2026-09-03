@@ -10,6 +10,9 @@ index.html          company landing — hero + service cards + how they get buil
 uqh/index.html      UQH — Universal Quantum Hub (quantum computing middleware)
 amc/index.html      AMC — AI Motion Coaching (community sports)
 bor/index.html      BOR — Blockchain On-chain Raffle
+wcp/index.html      WCP — Web Capability Probe
+loci/index.html     LOCI — Method of Loci (3D memory palace)
+bcon/index.html     BCON — wireless environment check
 assets/site.css     shared design system — tokens, shell, every component
 assets/i18n.js      shared runtime — EN/KO switch, scroll fade-in, mobile menu
 favicon.svg
@@ -32,12 +35,58 @@ python3 -m http.server 8000
 
 Then open http://localhost:8000 — service pages are at `/uqh/`, `/amc/`, `/bor/`.
 
+## Page anatomy
+
+Every service detail page is the same shape and is built only from components in
+`assets/site.css`. A page-level `<style>` block is for that page's own visuals — a
+measurement table, a signal chart — never for re-implementing a shared component.
+
+**Section head.** Every `<section id>` opens with `.sec-head` wrapping the eyebrow and
+the `<h2>`. Any section carrying a card grid also needs a `.lead` saying why the list is
+there — a section that jumps from heading straight to cards reads as a bare pile of
+assertions.
+
+**Title + body is a card, never a list item.** If an item has a bold title and an
+explanation under it, it belongs in a card grid:
+
+| items | grid | cell |
+|---|---|---|
+| 4 | `.pts` (4 columns) | `.pt` |
+| anything else | `.facts` (3 columns) | `.fact` |
+
+```html
+<div class="fact fade" data-i18n-html="found.1"><b>Title</b><span>Body.</span></div>
+```
+
+`.feature-list` is only for one-line points with a check icon and no title.
+`<li><b>Title.</b> Body</li>` runs the two together into a paragraph — that shape is
+what this rule exists to prevent, and it is why every such list was converted.
+`.disclose` is a secondary "also true" block placed after the cards, not a wrapper
+around them.
+
+**Card titles are labels, not sentences.** Korean titles are nominal — `투자 아님`,
+`개방망 → 자동접속 차단` — not `투자가 아닙니다`. Bodies stay in full sentences.
+A numbered sequence carries its number in the title: `1 · 부품이 없음`.
+
+**Every page closes with a limits section**, `What this does not claim`, as cards with
+a lead. The claims and their limits live on the same page.
+
+Run `python3 tools/check-pages.py` before publishing a new page — it enforces everything
+above plus missing `ko` dictionary keys.
+
+**Do not state a count that will grow.** `143 tests pass` and `three exercises are
+judged` have to be revisited every time the thing changes, and they drift silently when
+nobody does. Write the status instead — `Full suite passing`, `Only a short list of
+exercises is judged` — or point at the list already on the page.
+
 ## Adding a service
 
 1. `mkdir <svc>` and copy the closest existing service page as a starting point.
 2. Point it at `../assets/site.css` and `../assets/i18n.js`; favicon is `../favicon.svg`.
-3. Replace the `_L` dictionary. **Both `en` and `ko` must define every key the markup
-   uses** — a missing key silently leaves the English fallback text on screen. To check:
+3. Replace the `_L` dictionary. **`ko` must define every key the markup uses.** English
+   body copy lives inline in the HTML, so `en` only needs the keys it actually overrides:
+   `setLang` snapshots the original text on first run and restores it for any key the
+   dictionary does not carry. A key missing from `ko` leaves English on screen. To check:
 
    ```bash
    python3 -c "import re,sys,glob
