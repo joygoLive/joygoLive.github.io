@@ -233,12 +233,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <h2 data-i18n="what.h2">What it measures</h2>
     <p class="lead" data-i18n="what.lead">Sensors, GPU and NPU, codecs, radios, storage, permissions, network, security context, and identity. Numbers where a number exists: GPU matrix multiply in GFLOPS, buffer ceilings in MB, refresh rate in Hz.</p>
     </div>
-    <ul class="feature-list">
-      <li data-i18n-html="what.1"><b>Execution, not enumeration.</b> Each item is invoked. A result is a return value or a thrown error, never a capability string.</li>
-      <li data-i18n-html="what.2"><b>Five states, not two.</b> Open · permission required · broken · absent · unmeasured. Collapsing these to yes/no loses the case that matters most.</li>
-      <li data-i18n-html="what.3"><b>A control group.</b> The same page is served twice, once with cross-origin isolation headers, to separate device limits from server configuration.</li>
-      <li data-i18n-html="what.4"><b>Nothing identifying is asked for.</b> No account, no contact details. Device model, browser, and measurements only.</li>
-    </ul>
+    <div class="pts">
+      <div class="pt fade" data-i18n-html="what.1"><b>Execution, not enumeration</b><span>Each item is invoked. A result is a return value or a thrown error, never a capability string.</span></div>
+      <div class="pt fade" data-i18n-html="what.2"><b>Five states, not two</b><span>Open · permission required · broken · absent · unmeasured. Collapsing these to yes/no loses the case that matters most.</span></div>
+      <div class="pt fade" data-i18n-html="what.3"><b>A control group</b><span>The same page is served twice, once with cross-origin isolation headers, to separate device limits from server configuration.</span></div>
+      <div class="pt fade" data-i18n-html="what.4"><b>Nothing identifying is asked for</b><span>No account, no contact details. Device model, browser, and measurements only.</span></div>
+    </div>
   </div>
 </section>
 
@@ -259,13 +259,13 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="stat-note"><span data-i18n="found.snote">Sample</span> <b data-s="devices">—</b><span data-i18n="found.sdev">devices</span> · <b data-s="environments">—</b><span data-i18n="found.senv">environments</span> · <span data-i18n="found.sasof">as of</span> <b data-s="asOf">—</b></div>
     </div>
 
-    <ul class="feature-list">
-      <li data-i18n-html="found.0"><b>Wi-Fi is not restricted on the web. It is absent.</b> No scan, no signal strength, no channel, no security mode. The one related reading is whether the connection is Wi-Fi or cellular, and that answers only on Android Blink. Every iOS environment in the sample returns nothing.</li>
-      <li data-i18n-html="found.1"><b>Most closed doors are not gaps.</b> Deliberate refusals against fingerprinting outnumber genuine native gaps in this sample. Counting every unavailable item as a gap inflates the number.</li>
-      <li data-i18n-html="found.2"><b>On iOS the browser choice is cosmetic.</b> Safari, Chrome, and Edge on the same iPhone returned byte-identical measurements. All three are WebKit.</li>
-      <li data-i18n-html="found.3"><b>In-app browsers close capabilities</b> that the same phone opens in a standalone browser. A link opened from a messenger is a different device, as far as the web can tell.</li>
-      <li data-i18n-html="found.4"><b>Open and fast are not the same device.</b> The most open environment in this sample is not the fastest one.</li>
-    </ul>
+    <div class="facts">
+      <div class="fact fade" data-i18n-html="found.0"><b>Wi-Fi is not restricted on the web. It is absent</b><span>No scan, no signal strength, no channel, no security mode. The one related reading is whether the connection is Wi-Fi or cellular, and that answers only on Android Blink. Every iOS environment in the sample returns nothing.</span></div>
+      <div class="fact fade" data-i18n-html="found.1"><b>Most closed doors are not gaps</b><span>Deliberate refusals against fingerprinting outnumber genuine native gaps in this sample. Counting every unavailable item as a gap inflates the number.</span></div>
+      <div class="fact fade" data-i18n-html="found.2"><b>On iOS the browser choice is cosmetic</b><span>Safari, Chrome, and Edge on the same iPhone returned byte-identical measurements. All three are WebKit.</span></div>
+      <div class="fact fade" data-i18n-html="found.3"><b>In-app browsers close capabilities</b><span>that the same phone opens in a standalone browser. A link opened from a messenger is a different device, as far as the web can tell.</span></div>
+      <div class="fact fade" data-i18n-html="found.4"><b>Open and fast are not the same device</b><span>The most open environment in this sample is not the fastest one.</span></div>
+    </div>
   </div>
 </section>
 
@@ -324,12 +324,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <h2 data-i18n="layers.h2">Five places a capability dies</h2>
     <p class="lead" data-i18n="layers.lead">"It does not work" is one sentence covering five different causes. Only the first is about the device.</p>
     </div>
-    <div class="flow">
-      <div class="step fade"><span class="mk">1</span><b data-i18n="layers.1.t">No silicon</b><span data-i18n="layers.1.d">The part is not in the device. Nothing above can fix it.</span></div>
-      <div class="step fade"><span class="mk">2</span><b data-i18n="layers.2.t">OS does not expose it</b><span data-i18n="layers.2.d">Present in hardware, absent from the platform API.</span></div>
-      <div class="step fade"><span class="mk">3</span><b data-i18n="layers.3.t">Browser refuses</b><span data-i18n="layers.3.d">Exposed by the OS, withheld by policy. Usually fingerprinting.</span></div>
-      <div class="step fade"><span class="mk">4</span><b data-i18n="layers.4.t">Host app restricts it</b><span data-i18n="layers.4.d">An in-app WebView, narrower than the browser it is built on.</span></div>
-      <div class="step fade"><span class="mk">5</span><b data-i18n="layers.5.t">Our own headers</b><span data-i18n="layers.5.d">The site's own response, closing what the device was ready to give.</span></div>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="layers.1.t">1 · No silicon</b><span data-i18n="layers.1.d">The part is not in the device. Nothing above can fix it.</span></div>
+      <div class="fact fade"><b data-i18n="layers.2.t">2 · OS does not expose it</b><span data-i18n="layers.2.d">Present in hardware, absent from the platform API.</span></div>
+      <div class="fact fade"><b data-i18n="layers.3.t">3 · Browser refuses</b><span data-i18n="layers.3.d">Exposed by the OS, withheld by policy. Usually fingerprinting.</span></div>
+      <div class="fact fade"><b data-i18n="layers.4.t">4 · Host app restricts it</b><span data-i18n="layers.4.d">An in-app WebView, narrower than the browser it is built on.</span></div>
+      <div class="fact fade"><b data-i18n="layers.5.t">5 · Our own headers</b><span data-i18n="layers.5.d">The site's own response, closing what the device was ready to give.</span></div>
     </div>
     <p class="lead" data-i18n-html="layers.none"><b>Wi-Fi belongs to none of the five.</b> There is no Wi-Fi API in the web platform to refuse in the first place, so the question of which layer blocks it never arises. That is a different answer from "closed", and the tool reports it as such.</p>
   </div>
@@ -392,23 +392,23 @@ const _L = {
     "why.f3.t":"Our own headers, counted as absence","why.f3.d":"SharedArrayBuffer read as closed until COOP and COEP were added. The device was never the limit.",
     "what.tag":"Scope","what.h2":"What it measures",
     "what.lead":"Sensors, GPU and NPU, codecs, radios, storage, permissions, network, security context, and identity. Numbers where a number exists: GPU matrix multiply in GFLOPS, buffer ceilings in MB, refresh rate in Hz.",
-    "what.1":"<b>Execution, not enumeration.</b> Each item is invoked. A result is a return value or a thrown error, never a capability string.",
-    "what.2":"<b>Five states, not two.</b> Open · permission required · broken · absent · unmeasured. Collapsing these to yes/no loses the case that matters most.",
-    "what.3":"<b>A control group.</b> The same page is served twice, once with cross-origin isolation headers, to separate device limits from server configuration.",
-    "what.4":"<b>Nothing identifying is asked for.</b> No account, no contact details. Device model, browser, and measurements only.",
+    "what.1":"<b>Execution, not enumeration</b><span>Each item is invoked. A result is a return value or a thrown error, never a capability string.</span>",
+    "what.2":"<b>Five states, not two</b><span>Open · permission required · broken · absent · unmeasured. Collapsing these to yes/no loses the case that matters most.</span>",
+    "what.3":"<b>A control group</b><span>The same page is served twice, once with cross-origin isolation headers, to separate device limits from server configuration.</span>",
+    "what.4":"<b>Nothing identifying is asked for</b><span>No account, no contact details. Device model, browser, and measurements only.</span>",
     "found.tag":"Current sample","found.h2":"What the measurements say",
     "found.lead":"The sample is small and stated as such. The figures below are read live from the tool, so they are whatever the measurements currently say.",
     "found.c1":"open, of the items every environment measured",
     "found.c2":"items where the environment decides, not the hardware",
     "found.c3":"a real native gap, out of the unavailable ones",
     "found.c4":"GFLOPS at the top of the sample",
-    "found.0":"<b>Wi-Fi is not restricted on the web. It is absent.</b> No scan, no signal strength, no channel, no security mode. The one related reading is whether the connection is Wi-Fi or cellular, and that answers only on Android Blink. Every iOS environment in the sample returns nothing.",
+    "found.0":"<b>Wi-Fi is not restricted on the web. It is absent</b><span>No scan, no signal strength, no channel, no security mode. The one related reading is whether the connection is Wi-Fi or cellular, and that answers only on Android Blink. Every iOS environment in the sample returns nothing.</span>",
     "layers.none":"<b>Wi-Fi belongs to none of the five.</b> There is no Wi-Fi API in the web platform to refuse in the first place, so the question of which layer blocks it never arises. That is a different answer from \"closed\", and the tool reports it as such.",
-    "found.1":"<b>Most closed doors are not gaps.</b> Deliberate refusals against fingerprinting outnumber genuine native gaps in this sample. Counting every unavailable item as a gap inflates the number.",
+    "found.1":"<b>Most closed doors are not gaps</b><span>Deliberate refusals against fingerprinting outnumber genuine native gaps in this sample. Counting every unavailable item as a gap inflates the number.</span>",
     "found.snote":"Sample","found.sdev":"devices","found.senv":"environments","found.sasof":"as of",
-    "found.2":"<b>On iOS the browser choice is cosmetic.</b> Safari, Chrome, and Edge on the same iPhone returned byte-identical measurements. All three are WebKit.",
-    "found.3":"<b>In-app browsers close capabilities</b> that the same phone opens in a standalone browser. A link opened from a messenger is a different device, as far as the web can tell.",
-    "found.4":"<b>Open and fast are not the same device.</b> The most open environment in this sample is not the fastest one.",
+    "found.2":"<b>On iOS the browser choice is cosmetic</b><span>Safari, Chrome, and Edge on the same iPhone returned byte-identical measurements. All three are WebKit.</span>",
+    "found.3":"<b>In-app browsers close capabilities</b><span>that the same phone opens in a standalone browser. A link opened from a messenger is a different device, as far as the web can tell.</span>",
+    "found.4":"<b>Open and fast are not the same device</b><span>The most open environment in this sample is not the fastest one.</span>",
     "method.chg.t":"Capabilities that flipped",
     "method.chg.d":"Recorded when the same device and browser is measured twice and an item changes state. Browser updates open things, and occasionally close them.",
     "method.tag":"Method","method.h2":"How it is kept",
@@ -423,11 +423,11 @@ const _L = {
     "method.4.d":"History is stored per month × engine build × OS, not per device, so ten samples and ten thousand produce the same number of rows. Kept for five years by default.",
     "layers.tag":"Diagnosis","layers.h2":"Five places a capability dies",
     "layers.lead":"\"It does not work\" is one sentence covering five different causes. Only the first is about the device.",
-    "layers.1.t":"No silicon","layers.1.d":"The part is not in the device. Nothing above can fix it.",
-    "layers.2.t":"OS does not expose it","layers.2.d":"Present in hardware, absent from the platform API.",
-    "layers.3.t":"Browser refuses","layers.3.d":"Exposed by the OS, withheld by policy. Usually fingerprinting.",
-    "layers.4.t":"Host app restricts it","layers.4.d":"An in-app WebView, narrower than the browser it is built on.",
-    "layers.5.t":"Our own headers","layers.5.d":"The site's own response, closing what the device was ready to give.",
+    "layers.1.t":"1 · No silicon","layers.1.d":"The part is not in the device. Nothing above can fix it.",
+    "layers.2.t":"2 · OS does not expose it","layers.2.d":"Present in hardware, absent from the platform API.",
+    "layers.3.t":"3 · Browser refuses","layers.3.d":"Exposed by the OS, withheld by policy. Usually fingerprinting.",
+    "layers.4.t":"4 · Host app restricts it","layers.4.d":"An in-app WebView, narrower than the browser it is built on.",
+    "layers.5.t":"5 · Our own headers","layers.5.d":"The site's own response, closing what the device was ready to give.",
     "limits.tag":"Limits","limits.lead":"A support list inflates the moment untested things are quietly counted. Below is what the numbers above are not.",
     "limits.h2":"What this will not claim",
     "limits.1":"<b>The sample is small</b><span>Most of the sample is ours. Treat the numbers as a direction, not a population statistic.</span>",
@@ -455,23 +455,23 @@ const _L = {
     "why.f3.t":"우리 헤더가 「없음」으로 집계","why.f3.d":"SharedArrayBuffer 가 막힌 것으로 읽혔습니다. COOP·COEP 를 붙이자 열렸습니다. 기기의 한계가 아니었습니다.",
     "what.tag":"범위","what.h2":"측정 범위",
     "what.lead":"센서, GPU·NPU, 코덱, 무선, 저장소, 권한, 네트워크, 보안 컨텍스트, 신원. 수치가 있는 곳은 수치로 냅니다. GPU 행렬곱 GFLOPS, 버퍼 상한 MB, 화면 주사율 Hz.",
-    "what.1":"<b>열거가 아니라 실행.</b> 항목마다 실제로 호출합니다. 결과는 반환값이거나 던져진 오류이며, 지원 문자열이 아닙니다.",
-    "what.2":"<b>상태는 둘이 아니라 다섯.</b> 열림 · 권한 필요 · 깨짐 · 없음 · 미측정. 예/아니오로 뭉개면 가장 중요한 경우가 사라집니다.",
-    "what.3":"<b>대조군.</b> 같은 페이지를 헤더만 달리해 두 번 제공합니다. 기기의 한계와 서버 설정을 가르기 위해서입니다.",
-    "what.4":"<b>신원을 묻지 않습니다.</b> 계정도 연락처도 없습니다. 기기 모델, 브라우저, 측정값뿐입니다.",
+    "what.1":"<b>열거 아닌 실행</b><span>항목마다 실제로 호출합니다. 결과는 반환값이거나 던져진 오류이며, 지원 문자열이 아닙니다.</span>",
+    "what.2":"<b>둘이 아닌 다섯 가지 상태</b><span>열림 · 권한 필요 · 깨짐 · 없음 · 미측정. 예/아니오로 뭉개면 가장 중요한 경우가 사라집니다.</span>",
+    "what.3":"<b>대조군</b><span>같은 페이지를 헤더만 달리해 두 번 제공합니다. 기기의 한계와 서버 설정을 가르기 위해서입니다.</span>",
+    "what.4":"<b>신원 비수집</b><span>계정도 연락처도 없습니다. 기기 모델, 브라우저, 측정값뿐입니다.</span>",
     "found.tag":"현재 표본","found.h2":"측정이 말하는 것",
     "found.lead":"작은 표본이며, 작다고 밝힙니다. 아래 숫자는 도구에서 그때그때 읽어 옵니다.",
     "found.c1":"모든 환경이 잰 공통 항목 중 열린 비율",
     "found.c2":"하드웨어가 아니라 환경이 가르는 항목 수",
     "found.c3":"안 되는 항목 중 실제 네이티브 갭",
     "found.c4":"표본 최고 GPU 성능",
-    "found.0":"<b>Wi-Fi 는 웹에서 막힌 것이 아니라 없습니다.</b> 주변 AP 스캔도, 신호 세기도, 채널도, 암호화 방식도 없습니다. 관련해서 읽을 수 있는 값은 「지금 Wi-Fi 인가 셀룰러인가」 하나뿐이고, 그마저 안드로이드 Blink 에서만 답합니다. 표본의 iOS 환경은 전부 아무것도 주지 않았습니다.",
+    "found.0":"<b>웹의 Wi-Fi, 차단 아닌 부재</b><span>주변 AP 스캔도, 신호 세기도, 채널도, 암호화 방식도 없습니다. 관련해서 읽을 수 있는 값은 「지금 Wi-Fi 인가 셀룰러인가」 하나뿐이고, 그마저 안드로이드 Blink 에서만 답합니다. 표본의 iOS 환경은 전부 아무것도 주지 않았습니다.</span>",
     "layers.none":"<b>Wi-Fi 는 다섯 자리 중 어디에도 없습니다.</b> 거절할 Wi-Fi API 자체가 웹 표준에 없어서, 어느 층이 막았나를 물을 일이 생기지 않습니다. 「닫혀 있다」와는 다른 대답이고, 그대로 그렇게 적습니다.",
-    "found.1":"<b>막힌 문 대부분은 갭이 아닙니다.</b> 지문 채취를 막으려는 의도적 거절이 진짜 네이티브 갭보다 많습니다. 안 되는 것을 전부 갭으로 세면 부풀려집니다.",
+    "found.1":"<b>막힌 문 대부분은 갭 아님</b><span>지문 채취를 막으려는 의도적 거절이 진짜 네이티브 갭보다 많습니다. 안 되는 것을 전부 갭으로 세면 부풀려집니다.</span>",
     "found.snote":"표본","found.sdev":"대","found.senv":"개 환경","found.sasof":"기준일",
-    "found.2":"<b>iOS 에서 브라우저 선택은 표면적입니다.</b> 같은 아이폰의 Safari·Chrome·Edge 가 바이트 단위로 같은 측정값을 냈습니다. 셋 다 WebKit 입니다.",
-    "found.3":"<b>인앱 브라우저는 기능을 닫습니다.</b> 같은 폰이 일반 브라우저에서는 여는 것들입니다. 메신저에서 연 링크는 웹이 보기에 다른 기기입니다.",
-    "found.4":"<b>가장 열린 곳과 가장 빠른 곳은 다릅니다.</b> 이 표본에서 개방률 1위와 성능 1위는 같은 기기가 아닙니다.",
+    "found.2":"<b>iOS 브라우저 선택은 표면뿐</b><span>같은 아이폰의 Safari·Chrome·Edge 가 바이트 단위로 같은 측정값을 냈습니다. 셋 다 WebKit 입니다.</span>",
+    "found.3":"<b>인앱 브라우저의 기능 차단</b><span>같은 폰이 일반 브라우저에서는 여는 것들입니다. 메신저에서 연 링크는 웹이 보기에 다른 기기입니다.</span>",
+    "found.4":"<b>가장 열린 곳과 가장 빠른 곳은 별개</b><span>이 표본에서 개방률 1위와 성능 1위는 같은 기기가 아닙니다.</span>",
     "method.chg.t":"갈린 항목",
     "method.chg.d":"같은 기기·같은 브라우저를 두 번 재서 상태가 달라졌을 때 기록됩니다. 브라우저가 판올림되며 열리기도 하고, 가끔은 닫히기도 합니다.",
     "method.tag":"방법","method.h2":"어떻게 관리하나",
@@ -486,11 +486,11 @@ const _L = {
     "method.4.d":"이력을 기기별이 아니라 달 × 엔진 판 × OS 로 쌓습니다. 표본이 열이든 만이든 줄 수가 같습니다. 기본 5년치를 둡니다.",
     "layers.tag":"진단","layers.h2":"기능이 죽는 다섯 자리",
     "layers.lead":"「안 됩니다」 한 문장이 다섯 가지 원인을 덮고 있습니다. 기기 탓인 것은 첫 번째뿐입니다.",
-    "layers.1.t":"부품이 없음","layers.1.d":"기기에 그 부품이 없습니다. 위쪽에서 해결할 방법이 없습니다.",
-    "layers.2.t":"OS 가 안 열어 줌","layers.2.d":"하드웨어에는 있고 플랫폼 API 에는 없습니다.",
-    "layers.3.t":"브라우저가 거절","layers.3.d":"OS 는 열어 줬으나 정책으로 막습니다. 대개 지문 채취 방지입니다.",
-    "layers.4.t":"앱이 제한","layers.4.d":"인앱 WebView. 기반이 된 브라우저보다 좁습니다.",
-    "layers.5.t":"우리 헤더","layers.5.d":"사이트 자신의 응답이, 기기가 줄 준비가 된 것을 닫습니다.",
+    "layers.1.t":"1 · 부품이 없음","layers.1.d":"기기에 그 부품이 없습니다. 위쪽에서 해결할 방법이 없습니다.",
+    "layers.2.t":"2 · OS 가 안 열어 줌","layers.2.d":"하드웨어에는 있고 플랫폼 API 에는 없습니다.",
+    "layers.3.t":"3 · 브라우저가 거절","layers.3.d":"OS 는 열어 줬으나 정책으로 막습니다. 대개 지문 채취 방지입니다.",
+    "layers.4.t":"4 · 앱이 제한","layers.4.d":"인앱 WebView. 기반이 된 브라우저보다 좁습니다.",
+    "layers.5.t":"5 · 우리 헤더","layers.5.d":"사이트 자신의 응답이, 기기가 줄 준비가 된 것을 닫습니다.",
     "limits.tag":"한계","limits.lead":"시험하지 않은 것을 조용히 세는 순간 지원 목록은 부풀어난다. 아래는 위 수치가 아닌 것.","limits.h2":"주장하지 않는 것",
     "limits.1":"<b>표본 소규모</b><span>표본의 대부분이 저희 기기입니다. 모집단 통계가 아니라 방향으로 읽어 주세요.</span>",
     "limits.2":"<b>웹앱의 시야 한계</b><span>실행 중인 프로세스, 설치된 앱, 배터리 이력, 저장소 내역. 페이지에서는 전부 보이지 않습니다. 브라우저에서 그걸 안다고 하면 추측입니다.</span>",

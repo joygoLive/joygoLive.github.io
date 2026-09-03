@@ -214,12 +214,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <h2 data-i18n="what.h2">What is built</h2>
     <p class="lead" data-i18n="what.lead">A room is a box with furniture, places on the furniture, and objects on the places. Everything about it — size, light, furniture, places, objects, learning time, price tier — lives in one JSON file that planning edits in a visual editor with the same renderer beside it.</p>
     </div>
-    <ul class="feature-list">
-      <li data-i18n-html="what.1"><b>One contract, three readers.</b> The validation rules live in a single file used by the editor, the command line, and the page itself. Two copies drift, and then something passes review and breaks on screen.</li>
-      <li data-i18n-html="what.2"><b>Rules that are conditions, not taste.</b> Places must differ in height, or they stop being distinct places and nothing attaches. Two items may not share a word, or scoring has no answer. A training room may not exceed sixteen places, because past that no one is memorising anything.</li>
-      <li data-i18n-html="what.3"><b>Five runtimes, one scene.</b> Raw WebGL2, three.js, raw WebGPU, Canvas 2D and Unity WebGL draw the same room from the same bytes. The library is fetched only when chosen, so the transfer comparison stays honest.</li>
-      <li data-i18n-html="what.4"><b>Nothing ships without review.</b> Planning uploads, validation gates it, and it waits until development approves. Uploads, rejections and approvals are appended to a ledger everyone reads.</li>
-    </ul>
+    <div class="pts">
+      <div class="pt fade" data-i18n-html="what.1"><b>One contract, three readers</b><span>The validation rules live in a single file used by the editor, the command line, and the page itself. Two copies drift, and then something passes review and breaks on screen.</span></div>
+      <div class="pt fade" data-i18n-html="what.2"><b>Rules that are conditions, not taste</b><span>Places must differ in height, or they stop being distinct places and nothing attaches. Two items may not share a word, or scoring has no answer. A training room may not exceed sixteen places, because past that no one is memorising anything.</span></div>
+      <div class="pt fade" data-i18n-html="what.3"><b>Five runtimes, one scene</b><span>Raw WebGL2, three.js, raw WebGPU, Canvas 2D and Unity WebGL draw the same room from the same bytes. The library is fetched only when chosen, so the transfer comparison stays honest.</span></div>
+      <div class="pt fade" data-i18n-html="what.4"><b>Nothing ships without review</b><span>Planning uploads, validation gates it, and it waits until development approves. Uploads, rejections and approvals are appended to a ledger everyone reads.</span></div>
+    </div>
   </div>
 </section>
 
@@ -287,12 +287,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </table></div>
     <p class="tnote" data-i18n="found.tnote">Galaxy Note10+ 5G (SM-N976N, Android 12), the Versailles room: 60 places, 817 pieces of furniture, 3.7 million triangles, over a local link so the network stays out of it. Hitch is the share of frames over 33 ms. Library size is what crossed the wire, brotli compressed. Median of two runs each.</p>
 
-    <ul class="feature-list">
-      <li data-i18n-html="found.1"><b>Below a certain load, the runtime does not matter.</b> Seven rooms, up to 40 places and 80 pieces of furniture: all five held 16.7 ms on the phone. Draw calls ranged from 3 to 1,149 and the frame did not move.</li>
-      <li data-i18n-html="found.2"><b>Above it, the hand-written renderers break first.</b> On the Versailles room raw WebGL2 and WebGPU hitched on 21% and 36% of frames with only four draw calls — they push 1.8 million vertices with no culling. three.js splits the same scene into 254 calls and drops what is off screen: 0.8%. That is what the 153 KB buys.</li>
-      <li data-i18n-html="found.3"><b>Unity costs 24× the transfer of three.js and is not faster.</b> 3.6 MB on the wire, 723 ms to first frame against 350, 2.6% hitching on Versailles against 0.8. Once lighting, shadows and geometry were matched it did not look different either. At this content scale an engine has nothing to sell; the wiring stays so it can be re-measured when the rooms get heavier.</li>
-      <li data-i18n-html="found.4"><b>Earlier, on an iPhone over the public address:</b> precompressing the mesh from 365 KB to 73 KB did not move the first frame — parsing, shader compilation and GPU upload were the cost, not transfer — and the first run paid 22–24 ms of input lag the second did not. Both held. The four-runtime tie did not, once the room got big enough.</li>
-    </ul>
+    <div class="pts">
+      <div class="pt fade" data-i18n-html="found.1"><b>Below a certain load, the runtime does not matter</b><span>Seven rooms, up to 40 places and 80 pieces of furniture: all five held 16.7 ms on the phone. Draw calls ranged from 3 to 1,149 and the frame did not move.</span></div>
+      <div class="pt fade" data-i18n-html="found.2"><b>Above it, the hand-written renderers break first</b><span>On the Versailles room raw WebGL2 and WebGPU hitched on 21% and 36% of frames with only four draw calls — they push 1.8 million vertices with no culling. three.js splits the same scene into 254 calls and drops what is off screen: 0.8%. That is what the 153 KB buys.</span></div>
+      <div class="pt fade" data-i18n-html="found.3"><b>Unity costs 24× the transfer of three.js and is not faster</b><span>3.6 MB on the wire, 723 ms to first frame against 350, 2.6% hitching on Versailles against 0.8. Once lighting, shadows and geometry were matched it did not look different either. At this content scale an engine has nothing to sell; the wiring stays so it can be re-measured when the rooms get heavier.</span></div>
+      <div class="pt fade" data-i18n-html="found.4"><b>Earlier, on an iPhone over the public address</b><span>precompressing the mesh from 365 KB to 73 KB did not move the first frame — parsing, shader compilation and GPU upload were the cost, not transfer — and the first run paid 22–24 ms of input lag the second did not. Both held. The four-runtime tie did not, once the room got big enough.</span></div>
+    </div>
   </div>
 </section>
 
@@ -358,10 +358,10 @@ const _L = {
 
     "what.tag":"범위","what.h2":"무엇을 지었나",
     "what.lead":"방은 가구가 놓인 상자이고, 가구 위에 자리가, 자리에 물건이 놓입니다. 크기·빛·가구·자리·물건·학습 시간·등급까지 전부 JSON 한 장에 있고, 기획은 실제 렌더러가 옆에서 도는 편집기로 그걸 고칩니다.",
-    "what.1":"<b>계약 하나, 읽는 곳 셋.</b> 검증 규칙이 한 파일에 있고 편집기·명령줄·화면이 같이 씁니다. 두 벌이면 갈라지고, 그러면 검수를 통과한 것이 화면에서 깨집니다.",
-    "what.2":"<b>취향이 아니라 성립 조건인 규칙.</b> 자리는 높이가 달라야 합니다 — 같으면 자리로 구분되지 않아 기억이 걸리지 않습니다. 같은 단어가 둘이면 채점에 답이 없습니다. 훈련용 방은 자리 열여섯을 못 넘습니다. 그 위로는 아무도 외우고 있지 않기 때문입니다.",
-    "what.3":"<b>런타임 다섯, 장면 하나.</b> 원시 WebGL2·three.js·원시 WebGPU·Canvas 2D·Unity WebGL 이 같은 바이트로 같은 방을 그립니다. 라이브러리는 고른 것만 받으므로 전송량 비교가 정직하게 남습니다.",
-    "what.4":"<b>검토 없이는 안 나갑니다.</b> 기획이 올리면 검증이 거르고, 개발이 승인할 때까지 기다립니다. 올림·반려·승인은 전원이 읽는 이력에 덧붙습니다.",
+    "what.1":"<b>계약 하나, 읽는 곳 셋</b><span>검증 규칙이 한 파일에 있고 편집기·명령줄·화면이 같이 씁니다. 두 벌이면 갈라지고, 그러면 검수를 통과한 것이 화면에서 깨집니다.</span>",
+    "what.2":"<b>취향 아닌 성립 조건</b><span>자리는 높이가 달라야 합니다 — 같으면 자리로 구분되지 않아 기억이 걸리지 않습니다. 같은 단어가 둘이면 채점에 답이 없습니다. 훈련용 방은 자리 열여섯을 못 넘습니다. 그 위로는 아무도 외우고 있지 않기 때문입니다.</span>",
+    "what.3":"<b>런타임 다섯, 장면 하나</b><span>원시 WebGL2·three.js·원시 WebGPU·Canvas 2D·Unity WebGL 이 같은 바이트로 같은 방을 그립니다. 라이브러리는 고른 것만 받으므로 전송량 비교가 정직하게 남습니다.</span>",
+    "what.4":"<b>검토 없이 배포 없음</b><span>기획이 올리면 검증이 거르고, 개발이 승인할 때까지 기다립니다. 올림·반려·승인은 전원이 읽는 이력에 덧붙습니다.</span>",
 
     "pipe.tag":"공정","pipe.h2":"제작에서 운영까지, 한 바퀴",
     "pipe.lead":"네 단계, 각각 다음 단계가 실수를 물려받지 않게 막는 것이 하나씩 있습니다.",
@@ -387,10 +387,10 @@ const _L = {
     "found.t.rt":"런타임","found.t.api":"API","found.t.dc":"드로우콜","found.t.fr":"프레임",
     "found.t.hitch":"끊김","found.t.ttff":"첫 프레임","found.t.lib":"라이브러리",
     "found.tnote":"갤럭시 노트10+ 5G(SM-N976N · Android 12), 베르사유 방 — 자리 60, 가구 817, 삼각형 370만. 회선을 빼려고 로컬 연결로 돌렸습니다. 끊김은 33ms 를 넘긴 프레임의 비율, 라이브러리 크기는 회선을 실제로 지나간 brotli 압축 값, 각 두 판의 중앙값입니다.",
-    "found.1":"<b>어느 짐 아래서는 런타임이 문제가 아닙니다.</b> 방 일곱, 자리 40·가구 80까지 — 폰에서 다섯이 전부 16.7ms 였습니다. 드로우콜은 3에서 1,149까지 벌어졌는데 프레임은 움직이지 않았습니다.",
-    "found.2":"<b>그 위에서는 직접 짠 쪽이 먼저 무너집니다.</b> 베르사유 방에서 원시 WebGL2·WebGPU 는 드로우콜 넷뿐인데 프레임의 21%·36% 가 끊겼습니다 — 정점 180만을 컬링 없이 통째로 넘기기 때문입니다. three.js 는 같은 장면을 254번으로 나누는 대신 안 보이는 것을 걸러 냅니다: 0.8%. 153KB 가 사는 것이 그것입니다.",
-    "found.3":"<b>유니티는 three.js 의 24배를 받고 더 빠르지도 않습니다.</b> 회선 3.6MB, 첫 프레임 723ms 대 350ms, 베르사유 끊김 2.6% 대 0.8%. 조명·그림자·기하를 맞추고 나니 보기에도 다르지 않았습니다. 이 콘텐츠 규모에서 엔진이 팔 것이 없습니다 — 배선은 남겨 두어 방이 무거워지면 다시 잽니다.",
-    "found.4":"<b>앞서 아이폰·공개 주소에서 본 것:</b> 메시를 365KB 에서 73KB 로 줄여도 첫 프레임은 그대로였고 — 병목은 전송이 아니라 파싱·셰이더 컴파일·GPU 업로드였습니다 — 첫 판만 입력 지연 22~24ms 를 냈습니다. 그 둘은 그대로 섰고, 「넷이 같다」는 방이 커지자 무너졌습니다.",
+    "found.1":"<b>가벼운 짐에서는 런타임 무관</b><span>방 일곱, 자리 40·가구 80까지 — 폰에서 다섯이 전부 16.7ms 였습니다. 드로우콜은 3에서 1,149까지 벌어졌는데 프레임은 움직이지 않았습니다.</span>",
+    "found.2":"<b>무거운 짐에서 먼저 무너지는 자작 렌더러</b><span>베르사유 방에서 원시 WebGL2·WebGPU 는 드로우콜 넷뿐인데 프레임의 21%·36% 가 끊겼습니다 — 정점 180만을 컬링 없이 통째로 넘기기 때문입니다. three.js 는 같은 장면을 254번으로 나누는 대신 안 보이는 것을 걸러 냅니다: 0.8%. 153KB 가 사는 것이 그것입니다.</span>",
+    "found.3":"<b>유니티, three.js 의 24배 전송에 속도 이득 없음</b><span>회선 3.6MB, 첫 프레임 723ms 대 350ms, 베르사유 끊김 2.6% 대 0.8%. 조명·그림자·기하를 맞추고 나니 보기에도 다르지 않았습니다. 이 콘텐츠 규모에서 엔진이 팔 것이 없습니다 — 배선은 남겨 두어 방이 무거워지면 다시 잽니다.</span>",
+    "found.4":"<b>앞서 아이폰·공개 주소에서 본 것</b><span>메시를 365KB 에서 73KB 로 줄여도 첫 프레임은 그대로였고 — 병목은 전송이 아니라 파싱·셰이더 컴파일·GPU 업로드였습니다 — 첫 판만 입력 지연 22~24ms 를 냈습니다. 그 둘은 그대로 섰고, 「넷이 같다」는 방이 커지자 무너졌습니다.</span>",
 
     "limits.tag":"한계","limits.lead":"위는 계측 결과. 아래는 그 계측이 뒷받침하지 않는 것.","limits.h2":"주장하지 않는 것",
     "limits.1":"<b>기억력 향상 주장 없음</b><span>장소법은 기법이고 LOCI는 그걸 연습하는 자리입니다. 여기서 시험된 것은 없으며, 인지·의학·예방 효과를 주장하지 않습니다.</span>",
