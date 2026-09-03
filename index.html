@@ -82,7 +82,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="sec-head">
       <div class="eyebrow" data-i18n="svc.tag">Portfolio</div>
       <h2 data-i18n="svc.h2">What has shipped so far</h2>
-      <p class="lead" data-i18n="svc.lead">Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement — and two still being built: a memory-training room and a wireless environment check. Fields that share nothing with each other, already running rather than described. Each was built here and is operated here: not licensed, not resold.</p>
+      <p class="lead" data-i18n="svc.lead">Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check — and one still being built: a memory-training room. Fields that share nothing with each other, already running rather than described. Each was built here and is operated here: not licensed, not resold.</p>
     </div>
 
     <div class="svc-grid">
@@ -111,7 +111,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="4.5" r="2"/><path d="M12 7v6M12 13l-3.5 6M12 13l3.5 6M7 10l5-1 5 1"/></svg>
         <div class="svc-head">
           <h3>AMC</h3>
-          <span class="badge dev" data-i18n="svc.b.dev">In development</span>
+          <span class="badge beta" data-i18n="svc.b.beta">Beta</span>
         </div>
         <span class="svc-full" data-i18n="svc.amc.full">AI Motion Coaching · Community sports</span>
         <p data-i18n="svc.amc.d">Real-time exercise-form coaching from a single phone camera. A trainer's judgment criteria encoded as joint-angle rules, normalized against your own body baseline. The feedback names what to fix instead of scoring a similarity you cannot read.</p>
@@ -174,7 +174,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
         <p data-i18n="svc.loci.d">A room you look around and place things in, then recall where they were. The 3D is not decoration: the method of loci is spatial to begin with. Built as a testbed for the whole pipeline — authoring, handoff, serving, and measuring what a device does with it.</p>
         <ul class="svc-points">
           <li data-i18n="svc.loci.1">A room is one JSON file. Planning edits it; development never touches code for a new room</li>
-          <li data-i18n="svc.loci.2">Four interchangeable runtimes draw the same scene — WebGL2, three.js, WebGPU, Canvas 2D</li>
+          <li data-i18n="svc.loci.2">Five interchangeable runtimes draw the same scene — WebGL2, three.js, WebGPU, Canvas 2D, Unity WebGL</li>
           <li data-i18n="svc.loci.3">Every session reports frames, jank, input lag and load time from the device itself</li>
         </ul>
         <div class="svc-foot">
@@ -187,7 +187,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="17.2" r="1.8"/><path d="M8.4 13.8a5 5 0 0 1 7.2 0"/><path d="M5.6 10.7a9 9 0 0 1 12.8 0"/><path d="M2.9 7.6a13 13 0 0 1 18.2 0"/></svg>
         <div class="svc-head">
           <h3>BCON</h3>
-          <span class="badge dev" data-i18n="svc.b.dev">In development</span>
+          <span class="badge beta" data-i18n="svc.b.beta">Beta</span>
         </div>
         <span class="svc-full" data-i18n="svc.bcon.full">Broadcast Commute Observation Networks · Wireless environment</span>
         <p data-i18n="svc.bcon.d">Checks the wireless environment in range and names what is wrong with it — no encryption, one name answering from several radios, protections never switched on — then says what to change for each. Scored per place, with the parts always shown.</p>
@@ -293,7 +293,7 @@ const _L = {
     "hero.byline":"<b class=\"t-joy\">joy</b>, realized when it <b class=\"t-go\">go</b>es <b class=\"t-live\">Live</b>.",
 
     "svc.tag":"Portfolio","svc.h2":"What has shipped so far",
-    "svc.lead":"Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement — and two still being built: a memory-training room and a wireless environment check. Fields that share nothing with each other, already running rather than described. Each was built here and is operated here: not licensed, not resold.",
+    "svc.lead":"Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check — and one still being built: a memory-training room. Fields that share nothing with each other, already running rather than described. Each was built here and is operated here: not licensed, not resold.",
     "svc.more":"Read more","svc.b.beta":"Beta","svc.b.dev":"In development","svc.b.test":"Testnet",
 
     "svc.uqh.full":"Universal Quantum Hub · Quantum computing",
@@ -322,7 +322,7 @@ const _L = {
     "svc.loci.full":"Method of Loci · 3D memory training",
     "svc.loci.d":"A room you look around and place things in, then recall where they were. The 3D is not decoration: the method of loci is spatial to begin with. Built as a testbed for the whole pipeline — authoring, handoff, serving, and measuring what a device does with it.",
     "svc.loci.1":"A room is one JSON file. Planning edits it; development never touches code for a new room",
-    "svc.loci.2":"Four interchangeable runtimes draw the same scene — WebGL2, three.js, WebGPU, Canvas 2D",
+    "svc.loci.2":"Five interchangeable runtimes draw the same scene — WebGL2, three.js, WebGPU, Canvas 2D, Unity WebGL",
     "svc.loci.3":"Every session reports frames, jank, input lag and load time from the device itself",
 
     "svc.bcon.full":"Broadcast Commute Observation Networks · Wireless environment",
@@ -356,7 +356,7 @@ const _L = {
     "hero.byline":"<b class=\"t-joy\">joy</b>, realized when it <b class=\"t-go\">go</b>es <b class=\"t-live\">Live</b>.",
 
     "svc.tag":"포트폴리오","svc.h2":"지금까지 나온 것",
-    "svc.lead":"양자 인프라, 운동 코칭, 온체인 복권, 웹 실측, 그리고 만들고 있는 둘 — 기억 훈련과 무선 환경 점검. 공통점 하나 없는 분야들입니다. 설명이 아니라 이미 돌아가는 서비스입니다. 각각 여기서 만들고 여기서 운영합니다. 라이선스도, 재판매도 아닙니다.",
+    "svc.lead":"양자 인프라, 운동 코칭, 온체인 복권, 웹 실측, 무선 환경 점검, 그리고 만들고 있는 하나 — 기억 훈련. 공통점 하나 없는 분야들입니다. 설명이 아니라 이미 돌아가는 서비스입니다. 각각 여기서 만들고 여기서 운영합니다. 라이선스도, 재판매도 아닙니다.",
     "svc.more":"자세히 보기","svc.b.beta":"베타","svc.b.dev":"개발 중","svc.b.test":"테스트넷",
 
     "svc.uqh.full":"Universal Quantum Hub · 양자컴퓨팅",
@@ -385,7 +385,7 @@ const _L = {
     "svc.loci.full":"장소법 · 3D 기억 훈련",
     "svc.loci.d":"둘러보며 물건을 놓고, 자리만 남았을 때 무엇이었는지 답하는 방입니다. 3D 는 장식이 아닙니다 — 장소법은 본래 공간을 씁니다. 제작부터 인계·서비스·계측까지 공정 전체를 돌려 보는 자리로 지었습니다.",
     "svc.loci.1":"방 하나가 JSON 한 장. 기획이 고치고, 방을 늘릴 때 코드는 건드리지 않습니다",
-    "svc.loci.2":"같은 방을 네 런타임이 그립니다 — WebGL2·three.js·WebGPU·Canvas 2D",
+    "svc.loci.2":"같은 방을 다섯 런타임이 그립니다 — WebGL2·three.js·WebGPU·Canvas 2D·Unity WebGL",
     "svc.loci.3":"한 판마다 프레임·끊김·입력 지연·로딩이 그 기기에서 기록됩니다",
 
     "svc.bcon.full":"Broadcast Commute Observation Networks · 무선 환경",
