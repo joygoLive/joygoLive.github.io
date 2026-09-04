@@ -140,7 +140,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <div class="facts">
       <div class="fact fade"><b data-i18n="why.f1.t">A place, not a population</b><span data-i18n="why.f1.d">An aggregate needs a large sample before it means anything. Something actually picked up in one spot is a fact at n = 1, and it stays worth re-checking as long as you keep going there.</span></div>
-      <div class="fact fade"><b data-i18n="why.f2.t">A finding with a next step</b><span data-i18n="why.f2.d">A score on its own is a number to feel bad about. Every item here carries the thing to change: a toggle, a setting, or a rule about what not to do on that network.</span></div>
+      <div class="fact fade"><b data-i18n="why.f2.t">A finding with a next step</b><span data-i18n="why.f2.d">A score on its own is a number to feel bad about. Each reading comes back as things to do, ordered by how much risk each one removes — and grouped by the action, not the item, because three different findings often end in the same single move.</span></div>
       <div class="fact fade"><b data-i18n="why.f3.t">Repetition is the dataset</b><span data-i18n="why.f3.d">Seeing the same places repeatedly is usually a limit on coverage. Here it is the point: the same spot read again and again becomes a record of how it changed.</span></div>
     </div>
   </div>
@@ -150,16 +150,16 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="what">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="what.tag">Checks</div>
-    <h2 data-i18n="what.h2">Five things that put you at risk</h2>
-    <p class="lead" data-i18n="what.lead">Each carries a weight, because they are not equally dangerous. An open network you might join by accident is worth four times a stale cipher on equipment you were never going to touch. The weights add up to one score per place, and the score always shows its parts.</p>
+    <h2 data-i18n="what.h2">Seven things that put you at risk</h2>
+    <p class="lead" data-i18n="what.lead">Each carries a weight, because they are not equally dangerous. An open network you might join by accident carries more than ten times the weight of a transition mode left on by the manufacturer. The weights add up to one score per place, and the score always shows its parts.</p>
     </div>
     <div class="sig">
       <div class="scard fade">
-        <div class="sw"><span class="sk" data-i18n="what.1.t">Open network</span><span class="sp">40</span></div>
+        <div class="sw"><span class="sk" data-i18n="what.1.t">Open network</span><span class="sp">35</span></div>
         <p data-i18n="what.1.d">No encryption at all. The real hazard is not the network but the phone, which may have been told to join something like it before and will do so again without asking.</p>
       </div>
       <div class="scard fade">
-        <div class="sw"><span class="sk" data-i18n="what.2.t">Evil twin</span><span class="sp">20</span></div>
+        <div class="sw"><span class="sk" data-i18n="what.2.t">Evil twin</span><span class="sp">18</span></div>
         <p data-i18n="what.2.d">One familiar name answering from several different radios. Mesh systems and phone hotspots do this legitimately, so it is reported as a candidate to look at, never as an accusation.</p>
       </div>
       <div class="scard fade">
@@ -167,16 +167,24 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
         <p data-i18n="what.3.d">Without PMF, anyone nearby can knock a device off the network — and a forced reconnection is exactly the moment an impostor wants. Optional PMF is flagged separately from absent.</p>
       </div>
       <div class="scard fade">
-        <div class="sw"><span class="sk" data-i18n="what.4.t">WPS enabled</span><span class="sp">15</span></div>
+        <div class="sw"><span class="sk" data-i18n="what.4.t">WPS enabled</span><span class="sp">12</span></div>
         <p data-i18n="what.4.d">The convenience pairing path, and a way around the passphrase that the passphrase cannot defend against. Usually on because nobody turned it off.</p>
       </div>
       <div class="scard fade">
-        <div class="sw"><span class="sk" data-i18n="what.5.t">Weak cipher</span><span class="sp">10</span></div>
+        <div class="sw"><span class="sk" data-i18n="what.6.t">Carrier roaming</span><span class="sp">12</span></div>
+        <p data-i18n="what.6.d">Several access points carrying one name so the phone hands itself over without asking. Convenient, and a record of where you went. The handover is also the easiest moment for an impostor to step in, because the phone is already expecting to move.</p>
+      </div>
+      <div class="scard fade">
+        <div class="sw"><span class="sk" data-i18n="what.5.t">Weak cipher</span><span class="sp">5</span></div>
         <p data-i18n="what.5.d">WEP, original WPA, or TKIP still in the mix. Lowest weight because it usually appears on equipment old enough that nobody was going to connect to it anyway.</p>
+      </div>
+      <div class="scard fade">
+        <div class="sw"><span class="sk" data-i18n="what.7.t">Transition mode</span><span class="sp">3</span></div>
+        <p data-i18n="what.7.d">WPA3 switched on while WPA2 is left open for older devices — the manufacturer's default. An attacker simply chooses the WPA2 side, where none of WPA3's protections apply. Weighted lowest because it is still better than no WPA3 at all.</p>
       </div>
     </div>
     <div class="facts" style="margin-top:30px">
-      <div class="fact fade" data-i18n-html="what.p1"><b>The unit is a place, not a network</b><span>Readings are grouped into cells about 111 m across and sorted by how long you stayed, because the place you linger in is the place you are exposed in. A corridor you pass through in ninety seconds is not the same risk as the desk you sit at all day.</span></div>
+      <div class="fact fade" data-i18n-html="what.p1"><b>The unit is a place, not a network</b><span>A place is whatever you named it when you stood there — not a GPS cell. Indoors the coordinate freezes on the last fix, so three separate rooms measured in one evening all landed on the same square; the name you typed was the only thing that told them apart. Places are ordered by how long you stayed, because the place you linger in is the place you are exposed in.</span></div>
       <div class="fact fade" data-i18n-html="what.p2"><b>Guesswork is labelled as guesswork</b><span>Default network names, vendor from the address prefix, and device type from the name are all inference. They are printed as circumstantial, and a randomised address returns no vendor at all rather than a wrong one.</span></div>
     </div>
   </div>
@@ -186,15 +194,15 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="fix" class="section alt">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="fix.tag">Actions</div>
-    <h2 data-i18n="fix.h2">What to change, item by item</h2>
-    <p class="lead" data-i18n="fix.lead">Two kinds of instruction come out of a reading. On equipment you administer there is usually a setting to change. On everything else — which is most of it — the fix lives on your own device, in what it is allowed to join automatically.</p>
+    <h2 data-i18n="fix.h2">What to do, in the order that helps most</h2>
+    <p class="lead" data-i18n="fix.lead">Grouped by the action, not by the finding — open networks, evil twins and missing protection all end in the same first move, and listing them separately would say it three times. Ordered by how much of the score each action removes. These are suggestions, not instructions: nobody can change a stranger’s router, so the ones that need a settings change are written as "if any of these is yours".</p>
     </div>
     <div class="facts">
-      <div class="fact fade" data-i18n-html="fix.1"><b>Open network → stop joining them by reflex</b><span>Turn off automatic connection to open networks. If one has to be used, treat everything on it as readable and put a VPN in front. Some are opened as bait precisely because phones join them unprompted.</span></div>
-      <div class="fact fade" data-i18n-html="fix.2"><b>Evil twin candidate → connect by hand, not by memory</b><span>If a name you know from home or the office appears somewhere it should not, or answers from several radios at once, turn off auto-join for that name and pick the network deliberately. Most candidates are mesh or a hotspot, which is why they are candidates and not accusations.</span></div>
-      <div class="fact fade" data-i18n-html="fix.3"><b>WPS → switch it off where you can, distrust it where you cannot</b><span>On your own router it is one setting, and turning it off costs you nothing but the pairing button. On someone else's, treat that network as one your passphrase does not protect, because theirs does not protect theirs.</span></div>
-      <div class="fact fade" data-i18n-html="fix.4"><b>No PMF → move to WPA3 if the hardware allows</b><span>WPA3 makes management-frame protection mandatory, which is the single change that removes this item. Where the equipment cannot do it, the instruction is behavioural: do not do anything on that network you would mind having interrupted and redirected.</span></div>
-      <div class="fact fade" data-i18n-html="fix.5"><b>Default name or old cipher → assume the rest is default too</b><span>A network still carrying its factory name is circumstantial evidence that the admin password was never changed either. On your own equipment, change both and move off TKIP and WEP to AES. On other people's, read it as a sign of how the box is maintained.</span></div>
+      <div class="fact fade" data-i18n-html="fix.1"><b>① Turn off auto-join, choose by hand</b><span>One move that closes both open networks and evil twins, which is why it is always first. An open network carries your traffic in the clear; when one name answers from several radios, the phone takes the strongest and cannot tell which is real. <b>A VPN does not replace this</b> — it protects what you send after you have joined, not the joining.</span></div>
+      <div class="fact fade" data-i18n-html="fix.2"><b>② Use a VPN in that spot</b><span>Without PMF anyone nearby can knock you off the network. The disconnection is not the problem; <b>the reconnection is</b>, and once you are on, encryption of the traffic is the only defence left. ① stops you joining, ② protects you after you have.</span></div>
+      <div class="fact fade" data-i18n-html="fix.3"><b>③ Drop auto-join for carrier hotspots</b><span>Several access points under one name means the phone hands itself over without asking. That handover is the easiest moment to step into, because the phone is already expecting to move — and the trail of where you went stays with that network.</span></div>
+      <div class="fact fade" data-i18n-html="fix.4"><b>④ Turn WPS off — if any of these is yours</b><span>The PIN is validated in two halves, a design flaw that falls in hours, and once it falls <b>changing the passphrase does not help</b> — WPS lets them back in. On someone else's equipment, treat that network as one a passphrase does not protect.</span></div>
+      <div class="fact fade" data-i18n-html="fix.5"><b>⑤ Move off the old cipher — if any of these is yours</b><span>WEP and TKIP are effectively unprotected, and WPA2/WPA3 transition mode lets an attacker simply pick the weaker side. Moving to WPA3 makes PMF mandatory, which removes ② as well — and if the name is still the factory one, change the admin password with it.</span></div>
     </div>
   </div>
 </section>
@@ -292,12 +300,12 @@ const _L = {
     "why.f1.t":"모집단이 아니라 한 자리",
     "why.f1.d":"집계는 표본이 커져야 뜻이 생깁니다. 한 자리에서 실제로 잡힌 것은 n=1 에서도 사실이고, 계속 가는 자리라면 다시 볼 이유도 남습니다.",
     "why.f2.t":"다음 행동이 붙은 결과",
-    "why.f2.d":"점수만 있으면 기분만 나빠집니다. 여기서는 항목마다 바꿀 것이 같이 나옵니다 — 스위치 하나, 설정 한 줄, 아니면 그 망에서는 하지 말 것.",
+    "why.f2.d":"점수만 있으면 기분만 나빠집니다. 결과는 「할 일」로 돌아옵니다 — 그 동작이 줄이는 위험이 큰 순서로. 항목이 아니라 행동으로 묶습니다. 서로 다른 항목 셋이 결국 같은 동작 하나로 끝나는 일이 잦기 때문입니다.",
     "why.f3.t":"반복이 곧 데이터",
     "why.f3.d":"같은 곳만 반복해 보는 것은 보통 범위의 한계입니다. 여기서는 그게 핵심입니다 — 같은 자리를 거듭 읽으면 그 자리가 어떻게 변했는지가 남습니다.",
 
-    "what.tag":"점검 항목","what.h2":"나를 위험하게 만드는 다섯",
-    "what.lead":"각각 가중치가 다릅니다. 똑같이 위험하지 않기 때문입니다. 실수로 붙을 수 있는 개방망은, 애초에 붙을 일도 없는 장비의 낡은 암호보다 가중치가 네 배입니다. 가중치를 더해 장소마다 점수 하나가 나오고, 점수와 함께 항목별 내역을 언제나 공개합니다.",
+    "what.tag":"점검 항목","what.h2":"나를 위험하게 만드는 일곱",
+    "what.lead":"각각 가중치가 다릅니다. 똑같이 위험하지 않기 때문입니다. 실수로 붙을 수 있는 개방망(35)은, 제조사 기본값으로 열려 있는 전환 모드(3)보다 가중치가 열 배 이상입니다. 가중치를 더해 장소마다 점수 하나가 나오고, 점수와 함께 항목별 내역을 언제나 공개합니다.",
     "what.1.t":"개방망",
     "what.1.d":"암호가 아예 없습니다. 진짜 위험은 그 망이 아니라 폰입니다 — 예전에 비슷한 이름에 붙으라고 배운 적이 있으면 묻지 않고 다시 붙습니다.",
     "what.2.t":"이블 트윈",
@@ -306,18 +314,22 @@ const _L = {
     "what.3.d":"관리 프레임 보호가 없으면 근처의 누구든 기기를 끊어 낼 수 있고, 강제로 재접속하는 그 순간이 위장 AP 가 노리는 자리입니다. 「선택 적용」은 「미적용」과 따로 표시합니다.",
     "what.4.t":"WPS 켜짐",
     "what.4.d":"간편 연결 통로이자, 비밀번호로는 막을 수 없는 비밀번호 우회로입니다. 대개 아무도 끄지 않아서 켜져 있습니다.",
+    "what.6.t":"자동 로밍",
+    "what.6.d":"여러 AP 가 한 이름을 달고 있어 폰이 묻지 않고 옮겨 붙습니다. 편하고, 어디를 지났는지가 그 망에 남습니다. 옮겨 붙는 순간이 위장 AP 가 끼어들기 가장 쉬운 자리이기도 합니다 — 폰이 이미 옮길 것을 예상하고 있기 때문입니다.",
+    "what.7.t":"전환 모드",
+    "what.7.d":"WPA3 를 켜면서 구형 기기용으로 WPA2 를 같이 열어 둔 상태 — 제조사 기본값입니다. 공격자는 WPA2 쪽을 고르면 그만이고, 그 접속에는 WPA3 의 보호가 하나도 적용되지 않습니다. 가중치가 가장 낮은 이유는 WPA3 가 아예 없는 것보다는 낫기 때문입니다.",
     "what.5.t":"약한 암호",
-    "what.5.d":"WEP·초기 WPA·TKIP 가 아직 섞여 있는 경우. 가중치가 가장 낮은 이유는, 보통 애초에 붙을 일 없는 오래된 장비에서 나오기 때문입니다.",
-    "what.p1":"<b>단위는 망이 아닌 장소</b><span>관측을 약 111m 격자로 묶고 <b>머문 시간 순</b>으로 세웁니다 — 오래 머무는 곳이 곧 오래 노출되는 곳이기 때문입니다. 90초 만에 지나가는 복도와 하루 종일 앉는 자리는 같은 위험이 아닙니다.</span>",
+    "what.5.d":"WEP·초기 WPA·TKIP 가 아직 섞여 있는 경우. 가중치가 낮은 이유는, 보통 애초에 붙을 일 없는 오래된 장비에서 나오기 때문입니다. 보이면 그 장비가 10년 넘게 방치됐다는 뜻이라, 숫자보다 그 사실 자체가 신호입니다.",
+    "what.p1":"<b>단위는 망이 아닌 장소</b><span>장소는 <b>그 자리에서 붙인 이름</b>입니다 — GPS 격자가 아닙니다. 실내에서는 좌표가 마지막 fix 에 굳어서, 하루 저녁에 잰 서로 다른 세 곳이 전부 같은 칸에 찍힌 적이 있습니다. 가른 것은 사람이 넣은 이름뿐이었습니다. 세우는 순서는 <b>머문 시간 순</b>입니다 — 오래 머무는 곳이 곧 오래 노출되는 곳이기 때문입니다.</span>",
     "what.p2":"<b>추측은 추측으로 표기</b><span>기본 SSID·주소 앞자리로 본 제조사·이름으로 본 기기 종류는 전부 정황입니다. 정황이라고 표시해서 내고, 주소가 무작위화된 경우에는 틀린 제조사를 대는 대신 아무것도 대지 않습니다.</span>",
 
-    "fix.tag":"조치","fix.h2":"항목마다, 무엇을 바꿀 것인가",
-    "fix.lead":"결과에서 나오는 지시는 두 갈래입니다. 내가 관리하는 장비면 보통 바꿀 설정이 있습니다. 나머지는 — 그리고 대부분이 그쪽입니다 — 고칠 자리가 내 기기 쪽입니다. 무엇에 자동으로 붙게 둘 것인가.",
-    "fix.1":"<b>개방망 → 자동접속 차단</b><span>개방망 자동접속을 끕니다. 꼭 써야 하면 그 위의 모든 것이 읽힌다고 보고 VPN 을 앞에 둡니다. 폰이 알아서 붙기 때문에 미끼로 열어 두는 경우가 있습니다.</span>",
-    "fix.2":"<b>이블 트윈 후보 → 수동 선택</b><span>집이나 회사에서 아는 이름이 그럴 리 없는 곳에 뜨거나 여러 AP 에서 동시에 응답하면, 그 이름의 자동접속을 끄고 직접 골라 붙습니다. 후보 대부분은 메시나 핫스팟입니다 — 그래서 단정이 아니라 후보입니다.</span>",
-    "fix.3":"<b>WPS → 차단, 불가 시 불신</b><span>내 공유기라면 설정 하나이고, 꺼서 잃는 것은 간편 연결 버튼뿐입니다. 남의 것이라면 그 망은 <b>내 비밀번호가 지켜 주지 않는 망</b>으로 놓습니다. 그쪽 비밀번호가 그쪽을 못 지키기 때문입니다.</span>",
-    "fix.4":"<b>PMF 없음 → WPA3 전환</b><span>WPA3 는 관리 프레임 보호를 의무화하므로, 이 항목을 없애는 단 하나의 변경입니다. 장비가 못 하면 지시는 행동 쪽입니다 — 끊겼다 딴 데로 끌려가도 괜찮지 않은 일은 그 망에서 하지 않습니다.</span>",
-    "fix.5":"<b>기본 이름·구식 암호 → 전반 기본값 추정</b><span>공장 이름을 그대로 달고 있다는 것은 관리자 비밀번호도 안 바꿨다는 정황입니다. 내 장비면 둘 다 바꾸고 TKIP·WEP 에서 AES 로 옮깁니다. 남의 장비면 그 공유기가 어떻게 관리되는지의 신호로 읽습니다.</span>",
+    "fix.tag":"조치","fix.h2":"무엇부터 하면 되는가",
+    "fix.lead":"항목이 아니라 「행동」으로 묶습니다 — 개방망·이블 트윈·보호 없음은 첫 동작이 결국 같아서, 따로 늘어놓으면 같은 말을 세 번 하게 됩니다. 순서는 그 동작이 줄이는 점수 순입니다. 그리고 이것은 지시가 아니라 제안입니다 — 남의 공유기 설정을 바꿀 수는 없으므로, 설정 변경이 필요한 항목은 「본인 장비가 있다면」으로 답니다.",
+    "fix.1":"<b>① 자동접속 끄고 수동으로 고르기</b><span>개방망과 이블 트윈을 한 번에 막는 동작이라 언제나 첫 번째입니다. 개방망은 붙는 순간 트래픽이 그대로 흐르고, 같은 이름이 여럿이면 폰은 신호가 센 쪽에 붙습니다 — 어느 쪽이 진짜인지 구별하지 못합니다. <b>VPN 은 이것을 대신하지 못합니다.</b> 붙은 뒤 내용을 지킬 뿐, 가짜 AP 에 붙는 것 자체는 못 막습니다.</span>",
+    "fix.2":"<b>② 그 자리에서는 VPN</b><span>PMF 가 없으면 근처의 누구든 접속을 끊어 낼 수 있습니다. 끊는 것보다 <b>다시 붙을 곳을 찾는 그 순간</b>이 문제이고, 이미 붙어 버린 뒤에 남는 방어는 트래픽 암호화뿐입니다. ①이 붙는 것을 막고, ②가 붙은 뒤를 지킵니다.</span>",
+    "fix.3":"<b>③ 통신사 공용 WiFi 자동접속 해제</b><span>여러 AP 가 한 이름으로 이어져 있으면 폰이 묻지 않고 옮겨 붙습니다. 옮겨 붙는 순간이 끼어들기 가장 쉬운 자리이고 — 폰이 이미 옮길 것을 예상하고 있으므로 — 어디를 지났는지도 그 망에 남습니다.</span>",
+    "fix.4":"<b>④ WPS 해제 — 본인 장비가 있다면</b><span>PIN 방식은 8자리를 앞뒤로 나눠 검증하는 설계 결함이 있어 수 시간이면 뚫립니다. 뚫리면 <b>비밀번호를 바꿔도 소용없습니다</b> — WPS 로 다시 들어옵니다. 남의 장비라면 그 망은 「비밀번호가 지켜 주지 않는 망」으로 놓습니다.</span>",
+    "fix.5":"<b>⑤ 암호 방식 교체 — 본인 장비가 있다면</b><span>WEP·TKIP 는 사실상 무보안이고, WPA2/WPA3 전환 모드는 공격자가 낮은 쪽을 골라 붙을 수 있습니다. WPA3 로 옮기면 PMF 가 의무가 되어 ②까지 같이 없어집니다 — 기본 이름을 그대로 달고 있다면 관리자 비밀번호도 함께 바꿉니다.</span>",
 
     "found.tag":"실측","found.h2":"자리마다 실제로 무엇이 곁에 있나",
     "found.lead":"동선이 실제로 지나는 자리에서 3분씩 서서 잰 값입니다 — 정류장·식당·로비·공원. 어딘가에 대한 조사가 아니라 특정 지점의 기록이고, 숫자가 나와 상관있어지는 유일한 종류입니다.",
