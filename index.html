@@ -209,12 +209,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
           <h3>MP</h3>
           <span class="badge beta" data-i18n="svc.b.beta">Beta</span>
         </div>
-        <span class="svc-full" data-i18n="svc.mp.full">Music Play · Synchronised listening</span>
-        <p data-i18n="svc.mp.d">A shared listening session on one server clock: every connected browser plays the same song from the same offset. Requests enter a published five-song lineup, an AI DJ reads a reconstruction of the story over the intro, and a curated catalogue fills any slot the queue leaves empty.</p>
+        <span class="svc-full" data-i18n="svc.mp.full">Music Play · Music with an AI DJ</span>
+        <p data-i18n="svc.mp.d">A music broadcast where an AI DJ takes requests and the stories behind them. Everyone connected hears the same song at the same point, and the DJ summarises the story over the intro. When no requests are waiting, a curated catalogue is scheduled.</p>
         <ul class="svc-points">
-          <li data-i18n="svc.mp.1">No audio path on the server: a timestamp, a lineup and a script; each client opens its own embed</li>
-          <li data-i18n="svc.mp.2">Weighted queue over first come, first served; every decision logs the score that won</li>
-          <li data-i18n="svc.mp.3">Server-side voices in two languages, every external call metered against free tiers with a hard cut-off</li>
+          <li data-i18n="svc.mp.1">No audio is served: the server holds the schedule and the playback time, and each browser plays its own YouTube embed</li>
+          <li data-i18n="svc.mp.2">Weighted scheduling over first come, first served — a story takes priority, and the deciding score is logged</li>
+          <li data-i18n="svc.mp.3">Scripts are generated in Korean and English at once, read by two server-synthesised voices that alternate every three hours</li>
         </ul>
         <div class="svc-foot">
           <span class="svc-go"><span data-i18n="svc.more">Read more</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -352,11 +352,11 @@ const _L = {
     "svc.bcon.2":"One risk score per place, always shown with its parts",
     "svc.bcon.3":"Each finding carries its remediation: a setting change or a connection habit",
 
-    "svc.mp.full":"Music Play · Synchronised listening",
-    "svc.mp.d":"A shared listening session on one server clock: every connected browser plays the same song from the same offset. Requests enter a published five-song lineup, an AI DJ reads a reconstruction of the story over the intro, and a curated catalogue fills any slot the queue leaves empty.",
-    "svc.mp.1":"No audio path on the server: a timestamp, a lineup and a script; each client opens its own embed",
-    "svc.mp.2":"Weighted queue over first come, first served; every decision logs the score that won",
-    "svc.mp.3":"Server-side voices in two languages, every external call metered against free tiers with a hard cut-off",
+    "svc.mp.full":"Music Play · Music with an AI DJ",
+    "svc.mp.d":"A music broadcast where an AI DJ takes requests and the stories behind them. Everyone connected hears the same song at the same point, and the DJ summarises the story over the intro. When no requests are waiting, a curated catalogue is scheduled.",
+    "svc.mp.1":"No audio is served: the server holds the schedule and the playback time, and each browser plays its own YouTube embed",
+    "svc.mp.2":"Weighted scheduling over first come, first served — a story takes priority, and the deciding score is logged",
+    "svc.mp.3":"Scripts are generated in Korean and English at once, read by two server-synthesised voices that alternate every three hours",
 
     "nav.ideas":"Bring an idea",
     "id.tag":"Bring an idea",
@@ -421,11 +421,11 @@ const _L = {
     "svc.bcon.2":"장소별 위험 점수 하나, 항목별 내역까지 공개",
     "svc.bcon.3":"탐지 항목마다 조치 — 설정 변경 또는 접속 습관 변경",
 
-    "svc.mp.full":"Music Play · 동시 청취",
-    "svc.mp.d":"서버 시계 하나 위의 공동 청취 세션입니다. 접속한 모든 브라우저가 같은 곡을 같은 오프셋에서 재생합니다. 신청곡은 공개된 다섯 곡 라인업에 들어가고, AI DJ가 도입부에서 사연의 재구성을 읽으며, 큐가 비운 자리는 큐레이션된 카탈로그가 채웁니다.",
-    "svc.mp.1":"서버에 오디오 경로 없음 — 타임스탬프·라인업·대본뿐, 클라이언트가 각자 임베드를 엶",
-    "svc.mp.2":"선착순 위의 가중치 큐 — 결정마다 이긴 점수를 기록",
-    "svc.mp.3":"서버 합성 음성 2개 언어, 모든 외부 호출을 무료 한도에 계량하고 초과 시 차단",
+    "svc.mp.full":"Music Play · AI DJ 음악 방송",
+    "svc.mp.d":"AI DJ가 신청곡과 사연을 접수해 편성하는 음악 방송입니다. 접속한 모두가 같은 곡을 같은 지점에서 듣고, DJ가 곡 도입부에 사연을 요약해 전합니다. 신청이 없는 동안은 큐레이션된 카탈로그가 편성을 잇습니다.",
+    "svc.mp.1":"음원을 서빙하지 않습니다 — 서버는 편성표와 재생 시각만, 재생은 각 브라우저의 유튜브 임베드",
+    "svc.mp.2":"선착순에 가중치를 더한 편성 — 사연 있는 신청이 우선, 편성 근거 점수를 기록",
+    "svc.mp.3":"DJ 대본은 한국어·영어를 한 번에 생성. 서버에서 합성한 목소리 둘이 3시간마다 교대",
 
     "nav.ideas":"제안",
     "id.tag":"제안",
