@@ -106,7 +106,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="hero-kicker mono" data-i18n="hero.kicker">MP · MyPlay</div>
     <h1 data-i18n-html="hero.title">A radio <span class="grad">everyone hears together</span>.</h1>
-    <p class="lead" data-i18n="hero.sub">One server clock, one schedule. Everyone connected hears the same song at the same point. Send a request with a story and it goes on air in the next slots; an AI DJ reads the story over the intro. When no one has requested anything, a hand-curated catalogue keeps the station running.</p>
+    <p class="lead" data-i18n="hero.sub">One server clock, one schedule. Everyone connected hears the same song at the same point. Send a request with a story and it goes on air in the next slots; an AI DJ reads the story over the intro. The next five songs are published in advance. When the queue is empty, a hand-curated catalogue keeps the station running.</p>
     <div class="cta-row">
       <a href="https://mp.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta1">Open the station</a>
       <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">What this does not claim</a>
@@ -120,12 +120,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="why" class="section alt">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="why.tag">Premise</div>
-    <h2 data-i18n="why.h2">A playlist has no reason to come back to. A broadcast does.</h2>
-    <p class="lead" data-i18n="why.lead">MyPlay began as a personal catalogue player: one JSON file with credits and a note per song, served to an offline app and a web app. A player like that is complete on the first visit. A broadcast exists only at this moment, and a request puts the listener in it. The catalogue did not change; what changed is who holds the clock.</p>
+    <h2 data-i18n="why.h2">From a personal player to a shared station</h2>
+    <p class="lead" data-i18n="why.lead">MyPlay began as a personal catalogue player: one JSON file with credits and a note per song, served to an offline app and a web app. The shared station uses that file unchanged. What differs is that the playback position is decided by the server rather than by each listener, and that requests feed the schedule.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="why.f1.t">One clock, on the server</b><span data-i18n="why.f1.d">A single station row records the current song and when it started. Clients read it and seek to the same point. There is no audio stream to synchronise, only a timestamp.</span></div>
-      <div class="fact fade"><b data-i18n="why.f2.t">The catalogue is the default schedule</b><span data-i18n="why.f2.d">When the request queue is empty the station picks from the catalogue: recent songs and the previous artist are avoided, songs whose embed is blocked are excluded. The station never goes silent for lack of requests.</span></div>
+      <div class="fact fade"><b data-i18n="why.f1.t">One clock, on the server</b><span data-i18n="why.f1.d">A single station row records the current song and when it started. Clients read it and seek to the same point. Synchronisation is a timestamp comparison, not an audio stream.</span></div>
+      <div class="fact fade"><b data-i18n="why.f2.t">The catalogue is the default schedule</b><span data-i18n="why.f2.d">When the request queue is empty the station picks from the catalogue in a shuffle cycle: songs never aired come first, songs aired within the last 60% of the catalogue are excluded, the previous artist is avoided, and embed-blocked songs are excluded. Playback continues while the queue is empty.</span></div>
       <div class="fact fade"><b data-i18n="why.f3.t">Requests and stories are the input</b><span data-i18n="why.f3.d">A request is a song plus an optional story and an optional name to be called by. It enters the schedule from the next slot. A request with a story outranks one without; the DJ reads a reconstruction of the story, never the original text.</span></div>
     </div>
   </div>
@@ -136,12 +136,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="how.tag">How it works</div>
     <h2 data-i18n="how.h2">Advance on read, no cron</h2>
-    <p class="lead" data-i18n="how.lead">The hosting has no scheduler, so the clock advances when it is read. Every listener polls the station every ten seconds; whichever poll finds the song finished moves the station to the next one, and only one of them wins.</p>
+    <p class="lead" data-i18n="how.lead">The hosting has no scheduler, so the clock advances when it is read. Every listener polls the station every ten seconds; the poll that finds the song finished advances the station, and a conditional update ensures that only one of the concurrent polls does.</p>
     </div>
     <div class="pts">
-      <div class="pt fade" data-i18n-html="how.1"><b>Joining</b><span>One tap to start, because browsers do not play sound without a gesture. The client loads the current song at the server's offset and is in the broadcast.</span></div>
+      <div class="pt fade" data-i18n-html="how.1"><b>Joining</b><span>One tap to start, because browsers do not play sound without a gesture. The client loads the current song at the server's offset and joins the broadcast.</span></div>
       <div class="pt fade" data-i18n-html="how.2"><b>Staying in sync</b><span>Every ten seconds the client compares its position with the server's. A drift over three seconds is corrected with a seek; anything smaller is left alone, because ads and buffering always cost a few seconds and constant seeking would break the song.</span></div>
-      <div class="pt fade" data-i18n-html="how.3"><b>Song boundaries</b><span>Ninety seconds before a song ends, one poll takes a lock and decides the next song in advance. At the boundary the advance is a single conditional update, so concurrent polls cannot advance twice.</span></div>
+      <div class="pt fade" data-i18n-html="how.3"><b>Song boundaries and the lineup</b><span>The next five songs are decided in advance, stored, and shown to listeners in that order. Ninety seconds before a song ends, one poll takes a lock and prepares the first of them. The advance itself is a single conditional update, so concurrent polls cannot advance twice.</span></div>
       <div class="pt fade" data-i18n-html="how.4"><b>A song that will not embed</b><span>An upload with embedding disabled fails for every listener at once. Clients report it; after three distinct reports the song leaves the schedule. The catalogue file itself is never edited by the server.</span></div>
     </div>
   </div>
@@ -152,17 +152,17 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="rule.tag">Scheduling</div>
     <h2 data-i18n="rule.h2">First come, first served, plus weights</h2>
-    <p class="lead" data-i18n="rule.lead">The base score is minutes waited, which alone is first come, first served. Conditions add to it, so a later request can go first. Waiting time keeps accruing, so nothing is starved. The weights live in a table, not in code, and every scheduling decision records the winning score, so the weights can be re-tuned from what actually happened.</p>
+    <p class="lead" data-i18n="rule.lead">The base score is minutes waited, which alone is first come, first served. Conditions add to it, so a later request can be scheduled earlier. Waiting time keeps accruing, so every request is eventually played. Requests enter the published lineup from the second slot; the first slot is locked. The weights live in a table, not in code, and every scheduling decision records the winning score, so the weights can be re-tuned from what actually happened.</p>
     </div>
     <table class="rt">
       <tr><th data-i18n="rule.c1">Condition</th><th class="n" data-i18n="rule.c2">Weight</th><th data-i18n="rule.c3">Why</th></tr>
       <tr><td class="nm" data-i18n="rule.r1">Minutes waited</td><td class="n">+1 / min</td><td data-i18n="rule.r1d">The base. Equivalent to first come, first served on its own</td></tr>
-      <tr><td class="nm" data-i18n="rule.r2">Has a story</td><td class="n">+40</td><td data-i18n="rule.r2d">Stories go first. Decided, not tuned</td></tr>
-      <tr><td class="nm" data-i18n="rule.r3">Requester is listening now</td><td class="n">+30</td><td data-i18n="rule.r3d">A story read while its author is absent is the worst outcome</td></tr>
-      <tr><td class="nm" data-i18n="rule.r4">Same song requested by several</td><td class="n">+10 each, cap 30</td><td data-i18n="rule.r4d">Played once, every name called</td></tr>
-      <tr><td class="nm" data-i18n="rule.r5">First request from this person</td><td class="n">+15</td><td data-i18n="rule.r5d">Newcomers ahead of regulars</td></tr>
+      <tr><td class="nm" data-i18n="rule.r2">Has a story</td><td class="n">+40</td><td data-i18n="rule.r2d">Stories go first. A fixed rule, not a tuned value</td></tr>
+      <tr><td class="nm" data-i18n="rule.r3">Requester is listening now</td><td class="n">+30</td><td data-i18n="rule.r3d">A story should be read while its sender is listening</td></tr>
+      <tr><td class="nm" data-i18n="rule.r4">Same song requested by several</td><td class="n">+10 each, cap 30</td><td data-i18n="rule.r4d">Played once; every requester is named</td></tr>
+      <tr><td class="nm" data-i18n="rule.r5">First request from this person</td><td class="n">+15</td><td data-i18n="rule.r5d">A first request is scheduled ahead of repeat requesters</td></tr>
       <tr><td class="nm" data-i18n="rule.r6">Song not aired for a week</td><td class="n">+10</td><td data-i18n="rule.r6d">Variety</td></tr>
-      <tr><td class="nm" data-i18n="rule.r7">Same requester aired in the last two songs</td><td class="n">−20</td><td data-i18n="rule.r7d">No one monopolises the station</td></tr>
+      <tr><td class="nm" data-i18n="rule.r7">Same requester aired in the last two songs</td><td class="n">−20</td><td data-i18n="rule.r7d">Prevents one requester from dominating the schedule</td></tr>
       <tr><td class="nm" data-i18n="rule.r8">Same song aired in the last twenty</td><td class="n">−50</td><td data-i18n="rule.r8d">No back-to-back repeats</td></tr>
     </table>
     <p class="tnote" data-i18n="rule.note">Initial values. Every scheduling decision records its winning score, and the values are re-tuned from a month of those records.</p>
@@ -173,13 +173,13 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="dj">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="dj.tag">AI DJ</div>
-    <h2 data-i18n="dj.h2">A script from the catalogue, two voices, off if you want</h2>
-    <p class="lead" data-i18n="dj.lead">The DJ is a language model called once per request song and once every few catalogue songs. It is given the song's credits, its note and its source, the time of day, and the story if there is one, and it returns one short script. The script is spoken over the song's intro while the music is ducked. Listeners who prefer music only switch it off on their device.</p>
+    <h2 data-i18n="dj.h2">Scripts from the catalogue, two voices, two languages</h2>
+    <p class="lead" data-i18n="dj.lead">The DJ speaks over the intro of every song while the music is ducked. For a request with a story, a language model reconstructs the story in two or three sentences and names the requested song; the song's note is not read. For a request without a story, and for catalogue songs, the note already in the catalogue is read as it is, with no model call. Every few catalogue songs the model adds a longer script with the time of day. Scripts are produced in Korean and English in one call, and each listener hears the language of their interface. Listeners who prefer music only switch the DJ off on their device.</p>
     </div>
     <div class="facts">
       <div class="fact fade"><b data-i18n="dj.f1.t">Nothing outside the catalogue</b><span data-i18n="dj.f1.d">The model sees only the fields the catalogue holds for that song: performer, writers, the note on what it is about, and the source line. It is instructed to state nothing beyond them, and the server strips anything that looks like a number, a link or a name that was not in the input.</span></div>
       <div class="fact fade"><b data-i18n="dj.f2.t">Stories are reconstructed, not read</b><span data-i18n="dj.f2.d">A story is classified on arrival as safe, needs review, or rejected. On air, the DJ paraphrases it in two or three sentences; the original text stays on the sender's own screen and is deleted thirty days after airing. The song still plays even when the review is late.</span></div>
-      <div class="fact fade"><b data-i18n="dj.f3.t">Two voices, one script</b><span data-i18n="dj.f3.d">The listener picks a female or male DJ on their device. The script is generated once and written without first-person references, so either voice can read it. When generation fails, the song's note is shown as a caption instead, and the broadcast continues.</span></div>
+      <div class="fact fade"><b data-i18n="dj.f3.t">Two voices, one script</b><span data-i18n="dj.f3.d">The listener picks a female or male DJ on their device. The script is generated once, in both languages, and written without first-person references, so either voice can read it. When generation fails, the song's note is shown as a caption instead, and the broadcast continues.</span></div>
     </div>
   </div>
 </section>
@@ -210,8 +210,8 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <div class="facts">
       <div class="fact fade" data-i18n-html="limits.1"><b>Not a music service</b><span>No rights are held and no audio is served. Each listener plays a YouTube upload through the official embed player; availability, ads and quality are YouTube's. A song whose upload disappears leaves the schedule with it.</span></div>
-      <div class="fact fade" data-i18n-html="limits.2"><b>Sync is approximate</b><span>Listeners are within a few seconds of each other, not sample-aligned. Ads insert time for one listener and not another; the next poll pulls them back. Same song, roughly the same point, is the target.</span></div>
-      <div class="fact fade" data-i18n-html="limits.3"><b>The DJ knows only the catalogue</b><span>Scripts are generated from the song's own fields and the story. They contain no facts beyond that input, and when generation fails the note is shown as a caption. The DJ is not a source about music.</span></div>
+      <div class="fact fade" data-i18n-html="limits.2"><b>Sync is approximate</b><span>Listeners are within a few seconds of each other, not sample-aligned. Ads insert time for one listener and not another; the next poll pulls them back. The target is the same song within a few seconds.</span></div>
+      <div class="fact fade" data-i18n-html="limits.3"><b>The DJ knows only the catalogue</b><span>Scripts are generated from the song's own fields and the story. They contain no facts beyond that input, and when generation fails the note is shown as a caption. The DJ does not answer questions or add facts.</span></div>
       <div class="fact fade" data-i18n-html="limits.4"><b>One person's catalogue, anonymous listeners</b><span>The default schedule is a personal selection, not a chart. Requests are anonymous; a name to be called by is chosen by the sender and is not an identity. The listener count is a hashed-address heartbeat, not a login.</span></div>
       <div class="fact fade" data-i18n-html="limits.5"><b>The offline app is a personal accessory</b><span>The Android app reads the same catalogue from files on one device and plays without a network. It is sideloaded, not distributed, and it is not part of the broadcast.</span></div>
     </div>
@@ -250,49 +250,49 @@ const _L = {
 
     "hero.kicker":"MP · MyPlay",
     "hero.title":"<span class=\"grad\">같이 듣는</span> 라디오.",
-    "hero.sub":"서버 시계 하나, 편성표 하나. 접속한 모두가 같은 곡의 같은 대목을 듣습니다. 사연과 함께 곡을 신청하면 다음 편성부터 나가고, AI DJ가 곡 도입부에 사연을 읽습니다. 신청이 없는 동안은 직접 선곡한 카탈로그가 방송을 잇습니다.",
+    "hero.sub":"서버 시계 하나, 편성표 하나. 접속한 모두가 같은 곡의 같은 대목을 듣습니다. 사연과 함께 곡을 신청하면 다음 편성부터 나가고, AI DJ가 곡 도입부에 사연을 읽습니다. 다음 다섯 곡은 미리 공개됩니다. 신청이 없는 동안은 직접 선곡한 카탈로그가 방송을 잇습니다.",
     "hero.cta1":"방송국 열기",
     "hero.cta2":"주장하지 않는 것",
     "hero.reward":"<b>음원을 서빙하지 않습니다.</b> 청취자의 브라우저가 각자 현재 곡의 유튜브 임베드를 엽니다. 서버는 시계와 편성표만 갖고, 각 클라이언트에 지금 곡이 어디까지 갔는지를 알려줍니다.",
     "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 베타.",
 
-    "why.tag":"전제","why.h2":"재생목록에는 다시 올 이유가 없고, 방송에는 있다",
-    "why.lead":"MyPlay는 개인 카탈로그 플레이어로 시작했습니다. 곡마다 크레딧과 주제 한 줄이 붙은 JSON 파일 하나를 오프라인 앱과 웹앱이 같이 읽는 구조였습니다. 그런 플레이어는 첫 방문에 완결됩니다. 방송은 지금 이 순간에만 존재하고, 신청은 청취자를 그 안에 넣습니다. 카탈로그는 그대로이고, 바뀐 것은 시계를 누가 갖느냐입니다.",
+    "why.tag":"전제","why.h2":"개인 플레이어에서 공동 방송국으로",
+    "why.lead":"MyPlay는 개인 카탈로그 플레이어로 시작했습니다. 곡마다 크레딧과 주제 한 줄이 붙은 JSON 파일 하나를 오프라인 앱과 웹앱이 같이 읽는 구조였습니다. 공동 방송국은 그 파일을 그대로 씁니다. 달라진 것은 재생 위치를 각 청취자가 아니라 서버가 정한다는 것과, 신청이 편성의 입력이 된다는 것입니다.",
     "why.f1.t":"서버에 있는 시계 하나",
-    "why.f1.d":"방송국 행 하나가 현재 곡과 시작 시각을 기록합니다. 클라이언트는 그것을 읽고 같은 지점으로 seek 합니다. 동기화할 오디오 스트림은 없고 타임스탬프 하나뿐입니다.",
+    "why.f1.d":"방송국 행 하나가 현재 곡과 시작 시각을 기록합니다. 클라이언트는 그것을 읽고 같은 지점으로 seek 합니다. 동기화는 오디오 스트림이 아니라 타임스탬프 비교입니다.",
     "why.f2.t":"카탈로그가 기본 편성",
-    "why.f2.d":"신청 큐가 비면 카탈로그에서 고릅니다. 최근 곡과 직전 가수를 피하고, 임베드가 막힌 곡은 제외합니다. 신청이 없어서 방송이 서는 일은 없습니다.",
+    "why.f2.d":"신청 큐가 비면 카탈로그에서 셔플 순서로 고릅니다. 한 번도 안 나간 곡을 먼저, 최근에 나간 곡(카탈로그의 60%)은 제외, 직전 가수 회피, 임베드가 막힌 곡 제외. 큐가 비어 있는 동안에도 재생은 계속됩니다.",
     "why.f3.t":"신청과 사연이 입력",
     "why.f3.d":"신청은 곡 하나에 사연(선택)과 부를 이름(선택)이 붙은 것입니다. 다음 편성 슬롯부터 들어갑니다. 사연이 있는 신청이 없는 신청보다 앞서고, DJ는 사연 원문이 아니라 재구성한 문장을 읽습니다.",
 
     "how.tag":"동작 방식","how.h2":"읽을 때 전진, 크론 없음",
-    "how.lead":"호스팅에 예약 실행이 없어서 시계는 읽힐 때 전진합니다. 청취자 전원이 10초마다 방송국을 폴링하고, 곡이 끝난 것을 본 요청이 다음 곡으로 넘기되 그중 하나만 이깁니다.",
+    "how.lead":"호스팅에 예약 실행이 없어서 시계는 읽힐 때 전진합니다. 청취자 전원이 10초마다 방송국을 폴링하고, 곡이 끝난 것을 본 요청이 방송국을 전진시키고, 조건부 UPDATE 로 동시 요청 중 하나만 전진합니다.",
     "how.1":"<b>합류</b><span>브라우저는 제스처 없이 소리를 내지 않으므로 탭 한 번으로 시작합니다. 클라이언트는 현재 곡을 서버의 offset 위치로 로드하고 방송에 들어옵니다.</span>",
     "how.2":"<b>동기 유지</b><span>10초마다 자기 위치와 서버 위치를 비교합니다. 3초를 넘는 차이만 seek 로 보정하고, 그보다 작으면 손대지 않습니다. 광고와 버퍼링으로 늘 몇 초는 흔들리고, 매번 seek 하면 오히려 곡이 끊깁니다.</span>",
-    "how.3":"<b>곡 경계</b><span>곡이 끝나기 90초 전에 폴링 하나가 잠금을 잡고 다음 곡을 미리 정합니다. 경계에서의 전진은 조건부 UPDATE 하나라, 동시에 온 폴링이 두 번 전진시킬 수 없습니다.</span>",
+    "how.3":"<b>곡 경계와 라인업</b><span>다음 다섯 곡을 미리 확정해 저장하고 청취자에게 그 순서로 보여줍니다. 곡이 끝나기 90초 전에 폴링 하나가 잠금을 잡고 첫 곡의 준비본을 만듭니다. 전진 자체는 조건부 UPDATE 하나라 동시에 온 폴링이 두 번 전진시킬 수 없습니다.</span>",
     "how.4":"<b>임베드가 안 되는 곡</b><span>임베드가 꺼진 업로드는 모든 청취자에게 동시에 실패합니다. 클라이언트가 보고하고, 서로 다른 셋이 보고하면 편성에서 빠집니다. 카탈로그 파일 자체는 서버가 절대 고치지 않습니다.</span>",
 
     "rule.tag":"편성","rule.h2":"선착순에 가중치를 더한 순서",
-    "rule.lead":"기본 점수는 기다린 분 수이고, 이것만으로는 선착순입니다. 조건이 점수를 더해 뒤에 온 신청이 먼저 나갈 수 있습니다. 대기 시간은 계속 쌓이므로 영원히 밀리는 신청은 없습니다. 가중치는 코드가 아니라 표에 있고, 편성마다 이긴 점수를 기록하므로 실제 결과를 보고 다시 잡을 수 있습니다.",
+    "rule.lead":"기본 점수는 기다린 분 수이고, 이것만으로는 선착순입니다. 조건이 점수를 더해 뒤에 온 신청이 앞 순서에 편성될 수 있습니다. 대기 시간은 계속 쌓이므로 모든 신청은 결국 방송됩니다. 신청은 공개 라인업의 2번부터 들어가고 1번은 잠금입니다. 가중치는 코드가 아니라 표에 있고, 편성마다 이긴 점수를 기록하므로 실제 결과를 보고 다시 잡을 수 있습니다.",
     "rule.c1":"조건","rule.c2":"가중치","rule.c3":"이유",
     "rule.r1":"기다린 분 수","rule.r1d":"기본값. 이것만 있으면 선착순",
-    "rule.r2":"사연 있음","rule.r2d":"사연이 먼저. 조정 대상이 아니라 결정 사항",
-    "rule.r3":"신청자가 지금 듣는 중","rule.r3d":"본인이 없을 때 사연이 읽히는 것이 가장 나쁜 결과",
-    "rule.r4":"같은 곡을 여럿이 신청","rule.r4d":"한 번 방송하고 이름은 전부 호명",
-    "rule.r5":"이 사람의 첫 신청","rule.r5d":"단골보다 새로 온 사람 먼저",
+    "rule.r2":"사연 있음","rule.r2d":"사연 우선. 조정값이 아니라 고정 규칙",
+    "rule.r3":"신청자가 지금 듣는 중","rule.r3d":"사연은 보낸 사람이 듣고 있을 때 읽혀야 함",
+    "rule.r4":"같은 곡을 여럿이 신청","rule.r4d":"한 번 방송, 신청자 전원 호명",
+    "rule.r5":"이 사람의 첫 신청","rule.r5d":"첫 신청을 반복 신청자보다 앞에 편성",
     "rule.r6":"일주일간 안 나간 곡","rule.r6d":"다양성",
-    "rule.r7":"같은 신청자가 직전 두 곡 안에 방송됨","rule.r7d":"독점 방지",
+    "rule.r7":"같은 신청자가 직전 두 곡 안에 방송됨","rule.r7d":"한 신청자의 편성 독점 방지",
     "rule.r8":"같은 곡이 최근 스무 곡 안에 방송됨","rule.r8d":"연속 재생 방지",
     "rule.note":"초기값입니다. 편성마다 이긴 점수가 기록되고, 한 달치 기록을 보고 값을 다시 잡습니다.",
 
-    "dj.tag":"AI DJ","dj.h2":"카탈로그에서 나온 대본, 목소리 둘, 끌 수 있음",
-    "dj.lead":"DJ는 신청곡마다 한 번, 카탈로그 곡은 몇 곡에 한 번 호출되는 언어 모델입니다. 곡의 크레딧·주제·출처, 시각, 사연이 있으면 사연을 받아 짧은 대본 하나를 돌려줍니다. 대본은 곡 도입부 위에서 음악 볼륨을 낮춘 채 읽힙니다. 음악만 듣고 싶은 사람은 기기에서 끕니다.",
+    "dj.tag":"AI DJ","dj.h2":"카탈로그에서 나온 대본, 목소리 둘, 언어 둘",
+    "dj.lead":"DJ는 매 곡 도입부에서 음악 볼륨을 낮춘 채 말합니다. 사연이 있는 신청곡은 언어 모델이 사연을 두세 문장으로 재구성하고 신청곡을 소개하며, 이때 곡의 주제는 읽지 않습니다. 사연 없는 신청곡과 카탈로그 곡은 카탈로그에 있는 주제 한 줄을 모델 호출 없이 그대로 읽습니다. 카탈로그 곡 몇 곡에 한 번은 모델이 시간대 인사를 곁들인 긴 멘트를 만듭니다. 대본은 한 호출에서 한국어와 영어로 같이 생성되고, 청취자는 화면 언어의 대본을 듣습니다. 음악만 듣고 싶으면 기기에서 DJ를 끕니다.",
     "dj.f1.t":"카탈로그 밖의 사실 없음",
     "dj.f1.d":"모델이 보는 것은 그 곡에 대해 카탈로그가 가진 필드뿐입니다. 노래·작사·작곡, 무엇에 관한 곡인지, 출처 한 줄. 그 밖의 것은 말하지 말라고 지시하고, 서버는 입력에 없던 숫자·링크·인명 패턴을 한 번 더 제거합니다.",
     "dj.f2.t":"사연은 낭독이 아닌 재구성",
     "dj.f2.d":"사연은 접수 시 안전·검토 필요·거절로 분류됩니다. 방송에서는 DJ가 두세 문장으로 재구성해 말하고, 원문은 보낸 사람 화면에만 남았다가 방송 30일 뒤 삭제됩니다. 검토가 늦어도 곡은 나갑니다.",
     "dj.f3.t":"목소리 둘, 대본 하나",
-    "dj.f3.d":"청취자가 기기에서 여성 또는 남성 DJ를 고릅니다. 대본은 한 번만 생성하고 1인칭 자기 언급 없이 쓰므로 어느 목소리로도 읽을 수 있습니다. 생성에 실패하면 곡의 주제 한 줄이 자막으로 대신 나가고 방송은 계속됩니다.",
+    "dj.f3.d":"청취자가 기기에서 여성 또는 남성 DJ를 고릅니다. 대본은 한 번만 생성하고 한국어·영어가 같은 호출에서 나오며, 1인칭 자기 언급 없이 쓰므로 어느 목소리로도 읽을 수 있습니다. 생성에 실패하면 곡의 주제 한 줄이 자막으로 대신 나가고 방송은 계속됩니다.",
 
     "found.tag":"수치","found.h2":"카탈로그에서 실시간으로",
     "found.lead":"아래 수치는 이 페이지를 열 때 배포된 카탈로그 파일에서 읽어 옵니다. 신청 큐가 비었을 때 방송국이 편성하는 재료입니다.",
@@ -305,8 +305,8 @@ const _L = {
     "limits.tag":"한계","limits.h2":"주장하지 않는 것",
     "limits.lead":"임베드 영상 위의 공동 방송에는 분명한 경계가 있습니다. 아래가 그 경계입니다.",
     "limits.1":"<b>음악 서비스 아님</b><span>권리를 보유하지 않고 음원을 서빙하지 않습니다. 청취자마다 유튜브 업로드를 공식 임베드 플레이어로 재생하며, 가용성·광고·품질은 유튜브의 것입니다. 업로드가 사라지면 그 곡은 편성에서도 사라집니다.</span>",
-    "limits.2":"<b>동기화는 근사치</b><span>청취자 간 차이는 몇 초 이내이지, 샘플 단위로 맞지 않습니다. 광고는 한 사람에게만 시간을 끼워 넣고, 다음 폴링이 되돌립니다. 같은 곡, 대체로 같은 대목이 목표입니다.</span>",
-    "limits.3":"<b>DJ는 카탈로그만 안다</b><span>대본은 곡 자체의 필드와 사연에서만 생성됩니다. 그 입력 밖의 사실은 담지 않으며, 생성이 실패하면 주제 한 줄이 자막으로 나갑니다. DJ는 음악에 대한 정보원이 아닙니다.</span>",
+    "limits.2":"<b>동기화는 근사치</b><span>청취자 간 차이는 몇 초 이내이지, 샘플 단위로 맞지 않습니다. 광고는 한 사람에게만 시간을 끼워 넣고, 다음 폴링이 되돌립니다. 목표는 같은 곡을 몇 초 이내 차이로 듣는 것입니다.</span>",
+    "limits.3":"<b>DJ는 카탈로그만 안다</b><span>대본은 곡 자체의 필드와 사연에서만 생성됩니다. 그 입력 밖의 사실은 담지 않으며, 생성이 실패하면 주제 한 줄이 자막으로 나갑니다. DJ는 질문에 답하거나 사실을 덧붙이지 않습니다.</span>",
     "limits.4":"<b>개인의 카탈로그, 익명의 청취자</b><span>기본 편성은 개인 선곡이지 차트가 아닙니다. 신청은 익명이고, 부를 이름은 보낸 사람이 정한 호칭이지 신원이 아닙니다. 청취자 수는 해시 주소 하트비트이지 로그인이 아닙니다.</span>",
     "limits.5":"<b>오프라인 앱은 개인용 부속</b><span>안드로이드 앱은 같은 카탈로그를 한 기기의 파일에서 읽어 네트워크 없이 재생합니다. 사이드로드이며 배포하지 않고, 방송의 일부가 아닙니다.</span>",
     "limits.cta":"방송국 열기",
