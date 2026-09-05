@@ -209,12 +209,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
           <h3>MP</h3>
           <span class="badge beta" data-i18n="svc.b.beta">Beta</span>
         </div>
-        <span class="svc-full" data-i18n="svc.mp.full">Music Play · Music everyone hears together</span>
-        <p data-i18n="svc.mp.d">One server clock, one schedule: everyone connected hears the same song at the same point. Requests with stories play in the next slots and an AI DJ reads them over the intro. A hand-curated catalogue keeps the music going in between.</p>
+        <span class="svc-full" data-i18n="svc.mp.full">Music Play · Synchronised listening</span>
+        <p data-i18n="svc.mp.d">A shared listening session on one server clock: every connected browser plays the same song from the same offset. Requests enter a published five-song lineup, an AI DJ reads a reconstruction of the story over the intro, and a curated catalogue fills every slot the queue leaves empty.</p>
         <ul class="svc-points">
-          <li data-i18n="svc.mp.1">No audio served: the server holds the clock and schedule, each browser opens its own embed</li>
-          <li data-i18n="svc.mp.2">First come, first served plus weights: a story outranks a bare request, waiting time never stops accruing</li>
-          <li data-i18n="svc.mp.3">DJ script from the catalogue only, two voices, off on your device if you want music alone</li>
+          <li data-i18n="svc.mp.1">No audio path on the server: a timestamp, a lineup and a script; each client opens its own embed</li>
+          <li data-i18n="svc.mp.2">Weighted queue over first come, first served; every decision logs the score that won</li>
+          <li data-i18n="svc.mp.3">Server-side voices in two languages, every external call metered against free tiers with a hard cut-off</li>
         </ul>
         <div class="svc-foot">
           <span class="svc-go"><span data-i18n="svc.more">Read more</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -352,11 +352,11 @@ const _L = {
     "svc.bcon.2":"One risk score per place, always shown with its parts",
     "svc.bcon.3":"Each finding carries its remediation: a setting change or a connection habit",
 
-    "svc.mp.full":"Music Play · Music everyone hears together",
-    "svc.mp.d":"One server clock, one schedule: everyone connected hears the same song at the same point. Requests with stories play in the next slots and an AI DJ reads them over the intro. A hand-curated catalogue keeps the music going in between.",
-    "svc.mp.1":"No audio served: the server holds the clock and schedule, each browser opens its own embed",
-    "svc.mp.2":"First come, first served plus weights: a story outranks a bare request, waiting time never stops accruing",
-    "svc.mp.3":"DJ script from the catalogue only, two voices, off on your device if you want music alone",
+    "svc.mp.full":"Music Play · Synchronised listening",
+    "svc.mp.d":"A shared listening session on one server clock: every connected browser plays the same song from the same offset. Requests enter a published five-song lineup, an AI DJ reads a reconstruction of the story over the intro, and a curated catalogue fills every slot the queue leaves empty.",
+    "svc.mp.1":"No audio path on the server: a timestamp, a lineup and a script; each client opens its own embed",
+    "svc.mp.2":"Weighted queue over first come, first served; every decision logs the score that won",
+    "svc.mp.3":"Server-side voices in two languages, every external call metered against free tiers with a hard cut-off",
 
     "nav.ideas":"Bring an idea",
     "id.tag":"Bring an idea",
@@ -383,7 +383,7 @@ const _L = {
     "hero.byline":"<b class=\"t-joy\">joy</b>, realized when it <b class=\"t-go\">go</b>es <b class=\"t-live\">Live</b>.",
 
     "svc.tag":"포트폴리오","svc.h2":"지금까지 출시한 것",
-    "svc.lead":"양자 인프라, 운동 코칭, 온체인 복권, 웹 실측, 무선 환경 점검, 같이 듣는 음악, 그리고 개발 중인 하나 — 기억 훈련. 서로 무관한 분야들이며, 전부 실제 운영 중인 서비스입니다. 각각 직접 개발하고 직접 운영합니다. 라이선스 도입도, 재판매도 아닙니다.",
+    "svc.lead":"양자 인프라, 운동 코칭, 온체인 복권, 웹 실측, 무선 환경 점검, 동시 청취, 그리고 개발 중인 하나 — 기억 훈련. 서로 무관한 분야들이며, 전부 실제 운영 중인 서비스입니다. 각각 직접 개발하고 직접 운영합니다. 라이선스 도입도, 재판매도 아닙니다.",
     "svc.more":"자세히 보기","svc.b.beta":"베타","svc.b.dev":"개발 중","svc.b.test":"테스트넷",
 
     "svc.uqh.full":"Universal Quantum Hub · 양자컴퓨팅",
@@ -421,11 +421,11 @@ const _L = {
     "svc.bcon.2":"장소별 위험 점수 하나, 항목별 내역까지 공개",
     "svc.bcon.3":"탐지 항목마다 조치 — 설정 변경 또는 접속 습관 변경",
 
-    "svc.mp.full":"Music Play · 같이 듣는 음악",
-    "svc.mp.d":"서버 시계 하나, 편성표 하나. 접속한 모두가 같은 곡의 같은 대목을 듣습니다. 사연과 함께 신청한 곡이 다음 편성부터 나가고 AI DJ가 도입부에 사연을 읽습니다. 그 사이는 직접 선곡한 카탈로그가 재생을 잇습니다.",
-    "svc.mp.1":"음원 서빙 없음 — 서버는 시계와 편성표만, 브라우저가 각자 임베드를 엶",
-    "svc.mp.2":"선착순 + 가중치 — 사연 있는 신청이 앞서고, 대기 시간은 계속 쌓임",
-    "svc.mp.3":"DJ 대본은 카탈로그에서만, 목소리 둘, 음악만 들으려면 기기에서 끔",
+    "svc.mp.full":"Music Play · 동시 청취",
+    "svc.mp.d":"서버 시계 하나 위의 공동 청취 세션입니다. 접속한 모든 브라우저가 같은 곡을 같은 오프셋에서 재생합니다. 신청곡은 공개된 다섯 곡 라인업에 들어가고, AI DJ가 도입부에서 사연의 재구성을 읽으며, 큐가 비운 자리는 큐레이션된 카탈로그가 채웁니다.",
+    "svc.mp.1":"서버에 오디오 경로 없음 — 타임스탬프·라인업·대본뿐, 클라이언트가 각자 임베드를 엶",
+    "svc.mp.2":"선착순 위의 가중치 큐 — 결정마다 이긴 점수를 기록",
+    "svc.mp.3":"서버 합성 음성 2개 언어, 모든 외부 호출을 무료 한도에 계량하고 초과 시 차단",
 
     "nav.ideas":"제안",
     "id.tag":"제안",
