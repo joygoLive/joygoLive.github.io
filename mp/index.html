@@ -110,7 +110,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="hero-kicker mono" data-i18n="hero.kicker">MP · Music Play</div>
     <h1 data-i18n-html="hero.title">An AI DJ that <span class="grad">takes requests and stories</span>.</h1>
-    <p class="lead" data-i18n="hero.sub">A request arrives with an optional story and enters a published five-song lineup; the DJ summarises the story over the intro. Everyone connected hears the same song at the same point, and when no requests are waiting a curated catalogue is scheduled.</p>
+    <p class="lead" data-i18n="hero.sub">A request arrives with an optional story and enters a published five-song lineup; the DJ summarises the story over the intro. Everyone connected hears the same song at the same point, and when nothing is queued a curated catalogue fills the slot.</p>
     <div class="cta-row">
       <a href="https://mp.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta1">Open Music Play</a>
       <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">What this does not claim</a>
@@ -128,7 +128,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <p class="lead" data-i18n="why.lead">The service runs on a static catalogue file and a hosting platform with no scheduler and no persistent process. The architecture follows from those two constraints.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="why.f1.t">Synchronisation by time comparison</b><span data-i18n="why.f1.d">One state row holds the current song, its start time and its length. A client computes its own position as start time plus elapsed time. Nothing is compared but timestamps, and no audio leaves the server.</span></div>
+      <div class="fact fade"><b data-i18n="why.f1.t">Timestamps, not streams</b><span data-i18n="why.f1.d">One state row holds the current song, its start time and its length. A client computes its own position as start time plus elapsed time. Only timestamps are compared, and no audio leaves the server.</span></div>
       <div class="fact fade"><b data-i18n="why.f2.t">Advance on read</b><span data-i18n="why.f2.d">There is no cron. The state advances inside the poll that observes the song has ended, guarded by a conditional update so that concurrent polls advance it exactly once. Ninety seconds ahead, one poll takes a lock and prepares the next song's script and voice.</span></div>
       <div class="fact fade"><b data-i18n="why.f3.t">Catalogue as the fallback schedule</b><span data-i18n="why.f3.d">When the request queue is empty the server draws from the catalogue: songs never aired first, the most recently aired 60% excluded, the previous artist avoided, embed-blocked uploads excluded. Playback continues while the queue is empty.</span></div>
     </div>
@@ -143,7 +143,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <p class="lead" data-i18n="how.lead">The client is a single HTML file with no build step. It polls the server every ten seconds and acts on the response in four ways.</p>
     </div>
     <div class="pts">
-      <div class="pt fade" data-i18n-html="how.1"><b>Joining</b><span>One tap starts the session, because browsers refuse audio without a gesture. The same tap unlocks the voice player, so mobile browsers continue to play the DJ audio on later songs. The client then loads the current song at the server's offset.</span></div>
+      <div class="pt fade" data-i18n-html="how.1"><b>Joining</b><span>One tap starts the session, because browsers refuse audio without a gesture. The same tap unlocks the voice player, so mobile browsers continue to play the DJ audio on later songs. The client then loads the current song at the position the server reports.</span></div>
       <div class="pt fade" data-i18n-html="how.2"><b>Staying in sync</b><span>Each poll compares local position with the server's. Drift beyond three seconds is corrected with a seek; smaller drift is left alone, because ads and buffering cost a few seconds and repeated seeking interrupts playback.</span></div>
       <div class="pt fade" data-i18n-html="how.3"><b>Song boundaries</b><span>The next five songs are fixed in advance and shown in order. Slot one is locked; requests enter from slot two. A client that sees a new song loads it and, within the first 25 seconds, plays the DJ line over the intro with the music ducked.</span></div>
       <div class="pt fade" data-i18n-html="how.4"><b>Embed failures</b><span>An upload with embedding disabled fails for every listener at once. Clients report it; after three distinct reports the song leaves the schedule. The catalogue file itself is never modified by the server.</span></div>
@@ -162,7 +162,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <tr><th data-i18n="rule.c1">Condition</th><th class="n" data-i18n="rule.c2">Weight</th><th data-i18n="rule.c3">Rationale</th></tr>
       <tr><td class="nm" data-i18n="rule.r1">Minutes waited</td><td class="n">+1 / min</td><td data-i18n="rule.r1d">The base term. Alone, it is first come, first served</td></tr>
       <tr><td class="nm" data-i18n="rule.r2">Has a story</td><td class="n">+40</td><td data-i18n="rule.r2d">Stories go first. Fixed by policy</td></tr>
-      <tr><td class="nm" data-i18n="rule.r3">Requester is listening now</td><td class="n">+30</td><td data-i18n="rule.r3d">A story is read while its sender can hear it</td></tr>
+      <tr><td class="nm" data-i18n="rule.r3">Requester is listening now</td><td class="n">+30</td><td data-i18n="rule.r3d">A story goes out while its sender can hear it</td></tr>
       <tr><td class="nm" data-i18n="rule.r4">Same song requested by several</td><td class="n">+10 each, cap 30</td><td data-i18n="rule.r4d">Played once; every requester is named</td></tr>
       <tr><td class="nm" data-i18n="rule.r5">First request from this sender</td><td class="n">+15</td><td data-i18n="rule.r5d">Newcomers are scheduled ahead of repeat requesters</td></tr>
       <tr><td class="nm" data-i18n="rule.r6">Song not aired for a week</td><td class="n">+10</td><td data-i18n="rule.r6d">Variety</td></tr>
@@ -198,7 +198,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <p class="lead" data-i18n="dj.lead">The DJ speaks over the first seconds of a song while the music is ducked. The script is generated in Korean and English in one call, and every listener hears the language of their interface. The voice is synthesised on the server and cached, so every listener hears the same take. Listeners who prefer music alone switch the DJ off on their device.</p>
     </div>
     <div class="pts">
-      <div class="pt fade" data-i18n-html="dj.1"><b>What gets a model call</b><span>A request with an approved story: the model reconstructs it in two or three sentences and names the song; the catalogue note is not read. A request without a story: a fixed template naming the sender and the song. A catalogue song: the note as written, with a model-written script every fifth song. The greeting with the time and the DJ's name appears once per three-hour block.</span></div>
+      <div class="pt fade" data-i18n-html="dj.1"><b>What gets a model call</b><span>A request with an approved story: the model retells it in two or three sentences, never verbatim, and names the song; the catalogue note is not read. A request without a story: a fixed template naming the sender and the song. A catalogue song: the note as written, with a model-written script every fifth song. The greeting with the time and the DJ's name appears once per three-hour block.</span></div>
       <div class="pt fade" data-i18n-html="dj.2"><b>Bounded input</b><span>The model sees only the catalogue fields for that song and the story text. Story text is passed as data. Instruction-like content in a story raises a flag and is not executed. Output containing contact-detail or link patterns is discarded and the template goes out instead.</span></div>
       <div class="pt fade" data-i18n-html="dj.3"><b>Voices</b><span>Two voices, Sulafat and Orus, from Google Cloud Text-to-Speech (Chirp 3 HD). The operator fixes one or lets them alternate every three hours; listeners do not choose. Audio is cached by text and voice, so a catalogue note is synthesised once. When synthesis is unavailable the browser's own speech engine reads the same script.</span></div>
       <div class="pt fade" data-i18n-html="dj.4"><b>What happens to a story</b><span>A story is kept alongside the request and the line the DJ actually spoke, so an operator can see exactly what went out. Removal is an operator action; nothing is deleted on a timer.</span></div>
@@ -215,7 +215,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <div class="stats">
       <div class="stat"><div class="n" data-s="total">862</div><div class="l" data-i18n="found.s1">Playable songs across three lists</div></div>
-      <div class="stat"><div class="n" data-s="timed">862</div><div class="l" data-i18n="found.s2">With a known length, so the clock can schedule them</div></div>
+      <div class="stat"><div class="n" data-s="timed">862</div><div class="l" data-i18n="found.s2">With a known length, so they can be scheduled</div></div>
       <div class="stat"><div class="n" data-s="notes_pct" data-suffix="%">100</div><div class="l" data-i18n="found.s3">With a note and a source line for the DJ</div></div>
       <div class="stat"><div class="n">±3s</div><div class="l" data-i18n="found.s4">Drift tolerated before a client seeks</div></div>
     </div>
@@ -228,11 +228,11 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="ops.tag">Fallback</div>
     <h2 data-i18n="ops.h2">Playback survives every dependency</h2>
-    <p class="lead" data-i18n="ops.lead">Scripts, voices and story screening all depend on external services. If any of them fails or does not answer, the song still plays on schedule, because every step has a path to fall back to.</p>
+    <p class="lead" data-i18n="ops.lead">Scripts, voices and story screening all depend on external services. If any of them fails or does not answer, the song still plays on schedule, because every step has a fallback.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="ops.f1.t">Playback stands alone</b><span data-i18n="ops.f1.d">Playing a song needs only the schedule and the playback time. No language model, no speech synthesis and no screening sits on the playback path. If all of them stop, the music continues.</span></div>
-      <div class="fact fade"><b data-i18n="ops.f2.t">Scripts and voices step down</b><span data-i18n="ops.f2.d">When script generation fails, the catalogue note or a fixed template goes out instead. When server synthesis is unavailable, the browser's own speech engine reads the same script; failing that, the line stays on screen as a caption.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f1.t">Playback stands alone</b><span data-i18n="ops.f1.d">Playing a song needs only the schedule and the playback time. No language model, speech synthesis or screening sits on the playback path. If all of them stop, the music continues.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f2.t">Scripts and voices fall back in stages</b><span data-i18n="ops.f2.d">When script generation fails, the catalogue note or a fixed template goes out instead. When server synthesis is unavailable, the browser's own speech engine reads the same script; failing that, the line stays on screen as a caption.</span></div>
       <div class="fact fade"><b data-i18n="ops.f3.t">Screening never auto-approves</b><span data-i18n="ops.f3.d">If story classification fails or is unavailable, the story goes to operator review instead of being passed as safe. The song still plays; only the story waits.</span></div>
     </div>
   </div>
