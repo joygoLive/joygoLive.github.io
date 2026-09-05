@@ -64,7 +64,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="hero-kicker mono" data-i18n="hero.kicker">AMC · AI Motion Coaching</div>
     <h1 data-i18n-html="hero.title">One phone. Your form, <span class="grad">judged as you move</span>.</h1>
-    <p class="lead" data-i18n="hero.sub">Stand your phone up and start the set. AMC reads your joints from the camera, judges each rep against a trainer's criteria adjusted to your own body, and speaks up the moment something needs fixing: no wearables, no straps, no video sent anywhere.</p>
+    <p class="lead" data-i18n="hero.sub">Stand your phone up and start the set. AMC reads your joints from the camera, judges each rep against a trainer's criteria adjusted to your own body, and gives a spoken cue the moment a correction is needed: no wearables, no straps, no video sent anywhere.</p>
     <div class="cta-row">
       <a href="#how" class="btn btn-primary" data-i18n="hero.cta1">See how it works</a>
       <a href="#honest" class="btn btn-ghost" data-i18n="hero.cta2">What it will not claim</a>
@@ -86,8 +86,8 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow" data-i18n="how.tag">How it works</div>
-      <h2 data-i18n="how.h2">Five steps, and you never touch the phone</h2>
-      <p class="lead" data-i18n="how.lead">There is no setup ritual. You are not asked to measure a distance or a tripod height, only to stand where your whole body fits in the frame.</p>
+      <h2 data-i18n="how.h2">Five steps, no phone interaction</h2>
+      <p class="lead" data-i18n="how.lead">There is no setup procedure. You are not asked to measure a distance or a tripod height, only to stand where your whole body fits in the frame.</p>
     </div>
     <div class="flow">
       <div class="step"><span class="node" data-i18n="how.n1">Stand the phone up</span><svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
@@ -100,7 +100,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="pillar fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 5.5h2"/></svg>
         <h3 data-i18n="how.1.t">Place it anywhere reasonable</h3>
-        <p data-i18n="how.1.d">No measured distance, no tripod height, no gyroscope. The only question that matters is whether your body is in the frame, and if it is not, AMC says so instead of guessing.</p>
+        <p data-i18n="how.1.d">No measured distance, no tripod height, no gyroscope. The only question that matters is whether your body is in the frame, and if it is not, AMC reports that instead of guessing.</p>
       </div>
       <div class="pillar fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="4"/></svg>
@@ -122,28 +122,28 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="sec-head">
       <div class="eyebrow" data-i18n="ap.tag">Approach</div>
       <h2 data-i18n="ap.h2">Rules you can read, not a similarity score</h2>
-      <p class="lead" data-i18n="ap.lead">AMC does not compare your rep to a reference video. It measures joint angles, normalizes them against your own baseline, and applies thresholds a trainer agreed to. That one decision is why the rest of the product behaves the way it does.</p>
+      <p class="lead" data-i18n="ap.lead">AMC does not compare your rep to a reference video. It measures joint angles, normalizes them against your own baseline, and applies thresholds a trainer agreed to. The rest of the product follows from that design decision.</p>
     </div>
     <div class="cap-grid">
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20 9 9l4 6 3-4 4 9z"/></svg>
         <h3 data-i18n="ap.1.t">Body shape is not an error</h3>
-        <p data-i18n="ap.1.d">Template matching flags anyone whose proportions or tempo differ from the reference. Angle rules against your own baseline remove that false alarm at the source.</p>
+        <p data-i18n="ap.1.d">Template matching flags anyone whose proportions or tempo differ from the reference. Angle rules against your own baseline remove that false positive at the source.</p>
       </div>
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
         <h3 data-i18n="ap.2.t">Feedback you can act on</h3>
-        <p data-i18n="ap.2.d">“Your knees are 12° narrower than your baseline” tells you what to move. A similarity score of 0.73 does not, and cannot be argued with, checked, or coached against.</p>
+        <p data-i18n="ap.2.d">“Your knees are 12° narrower than your baseline” tells you what to move. A similarity score of 0.73 does not; it cannot be disputed, verified, or coached against.</p>
       </div>
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 4 6v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg>
         <h3 data-i18n="ap.3.t">Light enough to stay on the device</h3>
-        <p data-i18n="ap.3.d">Angle arithmetic is cheap, so judgment runs on the phone. Nothing has to be uploaded for a verdict, which is a privacy property and a latency one at once.</p>
+        <p data-i18n="ap.3.d">Angle arithmetic is cheap, so judgment runs on-device. Nothing is uploaded for a verdict: a privacy property and a latency property at once.</p>
       </div>
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8 15.8 7.2M8.2 13.2l7.6 3.6"/></svg>
         <h3 data-i18n="ap.4.t">Correct and incorrect reps are proof, not training data</h3>
-        <p data-i18n="ap.4.d">Labelled reps exist to measure the rules: what fraction of real errors was missed, and how often a good rep was wrongly flagged. The rules are the product; the data checks them.</p>
+        <p data-i18n="ap.4.d">Labelled reps exist to measure the rules: the miss rate on real errors and the false-positive rate on good reps. The rules are the product; the data checks them.</p>
       </div>
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17V7M8 17V4M13 17v-7M18 17v-4M3 20h18"/></svg>
@@ -165,7 +165,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="sec-head">
       <div class="eyebrow" data-i18n="me.tag">What you get</div>
       <h2 data-i18n="me.h2">The set, in numbers you can compare next week</h2>
-      <p class="lead" data-i18n="me.lead">Everything below is recorded per rep, so a set is not a single score but a trace you can look back through.</p>
+      <p class="lead" data-i18n="me.lead">Everything below is recorded per rep, so a set is not a single score but a per-rep series you can review.</p>
     </div>
     <div class="pts">
       <div class="pt fade"><b data-i18n="me.1.t">Rep count</b><span data-i18n="me.1.d">Counted only when the rep was actually judgeable.</span></div>
@@ -178,7 +178,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
         <h3 style="font-size:21px" data-i18n="me.r.t">A report that reaches you where you are standing</h3>
         <p class="lead" data-i18n="me.r.d">When a set ends you are two metres from the phone, not holding it. So the result arrives in three layers instead of one screen you would have to walk over to read.</p>
         <ul class="feature-list">
-          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 13 4 4L19 7"/></svg><span data-i18n="me.r.1">Spoken confirmation the moment the set closes.</span></li>
+          <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 13 4 4L19 7"/></svg><span data-i18n="me.r.1">Spoken confirmation when the set ends.</span></li>
           <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 13 4 4L19 7"/></svg><span data-i18n="me.r.2">Four numbers on screen, sized to be read from two metres away.</span></li>
           <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 13 4 4L19 7"/></svg><span data-i18n="me.r.3">The full breakdown when you pick the phone back up: depth per rep, the rep-by-rep trajectory, tempo, one correction to work on, and the rest listed below it.</span></li>
           <li><svg class="mk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 13 4 4L19 7"/></svg><span data-i18n="me.r.4">Coverage: which checks the camera angle allowed, which it did not, and where to stand to get them.</span></li>
@@ -202,16 +202,16 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="sec-head">
       <div class="eyebrow" data-i18n="ho.tag">Limits</div>
       <h2 data-i18n="ho.h2">A rep it could not see is not a rep it counts</h2>
-      <p class="lead" data-i18n="ho.lead">The easiest way to look accurate is to count everything and stay quiet about the frames you could not read. AMC does the opposite: when a check cannot be made, it says which one and why.</p>
+      <p class="lead" data-i18n="ho.lead">The easiest way to look accurate is to count everything and omit the frames that could not be read. AMC does the opposite: when a check cannot be made, it reports which one and why.</p>
     </div>
     <div class="pts">
       <div class="pt fade"><b data-i18n="ho.1.t">Lower body obscured</b><span data-i18n="ho.1.d">Legs hidden behind equipment or cropped by furniture.</span></div>
       <div class="pt fade"><b data-i18n="ho.2.t">Key joints out of frame</b><span data-i18n="ho.2.d">A joint the rule depends on has left the picture.</span></div>
-      <div class="pt fade"><b data-i18n="ho.3.t">Detection confidence too low</b><span data-i18n="ho.3.d">Lighting, clothing, or distance pushed the reading below the bar.</span></div>
+      <div class="pt fade"><b data-i18n="ho.3.t">Detection confidence too low</b><span data-i18n="ho.3.d">Lighting, clothing, or distance pushed detection confidence below the threshold.</span></div>
       <div class="pt fade"><b data-i18n="ho.4.t">Standing at an angle</b><span data-i18n="ho.4.d">Neither a clean front nor a clean side view, so the angle is unreliable.</span></div>
     </div>
     <div class="disclose fade">
-      <b data-i18n="ho.d.t">Also true, and worth saying plainly</b>
+      <b data-i18n="ho.d.t">Also stated explicitly</b>
       <ul>
         <li data-i18n="ho.d.1">Tempo is measured and shown, but not judged. Calling a rep “too fast” requires a normal distribution across many people agreed with trainers, and that does not exist yet, so the numbers are displayed and no verdict is attached.</li>
         <li data-i18n="ho.d.2">Only a short list of exercises is judged. Each one needs its own rules and its own field validation, so the list grows slowly.</li>
@@ -228,7 +228,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="sec-head">
       <div class="eyebrow" data-i18n="pv.tag">Privacy</div>
       <h2 data-i18n="pv.h2">The camera is an input, not an upload</h2>
-      <p class="lead" data-i18n="pv.lead">Judgment happens on your device, so the video never has to leave it. Here is exactly what does and does not move.</p>
+      <p class="lead" data-i18n="pv.lead">Judgment happens on your device, so the video never has to leave it. Exactly what is and is not transmitted:</p>
     </div>
     <div class="facts">
       <div class="fact fade">
@@ -270,46 +270,46 @@ const _L = {
     "nav.how":"How it works","nav.approach":"Approach","nav.measures":"What you get","nav.honest":"Limits","nav.privacy":"Privacy",
     "hero.kicker":"AMC · AI Motion Coaching",
     "hero.title":"One phone. Your form, <span class=\"grad\">judged as you move</span>.",
-    "hero.sub":"Stand your phone up and start the set. AMC reads your joints from the camera, judges each rep against a trainer's criteria adjusted to your own body, and speaks up the moment something needs fixing: no wearables, no straps, no video sent anywhere.",
+    "hero.sub":"Stand your phone up and start the set. AMC reads your joints from the camera, judges each rep against a trainer's criteria adjusted to your own body, and gives a spoken cue the moment a correction is needed: no wearables, no straps, no video sent anywhere.",
     "hero.cta1":"See how it works","hero.cta2":"What it will not claim",
     "hero.byline":"A service by joygoLive, for community sports, built with trainers.",
     "hero.xlabel":"Exercises judged today",
     "ex.squat":"Squat","ex.rdl":"Romanian deadlift","ex.press":"Overhead press",
 
-    "how.tag":"How it works","how.h2":"Five steps, and you never touch the phone",
-    "how.lead":"There is no setup ritual. You are not asked to measure a distance or a tripod height, only to stand where your whole body fits in the frame.",
+    "how.tag":"How it works","how.h2":"Five steps, no phone interaction",
+    "how.lead":"There is no setup procedure. You are not asked to measure a distance or a tripod height, only to stand where your whole body fits in the frame.",
     "how.n1":"Stand the phone up","how.n2":"2-second baseline","how.n3":"Do the set","how.n4":"One spoken cue","how.n5":"Report",
     "how.1.t":"Place it anywhere reasonable",
-    "how.1.d":"No measured distance, no tripod height, no gyroscope. The only question that matters is whether your body is in the frame, and if it is not, AMC says so instead of guessing.",
+    "how.1.d":"No measured distance, no tripod height, no gyroscope. The only question that matters is whether your body is in the frame, and if it is not, AMC reports that instead of guessing.",
     "how.2.t":"Calibrated to your body, not an average one",
     "how.2.d":"Two seconds of standing still sets your personal baseline. Depth and range are then read relative to you, so a long femur or a short torso is not mistaken for bad form.",
     "how.3.t":"One cue at a time",
     "how.3.d":"Mid-set you get a single spoken correction: the one that matters most right now. A list of six things to fix while you are under load is not coaching.",
 
     "ap.tag":"Approach","ap.h2":"Rules you can read, not a similarity score",
-    "ap.lead":"AMC does not compare your rep to a reference video. It measures joint angles, normalizes them against your own baseline, and applies thresholds a trainer agreed to. That one decision is why the rest of the product behaves the way it does.",
+    "ap.lead":"AMC does not compare your rep to a reference video. It measures joint angles, normalizes them against your own baseline, and applies thresholds a trainer agreed to. The rest of the product follows from that design decision.",
     "ap.1.t":"Body shape is not an error",
-    "ap.1.d":"Template matching flags anyone whose proportions or tempo differ from the reference. Angle rules against your own baseline remove that false alarm at the source.",
+    "ap.1.d":"Template matching flags anyone whose proportions or tempo differ from the reference. Angle rules against your own baseline remove that false positive at the source.",
     "ap.2.t":"Feedback you can act on",
-    "ap.2.d":"“Your knees are 12° narrower than your baseline” tells you what to move. A similarity score of 0.73 does not, and cannot be argued with, checked, or coached against.",
+    "ap.2.d":"“Your knees are 12° narrower than your baseline” tells you what to move. A similarity score of 0.73 does not; it cannot be disputed, verified, or coached against.",
     "ap.3.t":"Light enough to stay on the device",
-    "ap.3.d":"Angle arithmetic is cheap, so judgment runs on the phone. Nothing has to be uploaded for a verdict, which is a privacy property and a latency one at once.",
+    "ap.3.d":"Angle arithmetic is cheap, so judgment runs on-device. Nothing is uploaded for a verdict: a privacy property and a latency property at once.",
     "ap.4.t":"Correct and incorrect reps are proof, not training data",
-    "ap.4.d":"Labelled reps exist to measure the rules: what fraction of real errors was missed, and how often a good rep was wrongly flagged. The rules are the product; the data checks them.",
+    "ap.4.d":"Labelled reps exist to measure the rules: the miss rate on real errors and the false-positive rate on good reps. The rules are the product; the data checks them.",
     "ap.5.t":"Severity, not a pass/fail stamp",
     "ap.5.d":"Each error carries one of three severity levels, and the strongest correction is capped per error type by joint-load risk: the instruction never pushes you harder than the movement safely allows.",
     "ap.6.t":"Reports written by rules, not by a language model",
     "ap.6.d":"Report sentences come from templates tied to what was measured. No model call means no server, no API key, and no chance of a fluent sentence that the numbers do not support.",
 
     "me.tag":"What you get","me.h2":"The set, in numbers you can compare next week",
-    "me.lead":"Everything below is recorded per rep, so a set is not a single score but a trace you can look back through.",
+    "me.lead":"Everything below is recorded per rep, so a set is not a single score but a per-rep series you can review.",
     "me.1.t":"Rep count","me.1.d":"Counted only when the rep was actually judgeable.",
     "me.2.t":"Range of motion","me.2.d":"How deep you went, as a percentage of your own baseline.",
     "me.3.t":"Tempo","me.3.d":"Descent, hold at the bottom, and ascent, per rep.",
     "me.4.t":"Errors and severity","me.4.d":"Error type with one of three severity levels, plus how to fix it.",
     "me.r.t":"A report that reaches you where you are standing",
     "me.r.d":"When a set ends you are two metres from the phone, not holding it. So the result arrives in three layers instead of one screen you would have to walk over to read.",
-    "me.r.1":"Spoken confirmation the moment the set closes.",
+    "me.r.1":"Spoken confirmation when the set ends.",
     "me.r.2":"Four numbers on screen, sized to be read from two metres away.",
     "me.r.3":"The full breakdown when you pick the phone back up: depth per rep, the rep-by-rep trajectory, tempo, one correction to work on, and the rest listed below it.",
     "me.r.4":"Coverage: which checks the camera angle allowed, which it did not, and where to stand to get them.",
@@ -318,19 +318,19 @@ const _L = {
     "me.p.note":"Illustrative figures: a real set fills these from your own reps.",
 
     "ho.tag":"Limits","ho.h2":"A rep it could not see is not a rep it counts",
-    "ho.lead":"The easiest way to look accurate is to count everything and stay quiet about the frames you could not read. AMC does the opposite: when a check cannot be made, it says which one and why.",
+    "ho.lead":"The easiest way to look accurate is to count everything and omit the frames that could not be read. AMC does the opposite: when a check cannot be made, it reports which one and why.",
     "ho.1.t":"Lower body obscured","ho.1.d":"Legs hidden behind equipment or cropped by furniture.",
     "ho.2.t":"Key joints out of frame","ho.2.d":"A joint the rule depends on has left the picture.",
-    "ho.3.t":"Detection confidence too low","ho.3.d":"Lighting, clothing, or distance pushed the reading below the bar.",
+    "ho.3.t":"Detection confidence too low","ho.3.d":"Lighting, clothing, or distance pushed detection confidence below the threshold.",
     "ho.4.t":"Standing at an angle","ho.4.d":"Neither a clean front nor a clean side view, so the angle is unreliable.",
-    "ho.d.t":"Also true, and worth saying plainly",
+    "ho.d.t":"Also stated explicitly",
     "ho.d.1":"Tempo is measured and shown, but not judged. Calling a rep “too fast” requires a normal distribution across many people agreed with trainers, and that does not exist yet, so the numbers are displayed and no verdict is attached.",
     "ho.d.2":"Only a short list of exercises is judged. Each one needs its own rules and its own field validation, so the list grows slowly.",
     "ho.d.3":"A single camera cannot see everything at once. Front-only checks and side-only checks are named as unverified when you are not standing that way, rather than assumed to have passed.",
     "ho.d.4":"AMC is still being tuned in the field with community sports organizations, not a public release. Thresholds are still moving as real-device data comes in.",
 
     "pv.tag":"Privacy","pv.h2":"The camera is an input, not an upload",
-    "pv.lead":"Judgment happens on your device, so the video never has to leave it. Here is exactly what does and does not move.",
+    "pv.lead":"Judgment happens on your device, so the video never has to leave it. Exactly what is and is not transmitted:",
     "pv.1.t":"Never collected","pv.1.d":"Video, images of your face, your name, and your contact details. None of it is transmitted, and none of it is stored on a server.",
     "pv.2.t":"Sent during field tuning","pv.2.d":"While thresholds are being calibrated, numbers are sent automatically: rep counts, angles, joint coordinate values, and device information. The app states this on its first screen.",
     "pv.3.t":"After tuning ends","pv.3.d":"Once the thresholds are settled, coordinate transmission is switched off and returns to opt-in. The judgment itself never needed the network.",

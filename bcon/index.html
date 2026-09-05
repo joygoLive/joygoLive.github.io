@@ -121,12 +121,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="hero-kicker mono" data-i18n="hero.kicker">BCON · Broadcast Commute Observation Networks</div>
     <h1 data-i18n-html="hero.title">The wireless around you, <span class="grad">checked and acted on</span>.</h1>
-    <p class="lead" data-i18n="hero.sub">The summary names what is wrong with the networks in range — no encryption, one name answering from several radios, protections that were never switched on — and then what to do about each one. A little of it is a setting on a router. Most of it is a habit on the phone in your pocket.</p>
+    <p class="lead" data-i18n="hero.sub">The summary identifies what is weak about the networks in range — no encryption, one SSID answering from several APs, protections left off — and the action for each. A few are router settings. Most are connection habits on the phone.</p>
     <div class="cta-row">
       <a href="#what" class="btn btn-primary" data-i18n="hero.cta1">What it checks</a>
       <a href="#fix" class="btn btn-ghost" data-i18n="hero.cta2">What to do about it</a>
     </div>
-    <p class="reward" data-i18n-html="hero.reward"><b>It receives, and nothing else.</b> Beacons are already broadcast in the clear; BCON listens to that and stops there. It never connects, never authenticates, never cracks, and never names an individual access point on screen.</p>
+    <p class="reward" data-i18n-html="hero.reward"><b>Receive-only.</b> Beacon frames are broadcast in the clear by design; BCON receives them and stops there. It never connects, never authenticates, never attacks, and never identifies an individual access point on screen.</p>
     <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here.</div>
   </div>
 </section>
@@ -135,13 +135,13 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="why" class="section alt">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="why.tag">Premise</div>
-    <h2 data-i18n="why.h2">Almost none of it is yours to fix</h2>
-    <p class="lead" data-i18n="why.lead">Reports on how insecure wireless is in general already exist, and a national average changes nothing you do tomorrow. Worse, nearly every device in range belongs to somebody else, so "harden it" is not on the table. What is left is knowing which ones are dangerous and behaving accordingly — which only works if the check ends in an instruction.</p>
+    <h2 data-i18n="why.h2">Almost none of it is your equipment</h2>
+    <p class="lead" data-i18n="why.lead">Reports on how insecure wireless is in general already exist, and a national average changes nothing you do tomorrow. Worse, nearly every device in range belongs to somebody else, so hardening is not an option. What remains is knowing which ones are dangerous and acting accordingly, which only works if the check ends in an action item.</p>
     </div>
     <div class="facts">
       <div class="fact fade"><b data-i18n="why.f1.t">A place, not a population</b><span data-i18n="why.f1.d">An aggregate needs a large sample before it means anything. Something actually picked up in one spot is a fact at n = 1, and it stays worth re-checking as long as you keep going there.</span></div>
-      <div class="fact fade"><b data-i18n="why.f2.t">A finding with a next step</b><span data-i18n="why.f2.d">A score on its own is a number to feel bad about. Each reading comes back as things to do, ordered by how much risk each one removes — and grouped by the action, not the item, because three different findings often end in the same single move.</span></div>
-      <div class="fact fade"><b data-i18n="why.f3.t">Repetition is the dataset</b><span data-i18n="why.f3.d">Seeing the same places repeatedly is usually a limit on coverage. Here it is the point: the same spot read again and again becomes a record of how it changed.</span></div>
+      <div class="fact fade"><b data-i18n="why.f2.t">A finding with a next step</b><span data-i18n="why.f2.d">A score on its own does not lead to action. Each reading comes back as things to do, ordered by how much risk each one removes — and grouped by the action, not the item, because three different findings often end in the same single move.</span></div>
+      <div class="fact fade"><b data-i18n="why.f3.t">Repetition is the dataset</b><span data-i18n="why.f3.d">Repeated observation of the same places is usually a coverage limitation. Here it is the purpose: the same spot read again and again becomes a record of how it changed.</span></div>
     </div>
   </div>
 </section>
@@ -150,13 +150,13 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="what">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="what.tag">Checks</div>
-    <h2 data-i18n="what.h2">Seven things that put you at risk</h2>
+    <h2 data-i18n="what.h2">Seven risk factors</h2>
     <p class="lead" data-i18n="what.lead">Each carries a weight, because they are not equally dangerous. An open network you might join by accident carries more than ten times the weight of a transition mode left on by the manufacturer. The weights add up to one score per place, and the score always shows its parts.</p>
     </div>
     <div class="sig">
       <div class="scard fade">
         <div class="sw"><span class="sk" data-i18n="what.1.t">Open network</span><span class="sp">35</span></div>
-        <p data-i18n="what.1.d">No encryption at all. The real hazard is not the network but the phone, which may have been told to join something like it before and will do so again without asking.</p>
+        <p data-i18n="what.1.d">No encryption at all. The real hazard is not the network but the phone, which may have a similar name saved for auto-join and will reconnect without confirmation.</p>
       </div>
       <div class="scard fade">
         <div class="sw"><span class="sk" data-i18n="what.2.t">Evil twin</span><span class="sp">18</span></div>
@@ -164,15 +164,15 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       </div>
       <div class="scard fade">
         <div class="sw"><span class="sk" data-i18n="what.3.t">No management-frame protection</span><span class="sp">15</span></div>
-        <p data-i18n="what.3.d">Without PMF, anyone nearby can knock a device off the network — and a forced reconnection is exactly the moment an impostor wants. Optional PMF is flagged separately from absent.</p>
+        <p data-i18n="what.3.d">Without PMF, anyone nearby can force a device off the network, and the forced reconnection is exactly the moment a rogue AP exploits. Optional PMF is flagged separately from absent.</p>
       </div>
       <div class="scard fade">
         <div class="sw"><span class="sk" data-i18n="what.4.t">WPS enabled</span><span class="sp">12</span></div>
-        <p data-i18n="what.4.d">The convenience pairing path, and a way around the passphrase that the passphrase cannot defend against. Usually on because nobody turned it off.</p>
+        <p data-i18n="what.4.d">The convenience pairing path, and a way around the passphrase that the passphrase cannot defend against. Usually on because it was never disabled.</p>
       </div>
       <div class="scard fade">
         <div class="sw"><span class="sk" data-i18n="what.6.t">Carrier roaming</span><span class="sp">12</span></div>
-        <p data-i18n="what.6.d">Several access points carrying one name so the phone hands itself over without asking. Convenient, and a record of where you went. The handover is also the easiest moment for an impostor to step in, because the phone is already expecting to move.</p>
+        <p data-i18n="what.6.d">Several access points carrying one name so the phone hands over without confirmation. Convenient, and a record of movement. The handover is also the easiest moment for a rogue AP to intervene, because the phone is already expecting to switch.</p>
       </div>
       <div class="scard fade">
         <div class="sw"><span class="sk" data-i18n="what.5.t">Weak cipher</span><span class="sp">5</span></div>
@@ -184,8 +184,8 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       </div>
     </div>
     <div class="facts" style="margin-top:30px">
-      <div class="fact fade" data-i18n-html="what.p1"><b>The unit is a place, not a network</b><span>A place is whatever you named it when you stood there — not a GPS cell. Indoors the coordinate freezes on the last fix, so three separate rooms measured in one evening all landed on the same square; the name you typed was the only thing that told them apart. Places are ordered by how long you stayed, because the place you linger in is the place you are exposed in.</span></div>
-      <div class="fact fade" data-i18n-html="what.p2"><b>Guesswork is labelled as guesswork</b><span>Default network names, vendor from the address prefix, and device type from the name are all inference. They are printed as circumstantial, and a randomised address returns no vendor at all rather than a wrong one.</span></div>
+      <div class="fact fade" data-i18n-html="what.p1"><b>The unit is a place, not a network</b><span>A place is the name you assigned on site — not a GPS cell. Indoors the coordinate freezes on the last fix, so three separate rooms measured in one evening all landed on the same cell; the assigned name was the only thing that distinguished them. Places are ordered by dwell time, because dwell time is exposure time.</span></div>
+      <div class="fact fade" data-i18n-html="what.p2"><b>Guesswork is labelled as guesswork</b><span>Default SSIDs, vendor from the MAC address OUI, and device type from the name are all inference. They are labelled as circumstantial, and a randomised address returns no vendor at all rather than a wrong one.</span></div>
     </div>
   </div>
 </section>
@@ -194,15 +194,15 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="fix" class="section alt">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="fix.tag">Actions</div>
-    <h2 data-i18n="fix.h2">What to do, in the order that helps most</h2>
+    <h2 data-i18n="fix.h2">Actions, ordered by risk removed</h2>
     <p class="lead" data-i18n="fix.lead">Grouped by the action, not by the finding — open networks, evil twins and missing protection all end in the same first move, and listing them separately would say it three times. Ordered by how much of the score each action removes. These are suggestions, not instructions: nobody can change a stranger’s router, so the ones that need a settings change are written as "if any of these is yours".</p>
     </div>
     <div class="facts">
-      <div class="fact fade" data-i18n-html="fix.1"><b>① Turn off auto-join, choose by hand</b><span>One move that closes both open networks and evil twins, which is why it is always first. An open network carries your traffic in the clear; when one name answers from several radios, the phone takes the strongest and cannot tell which is real. <b>A VPN does not replace this</b> — it protects what you send after you have joined, not the joining.</span></div>
-      <div class="fact fade" data-i18n-html="fix.2"><b>② Use a VPN in that spot</b><span>Without PMF anyone nearby can knock you off the network. The disconnection is not the problem; <b>the reconnection is</b>, and once you are on, encryption of the traffic is the only defence left. ① stops you joining, ② protects you after you have.</span></div>
-      <div class="fact fade" data-i18n-html="fix.3"><b>③ Drop auto-join for carrier hotspots</b><span>Several access points under one name means the phone hands itself over without asking. That handover is the easiest moment to step into, because the phone is already expecting to move — and the trail of where you went stays with that network.</span></div>
-      <div class="fact fade" data-i18n-html="fix.4"><b>④ Turn WPS off — if any of these is yours</b><span>The PIN is validated in two halves, a design flaw that falls in hours, and once it falls <b>changing the passphrase does not help</b> — WPS lets them back in. On someone else's equipment, treat that network as one a passphrase does not protect.</span></div>
-      <div class="fact fade" data-i18n-html="fix.5"><b>⑤ Move off the old cipher — if any of these is yours</b><span>WEP and TKIP are effectively unprotected, and WPA2/WPA3 transition mode lets an attacker simply pick the weaker side. Moving to WPA3 makes PMF mandatory, which removes ② as well — and if the name is still the factory one, change the admin password with it.</span></div>
+      <div class="fact fade" data-i18n-html="fix.1"><b>① Disable auto-join, select manually</b><span>One action that closes both open networks and evil twins, which is why it is always first. An open network carries traffic in the clear; when one SSID answers from several APs, the phone takes the strongest signal and cannot tell which is legitimate. <b>A VPN does not replace this</b> — it protects traffic after joining, not the join itself.</span></div>
+      <div class="fact fade" data-i18n-html="fix.2"><b>② Use a VPN in that spot</b><span>Without PMF anyone nearby can force a disconnection. The disconnection is not the problem; <b>the reconnection is</b>, and once connected, traffic encryption is the only defence left. ① prevents the join, ② protects after it.</span></div>
+      <div class="fact fade" data-i18n-html="fix.3"><b>③ Drop auto-join for carrier hotspots</b><span>Several access points under one SSID means the phone hands over without confirmation. That handover is the easiest moment to intervene, because the phone is already expecting to switch — and the movement trail is recorded by that network.</span></div>
+      <div class="fact fade" data-i18n-html="fix.4"><b>④ Disable WPS — if any of these is yours</b><span>The PIN is validated in two halves, a design flaw that brute-forces in hours, and once it falls <b>changing the passphrase does not help</b> — WPS allows re-entry. On someone else's equipment, classify that network as one a passphrase does not protect.</span></div>
+      <div class="fact fade" data-i18n-html="fix.5"><b>⑤ Replace the legacy cipher — if any of these is yours</b><span>WEP and TKIP are effectively unprotected, and WPA2/WPA3 transition mode lets an attacker simply select the weaker side. Moving to WPA3 makes PMF mandatory, which removes ② as well — and if the SSID is still the factory default, change the admin password with it.</span></div>
     </div>
   </div>
 </section>
@@ -212,31 +212,31 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="found.tag">Measured</div>
     <h2 data-i18n="found.h2">What is actually in range, place by place</h2>
-    <p class="lead" data-i18n="found.lead">Readings taken standing still, three minutes at a time, at the places a routine actually passes through — a stop, a restaurant, a lobby, a park. Not a survey of anywhere: a record of specific spots, which is the only kind of reading where the number has anything to do with you.</p>
+    <p class="lead" data-i18n="found.lead">Readings taken standing still, three minutes at a time, at the places a routine actually passes through — a stop, a restaurant, a lobby, a park. Not a survey of anywhere: a record of specific spots, the only kind of reading in which the figure relates to you.</p>
     </div>
 
     <div class="stats" id="bcStats">
       <div class="stat"><b data-s="place_count">7</b><span data-i18n="found.s1">Places read so far, each one standing still for three minutes</span></div>
-      <div class="stat"><b data-s="joinable_count">229</b><span data-i18n="found.s2">Access points close enough to actually connect to — the figure everything else is measured against</span></div>
+      <div class="stat"><b data-s="joinable_count">229</b><span data-i18n="found.s2">Access points within connecting distance — the denominator for every other figure</span></div>
       <div class="stat"><b data-s="pmf_none_pct" data-suffix="%">100</b><span data-i18n="found.s3">Of those, without management-frame protection</span></div>
       <div class="stat"><b data-s="wpa3_pct" data-suffix="%">0</b><span data-i18n="found.s4">On WPA3 — the one setting that would fix the line above</span></div>
     </div>
 
     <table class="rt">
       <tr><th data-i18n="found.t.sig">Signal</th><th class="n" data-i18n="found.t.share">Share</th><th data-i18n="found.t.read">What it means here</th></tr>
-      <tr><td class="nm" data-i18n="found.r1">No PMF</td><td class="n"><span data-s="pmf_none_pct" data-suffix="%">100</span></td><td data-i18n="found.r1d">Nearly everything can be knocked offline and made to reconnect</td></tr>
+      <tr><td class="nm" data-i18n="found.r1">No PMF</td><td class="n"><span data-s="pmf_none_pct" data-suffix="%">100</span></td><td data-i18n="found.r1d">Nearly every device can be forced offline and made to reconnect</td></tr>
       <tr><td class="nm" data-i18n="found.r2">Default name</td><td class="n"><span data-s="default_pct" data-suffix="%">28.5</span></td><td data-i18n="found.r2d">Circumstantial: the box was probably never configured</td></tr>
-      <tr><td class="nm" data-i18n="found.r3">WPS on</td><td class="n"><span data-s="wps_pct" data-suffix="%">37.1</span></td><td data-i18n="found.r3d">A pairing path around the passphrase, left switched on</td></tr>
+      <tr><td class="nm" data-i18n="found.r3">WPS on</td><td class="n"><span data-s="wps_pct" data-suffix="%">37.1</span></td><td data-i18n="found.r3d">A pairing path around the passphrase, left enabled</td></tr>
       <tr><td class="nm" data-i18n="found.r4">Weak cipher</td><td class="n"><span data-s="tkip_pct" data-suffix="%">11.8</span></td><td data-i18n="found.r4d">TKIP still in the mix on equipment old enough to have been forgotten</td></tr>
       <tr><td class="nm" data-i18n="found.r5">Open</td><td class="n"><span data-s="open_count">41</span></td><td data-i18n="found.r5d">Networks with no encryption at all, within connecting distance</td></tr>
       <tr><td class="nm" data-i18n="found.r6">Twin candidates</td><td class="n"><span data-s="twin_count">96</span></td><td data-i18n="found.r6d">One name answering from several radios — usually mesh, hence candidates</td></tr>
     </table>
-    <p class="tnote" data-i18n-html="found.tnote">Live from the collector: <b><span data-s="scans">247</span></b> scans across <b><span data-s="place_count">7</span></b> places. Every figure counts only access points within connecting distance — <b><span data-s="reach_count">678</span></b> answered in total, and the rest were too weak to matter.</p>
+    <p class="tnote" data-i18n-html="found.tnote">Live from the collector: <b><span data-s="scans">247</span></b> scans across <b><span data-s="place_count">7</span></b> places. Every figure counts only access points within connecting distance — <b><span data-s="reach_count">678</span></b> answered in total; the rest were too weak to matter.</p>
 
     <div class="facts">
-      <div class="fact fade" data-i18n-html="found.1"><b>Counting has to be honest before anything else is</b><span>Most of what answers a scan is too weak to connect to, and the same router answers twice on two bands. Count all of it and the risk score falls as the neighbourhood gets noisier — which is backwards. Everything here counts only what is within connecting distance.</span></div>
-      <div class="fact fade" data-i18n-html="found.2"><b>Management-frame protection is the single biggest item, everywhere so far</b><span>It is what stops someone knocking you off the network to make you reconnect somewhere else, and WPA3 is what makes it mandatory. The WPA3 figure above is that number.</span></div>
-      <div class="fact fade" data-i18n-html="found.3"><b>This is why the answer is behavioural</b><span>Practically every device in a reading belongs to somebody else. No amount of tightening your own settings changes their equipment, so the useful output is a rule about what your phone is allowed to join.</span></div>
+      <div class="fact fade" data-i18n-html="found.1"><b>The counting method has to be correct first</b><span>Most of what answers a scan is too weak to connect to, and the same router answers twice on two bands. Count all of it and the risk score falls as the number of nearby APs rises, which is inverted. Everything here counts only what is within connecting distance.</span></div>
+      <div class="fact fade" data-i18n-html="found.2"><b>Management-frame protection is the single biggest item, everywhere so far</b><span>It is what stops a third party forcing a disconnection to make a device reconnect elsewhere, and WPA3 is what makes it mandatory. The WPA3 figure above is that number.</span></div>
+      <div class="fact fade" data-i18n-html="found.3"><b>This is why the answer is behavioural</b><span>Practically every device in a reading belongs to somebody else. Hardening your own settings does not change their equipment, so the useful output is a rule about what your phone is allowed to join.</span></div>
     </div>
   </div>
 </section>
@@ -246,14 +246,14 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="limits.tag">Limits</div>
     <h2 data-i18n="limits.h2">What this does not claim</h2>
-      <p class="lead" data-i18n="limits.lead">Put the limits anywhere but next to the reading, and a scan report reads as an accusation. Below is the range one reading can speak for.</p>
+      <p class="lead" data-i18n="limits.lead">Without the limits beside the reading, a scan report reads as an accusation. Below is the range a single reading can claim.</p>
     </div>
     <div class="facts">
-      <div class="fact fade" data-i18n-html="limits.1"><b>Nobody else is a target</b><span>The output is about exposure, not about fault. There is no ranking of networks, no naming of an owner, and no suggestion that a particular access point is to blame. What appears on screen is deliberately not enough to go and find one.</span></div>
-      <div class="fact fade" data-i18n-html="limits.2"><b>Inference is not identification</b><span>Device type, vendor and "default name" are read off broadcast text and address prefixes. They are frequently right and sometimes wrong, and are labelled so you can tell which kind of claim you are looking at.</span></div>
+      <div class="fact fade" data-i18n-html="limits.1"><b>Nobody else is a target</b><span>The output is about exposure, not about fault. There is no ranking of networks, no naming of an owner, and no suggestion that a particular access point is to blame. Output is deliberately limited so that an access point cannot be located from what appears on screen.</span></div>
+      <div class="fact fade" data-i18n-html="limits.2"><b>Inference is not identification</b><span>Device type, vendor and "default name" are inferred from broadcast strings and MAC address OUIs. They are frequently right and sometimes wrong, and are labelled so the kind of claim is clear.</span></div>
       <div class="fact fade" data-i18n-html="limits.3"><b>One block is one block</b><span>A reading describes the place it was taken in and nothing beyond it. It is not a survey of a city, a carrier or a manufacturer, and a figure from it should never be quoted as one.</span></div>
-      <div class="fact fade" data-i18n-html="limits.4"><b>None of the technique is new</b><span>Reading what is broadcast has been possible for twenty years, and mapping projects have covered the world with it. What is different here is the question asked of it and the instruction that comes out — which is a thinner advantage than a technical one.</span></div>
-      <div class="fact fade" data-i18n-html="limits.5"><b>Readings stay with whoever took them</b><span>Anything derived from where a person has been carries obligations of its own, so none of it is distributed, sold, or handed to a third party. That is a property of the design, not a policy that could be relaxed later.</span></div>
+      <div class="fact fade" data-i18n-html="limits.4"><b>None of the technique is new</b><span>Reading what is broadcast has been possible for twenty years, and mapping projects have covered the world with it. What is different here is the query and the action item derived from it; without a technical advantage, the barrier to entry is correspondingly low.</span></div>
+      <div class="fact fade" data-i18n-html="limits.5"><b>Readings stay with whoever took them</b><span>Anything derived from location history carries obligations of its own, so none of it is distributed, sold, or provided to a third party. That is a property of the design, not a policy that could be relaxed later.</span></div>
     </div>
     <div class="cta-row" style="margin-top:30px">
       <a href="../" class="btn btn-primary" data-i18n="limits.cta">See the rest of the portfolio</a>

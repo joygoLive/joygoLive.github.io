@@ -68,9 +68,9 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section class="hero">
   <div class="wrap">
     <div class="hero-kicker mono" data-i18n="hero.kicker">UQH · Universal Quantum Hub</div>
-    <div style="margin:-8px 0 20px"><span class="badge beta" data-i18n="hero.beta">Beta: open to use, surface still moving</span></div>
+    <div style="margin:-8px 0 20px"><span class="badge beta" data-i18n="hero.beta">Beta: available now; features and limits not yet final</span></div>
     <h1 data-i18n-html="hero.title">Universal <span class="grad">Quantum</span> Hub</h1>
-    <p class="lead" data-i18n="hero.sub">Managed quantum infrastructure for research institutions, national programs, and enterprise R&amp;D. Connect every framework and vendor, run the full pipeline under governance and cost control, and read the hardware landscape in data. No vendor lock-in, no rewrites per provider.</p>
+    <p class="lead" data-i18n="hero.sub">A unified operating platform for quantum computing, built for research institutions, national programs, and enterprise R&amp;D. Connect every framework and vendor, run the full pipeline under governance and cost control, and read the hardware landscape in data: no vendor lock-in, no rewrites per provider.</p>
     <div class="cta-row">
       <a href="#capabilities" class="btn btn-primary" data-i18n="hero.cta1">Explore the platform</a>
       <a href="#developers" class="btn btn-ghost" data-i18n="hero.cta2">See the workflow</a>
@@ -188,7 +188,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 8v4l3 2"/></svg>
         <h3 data-i18n="p3.t">You may have run this already</h3>
-        <p data-i18n="p3.d">Submissions are matched by circuit content, not filename, so earlier runs of the same circuit surface before you pay for another one, and an edited circuit correctly stops matching. Re-running is a choice, not an accident.</p>
+        <p data-i18n="p3.d">Submissions are matched by circuit content, not filename, so earlier runs of the same circuit surface before you pay for another one, and an edited circuit correctly stops matching. Re-running only happens when intended.</p>
       </div>
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M7 10h3l1.5-3 2 6 1.5-3h2"/></svg>
@@ -254,7 +254,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 17l5-5 4 4 7-8"/></svg>
         <h3 data-i18n="c3.t">Circuit optimization</h3>
-        <p data-i18n="c3.d">Transpile and route with multiple engines, mapped to the target device's physical layout, and compare every option side by side on resulting complexity, optimization time, and analytical fidelity. Every candidate is verified mathematically equivalent to your original circuit (large circuits offloaded to GPU) and comparisons run in isolation, so timings stay honest and the platform stays responsive.</p>
+        <p data-i18n="c3.d">Transpile and route with multiple engines, mapped to the target device's physical layout, and compare every option side by side on resulting complexity, optimization time, and analytical fidelity. Every candidate is verified mathematically equivalent to your original circuit (large circuits offloaded to GPU) and comparisons run in isolation, so timings are not skewed and the platform stays responsive.</p>
         <div class="tags"><span>Qiskit</span><span>TKET</span><span>QuiZX</span><span>BQSKit</span><span>SABRE</span><span>verified</span></div>
       </div>
       <div class="cap fade">
@@ -282,7 +282,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
         <h3 data-i18n="c8.t">Knowledge base (RAG)</h3>
-        <p data-i18n="c8.d">Ask in your own words. That is the whole interface. Hybrid dense + sparse retrieval, re-ranking, and cited answers over the platform's own accumulated runs: measured results, refusals and workarounds, not a document corpus. Findings distilled from them are anonymised and searchable by everyone; individual records stay with their owner. What the corpus contains is curated by your administrators, not chosen per query.</p>
+        <p data-i18n="c8.d">Query in natural language. That is the whole interface. Hybrid dense + sparse retrieval, re-ranking, and cited answers over the platform's own accumulated runs: measured results, refusals and workarounds, not a document corpus. Findings distilled from them are anonymised and searchable by everyone; individual records stay with their owner. What the corpus contains is curated by your administrators, not chosen per query.</p>
       </div>
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 8l-4 4 4 4M17 8l4 4-4 4M14 4l-4 16"/></svg>
@@ -303,7 +303,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>
         <h3 data-i18n="c12.t">Reproducible results</h3>
-        <p data-i18n="c12.d">Export one self-describing file per run: the circuit, the observable, the calibration exactly as it stood at submit time, the result, the noiseless reference and SDK versions. Anything unavailable is named rather than quietly omitted, so the number stays checkable years later: attach it to a paper or hand it to a reviewer.</p>
+        <p data-i18n="c12.d">Export one self-describing file per run: the circuit, the observable, the calibration exactly as it stood at submit time, the result, the noiseless reference and SDK versions. Missing fields are marked as missing rather than omitted, so the figure stays checkable years later: attach it to a paper or hand it to a reviewer.</p>
       </div>
       <div class="cap upcoming fade">
         <span class="soon" data-i18n="c10.badge">Coming soon</span>
@@ -321,7 +321,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="sec-head">
       <div class="eyebrow" data-i18n="int.tag">Intelligence</div>
       <h2 data-i18n="int.h2">Read the ecosystem in data, not hype</h2>
-      <p class="lead" data-i18n="int.lead">Every job you run feeds a living view of the hardware landscape, so researchers and decision-makers act on measured reality.</p>
+      <p class="lead" data-i18n="int.lead">Every job you run feeds a living view of the hardware landscape: device, SDK, and optimizer Leaders boards, health, cost, and playbooks, all drawn from real jobs.</p>
     </div>
     <div class="intel-grid">
       <div class="panel">
@@ -498,7 +498,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="aud fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
         <h3 data-i18n="aud.1.t">Researchers</h3>
-        <p data-i18n="aud.1.d">Individual researchers aren't shut out: everything up to the point of spending money is self-serve and needs no credential, and once you register your own vendor key the same workspace runs it: compare CPU, GPU and real QPUs, watch noise appear, and recover signal with mitigation.</p>
+        <p data-i18n="aud.1.d">Individual researchers are not excluded: everything up to the point of spending money is self-serve and needs no credential, and once you register your own vendor key the same workspace runs it: compare CPU, GPU and real QPUs, watch noise appear, and recover signal with mitigation.</p>
       </div>
       <div class="aud fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 8l-4 4 4 4M17 8l4 4-4 4M14 5l-4 14"/></svg>
@@ -526,7 +526,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="pt fade"><b data-i18n="sec.6.t">Institutional governance</b><span data-i18n="sec.6.d">Members register their own vendor credentials, so one person’s allowance is never spent by someone else. Institutions manage membership and access; every admin action is audit-logged.</span></div>
       <div class="pt fade"><b data-i18n="sec.7.t">Institutional reporting</b><span data-i18n="sec.7.d">On request, export a full account of an institution's activity: every member's quantum, AI and GPU work, with what it cost in each vendor's own unit, over any period or all time, scoped strictly to that institution and carrying its own audit trail.</span></div>
       <div class="pt fade"><b data-i18n="sec.8.t">Quantum, AI and GPU in one record</b><span data-i18n="sec.8.d">Quantum time, AI calls and GPU runs land in the same institutional record, so one export shows where the work went: no separate accounting for the classical half. Each still bills where it belongs: quantum and AI on the member's own vendor account, GPU on hardware the institution attached and opened to its members.</span></div>
-      <div class="pt fade"><b data-i18n="sec.9.t">Credential vault</b><span data-i18n="sec.9.d">Vendor keys are held encrypted under the account that registered them, and nowhere else. There is no institution key and no platform key to lend, because a vendor allowance is issued to a person. A key can be limited to named devices, and a compromised one is suspended with a reason rather than deleted, so its owner learns why instead of watching it vanish.</span></div>
+      <div class="pt fade"><b data-i18n="sec.9.t">Credential vault</b><span data-i18n="sec.9.d">Vendor keys are held encrypted under the account that registered them, and nowhere else. There is no institution key and no platform key to lend, because a vendor allowance is issued to a person. A key can be limited to named devices, and a compromised one is suspended with a reason rather than deleted, so its owner is told why.</span></div>
     </div>
   </div>
 </section>
@@ -633,11 +633,11 @@ const _L = {
     "pre.tag":"Before you spend a shot","pre.h2":"QPU time is scarce. Spend it on the run that will work.","pre.lead":"Most wasted quantum spend is decided before submission: the wrong device, a circuit too deep for it, or a run you already made last month. UQH answers all three up front.",
     "p1.t":"Analytic fidelity estimate","p1.d":"An error-budget calculation from the device's measured 1q, 2q and readout error rates against your circuit's gate counts. No noise simulation, so no qubit ceiling and no wait. It answers for a 100-qubit circuit as fast as a 2-qubit one.",
     "p2.t":"Rank the devices, vendor-neutral","p2.d":"The same circuit scored across every connected processor: expected fidelity, 2q error, coherence headroom, queue depth and cost, side by side. Pick on evidence, not on which vendor you happen to have an account with.",
-    "p3.t":"You may have run this already","p3.d":"Submissions are matched by circuit content, not filename, so earlier runs of the same circuit surface before you pay for another one, and an edited circuit correctly stops matching. Re-running is a choice, not an accident.",
+    "p3.t":"You may have run this already","p3.d":"Submissions are matched by circuit content, not filename, so earlier runs of the same circuit surface before you pay for another one, and an edited circuit correctly stops matching. Re-running only happens when intended.",
     "p4.t":"Prove the circuit on GPU first","p4.d":"Run it on dedicated GPU simulation hosts before it ever reaches hardware. Logic bugs, wrong observables and bad ansätze are cheaper to find on a GPU than in a QPU queue.",
-    "c13.t":"Hybrid-ready execution","c13.d":"Algorithm files already run on remote compute hosts, and the backend a program names is swapped at run time: a script written for a simulator reaches a GPU host or real hardware without being edited. When tightly coupled GPU-QPU machines arrive, they join as one more target on that same path rather than as a new architecture.","c12.t":"Reproducible results","c12.d":"Export one self-describing file per run: the circuit, the observable, the calibration exactly as it stood at submit time, the result, the noiseless reference and SDK versions. Anything unavailable is named rather than quietly omitted, so the number stays checkable years later: attach it to a paper or hand it to a reviewer.",
-    "sec.9.t":"Credential vault","sec.9.d":"Vendor keys are held encrypted under the account that registered them, and nowhere else. There is no institution key and no platform key to lend, because a vendor allowance is issued to a person. A key can be limited to named devices, and a compromised one is suspended with a reason rather than deleted, so its owner learns why instead of watching it vanish.","sec.8.t":"Quantum, AI and GPU in one record","sec.8.d":"Quantum time, AI calls and GPU runs land in the same institutional record, so one export shows where the work went: no separate accounting for the classical half. Each still bills where it belongs: quantum and AI on the member's own vendor account, GPU on hardware the institution attached and opened to its members.",
-    "hero.beta":"Beta: open to use, surface still moving","hero.kicker":"UQH · Universal Quantum Hub","hero.title":"Universal <span class=\"grad\">Quantum</span> Hub",
+    "c13.t":"Hybrid-ready execution","c13.d":"Algorithm files already run on remote compute hosts, and the backend a program names is swapped at run time: a script written for a simulator reaches a GPU host or real hardware without being edited. When tightly coupled GPU-QPU machines arrive, they join as one more target on that same path rather than as a new architecture.","c12.t":"Reproducible results","c12.d":"Export one self-describing file per run: the circuit, the observable, the calibration exactly as it stood at submit time, the result, the noiseless reference and SDK versions. Missing fields are marked as missing rather than omitted, so the figure stays checkable years later: attach it to a paper or hand it to a reviewer.",
+    "sec.9.t":"Credential vault","sec.9.d":"Vendor keys are held encrypted under the account that registered them, and nowhere else. There is no institution key and no platform key to lend, because a vendor allowance is issued to a person. A key can be limited to named devices, and a compromised one is suspended with a reason rather than deleted, so its owner is told why.","sec.8.t":"Quantum, AI and GPU in one record","sec.8.d":"Quantum time, AI calls and GPU runs land in the same institutional record, so one export shows where the work went: no separate accounting for the classical half. Each still bills where it belongs: quantum and AI on the member's own vendor account, GPU on hardware the institution attached and opened to its members.",
+    "hero.beta":"Beta: available now; features and limits not yet final","hero.kicker":"UQH · Universal Quantum Hub","hero.title":"Universal <span class=\"grad\">Quantum</span> Hub",
     "hero.sub":"A unified operating platform for quantum computing, built for research institutions, national programs, and enterprise R&D. Connect every framework and vendor, run the full pipeline under governance and cost control, and read the hardware landscape in data: no vendor lock-in, no rewrites per provider.",
     "hero.cta1":"Explore the platform","hero.cta2":"See the workflow","hero.byline":"A service by joygoLive: <b class=\"hl\">joy</b>, realized when Quantum Computing <b class=\"hl\">go</b>es <b class=\"hl\">Live</b>.","hero.flabel":"Works with your SDK","hero.vlabel":"Multi-vendor by design",
     "stat.vendors":"Hardware vendors","stat.frameworks":"SDK frameworks","stat.steps":"Independent pipeline steps","stat.apps":"Application modules",
@@ -649,12 +649,12 @@ const _L = {
     "cap.tag":"Capabilities","cap.h2":"Everything the quantum workflow needs","cap.lead":"A broad, composable feature set: use any piece on its own, or the whole pipeline end to end.",
     "c1.t":"Frameworks & vendors","c1.d":"Write in your SDK of choice and submit to any supported processor: no per-vendor rewrites.",
     "c2.t":"Independent pipeline","c2.d":"Analyze, optimize, noise-simulate, QEC, GPU-execute, QPU-submit, each step runs standalone, with an emulator dry-run option.",
-    "c3.t":"Circuit optimization","c3.d":"Transpile and route with multiple engines, mapped to the target device's physical layout, and compare every option side by side on resulting complexity, optimization time, and analytical fidelity. Every candidate is verified mathematically equivalent to your original circuit (large circuits offloaded to GPU) and comparisons run in isolation, so timings stay honest and the platform stays responsive.",
+    "c3.t":"Circuit optimization","c3.d":"Transpile and route with multiple engines, mapped to the target device's physical layout, and compare every option side by side on resulting complexity, optimization time, and analytical fidelity. Every candidate is verified mathematically equivalent to your original circuit (large circuits offloaded to GPU) and comparisons run in isolation, so timings are not skewed and the platform stays responsive.",
     "c4.t":"Error mitigation & resilience","c4.d":"Readout-error mitigation and zero-noise extrapolation as one resilience level, plus spacetime Pauli-check postselection for Clifford circuits: standard techniques, applied consistently.",
     "c5.t":"Noise simulation & QEC","c5.d":"Calibration-based fidelity and TVD with a cross-engine consistency check (Qiskit vs PennyLane), plus error-correction analysis and code application with threshold and logical-error estimates.",
     "c6.t":"Cost & resource estimate","c6.d":"See qubits, depth, gates, and what each vendor bills (in that vendor’s own unit) before submitting. No surprise spend.",
     "c7.t":"GPU acceleration","c7.d":"Offload heavy simulation to dedicated GPU hosts and compare CPU, GPU, and QPU on the same problem.",
-    "c8.t":"Knowledge base (RAG)","c8.d":"Ask in your own words. That is the whole interface. Hybrid dense + sparse retrieval, re-ranking, and cited answers over the platform's own accumulated runs: measured results, refusals and workarounds, not a document corpus. Findings distilled from them are anonymised and searchable by everyone; individual records stay with their owner. What the corpus contains is curated by your administrators, not chosen per query.",
+    "c8.t":"Knowledge base (RAG)","c8.d":"Query in natural language. That is the whole interface. Hybrid dense + sparse retrieval, re-ranking, and cited answers over the platform's own accumulated runs: measured results, refusals and workarounds, not a document corpus. Findings distilled from them are anonymised and searchable by everyone; individual records stay with their owner. What the corpus contains is curated by your administrators, not chosen per query.",
     "c9.t":"API, CLI & MCP","c9.d":"Full parity across UI, REST API, and CLI, plus an MCP server so AI agents orchestrate runs directly.",
     "c11.t":"Self-maintaining (AutoOps)","c11.d":"A scheduled autonomous layer tracks every device's fidelity and error rates over time and flags the ones drifting away from spec, watches SDK releases against your pinned versions, and picks up new hardware as vendors bring it online. Reversible actions auto-apply and log; anything irreversible waits for admin approval.",
     "c10.badge":"Coming soon","c10.t":"Runtime sessions","c10.d":"Reserve a device and batch many jobs in one session to minimize re-queuing between iterations, in the spirit of vendor runtime sessions. On the roadmap.",
@@ -669,7 +669,7 @@ const _L = {
     "hw.c1":"Vendor","hw.c2":"Modality","hw.c3":"Qubits","hw.c4":"Access","mx.h2":"Which SDK reaches which hardware","mx.lead":"Write in the framework you already use. Gate-based circuits reach every gate-based vendor; photonic and analog work stays with the hardware that can express it.","mx.c1":"SDK","mx.cgpu":"GPU sim",
     "m.super":"Superconducting","m.ion":"Trapped-ion","m.atom":"Neutral-atom","m.photon":"Photonic","ac.open":"Open plan","ac.cred":"Credits","ac.free":"Free tier",
     "aud.tag":"Who it's for","aud.h2":"Built for institutions and government: open to every researcher",
-    "aud.1.t":"Researchers","aud.1.d":"Individual researchers aren't shut out: everything up to the point of spending money is self-serve and needs no credential, and once you register your own vendor key the same workspace runs it: compare CPU, GPU and real QPUs, watch noise appear, and recover signal with mitigation.",
+    "aud.1.t":"Researchers","aud.1.d":"Individual researchers are not excluded: everything up to the point of spending money is self-serve and needs no credential, and once you register your own vendor key the same workspace runs it: compare CPU, GPU and real QPUs, watch noise appear, and recover signal with mitigation.",
     "aud.2.t":"Institutions & government","aud.2.d":"The primary fit: national programs, research institutes, and enterprise R&D. One governed, white-label control plane over every vendor: spend safeguards, code and data isolation, curated knowledge scope, security audit of every refused upload, and data sovereignty, with Leaders boards and real cost-vs-fidelity to ground hardware and budget decisions.",
     "aud.3.t":"Developers","aud.3.d":"Work from the environment you know. Circuit-complexity analysis, optimization, cost estimates, and runs over API and CLI: script them or wire them into CI.",
     "sec.tag":"Security & governance","sec.h2":"Built to run as a managed service","sec.lead":"Multi-tenant controls, spend safeguards, and isolation are enforced server-side across UI, API, CLI, and MCP.",

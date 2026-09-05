@@ -197,12 +197,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="why.tag">Premise</div>
     <h2 data-i18n="why.h2">Serving 3D content on the web</h2>
-    <p class="lead" data-i18n="why.lead">The question was not whether a browser can draw a room. It can. The question is what it costs to author one, hand it to development, put it in front of a phone, and find out what that phone did with it. LOCI exists to run that loop once, end to end.</p>
+    <p class="lead" data-i18n="why.lead">The question was not whether a browser can draw a room. It can. The question is what it costs to author one, hand it to development, put it in front of a phone, and measure how that phone handled it. LOCI exists to run that loop once, end to end.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="why.f1.t">Content outside the code</b><span data-i18n="why.f1.d">If a new room needs a developer, planning does not own the content. A room is one file, and the folder is the catalogue.</span></div>
+      <div class="fact fade"><b data-i18n="why.f1.t">Content outside the code</b><span data-i18n="why.f1.d">If a new room needs a developer, planning does not own the content. A room is one file, and the directory is the catalogue.</span></div>
       <div class="fact fade"><b data-i18n="why.f2.t">The runtime is a choice, not a foundation</b><span data-i18n="why.f2.d">Assets and content sit outside the renderer, so swapping engines changes one module. Five already do, Unity among them.</span></div>
-      <div class="fact fade"><b data-i18n="why.f3.t">The device answers, not the spec sheet</b><span data-i18n="why.f3.d">Every session sends back what actually happened on it. Guesses about phone performance were wrong twice already.</span></div>
+      <div class="fact fade"><b data-i18n="why.f3.t">The device reports, not the spec sheet</b><span data-i18n="why.f3.d">Every session reports what was actually measured on it. Estimates of phone performance have been wrong twice already.</span></div>
     </div>
   </div>
 </section>
@@ -215,9 +215,9 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <p class="lead" data-i18n="what.lead">A room is a box with furniture, places on the furniture, and objects on the places. Everything about it — size, light, furniture, places, objects, learning time, price tier — lives in one JSON file that planning edits in a visual editor with the same renderer beside it.</p>
     </div>
     <div class="pts">
-      <div class="pt fade" data-i18n-html="what.1"><b>One contract, three readers</b><span>The validation rules live in a single file used by the editor, the command line, and the page itself. Two copies drift, and then something passes review and breaks on screen.</span></div>
-      <div class="pt fade" data-i18n-html="what.2"><b>Rules that are conditions, not taste</b><span>Places must differ in height, or they stop being distinct places and nothing attaches. Two items may not share a word, or scoring has no answer. A training room may not exceed sixteen places, because past that no one is memorising anything.</span></div>
-      <div class="pt fade" data-i18n-html="what.3"><b>Five runtimes, one scene</b><span>Raw WebGL2, three.js, raw WebGPU, Canvas 2D and Unity WebGL draw the same room from the same bytes. The library is fetched only when chosen, so the transfer comparison stays honest.</span></div>
+      <div class="pt fade" data-i18n-html="what.1"><b>One contract, three consumers</b><span>The validation rules live in a single file shared by the editor, the CLI, and the runtime. Two copies diverge, and then a room passes review and breaks on screen.</span></div>
+      <div class="pt fade" data-i18n-html="what.2"><b>Rules that are conditions, not taste</b><span>Places must differ in height, or they stop being distinct places and nothing is retained. Two items may not share a word, or scoring has no answer. A training room may not exceed sixteen places, because past that no one is memorising anything.</span></div>
+      <div class="pt fade" data-i18n-html="what.3"><b>Five runtimes, one scene</b><span>Raw WebGL2, three.js, raw WebGPU, Canvas 2D and Unity WebGL draw the same room from the same bytes. Only the selected runtime's library is fetched, so the transfer comparison is not skewed.</span></div>
       <div class="pt fade" data-i18n-html="what.4"><b>Nothing ships without review</b><span>Planning uploads, validation gates it, and it waits until development approves. Uploads, rejections and approvals are appended to a ledger everyone reads.</span></div>
     </div>
   </div>
@@ -228,14 +228,14 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="pipe.tag">Pipeline</div>
     <h2 data-i18n="pipe.h2">Authoring to operations, once through</h2>
-    <p class="lead" data-i18n="pipe.lead">Four stages, each with something that stops the next one from inheriting a mistake.</p>
+    <p class="lead" data-i18n="pipe.lead">Four stages, each with a gate that stops errors propagating to the next.</p>
     </div>
     <div class="pipe">
       <div class="pcard fade">
         <div class="pn">01</div>
         <div class="pk" data-i18n="pipe.1.t">Authoring</div>
         <p data-i18n="pipe.1.d">A form with the live scene next to it. Furniture comes from presets whose positions are computed against the room size, and a place snaps onto a surface rather than being typed as coordinates.</p>
-        <div class="pg" data-i18n-html="pipe.1.g"><b>Gate:</b> validation runs while you type. Failing means the upload button will not press.</div>
+        <div class="pg" data-i18n-html="pipe.1.g"><b>Gate:</b> validation runs on input. On failure the upload button is disabled.</div>
       </div>
       <div class="pcard fade">
         <div class="pn">02</div>
@@ -270,7 +270,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="stats">
       <div class="stat"><b>60fps</b><span data-i18n="found.s1">All five runtimes, 16.7 ms median, across seven rooms</span></div>
       <div class="stat"><b>0.8 → 36%</b><span data-i18n="found.s2">Hitching on the Versailles room, 3.7 M triangles. This is where they split</span></div>
-      <div class="stat"><b>3.6 MB</b><span data-i18n="found.s3">What Unity adds on the wire. three.js adds 153 KB</span></div>
+      <div class="stat"><b>3.6 MB</b><span data-i18n="found.s3">Unity's additional transfer size. three.js adds 153 KB</span></div>
       <div class="stat"><b>723 ms</b><span data-i18n="found.s4">Unity's first frame. The other four: 274 to 350 ms</span></div>
     </div>
 
@@ -289,9 +289,9 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 
     <div class="pts">
       <div class="pt fade" data-i18n-html="found.1"><b>Below a certain load, the runtime does not matter</b><span>Seven rooms, up to 40 places and 80 pieces of furniture: all five held 16.7 ms on the phone. Draw calls ranged from 3 to 1,149 and the frame did not move.</span></div>
-      <div class="pt fade" data-i18n-html="found.2"><b>Above it, the hand-written renderers break first</b><span>On the Versailles room raw WebGL2 and WebGPU hitched on 21% and 36% of frames with only four draw calls — they push 1.8 million vertices with no culling. three.js splits the same scene into 254 calls and drops what is off screen: 0.8%. That is what the 153 KB buys.</span></div>
-      <div class="pt fade" data-i18n-html="found.3"><b>Unity costs 24× the transfer of three.js and is not faster</b><span>3.6 MB on the wire, 723 ms to first frame against 350, 2.6% hitching on Versailles against 0.8. Once lighting, shadows and geometry were matched it did not look different either. At this content scale an engine has nothing to sell; the wiring stays so it can be re-measured when the rooms get heavier.</span></div>
-      <div class="pt fade" data-i18n-html="found.4"><b>Earlier, on an iPhone over the public address</b><span>precompressing the mesh from 365 KB to 73 KB did not move the first frame — parsing, shader compilation and GPU upload were the cost, not transfer — and the first run paid 22–24 ms of input lag the second did not. Both held. The four-runtime tie did not, once the room got big enough.</span></div>
+      <div class="pt fade" data-i18n-html="found.2"><b>Above it, the hand-written renderers hit their limit first</b><span>On the Versailles room raw WebGL2 and WebGPU hitched on 21% and 36% of frames with only four draw calls — they push 1.8 million vertices with no culling. three.js splits the same scene into 254 calls and frustum-culls what is off screen: 0.8%. That is what the 153 KB pays for.</span></div>
+      <div class="pt fade" data-i18n-html="found.3"><b>Unity costs 24× the transfer of three.js and is not faster</b><span>3.6 MB on the wire, 723 ms to first frame against 350, 2.6% hitching on Versailles against 0.8. Once lighting, shadows and geometry were matched it did not look different either. At this content scale an engine offers no advantage; the integration stays so it can be re-measured when the rooms get heavier.</span></div>
+      <div class="pt fade" data-i18n-html="found.4"><b>Earlier, on an iPhone over the public address</b><span>precompressing the mesh from 365 KB to 73 KB did not move the first frame — parsing, shader compilation and GPU upload were the cost, not transfer — and the first run paid 22–24 ms of input lag the second did not. Both reproduced. The four-runtime tie did not hold once the room got big enough.</span></div>
     </div>
   </div>
 </section>
@@ -304,11 +304,11 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <p class="lead" data-i18n="limits.lead">The figures above are measurements. Below is what no measurement here supports.</p>
     </div>
     <div class="facts">
-      <div class="fact fade" data-i18n-html="limits.1"><b>No claim that it improves memory</b><span>The method of loci is a technique, and LOCI is a place to practise it. Nothing here has been trialled, and no cognitive, medical or preventive benefit is asserted.</span></div>
-      <div class="fact fade" data-i18n-html="limits.2"><b>The sample is personal hardware</b><span>Phones, tablets and laptops on hand — no device matrix, no lab bank. Direction, not population statistics.</span></div>
-      <div class="fact fade" data-i18n-html="limits.3"><b>Godot was measured and dropped; Unreal is not measured</b><span>Godot 4's empty web export came to 6.7 MB, twice Unity's, with nothing to show for it. Unreal has had no official web target since 4.24. Unity's figure on the admin side is now a measurement, not an estimate.</span></div>
-      <div class="fact fade" data-i18n-html="limits.4"><b>Payment is a seam, not a feature</b><span>Tier and price are in the contract and the operations view shows the columns, but nothing charges anything and the numbers are simulated.</span></div>
-      <div class="fact fade" data-i18n-html="limits.5"><b>Assets that reach a browser cannot be protected</b><span>Anything drawn has to arrive. What can be done is gate it before sending, watermark to trace a leak, and keep the value in what does not travel.</span></div>
+      <div class="fact fade" data-i18n-html="limits.1"><b>No claim that it improves memory</b><span>The method of loci is a technique, and LOCI is an environment for practising it. Nothing here has been trialled, and no cognitive, medical or preventive benefit is asserted.</span></div>
+      <div class="fact fade" data-i18n-html="limits.2"><b>The sample is personal hardware</b><span>Phones, tablets and laptops on hand — no device matrix, no device farm. Direction, not population statistics.</span></div>
+      <div class="fact fade" data-i18n-html="limits.3"><b>Godot was measured and dropped; Unreal is not measured</b><span>Godot 4's empty web export came to 6.7 MB, twice Unity's, with no benefit. Unreal has had no official web target since 4.24. Unity's figure on the admin side is now a measurement, not an estimate.</span></div>
+      <div class="fact fade" data-i18n-html="limits.4"><b>Payment is an interface slot, not a feature</b><span>Tier and price are in the schema and the operations view shows the fields, but nothing is charged and the figures are simulated.</span></div>
+      <div class="fact fade" data-i18n-html="limits.5"><b>Assets that reach a browser cannot be protected</b><span>Anything rendered has to reach the client. What can be done is gate assets before sending, watermark them to trace a leak, and keep high-value assets off the wire.</span></div>
     </div>
     <div class="cta-row" style="margin-top:30px">
       <a href="https://loci.joygolive.com" class="btn btn-primary" data-i18n="limits.cta">Open a room</a>

@@ -64,7 +64,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="hero-kicker mono" data-i18n="hero.kicker">BOR · Blockchain On-chain Raffle</div>
     <h1 data-i18n-html="hero.title">National lotteries return about 50%. <span class="grad">BOR returns 90%</span>.</h1>
-    <p class="lead" data-i18n="hero.sub">The 10% fee is a constant compiled into the contract. There is no function to change it, no proxy to swap the logic, and no path for anyone (including the admin) to move participant funds out. You do not have to take that on trust: it is readable on a block explorer.</p>
+    <p class="lead" data-i18n="hero.sub">The 10% fee is a constant compiled into the contract. There is no function to change it, no proxy to swap the logic, and no path for anyone (including the admin) to move participant funds out. This does not need to be taken on trust: it is readable on a block explorer.</p>
     <div class="cta-row">
       <a href="#round" class="btn btn-primary" data-i18n="hero.cta1">How a round works</a>
       <a href="#not" class="btn btn-ghost" data-i18n="hero.cta2">What this is not</a>
@@ -160,8 +160,8 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow" data-i18n="vf.tag">Verification</div>
-      <h2 data-i18n="vf.h2">Not audited: here is what was done instead</h2>
-      <p class="lead" data-i18n="vf.lead">No third party has audited this contract. Saying so is the first line of the section, not a footnote at the bottom. What follows is the self-testing that exists in its place, stated so you can reproduce it.</p>
+      <h2 data-i18n="vf.h2">Not audited: the verification performed instead</h2>
+      <p class="lead" data-i18n="vf.lead">No third party has audited this contract. That is stated at the top of this section rather than in a footnote. What follows is the self-testing that exists in its place, stated so you can reproduce it.</p>
     </div>
     <div class="table-wrap">
       <table class="vtable">
@@ -189,7 +189,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="sec-head">
       <div class="eyebrow" data-i18n="nt.tag">What this is not</div>
       <h2 data-i18n="nt.h2">The limits, in the same place as the claims</h2>
-      <p class="lead" data-i18n="nt.lead">Marketing copy inflates when it is repeated. This list exists so the claims above stay attached to what is actually true.</p>
+      <p class="lead" data-i18n="nt.lead">This list keeps the claims above bound to what is actually true.</p>
     </div>
     <div class="facts">
       <div class="fact fade">
@@ -242,7 +242,7 @@ const _L = {
     "nav.round":"How a round works","nav.prize":"The prize","nav.check":"What you can check","nav.verify":"Verification","nav.not":"What this is not",
     "hero.kicker":"BOR · Blockchain On-chain Raffle",
     "hero.title":"National lotteries return about 50%. <span class=\"grad\">BOR returns 90%</span>.",
-    "hero.sub":"The 10% fee is a constant compiled into the contract. There is no function to change it, no proxy to swap the logic, and no path for anyone (including the admin) to move participant funds out. You do not have to take that on trust: it is readable on a block explorer.",
+    "hero.sub":"The 10% fee is a constant compiled into the contract. There is no function to change it, no proxy to swap the logic, and no path for anyone (including the admin) to move participant funds out. This does not need to be taken on trust: it is readable on a block explorer.",
     "hero.cta1":"How a round works","hero.cta2":"What this is not",
     "hero.byline":"A service by joygoLive · Base Sepolia testnet · not audited by a third party.",
     "hero.slabel":"Status","hero.s1":"Testnet · Base Sepolia","hero.s2":"Not audited","hero.s3":"Expected value below ticket price",
@@ -278,8 +278,8 @@ const _L = {
     "ck.3.t":"The schedule cannot be shifted",
     "ck.3.d":"No call sequence moves a deadline or a beacon round. Settlement is idempotent in the way that matters: whoever calls draw(), and whenever they call it, the same tickets win.",
 
-    "vf.tag":"Verification","vf.h2":"Not audited: here is what was done instead",
-    "vf.lead":"No third party has audited this contract. Saying so is the first line of the section, not a footnote at the bottom. What follows is the self-testing that exists in its place, stated so you can reproduce it.",
+    "vf.tag":"Verification","vf.h2":"Not audited: the verification performed instead",
+    "vf.lead":"No third party has audited this contract. That is stated at the top of this section rather than in a footnote. What follows is the self-testing that exists in its place, stated so you can reproduce it.",
     "vf.c1":"What was checked","vf.c2":"Result",
     "vf.r1.a":"Test suite","vf.r1.b":"Full suite passing",
     "vf.r2.a":"Deep randomized runs","vf.r2.b":"Fuzz 5,000 runs; invariants 512 runs × 128 depth: all pass",
@@ -293,7 +293,7 @@ const _L = {
     "vf.note":"For developers: the contract verifies the drand quicknet beacon over BLS12-381 on EIP-2537 precompiles, at roughly 166k gas per verification, and exposes the chain hash and group public key it checks against, so you can compare them with what drand publishes without reading bytecode.",
 
     "nt.tag":"What this is not","nt.h2":"The limits, in the same place as the claims",
-    "nt.lead":"Marketing copy inflates when it is repeated. This list exists so the claims above stay attached to what is actually true.",
+    "nt.lead":"This list keeps the claims above bound to what is actually true.",
     "nt.1.t":"Not an investment","nt.1.d":"The expected value of a ticket is below what it costs. That is what a 90% payout rate means. Nothing here is a return, a yield, or a way to earn.",
     "nt.2.t":"Not audited","nt.2.d":"No third party has reviewed the contract, and the BLS verification code in particular has not been externally audited. The self-testing above is what stands in its place.",
     "nt.3.t":"Not on mainnet","nt.3.d":"BOR runs on the Base Sepolia testnet. It is there to collect feedback, not participants. No real money is at stake and none should be.",

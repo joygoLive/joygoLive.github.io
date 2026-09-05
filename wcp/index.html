@@ -201,12 +201,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="hero-kicker mono" data-i18n="hero.kicker">WCP · Web Capability Probe</div>
     <h1 data-i18n-html="hero.title">What your device <span class="grad">actually gives the web</span>.</h1>
-    <p class="lead" data-i18n="hero.sub">Every capability is invoked in your own browser and the result recorded. Not a support table, not a feature-detection list, because a browser answering "yes" and a browser doing the thing are two different answers.</p>
+    <p class="lead" data-i18n="hero.sub">Every capability is invoked in your own browser and the result recorded. Not a support table, not a feature-detection list, because declared support and actual execution frequently differ.</p>
     <div class="cta-row">
       <a href="https://wcp.joygolive.com" class="btn btn-primary" data-i18n="hero.cta1">Run it on your device</a>
       <a href="#found" class="btn btn-ghost" data-i18n="hero.cta2">What we found</a>
     </div>
-    <p class="reward" data-i18n-html="hero.reward"><b>Send the result and you get one back.</b> Where your device sits in the sample — upper, middle, or lower — and which capabilities opened, needed permission, or were closed on it.</p>
+    <p class="reward" data-i18n-html="hero.reward"><b>Submit the result and you get a report back.</b> Where your device sits in the sample — upper, middle, or lower — and which capabilities opened, needed permission, or were closed on it.</p>
     <div class="byline" data-i18n-html="hero.byline">A measurement tool by joygoLive. Open the link on the device you want measured.</div>
   </div>
 </section>
@@ -221,7 +221,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="facts">
       <div class="fact fade"><b data-i18n="why.f1.t">Declaration present, execution failed</b><span data-i18n="why.f1.d">The API answers, the call fails. More dangerous than absence: code takes that path believing it works.</span></div>
       <div class="fact fade"><b data-i18n="why.f2.t">Same hardware, different answer</b><span data-i18n="why.f2.d">One device, four browsers, four results. The variable is not the silicon.</span></div>
-      <div class="fact fade"><b data-i18n="why.f3.t">Our own headers, counted as absence</b><span data-i18n="why.f3.d">SharedArrayBuffer read as closed until COOP and COEP were added. The device was never the limit.</span></div>
+      <div class="fact fade"><b data-i18n="why.f3.t">Our own response headers, recorded as absence</b><span data-i18n="why.f3.d">SharedArrayBuffer read as closed until COOP and COEP were added. The device was never the limit.</span></div>
     </div>
   </div>
 </section>
@@ -261,7 +261,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 
     <div class="facts">
       <div class="fact fade" data-i18n-html="found.0"><b>Wi-Fi is not restricted on the web. It is absent</b><span>No scan, no signal strength, no channel, no security mode. The one related reading is whether the connection is Wi-Fi or cellular, and that answers only on Android Blink. Every iOS environment in the sample returns nothing.</span></div>
-      <div class="fact fade" data-i18n-html="found.1"><b>Most closed doors are not gaps</b><span>Deliberate refusals against fingerprinting outnumber genuine native gaps in this sample. Counting every unavailable item as a gap inflates the number.</span></div>
+      <div class="fact fade" data-i18n-html="found.1"><b>Most blocked items are not gaps</b><span>Deliberate refusals against fingerprinting outnumber genuine native gaps in this sample. Counting every unavailable item as a gap inflates the number.</span></div>
       <div class="fact fade" data-i18n-html="found.2"><b>On iOS the browser choice is cosmetic</b><span>Safari, Chrome, and Edge on the same iPhone returned byte-identical measurements. All three are WebKit.</span></div>
       <div class="fact fade" data-i18n-html="found.3"><b>In-app browsers close capabilities</b><span>that the same phone opens in a standalone browser. A link opened from a messenger is a different device, as far as the web can tell.</span></div>
       <div class="fact fade" data-i18n-html="found.4"><b>Open and fast are not the same device</b><span>The most open environment in this sample is not the fastest one.</span></div>
@@ -274,8 +274,8 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="method">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="method.tag">Method</div>
-    <h2 data-i18n="method.h2">How it is kept</h2>
-    <p class="lead" data-i18n="method.lead">A number is only worth what the method behind it is worth. This is the method, and it does not change when the numbers do.</p>
+    <h2 data-i18n="method.h2">Methodology</h2>
+    <p class="lead" data-i18n="method.lead">A figure is only as reliable as its methodology. This is the methodology, and it does not change when the figures do.</p>
     </div>
 
     <div class="mgrid">
@@ -295,13 +295,13 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       </div>
 
       <div class="mcard">
-        <div class="mk" data-i18n="method.3.t">Engine builds actually walked</div>
+        <div class="mk" data-i18n="method.3.t">Engine builds actually measured</div>
         <div class="mchips" id="wcpEngines" hidden></div>
-        <p data-i18n="method.3.d">The UA engine token is frozen and useless (537.36, 605.1.15). What decides is the Chrome build or the OS build, so that is what gets recorded.</p>
+        <p data-i18n="method.3.d">The UA engine token is frozen and uninformative (537.36, 605.1.15). What decides is the Chrome build or the OS build, so that is what gets recorded.</p>
       </div>
 
       <div class="mcard">
-        <div class="mk" data-i18n="method.4.t">A ledger that does not grow with the sample</div>
+        <div class="mk" data-i18n="method.4.t">A ledger independent of sample size</div>
         <div class="mstat"><b id="wcpBands">—</b><span data-i18n="method.4.u">bands kept</span></div>
         <p data-i18n="method.4.d">History is stored per month × engine build × OS, not per device, so ten samples and ten thousand produce the same number of rows. Kept for five years by default.</p>
       </div>
@@ -321,15 +321,15 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="layers">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="layers.tag">Diagnosis</div>
-    <h2 data-i18n="layers.h2">Five places a capability dies</h2>
+    <h2 data-i18n="layers.h2">Five layers where a capability fails</h2>
     <p class="lead" data-i18n="layers.lead">"It does not work" is one sentence covering five different causes. Only the first is about the device.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="layers.1.t">1 · No silicon</b><span data-i18n="layers.1.d">The part is not in the device. Nothing above can fix it.</span></div>
+      <div class="fact fade"><b data-i18n="layers.1.t">1 · No hardware</b><span data-i18n="layers.1.d">The part is not in the device. Nothing above can fix it.</span></div>
       <div class="fact fade"><b data-i18n="layers.2.t">2 · OS does not expose it</b><span data-i18n="layers.2.d">Present in hardware, absent from the platform API.</span></div>
-      <div class="fact fade"><b data-i18n="layers.3.t">3 · Browser refuses</b><span data-i18n="layers.3.d">Exposed by the OS, withheld by policy. Usually fingerprinting.</span></div>
+      <div class="fact fade"><b data-i18n="layers.3.t">3 · Browser policy</b><span data-i18n="layers.3.d">Exposed by the OS, withheld by policy. Usually fingerprinting.</span></div>
       <div class="fact fade"><b data-i18n="layers.4.t">4 · Host app restricts it</b><span data-i18n="layers.4.d">An in-app WebView, narrower than the browser it is built on.</span></div>
-      <div class="fact fade"><b data-i18n="layers.5.t">5 · Our own headers</b><span data-i18n="layers.5.d">The site's own response, closing what the device was ready to give.</span></div>
+      <div class="fact fade"><b data-i18n="layers.5.t">5 · Server response headers</b><span data-i18n="layers.5.d">The site's own response headers, blocking what the device could expose.</span></div>
     </div>
     <p class="lead" data-i18n-html="layers.none"><b>Wi-Fi belongs to none of the five.</b> There is no Wi-Fi API in the web platform to refuse in the first place, so the question of which layer blocks it never arises. That is a different answer from "closed", and the tool reports it as such.</p>
   </div>
@@ -341,11 +341,11 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="sec-head">
       <div class="eyebrow" data-i18n="limits.tag">Limits</div>
       <h2 data-i18n="limits.h2">What this will not claim</h2>
-      <p class="lead" data-i18n="limits.lead">A support list inflates the moment untested things are quietly counted. Below is what the numbers above are not.</p>
+      <p class="lead" data-i18n="limits.lead">A support list inflates the moment untested items are counted. Below is what the figures above do not claim.</p>
     </div>
     <div class="facts">
       <div class="fact fade" data-i18n-html="limits.1"><b>The sample is small</b><span>Most of the sample is ours. Treat the numbers as a direction, not a population statistic.</span></div>
-      <div class="fact fade" data-i18n-html="limits.2"><b>A web app cannot see outside itself</b><span>Running processes, installed apps, battery history, storage breakdown: all invisible from a page. Anything claiming otherwise from a browser is guessing.</span></div>
+      <div class="fact fade" data-i18n-html="limits.2"><b>A web app cannot see outside itself</b><span>Running processes, installed apps, battery history, storage breakdown: all invisible from a page. Anything claiming otherwise from a browser is an estimate.</span></div>
       <div class="fact fade" data-i18n-html="limits.3"><b>The native comparison is knowledge, not measurement</b><span>No native app was built to compare against, so that classification is documented rather than measured, and labelled as such.</span></div>
       <div class="fact fade" data-i18n-html="limits.5"><b>Network readings are excluded from every score</b><span>They measure the line at that moment, not the device. A phone on good Wi-Fi would otherwise outrank a faster one.</span></div>
       <div class="fact fade" data-i18n-html="limits.6"><b>Detected is not executed</b><span>Where a capability can only be checked for existence, never invoked, it is recorded as detected and labelled that way.</span></div>
@@ -380,16 +380,16 @@ const _L = {
     "nav.why":"Why","nav.what":"What it measures","nav.found":"Findings","nav.method":"Method","nav.layers":"Why it fails","nav.limits":"Limits",
     "hero.kicker":"WCP · Web Capability Probe",
     "hero.title":"What your device <span class=\"grad\">actually gives the web</span>.",
-    "hero.sub":"Every capability is invoked in your own browser and the result recorded. Not a support table, not a feature-detection list, because a browser answering \"yes\" and a browser doing the thing are two different answers.",
+    "hero.sub":"Every capability is invoked in your own browser and the result recorded. Not a support table, not a feature-detection list, because declared support and actual execution frequently differ.",
     "hero.cta1":"Run it on your device","hero.cta2":"What we found",
-    "hero.reward":"<b>Send the result and you get one back.</b> Where your device sits in the sample — upper, middle, or lower — and which capabilities opened, needed permission, or were closed on it.",
+    "hero.reward":"<b>Submit the result and you get a report back.</b> Where your device sits in the sample — upper, middle, or lower — and which capabilities opened, needed permission, or were closed on it.",
     "limits.ctanote":"Takes about a minute. You get your tier and a full breakdown back.",
     "hero.byline":"A measurement tool by joygoLive. Open the link on the device you want measured.",
     "why.tag":"Premise","why.h2":"Declared support, working support",
     "why.lead":"A capability table answers \"is it in the spec\". It cannot answer \"does it work on this phone, in this browser, right now\". Between the two sit the OS, the browser's own policy, the app hosting the WebView, and the response headers of the site itself.",
     "why.f1.t":"Declaration present, execution failed","why.f1.d":"The API answers, the call fails. More dangerous than absence: code takes that path believing it works.",
     "why.f2.t":"Same hardware, different answer","why.f2.d":"One device, four browsers, four results. The variable is not the silicon.",
-    "why.f3.t":"Our own headers, counted as absence","why.f3.d":"SharedArrayBuffer read as closed until COOP and COEP were added. The device was never the limit.",
+    "why.f3.t":"Our own response headers, recorded as absence","why.f3.d":"SharedArrayBuffer read as closed until COOP and COEP were added. The device was never the limit.",
     "what.tag":"Scope","what.h2":"What it measures",
     "what.lead":"Sensors, GPU and NPU, codecs, radios, storage, permissions, network, security context, and identity. Numbers where a number exists: GPU matrix multiply in GFLOPS, buffer ceilings in MB, refresh rate in Hz.",
     "what.1":"<b>Execution, not enumeration</b><span>Each item is invoked. A result is a return value or a thrown error, never a capability string.</span>",
@@ -404,34 +404,34 @@ const _L = {
     "found.c4":"GFLOPS at the top of the sample",
     "found.0":"<b>Wi-Fi is not restricted on the web. It is absent</b><span>No scan, no signal strength, no channel, no security mode. The one related reading is whether the connection is Wi-Fi or cellular, and that answers only on Android Blink. Every iOS environment in the sample returns nothing.</span>",
     "layers.none":"<b>Wi-Fi belongs to none of the five.</b> There is no Wi-Fi API in the web platform to refuse in the first place, so the question of which layer blocks it never arises. That is a different answer from \"closed\", and the tool reports it as such.",
-    "found.1":"<b>Most closed doors are not gaps</b><span>Deliberate refusals against fingerprinting outnumber genuine native gaps in this sample. Counting every unavailable item as a gap inflates the number.</span>",
+    "found.1":"<b>Most blocked items are not gaps</b><span>Deliberate refusals against fingerprinting outnumber genuine native gaps in this sample. Counting every unavailable item as a gap inflates the number.</span>",
     "found.snote":"Sample","found.sdev":"devices","found.senv":"environments","found.sasof":"as of",
     "found.2":"<b>On iOS the browser choice is cosmetic</b><span>Safari, Chrome, and Edge on the same iPhone returned byte-identical measurements. All three are WebKit.</span>",
     "found.3":"<b>In-app browsers close capabilities</b><span>that the same phone opens in a standalone browser. A link opened from a messenger is a different device, as far as the web can tell.</span>",
     "found.4":"<b>Open and fast are not the same device</b><span>The most open environment in this sample is not the fastest one.</span>",
     "method.chg.t":"Capabilities that flipped",
     "method.chg.d":"Recorded when the same device and browser is measured twice and an item changes state. Browser updates open things, and occasionally close them.",
-    "method.tag":"Method","method.h2":"How it is kept",
-    "method.lead":"A number is only worth what the method behind it is worth. This is the method, and it does not change when the numbers do.",
+    "method.tag":"Method","method.h2":"Methodology",
+    "method.lead":"A figure is only as reliable as its methodology. This is the methodology, and it does not change when the figures do.",
     "method.1.t":"Four groups, not two",
     "method.1.d":"Open everywhere, permission everywhere, decided by the environment, closed everywhere. The third group is the interesting one: the hardware is not what decides.",
     "method.2.t":"Nine groups of checks",
     "method.2.d":"Radios, compute, motion, device, I/O, storage, camera, audio, location. Each item is invoked, and a result is a return value or a thrown error.",
-    "method.3.t":"Engine builds actually walked",
-    "method.3.d":"The UA engine token is frozen and useless (537.36, 605.1.15). What decides is the Chrome build or the OS build, so that is what gets recorded.",
-    "method.4.t":"A ledger that does not grow with the sample","method.4.u":"bands kept",
+    "method.3.t":"Engine builds actually measured",
+    "method.3.d":"The UA engine token is frozen and uninformative (537.36, 605.1.15). What decides is the Chrome build or the OS build, so that is what gets recorded.",
+    "method.4.t":"A ledger independent of sample size","method.4.u":"bands kept",
     "method.4.d":"History is stored per month × engine build × OS, not per device, so ten samples and ten thousand produce the same number of rows. Kept for five years by default.",
-    "layers.tag":"Diagnosis","layers.h2":"Five places a capability dies",
+    "layers.tag":"Diagnosis","layers.h2":"Five layers where a capability fails",
     "layers.lead":"\"It does not work\" is one sentence covering five different causes. Only the first is about the device.",
-    "layers.1.t":"1 · No silicon","layers.1.d":"The part is not in the device. Nothing above can fix it.",
+    "layers.1.t":"1 · No hardware","layers.1.d":"The part is not in the device. Nothing above can fix it.",
     "layers.2.t":"2 · OS does not expose it","layers.2.d":"Present in hardware, absent from the platform API.",
-    "layers.3.t":"3 · Browser refuses","layers.3.d":"Exposed by the OS, withheld by policy. Usually fingerprinting.",
+    "layers.3.t":"3 · Browser policy","layers.3.d":"Exposed by the OS, withheld by policy. Usually fingerprinting.",
     "layers.4.t":"4 · Host app restricts it","layers.4.d":"An in-app WebView, narrower than the browser it is built on.",
-    "layers.5.t":"5 · Our own headers","layers.5.d":"The site's own response, closing what the device was ready to give.",
-    "limits.tag":"Limits","limits.lead":"A support list inflates the moment untested things are quietly counted. Below is what the numbers above are not.",
+    "layers.5.t":"5 · Server response headers","layers.5.d":"The site's own response headers, blocking what the device could expose.",
+    "limits.tag":"Limits","limits.lead":"A support list inflates the moment untested items are counted. Below is what the figures above do not claim.",
     "limits.h2":"What this will not claim",
     "limits.1":"<b>The sample is small</b><span>Most of the sample is ours. Treat the numbers as a direction, not a population statistic.</span>",
-    "limits.2":"<b>A web app cannot see outside itself</b><span>Running processes, installed apps, battery history, storage breakdown: all invisible from a page. Anything claiming otherwise from a browser is guessing.</span>",
+    "limits.2":"<b>A web app cannot see outside itself</b><span>Running processes, installed apps, battery history, storage breakdown: all invisible from a page. Anything claiming otherwise from a browser is an estimate.</span>",
     "limits.3":"<b>The native comparison is knowledge, not measurement</b><span>No native app was built to compare against, so that classification is documented rather than measured, and labelled as such.</span>",
     "limits.5":"<b>Network readings are excluded from every score</b><span>They measure the line at that moment, not the device. A phone on good Wi-Fi would otherwise outrank a faster one.</span>",
     "limits.6":"<b>Detected is not executed</b><span>Where a capability can only be checked for existence, never invoked, it is recorded as detected and labelled that way.</span>",

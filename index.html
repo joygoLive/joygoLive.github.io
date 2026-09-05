@@ -68,7 +68,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="byline" data-i18n-html="hero.byline"><b class="t-joy">joy</b>, realized when it <b class="t-go">go</b>es <b class="t-live">Live</b>.</div>
     </div>
     <h1 data-i18n-html="hero.title"><span class="t-joy">Service</span> <span class="t-go">incubation</span> <span class="t-live">lab</span></h1>
-    <p class="lead" data-i18n="hero.sub">The field is never fixed in advance. If it looks worth building, it gets built, and run until it can run on its own. What is already running is below.</p>
+    <p class="lead" data-i18n="hero.sub">The field is not fixed in advance. If something is worth building, it gets built and operated until it can run on its own. What is in operation is listed below.</p>
     <div class="cta-row">
       <a href="#services" class="btn btn-primary" data-i18n="hero.cta1">See the portfolio</a>
       <a href="#ideas" class="btn btn-ghost" data-i18n="hero.cta2">Bring an idea</a>
@@ -82,7 +82,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="sec-head">
       <div class="eyebrow" data-i18n="svc.tag">Portfolio</div>
       <h2 data-i18n="svc.h2">What has shipped so far</h2>
-      <p class="lead" data-i18n="svc.lead">Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check — and one still being built: a memory-training room. Fields that share nothing with each other, already running rather than described. Each was built here and is operated here: not licensed, not resold.</p>
+      <p class="lead" data-i18n="svc.lead">Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check — and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house: not licensed, not resold.</p>
     </div>
 
     <div class="svc-grid">
@@ -114,11 +114,11 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
           <span class="badge beta" data-i18n="svc.b.beta">Beta</span>
         </div>
         <span class="svc-full" data-i18n="svc.amc.full">AI Motion Coaching · Community sports</span>
-        <p data-i18n="svc.amc.d">Real-time exercise-form coaching from a single phone camera. A trainer's judgment criteria encoded as joint-angle rules, normalized against your own body baseline. The feedback names what to fix instead of scoring a similarity you cannot read.</p>
+        <p data-i18n="svc.amc.d">Real-time exercise-form coaching from a single phone camera. A trainer's judgment criteria encoded as joint-angle rules, normalized against your own body baseline. Feedback names the correction instead of reporting an uninterpretable similarity score.</p>
         <ul class="svc-points">
-          <li data-i18n="svc.amc.1">Runs on the device. No video leaves the phone</li>
+          <li data-i18n="svc.amc.1">On-device inference. No video leaves the phone</li>
           <li data-i18n="svc.amc.2">One spoken cue during the set, a full report after it</li>
-          <li data-i18n="svc.amc.3">Reps it could not judge are named, never quietly counted</li>
+          <li data-i18n="svc.amc.3">Reps that could not be judged are reported with the reason and excluded from the count</li>
         </ul>
         <div class="svc-foot">
           <span class="svc-go"><span data-i18n="svc.more">Read more</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -133,7 +133,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
           <span class="badge testnet" data-i18n="svc.b.test">Testnet</span>
         </div>
         <span class="svc-full" data-i18n="svc.bor.full">Blockchain On-chain Raffle · Base</span>
-        <p data-i18n="svc.bor.d">An on-chain raffle where 90% of ticket sales become the prize. The 10% fee is a constant compiled into the contract, and the drand round each future draw will use is already determined. The draw can be checked rather than trusted.</p>
+        <p data-i18n="svc.bor.d">An on-chain raffle where 90% of ticket sales become the prize. The 10% fee is a constant compiled into the contract, and the drand round each future draw will use is already determined. Anyone can verify the draw on-chain.</p>
         <ul class="svc-points">
           <li data-i18n="svc.bor.1">National lotteries return about 50%. BOR returns 90%</li>
           <li data-i18n="svc.bor.2">No setter for the fee, no proxy to swap the logic</li>
@@ -155,7 +155,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
         <p data-i18n="svc.wcp.d">Checks that run in your own browser, reporting what the device actually exposes to the web. Every item is invoked rather than looked up, because a browser answering "yes" and a browser doing the thing are two different answers.</p>
         <ul class="svc-points">
           <li data-i18n="svc.wcp.1">Execution, not a support table. Five states, not yes/no</li>
-          <li data-i18n="svc.wcp.2">Separates device limits from browser policy and our own headers</li>
+          <li data-i18n="svc.wcp.2">Separates device limits from browser policy and server response headers</li>
           <li data-i18n="svc.wcp.3">Send a measurement and get your device's tier and full breakdown back</li>
         </ul>
         <div class="svc-foot">
@@ -171,9 +171,9 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
           <span class="badge dev" data-i18n="svc.b.dev">In development</span>
         </div>
         <span class="svc-full" data-i18n="svc.loci.full">Method of Loci · 3D memory training</span>
-        <p data-i18n="svc.loci.d">A room you look around and place things in, then recall where they were. The 3D is not decoration: the method of loci is spatial to begin with. Built as a testbed for the whole pipeline — authoring, handoff, serving, and measuring what a device does with it.</p>
+        <p data-i18n="svc.loci.d">A room you look around and place things in, then recall where they were. The 3D is not decoration: the method of loci is a spatial technique. Built as a testbed for the full pipeline: authoring, handoff, serving, and on-device measurement.</p>
         <ul class="svc-points">
-          <li data-i18n="svc.loci.1">A room is one JSON file. Planning edits it; development never touches code for a new room</li>
+          <li data-i18n="svc.loci.1">A room is one JSON file. Planning edits it; adding a room requires no code change</li>
           <li data-i18n="svc.loci.2">Five interchangeable runtimes draw the same scene — WebGL2, three.js, WebGPU, Canvas 2D, Unity WebGL</li>
           <li data-i18n="svc.loci.3">Every session reports frames, jank, input lag and load time from the device itself</li>
         </ul>
@@ -190,11 +190,11 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
           <span class="badge beta" data-i18n="svc.b.beta">Beta</span>
         </div>
         <span class="svc-full" data-i18n="svc.bcon.full">Broadcast Commute Observation Networks · Wireless environment</span>
-        <p data-i18n="svc.bcon.d">Checks the wireless environment in range and names what is wrong with it — no encryption, one name answering from several radios, protections never switched on — then says what to change for each. Scored per place, with the parts always shown.</p>
+        <p data-i18n="svc.bcon.d">Identifies weaknesses in the wireless environment in range — no encryption, one SSID answering from several APs, protections left off — and lists the corrective setting for each. Scored per place, with the components always shown.</p>
         <ul class="svc-points">
           <li data-i18n="svc.bcon.1">Receives only. No connecting, no authenticating, no probing</li>
           <li data-i18n="svc.bcon.2">One risk score per place, always shown with its parts</li>
-          <li data-i18n="svc.bcon.3">Every finding carries the setting or habit that removes it</li>
+          <li data-i18n="svc.bcon.3">Each finding carries its remediation: a setting change or a connection habit</li>
         </ul>
         <div class="svc-foot">
           <span class="svc-go"><span data-i18n="svc.more">Read more</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -212,21 +212,21 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="sec-head">
       <div class="eyebrow" data-i18n="id.tag">Bring an idea</div>
       <h2 data-i18n-html="id.h2">joygoLive builds and runs it<br />You plan and sell it<br />Whether it works, <span class="grad">we find out together</span></h2>
-      <p class="lead" data-i18n="id.lead">The scarce half of a product is rarely the code. If you have something worth building and no one to build it, joygoLive covers that half: design, implementation, deployment, and running it for as long as it runs on its own. You carry the planning, the positioning, and getting it in front of people.</p>
+      <p class="lead" data-i18n="id.lead">The missing half of a product is rarely the code. If you have something worth building and no one to build it, joygoLive covers that half: design, implementation, deployment, and operation until it runs on its own. Planning, positioning, and distribution stay with you.</p>
     </div>
 
     <div class="facts">
       <div class="fact fade">
         <b data-i18n="id.1.t">What joygoLive brings</b>
-        <span data-i18n="id.1.d">Working out whether it can be done at all, and how. Then design, implementation, deployment, and everything after: operating it, keeping it up, improving it. The services above were built that way in fields that share nothing with each other, so the domain is not the constraint.</span>
+        <span data-i18n="id.1.d">Technical feasibility and approach first. Then design, implementation, deployment, operation, and iteration. The services above were built this way across unrelated fields; the domain is not the constraint.</span>
       </div>
       <div class="fact fade">
         <b data-i18n="id.2.t">What you bring</b>
-        <span data-i18n="id.2.d">What it should be and who it is for; the wording, the channel, the people who need to hear about it. Nothing here needs to be a finished plan. A clear problem is enough to start.</span>
+        <span data-i18n="id.2.d">Product definition and target users; messaging, channel, and reaching the people who need it. A finished plan is not required. A clearly stated problem is enough.</span>
       </div>
       <div class="fact fade">
-        <b data-i18n="id.3.t">Build it together</b>
-        <span data-i18n="id.3.d">Bring it as it is: an idea you find interesting, or a problem you want solved. It does not have to be a business plan. We build a small version first and find out together whether it holds up; if it does not look like it can work, you hear that early rather than late.</span>
+        <b data-i18n="id.3.t">A small build, verified together</b>
+        <span data-i18n="id.3.d">Bring it as it is: an idea, or a problem you want solved. A business plan is not required. We build a minimal version first and verify together whether it holds; if it does not look viable, you hear that early.</span>
       </div>
     </div>
 
@@ -244,7 +244,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div id="ideaList" hidden></div>
     </div>
 
-    <p class="note" data-i18n="id.note">An idea you post is readable only by you and joygoLive. The list keeps the start of the title, the date, and the status, so the record that it was already here stays without giving the idea away. Posting needs no account and no contact details; you set a password instead, and replies come back as comments on your own post. Ideas are not deleted once posted.</p>
+    <p class="note" data-i18n="id.note">A posted idea is readable only by you and joygoLive. The list shows the start of the title, the date, and the status: the submission is on record without the idea being disclosed. No account or contact details are required; you set a password, and replies arrive as comments on your post. Posted ideas are not deleted.</p>
   </div>
 </section>
 
@@ -288,12 +288,12 @@ const _L = {
     "nav.services":"Portfolio","nav.company":"Company",
     "hero.kicker":"joygoLive",
     "hero.title":"<span class=\"t-joy\">Service</span> <span class=\"t-go\">incubation</span> <span class=\"t-live\">lab</span>",
-    "hero.sub":"The field is never fixed in advance. If it looks worth building, it gets built, and run until it can run on its own. What is already running is below.",
+    "hero.sub":"The field is not fixed in advance. If something is worth building, it gets built and operated until it can run on its own. What is in operation is listed below.",
     "hero.cta1":"See the portfolio","hero.cta2":"Bring an idea",
     "hero.byline":"<b class=\"t-joy\">joy</b>, realized when it <b class=\"t-go\">go</b>es <b class=\"t-live\">Live</b>.",
 
     "svc.tag":"Portfolio","svc.h2":"What has shipped so far",
-    "svc.lead":"Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check — and one still being built: a memory-training room. Fields that share nothing with each other, already running rather than described. Each was built here and is operated here: not licensed, not resold.",
+    "svc.lead":"Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check — and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house: not licensed, not resold.",
     "svc.more":"Read more","svc.b.beta":"Beta","svc.b.dev":"In development","svc.b.test":"Testnet",
 
     "svc.uqh.full":"Universal Quantum Hub · Quantum computing",
@@ -303,13 +303,13 @@ const _L = {
     "svc.uqh.3":"UI, REST API, CLI, and an MCP server for AI agents",
 
     "svc.amc.full":"AI Motion Coaching · Community sports",
-    "svc.amc.d":"Real-time exercise-form coaching from a single phone camera. A trainer's judgment criteria encoded as joint-angle rules, normalized against your own body baseline. The feedback names what to fix instead of scoring a similarity you cannot read.",
-    "svc.amc.1":"Runs on the device. No video leaves the phone",
+    "svc.amc.d":"Real-time exercise-form coaching from a single phone camera. A trainer's judgment criteria encoded as joint-angle rules, normalized against your own body baseline. Feedback names the correction instead of reporting an uninterpretable similarity score.",
+    "svc.amc.1":"On-device inference. No video leaves the phone",
     "svc.amc.2":"One spoken cue during the set, a full report after it",
-    "svc.amc.3":"Reps it could not judge are named, never quietly counted",
+    "svc.amc.3":"Reps that could not be judged are reported with the reason and excluded from the count",
 
     "svc.bor.full":"Blockchain On-chain Raffle · Base",
-    "svc.bor.d":"An on-chain raffle where 90% of ticket sales become the prize. The 10% fee is a constant compiled into the contract, and the drand round each future draw will use is already determined. The draw can be checked rather than trusted.",
+    "svc.bor.d":"An on-chain raffle where 90% of ticket sales become the prize. The 10% fee is a constant compiled into the contract, and the drand round each future draw will use is already determined. Anyone can verify the draw on-chain.",
     "svc.bor.1":"National lotteries return about 50%. BOR returns 90%",
     "svc.bor.2":"No setter for the fee, no proxy to swap the logic",
     "svc.bor.3":"BLS12-381 beacon verification on-chain, against RFC 9380 vectors",
@@ -317,32 +317,32 @@ const _L = {
     "svc.wcp.full":"Web Capability Probe · Measurement",
     "svc.wcp.d":"Checks that run in your own browser, reporting what the device actually exposes to the web. Every item is invoked rather than looked up, because a browser answering \"yes\" and a browser doing the thing are two different answers.",
     "svc.wcp.1":"Execution, not a support table. Five states, not yes/no",
-    "svc.wcp.2":"Separates device limits from browser policy and our own headers",
+    "svc.wcp.2":"Separates device limits from browser policy and server response headers",
     "svc.wcp.3":"Send a measurement and get your device's tier and full breakdown back",
     "svc.loci.full":"Method of Loci · 3D memory training",
-    "svc.loci.d":"A room you look around and place things in, then recall where they were. The 3D is not decoration: the method of loci is spatial to begin with. Built as a testbed for the whole pipeline — authoring, handoff, serving, and measuring what a device does with it.",
-    "svc.loci.1":"A room is one JSON file. Planning edits it; development never touches code for a new room",
+    "svc.loci.d":"A room you look around and place things in, then recall where they were. The 3D is not decoration: the method of loci is a spatial technique. Built as a testbed for the full pipeline: authoring, handoff, serving, and on-device measurement.",
+    "svc.loci.1":"A room is one JSON file. Planning edits it; adding a room requires no code change",
     "svc.loci.2":"Five interchangeable runtimes draw the same scene — WebGL2, three.js, WebGPU, Canvas 2D, Unity WebGL",
     "svc.loci.3":"Every session reports frames, jank, input lag and load time from the device itself",
 
     "svc.bcon.full":"Broadcast Commute Observation Networks · Wireless environment",
-    "svc.bcon.d":"Checks the wireless environment in range and names what is wrong with it — no encryption, one name answering from several radios, protections never switched on — then says what to change for each. Scored per place, with the parts always shown.",
+    "svc.bcon.d":"Identifies weaknesses in the wireless environment in range — no encryption, one SSID answering from several APs, protections left off — and lists the corrective setting for each. Scored per place, with the components always shown.",
     "svc.bcon.1":"Receives only. No connecting, no authenticating, no probing",
     "svc.bcon.2":"One risk score per place, always shown with its parts",
-    "svc.bcon.3":"Every finding carries the setting or habit that removes it",
+    "svc.bcon.3":"Each finding carries its remediation: a setting change or a connection habit",
 
     "nav.ideas":"Bring an idea",
     "id.tag":"Bring an idea",
     "id.h2":"joygoLive builds and runs it<br />You plan and sell it<br />Whether it works, <span class=\"grad\">we find out together</span>",
-    "id.lead":"The scarce half of a product is rarely the code. If you have something worth building and no one to build it, joygoLive covers that half: design, implementation, deployment, and running it for as long as it runs on its own. You carry the planning, the positioning, and getting it in front of people.",
+    "id.lead":"The missing half of a product is rarely the code. If you have something worth building and no one to build it, joygoLive covers that half: design, implementation, deployment, and operation until it runs on its own. Planning, positioning, and distribution stay with you.",
     "id.1.t":"What joygoLive brings",
-    "id.1.d":"Working out whether it can be done at all, and how. Then design, implementation, deployment, and everything after: operating it, keeping it up, improving it. The services above were built that way in fields that share nothing with each other, so the domain is not the constraint.",
+    "id.1.d":"Technical feasibility and approach first. Then design, implementation, deployment, operation, and iteration. The services above were built this way across unrelated fields; the domain is not the constraint.",
     "id.2.t":"What you bring",
-    "id.2.d":"What it should be and who it is for; the wording, the channel, the people who need to hear about it. Nothing here needs to be a finished plan. A clear problem is enough to start.",
-    "id.3.t":"Build it together",
-    "id.3.d":"Bring it as it is: an idea you find interesting, or a problem you want solved. It does not have to be a business plan. We build a small version first and find out together whether it holds up; if it does not look like it can work, you hear that early rather than late.",
+    "id.2.d":"Product definition and target users; messaging, channel, and reaching the people who need it. A finished plan is not required. A clearly stated problem is enough.",
+    "id.3.t":"A small build, verified together",
+    "id.3.d":"Bring it as it is: an idea, or a problem you want solved. A business plan is not required. We build a minimal version first and verify together whether it holds; if it does not look viable, you hear that early.",
     "id.propose":"Propose an idea","id.list":"Ideas submitted",
-    "id.note":"An idea you post is readable only by you and joygoLive. The list keeps the start of the title, the date, and the status, so the record that it was already here stays without giving the idea away. Posting needs no account and no contact details; you set a password instead, and replies come back as comments on your own post. Ideas are not deleted once posted.",
+    "id.note":"A posted idea is readable only by you and joygoLive. The list shows the start of the title, the date, and the status: the submission is on record without the idea being disclosed. No account or contact details are required; you set a password, and replies arrive as comments on your post. Posted ideas are not deleted.",
 
     "ct.tag":"Contact","ct.h2":"Get in touch","ct.k1":"Email","ct.k2":"Business reg. no.","ct.k3":"Location",
     "ft.copy":"© 2026 joygoLive. All rights reserved."
