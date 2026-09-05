@@ -13,7 +13,7 @@ bor/index.html      BOR — Blockchain On-chain Raffle
 wcp/index.html      WCP — Web Capability Probe
 loci/index.html     LOCI — Method of Loci (3D memory palace)
 bcon/index.html     BCON — wireless environment check
-mp/index.html       MP — MyPlay (curated song catalogue, offline app + web app at mp.joygolive.com)
+mp/index.html       MP — Music Play (curated song catalogue, offline app + web app at mp.joygolive.com)
 assets/site.css     shared design system — tokens, shell, every component
 assets/i18n.js      shared runtime — EN/KO switch, scroll fade-in, mobile menu
 favicon.svg

@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MyPlay — A radio everyone hears together, by joygoLive</title>
-<meta name="description" content="MyPlay is a shared radio over a hand-curated song catalogue: everyone connected hears the same song at the same point, requests and stories go into the next slots, and an AI DJ reads the stories. The server keeps only a clock and a schedule." />
-<meta property="og:title" content="MyPlay — A radio everyone hears together" />
+<title>Music Play — A radio everyone hears together, by joygoLive</title>
+<meta name="description" content="Music Play is a shared radio over a hand-curated song catalogue: everyone connected hears the same song at the same point, requests and stories go into the next slots, and an AI DJ reads the stories. The server keeps only a clock and a schedule." />
+<meta property="og:title" content="Music Play — A radio everyone hears together" />
 <meta property="og:description" content="One server clock, one schedule. Requests and stories go on air next; an AI DJ speaks over the intro." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
@@ -104,7 +104,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <div class="hero-kicker mono" data-i18n="hero.kicker">MP · MyPlay</div>
+    <div class="hero-kicker mono" data-i18n="hero.kicker">MP · Music Play</div>
     <h1 data-i18n-html="hero.title">A radio <span class="grad">everyone hears together</span>.</h1>
     <p class="lead" data-i18n="hero.sub">One server clock, one schedule. Everyone connected hears the same song at the same point. Send a request with a story and it goes on air in the next slots; an AI DJ reads the story over the intro. The next five songs are published in advance. When the queue is empty, a hand-curated catalogue keeps the station running.</p>
     <div class="cta-row">
@@ -121,7 +121,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="why.tag">Premise</div>
     <h2 data-i18n="why.h2">From a personal player to a shared station</h2>
-    <p class="lead" data-i18n="why.lead">MyPlay began as a personal catalogue player: one JSON file with credits and a note per song, served to an offline app and a web app. The shared station uses that file unchanged. What differs is that the playback position is decided by the server rather than by each listener, and that requests feed the schedule.</p>
+    <p class="lead" data-i18n="why.lead">Music Play began as a personal catalogue player: one JSON file with credits and a note per song, served to an offline app and a web app. The shared station uses that file unchanged. What differs is that the playback position is decided by the server rather than by each listener, and that requests feed the schedule.</p>
     </div>
     <div class="facts">
       <div class="fact fade"><b data-i18n="why.f1.t">One clock, on the server</b><span data-i18n="why.f1.d">A single station row records the current song and when it started. Clients read it and seek to the same point. Synchronisation is a timestamp comparison, not an audio stream.</span></div>
@@ -248,7 +248,7 @@ const _L = {
   ko:{
     "nav.why":"왜","nav.how":"동작 방식","nav.rule":"편성","nav.dj":"AI DJ","nav.found":"수치","nav.limits":"한계",
 
-    "hero.kicker":"MP · MyPlay",
+    "hero.kicker":"MP · Music Play",
     "hero.title":"<span class=\"grad\">같이 듣는</span> 라디오.",
     "hero.sub":"서버 시계 하나, 편성표 하나. 접속한 모두가 같은 곡의 같은 대목을 듣습니다. 사연과 함께 곡을 신청하면 다음 편성부터 나가고, AI DJ가 곡 도입부에 사연을 읽습니다. 다음 다섯 곡은 미리 공개됩니다. 신청이 없는 동안은 직접 선곡한 카탈로그가 방송을 잇습니다.",
     "hero.cta1":"방송국 열기",
@@ -257,7 +257,7 @@ const _L = {
     "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 베타.",
 
     "why.tag":"전제","why.h2":"개인 플레이어에서 공동 방송국으로",
-    "why.lead":"MyPlay는 개인 카탈로그 플레이어로 시작했습니다. 곡마다 크레딧과 주제 한 줄이 붙은 JSON 파일 하나를 오프라인 앱과 웹앱이 같이 읽는 구조였습니다. 공동 방송국은 그 파일을 그대로 씁니다. 달라진 것은 재생 위치를 각 청취자가 아니라 서버가 정한다는 것과, 신청이 편성의 입력이 된다는 것입니다.",
+    "why.lead":"Music Play는 개인 카탈로그 플레이어로 시작했습니다. 곡마다 크레딧과 주제 한 줄이 붙은 JSON 파일 하나를 오프라인 앱과 웹앱이 같이 읽는 구조였습니다. 공동 방송국은 그 파일을 그대로 씁니다. 달라진 것은 재생 위치를 각 청취자가 아니라 서버가 정한다는 것과, 신청이 편성의 입력이 된다는 것입니다.",
     "why.f1.t":"서버에 있는 시계 하나",
     "why.f1.d":"방송국 행 하나가 현재 곡과 시작 시각을 기록합니다. 클라이언트는 그것을 읽고 같은 지점으로 seek 합니다. 동기화는 오디오 스트림이 아니라 타임스탬프 비교입니다.",
     "why.f2.t":"카탈로그가 기본 편성",
