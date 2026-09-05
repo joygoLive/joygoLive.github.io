@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>joygoLive — Service incubation lab</title>
-<meta name="description" content="joygoLive is a service incubation lab: quantum middleware, motion coaching, an on-chain raffle, web measurement, memory training, wireless environment checks. Built here, run here." />
+<meta name="description" content="joygoLive is a service incubation lab: quantum middleware, motion coaching, an on-chain raffle, web measurement, memory training, wireless environment checks, a curated music catalogue. Built here, run here." />
 <meta property="og:title" content="joygoLive — Service incubation lab" />
-<meta property="og:description" content="Quantum infrastructure, motion coaching, an on-chain raffle, web measurement, memory training, wireless environment checks. Unrelated fields, all built here and already running." />
+<meta property="og:description" content="Quantum infrastructure, motion coaching, an on-chain raffle, web measurement, memory training, wireless environment checks, a curated music catalogue. Unrelated fields, all built here and already running." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2" />
 <meta name="theme-color" id="themeColor" content="#ffffff" />
@@ -39,6 +39,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <a href="wcp/">WCP</a>
       <a href="loci/">LOCI</a>
       <a href="bcon/">BCON</a>
+      <a href="mp/">MP</a>
       <a href="#ideas" data-i18n="nav.ideas">Bring an idea</a>
     </nav>
     <div class="lang-toggle" role="group" aria-label="language">
@@ -82,7 +83,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="sec-head">
       <div class="eyebrow" data-i18n="svc.tag">Portfolio</div>
       <h2 data-i18n="svc.h2">What has shipped so far</h2>
-      <p class="lead" data-i18n="svc.lead">Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check — and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house: not licensed, not resold.</p>
+      <p class="lead" data-i18n="svc.lead">Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check, a curated music catalogue — and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house: not licensed, not resold.</p>
     </div>
 
     <div class="svc-grid">
@@ -201,6 +202,25 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
         </div>
       </a>
 
+      <!-- MP -->
+      <a class="svc-card fade" href="mp/">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
+        <div class="svc-head">
+          <h3>MP</h3>
+          <span class="badge beta" data-i18n="svc.b.beta">Beta</span>
+        </div>
+        <span class="svc-full" data-i18n="svc.mp.full">MyPlay · Curated playlists with notes</span>
+        <p data-i18n="svc.mp.d">A hand-curated song catalogue kept in one JSON file, with performer, lyricist, composer, a note on what each song is about, and its source. The same file drives an offline Android app and a streaming web app.</p>
+        <ul class="svc-points">
+          <li data-i18n="svc.mp.1">One catalogue file, two players: local files on the phone, YouTube embeds on the web</li>
+          <li data-i18n="svc.mp.2">Notes and credits in Korean and English; display language follows the song, not the screen</li>
+          <li data-i18n="svc.mp.3">Anonymous song requests, embed failures skipped, play log that never blocks playback</li>
+        </ul>
+        <div class="svc-foot">
+          <span class="svc-go"><span data-i18n="svc.more">Read more</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
     </div>
 
   </div>
@@ -277,6 +297,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <a href="wcp/">WCP</a>
       <a href="loci/">LOCI</a>
       <a href="bcon/">BCON</a>
+      <a href="mp/">MP</a>
     </nav>
     <span data-i18n="ft.copy">© 2026 joygoLive. All rights reserved.</span>
   </div>
@@ -293,7 +314,7 @@ const _L = {
     "hero.byline":"<b class=\"t-joy\">joy</b>, realized when it <b class=\"t-go\">go</b>es <b class=\"t-live\">Live</b>.",
 
     "svc.tag":"Portfolio","svc.h2":"What has shipped so far",
-    "svc.lead":"Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check — and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house: not licensed, not resold.",
+    "svc.lead":"Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check, a curated music catalogue — and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house: not licensed, not resold.",
     "svc.more":"Read more","svc.b.beta":"Beta","svc.b.dev":"In development","svc.b.test":"Testnet",
 
     "svc.uqh.full":"Universal Quantum Hub · Quantum computing",
@@ -331,6 +352,12 @@ const _L = {
     "svc.bcon.2":"One risk score per place, always shown with its parts",
     "svc.bcon.3":"Each finding carries its remediation: a setting change or a connection habit",
 
+    "svc.mp.full":"MyPlay · Curated playlists with notes",
+    "svc.mp.d":"A hand-curated song catalogue kept in one JSON file, with performer, lyricist, composer, a note on what each song is about, and its source. The same file drives an offline Android app and a streaming web app.",
+    "svc.mp.1":"One catalogue file, two players: local files on the phone, YouTube embeds on the web",
+    "svc.mp.2":"Notes and credits in Korean and English; display language follows the song, not the screen",
+    "svc.mp.3":"Anonymous song requests, embed failures skipped, play log that never blocks playback",
+
     "nav.ideas":"Bring an idea",
     "id.tag":"Bring an idea",
     "id.h2":"joygoLive builds and runs it<br />You plan and sell it<br />Whether it works, <span class=\"grad\">we find out together</span>",
@@ -356,7 +383,7 @@ const _L = {
     "hero.byline":"<b class=\"t-joy\">joy</b>, realized when it <b class=\"t-go\">go</b>es <b class=\"t-live\">Live</b>.",
 
     "svc.tag":"포트폴리오","svc.h2":"지금까지 출시한 것",
-    "svc.lead":"양자 인프라, 운동 코칭, 온체인 복권, 웹 실측, 무선 환경 점검, 그리고 개발 중인 하나 — 기억 훈련. 서로 무관한 분야들이며, 전부 실제 운영 중인 서비스입니다. 각각 직접 개발하고 직접 운영합니다. 라이선스 도입도, 재판매도 아닙니다.",
+    "svc.lead":"양자 인프라, 운동 코칭, 온체인 복권, 웹 실측, 무선 환경 점검, 선곡 카탈로그, 그리고 개발 중인 하나 — 기억 훈련. 서로 무관한 분야들이며, 전부 실제 운영 중인 서비스입니다. 각각 직접 개발하고 직접 운영합니다. 라이선스 도입도, 재판매도 아닙니다.",
     "svc.more":"자세히 보기","svc.b.beta":"베타","svc.b.dev":"개발 중","svc.b.test":"테스트넷",
 
     "svc.uqh.full":"Universal Quantum Hub · 양자컴퓨팅",
@@ -393,6 +420,12 @@ const _L = {
     "svc.bcon.1":"수신 전용. 접속도, 인증도, 프로브 요청도 없습니다",
     "svc.bcon.2":"장소별 위험 점수 하나, 항목별 내역까지 공개",
     "svc.bcon.3":"탐지 항목마다 조치 — 설정 변경 또는 접속 습관 변경",
+
+    "svc.mp.full":"MyPlay · 주제가 달린 선곡 목록",
+    "svc.mp.d":"직접 선곡한 카탈로그를 JSON 파일 하나로 관리합니다. 곡마다 노래·작사·작곡, 주제 한 줄, 출처가 붙어 있습니다. 같은 파일이 오프라인 안드로이드 앱과 스트리밍 웹앱을 구동합니다.",
+    "svc.mp.1":"카탈로그 파일 하나, 플레이어 둘 — 폰은 로컬 파일, 웹은 유튜브 임베드",
+    "svc.mp.2":"주제·크레딧은 한국어·영어. 표기는 화면이 아니라 곡의 언어를 따름",
+    "svc.mp.3":"익명 곡 요청, 임베드 실패 건너뜀, 재생을 막지 않는 재생 기록",
 
     "nav.ideas":"제안",
     "id.tag":"제안",
