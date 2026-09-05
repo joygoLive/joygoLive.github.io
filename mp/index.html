@@ -110,12 +110,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="hero-kicker mono" data-i18n="hero.kicker">MP · Music Play</div>
     <h1 data-i18n-html="hero.title">Synchronised listening <span class="grad">on one server clock</span>.</h1>
-    <p class="lead" data-i18n="hero.sub">A shared listening session over a curated catalogue. The server holds one clock and one schedule; every connected browser plays the same song from the same offset. Requests enter the published lineup with an optional story, an AI DJ reads a reconstruction of it over the intro, and the catalogue fills every slot the queue leaves empty.</p>
+    <p class="lead" data-i18n="hero.sub">A shared listening session over a curated catalogue. The server holds one clock and one schedule; every connected browser plays the same song from the same offset. Requests enter the published lineup with an optional story, an AI DJ reads a reconstruction of it over the intro, and the catalogue fills any slot the queue leaves empty.</p>
     <div class="cta-row">
       <a href="https://mp.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta1">Open Music Play</a>
       <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">What this does not claim</a>
     </div>
-    <p class="reward" data-i18n-html="hero.reward"><b>No audio path on the server.</b> Nothing is streamed or proxied. Each client opens the official YouTube embed of the current song and seeks to the server's offset. What the server holds is a timestamp, a five-song lineup, and a script.</p>
+    <p class="reward" data-i18n-html="hero.reward"><b>No audio path on the server.</b> Nothing is streamed or proxied. Each client opens the official YouTube embed of the current song and seeks to the server's offset. The server holds a timestamp, a five-song lineup and a script.</p>
     <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here. Beta.</div>
   </div>
 </section>
@@ -124,13 +124,13 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="why" class="section alt">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="why.tag">Design</div>
-    <h2 data-i18n="why.h2">Three decisions that shape everything else</h2>
-    <p class="lead" data-i18n="why.lead">The service runs on a static catalogue file and a hosting platform with no scheduler and no persistent process. The architecture follows from those two constraints rather than from a media stack.</p>
+    <h2 data-i18n="why.h2">Three design decisions</h2>
+    <p class="lead" data-i18n="why.lead">The service runs on a static catalogue file and a hosting platform with no scheduler and no persistent process. The architecture follows from those two constraints.</p>
     </div>
     <div class="facts">
       <div class="fact fade"><b data-i18n="why.f1.t">Clock, not stream</b><span data-i18n="why.f1.d">One state row holds the current song, its start time and its length. A client's position is start time plus elapsed time, computed in the browser. Synchronisation is a timestamp comparison; no audio leaves the server.</span></div>
       <div class="fact fade"><b data-i18n="why.f2.t">Advance on read</b><span data-i18n="why.f2.d">There is no cron. The state advances inside the poll that observes the song has ended, guarded by a conditional update so that concurrent polls advance it exactly once. Ninety seconds ahead, one poll takes a lock and prepares the next song's script and voice.</span></div>
-      <div class="fact fade"><b data-i18n="why.f3.t">Catalogue as the fallback schedule</b><span data-i18n="why.f3.d">When the request queue is empty the server draws from the catalogue: songs never aired first, the most recently aired 60% excluded, the previous artist avoided, embed-blocked uploads excluded. The session does not run out of music.</span></div>
+      <div class="fact fade"><b data-i18n="why.f3.t">Catalogue as the fallback schedule</b><span data-i18n="why.f3.d">When the request queue is empty the server draws from the catalogue: songs never aired first, the most recently aired 60% excluded, the previous artist avoided, embed-blocked uploads excluded. Playback continues while the queue is empty.</span></div>
     </div>
   </div>
 </section>
@@ -139,12 +139,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="how">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="how.tag">Client</div>
-    <h2 data-i18n="how.h2">Join, stay in sync, hand over</h2>
-    <p class="lead" data-i18n="how.lead">The client is a single HTML file with no build step. It polls the server every ten seconds and does four things with the answer.</p>
+    <h2 data-i18n="how.h2">Join, synchronise, advance</h2>
+    <p class="lead" data-i18n="how.lead">The client is a single HTML file with no build step. It polls the server every ten seconds and acts on the response in four ways.</p>
     </div>
     <div class="pts">
-      <div class="pt fade" data-i18n-html="how.1"><b>Joining</b><span>One tap starts the session, because browsers refuse audio without a gesture. The same tap unlocks the voice player, so phones keep speaking on later songs. The client then loads the current song at the server's offset.</span></div>
-      <div class="pt fade" data-i18n-html="how.2"><b>Staying in sync</b><span>Each poll compares local position with the server's. Drift beyond three seconds is corrected with a seek; smaller drift is left alone, because ads and buffering cost a few seconds and constant seeking breaks the song.</span></div>
+      <div class="pt fade" data-i18n-html="how.1"><b>Joining</b><span>One tap starts the session, because browsers refuse audio without a gesture. The same tap unlocks the voice player, so mobile browsers continue to play the DJ audio on later songs. The client then loads the current song at the server's offset.</span></div>
+      <div class="pt fade" data-i18n-html="how.2"><b>Staying in sync</b><span>Each poll compares local position with the server's. Drift beyond three seconds is corrected with a seek; smaller drift is left alone, because ads and buffering cost a few seconds and repeated seeking interrupts playback.</span></div>
       <div class="pt fade" data-i18n-html="how.3"><b>Song boundaries</b><span>The next five songs are fixed in advance and shown in order. Slot one is locked; requests enter from slot two. A client that sees a new song loads it and, within the first 25 seconds, plays the DJ line over the intro with the music ducked.</span></div>
       <div class="pt fade" data-i18n-html="how.4"><b>Embed failures</b><span>An upload with embedding disabled fails for every listener at once. Clients report it; after three distinct reports the song leaves the schedule. The catalogue file itself is never modified by the server.</span></div>
     </div>
@@ -161,7 +161,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="rt-wrap"><table class="rt">
       <tr><th data-i18n="rule.c1">Condition</th><th class="n" data-i18n="rule.c2">Weight</th><th data-i18n="rule.c3">Rationale</th></tr>
       <tr><td class="nm" data-i18n="rule.r1">Minutes waited</td><td class="n">+1 / min</td><td data-i18n="rule.r1d">The base term. Alone, it is first come, first served</td></tr>
-      <tr><td class="nm" data-i18n="rule.r2">Has a story</td><td class="n">+40</td><td data-i18n="rule.r2d">Stories go first. A fixed rule, not a tuned value</td></tr>
+      <tr><td class="nm" data-i18n="rule.r2">Has a story</td><td class="n">+40</td><td data-i18n="rule.r2d">Stories go first. Fixed by policy</td></tr>
       <tr><td class="nm" data-i18n="rule.r3">Requester is listening now</td><td class="n">+30</td><td data-i18n="rule.r3d">A story is read while its sender can hear it</td></tr>
       <tr><td class="nm" data-i18n="rule.r4">Same song requested by several</td><td class="n">+10 each, cap 30</td><td data-i18n="rule.r4d">Played once; every requester is named</td></tr>
       <tr><td class="nm" data-i18n="rule.r5">First request from this sender</td><td class="n">+15</td><td data-i18n="rule.r5d">Newcomers are scheduled ahead of repeat requesters</td></tr>
@@ -169,7 +169,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <tr><td class="nm" data-i18n="rule.r7">Same sender aired in the last two songs</td><td class="n">−20</td><td data-i18n="rule.r7d">Prevents one sender from dominating the lineup</td></tr>
       <tr><td class="nm" data-i18n="rule.r8">Same song aired in the last twenty</td><td class="n">−50</td><td data-i18n="rule.r8d">No near repeats</td></tr>
     </table></div>
-    <p class="tnote" data-i18n="rule.note">Current values. Because each decision logs the score that won, the weights are re-tuned from the log rather than by estimate.</p>
+    <p class="tnote" data-i18n="rule.note">Current values. Because each decision logs the score that won, the weights are re-tuned from the log.</p>
   </div>
 </section>
 
@@ -185,7 +185,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="fact fade"><b data-i18n="req.f2.t">YouTube link</b><span data-i18n="req.f2.d">The video is verified through oEmbed; an upload with embedding disabled is refused at submission. Title and length come from oEmbed and, where available, MusicBrainz.</span></div>
       <div class="fact fade"><b data-i18n="req.f3.t">Title and artist only</b><span data-i18n="req.f3.d">Candidates come from the YouTube Data API, restricted to official artist channels, label and VEVO channels, and auto-generated Topic channels; fan uploads are excluded. MusicBrainz supplies the canonical length and candidates outside ±10 s are dropped. A model picks among the survivors; low confidence goes to the operator, not the lineup.</span></div>
       <div class="fact fade"><b data-i18n="req.f4.t">Two-stage story screening</b><span data-i18n="req.f4.d">A regular-expression pass rejects contact details and account numbers before anything else runs. What passes is classified by a model as safe, review or reject. Review holds the story until an operator approves it; the song plays regardless. Submissions are anonymous and rate-limited per address: twenty a day, five with a story, three waiting at once.</span></div>
-      <div class="fact fade"><b data-i18n="req.f5.t">Requested songs stay separate</b><span data-i18n="req.f5.d">Songs outside the catalogue live in their own table with the channel, its type and the reason for the pick. They play only when requested and never enter the shuffle. Promotion into the catalogue is an editorial step, not an automatic one.</span></div>
+      <div class="fact fade"><b data-i18n="req.f5.t">Requested songs stay separate</b><span data-i18n="req.f5.d">Songs outside the catalogue live in their own table with the channel, its type and the reason for the pick. They play only when requested and never enter the shuffle. Promotion into the catalogue is a manual editorial step.</span></div>
     </div>
   </div>
 </section>
@@ -199,7 +199,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <div class="pts">
       <div class="pt fade" data-i18n-html="dj.1"><b>What gets a model call</b><span>A request with an approved story: the model reconstructs it in two or three sentences and names the song; the catalogue note is not read. A request without a story: a fixed template naming the sender and the song. A catalogue song: the note as written, with a model-written script every fifth song. The greeting with the time and the DJ's name appears once per three-hour block.</span></div>
-      <div class="pt fade" data-i18n-html="dj.2"><b>Bounded input</b><span>The model sees only the catalogue fields for that song and the story text. Story text is passed as data; instruction-like content is flagged rather than followed. Output containing contact-detail or link patterns is discarded and the template goes out instead.</span></div>
+      <div class="pt fade" data-i18n-html="dj.2"><b>Bounded input</b><span>The model sees only the catalogue fields for that song and the story text. Story text is passed as data. Instruction-like content in a story raises a flag and is not executed. Output containing contact-detail or link patterns is discarded and the template goes out instead.</span></div>
       <div class="pt fade" data-i18n-html="dj.3"><b>Voices</b><span>Two voices, Sulafat and Orus, from Google Cloud Text-to-Speech (Chirp 3 HD). The operator fixes one or lets them alternate every three hours; listeners do not choose. Audio is cached by text and voice, so a catalogue note is synthesised once. When synthesis is unavailable the browser's own speech engine reads the same script.</span></div>
       <div class="pt fade" data-i18n-html="dj.4"><b>Operator view</b><span>Every story, its verdict and the line the DJ actually spoke are shown in the admin console next to the request. Stories are retained until the operator deletes them, singly or in bulk; nothing is deleted on a timer.</span></div>
     </div>
@@ -228,12 +228,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="ops.tag">Operations</div>
     <h2 data-i18n="ops.h2">Free tier by construction</h2>
-    <p class="lead" data-i18n="ops.lead">The service is built to stay inside free tiers, and the guard is code rather than intention. Every external call is metered, thresholds alert, and the paid path is cut before the limit is reached.</p>
+    <p class="lead" data-i18n="ops.lead">The service is built to stay inside free tiers, and the guard is enforced in code. Every external call is metered, each threshold raises an alert, and the paid path is cut before a limit is reached.</p>
     </div>
     <div class="facts">
       <div class="fact fade"><b data-i18n="ops.f1.t">Metered</b><span data-i18n="ops.f1.d">Speech characters, YouTube API units, storage reads and writes, function requests and model spend are counted per day or per month in the same database that holds the schedule. Alerts go out at 70, 90 and 100 per cent of each limit.</span></div>
       <div class="fact fade"><b data-i18n="ops.f2.t">Cut-off, then fallback</b><span data-i18n="ops.f2.d">At 100 per cent the paid call is refused. Scripts fall back to an open-weight model on Workers AI, voices to a lighter synthesiser and then to the browser, stories to operator review. Playback depends on none of them.</span></div>
-      <div class="fact fade"><b data-i18n="ops.f3.t">Shared-account visibility</b><span data-i18n="ops.f3.d">The admin console lists every internal endpoint and external service with call counts for today, this month and since launch. Function requests and the database are shared with the rest of joygoLive, so a runaway here would be visible there.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f3.t">Shared-account visibility</b><span data-i18n="ops.f3.d">The admin console lists every internal endpoint and external service with call counts for today, this month and since launch. Function requests and the database are shared with the other joygoLive services, so an anomaly here would affect them; the counts make it visible early.</span></div>
     </div>
   </div>
 </section>
@@ -250,7 +250,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="fact fade" data-i18n-html="limits.2"><b>Sync is approximate</b><span>Listeners are within a few seconds of each other, not sample-aligned. An ad inserts time for one listener and not another; the next poll pulls them back. The target is the same song within a few seconds.</span></div>
       <div class="fact fade" data-i18n-html="limits.3"><b>The DJ knows only the catalogue</b><span>Scripts are generated from the song's own fields and the story. They contain no facts beyond that input, and when generation fails a template or the note goes out instead. The DJ does not answer questions or add facts.</span></div>
       <div class="fact fade" data-i18n-html="limits.4"><b>A curated catalogue, anonymous listeners</b><span>The default schedule is an editorial selection, not a chart. Requests are anonymous; the name to be called by is chosen by the sender and is not an identity. The listener count is a hashed-address heartbeat, not a login.</span></div>
-      <div class="fact fade" data-i18n-html="limits.5"><b>Off air is a personal player</b><span>When no session is on, the same catalogue plays individually in the browser. The Android app reads the same catalogue from local files without a network; it is sideloaded, not distributed, and not part of the session.</span></div>
+      <div class="fact fade" data-i18n-html="limits.5"><b>Off-air mode is a personal player</b><span>When no session is on, the same catalogue plays individually in the browser. The Android app reads the same catalogue from local files without a network; it is sideloaded, not distributed, and not part of the session.</span></div>
     </div>
     <div class="cta-row" style="margin-top:30px">
       <a href="https://mp.joygolive.com/" class="btn btn-primary" data-i18n="limits.cta">Open Music Play</a>
