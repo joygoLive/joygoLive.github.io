@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MyPlay — Curated playlists with notes by joygoLive</title>
-<meta name="description" content="MyPlay plays a hand-curated catalogue of songs from one JSON file, served two ways: an offline Android app and a streaming web app. Every song carries credits, a note on what it is about, and its source, in Korean and English." />
-<meta property="og:title" content="MyPlay — Curated playlists with notes by joygoLive" />
-<meta property="og:description" content="One catalogue file, two players: offline on the phone, streaming on the web. Every song with a note on what it is about." />
+<title>MyPlay — A radio everyone hears together, by joygoLive</title>
+<meta name="description" content="MyPlay is a shared radio over a hand-curated song catalogue: everyone connected hears the same song at the same point, requests and stories go into the next slots, and an AI DJ reads the stories. The server keeps only a clock and a schedule." />
+<meta property="og:title" content="MyPlay — A radio everyone hears together" />
+<meta property="og:description" content="One server clock, one schedule. Requests and stories go on air next; an AI DJ speaks over the intro." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
 <meta name="theme-color" id="themeColor" content="#ffffff" />
@@ -20,10 +20,11 @@
 .stat{min-width:0}
 .tnote{font-size:12.5px;color:var(--text-dim);margin:0 0 26px}
 
-/* 두 경로 비교표. 항목이 넷이고 값이 짧아 카드보다 표가 읽기 쉽다. */
+/* 편성 가중치 표. 항목이 여덟이고 값이 짧아 카드보다 표가 읽기 쉽다. */
 .rt{width:100%;border-collapse:collapse;margin:30px 0 8px;font-size:13.5px}
 .rt th,.rt td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
 .rt th{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
+.rt td.n,.rt th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-family:var(--font-mono);font-size:12.5px}
 .rt tr:last-child td{border-bottom:0}
 .rt .nm{font-weight:700;white-space:nowrap}
 
@@ -40,12 +41,13 @@
   fetch('https://mp.joygolive.com/meta.json', {mode:'cors'})
     .then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
     .then(function(d){
-      var lists = {l1:'my_play_list', l2:'Apple_Music', l3:'My_K-Pop'}, total = 0, noted = 0, v = {};
+      var lists = {l1:'my_play_list', l2:'Apple_Music', l3:'My_K-Pop'}, total = 0, noted = 0, timed = 0, v = {};
       Object.keys(lists).forEach(function(k){
-        var o = d[lists[k]] || {}; v[k] = Object.keys(o).length; total += v[k];
-        Object.keys(o).forEach(function(n){ if (o[n].theme) noted++; });
+        var o = d[lists[k]] || {};
+        Object.keys(o).forEach(function(n){ if (!o[n].vid) return; v[k] = (v[k]||0) + 1; total++; if (o[n].theme) noted++; if (o[n].dur > 0) timed++; });
       });
-      v.total = total; v.noted = noted; v.notes_pct = total ? Math.round(noted * 1000 / total) / 10 : 0;
+      v.total = total; v.noted = noted; v.timed = timed;
+      v.notes_pct = total ? Math.round(noted * 1000 / total) / 10 : 0;
       document.querySelectorAll('[data-s]').forEach(function(el){
         var x = v[el.getAttribute('data-s')];
         if (x === undefined) return;
@@ -74,9 +76,9 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <nav class="nav-links" id="navLinks">
       <a href="#why" data-i18n="nav.why">Why</a>
-      <a href="#what" data-i18n="nav.what">Catalogue</a>
-      <a href="#play" data-i18n="nav.play">Playback</a>
-      <a href="#pipe" data-i18n="nav.pipe">Pipeline</a>
+      <a href="#how" data-i18n="nav.how">How it works</a>
+      <a href="#rule" data-i18n="nav.rule">Scheduling</a>
+      <a href="#dj" data-i18n="nav.dj">AI DJ</a>
       <a href="#found" data-i18n="nav.found">Numbers</a>
       <a href="#limits" data-i18n="nav.limits">Limits</a>
     </nav>
@@ -103,13 +105,13 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section class="hero">
   <div class="wrap">
     <div class="hero-kicker mono" data-i18n="hero.kicker">MP · MyPlay</div>
-    <h1 data-i18n-html="hero.title">A playlist with notes, <span class="grad">served two ways</span>.</h1>
-    <p class="lead" data-i18n="hero.sub">A hand-curated catalogue of songs kept in one JSON file. Each entry carries the performer, lyricist, composer, a note on what the song is about, and its source. The same file drives an offline Android app and a streaming web app.</p>
+    <h1 data-i18n-html="hero.title">A radio <span class="grad">everyone hears together</span>.</h1>
+    <p class="lead" data-i18n="hero.sub">One server clock, one schedule. Everyone connected hears the same song at the same point. Send a request with a story and it goes on air in the next slots; an AI DJ reads the story over the intro. When no one has requested anything, a hand-curated catalogue keeps the station running.</p>
     <div class="cta-row">
-      <a href="https://mp.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta1">Open the web app</a>
+      <a href="https://mp.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta1">Open the station</a>
       <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">What this does not claim</a>
     </div>
-    <p class="reward" data-i18n-html="hero.reward"><b>Two delivery paths, one catalogue.</b> The phone plays transcoded files from its own storage with no network. The web app streams the same songs through the YouTube embed player. Titles, credits and notes are identical on both, because both read the same file.</p>
+    <p class="reward" data-i18n-html="hero.reward"><b>No audio is served.</b> Each listener's browser opens its own YouTube embed of the current song. The server holds only the clock and the schedule, and tells each client where the song is right now.</p>
     <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here. Beta.</div>
   </div>
 </section>
@@ -118,66 +120,66 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="why" class="section alt">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="why.tag">Premise</div>
-    <h2 data-i18n="why.h2">A playlist is a list of IDs. A catalogue is data.</h2>
-    <p class="lead" data-i18n="why.lead">A platform playlist holds video IDs and nothing else: no credits, no notes, no offline copy, and entries disappear when an upload is removed. The catalogue behind MyPlay started as a recovery of one such playlist and became a file with a schema, owned outside any platform.</p>
+    <h2 data-i18n="why.h2">A playlist has no reason to come back to. A broadcast does.</h2>
+    <p class="lead" data-i18n="why.lead">MyPlay began as a personal catalogue player: one JSON file with credits and a note per song, served to an offline app and a web app. A player like that is complete on the first visit. A broadcast exists only at this moment, and a request puts the listener in it. The catalogue did not change; what changed is who holds the clock.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="why.f1.t">The catalogue is a file, not a playlist</b><span data-i18n="why.f1.d">One JSON file is the source of truth. Per song: title, performer, lyricist, composer, theme note, source line, and video ID. Lists are keys in that file; adding a song is a data change, not a code change.</span></div>
-      <div class="fact fade"><b data-i18n="why.f2.t">Notes are part of the song</b><span data-i18n="why.f2.d">Each song has a short note on what it is about and a source line with year, writer, and chart or album. During playback the note is shown as a caption line and can be toggled off. Notes exist in Korean and English.</span></div>
-      <div class="fact fade"><b data-i18n="why.f3.t">Two players, no fork</b><span data-i18n="why.f3.d">The offline app and the web app read the same file. Media differs by path: local files on the phone, YouTube embeds on the web. Nothing about the catalogue is duplicated between them.</span></div>
+      <div class="fact fade"><b data-i18n="why.f1.t">One clock, on the server</b><span data-i18n="why.f1.d">A single station row records the current song and when it started. Clients read it and seek to the same point. There is no audio stream to synchronise, only a timestamp.</span></div>
+      <div class="fact fade"><b data-i18n="why.f2.t">The catalogue is the default schedule</b><span data-i18n="why.f2.d">When the request queue is empty the station picks from the catalogue: recent songs and the previous artist are avoided, songs whose embed is blocked are excluded. The station never goes silent for lack of requests.</span></div>
+      <div class="fact fade"><b data-i18n="why.f3.t">Requests and stories are the input</b><span data-i18n="why.f3.d">A request is a song plus an optional story and an optional name to be called by. It enters the schedule from the next slot. A request with a story outranks one without; the DJ reads a reconstruction of the story, never the original text.</span></div>
     </div>
   </div>
 </section>
 
-<!-- WHAT -->
-<section id="what">
+<!-- HOW -->
+<section id="how">
   <div class="wrap">
-    <div class="sec-head"><div class="eyebrow" data-i18n="what.tag">Catalogue</div>
-    <h2 data-i18n="what.h2">What each entry carries</h2>
-    <p class="lead" data-i18n="what.lead">Three lists in one file. The fields below are what a player needs to show a song properly, and they are the same fields on both paths.</p>
+    <div class="sec-head"><div class="eyebrow" data-i18n="how.tag">How it works</div>
+    <h2 data-i18n="how.h2">Advance on read, no cron</h2>
+    <p class="lead" data-i18n="how.lead">The hosting has no scheduler, so the clock advances when it is read. Every listener polls the station every ten seconds; whichever poll finds the song finished moves the station to the next one, and only one of them wins.</p>
     </div>
     <div class="pts">
-      <div class="pt fade" data-i18n-html="what.1"><b>Three lists</b><span>My Play List, Apple Music, My K-Pop. Each list is a key in the file; each song is a numbered entry under it. Playback can be scoped to one list or all three.</span></div>
-      <div class="pt fade" data-i18n-html="what.2"><b>Credits per song</b><span>Performer, lyricist, and composer as separate fields, so search hits on any of them. A cover and its original are distinguishable.</span></div>
-      <div class="pt fade" data-i18n-html="what.3"><b>Display language follows the song</b><span>A Korean song shows its Korean title and artist in the Korean UI; a pop song stays in English on both. The English UI uses English notes throughout. The rule is the song's language, not the screen's.</span></div>
-      <div class="pt fade" data-i18n-html="what.4"><b>Search across both scripts</b><span>The search index holds the original and localised title and artist together, so a query in either script matches regardless of the UI language.</span></div>
+      <div class="pt fade" data-i18n-html="how.1"><b>Joining</b><span>One tap to start, because browsers do not play sound without a gesture. The client loads the current song at the server's offset and is in the broadcast.</span></div>
+      <div class="pt fade" data-i18n-html="how.2"><b>Staying in sync</b><span>Every ten seconds the client compares its position with the server's. A drift over three seconds is corrected with a seek; anything smaller is left alone, because ads and buffering always cost a few seconds and constant seeking would break the song.</span></div>
+      <div class="pt fade" data-i18n-html="how.3"><b>Song boundaries</b><span>Ninety seconds before a song ends, one poll takes a lock and decides the next song in advance. At the boundary the advance is a single conditional update, so concurrent polls cannot advance twice.</span></div>
+      <div class="pt fade" data-i18n-html="how.4"><b>A song that will not embed</b><span>An upload with embedding disabled fails for every listener at once. Clients report it; after three distinct reports the song leaves the schedule. The catalogue file itself is never edited by the server.</span></div>
     </div>
   </div>
 </section>
 
-<!-- PLAY -->
-<section id="play" class="section alt">
+<!-- RULE -->
+<section id="rule" class="section alt">
   <div class="wrap">
-    <div class="sec-head"><div class="eyebrow" data-i18n="play.tag">Playback</div>
-    <h2 data-i18n="play.h2">Same catalogue, two players</h2>
-    <p class="lead" data-i18n="play.lead">The web app is a single HTML file with no dependencies. The Android app is a sideloaded APK built without Gradle. Both show the same title, credits, and note for a song; only the media source differs.</p>
+    <div class="sec-head"><div class="eyebrow" data-i18n="rule.tag">Scheduling</div>
+    <h2 data-i18n="rule.h2">First come, first served, plus weights</h2>
+    <p class="lead" data-i18n="rule.lead">The base score is minutes waited, which alone is first come, first served. Conditions add to it, so a later request can go first. Waiting time keeps accruing, so nothing is starved. The weights live in a table, not in code, and every scheduling decision records the winning score, so the weights can be re-tuned from what actually happened.</p>
     </div>
     <table class="rt">
-      <tr><th></th><th data-i18n="play.c1">Android app</th><th data-i18n="play.c2">Web app</th></tr>
-      <tr><td class="nm" data-i18n="play.r1">Address</td><td data-i18n="play.r1a">Installed on the device (sideloaded)</td><td>mp.joygolive.com</td></tr>
-      <tr><td class="nm" data-i18n="play.r2">Media source</td><td data-i18n="play.r2a">Files on device storage, transcoded from the originals</td><td data-i18n="play.r2b">YouTube embed player, streaming</td></tr>
-      <tr><td class="nm" data-i18n="play.r3">Network</td><td data-i18n="play.r3a">Not required</td><td data-i18n="play.r3b">Required</td></tr>
-      <tr><td class="nm" data-i18n="play.r4">Playable set</td><td data-i18n="play.r4a">Every song in the file</td><td data-i18n="play.r4b">Songs whose upload allows embedding</td></tr>
+      <tr><th data-i18n="rule.c1">Condition</th><th class="n" data-i18n="rule.c2">Weight</th><th data-i18n="rule.c3">Why</th></tr>
+      <tr><td class="nm" data-i18n="rule.r1">Minutes waited</td><td class="n">+1 / min</td><td data-i18n="rule.r1d">The base. Equivalent to first come, first served on its own</td></tr>
+      <tr><td class="nm" data-i18n="rule.r2">Has a story</td><td class="n">+40</td><td data-i18n="rule.r2d">Stories go first. Decided, not tuned</td></tr>
+      <tr><td class="nm" data-i18n="rule.r3">Requester is listening now</td><td class="n">+30</td><td data-i18n="rule.r3d">A story read while its author is absent is the worst outcome</td></tr>
+      <tr><td class="nm" data-i18n="rule.r4">Same song requested by several</td><td class="n">+10 each, cap 30</td><td data-i18n="rule.r4d">Played once, every name called</td></tr>
+      <tr><td class="nm" data-i18n="rule.r5">First request from this person</td><td class="n">+15</td><td data-i18n="rule.r5d">Newcomers ahead of regulars</td></tr>
+      <tr><td class="nm" data-i18n="rule.r6">Song not aired for a week</td><td class="n">+10</td><td data-i18n="rule.r6d">Variety</td></tr>
+      <tr><td class="nm" data-i18n="rule.r7">Same requester aired in the last two songs</td><td class="n">−20</td><td data-i18n="rule.r7d">No one monopolises the station</td></tr>
+      <tr><td class="nm" data-i18n="rule.r8">Same song aired in the last twenty</td><td class="n">−50</td><td data-i18n="rule.r8d">No back-to-back repeats</td></tr>
     </table>
-    <div class="facts">
-      <div class="fact fade"><b data-i18n="play.f1.t">One player instance</b><span data-i18n="play.f1.d">The web app creates exactly one YouTube player. Requests that arrive before it is ready are queued and played once, which removes the case where a failed first embed spawned a second player and two videos played at once.</span></div>
-      <div class="fact fade"><b data-i18n="play.f2.t">Embed failures skip</b><span data-i18n="play.f2.d">When an upload blocks embedding or is region- or age-restricted, the player advances to the next song. Shuffle covers one list or all three; playback speed runs from 1× to 2×; seeking is by 10-second steps.</span></div>
-      <div class="fact fade"><b data-i18n="play.f3.t">Play log never blocks playback</b><span data-i18n="play.f3.d">Each play is logged as one row. The endpoint returns 200 unconditionally and the client ignores failures, so a logging outage cannot interrupt a song. Aggregates are computed at read time, not stored.</span></div>
-    </div>
+    <p class="tnote" data-i18n="rule.note">Initial values. Every scheduling decision records its winning score, and the values are re-tuned from a month of those records.</p>
   </div>
 </section>
 
-<!-- PIPELINE -->
-<section id="pipe">
+<!-- DJ -->
+<section id="dj">
   <div class="wrap">
-    <div class="sec-head"><div class="eyebrow" data-i18n="pipe.tag">Pipeline</div>
-    <h2 data-i18n="pipe.h2">One file, two deployments</h2>
-    <p class="lead" data-i18n="pipe.lead">The catalogue is edited in one place and pushed to both players. A sync tool reports song count and content hash for the local file, the repository copy, and the copy on the phone, side by side, before anything is pushed.</p>
+    <div class="sec-head"><div class="eyebrow" data-i18n="dj.tag">AI DJ</div>
+    <h2 data-i18n="dj.h2">A script from the catalogue, two voices, off if you want</h2>
+    <p class="lead" data-i18n="dj.lead">The DJ is a language model called once per request song and once every few catalogue songs. It is given the song's credits, its note and its source, the time of day, and the story if there is one, and it returns one short script. The script is spoken over the song's intro while the music is ducked. Listeners who prefer music only switch it off on their device.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="pipe.f1.t">Web path</b><span data-i18n="pipe.f1.d">Commit the file, push, and Cloudflare Pages deploys the static root. There is no build step: the web app is one HTML file that fetches the catalogue at load.</span></div>
-      <div class="fact fade"><b data-i18n="pipe.f2.t">Phone path</b><span data-i18n="pipe.f2.d">The file is pushed over adb into the app's private directory, and the app picks up the change without reinstalling. Media files are not part of the sync; the phone already holds them.</span></div>
-      <div class="fact fade"><b data-i18n="pipe.f3.t">Song requests</b><span data-i18n="pipe.f3.d">Anyone can request a song from the web app with a title or a link, anonymously, rate-limited per day. Requests are stored, forwarded to a notification channel, and moved through received, approved, added, or rejected by the operator. If the server is unreachable the request stays in the browser with a mail fallback.</span></div>
+      <div class="fact fade"><b data-i18n="dj.f1.t">Nothing outside the catalogue</b><span data-i18n="dj.f1.d">The model sees only the fields the catalogue holds for that song: performer, writers, the note on what it is about, and the source line. It is instructed to state nothing beyond them, and the server strips anything that looks like a number, a link or a name that was not in the input.</span></div>
+      <div class="fact fade"><b data-i18n="dj.f2.t">Stories are reconstructed, not read</b><span data-i18n="dj.f2.d">A story is classified on arrival as safe, needs review, or rejected. On air, the DJ paraphrases it in two or three sentences; the original text stays on the sender's own screen and is deleted thirty days after airing. The song still plays even when the review is late.</span></div>
+      <div class="fact fade"><b data-i18n="dj.f3.t">Two voices, one script</b><span data-i18n="dj.f3.d">The listener picks a female or male DJ on their device. The script is generated once and written without first-person references, so either voice can read it. When generation fails, the song's note is shown as a caption instead, and the broadcast continues.</span></div>
     </div>
   </div>
 </section>
@@ -187,15 +189,15 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="found.tag">Numbers</div>
     <h2 data-i18n="found.h2">Live from the catalogue</h2>
-    <p class="lead" data-i18n="found.lead">The figures below are read from the deployed catalogue file when this page loads, so they are whatever the file currently says.</p>
+    <p class="lead" data-i18n="found.lead">The figures below are read from the deployed catalogue file when this page loads. They are what the station schedules from when the queue is empty.</p>
     </div>
     <div class="stats">
-      <div class="stat"><div class="n" data-s="total">863</div><div class="l" data-i18n="found.s1">Songs across the three lists</div></div>
-      <div class="stat"><div class="n" data-s="l2">531</div><div class="l" data-i18n="found.s2">Apple Music list</div></div>
-      <div class="stat"><div class="n" data-s="l1">242</div><div class="l" data-i18n="found.s3">My Play List</div></div>
-      <div class="stat"><div class="n" data-s="notes_pct" data-suffix="%">99.9</div><div class="l" data-i18n="found.s4">Songs with a note and a source line</div></div>
+      <div class="stat"><div class="n" data-s="total">862</div><div class="l" data-i18n="found.s1">Playable songs across three lists</div></div>
+      <div class="stat"><div class="n" data-s="timed">862</div><div class="l" data-i18n="found.s2">With a known length, so the clock can schedule them</div></div>
+      <div class="stat"><div class="n" data-s="notes_pct" data-suffix="%">100</div><div class="l" data-i18n="found.s3">With a note and a source line for the DJ</div></div>
+      <div class="stat"><div class="n">±3s</div><div class="l" data-i18n="found.s4">Drift tolerated before a client seeks</div></div>
     </div>
-    <p class="tnote" data-i18n-html="found.tnote">Read from the web app's catalogue file. My K-Pop holds <b><span data-s="l3">90</span></b> songs; <b><span data-s="noted">862</span></b> entries carry a note. Credits are filled where the source lists them.</p>
+    <p class="tnote" data-i18n-html="found.tnote">Lists: My Play List <b><span data-s="l1">241</span></b>, Apple Music <b><span data-s="l2">531</span></b>, My K-Pop <b><span data-s="l3">90</span></b>. Every entry carries performer, lyricist, composer, a note in Korean and English, and its source. Song lengths come from the curation sheet, not from the player.</p>
   </div>
 </section>
 
@@ -204,18 +206,18 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="limits.tag">Limits</div>
     <h2 data-i18n="limits.h2">What this does not claim</h2>
-      <p class="lead" data-i18n="limits.lead">MyPlay is a player over a curated file. Below is what it is not.</p>
+      <p class="lead" data-i18n="limits.lead">A shared broadcast over embedded video has hard edges. Below is where they are.</p>
     </div>
     <div class="facts">
-      <div class="fact fade" data-i18n-html="limits.1"><b>Not a music service</b><span>No rights are held and no audio is served. The web app plays YouTube uploads through the official embed player; availability, ads, and playback quality are YouTube's. A song whose upload disappears disappears from the web path with it.</span></div>
-      <div class="fact fade" data-i18n-html="limits.2"><b>One person's curation</b><span>The lists are a personal selection, not a chart or a recommendation. Notes are editorial: written per song, reviewed, and revised when found wrong. They describe what a song is about, not how good it is.</span></div>
-      <div class="fact fade" data-i18n-html="limits.3"><b>The offline app is not distributed</b><span>It runs on personal devices, sideloaded, with media that was exported from the owner's own account. It is not on a store and is not offered for install.</span></div>
-      <div class="fact fade" data-i18n-html="limits.4"><b>Not every song plays on the web</b><span>Embedding is the uploader's setting. Songs with embedding disabled, or restricted by region or age, are skipped on the web path and remain playable only in the offline app.</span></div>
-      <div class="fact fade" data-i18n-html="limits.5"><b>No accounts, no identity</b><span>Requests are anonymous by design. The play log records the song, the time, and a hashed address for rate limiting; nothing identifies a person, and nothing is shared.</span></div>
+      <div class="fact fade" data-i18n-html="limits.1"><b>Not a music service</b><span>No rights are held and no audio is served. Each listener plays a YouTube upload through the official embed player; availability, ads and quality are YouTube's. A song whose upload disappears leaves the schedule with it.</span></div>
+      <div class="fact fade" data-i18n-html="limits.2"><b>Sync is approximate</b><span>Listeners are within a few seconds of each other, not sample-aligned. Ads insert time for one listener and not another; the next poll pulls them back. Same song, roughly the same point, is the target.</span></div>
+      <div class="fact fade" data-i18n-html="limits.3"><b>The DJ knows only the catalogue</b><span>Scripts are generated from the song's own fields and the story. They contain no facts beyond that input, and when generation fails the note is shown as a caption. The DJ is not a source about music.</span></div>
+      <div class="fact fade" data-i18n-html="limits.4"><b>One person's catalogue, anonymous listeners</b><span>The default schedule is a personal selection, not a chart. Requests are anonymous; a name to be called by is chosen by the sender and is not an identity. The listener count is a hashed-address heartbeat, not a login.</span></div>
+      <div class="fact fade" data-i18n-html="limits.5"><b>The offline app is a personal accessory</b><span>The Android app reads the same catalogue from files on one device and plays without a network. It is sideloaded, not distributed, and it is not part of the broadcast.</span></div>
     </div>
     <div class="cta-row" style="margin-top:30px">
-      <a href="https://mp.joygolive.com/" class="btn btn-primary" data-i18n="limits.cta">Open the web app</a>
-      <span class="cta-note" data-i18n="limits.ctanote">No install, no sign-up. Pick a list and shuffle.</span>
+      <a href="https://mp.joygolive.com/" class="btn btn-primary" data-i18n="limits.cta">Open the station</a>
+      <span class="cta-note" data-i18n="limits.ctanote">No install, no sign-up. If it is on air, one tap joins.</span>
     </div>
   </div>
 </section>
@@ -240,76 +242,75 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <script>
 const _L = {
   en:{
-    "nav.why":"Why","nav.what":"Catalogue","nav.play":"Playback","nav.pipe":"Pipeline","nav.found":"Numbers","nav.limits":"Limits",
+    "nav.why":"Why","nav.how":"How it works","nav.rule":"Scheduling","nav.dj":"AI DJ","nav.found":"Numbers","nav.limits":"Limits",
     "ft.home":"Home","ft.copy":"© 2026 joygoLive. All rights reserved.",
   },
   ko:{
-    "nav.why":"왜","nav.what":"카탈로그","nav.play":"재생","nav.pipe":"파이프라인","nav.found":"수치","nav.limits":"한계",
+    "nav.why":"왜","nav.how":"동작 방식","nav.rule":"편성","nav.dj":"AI DJ","nav.found":"수치","nav.limits":"한계",
 
     "hero.kicker":"MP · MyPlay",
-    "hero.title":"주제가 달린 재생목록, <span class=\"grad\">두 경로로 재생</span>.",
-    "hero.sub":"직접 선곡한 카탈로그를 JSON 파일 하나로 관리합니다. 곡마다 노래·작사·작곡, 주제 한 줄, 출처가 붙어 있습니다. 같은 파일이 오프라인 안드로이드 앱과 스트리밍 웹앱을 구동합니다.",
-    "hero.cta1":"웹앱 열기",
+    "hero.title":"<span class=\"grad\">같이 듣는</span> 라디오.",
+    "hero.sub":"서버 시계 하나, 편성표 하나. 접속한 모두가 같은 곡의 같은 대목을 듣습니다. 사연과 함께 곡을 신청하면 다음 편성부터 나가고, AI DJ가 곡 도입부에 사연을 읽습니다. 신청이 없는 동안은 직접 선곡한 카탈로그가 방송을 잇습니다.",
+    "hero.cta1":"방송국 열기",
     "hero.cta2":"주장하지 않는 것",
-    "hero.reward":"<b>배포 경로 둘, 카탈로그 하나.</b> 폰은 기기 저장소의 변환 파일을 네트워크 없이 재생합니다. 웹앱은 같은 곡을 유튜브 임베드 플레이어로 스트리밍합니다. 제목·크레딧·주제는 양쪽이 동일합니다. 같은 파일을 읽기 때문입니다.",
+    "hero.reward":"<b>음원을 서빙하지 않습니다.</b> 청취자의 브라우저가 각자 현재 곡의 유튜브 임베드를 엽니다. 서버는 시계와 편성표만 갖고, 각 클라이언트에 지금 곡이 어디까지 갔는지를 알려줍니다.",
     "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 베타.",
 
-    "why.tag":"전제","why.h2":"재생목록은 ID 목록, 카탈로그는 데이터",
-    "why.lead":"플랫폼 재생목록에는 영상 ID 외에 아무것도 없습니다. 크레딧도, 주제도, 오프라인 사본도 없고, 업로드가 내려가면 항목이 사라집니다. MyPlay의 카탈로그는 그런 재생목록 하나를 복구하는 데서 출발해, 플랫폼 밖에서 소유하는 스키마 있는 파일이 됐습니다.",
-    "why.f1.t":"재생목록 아닌 파일",
-    "why.f1.d":"JSON 파일 하나가 정본입니다. 곡마다 제목·노래·작사·작곡·주제·출처·영상 ID. 목록은 그 파일의 키이고, 곡 추가는 코드 변경이 아니라 데이터 변경입니다.",
-    "why.f2.t":"주제는 곡의 일부",
-    "why.f2.d":"곡마다 무엇에 관한 노래인지 한 줄과, 연도·작자·차트 또는 앨범을 적은 출처 한 줄이 있습니다. 재생 중에는 자막 줄로 표시되고 끌 수 있습니다. 주제는 한국어와 영어 둘 다 있습니다.",
-    "why.f3.t":"플레이어 둘, 분기 없음",
-    "why.f3.d":"오프라인 앱과 웹앱이 같은 파일을 읽습니다. 다른 것은 미디어 경로뿐입니다. 폰은 로컬 파일, 웹은 유튜브 임베드. 카탈로그는 어느 쪽에도 복제돼 있지 않습니다.",
+    "why.tag":"전제","why.h2":"재생목록에는 다시 올 이유가 없고, 방송에는 있다",
+    "why.lead":"MyPlay는 개인 카탈로그 플레이어로 시작했습니다. 곡마다 크레딧과 주제 한 줄이 붙은 JSON 파일 하나를 오프라인 앱과 웹앱이 같이 읽는 구조였습니다. 그런 플레이어는 첫 방문에 완결됩니다. 방송은 지금 이 순간에만 존재하고, 신청은 청취자를 그 안에 넣습니다. 카탈로그는 그대로이고, 바뀐 것은 시계를 누가 갖느냐입니다.",
+    "why.f1.t":"서버에 있는 시계 하나",
+    "why.f1.d":"방송국 행 하나가 현재 곡과 시작 시각을 기록합니다. 클라이언트는 그것을 읽고 같은 지점으로 seek 합니다. 동기화할 오디오 스트림은 없고 타임스탬프 하나뿐입니다.",
+    "why.f2.t":"카탈로그가 기본 편성",
+    "why.f2.d":"신청 큐가 비면 카탈로그에서 고릅니다. 최근 곡과 직전 가수를 피하고, 임베드가 막힌 곡은 제외합니다. 신청이 없어서 방송이 서는 일은 없습니다.",
+    "why.f3.t":"신청과 사연이 입력",
+    "why.f3.d":"신청은 곡 하나에 사연(선택)과 부를 이름(선택)이 붙은 것입니다. 다음 편성 슬롯부터 들어갑니다. 사연이 있는 신청이 없는 신청보다 앞서고, DJ는 사연 원문이 아니라 재구성한 문장을 읽습니다.",
 
-    "what.tag":"카탈로그","what.h2":"항목마다 담긴 것",
-    "what.lead":"파일 하나에 목록 셋. 아래 필드는 플레이어가 곡을 제대로 표시하는 데 필요한 것이고, 두 경로에서 같은 필드입니다.",
-    "what.1":"<b>목록 셋</b><span>My Play List · Apple Music · My K-Pop. 목록은 파일의 키이고, 곡은 그 아래 번호가 붙은 항목입니다. 재생 범위는 목록 하나 또는 셋 전체.</span>",
-    "what.2":"<b>곡별 크레딧</b><span>노래·작사·작곡이 각각 별도 필드라 검색이 어느 쪽에도 걸립니다. 커버곡과 원곡이 구분됩니다.</span>",
-    "what.3":"<b>표기는 곡의 언어를 따름</b><span>한국 곡은 한국어 화면에서 한글 제목·가수로, 팝송은 양쪽 화면 모두 영문 그대로. 영어 화면은 영문 주제를 씁니다. 기준은 화면 언어가 아니라 곡의 언어입니다.</span>",
-    "what.4":"<b>양쪽 표기로 검색</b><span>검색 인덱스에 원문과 현지화 표기가 함께 들어 있어, 화면 언어와 무관하게 어느 표기로 검색해도 찾힙니다.</span>",
+    "how.tag":"동작 방식","how.h2":"읽을 때 전진, 크론 없음",
+    "how.lead":"호스팅에 예약 실행이 없어서 시계는 읽힐 때 전진합니다. 청취자 전원이 10초마다 방송국을 폴링하고, 곡이 끝난 것을 본 요청이 다음 곡으로 넘기되 그중 하나만 이깁니다.",
+    "how.1":"<b>합류</b><span>브라우저는 제스처 없이 소리를 내지 않으므로 탭 한 번으로 시작합니다. 클라이언트는 현재 곡을 서버의 offset 위치로 로드하고 방송에 들어옵니다.</span>",
+    "how.2":"<b>동기 유지</b><span>10초마다 자기 위치와 서버 위치를 비교합니다. 3초를 넘는 차이만 seek 로 보정하고, 그보다 작으면 손대지 않습니다. 광고와 버퍼링으로 늘 몇 초는 흔들리고, 매번 seek 하면 오히려 곡이 끊깁니다.</span>",
+    "how.3":"<b>곡 경계</b><span>곡이 끝나기 90초 전에 폴링 하나가 잠금을 잡고 다음 곡을 미리 정합니다. 경계에서의 전진은 조건부 UPDATE 하나라, 동시에 온 폴링이 두 번 전진시킬 수 없습니다.</span>",
+    "how.4":"<b>임베드가 안 되는 곡</b><span>임베드가 꺼진 업로드는 모든 청취자에게 동시에 실패합니다. 클라이언트가 보고하고, 서로 다른 셋이 보고하면 편성에서 빠집니다. 카탈로그 파일 자체는 서버가 절대 고치지 않습니다.</span>",
 
-    "play.tag":"재생","play.h2":"같은 카탈로그, 플레이어 둘",
-    "play.lead":"웹앱은 의존성 없는 단일 HTML 파일입니다. 안드로이드 앱은 Gradle 없이 빌드한 사이드로드 APK입니다. 둘 다 같은 제목·크레딧·주제를 표시하고, 미디어 소스만 다릅니다.",
-    "play.c1":"안드로이드 앱","play.c2":"웹앱",
-    "play.r1":"주소","play.r1a":"기기 설치(사이드로드)",
-    "play.r2":"음원","play.r2a":"기기 저장소의 파일, 원본에서 변환","play.r2b":"유튜브 임베드 플레이어, 스트리밍",
-    "play.r3":"네트워크","play.r3a":"불필요","play.r3b":"필수",
-    "play.r4":"재생 가능 범위","play.r4a":"파일의 모든 곡","play.r4b":"업로드가 임베드를 허용한 곡",
-    "play.f1.t":"플레이어 인스턴스 하나",
-    "play.f1.d":"웹앱은 유튜브 플레이어를 정확히 하나만 만듭니다. 준비 전에 들어온 요청은 큐에 두고 준비 후 한 번만 재생합니다. 첫 임베드 실패가 두 번째 플레이어를 만들어 영상 둘이 동시에 재생되던 경우가 이것으로 없어졌습니다.",
-    "play.f2.t":"임베드 실패는 건너뜀",
-    "play.f2.d":"업로드가 임베드를 막았거나 지역·연령 제한이 걸린 곡은 다음 곡으로 넘어갑니다. 셔플은 목록 하나 또는 셋 전체, 재생 속도는 1×~2×, 탐색은 10초 단위.",
-    "play.f3.t":"재생 기록이 재생을 막지 않음",
-    "play.f3.d":"재생 1회가 1행으로 기록됩니다. 엔드포인트는 무조건 200을 반환하고 클라이언트는 실패를 무시하므로, 기록 장애가 곡을 끊지 못합니다. 집계는 저장하지 않고 읽을 때 계산합니다.",
+    "rule.tag":"편성","rule.h2":"선착순에 가중치를 더한 순서",
+    "rule.lead":"기본 점수는 기다린 분 수이고, 이것만으로는 선착순입니다. 조건이 점수를 더해 뒤에 온 신청이 먼저 나갈 수 있습니다. 대기 시간은 계속 쌓이므로 영원히 밀리는 신청은 없습니다. 가중치는 코드가 아니라 표에 있고, 편성마다 이긴 점수를 기록하므로 실제 결과를 보고 다시 잡을 수 있습니다.",
+    "rule.c1":"조건","rule.c2":"가중치","rule.c3":"이유",
+    "rule.r1":"기다린 분 수","rule.r1d":"기본값. 이것만 있으면 선착순",
+    "rule.r2":"사연 있음","rule.r2d":"사연이 먼저. 조정 대상이 아니라 결정 사항",
+    "rule.r3":"신청자가 지금 듣는 중","rule.r3d":"본인이 없을 때 사연이 읽히는 것이 가장 나쁜 결과",
+    "rule.r4":"같은 곡을 여럿이 신청","rule.r4d":"한 번 방송하고 이름은 전부 호명",
+    "rule.r5":"이 사람의 첫 신청","rule.r5d":"단골보다 새로 온 사람 먼저",
+    "rule.r6":"일주일간 안 나간 곡","rule.r6d":"다양성",
+    "rule.r7":"같은 신청자가 직전 두 곡 안에 방송됨","rule.r7d":"독점 방지",
+    "rule.r8":"같은 곡이 최근 스무 곡 안에 방송됨","rule.r8d":"연속 재생 방지",
+    "rule.note":"초기값입니다. 편성마다 이긴 점수가 기록되고, 한 달치 기록을 보고 값을 다시 잡습니다.",
 
-    "pipe.tag":"파이프라인","pipe.h2":"파일 하나, 배포 둘",
-    "pipe.lead":"카탈로그는 한 곳에서 편집해 두 플레이어로 내보냅니다. 동기화 도구가 로컬 파일·저장소 사본·폰 사본의 곡 수와 내용 해시를 나란히 보여준 뒤에 내보냅니다.",
-    "pipe.f1.t":"웹 경로",
-    "pipe.f1.d":"파일을 커밋·푸시하면 Cloudflare Pages가 정적 루트를 배포합니다. 빌드 단계는 없습니다. 웹앱은 로드 시 카탈로그를 받아오는 HTML 파일 하나입니다.",
-    "pipe.f2.t":"폰 경로",
-    "pipe.f2.d":"파일을 adb로 앱 전용 디렉토리에 넣으면 앱이 재설치 없이 변경을 반영합니다. 미디어 파일은 동기화 대상이 아닙니다. 폰이 이미 갖고 있기 때문입니다.",
-    "pipe.f3.t":"곡 요청",
-    "pipe.f3.d":"누구나 웹앱에서 제목이나 링크로 곡을 요청할 수 있습니다. 익명이고, 하루 건수 제한이 있습니다. 요청은 저장되고 알림 채널로 전달되며, 운영자가 접수·반영 예정·반영 완료·거절로 상태를 옮깁니다. 서버에 닿지 못하면 브라우저에 남고 메일로 보낼 수 있습니다.",
+    "dj.tag":"AI DJ","dj.h2":"카탈로그에서 나온 대본, 목소리 둘, 끌 수 있음",
+    "dj.lead":"DJ는 신청곡마다 한 번, 카탈로그 곡은 몇 곡에 한 번 호출되는 언어 모델입니다. 곡의 크레딧·주제·출처, 시각, 사연이 있으면 사연을 받아 짧은 대본 하나를 돌려줍니다. 대본은 곡 도입부 위에서 음악 볼륨을 낮춘 채 읽힙니다. 음악만 듣고 싶은 사람은 기기에서 끕니다.",
+    "dj.f1.t":"카탈로그 밖의 사실 없음",
+    "dj.f1.d":"모델이 보는 것은 그 곡에 대해 카탈로그가 가진 필드뿐입니다. 노래·작사·작곡, 무엇에 관한 곡인지, 출처 한 줄. 그 밖의 것은 말하지 말라고 지시하고, 서버는 입력에 없던 숫자·링크·인명 패턴을 한 번 더 제거합니다.",
+    "dj.f2.t":"사연은 낭독이 아닌 재구성",
+    "dj.f2.d":"사연은 접수 시 안전·검토 필요·거절로 분류됩니다. 방송에서는 DJ가 두세 문장으로 재구성해 말하고, 원문은 보낸 사람 화면에만 남았다가 방송 30일 뒤 삭제됩니다. 검토가 늦어도 곡은 나갑니다.",
+    "dj.f3.t":"목소리 둘, 대본 하나",
+    "dj.f3.d":"청취자가 기기에서 여성 또는 남성 DJ를 고릅니다. 대본은 한 번만 생성하고 1인칭 자기 언급 없이 쓰므로 어느 목소리로도 읽을 수 있습니다. 생성에 실패하면 곡의 주제 한 줄이 자막으로 대신 나가고 방송은 계속됩니다.",
 
     "found.tag":"수치","found.h2":"카탈로그에서 실시간으로",
-    "found.lead":"아래 수치는 이 페이지를 열 때 배포된 카탈로그 파일에서 읽어 옵니다. 파일이 바뀌면 수치도 바뀝니다.",
-    "found.s1":"목록 셋의 전체 곡 수",
-    "found.s2":"Apple Music 목록",
-    "found.s3":"My Play List",
-    "found.s4":"주제와 출처가 있는 곡의 비율",
-    "found.tnote":"웹앱의 카탈로그 파일에서 읽어 옵니다. My K-Pop은 <b><span data-s=\"l3\">90</span></b>곡, 주제가 있는 항목은 <b><span data-s=\"noted\">862</span></b>개. 크레딧은 출처에 있는 경우에만 채웁니다.",
+    "found.lead":"아래 수치는 이 페이지를 열 때 배포된 카탈로그 파일에서 읽어 옵니다. 신청 큐가 비었을 때 방송국이 편성하는 재료입니다.",
+    "found.s1":"목록 셋의 재생 가능 곡 수",
+    "found.s2":"길이가 알려져 시계가 편성할 수 있는 곡",
+    "found.s3":"DJ가 쓸 주제와 출처가 있는 곡의 비율",
+    "found.s4":"클라이언트가 seek 하기 전까지 허용하는 드리프트",
+    "found.tnote":"목록: My Play List <b><span data-s=\"l1\">241</span></b>곡, Apple Music <b><span data-s=\"l2\">531</span></b>곡, My K-Pop <b><span data-s=\"l3\">90</span></b>곡. 항목마다 노래·작사·작곡, 한국어·영어 주제, 출처가 있습니다. 곡 길이는 플레이어가 아니라 큐레이션 시트에서 왔습니다.",
 
     "limits.tag":"한계","limits.h2":"주장하지 않는 것",
-    "limits.lead":"MyPlay는 선곡 파일 위의 플레이어입니다. 아래는 이것이 아닌 것입니다.",
-    "limits.1":"<b>음악 서비스 아님</b><span>권리를 보유하지 않고 음원을 서빙하지 않습니다. 웹앱은 유튜브 업로드를 공식 임베드 플레이어로 재생하며, 가용성·광고·재생 품질은 유튜브의 것입니다. 업로드가 사라지면 웹 경로에서 그 곡도 사라집니다.</span>",
-    "limits.2":"<b>개인의 선곡</b><span>목록은 개인 선곡이지 차트나 추천이 아닙니다. 주제는 편집 정보입니다. 곡마다 쓰고, 검토하고, 틀리면 고칩니다. 곡이 무엇에 관한 것인지를 적지, 얼마나 좋은지를 적지 않습니다.</span>",
-    "limits.3":"<b>오프라인 앱은 비배포</b><span>개인 기기에서 사이드로드로 돌고, 미디어는 소유자 본인 계정에서 내보낸 것입니다. 스토어에 없고 설치를 제공하지 않습니다.</span>",
-    "limits.4":"<b>웹에서 전 곡 재생 불가</b><span>임베드 허용은 업로더의 설정입니다. 임베드가 꺼졌거나 지역·연령 제한이 걸린 곡은 웹 경로에서 건너뛰고, 오프라인 앱에서만 재생됩니다.</span>",
-    "limits.5":"<b>계정 없음, 신원 없음</b><span>요청은 설계상 익명입니다. 재생 기록에는 곡·시각·속도 제한용 해시 주소만 남습니다. 사람을 식별하는 값은 없고, 외부에 제공하지 않습니다.</span>",
-    "limits.cta":"웹앱 열기",
-    "limits.ctanote":"설치도 가입도 없음. 목록을 고르고 셔플.",
+    "limits.lead":"임베드 영상 위의 공동 방송에는 분명한 경계가 있습니다. 아래가 그 경계입니다.",
+    "limits.1":"<b>음악 서비스 아님</b><span>권리를 보유하지 않고 음원을 서빙하지 않습니다. 청취자마다 유튜브 업로드를 공식 임베드 플레이어로 재생하며, 가용성·광고·품질은 유튜브의 것입니다. 업로드가 사라지면 그 곡은 편성에서도 사라집니다.</span>",
+    "limits.2":"<b>동기화는 근사치</b><span>청취자 간 차이는 몇 초 이내이지, 샘플 단위로 맞지 않습니다. 광고는 한 사람에게만 시간을 끼워 넣고, 다음 폴링이 되돌립니다. 같은 곡, 대체로 같은 대목이 목표입니다.</span>",
+    "limits.3":"<b>DJ는 카탈로그만 안다</b><span>대본은 곡 자체의 필드와 사연에서만 생성됩니다. 그 입력 밖의 사실은 담지 않으며, 생성이 실패하면 주제 한 줄이 자막으로 나갑니다. DJ는 음악에 대한 정보원이 아닙니다.</span>",
+    "limits.4":"<b>개인의 카탈로그, 익명의 청취자</b><span>기본 편성은 개인 선곡이지 차트가 아닙니다. 신청은 익명이고, 부를 이름은 보낸 사람이 정한 호칭이지 신원이 아닙니다. 청취자 수는 해시 주소 하트비트이지 로그인이 아닙니다.</span>",
+    "limits.5":"<b>오프라인 앱은 개인용 부속</b><span>안드로이드 앱은 같은 카탈로그를 한 기기의 파일에서 읽어 네트워크 없이 재생합니다. 사이드로드이며 배포하지 않고, 방송의 일부가 아닙니다.</span>",
+    "limits.cta":"방송국 열기",
+    "limits.ctanote":"설치도 가입도 없음. 방송 중이면 탭 한 번으로 합류.",
 
     "ft.home":"홈","ft.copy":"© 2026 joygoLive. All rights reserved."
   }
