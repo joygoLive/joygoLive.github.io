@@ -179,10 +179,30 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="build.tag">Use cases</div>
     <h2 data-i18n="build.h2">The rules are configuration, not code</h2>
-    <p class="lead" data-i18n="build.lead">What differs between a billiards hall and a board-game cafe is the shape of a group and what counts as a good pair — not the machinery underneath. Pairing algorithms are the library; a use case is the set of parameters chosen from it.</p>
+    <p class="lead" data-i18n="build.lead">Billiards is the first place this runs, not what it is for. What changes between activities is the size of a group and what counts as a good pair; what stays is everything else — the code on the screen, the round, the queue, the two-stage reveal. Pairing algorithms are the library, and a use case is a set of parameters chosen from it.</p>
     </div>
+
+    <div class="rv-wrap">
+      <table class="rv">
+        <thead><tr>
+          <th data-i18n="build.t0">Activity</th>
+          <th data-i18n="build.t1">What a pairing is</th>
+          <th data-i18n="build.t2">Algorithm</th>
+          <th data-i18n="build.t3">What it asks for</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="nm" data-i18n="build.a1">Billiards, table tennis, go</td><td data-i18n="build.a1b">One opponent</td><td data-i18n="build.a1c">Two-person pairing</td><td data-i18n="build.a1d">Handicap or rating</td></tr>
+          <tr><td class="nm" data-i18n="build.a2">Board-game cafe</td><td data-i18n="build.a2b">The headcount the game requires</td><td data-i18n="build.a2c">Groups of N</td><td data-i18n="build.a2d">Preferred length or weight</td></tr>
+          <tr><td class="nm" data-i18n="build.a3">Climbing gym</td><td data-i18n="build.a3b">A belay partner — required for safety</td><td data-i18n="build.a3c">Two-person pairing</td><td data-i18n="build.a3d">Grade and certification</td></tr>
+          <tr><td class="nm" data-i18n="build.a4">Badminton, tennis courts</td><td data-i18n="build.a4b">Four for doubles</td><td data-i18n="build.a4c">Groups of N</td><td data-i18n="build.a4d">Level</td></tr>
+          <tr><td class="nm" data-i18n="build.a5">A queue for one table</td><td data-i18n="build.a5b">Whose turn it is</td><td data-i18n="build.a5c">Rotation by arrival</td><td data-i18n="build.a5d">None</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="reward" data-i18n-html="build.reward"><b>The venue is not the unit of expansion; the activity is.</b> One venue can run several — three-cushion and four-ball as separate queues, doubles alongside singles, a bracket on a quiet evening. Each is a set of parameters, and the same room supplies all of them.</p>
+
     <div class="facts">
-      <div class="fact fade"><b data-i18n="build.f1.t">Five algorithms, one library</b><span data-i18n="build.f1.d">Two-person pairing, groups of N, rotation by arrival, first-come to capacity, and a bracket. A new activity usually means new parameters on an existing algorithm rather than new code.</span></div>
+      <div class="fact fade"><b data-i18n="build.f1.t">Five algorithms, and the input is yours to define</b><span data-i18n="build.f1.d">Two-person pairing, groups of N, rotation by arrival, first-come to capacity, and a bracket. What is asked on entry is defined per use case — a number, a choice, or tags, with which field ranks candidates and whether a preferred range is offered. The score screen is what three-cushion happens to need; another activity gets its own field, or none.</span></div>
       <div class="fact fade"><b data-i18n="build.f2.t">Simulate before publishing</b><span data-i18n="build.f2.d">A new rule set cannot be debugged on real customers. Virtual participants run over repeated rounds and report how many are left unmatched and how often the same pair recurs — narrow preferences in a small room can drop matching to zero, and that shows up here rather than on the floor.</span></div>
       <div class="fact fade"><b data-i18n="build.f3.t">Editing a rule never drops a queue</b><span data-i18n="build.f3.d">Saving publishes a new version; sessions already waiting keep the version they entered under. Versions record how someone entered, and they never split the room — everyone in one venue is matched from a single pool.</span></div>
       <div class="fact fade"><b data-i18n="build.f4.t">The venue only switches it on</b><span data-i18n="build.f4.d">A venue chooses which activities to run and puts the screen where people pass. It does not tune parameters, assign tables or maintain a queue: the moment a venue has to operate something, a support desk exists.</span></div>
@@ -201,7 +221,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="fact fade"><b data-i18n="limits.f1.t">It does not assign tables</b><span data-i18n="limits.f1.d">The system sees only the people using it, while the venue is used by everyone, so a free table cannot be counted. Reporting a number it cannot measure would be worse than reporting none. A pairing means an opponent is settled, not that you can start this second.</span></div>
       <div class="fact fade"><b data-i18n="limits.f2.t">It does not judge skill</b><span data-i18n="limits.f2.d">The score is what you state. Nothing verifies it, and nothing is scored, ranked or recorded as a result afterwards. Adding a reward would create a reason to misstate the number, and the honesty of that number is what makes pairing work at all.</span></div>
       <div class="fact fade"><b data-i18n="limits.f3.t">It keeps no record of who avoids whom</b><span data-i18n="limits.f3.d">Repeatedly asking for another opponent quietly stops that pairing from recurring. It applies to one relationship, is never counted, never scored, and never notified — an avoidance you can be told about is a different product.</span></div>
-      <div class="fact fade"><b data-i18n="limits.f4.t">It is a beta, in one venue</b><span data-i18n="limits.f4.d">Running in a single billiards hall for three-cushion play. Whether a room reliably holds enough people at once is the open question, and it is answered by counting on site rather than by argument.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f4.t">It is a beta, in one venue</b><span data-i18n="limits.f4.d">Running in a single billiards hall for three-cushion play — one activity in one room, which is what a beta should be. Whether a room reliably holds enough people at once is the open question, and it is answered by counting on site rather than by argument. Other activities are parameters, but none of them are claimed until one room is proven.</span></div>
     </div>
   </div>
 </section>
@@ -279,9 +299,16 @@ const _L = {
     "reveal.reward":"<b>Hiding the name removes the act of declining.</b> You cannot turn down someone you have not been shown, and asking for another opponent stops meaning a judgement about a person. Names are generated, never collected — no real name, phone number or email is asked for at any point.",
 
     "build.tag":"Use cases","build.h2":"The rules are configuration, not code",
-    "build.lead":"What differs between a billiards hall and a board-game cafe is the shape of a group and what counts as a good pair — not the machinery underneath. Pairing algorithms are the library; a use case is the set of parameters chosen from it.",
-    "build.f1.t":"Five algorithms, one library",
-    "build.f1.d":"Two-person pairing, groups of N, rotation by arrival, first-come to capacity, and a bracket. A new activity usually means new parameters on an existing algorithm rather than new code.",
+    "build.lead":"Billiards is the first place this runs, not what it is for. What changes between activities is the size of a group and what counts as a good pair; what stays is everything else — the code on the screen, the round, the queue, the two-stage reveal. Pairing algorithms are the library, and a use case is a set of parameters chosen from it.",
+    "build.t0":"Activity","build.t1":"What a pairing is","build.t2":"Algorithm","build.t3":"What it asks for",
+    "build.a1":"Billiards, table tennis, go","build.a1b":"One opponent","build.a1c":"Two-person pairing","build.a1d":"Handicap or rating",
+    "build.a2":"Board-game cafe","build.a2b":"The headcount the game requires","build.a2c":"Groups of N","build.a2d":"Preferred length or weight",
+    "build.a3":"Climbing gym","build.a3b":"A belay partner — required for safety","build.a3c":"Two-person pairing","build.a3d":"Grade and certification",
+    "build.a4":"Badminton, tennis courts","build.a4b":"Four for doubles","build.a4c":"Groups of N","build.a4d":"Level",
+    "build.a5":"A queue for one table","build.a5b":"Whose turn it is","build.a5c":"Rotation by arrival","build.a5d":"None",
+    "build.reward":"<b>The venue is not the unit of expansion; the activity is.</b> One venue can run several — three-cushion and four-ball as separate queues, doubles alongside singles, a bracket on a quiet evening. Each is a set of parameters, and the same room supplies all of them.",
+    "build.f1.t":"Five algorithms, and the input is yours to define",
+    "build.f1.d":"Two-person pairing, groups of N, rotation by arrival, first-come to capacity, and a bracket. What is asked on entry is defined per use case — a number, a choice, or tags, with which field ranks candidates and whether a preferred range is offered. The score screen is what three-cushion happens to need; another activity gets its own field, or none.",
     "build.f2.t":"Simulate before publishing",
     "build.f2.d":"A new rule set cannot be debugged on real customers. Virtual participants run over repeated rounds and report how many are left unmatched and how often the same pair recurs — narrow preferences in a small room can drop matching to zero, and that shows up here rather than on the floor.",
     "build.f3.t":"Editing a rule never drops a queue",
@@ -298,7 +325,7 @@ const _L = {
     "limits.f3.t":"It keeps no record of who avoids whom",
     "limits.f3.d":"Repeatedly asking for another opponent quietly stops that pairing from recurring. It applies to one relationship, is never counted, never scored, and never notified — an avoidance you can be told about is a different product.",
     "limits.f4.t":"It is a beta, in one venue",
-    "limits.f4.d":"Running in a single billiards hall for three-cushion play. Whether a room reliably holds enough people at once is the open question, and it is answered by counting on site rather than by argument.",
+    "limits.f4.d":"Running in a single billiards hall for three-cushion play — one activity in one room, which is what a beta should be. Whether a room reliably holds enough people at once is the open question, and it is answered by counting on site rather than by argument. Other activities are parameters, but none of them are claimed until one room is proven.",
 
     "ft.home":"Home","ft.copy":"© 2026 joygoLive. All rights reserved."
   },
@@ -355,9 +382,16 @@ const _L = {
     "reveal.reward":"<b>이름을 감추면 거절이라는 행위가 사라집니다.</b> 보지 않은 사람을 거절할 수는 없고, 다른 상대를 청하는 일이 사람에 대한 판단을 뜻하지 않게 됩니다. 이름은 지어 주는 값이고 수집하지 않습니다 — 실명도 전화번호도 메일 주소도 어느 단계에서도 묻지 않습니다.",
 
     "build.tag":"유즈케이스","build.h2":"규칙은 코드가 아니라 설정",
-    "build.lead":"당구장과 보드게임 카페에서 달라지는 것은 한 조의 크기와 무엇을 좋은 짝으로 볼지이지, 밑에서 도는 기계가 아닙니다. 매칭 알고리즘은 라이브러리이고, 유즈케이스는 거기서 고른 파라미터 묶음입니다.",
-    "build.f1.t":"알고리즘 다섯, 라이브러리 하나",
-    "build.f1.d":"2인 페어링, N인 그룹, 순번 로테이션, 정원까지 선착순, 대진표. 새 활동은 대개 새 코드가 아니라 기존 알고리즘의 새 파라미터입니다.",
+    "build.lead":"당구는 처음 도는 자리이지 이 서비스의 용도가 아닙니다. 활동에 따라 달라지는 것은 한 조의 크기와 무엇을 좋은 짝으로 볼지이고, 나머지는 그대로입니다 — 화면의 코드, 회차, 대기열, 두 단계 공개. 매칭 알고리즘은 라이브러리이고, 유즈케이스는 거기서 고른 파라미터 묶음입니다.",
+    "build.t0":"활동","build.t1":"무엇이 한 짝인가","build.t2":"알고리즘","build.t3":"무엇을 묻나",
+    "build.a1":"당구 · 탁구 · 바둑","build.a1b":"상대 한 명","build.a1c":"2인 페어링","build.a1d":"핸디캡 또는 급수",
+    "build.a2":"보드게임 카페","build.a2b":"게임이 요구하는 인원","build.a2c":"N인 그룹","build.a2d":"선호 플레이 시간 · 난이도",
+    "build.a3":"클라이밍장","build.a3b":"빌레이 파트너 — 안전상 필수","build.a3c":"2인 페어링","build.a3d":"등급과 이수 여부",
+    "build.a4":"배드민턴 · 테니스 코트","build.a4b":"복식 네 명","build.a4c":"N인 그룹","build.a4d":"수준",
+    "build.a5":"한 대를 나눠 쓰는 대기","build.a5b":"누구 차례인가","build.a5c":"순번 로테이션","build.a5d":"없음",
+    "build.reward":"<b>확장의 단위는 매장이 아니라 활동입니다.</b> 한 매장이 여럿을 동시에 돌릴 수 있습니다 — 3쿠션과 4구를 따로, 복식과 단식을 나란히, 한산한 저녁에는 대진표까지. 각각이 파라미터 묶음이고 같은 공간이 그 전부를 댑니다.",
+    "build.f1.t":"알고리즘 다섯, 무엇을 물을지는 따로 정의",
+    "build.f1.d":"2인 페어링, N인 그룹, 순번 로테이션, 정원까지 선착순, 대진표. 진입할 때 무엇을 묻는지는 유즈케이스마다 정의합니다 — 숫자·선택지·태그, 어느 항목으로 후보를 정렬할지, 희망 범위를 받을지까지. 점수 화면은 3쿠션이 그것을 필요로 해서 있는 것이고, 다른 활동은 자기 항목을 갖거나 아무것도 묻지 않습니다.",
     "build.f2.t":"내보내기 전에 시뮬레이션",
     "build.f2.d":"새 규칙을 실제 손님으로 디버깅할 수는 없습니다. 가상 참가자로 여러 회차를 돌려 남는 사람 비율과 같은 상대가 반복되는 비율을 냅니다 — 좁은 선호는 작은 공간에서 매칭을 0으로 만들 수 있고, 그것이 현장이 아니라 여기서 드러납니다.",
     "build.f3.t":"규칙을 고쳐도 대기가 끊기지 않습니다",
@@ -374,7 +408,7 @@ const _L = {
     "limits.f3.t":"누가 누구를 피하는지 남기지 않습니다",
     "limits.f3.d":"다른 상대를 거듭 청하면 그 짝이 조용히 다시 나오지 않게 됩니다. 개인 관계에만 적용되고, 세지도 점수화하지도 통지하지도 않습니다 — 통보받을 수 있는 회피는 다른 제품입니다.",
     "limits.f4.t":"한 매장에서 도는 베타입니다",
-    "limits.f4.d":"당구장 한 곳의 3쿠션으로 돌고 있습니다. 한 공간에 사람이 동시에 충분히 모이는가가 남은 질문이고, 그것은 논증이 아니라 현장에서 세어 답합니다.",
+    "limits.f4.d":"당구장 한 곳의 3쿠션으로 돌고 있습니다 — 한 공간의 한 활동, 베타가 그래야 하는 범위입니다. 한 공간에 사람이 동시에 충분히 모이는가가 남은 질문이고, 그것은 논증이 아니라 현장에서 세어 답합니다. 다른 활동은 파라미터로 열리지만, 한 공간이 증명되기 전에는 어느 것도 주장하지 않습니다.",
 
     "ft.home":"홈","ft.copy":"© 2026 joygoLive. All rights reserved."
   }
