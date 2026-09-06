@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CUE — An opponent from the room you are already in, by joygoLive</title>
+<meta name="description" content="CUE pairs people who are already in the same place. Scanning the code on the venue screen is the whole entry: no app, no sign-in, no name. Everyone waiting is paired in one pass each round, and who you were matched with is revealed only after both accept." />
+<meta property="og:title" content="CUE — An opponent from the room you are already in" />
+<meta property="og:description" content="No app, no sign-in, no name. A code on the venue screen, a round every minute, and identities revealed only after both accept." />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
+<meta name="theme-color" id="themeColor" content="#ffffff" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+/* 진입 흐름. 단계가 넷이고 각 단계에 무엇이 오가는지가 요점이라 카드보다 줄로 세운다. */
+.steps{display:grid;gap:12px;margin:30px 0 8px;counter-reset:st}
+.step{display:grid;grid-template-columns:34px 1fr;gap:0 14px;align-items:start;
+  padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
+.step::before{counter-increment:st;content:counter(st);
+  font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--accent);
+  width:26px;height:26px;display:grid;place-items:center;
+  border:1px solid var(--accent-line);border-radius:50%;background:var(--accent-dim)}
+.step b{display:block;font-size:14.5px;margin-bottom:2px}
+.step span{font-size:13.5px;line-height:1.7;color:var(--text2)}
+
+/* 신원 공개 단계. 무엇이 언제 보이는지가 이 서비스의 중심이라 표로 둔다. */
+.rv-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:30px 0 8px}
+.rv{width:100%;border-collapse:collapse;font-size:13.5px;min-width:520px}
+.rv th,.rv td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+.rv th{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
+.rv tr:last-child td{border-bottom:0}
+.rv .nm{font-weight:700;white-space:nowrap}
+.rv .no{color:var(--text-dim)}
+.rv .yes{color:var(--accent);font-weight:600}
+
+.reward{margin:18px 0 0;padding:13px 16px;max-width:46em;
+  font-size:13.5px;line-height:1.7;color:var(--text2);
+  background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:var(--radius)}
+.reward b{color:var(--text);font-weight:700}
+</style>
+<script>try{var t=localStorage.getItem('joygo_theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}
+/* 주소창 색은 첫 칠 전에 정해야 한다 — 나중에 고치면 흰 띠가 한 번 번쩍인다. */
+try{var d=document.documentElement.getAttribute('data-theme');
+document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(prefers-color-scheme:dark)').matches))?'#0b0e11':'#ffffff';}catch(e){}</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand-group">
+      <a href="../" class="brand" aria-label="joygoLive">
+        <svg viewBox="0 0 32 32" aria-hidden="true" class="mk"><rect class="mk-bg" x=".6" y=".6" width="30.8" height="30.8" rx="6.6"/><rect class="mk-joy" x="6.5" y="12.5" width="5" height="13.5" rx="1"/><rect class="mk-go" x="13.5" y="17" width="5" height="9" rx="1"/><rect class="mk-live" x="20.5" y="8" width="5" height="18" rx="1"/></svg>
+        <span>joy<span class="go">go</span><span class="dot">Live</span></span>
+      </a>
+      <span class="brand-sep" aria-hidden="true">/</span>
+      <a href="./" class="svc-name">CUE</a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#why" data-i18n="nav.why">Design</a>
+      <a href="#how" data-i18n="nav.how">Entry</a>
+      <a href="#round" data-i18n="nav.round">Rounds</a>
+      <a href="#reveal" data-i18n="nav.reveal">Identity</a>
+      <a href="#build" data-i18n="nav.build">Use cases</a>
+      <a href="#limits" data-i18n="nav.limits">Limits</a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="language">
+      <button data-lang="en" onclick="setLang('en')">EN</button>
+      <button data-lang="ko" onclick="setLang('ko')">한국어</button>
+    </div>
+    <div class="theme-toggle" role="group" aria-label="theme">
+      <button data-theme-set="light" onclick="setTheme('light')" aria-label="Light" title="Light">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button data-theme-set="dark" onclick="setTheme('dark')" aria-label="Dark" title="Dark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+    <button class="menu-btn" aria-label="menu" aria-expanded="false" aria-controls="navLinks" onclick="toggleNav(this)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-kicker mono" data-i18n="hero.kicker">CUE · Same room, same time</div>
+    <h1 data-i18n-html="hero.title">An opponent from <span class="grad">the room you are already in</span>.</h1>
+    <p class="lead" data-i18n="hero.sub">A screen in the venue shows a code. Scanning it puts you in the queue, and each round pairs everyone waiting in one pass. You give a score, not a name — who you were matched with appears only after both of you accept.</p>
+    <div class="cta-row">
+      <a href="https://cue.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta1">Open CUE</a>
+      <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">What this does not claim</a>
+    </div>
+    <p class="reward" data-i18n-html="hero.reward"><b>No app, no sign-in, no name.</b> The code on the venue screen is the entire entry path. It is also the proof that you are actually there — the one thing an app that only knows your location cannot establish.</p>
+    <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here. Beta.</div>
+  </div>
+</section>
+
+<!-- DESIGN -->
+<section id="why" class="section alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="why.tag">Design</div>
+    <h2 data-i18n="why.h2">Three decisions that shaped it</h2>
+    <p class="lead" data-i18n="why.lead">The hard part of pairing people in a room is not the algorithm. It is that the moment you ask for an install, a sign-in or a name, most of the room is already gone — and that the system cannot see most of what happens in that room.</p>
+    </div>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="why.f1.t">Nothing to install</b><span data-i18n="why.f1.d">An earlier generation of venue apps put a radio beacon in every store and asked shoppers to install something to hear it. The deployments were large and the early numbers were good, and they still collapsed — on the install, not the technology. A code on a screen removes that step entirely, and works the same on every phone.</span></div>
+      <div class="fact fade"><b data-i18n="why.f2.t">Only what can be observed</b><span data-i18n="why.f2.d">The system cannot tell when you leave, when a game ends, or whether a table is free — a venue is used by everyone, not only by the people here. So none of those are stored. A wait expires on its own, and turning the queue back on is itself the signal that the last game finished.</span></div>
+      <div class="fact fade"><b data-i18n="why.f3.t">There is no decline</b><span data-i18n="why.f3.d">Asking for another opponent removes only the person who asked; the pairing stays open until its deadline. What the other side sees is identical to no answer at all — same wording, same timing. A decline that can be traced back is worse than none, so the action does not exist.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ENTRY -->
+<section id="how" class="section">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="how.tag">Entry</div>
+    <h2 data-i18n="how.h2">Four steps, one of them optional</h2>
+    <p class="lead" data-i18n="how.lead">The code on the venue screen rotates on a timer, so it proves both the place and the time. A returning visitor is recognised for the rest of the session and skips straight back to the queue.</p>
+    </div>
+    <div class="steps">
+      <div class="step fade"><div><b data-i18n="how.s1.t">Scan the code on the screen</b><span data-i18n="how.s1.d">The camera opens a page. There is no app to install and no account to create; the code itself carries which venue, which activity, and which minute.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s2.t">Give a score, not a name</b><span data-i18n="how.s2.d">One number and, if you want, the range you would rather play. A returning visitor sees last time's value already filled in, so it is a single confirmation.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s3.t">Wait for the round</b><span data-i18n="how.s3.d">The screen shows how many are waiting and how long until the next round. Both the venue screen and your phone count down the same clock.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s4.t">Accept, then meet</b><span data-i18n="how.s4.d">You see the other person's score and answer whether you can play now. Once both accept, the two names appear on your phone and on the venue screen. Tables are the venue's business, as they were before.</span></div></div>
+    </div>
+    <p class="reward" data-i18n-html="how.reward"><b>Scanning again is not required to play again.</b> A venue session lasts hours; after a game, one button puts you back in the queue. The system never asks whether the game is over, because it has no way to know.</p>
+  </div>
+</section>
+
+<!-- ROUNDS -->
+<section id="round" class="section alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="round.tag">Rounds</div>
+    <h2 data-i18n="round.h2">Everyone waiting, paired in one pass</h2>
+    <p class="lead" data-i18n="round.lead">Pairing on arrival sounds faster and is worse: whoever is already waiting wins by default, and a stated preference never gets a chance to apply. Collecting for a minute and pairing the whole queue at once costs a short wait and buys a better set of pairs.</p>
+    </div>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="round.f1.t">Variety comes first</b><span data-i18n="round.f1.d">Someone you have not met yet outranks someone you played an hour ago. The problem in a regulars' room is rarely a shortage of opponents; it is playing the same person every time.</span></div>
+      <div class="fact fade"><b data-i18n="round.f2.t">A preference, not a filter</b><span data-i18n="round.f2.d">A preferred range moves candidates up the order without excluding anyone. In a room with three people waiting, a hard filter means no match at all — so when there is no one else, a pairing outside your range is offered and labelled as such.</span></div>
+      <div class="fact fade"><b data-i18n="round.f3.t">Waiting accumulates</b><span data-i18n="round.f3.d">The longer someone waits, the more weight they carry, without a ceiling. Without this, people whose range sits at the edge of the room are quietly never chosen: in testing, one player waited fifteen minutes while two others matched each other every round.</span></div>
+      <div class="fact fade"><b data-i18n="round.f4.t">No answer means gone</b><span data-i18n="round.f4.d">When a pairing expires, whoever accepted returns to the queue and whoever never answered is removed from it. A phone left in a pocket otherwise occupies a slot and blocks the room.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- IDENTITY -->
+<section id="reveal" class="section">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="reveal.tag">Identity</div>
+    <h2 data-i18n="reveal.h2">A score before, a name after</h2>
+    <p class="lead" data-i18n="reveal.lead">A name is not something you can judge on — you cannot tell skill or acquaintance from it — but it is enough to work out who turned you down. A score is the opposite: it is the one thing worth judging, and several people in the room share it.</p>
+    </div>
+    <div class="rv-wrap">
+      <table class="rv">
+        <thead><tr>
+          <th data-i18n="reveal.c0">Stage</th>
+          <th data-i18n="reveal.c1">Score</th>
+          <th data-i18n="reveal.c2">Name</th>
+          <th data-i18n="reveal.c3">What you are answering</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="nm" data-i18n="reveal.r1">Waiting</td><td class="no" data-i18n="reveal.r1a">—</td><td class="no" data-i18n="reveal.r1b">—</td><td data-i18n="reveal.r1c">Nothing. The screen shows only how many are waiting and your position</td></tr>
+          <tr><td class="nm" data-i18n="reveal.r2">Paired</td><td class="yes" data-i18n="reveal.r2a">Shown</td><td class="no" data-i18n="reveal.r2b">Hidden</td><td data-i18n="reveal.r2c">Whether you can play now — not whether you want this particular person</td></tr>
+          <tr><td class="nm" data-i18n="reveal.r3">Both accepted</td><td class="yes" data-i18n="reveal.r3a">Shown</td><td class="yes" data-i18n="reveal.r3b">Shown</td><td data-i18n="reveal.r3c">Nothing. Both names are on your phone and on the venue screen</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="reward" data-i18n-html="reveal.reward"><b>Hiding the name removes the act of declining.</b> You cannot turn down someone you have not been shown, and asking for another opponent stops meaning a judgement about a person. Names are generated, never collected — no real name, phone number or email is asked for at any point.</p>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section id="build" class="section alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="build.tag">Use cases</div>
+    <h2 data-i18n="build.h2">The rules are configuration, not code</h2>
+    <p class="lead" data-i18n="build.lead">What differs between a billiards hall and a board-game cafe is the shape of a group and what counts as a good pair — not the machinery underneath. Pairing algorithms are the library; a use case is the set of parameters chosen from it.</p>
+    </div>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="build.f1.t">Five algorithms, one library</b><span data-i18n="build.f1.d">Two-person pairing, groups of N, rotation by arrival, first-come to capacity, and a bracket. A new activity usually means new parameters on an existing algorithm rather than new code.</span></div>
+      <div class="fact fade"><b data-i18n="build.f2.t">Simulate before publishing</b><span data-i18n="build.f2.d">A new rule set cannot be debugged on real customers. Virtual participants run over repeated rounds and report how many are left unmatched and how often the same pair recurs — narrow preferences in a small room can drop matching to zero, and that shows up here rather than on the floor.</span></div>
+      <div class="fact fade"><b data-i18n="build.f3.t">Editing a rule never drops a queue</b><span data-i18n="build.f3.d">Saving publishes a new version; sessions already waiting keep the version they entered under. Versions record how someone entered, and they never split the room — everyone in one venue is matched from a single pool.</span></div>
+      <div class="fact fade"><b data-i18n="build.f4.t">The venue only switches it on</b><span data-i18n="build.f4.d">A venue chooses which activities to run and puts the screen where people pass. It does not tune parameters, assign tables or maintain a queue: the moment a venue has to operate something, a support desk exists.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIMITS -->
+<section id="limits" class="section">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="limits.tag">Limits</div>
+    <h2 data-i18n="limits.h2">What this does not claim</h2>
+    <p class="lead" data-i18n="limits.lead">Stating what is out of scope is more useful than stating features, because most of these are deliberate omissions rather than unfinished work.</p>
+    </div>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="limits.f1.t">It does not assign tables</b><span data-i18n="limits.f1.d">The system sees only the people using it, while the venue is used by everyone, so a free table cannot be counted. Reporting a number it cannot measure would be worse than reporting none. A pairing means an opponent is settled, not that you can start this second.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f2.t">It does not judge skill</b><span data-i18n="limits.f2.d">The score is what you state. Nothing verifies it, and nothing is scored, ranked or recorded as a result afterwards. Adding a reward would create a reason to misstate the number, and the honesty of that number is what makes pairing work at all.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f3.t">It keeps no record of who avoids whom</b><span data-i18n="limits.f3.d">Repeatedly asking for another opponent quietly stops that pairing from recurring. It applies to one relationship, is never counted, never scored, and never notified — an avoidance you can be told about is a different product.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f4.t">It is a beta, in one venue</b><span data-i18n="limits.f4.d">Running in a single billiards hall for three-cushion play. Whether a room reliably holds enough people at once is the open question, and it is answered by counting on site rather than by argument.</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true" class="mk"><rect class="mk-bg" x=".6" y=".6" width="30.8" height="30.8" rx="6.6"/><rect class="mk-joy" x="6.5" y="12.5" width="5" height="13.5" rx="1"/><rect class="mk-go" x="13.5" y="17" width="5" height="9" rx="1"/><rect class="mk-live" x="20.5" y="8" width="5" height="18" rx="1"/></svg><span>joy<span class="go">go</span><span class="dot" style="color:var(--accent)">Live</span></span></span>
+    <nav class="foot-links">
+      <a href="../"><span data-i18n="ft.home">Home</span></a>
+      <a href="../uqh/">UQH</a>
+      <a href="../amc/">AMC</a>
+      <a href="../bor/">BOR</a>
+      <a href="../wcp/">WCP</a>
+      <a href="../loci/">LOCI</a>
+      <a href="../bcon/">BCON</a>
+      <a href="../mp/">MP</a>
+      <a href="../cue/">CUE</a>
+    </nav>
+    <span data-i18n="ft.copy">© 2026 joygoLive. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+const _L = {
+  en:{
+    "nav.why":"Design","nav.how":"Entry","nav.round":"Rounds","nav.reveal":"Identity","nav.build":"Use cases","nav.limits":"Limits",
+    "hero.kicker":"CUE · Same room, same time",
+    "hero.title":"An opponent from <span class=\"grad\">the room you are already in</span>.",
+    "hero.sub":"A screen in the venue shows a code. Scanning it puts you in the queue, and each round pairs everyone waiting in one pass. You give a score, not a name — who you were matched with appears only after both of you accept.",
+    "hero.cta1":"Open CUE","hero.cta2":"What this does not claim",
+    "hero.reward":"<b>No app, no sign-in, no name.</b> The code on the venue screen is the entire entry path. It is also the proof that you are actually there — the one thing an app that only knows your location cannot establish.",
+    "hero.byline":"A service by joygoLive, built here and operated here. Beta.",
+
+    "why.tag":"Design","why.h2":"Three decisions that shaped it",
+    "why.lead":"The hard part of pairing people in a room is not the algorithm. It is that the moment you ask for an install, a sign-in or a name, most of the room is already gone — and that the system cannot see most of what happens in that room.",
+    "why.f1.t":"Nothing to install",
+    "why.f1.d":"An earlier generation of venue apps put a radio beacon in every store and asked shoppers to install something to hear it. The deployments were large and the early numbers were good, and they still collapsed — on the install, not the technology. A code on a screen removes that step entirely, and works the same on every phone.",
+    "why.f2.t":"Only what can be observed",
+    "why.f2.d":"The system cannot tell when you leave, when a game ends, or whether a table is free — a venue is used by everyone, not only by the people here. So none of those are stored. A wait expires on its own, and turning the queue back on is itself the signal that the last game finished.",
+    "why.f3.t":"There is no decline",
+    "why.f3.d":"Asking for another opponent removes only the person who asked; the pairing stays open until its deadline. What the other side sees is identical to no answer at all — same wording, same timing. A decline that can be traced back is worse than none, so the action does not exist.",
+
+    "how.tag":"Entry","how.h2":"Four steps, one of them optional",
+    "how.lead":"The code on the venue screen rotates on a timer, so it proves both the place and the time. A returning visitor is recognised for the rest of the session and skips straight back to the queue.",
+    "how.s1.t":"Scan the code on the screen",
+    "how.s1.d":"The camera opens a page. There is no app to install and no account to create; the code itself carries which venue, which activity, and which minute.",
+    "how.s2.t":"Give a score, not a name",
+    "how.s2.d":"One number and, if you want, the range you would rather play. A returning visitor sees last time's value already filled in, so it is a single confirmation.",
+    "how.s3.t":"Wait for the round",
+    "how.s3.d":"The screen shows how many are waiting and how long until the next round. Both the venue screen and your phone count down the same clock.",
+    "how.s4.t":"Accept, then meet",
+    "how.s4.d":"You see the other person's score and answer whether you can play now. Once both accept, the two names appear on your phone and on the venue screen. Tables are the venue's business, as they were before.",
+    "how.reward":"<b>Scanning again is not required to play again.</b> A venue session lasts hours; after a game, one button puts you back in the queue. The system never asks whether the game is over, because it has no way to know.",
+
+    "round.tag":"Rounds","round.h2":"Everyone waiting, paired in one pass",
+    "round.lead":"Pairing on arrival sounds faster and is worse: whoever is already waiting wins by default, and a stated preference never gets a chance to apply. Collecting for a minute and pairing the whole queue at once costs a short wait and buys a better set of pairs.",
+    "round.f1.t":"Variety comes first",
+    "round.f1.d":"Someone you have not met yet outranks someone you played an hour ago. The problem in a regulars' room is rarely a shortage of opponents; it is playing the same person every time.",
+    "round.f2.t":"A preference, not a filter",
+    "round.f2.d":"A preferred range moves candidates up the order without excluding anyone. In a room with three people waiting, a hard filter means no match at all — so when there is no one else, a pairing outside your range is offered and labelled as such.",
+    "round.f3.t":"Waiting accumulates",
+    "round.f3.d":"The longer someone waits, the more weight they carry, without a ceiling. Without this, people whose range sits at the edge of the room are quietly never chosen: in testing, one player waited fifteen minutes while two others matched each other every round.",
+    "round.f4.t":"No answer means gone",
+    "round.f4.d":"When a pairing expires, whoever accepted returns to the queue and whoever never answered is removed from it. A phone left in a pocket otherwise occupies a slot and blocks the room.",
+
+    "reveal.tag":"Identity","reveal.h2":"A score before, a name after",
+    "reveal.lead":"A name is not something you can judge on — you cannot tell skill or acquaintance from it — but it is enough to work out who turned you down. A score is the opposite: it is the one thing worth judging, and several people in the room share it.",
+    "reveal.c0":"Stage","reveal.c1":"Score","reveal.c2":"Name","reveal.c3":"What you are answering",
+    "reveal.r1":"Waiting","reveal.r1a":"—","reveal.r1b":"—",
+    "reveal.r1c":"Nothing. The screen shows only how many are waiting and your position",
+    "reveal.r2":"Paired","reveal.r2a":"Shown","reveal.r2b":"Hidden",
+    "reveal.r2c":"Whether you can play now — not whether you want this particular person",
+    "reveal.r3":"Both accepted","reveal.r3a":"Shown","reveal.r3b":"Shown",
+    "reveal.r3c":"Nothing. Both names are on your phone and on the venue screen",
+    "reveal.reward":"<b>Hiding the name removes the act of declining.</b> You cannot turn down someone you have not been shown, and asking for another opponent stops meaning a judgement about a person. Names are generated, never collected — no real name, phone number or email is asked for at any point.",
+
+    "build.tag":"Use cases","build.h2":"The rules are configuration, not code",
+    "build.lead":"What differs between a billiards hall and a board-game cafe is the shape of a group and what counts as a good pair — not the machinery underneath. Pairing algorithms are the library; a use case is the set of parameters chosen from it.",
+    "build.f1.t":"Five algorithms, one library",
+    "build.f1.d":"Two-person pairing, groups of N, rotation by arrival, first-come to capacity, and a bracket. A new activity usually means new parameters on an existing algorithm rather than new code.",
+    "build.f2.t":"Simulate before publishing",
+    "build.f2.d":"A new rule set cannot be debugged on real customers. Virtual participants run over repeated rounds and report how many are left unmatched and how often the same pair recurs — narrow preferences in a small room can drop matching to zero, and that shows up here rather than on the floor.",
+    "build.f3.t":"Editing a rule never drops a queue",
+    "build.f3.d":"Saving publishes a new version; sessions already waiting keep the version they entered under. Versions record how someone entered, and they never split the room — everyone in one venue is matched from a single pool.",
+    "build.f4.t":"The venue only switches it on",
+    "build.f4.d":"A venue chooses which activities to run and puts the screen where people pass. It does not tune parameters, assign tables or maintain a queue: the moment a venue has to operate something, a support desk exists.",
+
+    "limits.tag":"Limits","limits.h2":"What this does not claim",
+    "limits.lead":"Stating what is out of scope is more useful than stating features, because most of these are deliberate omissions rather than unfinished work.",
+    "limits.f1.t":"It does not assign tables",
+    "limits.f1.d":"The system sees only the people using it, while the venue is used by everyone, so a free table cannot be counted. Reporting a number it cannot measure would be worse than reporting none. A pairing means an opponent is settled, not that you can start this second.",
+    "limits.f2.t":"It does not judge skill",
+    "limits.f2.d":"The score is what you state. Nothing verifies it, and nothing is scored, ranked or recorded as a result afterwards. Adding a reward would create a reason to misstate the number, and the honesty of that number is what makes pairing work at all.",
+    "limits.f3.t":"It keeps no record of who avoids whom",
+    "limits.f3.d":"Repeatedly asking for another opponent quietly stops that pairing from recurring. It applies to one relationship, is never counted, never scored, and never notified — an avoidance you can be told about is a different product.",
+    "limits.f4.t":"It is a beta, in one venue",
+    "limits.f4.d":"Running in a single billiards hall for three-cushion play. Whether a room reliably holds enough people at once is the open question, and it is answered by counting on site rather than by argument.",
+
+    "ft.home":"Home","ft.copy":"© 2026 joygoLive. All rights reserved."
+  },
+  ko:{
+    "nav.why":"설계","nav.how":"진입","nav.round":"회차","nav.reveal":"신원","nav.build":"유즈케이스","nav.limits":"한계",
+    "hero.kicker":"CUE · 같은 공간, 같은 시간",
+    "hero.title":"<span class=\"grad\">이미 같이 있는 사람</span> 중에서 상대를.",
+    "hero.sub":"매장에 놓인 화면에 코드가 뜹니다. 찍으면 대기열에 들어가고, 회차마다 기다리는 사람을 한 번에 짝지어 줍니다. 이름 대신 점수를 내고, 상대가 누구인지는 서로 수락한 뒤에 보입니다.",
+    "hero.cta1":"CUE 열기","hero.cta2":"하지 않는 것",
+    "hero.reward":"<b>앱도, 로그인도, 이름도 없습니다.</b> 매장 화면의 코드가 진입 경로의 전부입니다. 동시에 그 코드가 지금 그 자리에 있다는 증명입니다 — 위치만 아는 앱이 확정하지 못하는 한 가지입니다.",
+    "hero.byline":"joygoLive 가 만들고 운영합니다. 베타.",
+
+    "why.tag":"설계","why.h2":"형태를 정한 결정 셋",
+    "why.lead":"공간 안의 사람을 붙이는 일에서 어려운 쪽은 알고리즘이 아닙니다. 설치나 로그인이나 이름을 요구하는 순간 대부분이 이미 떠난다는 것, 그리고 그 공간에서 일어나는 일의 대부분을 시스템이 볼 수 없다는 것입니다.",
+    "why.f1.t":"설치할 것이 없습니다",
+    "why.f1.d":"앞선 세대의 매장 앱은 점포마다 전파 발신기를 두고 손님에게 설치를 요구했습니다. 규모도 컸고 초기 수치도 좋았지만 무너졌습니다 — 기술이 아니라 설치에서. 화면의 코드는 그 단계를 통째로 없애고, 어떤 기종에서나 똑같이 동작합니다.",
+    "why.f2.t":"관측할 수 있는 것만",
+    "why.f2.d":"언제 나가는지, 게임이 끝났는지, 자리가 비었는지를 시스템은 알 수 없습니다 — 매장은 이용자만 쓰는 곳이 아니기 때문입니다. 그래서 어느 것도 저장하지 않습니다. 대기는 스스로 만료되고, 다시 대기열을 켜는 행위 자체가 직전 게임이 끝났다는 신호입니다.",
+    "why.f3.t":"거절이라는 행위가 없습니다",
+    "why.f3.d":"다른 상대를 청하면 청한 쪽만 빠지고 매칭은 시한까지 그대로 남습니다. 상대가 보는 것은 아무 응답이 없었을 때와 같습니다 — 문구도 시점도. 되짚을 수 있는 거절은 없느니만 못하므로, 그 동작 자체를 두지 않았습니다.",
+
+    "how.tag":"진입","how.h2":"네 단계, 그중 하나는 선택",
+    "how.lead":"매장 화면의 코드는 주기적으로 바뀌므로 장소와 시각을 함께 증명합니다. 다시 온 사람은 그 세션 동안 알아보고 대기열로 바로 돌아갑니다.",
+    "how.s1.t":"화면의 코드를 찍습니다",
+    "how.s1.d":"카메라가 페이지를 엽니다. 설치할 앱도 만들 계정도 없고, 어느 매장·어느 활동·몇 분대인지를 코드가 싣고 있습니다.",
+    "how.s2.t":"이름 대신 점수를 냅니다",
+    "how.s2.d":"숫자 하나, 원하면 선호하는 상대 점수대까지. 다시 온 사람은 지난번 값이 채워져 있어 확인 한 번으로 끝납니다.",
+    "how.s3.t":"회차를 기다립니다",
+    "how.s3.d":"몇 명이 기다리는지와 다음 회차까지 남은 시간이 보입니다. 매장 화면과 폰이 같은 시계를 셉니다.",
+    "how.s4.t":"수락하고 만납니다",
+    "how.s4.d":"상대의 점수를 보고 지금 칠 수 있는지 답합니다. 서로 수락하면 두 이름이 폰과 매장 화면에 뜹니다. 자리는 매장이 정합니다, 원래 그랬던 대로.",
+    "how.reward":"<b>다시 치려고 코드를 또 찍을 필요는 없습니다.</b> 매장 세션은 몇 시간 유지되고, 한 판이 끝나면 버튼 하나로 대기열에 돌아갑니다. 시스템은 게임이 끝났는지 묻지 않습니다 — 알 방법이 없기 때문입니다.",
+
+    "round.tag":"회차","round.h2":"기다리는 사람을 한 번에",
+    "round.lead":"들어오는 즉시 붙이는 쪽이 빨라 보이지만 더 나쁩니다. 먼저 기다리던 사람이 무조건 이기고, 적어 낸 선호는 적용될 기회를 얻지 못합니다. 잠시 모았다가 대기열 전체를 한 번에 짜면 짧은 기다림을 치르고 더 나은 조합을 얻습니다.",
+    "round.f1.t":"다양성이 먼저",
+    "round.f1.d":"아직 만나지 않은 사람이 한 시간 전에 친 사람보다 앞섭니다. 단골이 모이는 곳에서 문제는 상대가 없는 것이 아니라 매번 같은 사람과 치는 것입니다.",
+    "round.f2.t":"조건이 아니라 선호",
+    "round.f2.d":"희망 범위는 후보의 순서를 올릴 뿐 아무도 거르지 않습니다. 셋이 기다리는 공간에서 조건으로 거르면 매칭이 0이 되므로, 다른 사람이 없을 때는 범위 밖 상대를 그렇게 표시해서 제안합니다.",
+    "round.f3.t":"기다림이 쌓입니다",
+    "round.f3.d":"오래 기다릴수록 가중치가 올라가고 상한이 없습니다. 이것이 없으면 범위가 공간의 가장자리에 있는 사람이 조용히 배제됩니다 — 시험에서 한 사람이 15분을 기다리는 동안 다른 둘이 회차마다 서로 붙었습니다.",
+    "round.f4.t":"무응답은 이탈",
+    "round.f4.d":"매칭이 시한을 넘기면 수락했던 사람은 대기열로 돌아가고, 아무 응답도 없던 사람은 빠집니다. 주머니에 든 폰이 자리를 차지하면 공간 전체가 막힙니다.",
+
+    "reveal.tag":"신원","reveal.h2":"먼저 점수, 나중에 이름",
+    "reveal.lead":"이름으로는 판단할 수 없습니다 — 실력도 아는 사이인지도 알 수 없습니다. 그러면서 누가 나를 거절했는지 알아내기에는 충분합니다. 점수는 반대입니다. 판단할 값이면서, 같은 점수를 치는 사람이 공간에 여럿입니다.",
+    "reveal.c0":"단계","reveal.c1":"점수","reveal.c2":"이름","reveal.c3":"무엇에 답하는가",
+    "reveal.r1":"대기","reveal.r1a":"—","reveal.r1b":"—",
+    "reveal.r1c":"없음. 화면에는 대기 인원과 내 순번만 보입니다",
+    "reveal.r2":"매칭","reveal.r2a":"공개","reveal.r2b":"감춤",
+    "reveal.r2c":"지금 칠 수 있는지 — 이 사람과 칠지가 아닙니다",
+    "reveal.r3":"서로 수락","reveal.r3a":"공개","reveal.r3b":"공개",
+    "reveal.r3c":"없음. 두 이름이 폰과 매장 화면에 함께 뜹니다",
+    "reveal.reward":"<b>이름을 감추면 거절이라는 행위가 사라집니다.</b> 보지 않은 사람을 거절할 수는 없고, 다른 상대를 청하는 일이 사람에 대한 판단을 뜻하지 않게 됩니다. 이름은 지어 주는 값이고 수집하지 않습니다 — 실명도 전화번호도 메일 주소도 어느 단계에서도 묻지 않습니다.",
+
+    "build.tag":"유즈케이스","build.h2":"규칙은 코드가 아니라 설정",
+    "build.lead":"당구장과 보드게임 카페에서 달라지는 것은 한 조의 크기와 무엇을 좋은 짝으로 볼지이지, 밑에서 도는 기계가 아닙니다. 매칭 알고리즘은 라이브러리이고, 유즈케이스는 거기서 고른 파라미터 묶음입니다.",
+    "build.f1.t":"알고리즘 다섯, 라이브러리 하나",
+    "build.f1.d":"2인 페어링, N인 그룹, 순번 로테이션, 정원까지 선착순, 대진표. 새 활동은 대개 새 코드가 아니라 기존 알고리즘의 새 파라미터입니다.",
+    "build.f2.t":"내보내기 전에 시뮬레이션",
+    "build.f2.d":"새 규칙을 실제 손님으로 디버깅할 수는 없습니다. 가상 참가자로 여러 회차를 돌려 남는 사람 비율과 같은 상대가 반복되는 비율을 냅니다 — 좁은 선호는 작은 공간에서 매칭을 0으로 만들 수 있고, 그것이 현장이 아니라 여기서 드러납니다.",
+    "build.f3.t":"규칙을 고쳐도 대기가 끊기지 않습니다",
+    "build.f3.d":"저장하면 새 버전이 발행되고, 이미 기다리던 세션은 들어올 때의 버전을 그대로 씁니다. 버전은 어떻게 들어왔는지의 기록일 뿐 공간을 나누지 않습니다 — 한 매장의 사람은 언제나 하나의 풀에서 매칭됩니다.",
+    "build.f4.t":"매장은 켜기만 합니다",
+    "build.f4.d":"매장은 어떤 활동을 돌릴지 고르고 사람이 지나는 자리에 화면을 둡니다. 파라미터를 만지거나 자리를 배정하거나 대기열을 관리하지 않습니다 — 매장이 무언가를 운영해야 하는 순간 응대 창구가 생깁니다.",
+
+    "limits.tag":"한계","limits.h2":"하지 않는 것",
+    "limits.lead":"기능을 적는 것보다 범위 밖을 적는 쪽이 쓸모 있습니다. 아래 대부분은 아직 못 한 일이 아니라 하지 않기로 한 일이기 때문입니다.",
+    "limits.f1.t":"자리를 배정하지 않습니다",
+    "limits.f1.d":"시스템이 보는 것은 이용자뿐인데 매장은 모두가 씁니다. 그래서 빈자리를 셀 수 없습니다. 잴 수 없는 값을 표시하는 쪽이 아예 안 하는 것보다 나쁩니다. 매칭은 상대가 정해졌다는 뜻이지 지금 당장 칠 수 있다는 뜻이 아닙니다.",
+    "limits.f2.t":"실력을 판정하지 않습니다",
+    "limits.f2.d":"점수는 본인이 적은 값입니다. 검증하지 않고, 이후에 승패를 점수화하거나 순위로 기록하지도 않습니다. 보상을 붙이면 숫자를 속일 이유가 생기는데, 그 숫자의 정직함이 매칭을 성립시키는 전제입니다.",
+    "limits.f3.t":"누가 누구를 피하는지 남기지 않습니다",
+    "limits.f3.d":"다른 상대를 거듭 청하면 그 짝이 조용히 다시 나오지 않게 됩니다. 개인 관계에만 적용되고, 세지도 점수화하지도 통지하지도 않습니다 — 통보받을 수 있는 회피는 다른 제품입니다.",
+    "limits.f4.t":"한 매장에서 도는 베타입니다",
+    "limits.f4.d":"당구장 한 곳의 3쿠션으로 돌고 있습니다. 한 공간에 사람이 동시에 충분히 모이는가가 남은 질문이고, 그것은 논증이 아니라 현장에서 세어 답합니다.",
+
+    "ft.home":"홈","ft.copy":"© 2026 joygoLive. All rights reserved."
+  }
+};
+</script>
+<script src="../assets/i18n.js"></script>
+<script data-goatcounter="https://joygolive.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

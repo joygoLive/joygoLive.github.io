@@ -40,6 +40,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <a href="loci/">LOCI</a>
       <a href="bcon/">BCON</a>
       <a href="mp/">MP</a>
+      <a href="cue/">CUE</a>
       <a href="#ideas" data-i18n="nav.ideas">Bring an idea</a>
     </nav>
     <div class="lang-toggle" role="group" aria-label="language">
@@ -221,6 +222,26 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
         </div>
       </a>
 
+
+      <!-- CUE -->
+      <a class="svc-card fade" href="cue/">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="12" r="5.2"/><circle cx="15" cy="12" r="5.2"/></svg>
+        <div class="svc-head">
+          <h3>CUE</h3>
+          <span class="badge beta" data-i18n="svc.b.beta">Beta</span>
+        </div>
+        <span class="svc-full" data-i18n="svc.cue.full">Matching among the people already here</span>
+        <p data-i18n="svc.cue.d">Finds you an opponent among the people already in the room. Scanning the QR on the venue screen is the whole entry — no app, no sign-in, no name. Everyone waiting is paired in one pass each round.</p>
+        <ul class="svc-points">
+          <li data-i18n="svc.cue.1">Nothing to install. Scanning the code on the venue screen puts you in the queue</li>
+          <li data-i18n="svc.cue.2">A score, not a name. Who you are matched with is revealed only after both accept</li>
+          <li data-i18n="svc.cue.3">Paired by round rather than first come. A longer wait weighs more, so no one is left out</li>
+        </ul>
+        <div class="svc-foot">
+          <span class="svc-go"><span data-i18n="svc.more">Read more</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
     </div>
 
   </div>
@@ -298,6 +319,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <a href="loci/">LOCI</a>
       <a href="bcon/">BCON</a>
       <a href="mp/">MP</a>
+      <a href="cue/">CUE</a>
     </nav>
     <span data-i18n="ft.copy">© 2026 joygoLive. All rights reserved.</span>
   </div>
@@ -357,6 +379,11 @@ const _L = {
     "svc.mp.1":"No audio is served. A schedule, a playback time, each browser's own embed",
     "svc.mp.2":"First come, first served, plus weights. Stories go first; every score logged",
     "svc.mp.3":"One script, Korean and English. Two server-side voices, rotating every three hours",
+    "svc.cue.full":"Matching among the people already here",
+    "svc.cue.d":"Finds you an opponent among the people already in the room. Scanning the QR on the venue screen is the whole entry — no app, no sign-in, no name. Everyone waiting is paired in one pass each round.",
+    "svc.cue.1":"Nothing to install. Scanning the code on the venue screen puts you in the queue",
+    "svc.cue.2":"A score, not a name. Who you are matched with is revealed only after both accept",
+    "svc.cue.3":"Paired by round rather than first come. A longer wait weighs more, so no one is left out",
 
     "nav.ideas":"Bring an idea",
     "id.tag":"Bring an idea",
@@ -426,6 +453,11 @@ const _L = {
     "svc.mp.1":"음원을 서빙하지 않습니다 — 서버는 편성표와 재생 시각만, 재생은 각 브라우저의 유튜브 임베드",
     "svc.mp.2":"선착순에 가중치를 더한 편성 — 사연 있는 신청이 우선, 편성 근거 점수를 기록",
     "svc.mp.3":"DJ 대본은 한국어·영어를 한 번에 생성. 서버에서 합성한 목소리 둘이 3시간마다 교대",
+    "svc.cue.full":"같은 공간에 이미 있는 사람들끼리 매칭",
+    "svc.cue.d":"이미 같은 공간에 있는 사람들 중에서 상대를 찾아 줍니다. 매장 화면의 QR 을 찍는 것이 진입의 전부입니다 — 앱도 로그인도 이름도 없습니다. 회차마다 모인 사람을 한 번에 짝지어 줍니다.",
+    "svc.cue.1":"설치할 것이 없습니다 — 매장 화면의 코드를 찍으면 그대로 대기열",
+    "svc.cue.2":"이름 대신 점수 — 서로 수락한 뒤에야 상대가 누구인지 공개됩니다",
+    "svc.cue.3":"선착순이 아니라 회차 매칭 — 오래 기다릴수록 가중치가 올라 아무도 남지 않습니다",
 
     "nav.ideas":"제안",
     "id.tag":"제안",
