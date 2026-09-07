@@ -221,7 +221,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
    되던 문제가 같이 없어진다** — 예전 `.nav-links.open` 은 `background:#fff` 가
    값으로 박혀 있어 다크에서 대비 2.6:1 이었고, 모바일이면서 다크일 때만 보여
    데스크톱 확인으로는 잡히지 않았다. */
-@media(max-width:960px){
+@media(max-width:1024px){
   .nav{flex-wrap:wrap;height:auto;min-height:66px;column-gap:10px;row-gap:0;align-content:flex-start}
   .brand-group{order:1;min-height:66px}
   .menu-btn{order:2;display:flex;margin-left:auto;width:44px;height:44px}
@@ -393,7 +393,7 @@ footer{border-top:1px solid var(--border);background:var(--alt);padding:40px 0;c
    900 에서 접히도록 바뀌자 721~900 이 「서랍은 열리는데 누를 것은 데스크톱 크기」인
    구간이 됐다(푸터 링크 22px). 접히는 화면은 손가락으로 쓰는 화면이라는 뜻이므로
    두 값이 갈리면 그 사이가 매번 빈다 — 실제로 테마 토글이 그렇게 한 번 새어 나갔다. */
-@media (max-width:960px){
+@media (max-width:1024px){
   .nav .brand{padding:10px 0;margin:-10px 0}         /* 27 → 47px, 헤더 높이는 그대로 */
   .foot-links{gap:6px}
   .foot-links a{padding:11px 10px;margin:-11px 0}    /* 22 → 44px */

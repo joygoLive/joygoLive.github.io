@@ -41,6 +41,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <a href="bcon/">BCON</a>
       <a href="mp/">MP</a>
       <a href="cue/">CUE</a>
+      <a href="war/">WAR</a>
       <a href="#ideas" data-i18n="nav.ideas">Bring an idea</a>
     </nav>
     <div class="lang-toggle" role="group" aria-label="language">
@@ -242,6 +243,25 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
         </div>
       </a>
 
+      <!-- WAR -->
+      <a class="svc-card fade" href="war/">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><path d="M12 9.2 15.4 11v3.4L12 16.2 8.6 14.4V11z"/><path d="M12 9.2v7M8.6 11l3.4 1.9 3.4-1.9"/></svg>
+        <div class="svc-head">
+          <h3>WAR</h3>
+          <span class="badge beta" data-i18n="svc.b.beta">Beta</span>
+        </div>
+        <span class="svc-full" data-i18n="svc.war.full">Augmented reality that opens from a link</span>
+        <p data-i18n="svc.war.d">Runs augmented reality in a phone browser — nothing installed, no account, no store review. A real-size object stands on your floor, 3D stands on printed matter, and a face is tracked in real time. Every frame stays on the device.</p>
+        <ul class="svc-points">
+          <li data-i18n="svc.war.1">A link opens the camera. The engine is static files, so nothing is computed on a server</li>
+          <li data-i18n="svc.war.2">Place a sofa at its real size, or register your own printed matter as a target on the spot</li>
+          <li data-i18n="svc.war.3">Which demos run, what the objects are, every line of text — configuration, not code</li>
+        </ul>
+        <div class="svc-foot">
+          <span class="svc-go"><span data-i18n="svc.more">Read more</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
     </div>
 
   </div>
@@ -320,6 +340,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <a href="bcon/">BCON</a>
       <a href="mp/">MP</a>
       <a href="cue/">CUE</a>
+      <a href="war/">WAR</a>
     </nav>
     <span data-i18n="ft.copy">© 2026 joygoLive. All rights reserved.</span>
   </div>
@@ -384,6 +405,11 @@ const _L = {
     "svc.cue.1":"Nothing to install. Scanning the code on the venue screen puts you in the queue",
     "svc.cue.2":"A score, not a name. Who you are matched with is revealed only after both accept",
     "svc.cue.3":"Paired by round rather than first come. A longer wait weighs more, so no one is left out",
+    "svc.war.full":"Augmented reality that opens from a link",
+    "svc.war.d":"Runs augmented reality in a phone browser — nothing installed, no account, no store review. A real-size object stands on your floor, 3D stands on printed matter, and a face is tracked in real time. Every frame stays on the device.",
+    "svc.war.1":"A link opens the camera. The engine is static files, so nothing is computed on a server",
+    "svc.war.2":"Place a sofa at its real size, or register your own printed matter as a target on the spot",
+    "svc.war.3":"Which demos run, what the objects are, every line of text — configuration, not code",
 
     "nav.ideas":"Bring an idea",
     "id.tag":"Bring an idea",
@@ -458,6 +484,11 @@ const _L = {
     "svc.cue.1":"설치할 것이 없습니다 — 매장 화면의 코드를 찍으면 그대로 대기열",
     "svc.cue.2":"이름 대신 점수 — 서로 수락한 뒤에야 상대가 누구인지 공개됩니다",
     "svc.cue.3":"선착순이 아니라 회차 매칭 — 오래 기다릴수록 가중치가 올라 아무도 남지 않습니다",
+    "svc.war.full":"링크 하나로 열리는 증강현실",
+    "svc.war.d":"폰 브라우저에서 증강현실을 돌립니다 — 설치도 계정도 스토어 심사도 없습니다. 실물 크기 물체가 바닥에 서고, 인쇄물 위에 3D 가 서고, 얼굴이 실시간으로 따라옵니다. 영상은 기기를 떠나지 않습니다.",
+    "svc.war.1":"링크에서 카메라가 열립니다 — 엔진이 정적 파일이라 서버가 계산하지 않습니다",
+    "svc.war.2":"소파를 실물 크기로 놓거나, 자기 인쇄물을 그 자리에서 표적으로 등록합니다",
+    "svc.war.3":"어떤 데모를 띄울지·물체가 무엇인지·모든 문장이 코드가 아니라 설정입니다",
 
     "nav.ideas":"제안",
     "id.tag":"제안",

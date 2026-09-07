@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WAR — Web AR that opens from a link, by joygoLive</title>
+<meta name="description" content="WAR runs augmented reality in the browser. No app, no sign-in, no store review: a link opens the camera, places real-size objects in the room, puts 3D on printed matter, and tracks a face. Every frame stays on the device." />
+<meta property="og:title" content="WAR — Web AR that opens from a link" />
+<meta property="og:description" content="Augmented reality in the browser: real-size placement, printed matter, face tracking. No install, no account." />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
+<meta name="theme-color" id="themeColor" content="#ffffff" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+/* 진입 흐름. 단계가 넷이고 각 단계에 무엇이 오가는지가 요점이라 카드보다 줄로 세운다. */
+.steps{display:grid;gap:12px;margin:30px 0 8px;counter-reset:st}
+.step{display:grid;grid-template-columns:34px 1fr;gap:0 14px;align-items:start;
+  padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
+.step::before{counter-increment:st;content:counter(st);
+  font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--accent);
+  width:26px;height:26px;display:grid;place-items:center;
+  border:1px solid var(--accent-line);border-radius:50%;background:var(--accent-dim)}
+.step b{display:block;font-size:14.5px;margin-bottom:2px}
+.step span{font-size:13.5px;line-height:1.7;color:var(--text2)}
+
+/* 신원 공개 단계. 무엇이 언제 보이는지가 이 서비스의 중심이라 표로 둔다. */
+.rv-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:30px 0 8px}
+.rv{width:100%;border-collapse:collapse;font-size:13.5px;min-width:520px}
+.rv th,.rv td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+.rv th{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
+.rv tr:last-child td{border-bottom:0}
+.rv .nm{font-weight:700;white-space:nowrap}
+.rv .no{color:var(--text-dim)}
+.rv .yes{color:var(--accent);font-weight:600}
+
+.reward{margin:18px 0 0;padding:13px 16px;max-width:46em;
+  font-size:13.5px;line-height:1.7;color:var(--text2);
+  background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:var(--radius)}
+.reward b{color:var(--text);font-weight:700}
+</style>
+<script>try{var t=localStorage.getItem('joygo_theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}
+/* 주소창 색은 첫 칠 전에 정해야 한다 — 나중에 고치면 흰 띠가 한 번 번쩍인다. */
+try{var d=document.documentElement.getAttribute('data-theme');
+document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(prefers-color-scheme:dark)').matches))?'#0b0e11':'#ffffff';}catch(e){}</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand-group">
+      <a href="../" class="brand" aria-label="joygoLive">
+        <svg viewBox="0 0 32 32" aria-hidden="true" class="mk"><rect class="mk-bg" x=".6" y=".6" width="30.8" height="30.8" rx="6.6"/><rect class="mk-joy" x="6.5" y="12.5" width="5" height="13.5" rx="1"/><rect class="mk-go" x="13.5" y="17" width="5" height="9" rx="1"/><rect class="mk-live" x="20.5" y="8" width="5" height="18" rx="1"/></svg>
+        <span>joy<span class="go">go</span><span class="dot">Live</span></span>
+      </a>
+      <span class="brand-sep" aria-hidden="true">/</span>
+      <a href="./" class="svc-name">WAR</a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#why" data-i18n="nav.why">Design</a>
+      <a href="#how" data-i18n="nav.how">Demos</a>
+      <a href="#build" data-i18n="nav.build">Use cases</a>
+      <a href="#limits" data-i18n="nav.limits">Limits</a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="language">
+      <button data-lang="en" onclick="setLang('en')">EN</button>
+      <button data-lang="ko" onclick="setLang('ko')">한국어</button>
+    </div>
+    <div class="theme-toggle" role="group" aria-label="theme">
+      <button data-theme-set="light" onclick="setTheme('light')" aria-label="Light" title="Light">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button data-theme-set="dark" onclick="setTheme('dark')" aria-label="Dark" title="Dark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+    <button class="menu-btn" aria-label="menu" aria-expanded="false" aria-controls="navLinks" onclick="toggleNav(this)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-kicker mono" data-i18n="hero.kicker">WAR · Web AR</div>
+    <h1 data-i18n-html="hero.title">Augmented reality that opens <span class="grad">from a link</span>.</h1>
+    <p class="lead" data-i18n="hero.sub">Three demos in one page: a real-size object placed on your floor, 3D standing on printed matter, and a face tracked in real time. Nothing is installed and no account is made — the camera opens from a link and every frame stays on the device.</p>
+    <div class="cta-row">
+      <a href="https://war.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta1">Open WAR</a>
+      <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">What this does not claim</a>
+    </div>
+    <p class="reward" data-i18n-html="hero.reward"><b>A phone browser is the whole requirement.</b> The engine ships as static files, so there is no server doing the work and no store to pass through. Point the camera and the demo is already running.</p>
+    <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here. Beta.</div>
+  </div>
+</section>
+
+<!-- DESIGN -->
+<section id="why" class="section">
+  <div class="wrap">
+    <span class="tag" data-i18n="why.tag">Design</span>
+    <h2 data-i18n="why.h2">Three decisions that shaped it</h2>
+    <p class="lead" data-i18n="why.lead">Web AR has been possible for years and expensive for just as long. What changed is the price of the engine, and that changed what could be built without a budget.</p>
+    <div class="grid-3">
+      <div class="feat">
+        <h3 data-i18n="why.1h">The engine became free in February</h3>
+        <p data-i18n="why.1d">The world-tracking engine used here was a paid platform until early 2026, when it was released as open source and a free binary. That single change turned a demo that would have carried a monthly bill into one that costs nothing to run.</p>
+      </div>
+      <div class="feat">
+        <h3 data-i18n="why.2h">Configuration, not code</h3>
+        <p data-i18n="why.2d">Which demos appear, what the objects are and how large, which image is the target, every line of on-screen text — all of it is a settings file. Adapting the demo to a different industry does not require touching the code.</p>
+      </div>
+      <div class="feat">
+        <h3 data-i18n="why.3h">The screen says what it cannot do</h3>
+        <p data-i18n="why.3d">Each demo carries one line about its own boundary. A demo that hides its limits produces a plan that breaks on contact with them, which costs more than the demo was worth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMOS -->
+<section id="how" class="section alt">
+  <div class="wrap">
+    <span class="tag" data-i18n="how.tag">Demos</span>
+    <h2 data-i18n="how.h2">Three things a camera can do, and one that keeps them</h2>
+    <p class="lead" data-i18n="how.lead">Each demo proves one capability. Together they cover the ground most AR plans start from.</p>
+    <div class="grid-3">
+      <div class="feat">
+        <h3 data-i18n="how.1h">Place it in the room</h3>
+        <p data-i18n="how.1d">Tap the floor and a real-size object stands there — a sofa, a massage chair, a 65-inch television, with its dimensions floating above it. Walk away and back and it has not moved; when it leaves the frame an arrow points to it and gives the distance.</p>
+      </div>
+      <div class="feat">
+        <h3 data-i18n="how.2h">Printed matter becomes the anchor</h3>
+        <p data-i18n="how.2d">Point at the target card and 3D stands on it, following the paper as it tilts. You can also register your own printed matter on the spot: frame it, capture it, and the demo tells you within seconds whether it can be recognised.</p>
+      </div>
+      <div class="feat">
+        <h3 data-i18n="how.3h">A face, 478 points of it</h3>
+        <p data-i18n="how.3d">The face surface is tracked in real time and worn items sit on it — glasses, a moustache — following expression and angle. The same tracking is what eyewear and cosmetics try-on runs on.</p>
+      </div>
+    </div>
+    <p class="note" data-i18n-html="how.note"><b>And a capture button on all three.</b> The camera view and the 3D are saved as one image, so what a visitor tries does not vanish when they close the tab.</p>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section id="build" class="section">
+  <div class="wrap">
+    <span class="tag" data-i18n="build.tag">Use cases</span>
+    <h2 data-i18n="build.h2">What each demo turns into</h2>
+    <p class="lead" data-i18n="build.lead">joygoLive builds and runs the technology. The plan and the selling belong to a partner — these are the shapes that partner would recognise.</p>
+    <div class="grid-3">
+      <div class="feat">
+        <h3 data-i18n="build.1h">From placement</h3>
+        <ul class="svc-points">
+          <li data-i18n="build.1a">Furniture and appliances checked against the actual gap before buying</li>
+          <li data-i18n="build.1b">Store fixtures and displays reviewed on site before installation</li>
+          <li data-i18n="build.1c">Booths and exhibitions walked through where they will stand</li>
+        </ul>
+      </div>
+      <div class="feat">
+        <h3 data-i18n="build.2h">From printed matter</h3>
+        <ul class="svc-points">
+          <li data-i18n="build.2a">Packaging that opens the instructions nobody reads</li>
+          <li data-i18n="build.2b">Menus that show the dish and the allergens</li>
+          <li data-i18n="build.2c">Exhibition captions, textbooks, tickets and authenticity marks</li>
+        </ul>
+      </div>
+      <div class="feat">
+        <h3 data-i18n="build.3h">From the face</h3>
+        <ul class="svc-points">
+          <li data-i18n="build.3a">Eyewear, hats and earrings tried on where returns are costly</li>
+          <li data-i18n="build.3b">Cosmetics shown in every shade the shelf cannot hold</li>
+          <li data-i18n="build.3c">Event filters where the photo is the distribution</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIMITS -->
+<section id="limits" class="section alt">
+  <div class="wrap">
+    <span class="tag" data-i18n="limits.tag">Limits</span>
+    <h2 data-i18n="limits.h2">What this does not claim</h2>
+    <div class="grid-2">
+      <div class="feat">
+        <h3 data-i18n="limits.1h">It forgets where things were</h3>
+        <p data-i18n="limits.1d">Placement lasts for the session. Close the tab and the room is unknown again — yesterday's spot cannot be found. Printed matter is the way around that, because the paper carries the coordinates.</p>
+      </div>
+      <div class="feat">
+        <h3 data-i18n="limits.2h">The picture is a preview, not a photograph</h3>
+        <p data-i18n="limits.2d">The browser receives a preview stream, not the multi-frame processing a camera app applies. The image is softer than the one the phone's own camera produces, and no engine changes that.</p>
+      </div>
+      <div class="feat">
+        <h3 data-i18n="limits.3h">Old phones run it slowly</h3>
+        <p data-i18n="limits.3d">A 2026 iPhone holds 60 frames a second; a 2019 Android holds seven. The demo measures this and says so on screen rather than letting it read as a fault, and heavier demos can be switched off for such devices.</p>
+      </div>
+      <div class="feat">
+        <h3 data-i18n="limits.4h">AR itself cannot be the product</h3>
+        <p data-i18n="limits.4d">The engine licence allows free use but not a paid service whose value comes mostly from the engine. AR has to be the method here — the value has to come from the content, the venue or the transaction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true" class="mk"><rect class="mk-bg" x=".6" y=".6" width="30.8" height="30.8" rx="6.6"/><rect class="mk-joy" x="6.5" y="12.5" width="5" height="13.5" rx="1"/><rect class="mk-go" x="13.5" y="17" width="5" height="9" rx="1"/><rect class="mk-live" x="20.5" y="8" width="5" height="18" rx="1"/></svg><span>joy<span class="go">go</span><span class="dot" style="color:var(--accent)">Live</span></span></span>
+    <nav class="foot-links">
+      <a href="../"><span data-i18n="ft.home">Home</span></a>
+      <a href="../uqh/">UQH</a>
+      <a href="../amc/">AMC</a>
+      <a href="../bor/">BOR</a>
+      <a href="../wcp/">WCP</a>
+      <a href="../loci/">LOCI</a>
+      <a href="../bcon/">BCON</a>
+      <a href="../mp/">MP</a>
+      <a href="../cue/">CUE</a>
+      <a href="../war/">WAR</a>
+    </nav>
+    <span data-i18n="ft.copy">© 2026 joygoLive. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+const _L = {
+  en:{
+    "nav.why":"Design",
+    "nav.how":"Demos",
+    "nav.build":"Use cases",
+    "nav.limits":"Limits",
+    "hero.kicker":"WAR · Web AR",
+    "hero.title":"Augmented reality that opens <span class=\"grad\">from a link</span>.",
+    "hero.sub":"Three demos in one page: a real-size object placed on your floor, 3D standing on printed matter, and a face tracked in real time. Nothing is installed and no account is made — the camera opens from a link and every frame stays on the device.",
+    "hero.cta1":"Open WAR",
+    "hero.cta2":"What this does not claim",
+    "hero.reward":"<b>A phone browser is the whole requirement.</b> The engine ships as static files, so there is no server doing the work and no store to pass through. Point the camera and the demo is already running.",
+    "hero.byline":"A service by joygoLive, built here and operated here. Beta.",
+    "why.tag":"Design",
+    "why.h2":"Three decisions that shaped it",
+    "why.lead":"Web AR has been possible for years and expensive for just as long. What changed is the price of the engine, and that changed what could be built without a budget.",
+    "why.1h":"The engine became free in February",
+    "why.1d":"The world-tracking engine used here was a paid platform until early 2026, when it was released as open source and a free binary. That single change turned a demo that would have carried a monthly bill into one that costs nothing to run.",
+    "why.2h":"Configuration, not code",
+    "why.2d":"Which demos appear, what the objects are and how large, which image is the target, every line of on-screen text — all of it is a settings file. Adapting the demo to a different industry does not require touching the code.",
+    "why.3h":"The screen says what it cannot do",
+    "why.3d":"Each demo carries one line about its own boundary. A demo that hides its limits produces a plan that breaks on contact with them, which costs more than the demo was worth.",
+    "how.tag":"Demos",
+    "how.h2":"Three things a camera can do, and one that keeps them",
+    "how.lead":"Each demo proves one capability. Together they cover the ground most AR plans start from.",
+    "how.1h":"Place it in the room",
+    "how.1d":"Tap the floor and a real-size object stands there — a sofa, a massage chair, a 65-inch television, with its dimensions floating above it. Walk away and back and it has not moved; when it leaves the frame an arrow points to it and gives the distance.",
+    "how.2h":"Printed matter becomes the anchor",
+    "how.2d":"Point at the target card and 3D stands on it, following the paper as it tilts. You can also register your own printed matter on the spot: frame it, capture it, and the demo tells you within seconds whether it can be recognised.",
+    "how.3h":"A face, 478 points of it",
+    "how.3d":"The face surface is tracked in real time and worn items sit on it — glasses, a moustache — following expression and angle. The same tracking is what eyewear and cosmetics try-on runs on.",
+    "how.note":"<b>And a capture button on all three.</b> The camera view and the 3D are saved as one image, so what a visitor tries does not vanish when they close the tab.",
+    "build.tag":"Use cases",
+    "build.h2":"What each demo turns into",
+    "build.lead":"joygoLive builds and runs the technology. The plan and the selling belong to a partner — these are the shapes that partner would recognise.",
+    "build.1h":"From placement",
+    "build.1a":"Furniture and appliances checked against the actual gap before buying",
+    "build.1b":"Store fixtures and displays reviewed on site before installation",
+    "build.1c":"Booths and exhibitions walked through where they will stand",
+    "build.2h":"From printed matter",
+    "build.2a":"Packaging that opens the instructions nobody reads",
+    "build.2b":"Menus that show the dish and the allergens",
+    "build.2c":"Exhibition captions, textbooks, tickets and authenticity marks",
+    "build.3h":"From the face",
+    "build.3a":"Eyewear, hats and earrings tried on where returns are costly",
+    "build.3b":"Cosmetics shown in every shade the shelf cannot hold",
+    "build.3c":"Event filters where the photo is the distribution",
+    "limits.tag":"Limits",
+    "limits.h2":"What this does not claim",
+    "limits.1h":"It forgets where things were",
+    "limits.1d":"Placement lasts for the session. Close the tab and the room is unknown again — yesterday's spot cannot be found. Printed matter is the way around that, because the paper carries the coordinates.",
+    "limits.2h":"The picture is a preview, not a photograph",
+    "limits.2d":"The browser receives a preview stream, not the multi-frame processing a camera app applies. The image is softer than the one the phone's own camera produces, and no engine changes that.",
+    "limits.3h":"Old phones run it slowly",
+    "limits.3d":"A 2026 iPhone holds 60 frames a second; a 2019 Android holds seven. The demo measures this and says so on screen rather than letting it read as a fault, and heavier demos can be switched off for such devices.",
+    "limits.4h":"AR itself cannot be the product",
+    "limits.4d":"The engine licence allows free use but not a paid service whose value comes mostly from the engine. AR has to be the method here — the value has to come from the content, the venue or the transaction."
+  },
+  ko:{
+    "nav.why":"설계",
+    "nav.how":"데모",
+    "nav.build":"유즈케이스",
+    "nav.limits":"한계",
+    "hero.kicker":"WAR · 웹 AR",
+    "hero.title":"<span class=\"grad\">링크 하나로</span> 열리는 증강현실.",
+    "hero.sub":"한 페이지에 데모 셋 — 바닥에 놓이는 실물 크기 물체, 인쇄물 위에 서는 3D, 실시간으로 따라오는 얼굴. 설치도 계정도 없이 링크에서 카메라가 열리고, 영상은 기기를 떠나지 않습니다.",
+    "hero.cta1":"WAR 열기",
+    "hero.cta2":"못 하는 것",
+    "hero.reward":"<b>필요한 것은 폰 브라우저뿐입니다.</b> 엔진이 정적 파일이라 계산하는 서버도, 거쳐야 할 스토어도 없습니다. 카메라를 향하면 이미 돌고 있습니다.",
+    "hero.byline":"joygoLive 가 만들고 운영하는 서비스입니다. 베타.",
+    "why.tag":"설계",
+    "why.h2":"형태를 정한 결정 셋",
+    "why.lead":"웹 AR 은 오래전부터 가능했고 그만큼 오래 비쌌습니다. 바뀐 것은 엔진의 값이고, 그래서 예산 없이 만들 수 있는 범위가 달라졌습니다.",
+    "why.1h":"엔진이 2월에 무료가 됐습니다",
+    "why.1d":"여기 쓰는 월드 트래킹 엔진은 2026년 초까지 유료 플랫폼이었고, 그때 오픈소스와 무료 바이너리로 풀렸습니다. 그 한 번의 변화가 월 비용이 붙던 데모를 운영비 0 으로 바꿨습니다.",
+    "why.2h":"코드가 아니라 설정",
+    "why.2d":"어떤 데모를 띄울지, 물체가 무엇이고 몇 센티인지, 어느 그림이 표적인지, 화면에 나가는 모든 문장이 설정 파일입니다. 다른 업종에 맞추는 데 코드를 건드리지 않습니다.",
+    "why.3h":"못 하는 것을 화면이 말합니다",
+    "why.3d":"데모마다 자기 경계를 한 줄로 답니다. 한계를 감춘 데모는 그 한계에 부딪히는 기획을 낳고, 그 비용이 데모의 값보다 큽니다.",
+    "how.tag":"데모",
+    "how.h2":"카메라가 하는 일 셋, 그리고 그것을 남기는 하나",
+    "how.lead":"데모 하나가 능력 하나를 증명합니다. 셋을 합치면 AR 기획이 출발하는 자리가 대부분 덮입니다.",
+    "how.1h":"공간에 놓기",
+    "how.1d":"바닥을 탭하면 실물 크기 물체가 섭니다 — 소파·안마의자·65인치 TV, 치수가 위에 뜹니다. 걸어갔다 돌아와도 그대로이고, 시야를 벗어나면 화살표가 방향과 거리를 가리킵니다.",
+    "how.2h":"인쇄물이 기준이 됩니다",
+    "how.2d":"표적 카드를 비추면 그 위에 3D 가 서고, 종이를 기울이면 같이 기웁니다. 자기 인쇄물을 그 자리에서 등록할 수도 있습니다 — 프레임에 채우고 찍으면 몇 초 안에 인식 가능 여부를 알려 줍니다.",
+    "how.3h":"얼굴, 478개의 점",
+    "how.3d":"얼굴 표면을 실시간으로 따라가고 그 위에 착용물이 올라갑니다 — 안경·콧수염이 표정과 각도를 따라옵니다. 안경·화장품 착용 시연이 도는 자리가 같은 추적입니다.",
+    "how.note":"<b>그리고 셋 모두에 촬영이 붙습니다.</b> 카메라 화면과 3D 가 한 장으로 저장되어, 방문자가 해 본 것이 탭을 닫아도 남습니다.",
+    "build.tag":"유즈케이스",
+    "build.h2":"데모가 무엇이 되는가",
+    "build.lead":"기술은 joygoLive 가 만들고 운영합니다. 기획과 판매는 파트너의 몫이고, 아래는 그 파트너가 알아볼 형태입니다.",
+    "build.1h":"공간에 놓기에서",
+    "build.1a":"가구·가전을 사기 전에 실제 틈에 맞춰 보기",
+    "build.1b":"매장 집기·진열을 설치 전에 현장에서 검토",
+    "build.1c":"부스·전시를 설 자리에서 걸어 보기",
+    "build.2h":"인쇄물에서",
+    "build.2a":"아무도 안 읽는 설명서를 포장이 열어 주기",
+    "build.2b":"메뉴판이 조리 영상과 알레르기를 보여 주기",
+    "build.2c":"전시 캡션·교재·티켓·정품 확인",
+    "build.3h":"얼굴에서",
+    "build.3a":"반품이 잦은 안경·모자·귀걸이 착용",
+    "build.3b":"진열이 감당 못 하는 색 수의 화장품 시연",
+    "build.3c":"사진이 곧 확산인 이벤트 필터",
+    "limits.tag":"한계",
+    "limits.h2":"못 하는 것",
+    "limits.1h":"놓은 자리를 잊습니다",
+    "limits.1d":"배치는 그 세션 동안입니다. 탭을 닫으면 공간을 다시 모르고, 어제 그 자리는 못 찾습니다. 인쇄물이 그 우회로입니다 — 종이가 좌표를 들고 있기 때문입니다.",
+    "limits.2h":"사진이 아니라 미리보기입니다",
+    "limits.2d":"브라우저가 받는 것은 카메라 앱이 쓰는 다중 프레임 합성이 아니라 미리보기 스트림입니다. 폰 기본 카메라보다 무른 화면이고, 엔진을 바꿔도 같습니다.",
+    "limits.3h":"구형 폰에서는 느립니다",
+    "limits.3d":"2026년 아이폰은 초당 60장, 2019년 안드로이드는 7장입니다. 데모가 이를 재서 화면에 밝히고 — 고장으로 읽히지 않게 — 무거운 데모는 그런 기기에서 끌 수 있습니다.",
+    "limits.4h":"AR 자체가 상품일 수는 없습니다",
+    "limits.4d":"엔진 라이선스는 무료 사용은 허용하지만 가치가 대부분 엔진에서 나오는 유료 서비스는 금지합니다. AR 은 수단이어야 하고 값은 콘텐츠·현장·거래에서 나와야 합니다."
+  }
+};
+</script>
+<script src="../assets/i18n.js"></script>
+<script data-goatcounter="https://joygolive.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
