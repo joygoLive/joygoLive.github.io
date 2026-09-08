@@ -201,12 +201,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="hero-kicker mono" data-i18n="hero.kicker">WCP · Web Capability Probe</div>
     <h1 data-i18n-html="hero.title">What your device <span class="grad">actually gives the web</span>.</h1>
-    <p class="lead" data-i18n="hero.sub">Every capability is invoked in your own browser and the result recorded. Not a support table, not a feature-detection list, because declared support and actual execution frequently differ.</p>
+    <p class="lead" data-i18n="hero.sub">Every capability is invoked in your own browser and the result recorded. It is neither a support table nor a feature-detection list, because declared support and actual execution frequently differ.</p>
     <div class="cta-row">
       <a href="https://wcp.joygolive.com" class="btn btn-primary" data-i18n="hero.cta1">Run it on your device</a>
       <a href="#found" class="btn btn-ghost" data-i18n="hero.cta2">What we found</a>
     </div>
-    <p class="reward" data-i18n-html="hero.reward"><b>Submit the result and you get a report back.</b> Where your device sits in the sample — upper, middle, or lower — and which capabilities opened, needed permission, or were closed on it.</p>
+    <p class="reward" data-i18n-html="hero.reward"><b>Submit the result and you get a report back.</b> Where your device sits in the sample (upper, middle, or lower) and which capabilities opened, needed permission, or were closed on it.</p>
     <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here. Open the link on the device you want measured.</div>
   </div>
 </section>
@@ -280,7 +280,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 
     <div class="mgrid">
       <div class="mcard">
-        <div class="mk" data-i18n="method.1.t">Four groups, not two</div>
+        <div class="mk" data-i18n="method.1.t">Four groups</div>
         <div class="mbar" id="wcpBuckets" hidden>
           <i class="mb-a"></i><i class="mb-p"></i><i class="mb-s"></i><i class="mb-n"></i>
         </div>
@@ -346,7 +346,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="facts">
       <div class="fact fade" data-i18n-html="limits.1"><b>The sample is small</b><span>Most of the sample is ours. Treat the numbers as a direction, not a population statistic.</span></div>
       <div class="fact fade" data-i18n-html="limits.2"><b>A web app cannot see outside itself</b><span>Running processes, installed apps, battery history, storage breakdown: all invisible from a page. Anything claiming otherwise from a browser is an estimate.</span></div>
-      <div class="fact fade" data-i18n-html="limits.3"><b>The native comparison is knowledge, not measurement</b><span>No native app was built to compare against, so that classification is documented rather than measured, and labeled as such.</span></div>
+      <div class="fact fade" data-i18n-html="limits.3"><b>The native comparison is documented, not measured</b><span>No native app was built to compare against, so that classification is documented rather than measured, and labeled as such.</span></div>
       <div class="fact fade" data-i18n-html="limits.5"><b>Network readings are excluded from every score</b><span>They measure the line at that moment, not the device. A phone on good Wi-Fi would otherwise outrank a faster one.</span></div>
       <div class="fact fade" data-i18n-html="limits.6"><b>Detected is not executed</b><span>Where a capability can only be checked for existence, never invoked, it is recorded as detected and labeled that way.</span></div>
       <div class="fact fade" data-i18n-html="limits.4"><b>Numbers move between runs</b><span>Heat, low-power mode, other load, charging state. A single reading is not a property of the device.</span></div>
@@ -383,9 +383,9 @@ const _L = {
     "nav.why":"Why","nav.what":"What it measures","nav.found":"Findings","nav.method":"Method","nav.layers":"Why it fails","nav.limits":"Limits",
     "hero.kicker":"WCP · Web Capability Probe",
     "hero.title":"What your device <span class=\"grad\">actually gives the web</span>.",
-    "hero.sub":"Every capability is invoked in your own browser and the result recorded. Not a support table, not a feature-detection list, because declared support and actual execution frequently differ.",
+    "hero.sub":"Every capability is invoked in your own browser and the result recorded. It is neither a support table nor a feature-detection list, because declared support and actual execution frequently differ.",
     "hero.cta1":"Run it on your device","hero.cta2":"What we found",
-    "hero.reward":"<b>Submit the result and you get a report back.</b> Where your device sits in the sample — upper, middle, or lower — and which capabilities opened, needed permission, or were closed on it.",
+    "hero.reward":"<b>Submit the result and you get a report back.</b> Where your device sits in the sample (upper, middle, or lower) and which capabilities opened, needed permission, or were closed on it.",
     "limits.ctanote":"Takes about a minute. You get your tier and a full breakdown back.",
     "hero.byline":"A service by joygoLive, built here and operated here. Open the link on the device you want measured.",
     "why.tag":"Premise","why.h2":"Declared support, working support",
@@ -416,7 +416,7 @@ const _L = {
     "method.chg.d":"Recorded when the same device and browser is measured twice and an item changes state. Browser updates open things, and occasionally close them.",
     "method.tag":"Method","method.h2":"Methodology",
     "method.lead":"A figure is only as reliable as its methodology. This is the methodology, and it does not change when the figures do.",
-    "method.1.t":"Four groups, not two",
+    "method.1.t":"Four groups",
     "method.1.d":"Open everywhere, permission everywhere, decided by the environment, closed everywhere. The third group is the interesting one: the hardware is not what decides.",
     "method.2.t":"Nine groups of checks",
     "method.2.d":"Radios, compute, motion, device, I/O, storage, camera, audio, location. Each item is invoked, and a result is a return value or a thrown error.",
@@ -435,7 +435,7 @@ const _L = {
     "limits.h2":"What this does not claim",
     "limits.1":"<b>The sample is small</b><span>Most of the sample is ours. Treat the numbers as a direction, not a population statistic.</span>",
     "limits.2":"<b>A web app cannot see outside itself</b><span>Running processes, installed apps, battery history, storage breakdown: all invisible from a page. Anything claiming otherwise from a browser is an estimate.</span>",
-    "limits.3":"<b>The native comparison is knowledge, not measurement</b><span>No native app was built to compare against, so that classification is documented rather than measured, and labeled as such.</span>",
+    "limits.3":"<b>The native comparison is documented, not measured</b><span>No native app was built to compare against, so that classification is documented rather than measured, and labeled as such.</span>",
     "limits.5":"<b>Network readings are excluded from every score</b><span>They measure the line at that moment, not the device. A phone on good Wi-Fi would otherwise outrank a faster one.</span>",
     "limits.6":"<b>Detected is not executed</b><span>Where a capability can only be checked for existence, never invoked, it is recorded as detected and labeled that way.</span>",
     "limits.4":"<b>Numbers move between runs</b><span>Heat, low-power mode, other load, charging state. A single reading is not a property of the device.</span>",
@@ -446,7 +446,7 @@ const _L = {
     "nav.why":"문제","nav.what":"측정 범위","nav.found":"결과","nav.method":"방법","nav.layers":"원인","nav.limits":"한계",
     "hero.kicker":"WCP · Web Capability Probe",
     "hero.title":"내 기기가 웹에 <span class=\"grad\">실제로 노출하는 것</span>.",
-    "hero.sub":"항목마다 브라우저에서 API를 실제로 호출하고 그 결과를 기록합니다. 지원표도, 기능 감지 목록도 아닙니다. 지원 선언과 실제 실행 결과는 자주 다르기 때문입니다.",
+    "hero.sub":"항목마다 브라우저에서 API를 실제로 호출하고 그 결과를 기록합니다. 지원표나 기능 감지 목록과 다른 점은, 지원 선언과 실제 실행 결과가 자주 다르다는 데 있습니다.",
     "hero.cta1":"내 기기에서 실행","hero.cta2":"측정 결과 보기",
     "hero.reward":"<b>결과를 제출하면 반환합니다.</b> 이 표본 안에서 해당 기기의 티어(상위·보통·하위)와, 항목별로 어떤 기능이 열려 있고 어떤 것이 권한을 요구하거나 차단됐는지를 표시합니다.",
     "limits.ctanote":"소요 시간 약 1분. 티어와 항목별 결과를 즉시 반환합니다.",
@@ -458,7 +458,7 @@ const _L = {
     "why.f3.t":"우리 헤더가 「없음」으로 집계","why.f3.d":"SharedArrayBuffer가 차단된 것으로 기록됐습니다. COOP·COEP 헤더를 추가하자 열렸습니다. 기기의 한계가 아니었습니다.",
     "what.tag":"범위","what.h2":"측정 범위",
     "what.lead":"센서, GPU·NPU, 코덱, 무선, 저장소, 권한, 네트워크, 보안 컨텍스트, 신원. 수치가 존재하는 항목은 수치로 보고합니다. GPU 행렬곱 GFLOPS, 버퍼 상한 MB, 화면 주사율 Hz.",
-    "what.1":"<b>열거 아닌 실행</b><span>항목마다 실제로 호출합니다. 결과는 반환값이거나 던져진 오류이며, 지원 문자열이 아닙니다.</span>",
+    "what.1":"<b>실행 기반 검사</b><span>항목마다 실제로 호출합니다. 결과는 반환값이거나 던져진 오류이며, 지원 문자열이 아닙니다.</span>",
     "what.2":"<b>둘이 아닌 다섯 가지 상태</b><span>열림 · 권한 필요 · 깨짐 · 없음 · 미측정. 예/아니오 이진값으로 축약하면 가장 중요한 경우가 소실됩니다.</span>",
     "what.3":"<b>대조군</b><span>같은 페이지를 응답 헤더만 달리해 두 번 제공합니다. 기기 한계와 서버 설정을 분리하기 위해서입니다.</span>",
     "what.4":"<b>신원 비수집</b><span>계정도 연락처도 없습니다. 기기 모델, 브라우저, 측정값뿐입니다.</span>",
@@ -470,7 +470,7 @@ const _L = {
     "found.c4":"표본 최고 GPU 성능",
     "found.0":"<b>웹의 Wi-Fi, 차단 아닌 부재</b><span>주변 AP 스캔도, 신호 세기도, 채널도, 암호화 방식도 없습니다. 조회 가능한 값은 「현재 연결이 Wi-Fi인가 셀룰러인가」 하나뿐이고, 그마저 안드로이드 Blink에서만 반환됩니다. 표본의 iOS 환경은 전부 아무 값도 반환하지 않았습니다.</span>",
     "layers.none":"<b>Wi-Fi는 다섯 계층 중 어디에도 해당하지 않습니다.</b> 차단할 Wi-Fi API 자체가 웹 표준에 없으므로, 어느 계층이 차단했는가라는 질문이 성립하지 않습니다. 「차단됨」과는 다른 상태이고, 도구도 그렇게 기록합니다.",
-    "found.1":"<b>막힌 문 대부분은 갭 아님</b><span>핑거프린팅를 막으려는 의도적 거절이 진짜 네이티브 갭보다 많습니다. 미지원 항목을 전부 갭으로 집계하면 과대 산정됩니다.</span>",
+    "found.1":"<b>막힌 항목 대부분은 정책</b><span>핑거프린팅를 막으려는 의도적 거절이 진짜 네이티브 갭보다 많습니다. 미지원 항목을 전부 갭으로 집계하면 과대 산정됩니다.</span>",
     "found.snote":"표본","found.sdev":"대","found.senv":"개 환경","found.sasof":"기준일",
     "found.2":"<b>iOS 브라우저 선택은 외형 차이뿐</b><span>같은 아이폰의 Safari·Chrome·Edge가 바이트 단위로 동일한 측정값을 반환했습니다. 셋 다 WebKit입니다.</span>",
     "found.3":"<b>인앱 브라우저의 기능 차단</b><span>같은 폰이 일반 브라우저에서는 노출하는 기능입니다. 메신저에서 연 링크는 웹 관점에서 다른 기기입니다.</span>",
@@ -479,14 +479,14 @@ const _L = {
     "method.chg.d":"같은 기기·같은 브라우저를 두 번 재서 상태가 달라졌을 때 기록됩니다. 브라우저 업데이트로 열리기도 하고, 가끔은 닫히기도 합니다.",
     "method.tag":"방법","method.h2":"측정 방법론",
     "method.lead":"수치의 신뢰도는 방법론에 의존합니다. 아래가 그 방법론이고, 수치가 바뀌어도 이것은 바뀌지 않습니다.",
-    "method.1.t":"분류는 둘이 아니라 넷",
+    "method.1.t":"분류는 넷",
     "method.1.d":"전 환경 개방 · 권한 필요 · 환경별 상이 · 전 환경 차단. 세 번째가 요점입니다. 개방 여부를 하드웨어가 결정하지 않습니다.",
     "method.2.t":"아홉 범주의 검사",
     "method.2.d":"무선, 컴퓨트, 모션, 기기, 입출력, 저장, 카메라, 오디오, 위치. 항목마다 실제로 호출하고, 결과는 반환값이거나 던져진 오류입니다.",
     "method.3.t":"실제 측정한 엔진 빌드",
     "method.3.d":"UA의 엔진 토큰은 동결값이라 무의미합니다(537.36, 605.1.15). 실제 결정 요인은 Chrome 빌드 또는 OS 빌드이고, 기록하는 것도 그것입니다.",
     "method.4.t":"표본 크기와 무관한 원장","method.4.u":"개 밴드 보관",
-    "method.4.d":"이력을 기기별이 아니라 월 × 엔진 빌드 × OS 단위로 저장합니다. 표본이 10개든 1만 개든 행 수가 같습니다. 기본 보존 기간 5년.",
+    "method.4.d":"이력을 월 × 엔진 빌드 × OS 단위로 저장합니다(기기별 저장 없음). 표본이 10개든 1만 개든 행 수가 같습니다. 기본 보존 기간 5년.",
     "layers.tag":"진단","layers.h2":"기능이 실패하는 다섯 계층",
     "layers.lead":"「동작하지 않음」 한 문장이 다섯 가지 원인을 포괄합니다. 기기 원인은 첫 번째뿐입니다.",
     "layers.1.t":"1 · 하드웨어 부재","layers.1.d":"기기에 해당 하드웨어가 없습니다. 상위 계층에서 해결할 방법이 없습니다.",
@@ -497,7 +497,7 @@ const _L = {
     "limits.tag":"한계","limits.lead":"미검사 항목을 집계에 포함하는 순간 지원 목록은 과대 산정됩니다. 아래는 위 수치가 주장하지 않는 것입니다.","limits.h2":"주장하지 않는 것",
     "limits.1":"<b>표본 소규모</b><span>표본 대부분이 자체 보유 기기입니다. 모집단 통계가 아니라 경향으로 해석해 주세요.</span>",
     "limits.2":"<b>웹앱의 시야 한계</b><span>실행 중인 프로세스, 설치된 앱, 배터리 이력, 저장소 내역. 페이지에서는 전부 접근 불가입니다. 브라우저가 그것을 안다고 주장하면 추정값입니다.</span>",
-    "limits.3":"<b>네이티브 대비는 계측 아닌 문헌</b><span>비교용 네이티브 앱을 구현하지 않았으므로, 해당 항목은 측정값이 아님을 화면에도 표시합니다.</span>",
+    "limits.3":"<b>네이티브 대비는 문헌 기반</b><span>비교용 네이티브 앱을 구현하지 않았으므로, 해당 항목은 측정값이 아님을 화면에도 표시합니다.</span>",
     "limits.5":"<b>네트워크 측정치 점수 제외</b><span>기기가 아니라 측정 당시 회선의 값입니다. 점수에 포함하면 양호한 Wi-Fi에서 측정한 폰이 더 빠른 폰보다 상위에 오릅니다.</span>",
     "limits.6":"<b>감지와 실행은 별개</b><span>존재만 확인 가능하고 실행할 수 없는 항목은 실행이 아니라 감지로 기록하고, 화면에도 그렇게 표시합니다.</span>",
     "limits.4":"<b>실행마다 변동하는 수치</b><span>발열, 저전력 모드, 백그라운드 부하, 충전 상태. 단일 측정값은 기기의 속성이 아닙니다.</span>",

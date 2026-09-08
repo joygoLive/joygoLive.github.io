@@ -108,7 +108,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="sec-head">
       <div class="eyebrow" data-i18n="pz.tag">The prize</div>
       <h2 data-i18n="pz.h2">90% of sales, paid out in full every round</h2>
-      <p class="lead" data-i18n="pz.lead">Conventional lotteries hand back about half of what participants paid; the rest goes to operating organizations, retail networks and public funds. BOR has no retail network to pay, so the fee stays at 10%, and it stays there because it is a constant, not a policy.</p>
+      <p class="lead" data-i18n="pz.lead">Conventional lotteries hand back about half of what participants paid; the rest goes to operating organizations, retail networks and public funds. BOR has no retail network to pay, so the fee stays at 10%, and it stays there because it is a compiled constant.</p>
     </div>
     <div class="pts">
       <div class="pt fade"><b data-i18n="pz.1.t">Payout rate 90%</b><span data-i18n="pz.1.d">Every settled round satisfies prize × 10 == sales × 9, exactly.</span></div>
@@ -161,7 +161,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="sec-head">
       <div class="eyebrow" data-i18n="vf.tag">Verification</div>
       <h2 data-i18n="vf.h2">Not audited: the verification performed instead</h2>
-      <p class="lead" data-i18n="vf.lead">No third party has audited this contract. That is stated at the top of this section rather than in a footnote. What follows is the self-testing that exists in its place, stated so you can reproduce it.</p>
+      <p class="lead" data-i18n="vf.lead">No third party has audited this contract. That is stated at the top of this section. What follows is the self-testing that exists in its place, stated so you can reproduce it.</p>
     </div>
     <div class="table-wrap">
       <table class="vtable">
@@ -171,11 +171,11 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
           <tr><td data-i18n="vf.r2.a">Deep randomized runs</td><td data-i18n="vf.r2.b">Fuzz 5,000 runs; invariants 512 runs × 128 depth: all pass</td></tr>
           <tr><td data-i18n="vf.r3.a">RFC 9380 conformance</td><td data-i18n="vf.r3.b">Official vectors parsed straight out of the RFC (K.1, J.9.1) and passed, not transcribed by hand</td></tr>
           <tr><td data-i18n="vf.r4.a">Cross-implementation differential</td><td data-i18n="vf.r4.b">The RFC, noble-curves, py_ecc and the on-chain BLS.sol agree across every vector</td></tr>
-          <tr><td data-i18n="vf.r5.a">Symbolic execution</td><td data-i18n="vf.r5.b">halmos proves the bounds, the schedule and purchase accounting over all inputs, not sampled ones</td></tr>
+          <tr><td data-i18n="vf.r5.a">Symbolic execution</td><td data-i18n="vf.r5.b">halmos proves the bounds, the schedule and purchase accounting over all inputs</td></tr>
           <tr><td data-i18n="vf.r6.a">On-chain beacon verification</td><td data-i18n="vf.r6.b">Forged, tampered and round-mismatched signatures are all rejected</td></tr>
           <tr><td data-i18n="vf.r7.a">No funds can be stranded</td><td data-i18n="vf.r7.b">After random call sequences everyone withdraws and the balance reaches zero</td></tr>
           <tr><td data-i18n="vf.r8.a">Admin parameter space</td><td data-i18n="vf.r8.b">Fuzzed: no combination of admin settings locks funds</td></tr>
-          <tr><td data-i18n="vf.r9.a">Payout rate in settlement</td><td data-i18n="vf.r9.b">prize × 10 == sales × 9 holds in actual settlement, not just in the description</td></tr>
+          <tr><td data-i18n="vf.r9.a">Payout rate in settlement</td><td data-i18n="vf.r9.b">prize × 10 == sales × 9 holds in actual settlement</td></tr>
         </tbody>
       </table>
     </div>
@@ -202,7 +202,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       </div>
       <div class="fact fade">
         <b data-i18n="nt.3.t">Not on mainnet</b>
-        <span data-i18n="nt.3.d">BOR runs on the Base Sepolia testnet. It is there to collect feedback, not participants. No real money is at stake and none should be.</span>
+        <span data-i18n="nt.3.d">BOR runs on the Base Sepolia testnet. It is there to collect feedback and does not recruit participants. No real money is at stake and none should be.</span>
       </div>
       <div class="fact fade">
         <b data-i18n="nt.4.t">There is an admin</b>
@@ -262,7 +262,7 @@ const _L = {
     "rd.8.t":"The only call is draw()","rd.8.d":"Settlement needs exactly one call. Because the deadline and the beacon round were both fixed in advance, the same tickets are drawn no matter who calls it or when.",
 
     "pz.tag":"The prize","pz.h2":"90% of sales, paid out in full every round",
-    "pz.lead":"Conventional lotteries hand back about half of what participants paid; the rest goes to operating organizations, retail networks and public funds. BOR has no retail network to pay, so the fee stays at 10%, and it stays there because it is a constant, not a policy.",
+    "pz.lead":"Conventional lotteries hand back about half of what participants paid; the rest goes to operating organizations, retail networks and public funds. BOR has no retail network to pay, so the fee stays at 10%, and it stays there because it is a compiled constant.",
     "pz.1.t":"Payout rate 90%","pz.1.d":"Every settled round satisfies prize × 10 == sales × 9, exactly.",
     "pz.2.t":"Jackpot is at least 80% of the prize","pz.2.d":"The small-prize share is a 20% constant, so the top prize cannot fall below that line.",
     "pz.3.t":"No ceiling","pz.3.d":"The pot is whatever the round sold, times 0.9. Nothing caps it.",
@@ -282,24 +282,24 @@ const _L = {
     "ck.3.d":"No call sequence moves a deadline or a beacon round. Settlement is idempotent in the way that matters: whoever calls draw(), and whenever they call it, the same tickets win.",
 
     "vf.tag":"Verification","vf.h2":"Not audited: the verification performed instead",
-    "vf.lead":"No third party has audited this contract. That is stated at the top of this section rather than in a footnote. What follows is the self-testing that exists in its place, stated so you can reproduce it.",
+    "vf.lead":"No third party has audited this contract. That is stated at the top of this section. What follows is the self-testing that exists in its place, stated so you can reproduce it.",
     "vf.c1":"What was checked","vf.c2":"Result",
     "vf.r1.a":"Test suite","vf.r1.b":"Full suite passing",
     "vf.r2.a":"Deep randomized runs","vf.r2.b":"Fuzz 5,000 runs; invariants 512 runs × 128 depth: all pass",
     "vf.r3.a":"RFC 9380 conformance","vf.r3.b":"Official vectors parsed straight out of the RFC (K.1, J.9.1) and passed, not transcribed by hand",
     "vf.r4.a":"Cross-implementation differential","vf.r4.b":"The RFC, noble-curves, py_ecc and the on-chain BLS.sol agree across every vector",
-    "vf.r5.a":"Symbolic execution","vf.r5.b":"halmos proves the bounds, the schedule and purchase accounting over all inputs, not sampled ones",
+    "vf.r5.a":"Symbolic execution","vf.r5.b":"halmos proves the bounds, the schedule and purchase accounting over all inputs",
     "vf.r6.a":"On-chain beacon verification","vf.r6.b":"Forged, tampered and round-mismatched signatures are all rejected",
     "vf.r7.a":"No funds can be stranded","vf.r7.b":"After random call sequences everyone withdraws and the balance reaches zero",
     "vf.r8.a":"Admin parameter space","vf.r8.b":"Fuzzed: no combination of admin settings locks funds",
-    "vf.r9.a":"Payout rate in settlement","vf.r9.b":"prize × 10 == sales × 9 holds in actual settlement, not just in the description",
+    "vf.r9.a":"Payout rate in settlement","vf.r9.b":"prize × 10 == sales × 9 holds in actual settlement",
     "vf.note":"For developers: the contract verifies the drand quicknet beacon over BLS12-381 on EIP-2537 precompiles, at roughly 166k gas per verification, and exposes the chain hash and group public key it checks against, so you can compare them with what drand publishes without reading bytecode.",
 
     "nt.tag":"Limits","nt.h2":"What this does not claim",
     "nt.lead":"This list keeps the claims above bound to what is actually true.",
     "nt.1.t":"Not an investment","nt.1.d":"The expected value of a ticket is below what it costs. That is what a 90% payout rate means. Nothing here is a return, a yield, or a way to earn.",
     "nt.2.t":"Not audited","nt.2.d":"No third party has reviewed the contract, and the BLS verification code in particular has not been externally audited. The self-testing above is what stands in its place.",
-    "nt.3.t":"Not on mainnet","nt.3.d":"BOR runs on the Base Sepolia testnet. It is there to collect feedback, not participants. No real money is at stake and none should be.",
+    "nt.3.t":"Not on mainnet","nt.3.d":"BOR runs on the Base Sepolia testnet. It is there to collect feedback and does not recruit participants. No real money is at stake and none should be.",
     "nt.4.t":"There is an admin","nt.4.d":"An admin exists and adjusts economic parameters. What it cannot do is change the fee, replace the logic, or withdraw participant funds. That is the claim, and it is narrower than “nobody is running this”.",
     "nt.5.t":"Not fully decentralized","nt.5.d":"The contract has no operator functions, but it settles on a chain with a sequencer. Those are two different statements and only the first one is ours to make.",
     "nt.6.t":"You do not pick numbers","nt.6.d":"Ticket numbers are assigned in purchase order. Winners are derived from the beacon against tickets that were actually sold.",
@@ -327,7 +327,7 @@ const _L = {
     "rd.8.t":"호출은 draw() 하나뿐","rd.8.d":"정산에 필요한 호출은 정확히 하나입니다. 마감 시각과 비콘 라운드가 이미 확정돼 있으므로, 누가 언제 호출하든 같은 티켓이 당첨됩니다.",
 
     "pz.tag":"상금","pz.h2":"판매액의 90%, 매 회차 전액 지급",
-    "pz.lead":"기존 복권은 참여자가 낸 돈의 절반 정도를 돌려주고, 나머지는 운영 조직·판매망·공공 기금에 배분됩니다. BOR에는 지급할 판매망이 없어 수수료가 10%로 유지되고, 정책이 아니라 상수이기 때문에 변경되지 않습니다.",
+    "pz.lead":"기존 복권은 참여자가 낸 돈의 절반 정도를 돌려주고, 나머지는 운영 조직·판매망·공공 기금에 배분됩니다. BOR에는 지급할 판매망이 없어 수수료가 10%로 유지되고, 컴파일된 상수이기 때문에 변경되지 않습니다.",
     "pz.1.t":"환급률 90%","pz.1.d":"정산된 모든 회차가 상금 × 10 == 판매액 × 9를 정확히 만족합니다.",
     "pz.2.t":"잭팟은 상금의 80% 이상","pz.2.d":"소액 몫이 20% 상수이므로 최고 상금이 그 아래로 내려갈 수 없습니다.",
     "pz.3.t":"상한 없음","pz.3.d":"상금은 해당 회차 판매액 × 0.9입니다. 상한값이 없습니다.",
@@ -347,24 +347,24 @@ const _L = {
     "ck.3.d":"어떤 호출 순서도 마감 시각이나 비콘 라운드를 변경하지 못합니다. 그래서 정산은 멱등합니다. 누가 draw()를 호출하든, 언제 호출하든 같은 티켓이 당첨됩니다.",
 
     "vf.tag":"검증 상태","vf.h2":"제3자 감사를 받지 않았습니다. 대신 수행한 검증은 다음과 같습니다",
-    "vf.lead":"이 컨트랙트를 감사한 제3자는 없습니다. 그 사실을 아래 각주가 아니라 이 절의 첫 줄에 적습니다. 이어지는 것은 그 자리를 대신하는 자체 검증이며, 재현할 수 있도록 그대로 적습니다.",
+    "vf.lead":"이 컨트랙트를 감사한 제3자는 없습니다. 그 사실을 이 절의 첫 줄에 적습니다. 이어지는 것은 그 자리를 대신하는 자체 검증이며, 재현할 수 있도록 그대로 적습니다.",
     "vf.c1":"검사 항목","vf.c2":"결과",
     "vf.r1.a":"시험 스위트","vf.r1.b":"전체 통과",
     "vf.r2.a":"심층 무작위 실행","vf.r2.b":"fuzz 5,000 runs · invariant 512 runs × 128 depth: 전부 통과",
     "vf.r3.a":"RFC 9380 표준 적합성","vf.r3.b":"RFC 원문에서 직접 파싱한 공식 벡터(부록 K.1 · J.9.1)를 그대로 통과. 수동 전사 없음",
     "vf.r4.a":"구현 간 차분 검증","vf.r4.b":"RFC · noble-curves · py_ecc · 온체인 BLS.sol이 전 벡터에서 일치",
-    "vf.r5.a":"기호 실행","vf.r5.b":"halmos가 경계·시각표·구매 회계를 표본이 아니라 모든 입력에 대해 증명",
+    "vf.r5.a":"기호 실행","vf.r5.b":"halmos가 경계·시각표·구매 회계를 모든 입력에 대해 증명",
     "vf.r6.a":"온체인 비콘 검증","vf.r6.b":"위조·변조·라운드 불일치 서명을 전부 거부",
     "vf.r7.a":"잠기는 자금이 없음","vf.r7.b":"무작위 호출 시퀀스 후 전원 인출 시 잔고가 0에 도달",
     "vf.r8.a":"어드민 파라미터 공간","vf.r8.b":"fuzz: 어떤 어드민 설정 조합에서도 자금이 잠기지 않음",
-    "vf.r9.a":"실제 정산에서의 환급률","vf.r9.b":"설명이 아니라 실제 정산에서 상금 × 10 == 판매액 × 9 성립",
+    "vf.r9.a":"실제 정산에서의 환급률","vf.r9.b":"실제 정산에서 상금 × 10 == 판매액 × 9 성립",
     "vf.note":"개발자용. 컨트랙트는 EIP-2537 프리컴파일 위에서 BLS12-381로 drand quicknet 비콘을 검증하며 검증 1회당 약 166k gas가 듭니다. 검증에 쓰는 체인 해시와 그룹 공개키를 노출하므로, 바이트코드를 읽지 않고도 drand가 공개하는 값과 대조할 수 있습니다.",
 
     "nt.tag":"한계","nt.h2":"주장하지 않는 것",
     "nt.lead":"이 목록은 위의 주장을 실제 사실에 묶어 둡니다.",
     "nt.1.t":"투자 아님","nt.1.d":"티켓의 기댓값은 지불한 금액보다 낮습니다. 환급률 90%가 뜻하는 바가 그것입니다. 여기에 수익도, 이자도, 버는 방법도 없습니다.",
     "nt.2.t":"감사 없음","nt.2.d":"제3자가 이 컨트랙트를 검토한 적이 없으며, 특히 BLS 검증 코드는 외부 감사를 받지 않았습니다. 위의 자체 검증이 그 자리를 대신합니다.",
-    "nt.3.t":"메인넷 아님","nt.3.d":"BOR은 Base Sepolia 테스트넷에서 운영됩니다. 참여자 모집이 아니라 피드백 수집 단계입니다. 실제 돈이 걸려 있지 않고, 걸려서도 안 됩니다.",
+    "nt.3.t":"메인넷 아님","nt.3.d":"BOR은 Base Sepolia 테스트넷에서 운영됩니다. 피드백 수집 단계이며 참여자를 모집하지 않습니다. 실제 돈이 걸려 있지 않고, 걸려서도 안 됩니다.",
     "nt.4.t":"어드민 존재","nt.4.d":"어드민이 존재하며 경제 파라미터를 조정합니다. 못 하는 것은 수수료 변경, 로직 교체, 참여자 자금 인출입니다. 그것이 이 서비스의 주장이며, 「운영자가 없다」보다 좁은 주장입니다.",
     "nt.5.t":"완전 탈중앙 아님","nt.5.d":"컨트랙트에 운영자 함수가 없다는 것과, 시퀀서가 있는 체인 위에서 정산된다는 것은 서로 다른 명제입니다. 이 서비스가 할 수 있는 주장은 앞의 것뿐입니다.",
     "nt.6.t":"번호 선택 불가","nt.6.d":"티켓 번호는 구매 순서대로 배정됩니다. 당첨은 실제로 팔린 티켓을 대상으로 비콘에서 도출됩니다.",

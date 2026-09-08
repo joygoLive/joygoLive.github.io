@@ -104,7 +104,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       </div>
       <div class="pillar fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="4"/></svg>
-        <h3 data-i18n="how.2.t">Calibrated to your body, not an average one</h3>
+        <h3 data-i18n="how.2.t">Calibrated to your own body</h3>
         <p data-i18n="how.2.d">Two seconds of standing still sets your personal baseline. Depth and range are then read relative to you, so a long femur or a short torso is not mistaken for bad form.</p>
       </div>
       <div class="pillar fade">
@@ -121,7 +121,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow" data-i18n="ap.tag">Approach</div>
-      <h2 data-i18n="ap.h2">Rules you can read, not a similarity score</h2>
+      <h2 data-i18n="ap.h2">Readable joint-angle rules</h2>
       <p class="lead" data-i18n="ap.lead">AMC does not compare your rep to a reference video. It measures joint angles, normalizes them against your own baseline, and applies thresholds a trainer agreed to. The rest of the product follows from that design decision.</p>
     </div>
     <div class="cap-grid">
@@ -142,17 +142,17 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       </div>
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8 15.8 7.2M8.2 13.2l7.6 3.6"/></svg>
-        <h3 data-i18n="ap.4.t">Correct and incorrect reps are proof, not training data</h3>
+        <h3 data-i18n="ap.4.t">Labeled reps verify the rules</h3>
         <p data-i18n="ap.4.d">Labeled reps exist to measure the rules: the miss rate on real errors and the false-positive rate on good reps. The rules are the product, and the labeled data verifies them.</p>
       </div>
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17V7M8 17V4M13 17v-7M18 17v-4M3 20h18"/></svg>
-        <h3 data-i18n="ap.5.t">Severity, not a pass/fail stamp</h3>
+        <h3 data-i18n="ap.5.t">Three severity levels</h3>
         <p data-i18n="ap.5.d">Each error carries one of three severity levels, and the strongest correction is capped per error type by joint-load risk: the instruction never pushes you harder than the movement safely allows.</p>
       </div>
       <div class="cap fade">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v12H5.5L4 18z"/><path d="M8 9h8M8 12.5h5"/></svg>
-        <h3 data-i18n="ap.6.t">Reports written by rules, not by a language model</h3>
+        <h3 data-i18n="ap.6.t">Reports from templates, no language model</h3>
         <p data-i18n="ap.6.d">Report sentences come from templates tied to what was measured. No model call means no server, no API key, and no chance of a fluent sentence that the numbers do not support.</p>
       </div>
     </div>
@@ -201,7 +201,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow" data-i18n="ho.tag">Limits</div>
-      <h2 data-i18n="ho.h2">A rep it could not see is not a rep it counts</h2>
+      <h2 data-i18n="ho.h2">Reps it could not see are excluded and explained</h2>
       <p class="lead" data-i18n="ho.lead">The easiest way to look accurate is to count everything and omit the frames that could not be read. AMC does the opposite: when a check cannot be made, it reports which one and why.</p>
     </div>
     <div class="pts">
@@ -227,7 +227,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow" data-i18n="pv.tag">Privacy</div>
-      <h2 data-i18n="pv.h2">The camera is an input, not an upload</h2>
+      <h2 data-i18n="pv.h2">The video stays on the device</h2>
       <p class="lead" data-i18n="pv.lead">Judgment happens on your device, so the video never has to leave it. Exactly what is and is not transmitted:</p>
     </div>
     <div class="facts">
@@ -284,12 +284,12 @@ const _L = {
     "how.n1":"Stand the phone up","how.n2":"2-second baseline","how.n3":"Do the set","how.n4":"One spoken cue","how.n5":"Report",
     "how.1.t":"Place it anywhere reasonable",
     "how.1.d":"No measured distance, no tripod height, no gyroscope. The only question that matters is whether your body is in the frame, and if it is not, AMC reports that instead of guessing.",
-    "how.2.t":"Calibrated to your body, not an average one",
+    "how.2.t":"Calibrated to your own body",
     "how.2.d":"Two seconds of standing still sets your personal baseline. Depth and range are then read relative to you, so a long femur or a short torso is not mistaken for bad form.",
     "how.3.t":"One cue at a time",
     "how.3.d":"Mid-set you get a single spoken correction: the one that matters most right now. A list of six corrections cannot be acted on while you are under load.",
 
-    "ap.tag":"Approach","ap.h2":"Rules you can read, not a similarity score",
+    "ap.tag":"Approach","ap.h2":"Readable joint-angle rules",
     "ap.lead":"AMC does not compare your rep to a reference video. It measures joint angles, normalizes them against your own baseline, and applies thresholds a trainer agreed to. The rest of the product follows from that design decision.",
     "ap.1.t":"Body shape is not an error",
     "ap.1.d":"Template matching flags anyone whose proportions or tempo differ from the reference. Angle rules against your own baseline remove that false positive at the source.",
@@ -297,11 +297,11 @@ const _L = {
     "ap.2.d":"“Your knees are 12° narrower than your baseline” tells you what to move. A similarity score of 0.73 does not; it cannot be disputed, verified, or coached against.",
     "ap.3.t":"Light enough to stay on the device",
     "ap.3.d":"Angle arithmetic is cheap, so judgment runs on-device. Nothing is uploaded for a verdict: a privacy property and a latency property at once.",
-    "ap.4.t":"Correct and incorrect reps are proof, not training data",
+    "ap.4.t":"Labeled reps verify the rules",
     "ap.4.d":"Labeled reps exist to measure the rules: the miss rate on real errors and the false-positive rate on good reps. The rules are the product, and the labeled data verifies them.",
-    "ap.5.t":"Severity, not a pass/fail stamp",
+    "ap.5.t":"Three severity levels",
     "ap.5.d":"Each error carries one of three severity levels, and the strongest correction is capped per error type by joint-load risk: the instruction never pushes you harder than the movement safely allows.",
-    "ap.6.t":"Reports written by rules, not by a language model",
+    "ap.6.t":"Reports from templates, no language model",
     "ap.6.d":"Report sentences come from templates tied to what was measured. No model call means no server, no API key, and no chance of a fluent sentence that the numbers do not support.",
 
     "me.tag":"What you get","me.h2":"The set, in numbers you can compare next week",
@@ -320,7 +320,7 @@ const _L = {
     "me.p.1":"Reps","me.p.2":"Clean form","me.p.3":"Avg. depth","me.p.4":"Set time",
     "me.p.note":"Illustrative figures: a real set fills these from your own reps.",
 
-    "ho.tag":"Limits","ho.h2":"A rep it could not see is not a rep it counts",
+    "ho.tag":"Limits","ho.h2":"Reps it could not see are excluded and explained",
     "ho.lead":"The easiest way to look accurate is to count everything and omit the frames that could not be read. AMC does the opposite: when a check cannot be made, it reports which one and why.",
     "ho.1.t":"Lower body obscured","ho.1.d":"Legs hidden behind equipment or cropped by furniture.",
     "ho.2.t":"Key joints out of frame","ho.2.d":"A joint the rule depends on has left the picture.",
@@ -332,7 +332,7 @@ const _L = {
     "ho.d.3":"A single camera cannot see everything at once. Front-only checks and side-only checks are named as unverified when you are not standing that way, rather than assumed to have passed.",
     "ho.d.4":"AMC is still being tuned in the field with community sports organizations, not a public release. Thresholds are still moving as real-device data comes in.",
 
-    "pv.tag":"Privacy","pv.h2":"The camera is an input, not an upload",
+    "pv.tag":"Privacy","pv.h2":"The video stays on the device",
     "pv.lead":"Judgment happens on your device, so the video never has to leave it. Exactly what is and is not transmitted:",
     "pv.1.t":"Never collected","pv.1.d":"Video, images of your face, your name, and your contact details. None of it is transmitted, and none of it is stored on a server.",
     "pv.2.t":"Sent during field tuning","pv.2.d":"While thresholds are being calibrated, numbers are sent automatically: rep counts, angles, joint coordinate values, and device information. The app states this on its first screen.",
@@ -356,24 +356,24 @@ const _L = {
     "how.n1":"폰 거치","how.n2":"기준선 2초 측정","how.n3":"운동","how.n4":"음성 큐 1개","how.n5":"리포트",
     "how.1.t":"자리 제약 없음",
     "how.1.d":"거리도, 거치 높이도, 자이로 센서도 쓰지 않습니다. 확인하는 조건은 하나입니다. 전신이 프레임 안에 있는가. 아니면 추측하지 않고 그 사실을 알립니다.",
-    "how.2.t":"평균 체형이 아니라 본인 몸에 맞춥니다",
+    "how.2.t":"본인 몸 기준으로 보정",
     "how.2.d":"2초간 정지 자세로 개인 기준선을 설정합니다. 이후 깊이와 가동범위는 그 기준선 대비 상대값으로 측정되므로, 긴 대퇴골이나 짧은 상체가 자세 오류로 오판되지 않습니다.",
     "how.3.t":"한 번에 하나씩",
     "how.3.d":"세트 중에는 음성 교정이 하나만 나옵니다. 지금 가장 중요한 것 하나. 부하 중인 사용자는 교정 항목 여섯 개를 나열해도 실행할 수 없습니다.",
 
-    "ap.tag":"접근","ap.h2":"유사도 점수가 아니라 읽을 수 있는 규칙",
+    "ap.tag":"접근","ap.h2":"읽을 수 있는 관절각 규칙",
     "ap.lead":"AMC는 회차를 정답 영상과 비교하지 않습니다. 관절각을 측정하고, 개인 기준선으로 정규화하고, 트레이너가 합의한 임계값을 적용합니다. 제품의 나머지 동작은 전부 이 설계 결정에서 파생됩니다.",
     "ap.1.t":"체형은 오류가 아닙니다",
     "ap.1.d":"템플릿 비교 방식은 비율이나 속도가 기준과 다른 사람을 전부 오류로 판정합니다. 본인 기준선 대비 각도 규칙은 그 오탐을 원천에서 제거합니다.",
     "ap.2.t":"바로 실행할 수 있는 피드백",
     "ap.2.d":"「무릎 간격이 기준보다 12도 좁습니다」는 무엇을 움직일지 알려 줍니다. 유사도 0.73은 알려 주지 않습니다. 반박도, 검증도, 코칭도 불가능합니다.",
     "ap.3.t":"기기 안에 머무는 경량 모델",
-    "ap.3.d":"각도 연산은 경량이므로 판정이 온디바이스로 실행됩니다. 판정을 위해 업로드할 데이터가 없습니다 — 프라이버시 속성인 동시에 지연 속성입니다.",
-    "ap.4.t":"정답·오답 회차는 학습 데이터 아닌 증거",
+    "ap.3.d":"각도 연산은 경량이므로 판정이 온디바이스로 실행됩니다. 판정을 위해 업로드할 데이터가 없습니다. 프라이버시 속성인 동시에 지연 속성입니다.",
+    "ap.4.t":"라벨 회차는 규칙 검증용",
     "ap.4.d":"라벨이 붙은 회차는 규칙을 평가하기 위해 존재합니다. 실제 오류 중 얼마를 놓쳤는지(미탐), 정상 회차를 얼마나 잘못 지적했는지(오탐). 제품은 규칙이고, 데이터는 그 규칙을 검증합니다.",
-    "ap.5.t":"합격·불합격 도장이 아니라 심각도",
+    "ap.5.t":"3단계 심각도",
     "ap.5.d":"각 오류에는 3단계 심각도가 붙고, 가장 강한 교정 문구는 항목마다 관절 부담 위험을 기준으로 상한이 설정돼 있습니다. 동작이 안전하게 허용하는 범위 이상을 요구하지 않습니다.",
-    "ap.6.t":"리포트는 언어모델이 아니라 규칙이 씁니다",
+    "ap.6.t":"리포트는 템플릿, 언어모델 없음",
     "ap.6.d":"리포트 문장은 측정된 값에 묶인 템플릿에서 나옵니다. 모델을 호출하지 않으므로 서버도 API 키도 필요 없고, 숫자가 뒷받침하지 않는 매끄러운 문장이 나올 여지도 없습니다.",
 
     "me.tag":"측정 항목","me.h2":"다음 주와 비교할 수 있는 숫자로 남는 세트",
@@ -404,7 +404,7 @@ const _L = {
     "ho.d.3":"카메라 한 대가 모든 것을 동시에 볼 수는 없습니다. 정면 전용·측면 전용 검사는 그 방향으로 서 있지 않으면 통과로 간주하지 않고 미확인으로 표시합니다.",
     "ho.d.4":"AMC는 생활체육 단체와 현장에서 임계값을 튜닝하는 중이며 일반 공개 단계가 아닙니다. 실기기 데이터가 누적되면서 그 값은 아직 변동 중입니다.",
 
-    "pv.tag":"프라이버시","pv.h2":"카메라는 입력이지 업로드가 아닙니다",
+    "pv.tag":"프라이버시","pv.h2":"영상은 기기 안에 머뭅니다",
     "pv.lead":"판정이 기기 안에서 일어나므로 영상이 기기를 떠날 이유가 없습니다. 무엇이 움직이고 무엇이 움직이지 않는지 그대로 적습니다.",
     "pv.1.t":"받지 않는 것","pv.1.d":"영상, 얼굴 이미지, 이름, 연락처. 전송되지 않고 서버에 저장되지도 않습니다.",
     "pv.2.t":"현장 튜닝 단계에 전송되는 것","pv.2.d":"임계값을 보정하는 동안에는 수치 데이터가 자동 전송됩니다. 횟수, 각도, 관절 위치 값, 기기 정보. 앱 첫 화면에 같은 내용이 적혀 있습니다.",

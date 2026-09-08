@@ -128,7 +128,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <p class="lead" data-i18n="why.lead">The service runs on a static catalog file and a hosting platform with no scheduler and no persistent process. The architecture follows from those two constraints.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="why.f1.t">Timestamps, not streams</b><span data-i18n="why.f1.d">One state row holds the current song, its start time and its length. A client computes its own position as start time plus elapsed time. Only timestamps are compared, and no audio leaves the server.</span></div>
+      <div class="fact fade"><b data-i18n="why.f1.t">Synchronized by timestamp</b><span data-i18n="why.f1.d">One state row holds the current song, its start time and its length. A client computes its own position as start time plus elapsed time. Only timestamps are compared, and no audio leaves the server.</span></div>
       <div class="fact fade"><b data-i18n="why.f2.t">Advance on read</b><span data-i18n="why.f2.d">There is no cron. The state advances inside the poll that observes the song has ended, guarded by a conditional update so that concurrent polls advance it exactly once. Ninety seconds ahead, one poll takes a lock and prepares the next song's script and voice.</span></div>
       <div class="fact fade"><b data-i18n="why.f3.t">Catalog as the fallback schedule</b><span data-i18n="why.f3.d">When the request queue is empty the server draws from the catalog: songs never aired first, the most recently aired 60% excluded, the previous artist avoided, embed-blocked uploads excluded. Playback continues while the queue is empty.</span></div>
     </div>
@@ -315,7 +315,7 @@ const _L = {
     "rule.lead":"기본 점수는 기다린 분 수이며 이것만으로는 선착순입니다. 조건이 점수를 더해 뒤에 온 신청이 먼저 편성될 수 있고, 대기 시간은 계속 쌓이므로 모든 신청은 결국 재생됩니다. 가중치는 편성 시점에 표에서 읽고, 결정마다 이긴 점수를 기록합니다. 운영자 핀은 한 곡에 한해 순서를 덮어씁니다.",
     "rule.c1":"조건","rule.c2":"가중치","rule.c3":"근거",
     "rule.r1":"기다린 분 수","rule.r1d":"기본항. 이것만 있으면 선착순",
-    "rule.r2":"사연 있음","rule.r2d":"사연 우선. 조정값이 아닌 고정 규칙",
+    "rule.r2":"사연 있음","rule.r2d":"사연 우선. 고정 규칙",
     "rule.r3":"신청자가 지금 청취 중","rule.r3d":"사연은 보낸 사람이 들을 수 있을 때 낭독",
     "rule.r4":"같은 곡을 여럿이 신청","rule.r4d":"한 번 재생, 신청자 전원 호명",
     "rule.r5":"이 신청자의 첫 신청","rule.r5d":"첫 신청을 반복 신청자보다 앞에 편성",
@@ -335,7 +335,7 @@ const _L = {
     "req.f4.t":"사연 2단계 검수",
     "req.f4.d":"정규식 검사가 먼저 연락처와 계좌번호를 거절합니다. 통과한 글은 모델이 안전·검토·거절로 분류합니다. 검토는 운영자가 승인할 때까지 사연을 보류하며 곡은 그대로 나갑니다. 접수는 익명이고 주소별로 제한됩니다. 하루 20건, 사연 포함 5건, 동시 대기 3곡.",
     "req.f5.t":"신청곡의 분리 관리",
-    "req.f5.d":"카탈로그 밖의 곡은 채널, 채널 종류, 선택 사유와 함께 별도 표에 둡니다. 신청으로만 재생되고 셔플에는 들어가지 않습니다. 카탈로그 승격은 자동이 아닌 편집 단계입니다.",
+    "req.f5.d":"카탈로그 밖의 곡은 채널, 채널 종류, 선택 사유와 함께 별도 표에 둡니다. 신청으로만 재생되고 셔플에는 들어가지 않습니다. 카탈로그 승격은 수동 편집 단계입니다.",
 
     "dj.tag":"AI DJ","dj.h2":"대본 하나, 목소리 둘, 언어 둘",
     "dj.lead":"DJ는 곡의 첫 몇 초 동안 음악 볼륨을 낮춘 채 말합니다. 대본은 한 호출에서 한국어와 영어로 생성되고, 청취자는 화면 언어의 대본을 듣습니다. 음성은 서버에서 합성해 캐시하므로 모든 청취자가 같은 테이크를 듣습니다. 음악만 듣고 싶으면 기기에서 DJ를 끕니다.",
