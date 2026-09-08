@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>BCON — Wireless environment check by joygoLive</title>
-<meta name="description" content="BCON checks the wireless environment around you and summarises what is wrong with it: networks with no encryption, one name answering from several radios, protections never switched on. Scored per place. It only receives what is already broadcast, and never identifies an individual access point on screen." />
+<meta name="description" content="BCON checks the wireless environment around you and summarizes what is wrong with it: networks with no encryption, one name answering from several radios, protections never switched on. Scored per place. It only receives what is already broadcast, and never identifies an individual access point on screen." />
 <meta property="og:title" content="BCON — Wireless environment check by joygoLive" />
-<meta property="og:description" content="What is wrong with the wireless around you, checked and summarised place by place." />
+<meta property="og:description" content="What is wrong with the wireless around you, checked and summarized place by place." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
 <meta name="theme-color" id="themeColor" content="#ffffff" />
@@ -185,7 +185,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <div class="facts" style="margin-top:30px">
       <div class="fact fade" data-i18n-html="what.p1"><b>The unit is a place, not a network</b><span>A place is the name you assigned on site — not a GPS cell. Indoors the coordinate freezes on the last fix, so three separate rooms measured in one evening all landed on the same cell; the assigned name was the only thing that distinguished them. Places are ordered by dwell time, because dwell time is exposure time.</span></div>
-      <div class="fact fade" data-i18n-html="what.p2"><b>Guesswork is labelled as guesswork</b><span>Default SSIDs, vendor from the MAC address OUI, and device type from the name are all inference. They are labelled as circumstantial, and a randomised address returns no vendor at all rather than a wrong one.</span></div>
+      <div class="fact fade" data-i18n-html="what.p2"><b>Guesswork is labeled as guesswork</b><span>Default SSIDs, vendor from the MAC address OUI, and device type from the name are all inference. They are labeled as circumstantial, and a randomized address returns no vendor at all rather than a wrong one.</span></div>
     </div>
   </div>
 </section>
@@ -199,7 +199,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <div class="facts">
       <div class="fact fade" data-i18n-html="fix.1"><b>① Disable auto-join, select manually</b><span>One action that closes both open networks and evil twins, which is why it is always first. An open network carries traffic in the clear; when one SSID answers from several APs, the phone takes the strongest signal and cannot tell which is legitimate. <b>A VPN does not replace this</b> — it protects traffic after joining, not the join itself.</span></div>
-      <div class="fact fade" data-i18n-html="fix.2"><b>② Use a VPN in that spot</b><span>Without PMF anyone nearby can force a disconnection. The disconnection is not the problem; <b>the reconnection is</b>, and once connected, traffic encryption is the only defence left. ① prevents the join, ② protects after it.</span></div>
+      <div class="fact fade" data-i18n-html="fix.2"><b>② Use a VPN in that spot</b><span>Without PMF anyone nearby can force a disconnection. The disconnection is not the problem; <b>the reconnection is</b>, and once connected, traffic encryption is the only defense left. ① prevents the join, ② protects after it.</span></div>
       <div class="fact fade" data-i18n-html="fix.3"><b>③ Drop auto-join for carrier hotspots</b><span>Several access points under one SSID means the phone hands over without confirmation. That handover is the easiest moment to intervene, because the phone is already expecting to switch — and the movement trail is recorded by that network.</span></div>
       <div class="fact fade" data-i18n-html="fix.4"><b>④ Disable WPS — if any of these is yours</b><span>The PIN is validated in two halves, a design flaw that brute-forces in hours, and once it falls <b>changing the passphrase does not help</b> — WPS allows re-entry. On someone else's equipment, classify that network as one a passphrase does not protect.</span></div>
       <div class="fact fade" data-i18n-html="fix.5"><b>⑤ Replace the legacy cipher — if any of these is yours</b><span>WEP and TKIP are effectively unprotected, and WPA2/WPA3 transition mode lets an attacker simply select the weaker side. Moving to WPA3 makes PMF mandatory, which removes ② as well — and if the SSID is still the factory default, change the admin password with it.</span></div>
@@ -236,7 +236,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="facts">
       <div class="fact fade" data-i18n-html="found.1"><b>The counting method has to be correct first</b><span>Most of what answers a scan is too weak to connect to, and the same router answers twice on two bands. Count all of it and the risk score falls as the number of nearby APs rises, which is inverted. Everything here counts only what is within connecting distance.</span></div>
       <div class="fact fade" data-i18n-html="found.2"><b>Management-frame protection is the single biggest item, everywhere so far</b><span>It is what stops a third party forcing a disconnection to make a device reconnect elsewhere, and WPA3 is what makes it mandatory. The WPA3 figure above is that number.</span></div>
-      <div class="fact fade" data-i18n-html="found.3"><b>This is why the answer is behavioural</b><span>Practically every device in a reading belongs to somebody else. Hardening your own settings does not change their equipment, so the useful output is a rule about what your phone is allowed to join.</span></div>
+      <div class="fact fade" data-i18n-html="found.3"><b>This is why the answer is behavioral</b><span>Practically every device in a reading belongs to somebody else. Hardening your own settings does not change their equipment, so the useful output is a rule about what your phone is allowed to join.</span></div>
     </div>
   </div>
 </section>
@@ -250,8 +250,8 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <div class="facts">
       <div class="fact fade" data-i18n-html="limits.1"><b>Nobody else is a target</b><span>The output is about exposure, not about fault. There is no ranking of networks, no naming of an owner, and no suggestion that a particular access point is to blame. Output is deliberately limited so that an access point cannot be located from what appears on screen.</span></div>
-      <div class="fact fade" data-i18n-html="limits.2"><b>Inference is not identification</b><span>Device type, vendor and "default name" are inferred from broadcast strings and MAC address OUIs. They are frequently right and sometimes wrong, and are labelled so the kind of claim is clear.</span></div>
-      <div class="fact fade" data-i18n-html="limits.3"><b>One block is one block</b><span>A reading describes the place it was taken in and nothing beyond it. It is not a survey of a city, a carrier or a manufacturer, and a figure from it should never be quoted as one.</span></div>
+      <div class="fact fade" data-i18n-html="limits.2"><b>Inference is not identification</b><span>Device type, vendor and "default name" are inferred from broadcast strings and MAC address OUIs. They are frequently right and sometimes wrong, and are labeled so the kind of claim is clear.</span></div>
+      <div class="fact fade" data-i18n-html="limits.3"><b>One place is one place</b><span>A reading describes the place it was taken in and nothing beyond it. It is not a survey of a city, a carrier or a manufacturer, and a figure from it should never be quoted as one.</span></div>
       <div class="fact fade" data-i18n-html="limits.4"><b>None of the technique is new</b><span>Reading what is broadcast has been possible for twenty years, and mapping projects have covered the world with it. What is different here is the query and the action item derived from it; without a technical advantage, the barrier to entry is correspondingly low.</span></div>
       <div class="fact fade" data-i18n-html="limits.5"><b>Readings stay with whoever took them</b><span>Anything derived from location history carries obligations of its own, so none of it is distributed, sold, or provided to a third party. That is a property of the design, not a policy that could be relaxed later.</span></div>
     </div>
@@ -322,13 +322,13 @@ const _L = {
     "what.7.t":"전환 모드",
     "what.7.d":"WPA3를 활성화하면서 구형 기기 호환용으로 WPA2를 함께 허용한 상태 — 제조사 기본값입니다. 공격자는 WPA2 측을 선택하면 되고, 그 접속에는 WPA3의 보호가 전혀 적용되지 않습니다. 가중치가 가장 낮은 이유는 WPA3 부재보다는 낫기 때문입니다.",
     "what.5.t":"약한 암호",
-    "what.5.d":"WEP·초기 WPA·TKIP가 아직 혼재하는 경우. 가중치가 낮은 이유는, 대개 접속할 일 없는 노후 장비에서 관측되기 때문입니다. 관측되면 그 장비가 10년 넘게 방치됐다는 의미라, 수치보다 그 사실 자체가 신호입니다.",
+    "what.5.d":"WEP·초기 WPA·TKIP가 아직 혼재하는 경우. 가중치가 낮은 이유는, 대개 접속할 일 없는 노후 장비에서 관측되기 때문입니다.",
     "what.p1":"<b>단위는 망이 아닌 장소</b><span>장소는 <b>현장에서 사용자가 부여한 이름</b>입니다 — GPS 격자가 아닙니다. 실내에서는 좌표가 마지막 fix에 고정되어, 같은 날 저녁에 측정한 서로 다른 세 곳이 전부 같은 격자에 기록된 적이 있습니다. 구분한 것은 사용자가 입력한 이름뿐이었습니다. 정렬 순서는 <b>체류 시간 순</b>입니다 — 체류 시간이 곧 노출 시간이기 때문입니다.</span>",
     "what.p2":"<b>추측은 추측으로 표기</b><span>기본 SSID, MAC 주소 OUI로 추정한 제조사, 이름으로 추정한 기기 종류는 전부 정황 정보입니다. 정황으로 표시해 출력하고, 주소가 무작위화된 경우에는 틀린 제조사를 출력하는 대신 아무것도 출력하지 않습니다.</span>",
 
     "fix.tag":"조치","fix.h2":"조치 우선순위",
     "fix.lead":"항목이 아니라 조치 단위로 묶습니다 — 개방망·이블 트윈·보호 없음은 첫 조치가 같아서, 따로 나열하면 같은 조치를 세 번 반복하게 됩니다. 순서는 각 조치가 제거하는 점수 순입니다. 이것은 지시가 아니라 제안입니다 — 타인의 공유기 설정은 변경할 수 없으므로, 설정 변경이 필요한 항목은 「본인 장비가 있다면」 조건을 붙입니다.",
-    "fix.1":"<b>① 자동접속 해제, 수동 선택</b><span>개방망과 이블 트윈을 동시에 차단하는 조치라 항상 첫 번째입니다. 개방망은 접속 즉시 트래픽이 평문으로 흐르고, 같은 이름이 여럿이면 폰은 신호가 강한 쪽에 접속합니다 — 어느 쪽이 정상 AP 인지 구별하지 못합니다. <b>VPN은 이것을 대체하지 못합니다.</b> 접속 후 트래픽을 보호할 뿐, 위장 AP 접속 자체는 막지 못합니다.</span>",
+    "fix.1":"<b>① 자동접속 해제, 수동 선택</b><span>개방망과 이블 트윈을 동시에 차단하는 조치라 항상 첫 번째입니다. 개방망은 접속 즉시 트래픽이 평문으로 흐르고, 같은 이름이 여럿이면 폰은 신호가 강한 쪽에 접속합니다 — 어느 쪽이 정상 AP인지 구별하지 못합니다. <b>VPN은 이것을 대체하지 못합니다.</b> 접속 후 트래픽을 보호할 뿐, 위장 AP 접속 자체는 막지 못합니다.</span>",
     "fix.2":"<b>② 해당 장소에서는 VPN</b><span>PMF가 없으면 근처의 누구든 접속을 강제 해제할 수 있습니다. 해제 자체보다 <b>재접속 대상을 탐색하는 그 순간</b>이 문제이고, 이미 접속한 뒤에 남는 방어는 트래픽 암호화뿐입니다. ①이 접속을 막고, ②가 접속 이후를 보호합니다.</span>",
     "fix.3":"<b>③ 통신사 공용 WiFi 자동접속 해제</b><span>여러 AP가 한 SSID로 연결돼 있으면 폰이 확인 없이 핸드오버합니다. 핸드오버 순간이 개입하기 가장 쉬운 시점이고 — 폰이 이미 전환을 예상하고 있으므로 — 이동 경로도 그 망에 기록됩니다.</span>",
     "fix.4":"<b>④ WPS 해제 — 본인 장비가 있다면</b><span>PIN 방식은 8자리를 전반·후반으로 나눠 검증하는 설계 결함이 있어 수 시간 안에 무차별 대입으로 뚫립니다. 뚫린 뒤에는 <b>비밀번호를 변경해도 무효입니다</b> — WPS로 재진입합니다. 타인 장비라면 그 망은 「비밀번호가 보호하지 않는 망」으로 분류합니다.</span>",
@@ -355,7 +355,7 @@ const _L = {
     "limits.tag":"한계","limits.lead":"한계를 관측 옆에 두지 않으면 스캔 결과는 고발문으로 읽힙니다. 아래는 한 번의 관측이 주장할 수 있는 범위입니다.","limits.h2":"주장하지 않는 것",
     "limits.1":"<b>겨냥 대상 없음</b><span>결과는 노출도에 관한 것이지 책임 소재에 관한 것이 아닙니다. 망의 순위도, 소유자 특정도, 특정 AP에 대한 책임 귀속도 없습니다. 화면 정보만으로는 해당 AP를 특정할 수 없도록 의도적으로 출력을 제한합니다.</span>",
     "limits.2":"<b>추론과 식별은 별개</b><span>기기 종류·제조사·「기본 이름」은 브로드캐스트 문자열과 MAC 주소 OUI에서 추정한 것입니다. 대체로 맞고 가끔 틀리며, 어느 쪽인지 구분되게 표시합니다.</span>",
-    "limits.3":"<b>관측 범위는 그 한 단지</b><span>관측은 측정된 지점만 설명하며 그 너머를 설명하지 않습니다. 도시·통신사·제조사에 대한 조사가 아니며, 여기 수치가 그렇게 인용돼서도 안 됩니다.</span>",
+    "limits.3":"<b>한 지점은 한 지점</b><span>관측은 측정된 지점만 설명하며 그 너머를 설명하지 않습니다. 도시·통신사·제조사에 대한 조사가 아니며, 여기 수치가 그렇게 인용돼서도 안 됩니다.</span>",
     "limits.4":"<b>기술적 신규성 없음</b><span>브로드캐스트 수신은 20년 된 기법이고, 매핑 프로젝트들이 이미 전 세계를 다뤘습니다. 다른 것은 그 데이터에 대한 질의와 거기서 도출되는 조치뿐입니다. 기술적 우위가 아니므로 진입 장벽도 그만큼 낮습니다.</span>",
     "limits.5":"<b>관측은 취득자에게 귀속</b><span>위치 이력에서 파생된 기록에는 보호 의무가 따릅니다. 그래서 배포하지도, 판매하지도, 제3자에게 제공하지도 않습니다. 추후 변경 가능한 방침이 아니라 설계 속성입니다.</span>",
     "limits.cta":"포트폴리오 보기",

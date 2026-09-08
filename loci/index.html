@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>LOCI — Method of Loci by joygoLive</title>
-<meta name="description" content="A 3D memory-training room built on the method of loci, and a testbed for the whole pipeline: a room is one JSON file, four interchangeable runtimes draw it, and every session reports what the device did with it." />
+<meta name="description" content="A 3D memory-training room built on the method of loci, and a testbed for the whole pipeline: a room is one JSON file, five interchangeable runtimes draw it, and every session reports what the device did with it." />
 <meta property="og:title" content="LOCI — Method of Loci by joygoLive" />
 <meta property="og:description" content="A room you look around and place things in. The 3D is the method, not decoration." />
 <meta property="og:type" content="website" />
@@ -181,14 +181,14 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section class="hero">
   <div class="wrap">
     <div class="hero-kicker mono" data-i18n="hero.kicker">LOCI · Method of Loci</div>
-    <h1 data-i18n-html="hero.title">A room you can <span class="grad">walk your memory through</span>.</h1>
-    <p class="lead" data-i18n="hero.sub">Objects sit in places. You look around, then answer what was where. The 3D is not decoration — the method of loci has been spatial since antiquity, so the room is the method itself.</p>
+    <h1 data-i18n-html="hero.title">A room you look around, <span class="grad">then recall</span>.</h1>
+    <p class="lead" data-i18n="hero.sub">Objects sit in places. You look around, then answer what was where. The 3D is the method, not decoration: the method of loci has been spatial since antiquity.</p>
     <div class="cta-row">
       <a href="https://loci.joygolive.com" class="btn btn-primary" data-i18n="hero.cta1">Try a room</a>
       <a href="#found" class="btn btn-ghost" data-i18n="hero.cta2">What we measured</a>
     </div>
     <p class="reward" data-i18n-html="hero.reward"><b>It is also a testbed.</b> A room is one JSON file, five interchangeable runtimes draw the same scene, and every session reports frames, jank, input lag and load time from the device that ran it.</p>
-    <div class="byline" data-i18n-html="hero.byline">In the making at joygoLive. Open it on the device you want to see it on.</div>
+    <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here. In development. Open it on the device you want to see it on.</div>
   </div>
 </section>
 
@@ -200,7 +200,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <p class="lead" data-i18n="why.lead">The question was not whether a browser can draw a room. It can. The question is what it costs to author one, hand it to development, put it in front of a phone, and measure how that phone handled it. LOCI exists to run that loop once, end to end.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="why.f1.t">Content outside the code</b><span data-i18n="why.f1.d">If a new room needs a developer, planning does not own the content. A room is one file, and the directory is the catalogue.</span></div>
+      <div class="fact fade"><b data-i18n="why.f1.t">Content outside the code</b><span data-i18n="why.f1.d">If a new room needs a developer, planning does not own the content. A room is one file, and the directory is the catalog.</span></div>
       <div class="fact fade"><b data-i18n="why.f2.t">The runtime is a choice, not a foundation</b><span data-i18n="why.f2.d">Assets and content sit outside the renderer, so swapping engines changes one module. Five already do, Unity among them.</span></div>
       <div class="fact fade"><b data-i18n="why.f3.t">The device reports, not the spec sheet</b><span data-i18n="why.f3.d">Every session reports what was actually measured on it. Estimates of phone performance have been wrong twice already.</span></div>
     </div>
@@ -216,7 +216,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <div class="pts">
       <div class="pt fade" data-i18n-html="what.1"><b>One contract, three consumers</b><span>The validation rules live in a single file shared by the editor, the CLI, and the runtime. Two copies diverge, and then a room passes review and breaks on screen.</span></div>
-      <div class="pt fade" data-i18n-html="what.2"><b>Rules that are conditions, not taste</b><span>Places must differ in height, or they stop being distinct places and nothing is retained. Two items may not share a word, or scoring has no answer. A training room may not exceed sixteen places, because past that no one is memorising anything.</span></div>
+      <div class="pt fade" data-i18n-html="what.2"><b>Rules that are conditions, not taste</b><span>Places must differ in height, or they stop being distinct places and nothing is retained. Two items may not share a word, or scoring has no answer. A training room may not exceed sixteen places, because past that no one is memorizing anything.</span></div>
       <div class="pt fade" data-i18n-html="what.3"><b>Five runtimes, one scene</b><span>Raw WebGL2, three.js, raw WebGPU, Canvas 2D and Unity WebGL draw the same room from the same bytes. Only the selected runtime's library is fetched, so the transfer comparison is not skewed.</span></div>
       <div class="pt fade" data-i18n-html="what.4"><b>Nothing ships without review</b><span>Planning uploads, validation gates it, and it waits until development approves. Uploads, rejections and approvals are appended to a ledger everyone reads.</span></div>
     </div>
@@ -263,7 +263,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="found">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="found.tag">Measured</div>
-    <h2 data-i18n="found.h2">What the phone said</h2>
+    <h2 data-i18n="found.h2">Measured on the device</h2>
     <p class="lead" data-i18n="found.lead">One Android phone, five runtimes, seven rooms — and one room built to break them. Ninety-six sessions on the same scenario, and the numbers came back from the device.</p>
     </div>
 
@@ -271,7 +271,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="stat"><b>60fps</b><span data-i18n="found.s1">All five runtimes, 16.7 ms median, across seven rooms</span></div>
       <div class="stat"><b>0.8 → 36%</b><span data-i18n="found.s2">Hitching on the Versailles room, 3.7 M triangles. This is where they split</span></div>
       <div class="stat"><b>3.6 MB</b><span data-i18n="found.s3">Unity's additional transfer size. three.js adds 153 KB</span></div>
-      <div class="stat"><b>723 ms</b><span data-i18n="found.s4">Unity's first frame. The other four: 274 to 350 ms</span></div>
+      <div class="stat"><b>723 ms</b><span data-i18n="found.s4">Unity's first frame on the seven standard rooms. The other four: 274 to 350 ms</span></div>
     </div>
 
     <div class="rt-wrap"><table class="rt">
@@ -289,8 +289,8 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 
     <div class="pts">
       <div class="pt fade" data-i18n-html="found.1"><b>Below a certain load, the runtime does not matter</b><span>Seven rooms, up to 40 places and 80 pieces of furniture: all five held 16.7 ms on the phone. Draw calls ranged from 3 to 1,149 and the frame did not move.</span></div>
-      <div class="pt fade" data-i18n-html="found.2"><b>Above it, the hand-written renderers hit their limit first</b><span>On the Versailles room raw WebGL2 and WebGPU hitched on 21% and 36% of frames with only four draw calls — they push 1.8 million vertices with no culling. three.js splits the same scene into 254 calls and frustum-culls what is off screen: 0.8%. That is what the 153 KB pays for.</span></div>
-      <div class="pt fade" data-i18n-html="found.3"><b>Unity costs 24× the transfer of three.js and is not faster</b><span>3.6 MB on the wire, 723 ms to first frame against 350, 2.6% hitching on Versailles against 0.8. Once lighting, shadows and geometry were matched it did not look different either. At this content scale an engine offers no advantage; the integration stays so it can be re-measured when the rooms get heavier.</span></div>
+      <div class="pt fade" data-i18n-html="found.2"><b>Above it, the hand-written renderers hit their limit first</b><span>On the Versailles room raw WebGL2 and WebGPU hitched on 21% and 36% of frames with only four draw calls — they push 1.8 million vertices with no culling. three.js splits the same scene into 254 calls and frustum-culls what is off screen: 0.8%. The 153 KB buys the culling.</span></div>
+      <div class="pt fade" data-i18n-html="found.3"><b>Unity costs 24× the transfer of three.js and is not faster</b><span>3.6 MB on the wire, 723 ms to first frame against 350 on the standard rooms, 2.6% hitching on Versailles against 0.8. Once lighting, shadows and geometry were matched it did not look different either. At this content scale an engine offers no advantage; the integration stays so it can be re-measured when the rooms get heavier.</span></div>
       <div class="pt fade" data-i18n-html="found.4"><b>Earlier, on an iPhone over the public address</b><span>precompressing the mesh from 365 KB to 73 KB did not move the first frame — parsing, shader compilation and GPU upload were the cost, not transfer — and the first run paid 22–24 ms of input lag the second did not. Both reproduced. The four-runtime tie did not hold once the room got big enough.</span></div>
     </div>
   </div>
@@ -304,7 +304,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <p class="lead" data-i18n="limits.lead">The figures above are measurements. Below is what no measurement here supports.</p>
     </div>
     <div class="facts">
-      <div class="fact fade" data-i18n-html="limits.1"><b>No claim that it improves memory</b><span>The method of loci is a technique, and LOCI is an environment for practising it. Nothing here has been trialled, and no cognitive, medical or preventive benefit is asserted.</span></div>
+      <div class="fact fade" data-i18n-html="limits.1"><b>No claim that it improves memory</b><span>The method of loci is a technique, and LOCI is an environment for practicing it. Nothing here has been trialled, and no cognitive, medical or preventive benefit is asserted.</span></div>
       <div class="fact fade" data-i18n-html="limits.2"><b>The sample is personal hardware</b><span>Phones, tablets and laptops on hand — no device matrix, no device farm. Direction, not population statistics.</span></div>
       <div class="fact fade" data-i18n-html="limits.3"><b>Godot was measured and dropped; Unreal is not measured</b><span>Godot 4's empty web export came to 6.7 MB, twice Unity's, with no benefit. Unreal has had no official web target since 4.24. Unity's figure on the admin side is now a measurement, not an estimate.</span></div>
       <div class="fact fade" data-i18n-html="limits.4"><b>Payment is an interface slot, not a feature</b><span>Tier and price are in the schema and the operations view shows the fields, but nothing is charged and the figures are simulated.</span></div>
@@ -344,11 +344,11 @@ const _L = {
   ko:{
     "nav.why":"왜","nav.what":"무엇인가","nav.pipe":"공정","nav.found":"실측","nav.limits":"한계",
     "hero.kicker":"LOCI · 장소법",
-    "hero.title":"기억이 <span class=\"grad\">걸어 다니는 방</span>.",
-    "hero.sub":"물건이 자리에 놓입니다. 둘러본 뒤, 무엇이 어디 있었는지 답합니다. 3D는 장식이 아닙니다 — 장소법은 고대부터 공간을 쓰는 방법이었고, 그래서 방이 곧 방법입니다.",
+    "hero.title":"둘러보고, <span class=\"grad\">자리를 떠올리는</span> 방.",
+    "hero.sub":"물건이 자리에 놓입니다. 둘러본 뒤, 무엇이 어디 있었는지 답합니다. 3D는 장식이 아니라 방법 자체입니다. 장소법은 고대부터 공간을 쓰는 기법입니다.",
     "hero.cta1":"방 하나 해보기","hero.cta2":"무엇을 쟀나",
     "hero.reward":"<b>동시에 테스트베드입니다.</b> 방 하나가 JSON 파일 하나이고, 같은 장면을 다섯 런타임이 렌더링하며, 세션마다 프레임·끊김·입력 지연·로딩 시간이 기기에서 계측됩니다.",
-    "hero.byline":"joygoLive가 만들고 있는 것. 보고 싶은 기기에서 열어 보세요.",
+    "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 개발 중. 보고 싶은 기기에서 열어 보세요.",
 
     "why.tag":"전제","why.h2":"웹에서 3D 콘텐츠를 서비스한다는 것",
     "why.lead":"질문은 「브라우저가 방을 그릴 수 있는가」가 아니었습니다. 그것은 가능합니다. 질문은 방 하나를 제작해 개발에 인계하고, 폰에 배포하고, 그 폰에서 어떻게 동작했는지 계측하는 데 드는 비용입니다. LOCI는 그 루프를 처음부터 끝까지 한 번 실행하기 위해 존재합니다.",
@@ -381,18 +381,18 @@ const _L = {
     "pipe.4.d":"세션마다 프레임·하위 1%·끊김·입력 지연·발열 저하·로딩 구간·자리별 정답이 런타임별로 분리돼 수집됩니다. 피드백은 해당 섹션에 남고, 수용 여부가 결정돼 기록됩니다.",
     "pipe.4.g":"<b>관문:</b> 이력은 추가 전용(append-only). 삭제 코드 경로 없음.",
 
-    "found.tag":"실측","found.h2":"기기가 보고한 것",
+    "found.tag":"실측","found.h2":"기기에서 계측한 값",
     "found.lead":"안드로이드 폰 한 대, 런타임 다섯, 방 일곱 — 그리고 변별용으로 제작한 방 하나. 같은 시나리오로 96세션, 수치는 그 기기에서 회수됐습니다.",
     "found.s1":"일곱 방에서 다섯 런타임 모두 중앙값 16.7ms",
     "found.s2":"베르사유 방(삼각형 370만)의 끊김. 여기서 분기했습니다",
     "found.s3":"Unity의 추가 전송량. three.js는 153KB",
-    "found.s4":"Unity 첫 프레임. 나머지 넷은 274~350ms",
+    "found.s4":"일반 방 일곱에서 Unity 첫 프레임. 나머지 넷은 274~350ms",
     "found.t.rt":"런타임","found.t.api":"API","found.t.dc":"드로우콜","found.t.fr":"프레임",
     "found.t.hitch":"끊김","found.t.ttff":"첫 프레임","found.t.lib":"라이브러리",
     "found.tnote":"갤럭시 노트10+ 5G(SM-N976N · Android 12), 베르사유 방 — 자리 60, 가구 817, 삼각형 370만. 네트워크 변수를 제거하려고 로컬 연결로 실행했습니다. 끊김은 33ms를 넘긴 프레임의 비율, 라이브러리 크기는 실제 전송된 brotli 압축 크기, 각 2회 실행의 중앙값입니다.",
     "found.1":"<b>저부하에서는 런타임 무관</b><span>방 일곱, 자리 40·가구 80까지 — 다섯 런타임 전부 16.7ms였습니다. 드로우콜은 3에서 1,149까지 차이 났지만 프레임 시간은 변하지 않았습니다.</span>",
-    "found.2":"<b>고부하에서 먼저 한계에 도달하는 직접 구현 렌더러</b><span>베르사유 방에서 원시 WebGL2·WebGPU는 드로우콜 넷뿐인데 프레임의 21%·36%가 끊겼습니다 — 정점 180만을 컬링 없이 일괄 제출하기 때문입니다. three.js는 같은 장면을 254회로 나누는 대신 프러스텀 컬링으로 비가시 객체를 제외합니다: 0.8%. 153KB의 대가가 그것입니다.</span>",
-    "found.3":"<b>Unity, three.js의 24배 전송량에 속도 이득 없음</b><span>전송량 3.6MB, 첫 프레임 723ms 대 350ms, 베르사유 끊김 2.6% 대 0.8%. 조명·그림자·기하를 동일하게 맞춘 뒤에는 시각적 차이도 없었습니다. 이 콘텐츠 규모에서는 엔진의 이점이 없습니다 — 통합은 유지하고, 방이 무거워지면 재측정합니다.</span>",
+    "found.2":"<b>고부하에서 먼저 한계에 도달하는 직접 구현 렌더러</b><span>베르사유 방에서 원시 WebGL2·WebGPU는 드로우콜 넷뿐인데 프레임의 21%·36%가 끊겼습니다. 정점 180만을 컬링 없이 일괄 제출하기 때문입니다. three.js는 같은 장면을 254회로 나누고 프러스텀 컬링으로 비가시 객체를 제외합니다: 0.8%. 153KB는 그 컬링의 비용입니다.</span>",
+    "found.3":"<b>Unity, three.js의 24배 전송량에 속도 이득 없음</b><span>전송량 3.6MB, 일반 방에서 첫 프레임 723ms 대 350ms, 베르사유 끊김 2.6% 대 0.8%. 조명·그림자·기하를 동일하게 맞춘 뒤에는 시각적 차이도 없었습니다. 이 콘텐츠 규모에서는 엔진의 이점이 없습니다. 통합은 유지하고, 방이 무거워지면 재측정합니다.</span>",
     "found.4":"<b>앞서 아이폰·공개 주소에서 관측한 것</b><span>메시를 365KB에서 73KB로 줄여도 첫 프레임은 변하지 않았고 — 병목은 전송이 아니라 파싱·셰이더 컴파일·GPU 업로드였습니다 — 첫 세션만 입력 지연 22~24ms를 기록했습니다. 그 둘은 재현됐고, 「넷이 같다」는 결론은 방이 커지자 뒤집혔습니다.</span>",
 
     "limits.tag":"한계","limits.lead":"위는 계측 결과입니다. 아래는 그 계측이 뒷받침하지 않는 것입니다.","limits.h2":"주장하지 않는 것",
