@@ -88,7 +88,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="hero-kicker mono" data-i18n="hero.kicker">WAR · Web AR</div>
     <h1 data-i18n-html="hero.title">Augmented reality that opens <span class="grad">from a link</span>.</h1>
-    <p class="lead" data-i18n="hero.sub">Three demos in one page: an object at its real size standing on your floor, 3D standing on printed matter, and a face tracked in real time. Nothing is installed and no account is made — a link opens the camera, and every frame stays on the device.</p>
+    <p class="lead" data-i18n="hero.sub">Four demos in one page: an object at its real size standing in the room, 3D standing on printed matter, a face tracked in real time, and any real object cut out of the view and stood up beside them. Nothing is installed and no account is made — a link opens the camera, and every frame stays on the device.</p>
     <div class="cta-row">
       <a href="https://war.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta1">Open WAR</a>
       <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">What this does not claim</a>
@@ -117,14 +117,15 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="how" class="section">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="how.tag">Demos</div>
-    <h2 data-i18n="how.h2">Three things a camera can do, and one that keeps them</h2>
+    <h2 data-i18n="how.h2">Four things a camera can do, and one that keeps them</h2>
     <p class="lead" data-i18n="how.lead">Each demo proves one capability, and each is switched on or off from the admin page. Together they cover the ground most AR plans start from.</p>
     </div>
     <div class="steps">
-      <div class="step fade"><div><b data-i18n="how.s1.t">Place it in the room</b><span data-i18n="how.s1.d">Tap the floor and a real-size object stands there — a sofa, a massage chair, a 65-inch television — with its dimensions above it. Walk away and back and it has not moved. When it leaves the frame an arrow points to it and gives the distance, which is the demonstration: the system still knows where it is.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s1.t">Place it in the room</b><span data-i18n="how.s1.d">Tap and a real-size object stands in that direction — a sofa, a massage chair, a 65-inch television — with its dimensions above it. Walk away and come back and it is still there, give or take the error that accumulates. When it leaves the frame an arrow points to it and gives the distance, which is the demonstration: the system still knows where it is.</span></div></div>
       <div class="step fade"><div><b data-i18n="how.s2.t">Printed matter becomes the anchor</b><span data-i18n="how.s2.d">Point at the target card and 3D stands on it, tilting as the paper tilts. You can also register your own printed matter on the spot — frame it, capture it, and within seconds the demo says whether it can be recognised, because a plain or glossy surface cannot.</span></div></div>
       <div class="step fade"><div><b data-i18n="how.s3.t">A face, 478 points of it</b><span data-i18n="how.s3.d">The face surface is tracked in real time and worn items sit on it, following expression and angle. Eyewear and cosmetics try-on run on exactly this, and so do event filters — the same tracking, two different businesses.</span></div></div>
-      <div class="step fade"><div><b data-i18n="how.s4.t">And a capture button on all three</b><span data-i18n="how.s4.d">The camera view and the 3D are saved as one image. Without it a visitor tries something and closes the tab; with it they leave holding the result, which is what makes a campaign measurable.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s5.t">Your own object, cut from the view</b><span data-i18n="how.s5.d">Frame a real object, cut it out of the camera image, wipe the background away and set its actual width. It stands in the room as a card that always turns to face you, at the size you gave it, with a shadow under it. Not a reconstruction — a photograph standing up, which is enough to judge whether something fits.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s4.t">And a capture button on all four</b><span data-i18n="how.s4.d">The camera view and the 3D are saved as one image. Without it a visitor tries something and closes the tab; with it they leave holding the result, which is what makes a campaign measurable.</span></div></div>
     </div>
     <p class="reward" data-i18n-html="how.reward"><b>Nothing leaves the device.</b> Frames are processed in the browser and the target you register never reaches a server. What the demo does send is measurement — frame rate, device model, which demo was opened — so the operator can see where it runs badly.</p>
   </div>
@@ -149,6 +150,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
           <tr><td class="nm" data-i18n="build.r2">Placement</td><td data-i18n="build.r2b">Store fixtures, displays and booths reviewed where they will stand</td><td data-i18n="build.r2c">Rework on site</td></tr>
           <tr><td class="nm" data-i18n="build.r3">Printed matter</td><td data-i18n="build.r3b">Packaging that opens the instructions nobody reads</td><td data-i18n="build.r3c">Support calls</td></tr>
           <tr><td class="nm" data-i18n="build.r4">Printed matter</td><td data-i18n="build.r4b">Menus, exhibition captions, textbooks, tickets and authenticity marks</td><td data-i18n="build.r4c">A second app</td></tr>
+          <tr><td class="nm" data-i18n="build.r7">Cut-out</td><td data-i18n="build.r7b">A piece of furniture already in the room, moved somewhere else to see if it fits</td><td data-i18n="build.r7c">Moving it twice</td></tr>
           <tr><td class="nm" data-i18n="build.r5">Face</td><td data-i18n="build.r5b">Eyewear, hats and earrings tried on before buying</td><td data-i18n="build.r5c">Returns</td></tr>
           <tr><td class="nm" data-i18n="build.r6">Face</td><td data-i18n="build.r6b">Cosmetics in every shade a shelf cannot hold</td><td data-i18n="build.r6c">Held stock</td></tr>
         </tbody>
@@ -163,10 +165,11 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="limits.tag">Limits</div>
     <h2 data-i18n="limits.h2">What this does not claim</h2>
-    <p class="lead" data-i18n="limits.lead">Four of them, and each one shapes what can be planned on top.</p>
+    <p class="lead" data-i18n="limits.lead">Five of them, and each one shapes what can be planned on top.</p>
     </div>
     <div class="facts">
       <div class="fact fade"><b data-i18n="limits.f1.t">It forgets where things were</b><span data-i18n="limits.f1.d">Placement lasts for the session. Close the tab and the room is unknown again — yesterday's spot cannot be found, because the service that anchored a place to a map was retired with the engine. Printed matter is the way around it: the paper carries the coordinates.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f5.t">It does not find the floor</b><span data-i18n="limits.f5.d">The engine returns scattered feature points, not surfaces. On the two phones measured here a plane was never detected once, so the floor height is assumed from how high the phone is held. Objects share one ground and stay consistent with each other, but a placement is approximate, not surveyed.</span></div>
       <div class="fact fade"><b data-i18n="limits.f2.t">A preview, not a photograph</b><span data-i18n="limits.f2.d">The browser receives a preview stream, not the multi-frame processing a camera app applies to a picture. The image is softer than the one the phone's own camera produces, and no engine changes that — it is where the web ends.</span></div>
       <div class="fact fade"><b data-i18n="limits.f3.t">Old phones run it slowly</b><span data-i18n="limits.f3.d">A 2026 iPhone holds sixty frames a second; a 2019 Android holds seven. The demo measures this and says so on screen rather than letting it read as a fault, and the heavier demos can be switched off for such devices from the admin page.</span></div>
       <div class="fact fade"><b data-i18n="limits.f4.t">AR itself cannot be the product</b><span data-i18n="limits.f4.d">The engine licence allows free use, including commercial use, but not a paid service whose value comes mostly from the engine. AR has to be the method — the value has to come from the content, the venue or the transaction that surrounds it.</span></div>
@@ -203,7 +206,7 @@ const _L = {
     "nav.limits":"Limits",
     "hero.kicker":"WAR · Web AR",
     "hero.title":"Augmented reality that opens <span class=\"grad\">from a link</span>.",
-    "hero.sub":"Three demos in one page: an object at its real size standing on your floor, 3D standing on printed matter, and a face tracked in real time. Nothing is installed and no account is made — a link opens the camera, and every frame stays on the device.",
+    "hero.sub":"Four demos in one page: an object at its real size standing in the room, 3D standing on printed matter, a face tracked in real time, and any real object cut out of the view and stood up beside them. Nothing is installed and no account is made — a link opens the camera, and every frame stays on the device.",
     "hero.cta1":"Open WAR",
     "hero.cta2":"What this does not claim",
     "hero.reward":"<b>A phone browser is the whole requirement.</b> The engine ships as static files, so nothing is computed on a server and there is no store to pass through. Point the camera and it is already running.",
@@ -218,15 +221,22 @@ const _L = {
     "why.f3.t":"The screen says what it cannot do",
     "why.f3.d":"Each demo carries one line about its own boundary, and the page you are reading ends with four more. A demo that hides its limits produces a plan that breaks on contact with them, and that costs more than the demo was ever worth.",
     "how.tag":"Demos",
-    "how.h2":"Three things a camera can do, and one that keeps them",
+    "how.h2":"Four things a camera can do, and one that keeps them",
     "how.lead":"Each demo proves one capability, and each is switched on or off from the admin page. Together they cover the ground most AR plans start from.",
     "how.s1.t":"Place it in the room",
-    "how.s1.d":"Tap the floor and a real-size object stands there — a sofa, a massage chair, a 65-inch television — with its dimensions above it. Walk away and back and it has not moved. When it leaves the frame an arrow points to it and gives the distance, which is the demonstration: the system still knows where it is.",
+    "how.s1.d":"Tap and a real-size object stands in that direction — a sofa, a massage chair, a 65-inch television — with its dimensions above it. Walk away and come back and it is still there, give or take the error that accumulates. When it leaves the frame an arrow points to it and gives the distance, which is the demonstration: the system still knows where it is.",
     "how.s2.t":"Printed matter becomes the anchor",
     "how.s2.d":"Point at the target card and 3D stands on it, tilting as the paper tilts. You can also register your own printed matter on the spot — frame it, capture it, and within seconds the demo says whether it can be recognised, because a plain or glossy surface cannot.",
     "how.s3.t":"A face, 478 points of it",
     "how.s3.d":"The face surface is tracked in real time and worn items sit on it, following expression and angle. Eyewear and cosmetics try-on run on exactly this, and so do event filters — the same tracking, two different businesses.",
-    "how.s4.t":"And a capture button on all three",
+    "how.s5.t":"Your own object, cut from the view",
+    "how.s5.d":"Frame a real object, cut it out of the camera image, wipe the background away and set its actual width. It stands in the room as a card that always turns to face you, at the size you gave it, with a shadow under it. Not a reconstruction — a photograph standing up, which is enough to judge whether something fits.",
+    "build.r7":"Cut-out",
+    "build.r7b":"A piece of furniture already in the room, moved somewhere else to see if it fits",
+    "build.r7c":"Moving it twice",
+    "limits.f5.t":"It does not find the floor",
+    "limits.f5.d":"The engine returns scattered feature points, not surfaces. On the two phones measured here a plane was never detected once, so the floor height is assumed from how high the phone is held. Objects share one ground and stay consistent with each other, but a placement is approximate, not surveyed.",
+    "how.s4.t":"And a capture button on all four",
     "how.s4.d":"The camera view and the 3D are saved as one image. Without it a visitor tries something and closes the tab; with it they leave holding the result, which is what makes a campaign measurable.",
     "how.reward":"<b>Nothing leaves the device.</b> Frames are processed in the browser and the target you register never reaches a server. What the demo does send is measurement — frame rate, device model, which demo was opened — so the operator can see where it runs badly.",
     "build.tag":"Use cases",
@@ -256,7 +266,7 @@ const _L = {
     "build.reward":"<b>Registration is the author's job, not the visitor's.</b> A partner registers their own printed matter once; from then on a visitor only points a camera at it. The demo opens that step to the public so the question of what it takes is answered before it is asked.",
     "limits.tag":"Limits",
     "limits.h2":"What this does not claim",
-    "limits.lead":"Four of them, and each one shapes what can be planned on top.",
+    "limits.lead":"Five of them, and each one shapes what can be planned on top.",
     "limits.f1.t":"It forgets where things were",
     "limits.f1.d":"Placement lasts for the session. Close the tab and the room is unknown again — yesterday's spot cannot be found, because the service that anchored a place to a map was retired with the engine. Printed matter is the way around it: the paper carries the coordinates.",
     "limits.f2.t":"A preview, not a photograph",
@@ -274,7 +284,7 @@ const _L = {
     "nav.limits":"한계",
     "hero.kicker":"WAR · 웹 AR",
     "hero.title":"<span class=\"grad\">링크 하나로</span> 열리는 증강현실.",
-    "hero.sub":"한 페이지에 데모 셋 — 바닥에 서는 실물 크기 물체, 인쇄물 위에 서는 3D, 실시간으로 따라오는 얼굴. 설치도 계정도 없이 링크가 카메라를 열고, 영상은 기기를 떠나지 않습니다.",
+    "hero.sub":"한 페이지에 데모 넷 — 방에 서는 실물 크기 물체, 인쇄물 위에 서는 3D, 실시간으로 따라오는 얼굴, 그리고 화면 속 실물을 오려 세우기. 설치도 계정도 없이 링크가 카메라를 열고, 영상은 기기를 떠나지 않습니다.",
     "hero.cta1":"WAR 열기",
     "hero.cta2":"못 하는 것",
     "hero.reward":"<b>필요한 것은 폰 브라우저뿐입니다.</b> 엔진이 정적 파일이라 서버가 계산하지 않고 거쳐야 할 스토어도 없습니다. 카메라를 향하면 이미 돌고 있습니다.",
@@ -289,15 +299,22 @@ const _L = {
     "why.f3.t":"못 하는 것을 화면이 말합니다",
     "why.f3.d":"데모마다 자기 경계를 한 줄로 달고, 지금 보시는 페이지도 넷으로 끝맺습니다. 한계를 감춘 데모는 그 한계에 부딪히는 기획을 낳고, 그 비용이 데모의 값보다 큽니다.",
     "how.tag":"데모",
-    "how.h2":"카메라가 하는 일 셋, 그리고 그것을 남기는 하나",
+    "how.h2":"카메라가 하는 일 넷, 그리고 그것을 남기는 하나",
     "how.lead":"데모 하나가 능력 하나를 증명하고, 각각은 어드민에서 켜고 끕니다. 셋을 합치면 AR 기획이 출발하는 자리가 대부분 덮입니다.",
     "how.s1.t":"공간에 놓기",
-    "how.s1.d":"바닥을 탭하면 실물 크기 물체가 섭니다 — 소파·안마의자·65인치 TV, 치수가 위에 뜹니다. 걸어갔다 돌아와도 그대로입니다. 시야를 벗어나면 화살표가 방향과 거리를 가리키는데, 그것이 증명입니다 — 시스템이 여전히 그 자리를 알고 있다는 것.",
+    "how.s1.d":"탭한 방향에 실물 크기 물체가 섭니다 — 소파·안마의자·65인치 TV, 치수가 위에 뜹니다. 걸어갔다 돌아오면 그 자리에 있습니다, 쌓인 오차만큼을 빼면. 시야를 벗어나면 화살표가 방향과 거리를 가리키는데, 그것이 증명입니다 — 시스템이 여전히 그 자리를 알고 있다는 것.",
     "how.s2.t":"인쇄물이 기준이 됩니다",
     "how.s2.d":"표적 카드를 비추면 그 위에 3D 가 서고, 종이를 기울이면 같이 기웁니다. 자기 인쇄물을 그 자리에서 등록할 수도 있습니다 — 프레임에 채우고 찍으면 몇 초 안에 인식 가능 여부를 알려 줍니다. 민무늬나 코팅면은 안 되기 때문입니다.",
     "how.s3.t":"얼굴, 478개의 점",
     "how.s3.d":"얼굴 표면을 실시간으로 따라가고 그 위에 착용물이 표정과 각도를 따라 올라갑니다. 안경·화장품 착용 시연이 정확히 이것 위에서 돌고, 이벤트 필터도 같습니다 — 같은 추적, 다른 사업 둘.",
-    "how.s4.t":"그리고 셋 모두에 촬영",
+    "how.s5.t":"화면 속 실물을 오려 세우기",
+    "how.s5.d":"실물을 프레임에 담아 카메라 화면에서 오려내고, 배경을 지우고, 실제 폭을 정합니다. 정한 크기대로 방에 서고 늘 정면을 향하며 밑에 그림자가 깔립니다. 3D 복원이 아니라 사진을 세운 것이고, 들어가는지 가늠하는 데는 그것으로 충분합니다.",
+    "build.r7":"오려내기",
+    "build.r7b":"이미 방에 있는 가구를 다른 자리로 옮겨 들어가는지 보기",
+    "build.r7c":"두 번 옮기는 일",
+    "limits.f5.t":"바닥을 찾지는 못합니다",
+    "limits.f5.d":"엔진이 주는 것은 면이 아니라 흩어진 특징점입니다. 여기서 실측한 두 기기에서 평면은 한 번도 안 잡혔고, 그래서 바닥 높이는 기기를 든 높이로 가정합니다. 물체끼리는 같은 지면을 공유해 서로 어긋나지 않지만, 배치는 측량이 아니라 근사입니다.",
+    "how.s4.t":"그리고 넷 모두에 촬영",
     "how.s4.d":"카메라 화면과 3D 가 한 장으로 저장됩니다. 없으면 방문자는 해 보고 탭을 닫지만, 있으면 결과를 들고 나갑니다 — 캠페인이 측정 가능해지는 지점입니다.",
     "how.reward":"<b>기기를 떠나는 것이 없습니다.</b> 프레임은 브라우저 안에서 처리되고 등록한 표적도 서버에 닿지 않습니다. 데모가 보내는 것은 계측뿐입니다 — 프레임률·기기 모델·열어 본 데모 — 어디서 잘 안 도는지를 운영자가 보기 위한 값입니다.",
     "build.tag":"유즈케이스",
@@ -327,7 +344,7 @@ const _L = {
     "build.reward":"<b>등록은 만드는 쪽의 일이지 쓰는 쪽의 일이 아닙니다.</b> 파트너가 자기 인쇄물을 한 번 등록해 두면, 그다음부터 방문자는 카메라를 향하기만 합니다. 데모는 그 저작 단계를 공개해 두어 「무엇이 필요한가」가 묻기 전에 답해집니다.",
     "limits.tag":"한계",
     "limits.h2":"못 하는 것",
-    "limits.lead":"넷이고, 각각이 그 위에 무엇을 기획할 수 있는지를 정합니다.",
+    "limits.lead":"다섯이고, 각각이 그 위에 무엇을 기획할 수 있는지를 정합니다.",
     "limits.f1.t":"놓은 자리를 잊습니다",
     "limits.f1.d":"배치는 그 세션 동안입니다. 탭을 닫으면 공간을 다시 모르고 어제 그 자리는 못 찾습니다 — 장소를 지도에 붙여 두던 기능이 엔진과 함께 종료됐기 때문입니다. 인쇄물이 그 우회로입니다. 종이가 좌표를 들고 있습니다.",
     "limits.f2.t":"사진이 아니라 미리보기입니다",
