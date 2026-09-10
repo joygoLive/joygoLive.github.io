@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>POSY — A still-life studio that opens from a link, by joygoLive</title>
+<meta name="description" content="POSY is a still-life studio in the browser. No app, no sign-in, no score: arrange flowers, set a vase and a stage, stand it in your own room through the camera, and keep the picture. Eighteen flowers, five vases and five stages are generated in code — no mesh files, no textures." />
+<meta property="og:title" content="POSY — A still-life studio that opens from a link" />
+<meta property="og:description" content="Arrange flowers in a browser and photograph them. Every shape is generated at run time, so nothing is downloaded but the program itself." />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
+<meta name="theme-color" id="themeColor" content="#ffffff" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+/* 진입 흐름. 단계가 넷이고 각 단계에 무엇이 오가는지가 요점이라 카드보다 줄로 세운다. */
+.steps{display:grid;gap:12px;margin:30px 0 8px;counter-reset:st}
+.step{display:grid;grid-template-columns:34px 1fr;gap:0 14px;align-items:start;
+  padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
+.step::before{counter-increment:st;content:counter(st);
+  font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--accent);
+  width:26px;height:26px;display:grid;place-items:center;
+  border:1px solid var(--accent-line);border-radius:50%;background:var(--accent-dim)}
+.step b{display:block;font-size:14.5px;margin-bottom:2px}
+.step span{font-size:13.5px;line-height:1.7;color:var(--text2)}
+
+/* 신원 공개 단계. 무엇이 언제 보이는지가 이 서비스의 중심이라 표로 둔다. */
+.rv-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:30px 0 8px}
+.rv{width:100%;border-collapse:collapse;font-size:13.5px;min-width:520px}
+.rv th,.rv td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+.rv th{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
+.rv tr:last-child td{border-bottom:0}
+.rv .nm{font-weight:700;white-space:nowrap}
+.rv .no{color:var(--text-dim)}
+.rv .yes{color:var(--accent);font-weight:600}
+
+.reward{margin:18px 0 0;padding:13px 16px;max-width:46em;
+  font-size:13.5px;line-height:1.7;color:var(--text2);
+  background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:var(--radius)}
+.reward b{color:var(--text);font-weight:700}
+</style>
+<script>try{var t=localStorage.getItem('joygo_theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}
+/* 주소창 색은 첫 칠 전에 정해야 한다 — 나중에 고치면 흰 띠가 한 번 번쩍인다. */
+try{var d=document.documentElement.getAttribute('data-theme');
+document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(prefers-color-scheme:dark)').matches))?'#0b0e11':'#ffffff';}catch(e){}</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand-group">
+      <a href="../" class="brand" aria-label="joygoLive">
+        <svg viewBox="0 0 32 32" aria-hidden="true" class="mk"><rect class="mk-bg" x=".6" y=".6" width="30.8" height="30.8" rx="6.6"/><rect class="mk-joy" x="6.5" y="12.5" width="5" height="13.5" rx="1"/><rect class="mk-go" x="13.5" y="17" width="5" height="9" rx="1"/><rect class="mk-live" x="20.5" y="8" width="5" height="18" rx="1"/></svg>
+        <span>joy<span class="go">go</span><span class="dot">Live</span></span>
+      </a>
+      <span class="brand-sep" aria-hidden="true">/</span>
+      <a href="./" class="svc-name">POSY</a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#why" data-i18n="nav.why">Design</a>
+      <a href="#how" data-i18n="nav.how">What it does</a>
+      <a href="#build" data-i18n="nav.build">Use cases</a>
+      <a href="#limits" data-i18n="nav.limits">Limits</a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="language">
+      <button data-lang="en" onclick="setLang('en')">EN</button>
+      <button data-lang="ko" onclick="setLang('ko')">한국어</button>
+    </div>
+    <div class="theme-toggle" role="group" aria-label="theme">
+      <button data-theme-set="light" onclick="setTheme('light')" aria-label="Light" title="Light">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button data-theme-set="dark" onclick="setTheme('dark')" aria-label="Dark" title="Dark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+    <button class="menu-btn" aria-label="menu" aria-expanded="false" aria-controls="navLinks" onclick="toggleNav(this)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-kicker mono" data-i18n="hero.kicker">POSY · Still-life studio</div>
+    <h1 data-i18n-html="hero.title">Arrange flowers, and <span class="grad">keep the picture</span>.</span>.</h1>
+    <p class="lead" data-i18n="hero.sub">Open a link and a workbench appears. Pick a stem, set a vase, choose a stage, turn it, and save the shot. No install, no account, no score and no way to fail.</p>
+    <div class="cta-row">
+      <a href="https://posy.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta1">Open the studio</a>
+      <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">How it is built</a>
+    </div>
+    <p class="reward" data-i18n-html="hero.reward"><b>Runs in a phone browser.</b> The engine and every shape ship as code, so nothing is computed on a server and the camera frames never leave the device.</p>
+    <div class="byline" data-i18n-html="hero.byline">Built and run in-house.</div>
+  </div>
+</section>
+
+<!-- DESIGN -->
+<section id="why" class="section alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="why.tag">Design</div>
+    <h2 data-i18n="why.h2">Three decisions that shaped it</h2>
+    <p class="lead" data-i18n="why.lead">A browser has no install step and no store review, but it also has no patience: whatever has to be downloaded first is what decides whether anyone sees it.</p>
+    </div>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="why.f1.t">No mesh files, no textures</b><span data-i18n="why.f1.d">Eighteen flowers, five vases and five stages are generated in code at run time. A rose differs from a daisy by petal count, cup curvature and how far the tip is blunted — numbers, not assets. Nothing is downloaded but the program itself.</span></div>
+      <div class="fact fade"><b data-i18n="why.f2.t">No control depends on a tap</b><span data-i18n="why.f2.d">Every control fires on pointer-down or on a drag. Some mobile browsers drop plain taps in this runtime while drags still register, so the design routes around the worst case instead of relying on a fix.</span></div>
+      <div class="fact fade"><b data-i18n="why.f3.t">The camera never moves the viewer</b><span data-i18n="why.f3.d">The view orbits a fixed subject and never walks. There is no head bob, no field-of-view shift and no free look, so the motion that makes first-person scenes uncomfortable is absent by construction.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMOS -->
+<section id="how" class="section">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="how.tag">What it does</div>
+    <h2 data-i18n="how.h2">Pick, place, stage, keep</h2>
+    <p class="lead" data-i18n="how.lead">Four steps, and each one is one gesture.</p>
+    </div>
+    <div class="steps">
+      <div class="step fade"><div><b data-i18n="how.s1.t">Tap to add</b><span data-i18n="how.s1.d">Press a flower and it goes into the vase. Stems space themselves evenly: one stands upright, two face opposite ways, three divide the circle in thirds. Add a fourth and all four rearrange.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s2.t">Drag to place</b><span data-i18n="how.s2.d">Drag instead and that stem goes where you put it. Direction comes from your finger, lean comes from the height, and the distance is fixed by the stem. Stems that come too close push each other apart.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s3.t">Choose a stage</b><span data-i18n="how.s3.d">Blank, a seamless studio horizon, a room with a rug and framed pictures, or a window with curtains and a garden beyond it. Each stage carries its own light, and the camera pulls back far enough to show the set.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s5.t">Keep the picture</b><span data-i18n="how.s5.d">One button renders the scene without any interface and hands it to the share sheet, where it goes to the photo library or anywhere else in one step.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s4.t">Stand it in your room</b><span data-i18n="how.s4.d">The camera view becomes the background and the arrangement stands in it. Tone mapping runs over the camera frame too, so the flowers and the room share one cast rather than sitting in separate layers.</span></div></div>
+    </div>
+    <p class="reward" data-i18n-html="how.reward"><b>Turning, zooming and hiding the controls are one gesture each.</b> Drag anywhere to turn, and hiding the panel reframes the camera so the arrangement fills the screen.</p>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section id="build" class="section alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="build.tag">Use cases</div>
+    <h2 data-i18n="build.h2">What it turns into</h2>
+    <p class="lead" data-i18n="build.lead">A still-life studio is a small thing, but the parts underneath are the ones a catalogue needs.</p>
+    </div>
+    <div class="rv-wrap">
+      <table class="rv">
+        <thead><tr>
+          <th data-i18n="build.c0">Piece</th>
+          <th data-i18n="build.c1">What it shows</th>
+          <th data-i18n="build.c2">Where it goes</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="nm" data-i18n="build.r1">Run-time geometry</td><td data-i18n="build.r1b">Eighteen species from one petal and a parameter set</td><td data-i18n="build.r1c">Product variants without a model file for each</td></tr>
+          <tr><td class="nm" data-i18n="build.r2">Even distribution</td><td data-i18n="build.r2b">Stems rearrange as the count changes</td><td data-i18n="build.r2c">Seating charts, shelf layouts, any evenly divided arrangement</td></tr>
+          <tr><td class="nm" data-i18n="build.r3">Drag placement</td><td data-i18n="build.r3b">Direction from the finger, distance from the object</td><td data-i18n="build.r3c">Placing furniture and fittings under real constraints</td></tr>
+          <tr><td class="nm" data-i18n="build.r4">Stage presets</td><td data-i18n="build.r4b">Light, set and framing swap together</td><td data-i18n="build.r4c">One product photographed against several backdrops</td></tr>
+          <tr><td class="nm" data-i18n="build.r7">Telemetry</td><td data-i18n="build.r7b">Where people stop, which controls go unfound</td><td data-i18n="build.r7c">Deciding what to fix from numbers rather than guesses</td></tr>
+          <tr><td class="nm" data-i18n="build.r5">Camera composite</td><td data-i18n="build.r5b">The room behind, the object in front, one photograph</td><td data-i18n="build.r5c">Seeing an item in your own space before buying</td></tr>
+          <tr><td class="nm" data-i18n="build.r6">Share sheet</td><td data-i18n="build.r6b">Straight to the photo library or a message</td><td data-i18n="build.r6c">Results that leave without an account</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="reward" data-i18n-html="build.reward"><b>Every piece already runs in a phone browser.</b> Moving this to a catalogue leaves only the item data to build.</p>
+  </div>
+</section>
+
+<!-- LIMITS -->
+<section id="limits" class="section">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="limits.tag">Limits</div>
+    <h2 data-i18n="limits.h2">What this does not claim</h2>
+    <p class="lead" data-i18n="limits.lead">A demo is worth what it can be checked against.</p>
+    </div>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="limits.f1.t">It is not a game</b><span data-i18n="limits.f1.d">There is no goal, no failure and no scoring. It is a toy, and calling it a game would set the wrong expectation.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f5.t">Frame rate depends on the stage</b><span data-i18n="limits.f5.d">An empty background holds sixty frames a second on the test phone; the dressed rooms sit lower because there is more for the light to reach.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f2.t">The flowers are not botanically accurate</b><span data-i18n="limits.f2.d">Species are approximations by petal count and silhouette, not reproductions. They are meant to be told apart at a glance, not identified.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f3.t">The composite is not tracked</b><span data-i18n="limits.f3.d">The camera view is a backdrop. The arrangement does not stay anchored to a spot on the floor when the phone moves.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f4.t">iOS is not fully verified</b><span data-i18n="limits.f4.d">It is built to route around the known input problem, but the checks were run on Android. Where iOS behaves differently we have not confirmed it yet.</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true" class="mk"><rect class="mk-bg" x=".6" y=".6" width="30.8" height="30.8" rx="6.6"/><rect class="mk-joy" x="6.5" y="12.5" width="5" height="13.5" rx="1"/><rect class="mk-go" x="13.5" y="17" width="5" height="9" rx="1"/><rect class="mk-live" x="20.5" y="8" width="5" height="18" rx="1"/></svg><span>joy<span class="go">go</span><span class="dot" style="color:var(--accent)">Live</span></span></span>
+    <nav class="foot-links">
+      <a href="../"><span data-i18n="ft.home">Home</span></a>
+      <a href="../uqh/">UQH</a>
+      <a href="../amc/">AMC</a>
+      <a href="../bor/">BOR</a>
+      <a href="../wcp/">WCP</a>
+      <a href="../loci/">LOCI</a>
+      <a href="../bcon/">BCON</a>
+      <a href="../mp/">MP</a>
+      <a href="../cue/">CUE</a>
+      <a href="../posy/">POSY</a>
+    </nav>
+    <span data-i18n="ft.copy">© 2026 joygoLive. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+const _L = {
+  en:{
+    "ft.home":"Home",
+    "ft.copy":"© 2026 joygoLive. All rights reserved.",
+    "nav.why":"Design",
+    "nav.how":"What it does",
+    "nav.build":"Use cases",
+    "nav.limits":"Limits",
+    "hero.kicker":"POSY · Still-life studio",
+    "hero.title":"Arrange flowers, and <span class=\"grad\">keep the picture</span>.",
+    "hero.sub":"Open a link and a workbench appears. Pick a stem, set a vase, choose a stage, turn it, and save the shot. No install, no account, no score and no way to fail.",
+    "hero.cta1":"Open the studio",
+    "hero.cta2":"How it is built",
+    "hero.reward":"<b>Runs in a phone browser.</b> The engine and every shape ship as code, so nothing is computed on a server and the camera frames never leave the device.",
+    "hero.byline":"Built and run in-house.",
+    "why.tag":"Design",
+    "why.h2":"Three decisions that shaped it",
+    "why.lead":"A browser has no install step and no store review, but it also has no patience: whatever has to be downloaded first is what decides whether anyone sees it.",
+    "why.f1.t":"No mesh files, no textures",
+    "why.f1.d":"Eighteen flowers, five vases and five stages are generated in code at run time. A rose differs from a daisy by petal count, cup curvature and how far the tip is blunted — numbers, not assets. Nothing is downloaded but the program itself.",
+    "why.f2.t":"No control depends on a tap",
+    "why.f2.d":"Every control fires on pointer-down or on a drag. Some mobile browsers drop plain taps in this runtime while drags still register, so the design routes around the worst case instead of relying on a fix.",
+    "why.f3.t":"The camera never moves the viewer",
+    "why.f3.d":"The view orbits a fixed subject and never walks. There is no head bob, no field-of-view shift and no free look, so the motion that makes first-person scenes uncomfortable is absent by construction.",
+    "how.tag":"What it does",
+    "how.h2":"Pick, place, stage, keep",
+    "how.lead":"Four steps, and each one is one gesture.",
+    "how.s1.t":"Tap to add",
+    "how.s1.d":"Press a flower and it goes into the vase. Stems space themselves evenly: one stands upright, two face opposite ways, three divide the circle in thirds. Add a fourth and all four rearrange.",
+    "how.s2.t":"Drag to place",
+    "how.s2.d":"Drag instead and that stem goes where you put it. Direction comes from your finger, lean comes from the height, and the distance is fixed by the stem. Stems that come too close push each other apart.",
+    "how.s3.t":"Choose a stage",
+    "how.s3.d":"Blank, a seamless studio horizon, a room with a rug and framed pictures, or a window with curtains and a garden beyond it. Each stage carries its own light, and the camera pulls back far enough to show the set.",
+    "how.s4.t":"Stand it in your room",
+    "how.s4.d":"The camera view becomes the background and the arrangement stands in it. Tone mapping runs over the camera frame too, so the flowers and the room share one cast rather than sitting in separate layers.",
+    "how.s5.t":"Keep the picture",
+    "how.s5.d":"One button renders the scene without any interface and hands it to the share sheet, where it goes to the photo library or anywhere else in one step.",
+    "how.reward":"<b>Turning, zooming and hiding the controls are one gesture each.</b> Drag anywhere to turn, and hiding the panel reframes the camera so the arrangement fills the screen.",
+    "build.tag":"Use cases",
+    "build.h2":"What it turns into",
+    "build.lead":"A still-life studio is a small thing, but the parts underneath are the ones a catalogue needs.",
+    "build.c0":"Piece",
+    "build.c1":"What it shows",
+    "build.c2":"Where it goes",
+    "build.r1":"Run-time geometry",
+    "build.r1b":"Eighteen species from one petal and a parameter set",
+    "build.r1c":"Product variants without a model file for each",
+    "build.r2":"Even distribution",
+    "build.r2b":"Stems rearrange as the count changes",
+    "build.r2c":"Seating charts, shelf layouts, any evenly divided arrangement",
+    "build.r3":"Drag placement",
+    "build.r3b":"Direction from the finger, distance from the object",
+    "build.r3c":"Placing furniture and fittings under real constraints",
+    "build.r4":"Stage presets",
+    "build.r4b":"Light, set and framing swap together",
+    "build.r4c":"One product photographed against several backdrops",
+    "build.r5":"Camera composite",
+    "build.r5b":"The room behind, the object in front, one photograph",
+    "build.r5c":"Seeing an item in your own space before buying",
+    "build.r6":"Share sheet",
+    "build.r6b":"Straight to the photo library or a message",
+    "build.r6c":"Results that leave without an account",
+    "build.r7":"Telemetry",
+    "build.r7b":"Where people stop, which controls go unfound",
+    "build.r7c":"Deciding what to fix from numbers rather than guesses",
+    "build.reward":"<b>Every piece already runs in a phone browser.</b> Moving this to a catalogue leaves only the item data to build.",
+    "limits.tag":"Limits",
+    "limits.h2":"What this does not claim",
+    "limits.lead":"A demo is worth what it can be checked against.",
+    "limits.f1.t":"It is not a game",
+    "limits.f1.d":"There is no goal, no failure and no scoring. It is a toy, and calling it a game would set the wrong expectation.",
+    "limits.f2.t":"The flowers are not botanically accurate",
+    "limits.f2.d":"Species are approximations by petal count and silhouette, not reproductions. They are meant to be told apart at a glance, not identified.",
+    "limits.f3.t":"The composite is not tracked",
+    "limits.f3.d":"The camera view is a backdrop. The arrangement does not stay anchored to a spot on the floor when the phone moves.",
+    "limits.f4.t":"iOS is not fully verified",
+    "limits.f4.d":"It is built to route around the known input problem, but the checks were run on Android. Where iOS behaves differently we have not confirmed it yet.",
+    "limits.f5.t":"Frame rate depends on the stage",
+    "limits.f5.d":"An empty background holds sixty frames a second on the test phone; the dressed rooms sit lower because there is more for the light to reach."
+  },
+  ko:{
+    "ft.home":"홈",
+    "ft.copy":"© 2026 joygoLive. All rights reserved.",
+    "nav.why":"설계",
+    "nav.how":"하는 일",
+    "nav.build":"쓰임",
+    "nav.limits":"한계",
+    "hero.kicker":"POSY · 정물 스튜디오",
+    "hero.title":"꽃을 꽂고 <span class=\"grad\">사진으로 남깁니다</span>.",
+    "hero.sub":"링크를 열면 작업대가 나옵니다. 꽃을 고르고, 화병을 정하고, 무대를 골라 돌려 본 뒤 찍습니다. 설치도 계정도 없고 점수도 실패도 없습니다.",
+    "hero.cta1":"스튜디오 열기",
+    "hero.cta2":"어떻게 만들었나",
+    "hero.reward":"<b>폰 브라우저에서 돌아갑니다.</b> 엔진과 형상을 모두 코드로 싣기 때문에 서버에서 계산하는 것이 없고, 카메라 영상도 기기를 떠나지 않습니다.",
+    "hero.byline":"직접 개발하고 직접 운영합니다.",
+    "why.tag":"설계",
+    "why.h2":"형태를 정한 세 가지 결정",
+    "why.lead":"브라우저에는 설치도 심사도 없지만 기다려 주지도 않습니다. 먼저 내려받아야 하는 것의 크기가 곧 사람들이 보느냐 마느냐를 정합니다.",
+    "why.f1.t":"메시 파일도 텍스처도 없습니다",
+    "why.f1.d":"꽃 18종, 화병 5종, 무대 5종을 실행 중에 코드로 만듭니다. 장미와 데이지의 차이는 꽃잎 수, 컵 곡률, 끝의 뭉툭함이라는 숫자입니다. 에셋이 아닙니다. 내려받는 것은 프로그램 자체뿐입니다.",
+    "why.f2.t":"탭에 기대는 조작이 없습니다",
+    "why.f2.d":"모든 조작이 포인터를 누르는 순간 또는 끄는 동작으로 발동합니다. 일부 모바일 브라우저는 이 런타임에서 단순 탭을 놓치고 드래그만 받습니다. 고쳐지기를 기다리는 대신 설계로 그 경우를 비켜 갑니다.",
+    "why.f3.t":"카메라가 사람을 움직이지 않습니다",
+    "why.f3.d":"시점은 고정된 대상 주위를 돌 뿐 걸어 다니지 않습니다. 흔들림도, 화각 변화도, 자유 시선도 없습니다. 1인칭 화면이 불편해지는 원인이 애초에 없습니다.",
+    "how.tag":"하는 일",
+    "how.h2":"고르고, 꽂고, 무대를 세우고, 남깁니다",
+    "how.lead":"네 단계이고 각 단계가 동작 하나입니다.",
+    "how.s1.t":"누르면 꽂힙니다",
+    "how.s1.d":"꽃을 누르면 화병에 들어갑니다. 줄기는 개수에 맞춰 스스로 벌어집니다. 하나면 곧게 서고, 둘이면 정반대로, 셋이면 원을 삼등분합니다. 넷째를 더하면 넷이 다시 자리를 나눕니다.",
+    "how.s2.t":"끌면 그 자리에",
+    "how.s2.d":"끌면 그 줄기는 놓은 자리로 갑니다. 방향은 손가락이, 기울기는 높이가 정하고 거리는 줄기 길이가 정합니다. 서로 너무 가까운 줄기는 밀어냅니다.",
+    "how.s3.t":"무대를 고릅니다",
+    "how.s3.d":"빈 배경, 이음매 없는 스튜디오 호리존, 러그와 액자가 있는 방, 커튼 너머로 정원이 보이는 창. 무대마다 조명이 따로 있고 세트가 보이도록 카메라가 물러납니다.",
+    "how.s4.t":"내 공간에 세웁니다",
+    "how.s4.d":"카메라 화면이 배경이 되고 그 안에 작품이 섭니다. 톤매핑이 카메라 영상에도 걸려 꽃과 방이 한 색조로 묶입니다. 층이 따로 놀지 않습니다.",
+    "how.s5.t":"사진으로 남깁니다",
+    "how.s5.d":"버튼 하나로 화면 요소 없이 장면만 그려 공유 시트로 넘깁니다. 사진 앱이든 다른 어디든 한 번에 갑니다.",
+    "how.reward":"<b>돌리기·확대·제어판 감추기도 동작 하나입니다.</b> 화면 어디를 끌어도 시점이 돌고, 감추면 작품이 화면을 꽉 채우도록 카메라가 다시 잡습니다.",
+    "build.tag":"쓰임",
+    "build.h2":"무엇으로 이어지나",
+    "build.lead":"정물 스튜디오는 작은 것이지만 그 아래 부품은 카탈로그가 필요로 하는 것들입니다.",
+    "build.c0":"부품",
+    "build.c1":"보여 주는 것",
+    "build.c2":"이어지는 곳",
+    "build.r1":"실행 중 형상 생성",
+    "build.r1b":"꽃잎 한 장과 숫자 묶음으로 18종",
+    "build.r1c":"모델 파일 없이 만드는 제품 변형",
+    "build.r2":"균등 분할 배치",
+    "build.r2b":"개수가 바뀌면 줄기가 다시 자리를 나눔",
+    "build.r2c":"좌석 배치, 진열 배치, 균등하게 나누는 모든 것",
+    "build.r3":"끌어서 배치",
+    "build.r3b":"방향은 손가락이, 거리는 물체가 정함",
+    "build.r3c":"실제 제약 아래에서 가구와 집기를 놓기",
+    "build.r4":"무대 프리셋",
+    "build.r4b":"조명·세트·프레이밍이 함께 바뀜",
+    "build.r4c":"한 제품을 여러 배경에서 촬영",
+    "build.r5":"카메라 합성",
+    "build.r5b":"뒤에는 방, 앞에는 물건, 사진은 한 장",
+    "build.r5c":"사기 전에 내 공간에서 확인",
+    "build.r6":"공유 시트",
+    "build.r6b":"사진 앱이나 메시지로 바로",
+    "build.r6c":"계정 없이 결과물이 밖으로 나감",
+    "build.r7":"계측",
+    "build.r7b":"어디서 멈추는지, 어떤 조작을 못 찾는지",
+    "build.r7c":"짐작이 아니라 숫자로 고칠 곳을 정함",
+    "build.reward":"<b>모든 부품이 이미 폰 브라우저에서 돕니다.</b> 카탈로그로 옮길 때 새로 만들 것은 품목 데이터뿐입니다.",
+    "limits.tag":"한계",
+    "limits.h2":"주장하지 않는 것",
+    "limits.lead":"데모의 값어치는 확인할 수 있는 만큼입니다.",
+    "limits.f1.t":"게임이 아닙니다",
+    "limits.f1.d":"목표도 실패도 점수도 없습니다. 토이입니다. 게임이라고 부르면 기대가 어긋납니다.",
+    "limits.f2.t":"식물학적으로 정확하지 않습니다",
+    "limits.f2.d":"꽃잎 수와 실루엣으로 종을 흉내 낸 것이지 재현이 아닙니다. 한눈에 구분되는 것이 목적이지 동정이 아닙니다.",
+    "limits.f3.t":"합성은 추적하지 않습니다",
+    "limits.f3.d":"카메라 화면은 배경입니다. 폰을 움직여도 작품이 바닥의 한 지점에 고정되어 있지는 않습니다.",
+    "limits.f4.t":"iOS 는 검증이 끝나지 않았습니다",
+    "limits.f4.d":"알려진 입력 문제를 비켜 가도록 만들었지만 확인은 안드로이드에서 했습니다. iOS 가 다르게 동작하는 지점은 아직 확인하지 못했습니다.",
+    "limits.f5.t":"프레임은 무대에 따라 다릅니다",
+    "limits.f5.d":"빈 배경은 시험 기기에서 초당 60프레임을 유지하고, 세트를 채운 방은 그보다 낮습니다. 빛이 닿을 면이 늘어난 만큼입니다."
+  }
+};
+</script>
+<script src="../assets/i18n.js"></script>
+<script data-goatcounter="https://joygolive.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

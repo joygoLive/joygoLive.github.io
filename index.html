@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>joygoLive — Service incubation lab</title>
-<meta name="description" content="joygoLive is a service incubation lab: quantum middleware, motion coaching, an on-chain raffle, web measurement, memory training, wireless environment checks, shared listening with an AI DJ, in-venue matching, web AR. Built here, run here." />
+<meta name="description" content="joygoLive is a service incubation lab: quantum middleware, motion coaching, an on-chain raffle, web measurement, memory training, wireless environment checks, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio. Built here, run here." />
 <meta property="og:title" content="joygoLive — Service incubation lab" />
-<meta property="og:description" content="Quantum infrastructure, motion coaching, an on-chain raffle, web measurement, memory training, wireless environment checks, shared listening with an AI DJ, in-venue matching, web AR. Unrelated fields, all built here and already running." />
+<meta property="og:description" content="Quantum infrastructure, motion coaching, an on-chain raffle, web measurement, memory training, wireless environment checks, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio. Unrelated fields, all built here and already running." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2" />
 <meta name="theme-color" id="themeColor" content="#ffffff" />
@@ -42,6 +42,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <a href="mp/">MP</a>
       <a href="cue/">CUE</a>
       <a href="war/">WAR</a>
+      <a href="posy/">POSY</a>
       <a href="#ideas" data-i18n="nav.ideas">Bring an idea</a>
     </nav>
     <div class="lang-toggle" role="group" aria-label="language">
@@ -85,7 +86,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="sec-head">
       <div class="eyebrow" data-i18n="svc.tag">Portfolio</div>
       <h2 data-i18n="svc.h2">What has shipped so far</h2>
-      <p class="lead" data-i18n="svc.lead">Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check, shared listening with an AI DJ, in-venue matching, web AR, and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house, neither licensed nor resold.</p>
+      <p class="lead" data-i18n="svc.lead">Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house, neither licensed nor resold.</p>
     </div>
 
     <div class="svc-grid">
@@ -262,6 +263,25 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
         </div>
       </a>
 
+      <!-- POSY -->
+      <a class="svc-card fade" href="posy/">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/><path d="M12 6.5C12 4.6 13.3 3 15 3s2.2 1.4 1.8 3M12 6.5C12 4.6 10.7 3 9 3S6.8 4.4 7.2 6M9.6 10.6c-1.7-.8-3.6-.3-4.3 1.2s.2 3.2 1.9 3.6M14.4 10.6c1.7-.8 3.6-.3 4.3 1.2s-.2 3.2-1.9 3.6"/><path d="M12 11.5V21"/><path d="M8.5 21h7l-.7-4.2H9.2Z"/></svg>
+        <div class="svc-head">
+          <h3>POSY</h3>
+          <span class="badge beta" data-i18n="svc.b.beta">Beta</span>
+        </div>
+        <span class="svc-full" data-i18n="svc.posy.full">A still-life studio that opens from a link</span>
+        <p data-i18n="svc.posy.d">Arrange flowers in a browser and photograph them. Pick a stem, set a vase, choose a stage, turn it, and keep the shot. Nothing installed, no account, no score and no way to fail. Flowers, vases and sets carry no mesh files and no textures: every shape is generated at run time.</p>
+        <ul class="svc-points">
+          <li data-i18n="svc.posy.1">Eighteen flowers, five vases, five stages — all built in code, so the whole thing is a single small download</li>
+          <li data-i18n="svc.posy.2">Tap to add and the stems space themselves evenly; drag and one goes exactly where you put it</li>
+          <li data-i18n="svc.posy.3">Stand the arrangement in your own room through the camera and save the composite as one photo</li>
+        </ul>
+        <div class="svc-foot">
+          <span class="svc-go"><span data-i18n="svc.more">Read more</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
     </div>
 
   </div>
@@ -341,6 +361,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <a href="mp/">MP</a>
       <a href="cue/">CUE</a>
       <a href="war/">WAR</a>
+      <a href="posy/">POSY</a>
     </nav>
     <span data-i18n="ft.copy">© 2026 joygoLive. All rights reserved.</span>
   </div>
@@ -357,7 +378,7 @@ const _L = {
     "hero.byline":"<b class=\"t-joy\">joy</b>, realized when it <b class=\"t-go\">go</b>es <b class=\"t-live\">Live</b>.",
 
     "svc.tag":"Portfolio","svc.h2":"What has shipped so far",
-    "svc.lead":"Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check, shared listening with an AI DJ, in-venue matching, web AR, and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house, neither licensed nor resold.",
+    "svc.lead":"Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house, neither licensed nor resold.",
     "svc.more":"Read more","svc.b.beta":"Beta","svc.b.dev":"In development","svc.b.test":"Testnet",
 
     "svc.uqh.full":"Universal Quantum Hub · Quantum computing",
@@ -410,6 +431,11 @@ const _L = {
     "svc.war.1":"A link opens the camera. The engine is static files, so nothing is computed on a server",
     "svc.war.2":"Place a sofa at its real size, cut a real object out of the camera view, or register your own printed matter as a target on the spot",
     "svc.war.3":"Which demos run, what the objects are, every line of text: configuration, not code",
+    "svc.posy.full":"A still-life studio that opens from a link",
+    "svc.posy.d":"Arrange flowers in a browser and photograph them. Pick a stem, set a vase, choose a stage, turn it, and keep the shot. Nothing installed, no account, no score and no way to fail. Flowers, vases and sets carry no mesh files and no textures: every shape is generated at run time.",
+    "svc.posy.1":"Eighteen flowers, five vases, five stages — all built in code, so the whole thing is a single small download",
+    "svc.posy.2":"Tap to add and the stems space themselves evenly; drag and one goes exactly where you put it",
+    "svc.posy.3":"Stand the arrangement in your own room through the camera and save the composite as one photo",
 
     "nav.ideas":"Bring an idea",
     "id.tag":"Bring an idea",
@@ -436,7 +462,7 @@ const _L = {
     "hero.byline":"<b class=\"t-joy\">joy</b>, realized when it <b class=\"t-go\">go</b>es <b class=\"t-live\">Live</b>.",
 
     "svc.tag":"포트폴리오","svc.h2":"지금까지 출시한 것",
-    "svc.lead":"양자 인프라, 운동 코칭, 온체인 복권, 웹 실측, 무선 환경 점검, 동시 청취, 같은 공간 매칭, 웹 AR, 그리고 개발 중인 하나: 기억 훈련. 서로 무관한 분야이며 전부 실제 운영 중인 서비스입니다. 각각 직접 개발하고 직접 운영합니다. 라이선스 도입도 재판매도 없습니다.",
+    "svc.lead":"양자 인프라, 운동 코칭, 온체인 복권, 웹 실측, 무선 환경 점검, 동시 청취, 같은 공간 매칭, 웹 AR, 정물 스튜디오, 그리고 개발 중인 하나: 기억 훈련. 서로 무관한 분야이며 전부 실제 운영 중인 서비스입니다. 각각 직접 개발하고 직접 운영합니다. 라이선스 도입도 재판매도 없습니다.",
     "svc.more":"자세히 보기","svc.b.beta":"베타","svc.b.dev":"개발 중","svc.b.test":"테스트넷",
 
     "svc.uqh.full":"Universal Quantum Hub · 양자컴퓨팅",
@@ -489,6 +515,11 @@ const _L = {
     "svc.war.1":"링크에서 카메라가 열립니다. 엔진이 정적 파일이라 서버가 계산하지 않습니다",
     "svc.war.2":"소파를 실물 크기로 놓고, 화면 속 실물을 오려 세우고, 자기 인쇄물을 그 자리에서 표적으로 등록합니다",
     "svc.war.3":"어떤 데모를 띄울지·물체가 무엇인지·모든 문장이 설정 파일에 있습니다",
+    "svc.posy.full":"링크로 열리는 정물 스튜디오",
+    "svc.posy.d":"브라우저에서 꽃을 꽂고 사진으로 남깁니다. 꽃을 고르고, 화병을 정하고, 무대를 골라 돌려 본 뒤 찍습니다. 설치도 계정도 없고 점수도 실패도 없습니다. 꽃과 화병과 무대에 메시 파일도 텍스처도 들어가지 않습니다. 모든 형태를 실행 중에 만듭니다.",
+    "svc.posy.1":"꽃 18종, 화병 5종, 무대 5종을 전부 코드로 만들어 내려받는 것은 한 덩어리뿐입니다",
+    "svc.posy.2":"누르면 개수에 맞춰 줄기가 균등하게 벌어지고, 끌면 놓은 자리에 그대로 꽂힙니다",
+    "svc.posy.3":"카메라로 내 공간에 세워 보고 합성한 사진 한 장으로 저장합니다",
 
     "nav.ideas":"제안",
     "id.tag":"제안",
