@@ -14,6 +14,10 @@ wcp/index.html      WCP — Web Capability Probe
 loci/index.html     LOCI — Method of Loci (3D memory palace)
 bcon/index.html     BCON — wireless environment check
 mp/index.html       MP — Music Play (synchronised listening on one server clock, weighted requests, AI DJ; web app at mp.joygolive.com)
+cue/index.html      CUE — matching among the people already in the room
+war/index.html      WAR — web AR that opens from a link
+posy/index.html     POSY — a still-life studio that opens from a link
+omp/index.html      OMP — a notification web app per organization (QR sign-up, web push, per-organization admin)
 assets/site.css     shared design system — tokens, shell, every component
 assets/i18n.js      shared runtime — EN/KO switch, scroll fade-in, mobile menu
 favicon.svg
