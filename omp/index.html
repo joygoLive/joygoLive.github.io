@@ -169,6 +169,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <div class="facts">
       <div class="fact fade"><b data-i18n="ops.f0.t">Three roles, three screens</b><span data-i18n="ops.f0.d">The platform operator registers organizations and sees usage across all of them. Each organization gets its own admin screen with its own password, reaching only its own members. Subscribers see neither. Requests run the other way too: an organization asks the operator from its own screen and reads the answer there.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f5.t">Web push is the floor, paid channels are optional</b><span data-i18n="ops.f5.d">Web push costs nothing per message and is always on for every organization. KakaoTalk, SMS and email can be switched on per organization when a notice has to reach people who never enabled notifications, and those carry a per-message fee the organization agrees to. Plans differ in how large a notice may be rather than in what the product does.</span></div>
       <div class="fact fade"><b data-i18n="ops.f1.t">Adding an organization is a form</b><span data-i18n="ops.f1.d">App name, sending organization, address, brand color, logo and topic list. Submitting it creates the member app, the admin screen, the colored app icon, a printable QR poster and one sample notice. No code change, no deployment.</span></div>
       <div class="fact fade"><b data-i18n="ops.f2.t">Topics and regions stay editable</b><span data-i18n="ops.f2.d">Renaming a region moves the members already recorded under it, and a renamed topic keeps its internal id so existing members stay in the audience. Deleted entries leave the member record intact and only disappear from targeting.</span></div>
       <div class="fact fade"><b data-i18n="ops.f3.t">Archive before delete</b><span data-i18n="ops.f3.d">Archiving stops new sign-ups and sending and hides the organization from the public list while keeping every record. Deletion is available only after archiving and requires typing the address back.</span></div>
@@ -188,7 +189,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="fact fade"><b data-i18n="limits.f1.t">Not a replacement for a messenger</b><span data-i18n="limits.f1.d">A messenger is already on the phone. Here the first step is a scan and, on iPhones, adding the app to the home screen. How many people complete that is the number the model depends on, and it has not been measured at scale.</span></div>
       <div class="fact fade"><b data-i18n="limits.f2.t">One more step on iPhones</b><span data-i18n="limits.f2.d">Android Chrome subscribes from the page itself, but web push on iOS requires the page to be added to the home screen and opened from that icon, on iOS 16.4 or later. A home-screen app also has its own storage, so the sign-up is done there rather than carried over from the browser.</span></div>
       <div class="fact fade"><b data-i18n="limits.f3.t">The notification is a headline, not the message</b><span data-i18n="limits.f3.d">A push carries a title, a line of body text and at most one image. The cards open after the tap, which is one step more than a message that arrives fully expanded.</span></div>
-      <div class="fact fade"><b data-i18n="limits.f4.t">No fallback channel</b><span data-i18n="limits.f4.d">Members who never enabled notifications are reached only through the in-app inbox. There is no SMS or messenger fallback, so the paid channels stay on the table for anything that has to reach everyone.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f4.t">A fallback costs more than money</b><span data-i18n="limits.f4.d">Members who never enabled notifications are reached only through the in-app inbox. A paid channel can be switched on to reach them, but KakaoTalk, SMS and email all need a phone number or an address — and not collecting those is what keeps this service simple to adopt. Turning one on changes what the organization holds, not just what it pays.</span></div>
       <div class="fact fade"><b data-i18n="limits.f5.t">A demonstration, not a live service</b><span data-i18n="limits.f5.d">The organizations shown are demonstration tenants, the sample notices are fictional, and the demonstration site is behind an access code. Nothing here is an official service of those organizations.</span></div>
     </div>
   </div>
@@ -267,6 +268,8 @@ const _L = {
     "ops.lead":"Everything an organization needs day to day is in the admin screen, so the work does not queue behind an engineer.",
     "ops.f0.t":"Three roles, three screens",
     "ops.f0.d":"The platform operator registers organizations and sees usage across all of them. Each organization gets its own admin screen with its own password, reaching only its own members. Subscribers see neither. Requests run the other way too: an organization asks the operator from its own screen and reads the answer there.",
+    "ops.f5.t":"Web push is the floor, paid channels are optional",
+    "ops.f5.d":"Web push costs nothing per message and is always on for every organization. KakaoTalk, SMS and email can be switched on per organization when a notice has to reach people who never enabled notifications, and those carry a per-message fee the organization agrees to. Plans differ in how large a notice may be rather than in what the product does.",
     "ops.f1.t":"Adding an organization is a form",
     "ops.f1.d":"App name, sending organization, address, brand color, logo and topic list. Submitting it creates the member app, the admin screen, the colored app icon, a printable QR poster and one sample notice. No code change, no deployment.",
     "ops.f2.t":"Topics and regions stay editable",
@@ -284,8 +287,8 @@ const _L = {
     "limits.f2.d":"Android Chrome subscribes from the page itself, but web push on iOS requires the page to be added to the home screen and opened from that icon, on iOS 16.4 or later. A home-screen app also has its own storage, so the sign-up is done there rather than carried over from the browser.",
     "limits.f3.t":"The notification is a headline, not the message",
     "limits.f3.d":"A push carries a title, a line of body text and at most one image. The cards open after the tap, which is one step more than a message that arrives fully expanded.",
-    "limits.f4.t":"No fallback channel",
-    "limits.f4.d":"Members who never enabled notifications are reached only through the in-app inbox. There is no SMS or messenger fallback, so the paid channels stay on the table for anything that has to reach everyone.",
+    "limits.f4.t":"A fallback costs more than money",
+    "limits.f4.d":"Members who never enabled notifications are reached only through the in-app inbox. A paid channel can be switched on to reach them, but KakaoTalk, SMS and email all need a phone number or an address — and not collecting those is what keeps this service simple to adopt. Turning one on changes what the organization holds, not just what it pays.",
     "limits.f5.t":"A demonstration, not a live service",
     "limits.f5.d":"The organizations shown are demonstration tenants, the sample notices are fictional, and the demonstration site is behind an access code. Nothing here is an official service of those organizations."
   },
@@ -350,6 +353,8 @@ const _L = {
     "ops.lead":"기관이 매일 필요로 하는 일이 전부 관리자 화면에 있어서, 개발자 일정 뒤에 대기하지 않습니다.",
     "ops.f0.t":"역할 셋, 화면 셋",
     "ops.f0.d":"플랫폼 운영자는 기관을 등록하고 전체 사용 현황을 봅니다. 기관마다 자기 비밀번호로 여는 전용 관리 화면을 갖고, 자기 회원에게만 닿습니다. 구독자는 둘 다 보지 않습니다. 반대 방향도 있습니다 — 기관이 자기 화면에서 운영자에게 요청하고 답을 그 자리에서 봅니다.",
+    "ops.f5.t":"웹 푸시가 기본, 유료 채널은 선택",
+    "ops.f5.d":"웹 푸시는 건당 비용이 없고 모든 기관에 항상 켜져 있습니다. 알림을 켜지 않은 사람에게까지 닿아야 하는 건이면 카카오 · 문자 · 이메일을 기관별로 켤 수 있고, 그때는 기관이 합의한 건당 비용이 붙습니다. 등급은 기능이 아니라 한 번에 보낼 수 있는 분량을 가릅니다.",
     "ops.f1.t":"기관 추가는 입력 양식",
     "ops.f1.d":"앱 이름·발신 기관·주소·대표 색·로고·관심 분야를 넣고 만들면 회원 앱, 관리자 화면, 기관 색 앱 아이콘, 인쇄용 QR 포스터, 예시 공지 하나가 생깁니다. 코드 변경도 배포도 없습니다.",
     "ops.f2.t":"관심 분야와 지역은 계속 편집",
@@ -367,8 +372,8 @@ const _L = {
     "limits.f2.d":"안드로이드 크롬은 페이지에서 바로 구독하지만, iOS에서 웹 푸시는 홈 화면에 추가해 그 아이콘으로 열어야 동작하고 iOS 16.4 이상이 필요합니다. 홈 화면 앱은 저장 공간도 따로여서 가입을 브라우저에서 이어받지 않고 그 안에서 합니다.",
     "limits.f3.t":"알림은 메시지 전체가 아니라 머리글",
     "limits.f3.d":"푸시에는 제목과 본문 한 줄, 이미지 한 장까지 들어갑니다. 카드는 누른 뒤에 열리므로, 펼쳐진 채 도착하는 메시지보다 단계가 하나 많습니다.",
-    "limits.f4.t":"대체 채널이 없습니다",
-    "limits.f4.d":"알림을 켜지 않은 회원에게는 앱 안 메시지함으로만 닿습니다. 문자·메신저 대체 발송이 없으므로, 반드시 전원에게 닿아야 하는 건은 유료 채널이 남습니다.",
+    "limits.f4.t":"대체 채널의 대가는 돈만이 아닙니다",
+    "limits.f4.d":"알림을 켜지 않은 회원에게는 앱 안 메시지함으로만 닿습니다. 유료 채널을 켜면 그들에게도 닿지만, 카카오 · 문자 · 이메일은 모두 전화번호나 주소가 있어야 나갑니다. 그것을 받지 않는다는 점이 이 서비스의 도입을 쉽게 만든 근거였습니다. 채널을 켜는 것은 비용만이 아니라 기관이 무엇을 보관하게 되는지를 바꿉니다.",
     "limits.f5.t":"운영 서비스가 아니라 시연",
     "limits.f5.d":"화면에 나오는 기관은 시연용이고 예시 공지는 가상이며, 시연 사이트는 접근 코드로 막혀 있습니다. 해당 기관의 공식 서비스가 아닙니다."
   }
