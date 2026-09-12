@@ -107,7 +107,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="facts">
       <div class="fact fade"><b data-i18n="why.f1.t">A web app in place of a native app</b><span data-i18n="why.f1.d">No store review, no developer account per organization, no yearly rebuild of one app per client. Delivery is web push, which carries no per-message fee. The cost is the first step on iPhones, where notifications require the page to be added to the home screen first.</span></div>
       <div class="fact fade"><b data-i18n="why.f2.t">No identifying data</b><span data-i18n="why.f2.d">Age band, region, topics and the consent record. No name, no phone number, no email, no account. Targeting runs on what the member chose at sign-up, and the device token is stored only as a hash.</span></div>
-      <div class="fact fade"><b data-i18n="why.f3.t">Compliance in code, not in a manual</b><span data-i18n="why.f3.d">The ad label, the night hold, the opt-out path and the two-year re-consent count are part of the send path rather than an operating rule someone has to remember.</span></div>
+      <div class="fact fade"><b data-i18n="why.f3.t">Compliance is not left to the operator</b><span data-i18n="why.f3.d">The ad label, the night sending limit, the opt-out path and the two-year re-consent count are applied automatically when a message is sent, rather than being rules someone has to remember.</span></div>
     </div>
   </div>
 </section>
@@ -133,7 +133,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="rule" class="section alt">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="rule.tag">Compliance</div>
-    <h2 data-i18n="rule.h2">What the send path enforces</h2>
+    <h2 data-i18n="rule.h2">What is applied automatically at send time</h2>
     <p class="lead" data-i18n="rule.lead">Korean law treats a push notification as an electronic advertising message. These rules are applied when a message is queued rather than left to the operator.</p>
     </div>
     <div class="rv-wrap">
@@ -233,8 +233,8 @@ const _L = {
     "why.f1.d":"No store review, no developer account per organization, no yearly rebuild of one app per client. Delivery is web push, which carries no per-message fee. The cost is the first step on iPhones, where notifications require the page to be added to the home screen first.",
     "why.f2.t":"No identifying data",
     "why.f2.d":"Age band, region, topics and the consent record. No name, no phone number, no email, no account. Targeting runs on what the member chose at sign-up, and the device token is stored only as a hash.",
-    "why.f3.t":"Compliance in code, not in a manual",
-    "why.f3.d":"The ad label, the night hold, the opt-out path and the two-year re-consent count are part of the send path rather than an operating rule someone has to remember.",
+    "why.f3.t":"Compliance is not left to the operator",
+    "why.f3.d":"The ad label, the night sending limit, the opt-out path and the two-year re-consent count are applied automatically when a message is sent, rather than being rules someone has to remember.",
     "how.tag":"What it does",
     "how.h2":"Scan, choose, receive",
     "how.lead":"Four steps, two on the member's side and two on the organization's.",
@@ -248,7 +248,7 @@ const _L = {
     "how.s4.d":"The notice arrives on the lock screen; tapping it opens the cards. Delivery, open and button clicks are recorded per member, so a notice can be read by recipient and a member by the notices they received.",
     "how.reward":"<b>Members without notifications still get the message.</b> Anyone who declined or has not enabled push finds the same notice in the in-app inbox.",
     "rule.tag":"Compliance",
-    "rule.h2":"What the send path enforces",
+    "rule.h2":"What is applied automatically at send time",
     "rule.lead":"Korean law treats a push notification as an electronic advertising message. These rules are applied when a message is queued rather than left to the operator.",
     "rule.c0":"Rule",
     "rule.c1":"What the code does",
@@ -312,8 +312,8 @@ const _L = {
     "why.f1.d":"스토어 심사도, 기관마다 필요한 개발자 계정도, 고객사 수만큼 매년 다시 올리는 앱도 없습니다. 전달은 웹 푸시라 건당 요금이 붙지 않습니다. 대가는 아이폰의 첫 단계입니다. 홈 화면에 추가한 뒤에만 알림을 받습니다.",
     "why.f2.t":"식별정보 미수집",
     "why.f2.d":"연령대·지역·관심 분야와 동의 기록까지입니다. 이름도 전화번호도 이메일도 계정도 없습니다. 타겟팅은 회원이 가입할 때 고른 값으로 하고, 기기 토큰은 해시로만 저장합니다.",
-    "why.f3.t":"규정은 문서가 아니라 코드에",
-    "why.f3.d":"광고 표기, 야간 보류, 수신거부 경로, 2년 재확인 집계가 운영자가 기억해야 할 규칙이 아니라 발송 경로의 일부입니다.",
+    "why.f3.t":"규정 준수를 사람 손에 맡기지 않음",
+    "why.f3.d":"광고 표기, 야간 발송 제한, 수신거부, 2년 재확인이 발송할 때 자동으로 적용됩니다. 운영자가 기억해서 지키는 규칙이 아닙니다.",
     "how.tag":"하는 일",
     "how.h2":"찍고, 고르고, 받습니다",
     "how.lead":"네 단계이고, 둘은 회원 쪽 둘은 기관 쪽입니다.",
@@ -327,7 +327,7 @@ const _L = {
     "how.s4.d":"공지는 잠금화면에 뜨고, 누르면 카드가 열립니다. 전달·열람·버튼 클릭을 회원별로 기록하므로 공지는 수신자별로, 회원은 받은 공지별로 확인합니다.",
     "how.reward":"<b>알림을 끈 회원에게도 공지는 갑니다.</b> 권한을 거부했거나 아직 켜지 않은 회원은 앱 안 메시지함에서 같은 공지를 봅니다.",
     "rule.tag":"규정",
-    "rule.h2":"발송 경로가 강제하는 것",
+    "rule.h2":"발송할 때 자동으로 적용되는 것",
     "rule.lead":"국내 법은 푸시 알림을 전자적 전송매체의 광고성 정보로 봅니다. 아래 규칙은 운영자 판단에 맡기지 않고 메시지를 대기열에 넣는 시점에 적용합니다.",
     "rule.c0":"규칙",
     "rule.c1":"코드가 하는 일",
