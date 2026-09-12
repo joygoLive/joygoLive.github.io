@@ -121,7 +121,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <div class="steps">
       <div class="step fade"><div><b data-i18n="how.s1.t">Scan and join</b><span data-i18n="how.s1.d">The code on a poster or a receipt opens the organization's own app. Pick the topics, set the age band and region if you want, and agree separately to marketing messages and to night-time messages. No name, no phone number.</span></div></div>
-      <div class="step fade"><div><b data-i18n="how.s2.t">Turn notifications on</b><span data-i18n="how.s2.d">One tap subscribes the browser to web push. On iPhones the page has to be added to the home screen first and opened from that icon; the app explains where the share button is for each browser.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s2.t">Turn notifications on</b><span data-i18n="how.s2.d">One tap subscribes the browser to web push. On Android Chrome, allowing it there is the whole step. On iPhones the page has to be added to the home screen first and opened from that icon, and the app explains where the share button is for each browser.</span></div></div>
       <div class="step fade"><div><b data-i18n="how.s3.t">Write a notice</b><span data-i18n="how.s3.d">Up to ten cards, each with an image, a title, body text and one button. The audience is a combination of topic, age band and region, and the admin screen shows how many people that reaches before anything is sent.</span></div></div>
       <div class="step fade"><div><b data-i18n="how.s4.t">Send and read the result</b><span data-i18n="how.s4.d">The notice arrives on the lock screen; tapping it opens the cards. Delivery, open and button clicks are recorded per member, so a notice can be read by recipient and a member by the notices they received.</span></div></div>
     </div>
@@ -181,7 +181,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <div class="facts">
       <div class="fact fade"><b data-i18n="limits.f1.t">Not a replacement for a messenger</b><span data-i18n="limits.f1.d">A messenger is already on the phone. Here the first step is a scan and, on iPhones, adding the app to the home screen. How many people complete that is the number the model depends on, and it has not been measured at scale.</span></div>
-      <div class="fact fade"><b data-i18n="limits.f2.t">One more step on iPhones</b><span data-i18n="limits.f2.d">Web push on iOS requires the page to be added to the home screen and opened from that icon, on iOS 16.4 or later. A home-screen app also has its own storage, so the sign-up is done there rather than carried over from the browser.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f2.t">One more step on iPhones</b><span data-i18n="limits.f2.d">Android Chrome subscribes from the page itself, but web push on iOS requires the page to be added to the home screen and opened from that icon, on iOS 16.4 or later. A home-screen app also has its own storage, so the sign-up is done there rather than carried over from the browser.</span></div>
       <div class="fact fade"><b data-i18n="limits.f3.t">The notification is a headline, not the message</b><span data-i18n="limits.f3.d">A push carries a title, a line of body text and at most one image. The cards open after the tap, which is one step more than a message that arrives fully expanded.</span></div>
       <div class="fact fade"><b data-i18n="limits.f4.t">No scheduling, no fallback channel</b><span data-i18n="limits.f4.d">Sending is immediate; held night messages go out when the admin screen is next opened. There is no scheduled send and no SMS or messenger fallback for members who never enabled notifications.</span></div>
       <div class="fact fade"><b data-i18n="limits.f5.t">A demonstration, not a live service</b><span data-i18n="limits.f5.d">The two organizations shown are demonstration tenants, the sample notices are fictional, and the demonstration site is behind an access code. Nothing here is an official service of those organizations.</span></div>
@@ -241,7 +241,7 @@ const _L = {
     "how.s1.t":"Scan and join",
     "how.s1.d":"The code on a poster or a receipt opens the organization's own app. Pick the topics, set the age band and region if you want, and agree separately to marketing messages and to night-time messages. No name, no phone number.",
     "how.s2.t":"Turn notifications on",
-    "how.s2.d":"One tap subscribes the browser to web push. On iPhones the page has to be added to the home screen first and opened from that icon; the app explains where the share button is for each browser.",
+    "how.s2.d":"One tap subscribes the browser to web push. On Android Chrome, allowing it there is the whole step. On iPhones the page has to be added to the home screen first and opened from that icon, and the app explains where the share button is for each browser.",
     "how.s3.t":"Write a notice",
     "how.s3.d":"Up to ten cards, each with an image, a title, body text and one button. The audience is a combination of topic, age band and region, and the admin screen shows how many people that reaches before anything is sent.",
     "how.s4.t":"Send and read the result",
@@ -282,7 +282,7 @@ const _L = {
     "limits.f1.t":"Not a replacement for a messenger",
     "limits.f1.d":"A messenger is already on the phone. Here the first step is a scan and, on iPhones, adding the app to the home screen. How many people complete that is the number the model depends on, and it has not been measured at scale.",
     "limits.f2.t":"One more step on iPhones",
-    "limits.f2.d":"Web push on iOS requires the page to be added to the home screen and opened from that icon, on iOS 16.4 or later. A home-screen app also has its own storage, so the sign-up is done there rather than carried over from the browser.",
+    "limits.f2.d":"Android Chrome subscribes from the page itself, but web push on iOS requires the page to be added to the home screen and opened from that icon, on iOS 16.4 or later. A home-screen app also has its own storage, so the sign-up is done there rather than carried over from the browser.",
     "limits.f3.t":"The notification is a headline, not the message",
     "limits.f3.d":"A push carries a title, a line of body text and at most one image. The cards open after the tap, which is one step more than a message that arrives fully expanded.",
     "limits.f4.t":"No scheduling, no fallback channel",
@@ -320,7 +320,7 @@ const _L = {
     "how.s1.t":"찍고 가입",
     "how.s1.d":"포스터나 영수증의 코드를 찍으면 그 기관의 전용 앱이 열립니다. 관심 분야를 고르고 연령대·지역은 원하면 선택합니다. 광고 수신과 야간 수신은 따로 동의합니다. 이름도 전화번호도 받지 않습니다.",
     "how.s2.t":"알림 켜기",
-    "how.s2.d":"한 번 누르면 브라우저가 웹 푸시를 구독합니다. 아이폰은 홈 화면에 추가한 뒤 그 아이콘으로 열어야 하고, 공유 버튼 위치를 브라우저별로 안내합니다.",
+    "how.s2.d":"한 번 누르면 브라우저가 웹 푸시를 구독합니다. 안드로이드 크롬은 그 자리에서 허용하면 끝입니다. 아이폰은 홈 화면에 추가한 뒤 그 아이콘으로 열어야 하고, 공유 버튼 위치를 브라우저별로 안내합니다.",
     "how.s3.t":"공지 작성",
     "how.s3.d":"카드 최대 열 장, 카드마다 이미지·제목·본문·버튼 하나입니다. 대상은 관심 분야·연령대·지역의 조합이고, 보내기 전에 그 조건의 인원이 관리자 화면에 표시됩니다.",
     "how.s4.t":"발송과 결과 확인",
@@ -361,7 +361,7 @@ const _L = {
     "limits.f1.t":"메신저를 대체하지 않습니다",
     "limits.f1.d":"메신저는 이미 폰에 깔려 있습니다. 여기서는 코드를 찍는 것이 첫 단계이고 아이폰은 홈 화면 추가가 더 붙습니다. 그 단계를 끝까지 마치는 비율이 이 모델이 기대는 숫자이고, 아직 규모 있게 재지 않았습니다.",
     "limits.f2.t":"아이폰은 한 단계 더",
-    "limits.f2.d":"iOS에서 웹 푸시는 홈 화면에 추가해 그 아이콘으로 열어야 동작하고, iOS 16.4 이상이 필요합니다. 홈 화면 앱은 저장 공간도 따로여서 가입을 브라우저에서 이어받지 않고 그 안에서 합니다.",
+    "limits.f2.d":"안드로이드 크롬은 페이지에서 바로 구독하지만, iOS에서 웹 푸시는 홈 화면에 추가해 그 아이콘으로 열어야 동작하고 iOS 16.4 이상이 필요합니다. 홈 화면 앱은 저장 공간도 따로여서 가입을 브라우저에서 이어받지 않고 그 안에서 합니다.",
     "limits.f3.t":"알림은 메시지 전체가 아니라 머리글",
     "limits.f3.d":"푸시에는 제목과 본문 한 줄, 이미지 한 장까지 들어갑니다. 카드는 누른 뒤에 열리므로, 펼쳐진 채 도착하는 메시지보다 단계가 하나 많습니다.",
     "limits.f4.t":"예약 발송도 대체 채널도 없습니다",
