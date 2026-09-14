@@ -97,7 +97,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <p class="lead" data-i18n="why.lead">Built as a complete exchange stack designed to extend: order book, custody, deposits and withdrawals, and the admin side behind them.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="why.f1.t">Centralized order-book matching</b><span data-i18n="why.f1.d">Orders match on the server against a central order book, and balances are kept in the exchange's own ledger (SQLite). Trades settle inside that ledger; the chain is used only for deposits and withdrawals. Not a DEX, with no on-chain swap.</span></div>
+      <div class="fact fade"><b data-i18n="why.f1.t">Centralized order-book matching</b><span data-i18n="why.f1.d">Orders match on the server against a central order book, and balances are kept in the exchange's own ledger. Trades settle inside that ledger; the chain is used only for deposits and withdrawals. Not a DEX, with no on-chain swap.</span></div>
       <div class="fact fade"><b data-i18n="why.f2.t">Wallet signature in place of a password</b><span data-i18n="why.f2.d">Sign-in is a MetaMask signature. There is no password sign-up, so there is no password to store or reset.</span></div>
       <div class="fact fade"><b data-i18n="why.f3.t">Live market pricing</b><span data-i18n="why.f3.d">Reference prices stream from Binance market data and drive the market-maker quotes, keeping the book within 0.15% of the market. CoinMarketCap supplies market capitalization and coin icons. Every external API call runs behind per-provider rate caps by minute, day and month.</span></div>
     </div>
@@ -186,10 +186,10 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="build.tag">Implementation</div>
     <h2 data-i18n="build.h2">How it is built</h2>
-    <p class="lead" data-i18n="build.lead">A single event-loop process for matching, API and streaming, a SQLite WAL ledger behind an edge tunnel, and tests and security layers sized for public exposure.</p>
+    <p class="lead" data-i18n="build.lead">A single event-loop process for matching, API and streaming, a transactional ledger, and tests and security layers sized for public exposure.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="build.f1.t">Infrastructure</b><span data-i18n="build.f1.d">A single Node.js process for matching, API and WebSocket, a SQLite ledger in WAL mode, and HTTPS/WSS through Cloudflare Tunnel. Every external API call runs behind a rate cap.</span></div>
+      <div class="fact fade"><b data-i18n="build.f1.t">Infrastructure</b><span data-i18n="build.f1.d">A single Node.js process for matching, API and WebSocket, a transactional ledger, and HTTPS/WSS only at the edge. Every external API call runs behind a rate cap.</span></div>
       <div class="fact fade"><b data-i18n="build.f2.t">Security layers</b><span data-i18n="build.f2.d">CSP and other security headers, blocking of cross-origin writes, rate limiting, lockout against brute force on the admin side, and integer validation of input.</span></div>
       <div class="fact fade"><b data-i18n="build.f3.t">Regression tests</b><span data-i18n="build.f3.d">The suite covers the matching engine, API behavior, security, chain integration, performance and API rate caps.</span></div>
       <div class="fact fade"><b data-i18n="build.f4.t">Screens</b><span data-i18n="build.f4.d">Mobile first, with a three-column trading layout on desktop. Korean and English, light and dark, line-glyph SVG icons.</span></div>
@@ -248,7 +248,7 @@ const _L = {
     "why.h2":"Three decisions that shaped it",
     "why.lead":"Built as a complete exchange stack designed to extend: order book, custody, deposits and withdrawals, and the admin side behind them.",
     "why.f1.t":"Centralized order-book matching",
-    "why.f1.d":"Orders match on the server against a central order book, and balances are kept in the exchange's own ledger (SQLite). Trades settle inside that ledger; the chain is used only for deposits and withdrawals. Not a DEX, with no on-chain swap.",
+    "why.f1.d":"Orders match on the server against a central order book, and balances are kept in the exchange's own ledger. Trades settle inside that ledger; the chain is used only for deposits and withdrawals. Not a DEX, with no on-chain swap.",
     "why.f2.t":"Wallet signature in place of a password",
     "why.f2.d":"Sign-in is a MetaMask signature. There is no password sign-up, so there is no password to store or reset.",
     "why.f3.t":"Live market pricing",
@@ -313,9 +313,9 @@ const _L = {
     "ops.f6.d":"Trading and withdrawals can each be halted at once from the operating settings, where the fee rate is also set.",
     "build.tag":"Implementation",
     "build.h2":"How it is built",
-    "build.lead":"A single event-loop process for matching, API and streaming, a SQLite WAL ledger behind an edge tunnel, and tests and security layers sized for public exposure.",
+    "build.lead":"A single event-loop process for matching, API and streaming, a transactional ledger, and tests and security layers sized for public exposure.",
     "build.f1.t":"Infrastructure",
-    "build.f1.d":"A single Node.js process for matching, API and WebSocket, a SQLite ledger in WAL mode, and HTTPS/WSS through Cloudflare Tunnel. Every external API call runs behind a rate cap.",
+    "build.f1.d":"A single Node.js process for matching, API and WebSocket, a transactional ledger, and HTTPS/WSS only at the edge. Every external API call runs behind a rate cap.",
     "build.f2.t":"Security layers",
     "build.f2.d":"CSP and other security headers, blocking of cross-origin writes, rate limiting, lockout against brute force on the admin side, and integer validation of input.",
     "build.f3.t":"Regression tests",
@@ -359,7 +359,7 @@ const _L = {
     "why.h2":"형태를 정한 세 가지 결정",
     "why.lead":"확장을 전제로 거래소 한 벌을 처음부터 끝까지 구축했습니다. 호가창, 수탁, 입출금, 그리고 그 뒤의 관리자단까지.",
     "why.f1.t":"중앙화 호가창 매칭",
-    "why.f1.d":"주문은 서버의 중앙 호가창에서 체결되고 잔고는 거래소 원장(SQLite)에 기록됩니다. 체결은 원장 안에서 정산되고, 체인은 입금과 출금에만 씁니다. DEX가 아니며 온체인 스왑도 없습니다.",
+    "why.f1.d":"주문은 서버의 중앙 호가창에서 체결되고 잔고는 거래소 원장에 기록됩니다. 체결은 원장 안에서 정산되고, 체인은 입금과 출금에만 씁니다. DEX가 아니며 온체인 스왑도 없습니다.",
     "why.f2.t":"비밀번호 대신 지갑 서명",
     "why.f2.d":"로그인은 메타마스크 서명입니다. 비밀번호 회원가입이 없어 저장하거나 재설정할 비밀번호도 없습니다.",
     "why.f3.t":"실제 시세 연동",
@@ -424,9 +424,9 @@ const _L = {
     "ops.f6.d":"운영 설정에서 거래와 출금을 각각 즉시 중지합니다. 수수료율도 같은 자리에서 설정합니다.",
     "build.tag":"구현",
     "build.h2":"구현과 운영 환경",
-    "build.lead":"매칭·API·스트리밍을 한 이벤트 루프 프로세스로, SQLite WAL 원장과 엣지 터널, 공개 운영에 맞춘 시험과 보안 계층.",
+    "build.lead":"매칭·API·스트리밍을 한 이벤트 루프 프로세스로, 트랜잭션 원장, 공개 운영에 맞춘 시험과 보안 계층.",
     "build.f1.t":"운영 인프라",
-    "build.f1.d":"매칭·API·웹소켓을 처리하는 Node.js 단일 프로세스, WAL 모드 SQLite 원장, Cloudflare Tunnel 경유 HTTPS·WSS. 외부 API 호출 전부 호출 상한 가드.",
+    "build.f1.d":"매칭·API·웹소켓을 처리하는 Node.js 단일 프로세스, 트랜잭션 원장, 외부 노출은 HTTPS·WSS 만. 외부 API 호출 전부 호출 상한 가드.",
     "build.f2.t":"보안 계층",
     "build.f2.d":"CSP 등 보안 헤더, 교차 출처 쓰기 차단, 속도 제한, 관리자 무차별 대입 잠금, 입력 정수 검증.",
     "build.f3.t":"회귀 시험",
