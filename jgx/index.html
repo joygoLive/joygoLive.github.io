@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JGX — An order-book exchange, by joygoLive</title>
+<meta name="description" content="JGX (joygoLive Exchange) is a centralized order-book exchange: BTC, ETH and USDT markets, limit and market orders, MetaMask sign-in, deposits and withdrawals on Ethereum Sepolia and Bitcoin Testnet4. Quotes follow Binance public prices. Run on testnets for investor and partner presentations, with no real assets." />
+<meta property="og:title" content="JGX — An order-book exchange" />
+<meta property="og:description" content="Three markets and 33 pairs, price-time matching, on-chain deposits and admin-approved withdrawals on testnets. One Mac and free tiers only." />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
+<meta name="theme-color" id="themeColor" content="#ffffff" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+/* 입출금 표. 자산마다 네트워크·확정 블록·출금 경로가 달라서 카드보다 표가 한눈에 읽힌다. */
+.rv-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:30px 0 8px}
+.rv{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px}
+.rv th,.rv td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+.rv th{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
+.rv tr:last-child td{border-bottom:0}
+.rv .nm{font-weight:700;white-space:nowrap}
+.rv tr.no td{color:var(--text-dim)}
+
+.reward{margin:18px 0 0;padding:13px 16px;max-width:46em;
+  font-size:13.5px;line-height:1.7;color:var(--text2);
+  background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:var(--radius)}
+.reward b{color:var(--text);font-weight:700}
+</style>
+<script>try{var t=localStorage.getItem('joygo_theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}
+/* 주소창 색은 첫 칠 전에 정해야 한다 — 나중에 고치면 흰 띠가 한 번 번쩍인다. */
+try{var d=document.documentElement.getAttribute('data-theme');
+document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(prefers-color-scheme:dark)').matches))?'#0b0e11':'#ffffff';}catch(e){}</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand-group">
+      <a href="../" class="brand" aria-label="joygoLive">
+        <svg viewBox="0 0 32 32" aria-hidden="true" class="mk"><rect class="mk-bg" x=".6" y=".6" width="30.8" height="30.8" rx="6.6"/><rect class="mk-joy" x="6.5" y="12.5" width="5" height="13.5" rx="1"/><rect class="mk-go" x="13.5" y="17" width="5" height="9" rx="1"/><rect class="mk-live" x="20.5" y="8" width="5" height="18" rx="1"/></svg>
+        <span>joy<span class="go">go</span><span class="dot">Live</span></span>
+      </a>
+      <span class="brand-sep" aria-hidden="true">/</span>
+      <a href="./" class="svc-name">JGX</a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#why" data-i18n="nav.why">Design</a>
+      <a href="#trade" data-i18n="nav.trade">Trading</a>
+      <a href="#chain" data-i18n="nav.chain">Deposits</a>
+      <a href="#price" data-i18n="nav.price">Pricing</a>
+      <a href="#ops" data-i18n="nav.ops">Operations</a>
+      <a href="#limits" data-i18n="nav.limits">Limits</a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="language">
+      <button data-lang="en" onclick="setLang('en')">EN</button>
+      <button data-lang="ko" onclick="setLang('ko')">한국어</button>
+    </div>
+    <div class="theme-toggle" role="group" aria-label="theme">
+      <button data-theme-set="light" onclick="setTheme('light')" aria-label="Light" title="Light">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button data-theme-set="dark" onclick="setTheme('dark')" aria-label="Dark" title="Dark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+    <button class="menu-btn" aria-label="menu" aria-expanded="false" aria-controls="navLinks" onclick="toggleNav(this)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-kicker mono" data-i18n="hero.kicker">JGX · Order-book exchange</div>
+    <h1 data-i18n-html="hero.title">An order-book <span class="grad">centralized exchange</span>.</h1>
+    <p class="lead" data-i18n="hero.sub">JGX (joygoLive Exchange) runs the order book, matching engine and ledger on one server, in the shape of a Korean retail exchange. Three markets quoted in BTC, ETH and USDT, sign-in with a MetaMask signature, and deposits and withdrawals on Ethereum Sepolia and Bitcoin Testnet4.</p>
+    <div class="cta-row">
+      <a href="https://jgx.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta0">Open JGX</a>
+      <a href="#trade" class="btn btn-ghost" data-i18n="hero.cta1">How trading works</a>
+      <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">What this does not claim</a>
+    </div>
+    <p class="reward" data-i18n-html="hero.reward"><b>Quotes follow the real market.</b> A market-making bot anchors its orders to Binance public prices and keeps the book within 0.15% of the actual rate. The chart is built from Binance 1-minute candles.</p>
+    <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here. Open since September 14, 2026, run on testnets for investor and partner presentations.</div>
+  </div>
+</section>
+
+<!-- DESIGN -->
+<section id="why" class="section alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="why.tag">Design</div>
+    <h2 data-i18n="why.h2">Three decisions that shaped it</h2>
+    <p class="lead" data-i18n="why.lead">Built to present the structure of a Korean retail exchange end to end: order book, custody, deposits and withdrawals, and the admin side behind them.</p>
+    </div>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="why.f1.t">Centralized order-book matching</b><span data-i18n="why.f1.d">Orders match on the server against a central order book, and balances are kept in the exchange's own ledger (SQLite). Trades settle inside that ledger; the chain is used only for deposits and withdrawals. Not a DEX, with no on-chain swap.</span></div>
+      <div class="fact fade"><b data-i18n="why.f2.t">Wallet signature in place of a password</b><span data-i18n="why.f2.d">Sign-in is a MetaMask signature. There is no password sign-up, so there is no password to store or reset.</span></div>
+      <div class="fact fade"><b data-i18n="why.f3.t">Real prices, zero running cost</b><span data-i18n="why.f3.d">Reference prices come from Binance public market data, which needs no key and carries no fee. CoinMarketCap supplies market capitalization and coin icons. Every external API runs behind a guard that keeps usage inside its free tier.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRADING -->
+<section id="trade" class="section">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="trade.tag">Trading</div>
+    <h2 data-i18n="trade.h2">Markets and orders</h2>
+    <p class="lead" data-i18n="trade.lead">Three quote markets and the rules every order passes through.</p>
+    </div>
+    <div class="pts">
+      <div class="pt fade"><b data-i18n="trade.1.t">Three markets, 33 pairs</b><span data-i18n="trade.1.d">BTC, ETH and USDT markets with eleven assets each, drawn from BTC, ETH, XRP, BNB, SOL, DOGE, ADA, TRX, LINK, AVAX, DOT, LTC and KAIA. A KRW market is supported by the structure and not yet added.</span></div>
+      <div class="pt fade"><b data-i18n="trade.2.t">Limit and market orders</b><span data-i18n="trade.2.d">A limit order rests on the book at its price. A market order fills against the best prices on the book at once.</span></div>
+      <div class="pt fade"><b data-i18n="trade.3.t">Price-time priority</b><span data-i18n="trade.3.d">Better price first, then earlier order at the same price. Self-trade prevention keeps an account's order from filling against its own. Matching is built on nodejs-order-book.</span></div>
+      <div class="pt fade"><b data-i18n="trade.4.t">Maker and taker 0.05%</b><span data-i18n="trade.4.d">One fee rate on both sides, adjustable from the admin side along with the markets and pairs that are open.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOSITS -->
+<section id="chain" class="section alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="chain.tag">Deposits</div>
+    <h2 data-i18n="chain.h2">What moves on chain</h2>
+    <p class="lead" data-i18n="chain.lead">Three assets move on chain. The rest are ledger assets, and there is no bank or fiat channel.</p>
+    </div>
+    <div class="rv-wrap">
+      <table class="rv">
+        <thead><tr>
+          <th data-i18n="chain.c0">Asset</th>
+          <th data-i18n="chain.c1">Network</th>
+          <th data-i18n="chain.c2">Deposit credited</th>
+          <th data-i18n="chain.c3">Withdrawal</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="nm">ETH</td><td data-i18n="chain.r1b">Ethereum Sepolia</td><td data-i18n="chain.r1c">After 3 block confirmations</td><td data-i18n="chain.r1d">Sent from the hot wallet after admin approval</td></tr>
+          <tr><td class="nm">USDT</td><td data-i18n="chain.r2b">Ethereum Sepolia, an ERC-20 test token deployed for this service</td><td data-i18n="chain.r2c">After 3 block confirmations</td><td data-i18n="chain.r2d">Sent from the hot wallet after admin approval</td></tr>
+          <tr><td class="nm">BTC</td><td data-i18n="chain.r3b">Bitcoin Testnet4</td><td data-i18n="chain.r3c">After 1 block confirmation</td><td data-i18n="chain.r3d">Sent from the hot wallet after admin approval</td></tr>
+          <tr class="no"><td class="nm" data-i18n="chain.r4">Other assets</td><td data-i18n="chain.r4b">None</td><td data-i18n="chain.r4c">Ledger asset, no on-chain deposit</td><td data-i18n="chain.r4d">No on-chain withdrawal</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="reward" data-i18n-html="chain.reward"><b>Withdrawals wait for an operator.</b> A request stays pending until it is approved on the admin side, and only then does the hot wallet send it.</p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="price" class="section">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="price.tag">Pricing</div>
+    <h2 data-i18n="price.h2">Where the quotes come from</h2>
+    <p class="lead" data-i18n="price.lead">The order book is filled by a market-making bot, and the pace of that bot is a setting.</p>
+    </div>
+    <div class="pts">
+      <div class="pt fade"><b data-i18n="price.1.t">Market-making bot</b><span data-i18n="price.1.d">Places orders around the Binance reference price for every pair, holding the book within 0.15% of the actual rate.</span></div>
+      <div class="pt fade"><b data-i18n="price.2.t">Chart from real candles</b><span data-i18n="price.2.d">Candles come from Binance 1-minute data and are drawn with TradingView Lightweight Charts.</span></div>
+      <div class="pt fade"><b data-i18n="price.3.t">Presentation mode</b><span data-i18n="price.3.d">Low rate for presentations: the bot quotes each pair about once a minute, and prices are polled every 30 seconds.</span></div>
+      <div class="pt fade"><b data-i18n="price.4.t">Production mode</b><span data-i18n="price.4.d">Prices arrive over WebSocket in real time. The admin side switches between the two modes.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- OPERATIONS -->
+<section id="ops" class="section alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="ops.tag">Operations</div>
+    <h2 data-i18n="ops.h2">The admin side</h2>
+    <p class="lead" data-i18n="ops.lead">Operation runs from one admin screen, from the overview to the audit log, and every list that grows is paginated.</p>
+    </div>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="ops.f1.t">Members and grants</b><span data-i18n="ops.f1.d">Suspend members and adjust balances. Assets are granted to several selected members in one batch, and notices are published from the same screen.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f2.t">Markets, orders, bot</b><span data-i18n="ops.f2.d">Turn markets and pairs on and off, review orders and trades, and control the market-making bot and the run mode.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f3.t">Price feed and free-tier usage</b><span data-i18n="ops.f3.d">The state of each price feed, with usage shown against its free-tier limit.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f4.t">Deposits, withdrawals, custody</b><span data-i18n="ops.f4.d">Withdrawal approval and the deposit list, with the hot wallet shown next to what the exchange owes its members.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f5.t">Reconciliation and audit log</b><span data-i18n="ops.f5.d">Ledger reconciliation, and an audit log of operations on the admin side.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f6.t">Emergency switches</b><span data-i18n="ops.f6.d">Trading and withdrawals can each be halted at once from the operating settings, where the fee rate is also set.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPLEMENTATION -->
+<section id="build" class="section">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="build.tag">Implementation</div>
+    <h2 data-i18n="build.h2">How it is built</h2>
+    <p class="lead" data-i18n="build.lead">One machine, one process and free tiers, with tests and security layers sized for public exposure.</p>
+    </div>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="build.f1.t">Infrastructure</b><span data-i18n="build.f1.d">One Mac running a single Node.js process with a SQLite ledger, reached through a Cloudflare Tunnel. Everything used is on a free tier, so the running cost is zero.</span></div>
+      <div class="fact fade"><b data-i18n="build.f2.t">Security layers</b><span data-i18n="build.f2.d">CSP and other security headers, blocking of cross-origin writes, rate limiting, lockout against brute force on the admin side, and integer validation of input.</span></div>
+      <div class="fact fade"><b data-i18n="build.f3.t">Regression tests</b><span data-i18n="build.f3.d">The suite covers the matching engine, API behavior, security, chain integration, performance and free-tier limits.</span></div>
+      <div class="fact fade"><b data-i18n="build.f4.t">Screens</b><span data-i18n="build.f4.d">Mobile first, with a three-column trading layout on desktop. Korean and English, light and dark, line-glyph SVG icons.</span></div>
+      <div class="fact fade"><b data-i18n="build.f5.t">Open source</b><span data-i18n="build.f5.d">nodejs-order-book (MIT) for matching, TradingView Lightweight Charts (Apache-2.0) for charts, viem (MIT), bitcoinjs-lib (MIT), Fastify and React.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIMITS -->
+<section id="limits" class="section alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="limits.tag">Limits</div>
+    <h2 data-i18n="limits.h2">What this does not claim</h2>
+    <p class="lead" data-i18n="limits.lead">Exchange mechanics are implemented end to end. Real value, mainnet and regulatory standing are outside the scope.</p>
+    </div>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="limits.f1.t">No real assets</b><span data-i18n="limits.f1.d">Deposits run on Ethereum Sepolia and Bitcoin Testnet4, whose coins have no market value. USDT here is an ERC-20 test token deployed for this service, unrelated to Tether. Balances in every other asset exist only in the ledger.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f2.t">Not mainnet, not a licensed operation</b><span data-i18n="limits.f2.d">No mainnet deployment and no registration or license as a virtual asset service provider. Operated for presentations to investors and partners.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f3.t">No fiat</b><span data-i18n="limits.f3.d">No bank link and no KRW deposit or withdrawal. The KRW market exists in the structure only.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f4.t">Depth comes from the bot</b><span data-i18n="limits.f4.d">Prices track Binance, while the depth on the book is placed by the market-making bot. Fills here are not evidence of liquidity on a real venue.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f5.t">One machine</b><span data-i18n="limits.f5.d">The exchange runs as one process on one Mac, without redundancy. A fault on that machine stops the service.</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true" class="mk"><rect class="mk-bg" x=".6" y=".6" width="30.8" height="30.8" rx="6.6"/><rect class="mk-joy" x="6.5" y="12.5" width="5" height="13.5" rx="1"/><rect class="mk-go" x="13.5" y="17" width="5" height="9" rx="1"/><rect class="mk-live" x="20.5" y="8" width="5" height="18" rx="1"/></svg><span>joy<span class="go">go</span><span class="dot" style="color:var(--accent)">Live</span></span></span>
+    <nav class="foot-links">
+      <a href="../"><span data-i18n="ft.home">Home</span></a>
+    </nav>
+    <span data-i18n="ft.copy">© 2026 joygoLive. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+const _L = {
+  en:{
+    "ft.home":"Home",
+    "ft.copy":"© 2026 joygoLive. All rights reserved.",
+    "nav.why":"Design",
+    "nav.trade":"Trading",
+    "nav.chain":"Deposits",
+    "nav.price":"Pricing",
+    "nav.ops":"Operations",
+    "nav.limits":"Limits",
+    "hero.kicker":"JGX · Order-book exchange",
+    "hero.title":"An order-book <span class=\"grad\">centralized exchange</span>.",
+    "hero.sub":"JGX (joygoLive Exchange) runs the order book, matching engine and ledger on one server, in the shape of a Korean retail exchange. Three markets quoted in BTC, ETH and USDT, sign-in with a MetaMask signature, and deposits and withdrawals on Ethereum Sepolia and Bitcoin Testnet4.",
+    "hero.cta0":"Open JGX",
+    "hero.cta1":"How trading works",
+    "hero.cta2":"What this does not claim",
+    "hero.reward":"<b>Quotes follow the real market.</b> A market-making bot anchors its orders to Binance public prices and keeps the book within 0.15% of the actual rate. The chart is built from Binance 1-minute candles.",
+    "hero.byline":"A service by joygoLive, built here and operated here. Open since September 14, 2026, run on testnets for investor and partner presentations.",
+    "why.tag":"Design",
+    "why.h2":"Three decisions that shaped it",
+    "why.lead":"Built to present the structure of a Korean retail exchange end to end: order book, custody, deposits and withdrawals, and the admin side behind them.",
+    "why.f1.t":"Centralized order-book matching",
+    "why.f1.d":"Orders match on the server against a central order book, and balances are kept in the exchange's own ledger (SQLite). Trades settle inside that ledger; the chain is used only for deposits and withdrawals. Not a DEX, with no on-chain swap.",
+    "why.f2.t":"Wallet signature in place of a password",
+    "why.f2.d":"Sign-in is a MetaMask signature. There is no password sign-up, so there is no password to store or reset.",
+    "why.f3.t":"Real prices, zero running cost",
+    "why.f3.d":"Reference prices come from Binance public market data, which needs no key and carries no fee. CoinMarketCap supplies market capitalization and coin icons. Every external API runs behind a guard that keeps usage inside its free tier.",
+    "trade.tag":"Trading",
+    "trade.h2":"Markets and orders",
+    "trade.lead":"Three quote markets and the rules every order passes through.",
+    "trade.1.t":"Three markets, 33 pairs",
+    "trade.1.d":"BTC, ETH and USDT markets with eleven assets each, drawn from BTC, ETH, XRP, BNB, SOL, DOGE, ADA, TRX, LINK, AVAX, DOT, LTC and KAIA. A KRW market is supported by the structure and not yet added.",
+    "trade.2.t":"Limit and market orders",
+    "trade.2.d":"A limit order rests on the book at its price. A market order fills against the best prices on the book at once.",
+    "trade.3.t":"Price-time priority",
+    "trade.3.d":"Better price first, then earlier order at the same price. Self-trade prevention keeps an account's order from filling against its own. Matching is built on nodejs-order-book.",
+    "trade.4.t":"Maker and taker 0.05%",
+    "trade.4.d":"One fee rate on both sides, adjustable from the admin side along with the markets and pairs that are open.",
+    "chain.tag":"Deposits",
+    "chain.h2":"What moves on chain",
+    "chain.lead":"Three assets move on chain. The rest are ledger assets, and there is no bank or fiat channel.",
+    "chain.c0":"Asset",
+    "chain.c1":"Network",
+    "chain.c2":"Deposit credited",
+    "chain.c3":"Withdrawal",
+    "chain.r1b":"Ethereum Sepolia",
+    "chain.r1c":"After 3 block confirmations",
+    "chain.r1d":"Sent from the hot wallet after admin approval",
+    "chain.r2b":"Ethereum Sepolia, an ERC-20 test token deployed for this service",
+    "chain.r2c":"After 3 block confirmations",
+    "chain.r2d":"Sent from the hot wallet after admin approval",
+    "chain.r3b":"Bitcoin Testnet4",
+    "chain.r3c":"After 1 block confirmation",
+    "chain.r3d":"Sent from the hot wallet after admin approval",
+    "chain.r4":"Other assets",
+    "chain.r4b":"None",
+    "chain.r4c":"Ledger asset, no on-chain deposit",
+    "chain.r4d":"No on-chain withdrawal",
+    "chain.reward":"<b>Withdrawals wait for an operator.</b> A request stays pending until it is approved on the admin side, and only then does the hot wallet send it.",
+    "price.tag":"Pricing",
+    "price.h2":"Where the quotes come from",
+    "price.lead":"The order book is filled by a market-making bot, and the pace of that bot is a setting.",
+    "price.1.t":"Market-making bot",
+    "price.1.d":"Places orders around the Binance reference price for every pair, holding the book within 0.15% of the actual rate.",
+    "price.2.t":"Chart from real candles",
+    "price.2.d":"Candles come from Binance 1-minute data and are drawn with TradingView Lightweight Charts.",
+    "price.3.t":"Presentation mode",
+    "price.3.d":"Low rate for presentations: the bot quotes each pair about once a minute, and prices are polled every 30 seconds.",
+    "price.4.t":"Production mode",
+    "price.4.d":"Prices arrive over WebSocket in real time. The admin side switches between the two modes.",
+    "ops.tag":"Operations",
+    "ops.h2":"The admin side",
+    "ops.lead":"Operation runs from one admin screen, from the overview to the audit log, and every list that grows is paginated.",
+    "ops.f1.t":"Members and grants",
+    "ops.f1.d":"Suspend members and adjust balances. Assets are granted to several selected members in one batch, and notices are published from the same screen.",
+    "ops.f2.t":"Markets, orders, bot",
+    "ops.f2.d":"Turn markets and pairs on and off, review orders and trades, and control the market-making bot and the run mode.",
+    "ops.f3.t":"Price feed and free-tier usage",
+    "ops.f3.d":"The state of each price feed, with usage shown against its free-tier limit.",
+    "ops.f4.t":"Deposits, withdrawals, custody",
+    "ops.f4.d":"Withdrawal approval and the deposit list, with the hot wallet shown next to what the exchange owes its members.",
+    "ops.f5.t":"Reconciliation and audit log",
+    "ops.f5.d":"Ledger reconciliation, and an audit log of operations on the admin side.",
+    "ops.f6.t":"Emergency switches",
+    "ops.f6.d":"Trading and withdrawals can each be halted at once from the operating settings, where the fee rate is also set.",
+    "build.tag":"Implementation",
+    "build.h2":"How it is built",
+    "build.lead":"One machine, one process and free tiers, with tests and security layers sized for public exposure.",
+    "build.f1.t":"Infrastructure",
+    "build.f1.d":"One Mac running a single Node.js process with a SQLite ledger, reached through a Cloudflare Tunnel. Everything used is on a free tier, so the running cost is zero.",
+    "build.f2.t":"Security layers",
+    "build.f2.d":"CSP and other security headers, blocking of cross-origin writes, rate limiting, lockout against brute force on the admin side, and integer validation of input.",
+    "build.f3.t":"Regression tests",
+    "build.f3.d":"The suite covers the matching engine, API behavior, security, chain integration, performance and free-tier limits.",
+    "build.f4.t":"Screens",
+    "build.f4.d":"Mobile first, with a three-column trading layout on desktop. Korean and English, light and dark, line-glyph SVG icons.",
+    "build.f5.t":"Open source",
+    "build.f5.d":"nodejs-order-book (MIT) for matching, TradingView Lightweight Charts (Apache-2.0) for charts, viem (MIT), bitcoinjs-lib (MIT), Fastify and React.",
+    "limits.tag":"Limits",
+    "limits.h2":"What this does not claim",
+    "limits.lead":"Exchange mechanics are implemented end to end. Real value, mainnet and regulatory standing are outside the scope.",
+    "limits.f1.t":"No real assets",
+    "limits.f1.d":"Deposits run on Ethereum Sepolia and Bitcoin Testnet4, whose coins have no market value. USDT here is an ERC-20 test token deployed for this service, unrelated to Tether. Balances in every other asset exist only in the ledger.",
+    "limits.f2.t":"Not mainnet, not a licensed operation",
+    "limits.f2.d":"No mainnet deployment and no registration or license as a virtual asset service provider. Operated for presentations to investors and partners.",
+    "limits.f3.t":"No fiat",
+    "limits.f3.d":"No bank link and no KRW deposit or withdrawal. The KRW market exists in the structure only.",
+    "limits.f4.t":"Depth comes from the bot",
+    "limits.f4.d":"Prices track Binance, while the depth on the book is placed by the market-making bot. Fills here are not evidence of liquidity on a real venue.",
+    "limits.f5.t":"One machine",
+    "limits.f5.d":"The exchange runs as one process on one Mac, without redundancy. A fault on that machine stops the service."
+  },
+  ko:{
+    "ft.home":"홈",
+    "ft.copy":"© 2026 joygoLive. All rights reserved.",
+    "nav.why":"설계",
+    "nav.trade":"거래",
+    "nav.chain":"입출금",
+    "nav.price":"시세",
+    "nav.ops":"운영",
+    "nav.limits":"한계",
+    "hero.kicker":"JGX · 호가창 거래소",
+    "hero.title":"호가창 기반 <span class=\"grad\">중앙화 거래소</span>.",
+    "hero.sub":"JGX(joygoLive Exchange)는 호가창·매칭 엔진·원장을 서버 한 곳에서 처리하는 국내 거래소형 구조입니다. BTC·ETH·USDT 마켓 셋, 메타마스크 서명 로그인, Ethereum Sepolia·Bitcoin Testnet4 입출금.",
+    "hero.cta0":"JGX 열기",
+    "hero.cta1":"거래 구조 보기",
+    "hero.cta2":"주장하지 않는 것",
+    "hero.reward":"<b>호가는 실제 시세 기준.</b> 시장조성 봇이 바이낸스 공개 시세를 기준가로 호가를 채워 실제 시세와 0.15% 이내를 유지합니다. 차트는 바이낸스 실제 1분 봉 기반.",
+    "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 2026-09-14 공개 운영 시작, 투자자·파트너 시연용 테스트넷 운영.",
+    "why.tag":"설계",
+    "why.h2":"형태를 정한 세 가지 결정",
+    "why.lead":"국내 거래소의 구조를 처음부터 끝까지 보여 주기 위해 구축했습니다. 호가창, 수탁, 입출금, 그리고 그 뒤의 관리자단까지.",
+    "why.f1.t":"중앙화 호가창 매칭",
+    "why.f1.d":"주문은 서버의 중앙 호가창에서 체결되고 잔고는 거래소 원장(SQLite)에 기록됩니다. 체결은 원장 안에서 정산되고, 체인은 입금과 출금에만 씁니다. DEX가 아니며 온체인 스왑도 없습니다.",
+    "why.f2.t":"비밀번호 대신 지갑 서명",
+    "why.f2.d":"로그인은 메타마스크 서명입니다. 비밀번호 회원가입이 없어 저장하거나 재설정할 비밀번호도 없습니다.",
+    "why.f3.t":"실제 시세, 운영비 0",
+    "why.f3.d":"기준가는 키도 요금도 없는 바이낸스 공개 시세입니다. 시가총액과 코인 아이콘은 CoinMarketCap. 모든 외부 API에 무료 한도 안에서만 호출하도록 사용량 가드를 둡니다.",
+    "trade.tag":"거래",
+    "trade.h2":"마켓과 주문",
+    "trade.lead":"기준 통화별 마켓 셋과 모든 주문에 적용되는 규칙.",
+    "trade.1.t":"마켓 셋, 거래쌍 33개",
+    "trade.1.d":"BTC·ETH·USDT 마켓, 마켓당 11종. 종목은 BTC, ETH, XRP, BNB, SOL, DOGE, ADA, TRX, LINK, AVAX, DOT, LTC, KAIA 중에서 구성합니다. 원화(KRW) 마켓은 구조만 열어 두고 아직 추가하지 않았습니다.",
+    "trade.2.t":"지정가·시장가",
+    "trade.2.d":"지정가 주문은 그 가격으로 호가창에 남고, 시장가 주문은 호가창의 최우선 가격부터 즉시 체결됩니다.",
+    "trade.3.t":"가격·시간 우선",
+    "trade.3.d":"좋은 가격이 먼저, 같은 가격이면 먼저 들어온 주문이 먼저. 자기체결 방지로 한 계정의 주문끼리는 체결되지 않습니다. 매칭은 nodejs-order-book 기반.",
+    "trade.4.t":"메이커·테이커 0.05%",
+    "trade.4.d":"양쪽 같은 수수료율. 열어 둘 마켓·거래쌍과 함께 관리자단에서 조정합니다.",
+    "chain.tag":"입출금",
+    "chain.h2":"체인으로 오가는 것",
+    "chain.lead":"체인으로 오가는 자산은 셋입니다. 나머지는 장부 자산이고, 은행·법정화폐 입출금은 없습니다.",
+    "chain.c0":"자산",
+    "chain.c1":"네트워크",
+    "chain.c2":"입금 반영",
+    "chain.c3":"출금",
+    "chain.r1b":"Ethereum Sepolia",
+    "chain.r1c":"3블록 확정 후",
+    "chain.r1d":"관리자 승인 후 핫월렛에서 전송",
+    "chain.r2b":"Ethereum Sepolia, 자체 배포 ERC-20 테스트 토큰",
+    "chain.r2c":"3블록 확정 후",
+    "chain.r2d":"관리자 승인 후 핫월렛에서 전송",
+    "chain.r3b":"Bitcoin Testnet4",
+    "chain.r3c":"1블록 확정 후",
+    "chain.r3d":"관리자 승인 후 핫월렛에서 전송",
+    "chain.r4":"그 밖의 종목",
+    "chain.r4b":"없음",
+    "chain.r4c":"장부 자산, 체인 입금 없음",
+    "chain.r4d":"체인 출금 없음",
+    "chain.reward":"<b>출금은 관리자 승인 뒤 전송.</b> 요청은 관리자단에서 승인할 때까지 대기하고, 승인 뒤에야 핫월렛이 전송합니다.",
+    "price.tag":"시세",
+    "price.h2":"시세와 호가의 출처",
+    "price.lead":"호가창은 시장조성 봇이 채우고, 그 속도는 설정값입니다.",
+    "price.1.t":"시장조성 봇",
+    "price.1.d":"거래쌍마다 바이낸스 기준가 주변에 호가를 넣어 실제 시세와 0.15% 이내를 유지합니다.",
+    "price.2.t":"실제 1분 봉 차트",
+    "price.2.d":"바이낸스 1분 봉 데이터를 TradingView Lightweight Charts로 그립니다.",
+    "price.3.t":"시연 모드",
+    "price.3.d":"시연용 저속 운용. 봇 호가는 거래쌍당 약 1분 간격, 시세는 30초 폴링.",
+    "price.4.t":"프로덕션 모드",
+    "price.4.d":"시세를 웹소켓으로 실시간 수신합니다. 두 모드는 관리자단에서 전환합니다.",
+    "ops.tag":"운영",
+    "ops.h2":"관리자단",
+    "ops.lead":"개요부터 감사 로그까지 운영은 관리자 화면 하나에서 처리하고, 늘어나는 목록은 전부 페이지네이션합니다.",
+    "ops.f1.t":"회원·자산 지급",
+    "ops.f1.d":"회원 정지와 잔고 조정. 자산은 회원을 여럿 골라 한 번에 지급하고, 공지도 같은 화면에서 게시합니다.",
+    "ops.f2.t":"마켓·주문·봇",
+    "ops.f2.d":"마켓·거래쌍 켜고 끄기, 주문·체결 조회, 시장조성 봇과 실행 모드 제어.",
+    "ops.f3.t":"시세 피드·무료 한도",
+    "ops.f3.d":"시세 피드별 상태와 무료 한도 대비 사용량.",
+    "ops.f4.t":"입출금·보관",
+    "ops.f4.d":"출금 승인과 입금 내역. 핫월렛 보유량을 회원 부채와 나란히 표시합니다.",
+    "ops.f5.t":"장부 대사·감사 로그",
+    "ops.f5.d":"원장 대사, 그리고 관리자단 작업의 감사 로그.",
+    "ops.f6.t":"긴급 중지",
+    "ops.f6.d":"운영 설정에서 거래와 출금을 각각 즉시 중지합니다. 수수료율도 같은 자리에서 설정합니다.",
+    "build.tag":"구현",
+    "build.h2":"구현과 운영 환경",
+    "build.lead":"맥 한 대·단일 프로세스·무료 계층 위에, 공개 운영에 맞춘 시험과 보안 계층.",
+    "build.f1.t":"운영 인프라",
+    "build.f1.d":"맥 한 대에서 Node.js 단일 프로세스와 SQLite 원장, 외부 연결은 Cloudflare 터널. 전부 무료 계층이라 운영비 0.",
+    "build.f2.t":"보안 계층",
+    "build.f2.d":"CSP 등 보안 헤더, 교차 출처 쓰기 차단, 속도 제한, 관리자 무차별 대입 잠금, 입력 정수 검증.",
+    "build.f3.t":"회귀 시험",
+    "build.f3.d":"매칭 엔진·API 기능·보안·체인 연동·성능·무료 한도를 회귀 시험으로 확인합니다.",
+    "build.f4.t":"화면",
+    "build.f4.d":"모바일 우선, 데스크톱은 3열 거래 화면. 한국어·영어, 라이트·다크, 선 글리프 SVG 아이콘.",
+    "build.f5.t":"오픈소스",
+    "build.f5.d":"매칭 nodejs-order-book(MIT), 차트 TradingView Lightweight Charts(Apache-2.0), viem(MIT), bitcoinjs-lib(MIT), Fastify, React.",
+    "limits.tag":"한계",
+    "limits.h2":"주장하지 않는 것",
+    "limits.lead":"거래소 구조는 끝까지 구현했습니다. 실제 가치·메인넷·인허가는 범위 밖입니다.",
+    "limits.f1.t":"실제 자산 없음",
+    "limits.f1.d":"입출금은 시장 가치가 없는 Ethereum Sepolia·Bitcoin Testnet4 코인으로만 오갑니다. 여기의 USDT는 이 서비스가 배포한 ERC-20 테스트 토큰이며 테더와 무관합니다. 그 밖의 종목 잔고는 원장 안에만 있습니다.",
+    "limits.f2.t":"메인넷·인허가 운영 아님",
+    "limits.f2.d":"메인넷 배포도, 가상자산사업자 신고·인허가도 없습니다. 투자자·파트너 시연용으로 운영합니다.",
+    "limits.f3.t":"법정화폐 입출금 없음",
+    "limits.f3.d":"은행 연동도 원화 입출금도 없습니다. 원화 마켓은 구조로만 존재합니다.",
+    "limits.f4.t":"호가 잔량은 봇 주문",
+    "limits.f4.d":"가격은 바이낸스를 따르지만 호가창 잔량은 시장조성 봇이 넣은 것입니다. 여기서의 체결은 실제 거래소 유동성의 근거가 되지 않습니다.",
+    "limits.f5.t":"서버 한 대",
+    "limits.f5.d":"거래소 전체가 맥 한 대의 단일 프로세스이고 이중화가 없습니다. 그 기기에 장애가 나면 서비스가 멈춥니다."
+  }
+};
+</script>
+<script src="../assets/i18n.js"></script>
+<script data-goatcounter="https://joygolive.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

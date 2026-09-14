@@ -18,6 +18,7 @@ cue/index.html      CUE — matching among the people already in the room
 war/index.html      WAR — web AR that opens from a link
 posy/index.html     POSY — a still-life studio that opens from a link
 omp/index.html      OMP — a notification web app per organization (QR sign-up, web push, per-organization admin)
+jgx/index.html      JGX — joygoLive Exchange, an order-book centralized exchange on testnets (BTC/ETH/USDT markets, MetaMask sign-in, Sepolia · Testnet4 deposits)
 assets/site.css     shared design system — tokens, shell, every component
 assets/i18n.js      shared runtime — EN/KO switch, scroll fade-in, mobile menu
 favicon.svg
