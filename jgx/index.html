@@ -6,7 +6,7 @@
 <title>JGX — An order-book exchange, by joygoLive</title>
 <meta name="description" content="JGX (joygoLive Exchange) is a centralized order-book exchange: BTC, ETH and USDT markets, limit and market orders, MetaMask sign-in, deposits and withdrawals on Ethereum Sepolia and Bitcoin Testnet4. Quotes follow Binance public prices. Run on testnets for investor and partner presentations, with no real assets." />
 <meta property="og:title" content="JGX — An order-book exchange" />
-<meta property="og:description" content="Three markets and 33 pairs, price-time matching, on-chain deposits and admin-approved withdrawals on testnets." />
+<meta property="og:description" content="Three markets and 33 pairs, price-time matching, on-chain deposits and screened withdrawals, automatic within limits, on testnets." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
 <meta name="theme-color" id="themeColor" content="#ffffff" />
@@ -136,14 +136,14 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
           <th data-i18n="chain.c3">Withdrawal</th>
         </tr></thead>
         <tbody>
-          <tr><td class="nm">ETH</td><td data-i18n="chain.r1b">Ethereum Sepolia</td><td data-i18n="chain.r1c">After 3 block confirmations</td><td data-i18n="chain.r1d">Sent from the hot wallet after admin approval</td></tr>
-          <tr><td class="nm">USDT</td><td data-i18n="chain.r2b">Ethereum Sepolia, an ERC-20 test token deployed for this service</td><td data-i18n="chain.r2c">After 3 block confirmations</td><td data-i18n="chain.r2d">Sent from the hot wallet after admin approval</td></tr>
-          <tr><td class="nm">BTC</td><td data-i18n="chain.r3b">Bitcoin Testnet4</td><td data-i18n="chain.r3c">After 1 block confirmation</td><td data-i18n="chain.r3d">Sent from the hot wallet after admin approval</td></tr>
+          <tr><td class="nm">ETH</td><td data-i18n="chain.r1b">Ethereum Sepolia</td><td data-i18n="chain.r1c">After 3 block confirmations</td><td data-i18n="chain.r1d">Automatic within limits, operator approval above them</td></tr>
+          <tr><td class="nm">USDT</td><td data-i18n="chain.r2b">Ethereum Sepolia, an ERC-20 test token deployed for this service</td><td data-i18n="chain.r2c">After 3 block confirmations</td><td data-i18n="chain.r2d">Automatic within limits, operator approval above them</td></tr>
+          <tr><td class="nm">BTC</td><td data-i18n="chain.r3b">Bitcoin Testnet4</td><td data-i18n="chain.r3c">After 1 block confirmation</td><td data-i18n="chain.r3d">Automatic within limits, operator approval above them</td></tr>
           <tr class="no"><td class="nm" data-i18n="chain.r4">Other assets</td><td data-i18n="chain.r4b">None</td><td data-i18n="chain.r4c">Ledger asset, no on-chain deposit</td><td data-i18n="chain.r4d">No on-chain withdrawal</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="reward" data-i18n-html="chain.reward"><b>Withdrawals wait for an operator.</b> A request stays pending until it is approved on the admin side, and only then does the hot wallet send it.</p>
+    <p class="reward" data-i18n-html="chain.reward"><b>Withdrawals are screened before they leave.</b> A request that passes every check is sent from the hot wallet automatically: amount limits per withdrawal, per member over 24 hours and across the exchange per hour, account age, a destination the member has used before, and hot wallet balance. A request that fails any check waits for operator approval, and withdrawals to the exchange's own deposit addresses are refused.</p>
   </div>
 </section>
 
@@ -174,9 +174,9 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="fact fade"><b data-i18n="ops.f1.t">Members and grants</b><span data-i18n="ops.f1.d">Suspend members and adjust balances. Assets are granted to several selected members in one batch, and notices are published from the same screen.</span></div>
       <div class="fact fade"><b data-i18n="ops.f2.t">Markets, orders, bot</b><span data-i18n="ops.f2.d">Turn markets and pairs on and off, review orders and trades, and control the market-making bot and the run mode.</span></div>
       <div class="fact fade"><b data-i18n="ops.f3.t">Price feed</b><span data-i18n="ops.f3.d">The state of each price feed.</span></div>
-      <div class="fact fade"><b data-i18n="ops.f4.t">Deposits, withdrawals, custody</b><span data-i18n="ops.f4.d">Withdrawal approval and the deposit list, with the hot wallet shown next to what the exchange owes its members.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f4.t">Deposits, withdrawals, custody</b><span data-i18n="ops.f4.d">Withdrawal review with the hold reason on each request, auto-withdrawal limits, and the deposit list, with the hot wallet shown next to what the exchange owes its members.</span></div>
       <div class="fact fade"><b data-i18n="ops.f5.t">Reconciliation and audit log</b><span data-i18n="ops.f5.d">Ledger reconciliation, and an audit log of operations on the admin side.</span></div>
-      <div class="fact fade"><b data-i18n="ops.f6.t">Emergency switches</b><span data-i18n="ops.f6.d">Trading and withdrawals can each be halted at once from the operating settings, where the fee rate is also set.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f6.t">Emergency switches</b><span data-i18n="ops.f6.d">Trading, deposits and withdrawals can each be halted at once from the operating settings, where the fee rate is also set.</span></div>
     </div>
   </div>
 </section>
@@ -255,18 +255,18 @@ const _L = {
     "chain.c3":"Withdrawal",
     "chain.r1b":"Ethereum Sepolia",
     "chain.r1c":"After 3 block confirmations",
-    "chain.r1d":"Sent from the hot wallet after admin approval",
+    "chain.r1d":"Automatic within limits, operator approval above them",
     "chain.r2b":"Ethereum Sepolia, an ERC-20 test token deployed for this service",
     "chain.r2c":"After 3 block confirmations",
-    "chain.r2d":"Sent from the hot wallet after admin approval",
+    "chain.r2d":"Automatic within limits, operator approval above them",
     "chain.r3b":"Bitcoin Testnet4",
     "chain.r3c":"After 1 block confirmation",
-    "chain.r3d":"Sent from the hot wallet after admin approval",
+    "chain.r3d":"Automatic within limits, operator approval above them",
     "chain.r4":"Other assets",
     "chain.r4b":"None",
     "chain.r4c":"Ledger asset, no on-chain deposit",
     "chain.r4d":"No on-chain withdrawal",
-    "chain.reward":"<b>Withdrawals wait for an operator.</b> A request stays pending until it is approved on the admin side, and only then does the hot wallet send it.",
+    "chain.reward":"<b>Withdrawals are screened before they leave.</b> A request that passes every check is sent from the hot wallet automatically: amount limits per withdrawal, per member over 24 hours and across the exchange per hour, account age, a destination the member has used before, and hot wallet balance. A request that fails any check waits for operator approval, and withdrawals to the exchange's own deposit addresses are refused.",
     "price.tag":"Pricing",
     "price.h2":"Where the quotes come from",
     "price.lead":"The order book is filled by a market-making bot, and the pace of that bot is a setting.",
@@ -288,11 +288,11 @@ const _L = {
     "ops.f3.t":"Price feed",
     "ops.f3.d":"The state of each price feed.",
     "ops.f4.t":"Deposits, withdrawals, custody",
-    "ops.f4.d":"Withdrawal approval and the deposit list, with the hot wallet shown next to what the exchange owes its members.",
+    "ops.f4.d":"Withdrawal review with the hold reason on each request, auto-withdrawal limits, and the deposit list, with the hot wallet shown next to what the exchange owes its members.",
     "ops.f5.t":"Reconciliation and audit log",
     "ops.f5.d":"Ledger reconciliation, and an audit log of operations on the admin side.",
     "ops.f6.t":"Emergency switches",
-    "ops.f6.d":"Trading and withdrawals can each be halted at once from the operating settings, where the fee rate is also set.",
+    "ops.f6.d":"Trading, deposits and withdrawals can each be halted at once from the operating settings, where the fee rate is also set.",
     "limits.tag":"Limits",
     "limits.h2":"What this does not claim",
     "limits.lead":"Exchange mechanics are implemented end to end. Real value, mainnet and regulatory standing are outside the scope.",
@@ -351,18 +351,18 @@ const _L = {
     "chain.c3":"출금",
     "chain.r1b":"Ethereum Sepolia",
     "chain.r1c":"3블록 확정 후",
-    "chain.r1d":"관리자 승인 후 핫월렛에서 전송",
+    "chain.r1d":"한도 안은 자동 전송, 넘으면 관리자 승인",
     "chain.r2b":"Ethereum Sepolia, 자체 배포 ERC-20 테스트 토큰",
     "chain.r2c":"3블록 확정 후",
-    "chain.r2d":"관리자 승인 후 핫월렛에서 전송",
+    "chain.r2d":"한도 안은 자동 전송, 넘으면 관리자 승인",
     "chain.r3b":"Bitcoin Testnet4",
     "chain.r3c":"1블록 확정 후",
-    "chain.r3d":"관리자 승인 후 핫월렛에서 전송",
+    "chain.r3d":"한도 안은 자동 전송, 넘으면 관리자 승인",
     "chain.r4":"그 밖의 종목",
     "chain.r4b":"없음",
     "chain.r4c":"장부 자산, 체인 입금 없음",
     "chain.r4d":"체인 출금 없음",
-    "chain.reward":"<b>출금은 관리자 승인 뒤 전송.</b> 요청은 관리자단에서 승인할 때까지 대기하고, 승인 뒤에야 핫월렛이 전송합니다.",
+    "chain.reward":"<b>출금은 심사 뒤 전송.</b> 1회·회원 24시간·거래소 전체 1시간 금액 한도, 계정 경과 기간, 이전에 쓴 받는 주소, 핫월렛 잔고를 모두 통과한 요청은 핫월렛에서 자동 전송합니다. 하나라도 걸리면 관리자 승인 대기, 거래소 입금 주소로의 출금은 거절합니다.",
     "price.tag":"시세",
     "price.h2":"시세와 호가의 출처",
     "price.lead":"호가창은 시장조성 봇이 채우고, 그 속도는 설정값입니다.",
@@ -384,11 +384,11 @@ const _L = {
     "ops.f3.t":"시세 피드",
     "ops.f3.d":"시세 피드별 상태.",
     "ops.f4.t":"입출금·보관",
-    "ops.f4.d":"출금 승인과 입금 내역. 핫월렛 보유량을 회원 부채와 나란히 표시합니다.",
+    "ops.f4.d":"출금 심사(요청별 보류 사유)·자동 출금 한도 설정과 입금 내역. 핫월렛 보유량을 회원 부채와 나란히 표시합니다.",
     "ops.f5.t":"장부 대사·감사 로그",
     "ops.f5.d":"원장 대사, 그리고 관리자단 작업의 감사 로그.",
     "ops.f6.t":"긴급 중지",
-    "ops.f6.d":"운영 설정에서 거래와 출금을 각각 즉시 중지합니다. 수수료율도 같은 자리에서 설정합니다.",
+    "ops.f6.d":"운영 설정에서 거래·입금·출금을 각각 즉시 중지합니다. 수수료율도 같은 자리에서 설정합니다.",
     "limits.tag":"한계",
     "limits.h2":"주장하지 않는 것",
     "limits.lead":"거래소 구조는 끝까지 구현했습니다. 실제 가치·메인넷·인허가는 범위 밖입니다.",
