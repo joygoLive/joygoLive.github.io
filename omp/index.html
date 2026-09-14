@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>OMP — A notification web app per organization, by joygoLive</title>
-<meta name="description" content="OMP gives each organization its own notification web app. Members scan a QR code, choose the topics they want and receive notices on the lock screen. No install, no store review, no per-message fee. Ad labeling, the night hold and opt-out are enforced when a message is sent." />
+<meta name="description" content="OMP gives each organization its own notification web app. Members scan a QR code, choose the topics they want and receive notices on the lock screen. Delivery is web push, with no per-message fee. Ad labeling, the night hold and opt-out are enforced when a message is sent." />
 <meta property="og:title" content="OMP — A notification web app per organization" />
 <meta property="og:description" content="One platform, a separate notification app per organization. Sign-up is a QR code, delivery is web push, and adding an organization is a form rather than a deployment." />
 <meta property="og:type" content="website" />
@@ -89,7 +89,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="hero-kicker mono" data-i18n="hero.kicker">OMP · Online Marketing Platform</div>
     <h1 data-i18n-html="hero.title">A notification app <span class="grad">per organization</span>.</h1>
-    <p class="lead" data-i18n="hero.sub">Scanning a QR code is the whole sign-up: pick the topics you want and notices arrive on the lock screen. Nothing is installed, no store review stands in the way, and sending costs nothing per message.</p>
+    <p class="lead" data-i18n="hero.sub">Scanning a QR code is the whole sign-up: pick the topics you want and notices arrive on the lock screen. Delivery is web push, so sending costs nothing per message.</p>
     <div class="cta-row">
       <a href="https://omp.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta0">Open OMP</a>
       <a href="#how" class="btn btn-ghost" data-i18n="hero.cta1">How it works</a>
@@ -109,7 +109,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <p class="lead" data-i18n="why.lead">Organizations already have a way to reach members: paid message channels. The question was what a notification service can offer instead, and what it has to give up to do so.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="why.f1.t">A web app in place of a native app</b><span data-i18n="why.f1.d">No store review, no developer account per organization, no yearly rebuild of one app per client. Delivery is web push, which carries no per-message fee. The cost is the first step on iPhones, where notifications require the page to be added to the home screen first.</span></div>
+      <div class="fact fade"><b data-i18n="why.f1.t">A web app in place of a native app</b><span data-i18n="why.f1.d">No developer account per organization and no yearly rebuild of one app per client. Delivery is web push, which carries no per-message fee. The cost is the first step on iPhones, where notifications require the page to be added to the home screen first.</span></div>
       <div class="fact fade"><b data-i18n="why.f2.t">No identifying data</b><span data-i18n="why.f2.d">Age band, region, topics and the consent record. No name, no phone number, no email, no account. Targeting runs on what the member chose at sign-up, and the device token is stored only as a hash.</span></div>
       <div class="fact fade"><b data-i18n="why.f3.t">Compliance is not left to the operator</b><span data-i18n="why.f3.d">The ad label, the night sending limit, the opt-out path and the two-year re-consent count are applied automatically when a message is sent, rather than being rules someone has to remember.</span></div>
     </div>
@@ -217,7 +217,7 @@ const _L = {
     "nav.limits":"Limits",
     "hero.kicker":"OMP · Online Marketing Platform",
     "hero.title":"A notification app <span class=\"grad\">per organization</span>.",
-    "hero.sub":"Scanning a QR code is the whole sign-up: pick the topics you want and notices arrive on the lock screen. Nothing is installed, no store review stands in the way, and sending costs nothing per message.",
+    "hero.sub":"Scanning a QR code is the whole sign-up: pick the topics you want and notices arrive on the lock screen. Delivery is web push, so sending costs nothing per message.",
     "hero.cta0":"Open OMP",
     "hero.cta1":"How it works",
     "hero.cta2":"What this does not claim",
@@ -228,7 +228,7 @@ const _L = {
     "why.h2":"Three decisions that shaped it",
     "why.lead":"Organizations already have a way to reach members: paid message channels. The question was what a notification service can offer instead, and what it has to give up to do so.",
     "why.f1.t":"A web app in place of a native app",
-    "why.f1.d":"No store review, no developer account per organization, no yearly rebuild of one app per client. Delivery is web push, which carries no per-message fee. The cost is the first step on iPhones, where notifications require the page to be added to the home screen first.",
+    "why.f1.d":"No developer account per organization and no yearly rebuild of one app per client. Delivery is web push, which carries no per-message fee. The cost is the first step on iPhones, where notifications require the page to be added to the home screen first.",
     "why.f2.t":"No identifying data",
     "why.f2.d":"Age band, region, topics and the consent record. No name, no phone number, no email, no account. Targeting runs on what the member chose at sign-up, and the device token is stored only as a hash.",
     "why.f3.t":"Compliance is not left to the operator",
@@ -302,7 +302,7 @@ const _L = {
     "nav.limits":"한계",
     "hero.kicker":"OMP · 기관별 알림",
     "hero.title":"기관별 <span class=\"grad\">전용 알림 앱</span>.",
-    "hero.sub":"QR 코드를 스캔하는 것이 가입의 전부입니다. 관심 분야를 고르면 공지가 잠금화면으로 옵니다. 설치할 것도, 스토어 심사도 없고, 발송에 건당 비용이 붙지 않습니다.",
+    "hero.sub":"QR 코드를 스캔하는 것이 가입의 전부입니다. 관심 분야를 고르면 공지가 잠금화면으로 옵니다. 전달은 웹 푸시라 발송에 건당 비용이 붙지 않습니다.",
     "hero.cta0":"OMP 열기",
     "hero.cta1":"어떻게 동작하나",
     "hero.cta2":"주장하지 않는 것",
@@ -313,7 +313,7 @@ const _L = {
     "why.h2":"형태를 정한 세 가지 결정",
     "why.lead":"기관에는 이미 회원에게 닿는 수단이 있습니다. 건당 비용을 내는 메시지 채널입니다. 알림 서비스가 그 대신 무엇을 줄 수 있고 무엇을 포기해야 하는지가 출발점이었습니다.",
     "why.f1.t":"네이티브 앱 대신 웹앱",
-    "why.f1.d":"스토어 심사도, 기관마다 필요한 개발자 계정도, 고객사 수만큼 매년 다시 올리는 앱도 없습니다. 전달은 웹 푸시라 건당 요금이 붙지 않습니다. 대가는 아이폰의 첫 단계입니다. 홈 화면에 추가한 뒤에만 알림을 받습니다.",
+    "why.f1.d":"기관마다 필요한 개발자 계정도, 고객사 수만큼 매년 다시 올리는 앱도 없습니다. 전달은 웹 푸시라 건당 요금이 붙지 않습니다. 대가는 아이폰의 첫 단계입니다. 홈 화면에 추가한 뒤에만 알림을 받습니다.",
     "why.f2.t":"식별정보 미수집",
     "why.f2.d":"연령대·지역·관심 분야와 동의 기록까지입니다. 이름도 전화번호도 이메일도 계정도 없습니다. 타겟팅은 회원이 가입할 때 고른 값으로 하고, 기기 토큰은 해시로만 저장합니다.",
     "why.f3.t":"규정 준수를 사람 손에 맡기지 않음",

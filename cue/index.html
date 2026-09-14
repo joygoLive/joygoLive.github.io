@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>CUE — An opponent from the room you are already in, by joygoLive</title>
-<meta name="description" content="CUE pairs people who are already in the same place. Scanning the code on the venue screen is the whole entry: no app, no sign-in, no name. Everyone waiting is paired in one pass each round, and who you were matched with is revealed only after both accept." />
+<meta name="description" content="CUE pairs people who are already in the same place. The code on the venue screen doubles as proof of presence. Everyone waiting is paired in one pass each round, and who you were matched with is revealed only after both accept." />
 <meta property="og:title" content="CUE — An opponent from the room you are already in" />
-<meta property="og:description" content="No app, no sign-in, no name. A code on the venue screen, a round every minute, and identities revealed only after both accept." />
+<meta property="og:description" content="A code on the venue screen as proof of presence, a round every minute, no decline button, and identities revealed only after both accept." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
 <meta name="theme-color" id="themeColor" content="#ffffff" />
@@ -95,7 +95,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <a href="https://cue.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta1">Open CUE</a>
       <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">What this does not claim</a>
     </div>
-    <p class="reward" data-i18n-html="hero.reward"><b>No app, no sign-in, no name.</b> The code on the venue screen is the entire entry path. It is also proof of presence, which an app that only knows your location cannot establish.</p>
+    <p class="reward" data-i18n-html="hero.reward"><b>The code is proof of presence.</b> Scanning the code on the venue screen shows you are in the room now, which an app that only knows your location cannot establish.</p>
     <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here. Beta.</div>
   </div>
 </section>
@@ -105,10 +105,10 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="why.tag">Design</div>
     <h2 data-i18n="why.h2">Three decisions that shaped it</h2>
-    <p class="lead" data-i18n="why.lead">The hard part of pairing people in a room is not the algorithm. It is that the moment you ask for an install, a sign-in or a name, most of the room is already gone, and that the system cannot see most of what happens in that room.</p>
+    <p class="lead" data-i18n="why.lead">The hard part of pairing people in a room is not the algorithm. It is that the moment you ask for a name, most of the room is already gone, and that the system cannot see most of what happens in that room.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="why.f1.t">Nothing to install</b><span data-i18n="why.f1.d">An earlier generation of venue apps put a radio beacon in every store and asked shoppers to install something to hear it. The deployments were large and the early numbers were good, and they still collapsed, at the install step rather than the technology. A code on a screen removes that step entirely, and works the same on every phone.</span></div>
+      <div class="fact fade"><b data-i18n="why.f1.t">A screen, not a beacon</b><span data-i18n="why.f1.d">An earlier generation of venue systems put a radio beacon in every store. A code on a screen needs no hardware beyond the screen, reads the same on every phone, and carries the venue, the activity and the minute, so being in the queue means being in the room.</span></div>
       <div class="fact fade"><b data-i18n="why.f2.t">Only what can be observed</b><span data-i18n="why.f2.d">The system cannot tell when you leave, when a game ends, or whether a table is free, because a venue is used by everyone, not only by the people using the system. So none of those are stored. A wait expires on its own, and turning the queue back on is itself the signal that the last game finished.</span></div>
       <div class="fact fade"><b data-i18n="why.f3.t">There is no decline</b><span data-i18n="why.f3.d">Asking for another opponent removes only the person who asked; the pairing stays open until its deadline. What the other side sees is identical to no answer at all: same wording, same timing. A traceable decline does more harm than none, so the action does not exist.</span></div>
     </div>
@@ -123,7 +123,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <p class="lead" data-i18n="how.lead">The code on the venue screen rotates on a timer, so it proves both the place and the time. A returning visitor is recognized for the rest of the session and skips straight back to the queue.</p>
     </div>
     <div class="steps">
-      <div class="step fade"><div><b data-i18n="how.s1.t">Scan the code on the screen</b><span data-i18n="how.s1.d">The camera opens a page. There is no app to install and no account to create; the code itself carries which venue, which activity, and which minute.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s1.t">Scan the code on the screen</b><span data-i18n="how.s1.d">The camera opens a page. The code itself carries which venue, which activity, and which minute.</span></div></div>
       <div class="step fade"><div><b data-i18n="how.s2.t">Give your criteria instead of your name</b><span data-i18n="how.s2.d">One number and, if you want, the range you would rather play. A returning visitor sees last time's value already filled in, so it is a single confirmation.</span></div></div>
       <div class="step fade"><div><b data-i18n="how.s3.t">Wait for the round</b><span data-i18n="how.s3.d">The screen shows how many are waiting and how long until the next round. Both the venue screen and your phone count down the same clock.</span></div></div>
       <div class="step fade"><div><b data-i18n="how.s4.t">Accept, then meet</b><span data-i18n="how.s4.d">You see the other person's criteria and answer whether you can play now. Once both accept, the two names appear on your phone and on the venue screen. Table assignment stays with the venue, as before.</span></div></div>
@@ -244,13 +244,13 @@ const _L = {
     "hero.title":"An opponent from <span class=\"grad\">the room you are already in</span>.",
     "hero.sub":"A screen in the venue shows a code. Scanning it puts you in the queue, and each round pairs everyone waiting in one pass. You give your criteria rather than your name, and who you were matched with appears only after both of you accept.",
     "hero.cta1":"Open CUE","hero.cta2":"What this does not claim",
-    "hero.reward":"<b>No app, no sign-in, no name.</b> The code on the venue screen is the entire entry path. It is also proof of presence, which an app that only knows your location cannot establish.",
+    "hero.reward":"<b>The code is proof of presence.</b> Scanning the code on the venue screen shows you are in the room now, which an app that only knows your location cannot establish.",
     "hero.byline":"A service by joygoLive, built here and operated here. Beta.",
 
     "why.tag":"Design","why.h2":"Three decisions that shaped it",
-    "why.lead":"The hard part of pairing people in a room is not the algorithm. It is that the moment you ask for an install, a sign-in or a name, most of the room is already gone, and that the system cannot see most of what happens in that room.",
-    "why.f1.t":"Nothing to install",
-    "why.f1.d":"An earlier generation of venue apps put a radio beacon in every store and asked shoppers to install something to hear it. The deployments were large and the early numbers were good, and they still collapsed, at the install step rather than the technology. A code on a screen removes that step entirely, and works the same on every phone.",
+    "why.lead":"The hard part of pairing people in a room is not the algorithm. It is that the moment you ask for a name, most of the room is already gone, and that the system cannot see most of what happens in that room.",
+    "why.f1.t":"A screen, not a beacon",
+    "why.f1.d":"An earlier generation of venue systems put a radio beacon in every store. A code on a screen needs no hardware beyond the screen, reads the same on every phone, and carries the venue, the activity and the minute, so being in the queue means being in the room.",
     "why.f2.t":"Only what can be observed",
     "why.f2.d":"The system cannot tell when you leave, when a game ends, or whether a table is free, because a venue is used by everyone, not only by the people using the system. So none of those are stored. A wait expires on its own, and turning the queue back on is itself the signal that the last game finished.",
     "why.f3.t":"There is no decline",
@@ -259,7 +259,7 @@ const _L = {
     "how.tag":"Entry","how.h2":"Four steps, one of them optional",
     "how.lead":"The code on the venue screen rotates on a timer, so it proves both the place and the time. A returning visitor is recognized for the rest of the session and skips straight back to the queue.",
     "how.s1.t":"Scan the code on the screen",
-    "how.s1.d":"The camera opens a page. There is no app to install and no account to create; the code itself carries which venue, which activity, and which minute.",
+    "how.s1.d":"The camera opens a page. The code itself carries which venue, which activity, and which minute.",
     "how.s2.t":"Give your criteria instead of your name",
     "how.s2.d":"One number and, if you want, the range you would rather play. A returning visitor sees last time's value already filled in, so it is a single confirmation.",
     "how.s3.t":"Wait for the round",
@@ -327,13 +327,13 @@ const _L = {
     "hero.title":"<span class=\"grad\">이미 같이 있는 사람</span> 중에서 상대를.",
     "hero.sub":"매장에 놓인 화면에 코드가 뜹니다. 찍으면 대기열에 들어가고, 회차마다 기다리는 사람을 한 번에 짝지어 줍니다. 이름 대신 조건을 내고, 상대가 누구인지는 서로 수락한 뒤에 보입니다.",
     "hero.cta1":"CUE 열기","hero.cta2":"주장하지 않는 것",
-    "hero.reward":"<b>앱도, 로그인도, 이름도 없습니다.</b> 매장 화면의 코드가 진입 경로의 전부입니다. 동시에 그 코드가 지금 그 자리에 있다는 증명입니다. 위치만 아는 앱은 그것을 확정하지 못합니다.",
+    "hero.reward":"<b>코드가 곧 현장 증명.</b> 매장 화면의 코드를 찍었다는 것이 지금 그 자리에 있다는 증명입니다. 위치만 아는 앱은 그것을 확정하지 못합니다.",
     "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 베타.",
 
     "why.tag":"설계","why.h2":"형태를 정한 결정 셋",
-    "why.lead":"공간 안의 사람을 붙이는 일에서 어려운 쪽은 알고리즘이 아닙니다. 설치나 로그인이나 이름을 요구하는 순간 대부분이 이미 떠난다는 것, 그리고 그 공간에서 일어나는 일의 대부분을 시스템이 볼 수 없다는 것입니다.",
-    "why.f1.t":"설치할 것이 없습니다",
-    "why.f1.d":"앞선 세대의 매장 앱은 점포마다 전파 발신기를 두고 손님에게 설치를 요구했습니다. 규모도 컸고 초기 수치도 좋았지만 무너졌습니다. 원인은 기술이 아니라 설치 단계였습니다. 화면의 코드는 그 단계를 통째로 없애고, 어떤 기종에서나 똑같이 동작합니다.",
+    "why.lead":"공간 안의 사람을 붙이는 일에서 어려운 쪽은 알고리즘이 아닙니다. 이름을 요구하는 순간 대부분이 이미 떠난다는 것, 그리고 그 공간에서 일어나는 일의 대부분을 시스템이 볼 수 없다는 것입니다.",
+    "why.f1.t":"비콘 대신 화면",
+    "why.f1.d":"앞선 세대의 매장 시스템은 점포마다 전파 발신기를 두었습니다. 화면의 코드는 화면 외의 장비가 필요 없고, 어떤 기종에서나 똑같이 읽히며, 매장·활동·몇 분대를 싣고 있습니다. 대기열에 있다는 것이 곧 그 공간에 있다는 뜻입니다.",
     "why.f2.t":"관측할 수 있는 것만",
     "why.f2.d":"언제 나가는지, 게임이 끝났는지, 자리가 비었는지를 시스템은 알 수 없습니다. 매장은 이용자만 쓰는 곳이 아니기 때문입니다. 그래서 어느 것도 저장하지 않습니다. 대기는 스스로 만료되고, 다시 대기열을 켜는 행위 자체가 직전 게임이 끝났다는 신호입니다.",
     "why.f3.t":"거절이라는 행위가 없습니다",
@@ -342,7 +342,7 @@ const _L = {
     "how.tag":"진입","how.h2":"네 단계, 그중 하나는 선택",
     "how.lead":"매장 화면의 코드는 주기적으로 바뀌므로 장소와 시각을 함께 증명합니다. 다시 온 사람은 그 세션 동안 알아보고 대기열로 바로 돌아갑니다.",
     "how.s1.t":"화면의 코드를 찍습니다",
-    "how.s1.d":"카메라가 페이지를 엽니다. 설치할 앱도 만들 계정도 없고, 어느 매장·어느 활동·몇 분대인지를 코드가 싣고 있습니다.",
+    "how.s1.d":"카메라가 페이지를 엽니다. 어느 매장·어느 활동·몇 분대인지를 코드가 싣고 있습니다.",
     "how.s2.t":"이름 대신 조건을 냅니다",
     "how.s2.d":"숫자 하나, 원하면 선호하는 상대 범위까지. 다시 온 사람은 지난번 값이 채워져 있어 확인 한 번으로 끝납니다.",
     "how.s3.t":"회차를 기다립니다",
