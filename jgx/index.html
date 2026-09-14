@@ -6,7 +6,7 @@
 <title>JGX — An order-book exchange, by joygoLive</title>
 <meta name="description" content="JGX (joygoLive Exchange) is a centralized order-book exchange: BTC, ETH and USDT markets, limit and market orders, MetaMask sign-in, deposits and withdrawals on Ethereum Sepolia and Bitcoin Testnet4. Quotes follow Binance public prices. Run on testnets for investor and partner presentations, with no real assets." />
 <meta property="og:title" content="JGX — An order-book exchange" />
-<meta property="og:description" content="Three markets and 33 pairs, price-time matching, on-chain deposits and admin-approved withdrawals on testnets. One Mac and free tiers only." />
+<meta property="og:description" content="Three markets and 33 pairs, price-time matching, on-chain deposits and admin-approved withdrawals on testnets. Integer ledger, WebSocket streaming and a hardened API layer." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
 <meta name="theme-color" id="themeColor" content="#ffffff" />
@@ -99,7 +99,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="facts">
       <div class="fact fade"><b data-i18n="why.f1.t">Centralized order-book matching</b><span data-i18n="why.f1.d">Orders match on the server against a central order book, and balances are kept in the exchange's own ledger (SQLite). Trades settle inside that ledger; the chain is used only for deposits and withdrawals. Not a DEX, with no on-chain swap.</span></div>
       <div class="fact fade"><b data-i18n="why.f2.t">Wallet signature in place of a password</b><span data-i18n="why.f2.d">Sign-in is a MetaMask signature. There is no password sign-up, so there is no password to store or reset.</span></div>
-      <div class="fact fade"><b data-i18n="why.f3.t">Real prices, zero running cost</b><span data-i18n="why.f3.d">Reference prices come from Binance public market data, which needs no key and carries no fee. CoinMarketCap supplies market capitalization and coin icons. Every external API runs behind a guard that keeps usage inside its free tier.</span></div>
+      <div class="fact fade"><b data-i18n="why.f3.t">Live market pricing</b><span data-i18n="why.f3.d">Reference prices stream from Binance market data and drive the market-maker quotes, keeping the book within 0.15% of the market. CoinMarketCap supplies market capitalization and coin icons. Every external API call runs behind per-provider rate caps by minute, day and month.</span></div>
     </div>
   </div>
 </section>
@@ -186,10 +186,10 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="build.tag">Implementation</div>
     <h2 data-i18n="build.h2">How it is built</h2>
-    <p class="lead" data-i18n="build.lead">One machine, one process and free tiers, with tests and security layers sized for public exposure.</p>
+    <p class="lead" data-i18n="build.lead">A single event-loop process for matching, API and streaming, a SQLite WAL ledger behind an edge tunnel, and tests and security layers sized for public exposure.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="build.f1.t">Infrastructure</b><span data-i18n="build.f1.d">One Mac running a single Node.js process with a SQLite ledger, reached through a Cloudflare Tunnel. Everything used is on a free tier, so the running cost is zero.</span></div>
+      <div class="fact fade"><b data-i18n="build.f1.t">Infrastructure</b><span data-i18n="build.f1.d">A single Node.js process for matching, API and WebSocket, a SQLite ledger in WAL mode, and HTTPS/WSS through Cloudflare Tunnel. Every external API call runs behind a rate cap.</span></div>
       <div class="fact fade"><b data-i18n="build.f2.t">Security layers</b><span data-i18n="build.f2.d">CSP and other security headers, blocking of cross-origin writes, rate limiting, lockout against brute force on the admin side, and integer validation of input.</span></div>
       <div class="fact fade"><b data-i18n="build.f3.t">Regression tests</b><span data-i18n="build.f3.d">The suite covers the matching engine, API behavior, security, chain integration, performance and free-tier limits.</span></div>
       <div class="fact fade"><b data-i18n="build.f4.t">Screens</b><span data-i18n="build.f4.d">Mobile first, with a three-column trading layout on desktop. Korean and English, light and dark, line-glyph SVG icons.</span></div>
@@ -210,7 +210,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="fact fade"><b data-i18n="limits.f2.t">Not mainnet, not a licensed operation</b><span data-i18n="limits.f2.d">No mainnet deployment and no registration or license as a virtual asset service provider. Operated for presentations to investors and partners.</span></div>
       <div class="fact fade"><b data-i18n="limits.f3.t">No fiat</b><span data-i18n="limits.f3.d">No bank link and no KRW deposit or withdrawal. The KRW market exists in the structure only.</span></div>
       <div class="fact fade"><b data-i18n="limits.f4.t">Depth comes from the bot</b><span data-i18n="limits.f4.d">Prices track Binance, while the depth on the book is placed by the market-making bot. Fills here are not evidence of liquidity on a real venue.</span></div>
-      <div class="fact fade"><b data-i18n="limits.f5.t">One machine</b><span data-i18n="limits.f5.d">The exchange runs as one process on one Mac, without redundancy. A fault on that machine stops the service.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f5.t">Single node</b><span data-i18n="limits.f5.d">Matching, ledger and API run as one process on a single node, with no redundancy or failover. A node fault stops the service.</span></div>
     </div>
   </div>
 </section>
@@ -251,8 +251,8 @@ const _L = {
     "why.f1.d":"Orders match on the server against a central order book, and balances are kept in the exchange's own ledger (SQLite). Trades settle inside that ledger; the chain is used only for deposits and withdrawals. Not a DEX, with no on-chain swap.",
     "why.f2.t":"Wallet signature in place of a password",
     "why.f2.d":"Sign-in is a MetaMask signature. There is no password sign-up, so there is no password to store or reset.",
-    "why.f3.t":"Real prices, zero running cost",
-    "why.f3.d":"Reference prices come from Binance public market data, which needs no key and carries no fee. CoinMarketCap supplies market capitalization and coin icons. Every external API runs behind a guard that keeps usage inside its free tier.",
+    "why.f3.t":"Live market pricing",
+    "why.f3.d":"Reference prices stream from Binance market data and drive the market-maker quotes, keeping the book within 0.15% of the market. CoinMarketCap supplies market capitalization and coin icons. Every external API call runs behind per-provider rate caps by minute, day and month.",
     "trade.tag":"Trading",
     "trade.h2":"Markets and orders",
     "trade.lead":"Three quote markets and the rules every order passes through.",
@@ -313,9 +313,9 @@ const _L = {
     "ops.f6.d":"Trading and withdrawals can each be halted at once from the operating settings, where the fee rate is also set.",
     "build.tag":"Implementation",
     "build.h2":"How it is built",
-    "build.lead":"One machine, one process and free tiers, with tests and security layers sized for public exposure.",
+    "build.lead":"A single event-loop process for matching, API and streaming, a SQLite WAL ledger behind an edge tunnel, and tests and security layers sized for public exposure.",
     "build.f1.t":"Infrastructure",
-    "build.f1.d":"One Mac running a single Node.js process with a SQLite ledger, reached through a Cloudflare Tunnel. Everything used is on a free tier, so the running cost is zero.",
+    "build.f1.d":"A single Node.js process for matching, API and WebSocket, a SQLite ledger in WAL mode, and HTTPS/WSS through Cloudflare Tunnel. Every external API call runs behind a rate cap.",
     "build.f2.t":"Security layers",
     "build.f2.d":"CSP and other security headers, blocking of cross-origin writes, rate limiting, lockout against brute force on the admin side, and integer validation of input.",
     "build.f3.t":"Regression tests",
@@ -335,8 +335,8 @@ const _L = {
     "limits.f3.d":"No bank link and no KRW deposit or withdrawal. The KRW market exists in the structure only.",
     "limits.f4.t":"Depth comes from the bot",
     "limits.f4.d":"Prices track Binance, while the depth on the book is placed by the market-making bot. Fills here are not evidence of liquidity on a real venue.",
-    "limits.f5.t":"One machine",
-    "limits.f5.d":"The exchange runs as one process on one Mac, without redundancy. A fault on that machine stops the service."
+    "limits.f5.t":"Single node",
+    "limits.f5.d":"Matching, ledger and API run as one process on a single node, with no redundancy or failover. A node fault stops the service."
   },
   ko:{
     "ft.home":"홈",
@@ -362,8 +362,8 @@ const _L = {
     "why.f1.d":"주문은 서버의 중앙 호가창에서 체결되고 잔고는 거래소 원장(SQLite)에 기록됩니다. 체결은 원장 안에서 정산되고, 체인은 입금과 출금에만 씁니다. DEX가 아니며 온체인 스왑도 없습니다.",
     "why.f2.t":"비밀번호 대신 지갑 서명",
     "why.f2.d":"로그인은 메타마스크 서명입니다. 비밀번호 회원가입이 없어 저장하거나 재설정할 비밀번호도 없습니다.",
-    "why.f3.t":"실제 시세, 운영비 0",
-    "why.f3.d":"기준가는 키도 요금도 없는 바이낸스 공개 시세입니다. 시가총액과 코인 아이콘은 CoinMarketCap. 모든 외부 API에 무료 한도 안에서만 호출하도록 사용량 가드를 둡니다.",
+    "why.f3.t":"실제 시세 연동",
+    "why.f3.d":"바이낸스 시세 스트림을 기준가로 시장조성 호가를 맞춰 실제 시세와 0.15% 이내. 시가총액과 코인 아이콘은 CoinMarketCap. 모든 외부 API 호출에 공급자별 분·일·월 호출 상한.",
     "trade.tag":"거래",
     "trade.h2":"마켓과 주문",
     "trade.lead":"기준 통화별 마켓 셋과 모든 주문에 적용되는 규칙.",
@@ -424,9 +424,9 @@ const _L = {
     "ops.f6.d":"운영 설정에서 거래와 출금을 각각 즉시 중지합니다. 수수료율도 같은 자리에서 설정합니다.",
     "build.tag":"구현",
     "build.h2":"구현과 운영 환경",
-    "build.lead":"맥 한 대·단일 프로세스·무료 계층 위에, 공개 운영에 맞춘 시험과 보안 계층.",
+    "build.lead":"매칭·API·스트리밍을 한 이벤트 루프 프로세스로, SQLite WAL 원장과 엣지 터널, 공개 운영에 맞춘 시험과 보안 계층.",
     "build.f1.t":"운영 인프라",
-    "build.f1.d":"맥 한 대에서 Node.js 단일 프로세스와 SQLite 원장, 외부 연결은 Cloudflare 터널. 전부 무료 계층이라 운영비 0.",
+    "build.f1.d":"매칭·API·웹소켓을 처리하는 Node.js 단일 프로세스, WAL 모드 SQLite 원장, Cloudflare Tunnel 경유 HTTPS·WSS. 외부 API 호출 전부 호출 상한 가드.",
     "build.f2.t":"보안 계층",
     "build.f2.d":"CSP 등 보안 헤더, 교차 출처 쓰기 차단, 속도 제한, 관리자 무차별 대입 잠금, 입력 정수 검증.",
     "build.f3.t":"회귀 시험",
@@ -446,8 +446,8 @@ const _L = {
     "limits.f3.d":"은행 연동도 원화 입출금도 없습니다. 원화 마켓은 구조로만 존재합니다.",
     "limits.f4.t":"호가 잔량은 봇 주문",
     "limits.f4.d":"가격은 바이낸스를 따르지만 호가창 잔량은 시장조성 봇이 넣은 것입니다. 여기서의 체결은 실제 거래소 유동성의 근거가 되지 않습니다.",
-    "limits.f5.t":"서버 한 대",
-    "limits.f5.d":"거래소 전체가 맥 한 대의 단일 프로세스이고 이중화가 없습니다. 그 기기에 장애가 나면 서비스가 멈춥니다."
+    "limits.f5.t":"단일 노드",
+    "limits.f5.d":"매칭·원장·API가 단일 노드의 한 프로세스로 돌고 이중화·장애 조치가 없습니다. 노드 장애 시 서비스가 멈춥니다."
   }
 };
 </script>
