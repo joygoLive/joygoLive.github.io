@@ -78,7 +78,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="hero-kicker mono" data-i18n="hero.kicker">JGX · Order-book exchange</div>
     <h1 data-i18n-html="hero.title">An order-book <span class="grad">centralized exchange</span>.</h1>
-    <p class="lead" data-i18n="hero.sub">JGX (joygoLive Exchange) runs the order book, matching engine and ledger on one server, in the shape of a Korean retail exchange. Three markets quoted in BTC, ETH and USDT, sign-in with a MetaMask signature, and deposits and withdrawals on Ethereum Sepolia and Bitcoin Testnet4.</p>
+    <p class="lead" data-i18n="hero.sub">JGX (joygoLive Exchange) is an extensible exchange core that ties the order book, matching engine and ledger together. Markets, assets and networks are added by configuration, and a fiat market or a mainnet switch builds on the same structure. Today: three markets quoted in BTC, ETH and USDT, sign-in with a MetaMask signature, and deposits and withdrawals on Ethereum Sepolia and Bitcoin Testnet4.</p>
     <div class="cta-row">
       <a href="https://jgx.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta0">Open JGX</a>
       <a href="#trade" class="btn btn-ghost" data-i18n="hero.cta1">How trading works</a>
@@ -94,7 +94,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="why.tag">Design</div>
     <h2 data-i18n="why.h2">Three decisions that shaped it</h2>
-    <p class="lead" data-i18n="why.lead">Built to present the structure of a Korean retail exchange end to end: order book, custody, deposits and withdrawals, and the admin side behind them.</p>
+    <p class="lead" data-i18n="why.lead">Built as a complete exchange stack designed to extend: order book, custody, deposits and withdrawals, and the admin side behind them.</p>
     </div>
     <div class="facts">
       <div class="fact fade"><b data-i18n="why.f1.t">Centralized order-book matching</b><span data-i18n="why.f1.d">Orders match on the server against a central order book, and balances are kept in the exchange's own ledger (SQLite). Trades settle inside that ledger; the chain is used only for deposits and withdrawals. Not a DEX, with no on-chain swap.</span></div>
@@ -173,7 +173,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="facts">
       <div class="fact fade"><b data-i18n="ops.f1.t">Members and grants</b><span data-i18n="ops.f1.d">Suspend members and adjust balances. Assets are granted to several selected members in one batch, and notices are published from the same screen.</span></div>
       <div class="fact fade"><b data-i18n="ops.f2.t">Markets, orders, bot</b><span data-i18n="ops.f2.d">Turn markets and pairs on and off, review orders and trades, and control the market-making bot and the run mode.</span></div>
-      <div class="fact fade"><b data-i18n="ops.f3.t">Price feed and free-tier usage</b><span data-i18n="ops.f3.d">The state of each price feed, with usage shown against its free-tier limit.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f3.t">Price feed and API rate caps</b><span data-i18n="ops.f3.d">The state of each price feed, with API usage shown against its rate caps.</span></div>
       <div class="fact fade"><b data-i18n="ops.f4.t">Deposits, withdrawals, custody</b><span data-i18n="ops.f4.d">Withdrawal approval and the deposit list, with the hot wallet shown next to what the exchange owes its members.</span></div>
       <div class="fact fade"><b data-i18n="ops.f5.t">Reconciliation and audit log</b><span data-i18n="ops.f5.d">Ledger reconciliation, and an audit log of operations on the admin side.</span></div>
       <div class="fact fade"><b data-i18n="ops.f6.t">Emergency switches</b><span data-i18n="ops.f6.d">Trading and withdrawals can each be halted at once from the operating settings, where the fee rate is also set.</span></div>
@@ -191,7 +191,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="facts">
       <div class="fact fade"><b data-i18n="build.f1.t">Infrastructure</b><span data-i18n="build.f1.d">A single Node.js process for matching, API and WebSocket, a SQLite ledger in WAL mode, and HTTPS/WSS through Cloudflare Tunnel. Every external API call runs behind a rate cap.</span></div>
       <div class="fact fade"><b data-i18n="build.f2.t">Security layers</b><span data-i18n="build.f2.d">CSP and other security headers, blocking of cross-origin writes, rate limiting, lockout against brute force on the admin side, and integer validation of input.</span></div>
-      <div class="fact fade"><b data-i18n="build.f3.t">Regression tests</b><span data-i18n="build.f3.d">The suite covers the matching engine, API behavior, security, chain integration, performance and free-tier limits.</span></div>
+      <div class="fact fade"><b data-i18n="build.f3.t">Regression tests</b><span data-i18n="build.f3.d">The suite covers the matching engine, API behavior, security, chain integration, performance and API rate caps.</span></div>
       <div class="fact fade"><b data-i18n="build.f4.t">Screens</b><span data-i18n="build.f4.d">Mobile first, with a three-column trading layout on desktop. Korean and English, light and dark, line-glyph SVG icons.</span></div>
       <div class="fact fade"><b data-i18n="build.f5.t">Open source</b><span data-i18n="build.f5.d">nodejs-order-book (MIT) for matching, TradingView Lightweight Charts (Apache-2.0) for charts, viem (MIT), bitcoinjs-lib (MIT), Fastify and React.</span></div>
     </div>
@@ -238,7 +238,7 @@ const _L = {
     "nav.limits":"Limits",
     "hero.kicker":"JGX · Order-book exchange",
     "hero.title":"An order-book <span class=\"grad\">centralized exchange</span>.",
-    "hero.sub":"JGX (joygoLive Exchange) runs the order book, matching engine and ledger on one server, in the shape of a Korean retail exchange. Three markets quoted in BTC, ETH and USDT, sign-in with a MetaMask signature, and deposits and withdrawals on Ethereum Sepolia and Bitcoin Testnet4.",
+    "hero.sub":"JGX (joygoLive Exchange) is an extensible exchange core that ties the order book, matching engine and ledger together. Markets, assets and networks are added by configuration, and a fiat market or a mainnet switch builds on the same structure. Today: three markets quoted in BTC, ETH and USDT, sign-in with a MetaMask signature, and deposits and withdrawals on Ethereum Sepolia and Bitcoin Testnet4.",
     "hero.cta0":"Open JGX",
     "hero.cta1":"How trading works",
     "hero.cta2":"What this does not claim",
@@ -246,7 +246,7 @@ const _L = {
     "hero.byline":"A service by joygoLive, built here and operated here. Open since September 14, 2026, run on testnets for investor and partner presentations.",
     "why.tag":"Design",
     "why.h2":"Three decisions that shaped it",
-    "why.lead":"Built to present the structure of a Korean retail exchange end to end: order book, custody, deposits and withdrawals, and the admin side behind them.",
+    "why.lead":"Built as a complete exchange stack designed to extend: order book, custody, deposits and withdrawals, and the admin side behind them.",
     "why.f1.t":"Centralized order-book matching",
     "why.f1.d":"Orders match on the server against a central order book, and balances are kept in the exchange's own ledger (SQLite). Trades settle inside that ledger; the chain is used only for deposits and withdrawals. Not a DEX, with no on-chain swap.",
     "why.f2.t":"Wallet signature in place of a password",
@@ -303,8 +303,8 @@ const _L = {
     "ops.f1.d":"Suspend members and adjust balances. Assets are granted to several selected members in one batch, and notices are published from the same screen.",
     "ops.f2.t":"Markets, orders, bot",
     "ops.f2.d":"Turn markets and pairs on and off, review orders and trades, and control the market-making bot and the run mode.",
-    "ops.f3.t":"Price feed and free-tier usage",
-    "ops.f3.d":"The state of each price feed, with usage shown against its free-tier limit.",
+    "ops.f3.t":"Price feed and API rate caps",
+    "ops.f3.d":"The state of each price feed, with API usage shown against its rate caps.",
     "ops.f4.t":"Deposits, withdrawals, custody",
     "ops.f4.d":"Withdrawal approval and the deposit list, with the hot wallet shown next to what the exchange owes its members.",
     "ops.f5.t":"Reconciliation and audit log",
@@ -319,7 +319,7 @@ const _L = {
     "build.f2.t":"Security layers",
     "build.f2.d":"CSP and other security headers, blocking of cross-origin writes, rate limiting, lockout against brute force on the admin side, and integer validation of input.",
     "build.f3.t":"Regression tests",
-    "build.f3.d":"The suite covers the matching engine, API behavior, security, chain integration, performance and free-tier limits.",
+    "build.f3.d":"The suite covers the matching engine, API behavior, security, chain integration, performance and API rate caps.",
     "build.f4.t":"Screens",
     "build.f4.d":"Mobile first, with a three-column trading layout on desktop. Korean and English, light and dark, line-glyph SVG icons.",
     "build.f5.t":"Open source",
@@ -349,7 +349,7 @@ const _L = {
     "nav.limits":"한계",
     "hero.kicker":"JGX · 호가창 거래소",
     "hero.title":"호가창 기반 <span class=\"grad\">중앙화 거래소</span>.",
-    "hero.sub":"JGX(joygoLive Exchange)는 호가창·매칭 엔진·원장을 서버 한 곳에서 처리하는 국내 거래소형 구조입니다. BTC·ETH·USDT 마켓 셋, 메타마스크 서명 로그인, Ethereum Sepolia·Bitcoin Testnet4 입출금.",
+    "hero.sub":"JGX(joygoLive Exchange)는 호가창·매칭 엔진·원장을 하나로 묶은 확장형 거래소 코어입니다. 마켓·자산·네트워크는 설정으로 추가하고, 원화 마켓·메인넷 전환도 같은 구조 위에서. 현재 BTC·ETH·USDT 마켓 셋, 메타마스크 서명 로그인, Ethereum Sepolia·Bitcoin Testnet4 입출금.",
     "hero.cta0":"JGX 열기",
     "hero.cta1":"거래 구조 보기",
     "hero.cta2":"주장하지 않는 것",
@@ -357,7 +357,7 @@ const _L = {
     "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 2026-09-14 공개 운영 시작, 투자자·파트너 시연용 테스트넷 운영.",
     "why.tag":"설계",
     "why.h2":"형태를 정한 세 가지 결정",
-    "why.lead":"국내 거래소의 구조를 처음부터 끝까지 보여 주기 위해 구축했습니다. 호가창, 수탁, 입출금, 그리고 그 뒤의 관리자단까지.",
+    "why.lead":"확장을 전제로 거래소 한 벌을 처음부터 끝까지 구축했습니다. 호가창, 수탁, 입출금, 그리고 그 뒤의 관리자단까지.",
     "why.f1.t":"중앙화 호가창 매칭",
     "why.f1.d":"주문은 서버의 중앙 호가창에서 체결되고 잔고는 거래소 원장(SQLite)에 기록됩니다. 체결은 원장 안에서 정산되고, 체인은 입금과 출금에만 씁니다. DEX가 아니며 온체인 스왑도 없습니다.",
     "why.f2.t":"비밀번호 대신 지갑 서명",
@@ -414,8 +414,8 @@ const _L = {
     "ops.f1.d":"회원 정지와 잔고 조정. 자산은 회원을 여럿 골라 한 번에 지급하고, 공지도 같은 화면에서 게시합니다.",
     "ops.f2.t":"마켓·주문·봇",
     "ops.f2.d":"마켓·거래쌍 켜고 끄기, 주문·체결 조회, 시장조성 봇과 실행 모드 제어.",
-    "ops.f3.t":"시세 피드·무료 한도",
-    "ops.f3.d":"시세 피드별 상태와 무료 한도 대비 사용량.",
+    "ops.f3.t":"시세 피드·API 호출 한도",
+    "ops.f3.d":"시세 피드별 상태와 API 호출 상한 대비 사용량.",
     "ops.f4.t":"입출금·보관",
     "ops.f4.d":"출금 승인과 입금 내역. 핫월렛 보유량을 회원 부채와 나란히 표시합니다.",
     "ops.f5.t":"장부 대사·감사 로그",
@@ -430,7 +430,7 @@ const _L = {
     "build.f2.t":"보안 계층",
     "build.f2.d":"CSP 등 보안 헤더, 교차 출처 쓰기 차단, 속도 제한, 관리자 무차별 대입 잠금, 입력 정수 검증.",
     "build.f3.t":"회귀 시험",
-    "build.f3.d":"매칭 엔진·API 기능·보안·체인 연동·성능·무료 한도를 회귀 시험으로 확인합니다.",
+    "build.f3.d":"매칭 엔진·API 기능·보안·체인 연동·성능·API 호출 한도를 회귀 시험으로 확인합니다.",
     "build.f4.t":"화면",
     "build.f4.d":"모바일 우선, 데스크톱은 3열 거래 화면. 한국어·영어, 라이트·다크, 선 글리프 SVG 아이콘.",
     "build.f5.t":"오픈소스",
