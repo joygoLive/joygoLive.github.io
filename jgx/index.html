@@ -114,7 +114,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="pts">
       <div class="pt fade"><b data-i18n="trade.1.t">Three markets, 33 pairs</b><span data-i18n="trade.1.d">BTC, ETH and USDT markets with eleven assets each, drawn from BTC, ETH, XRP, BNB, SOL, DOGE, ADA, TRX, LINK, AVAX, DOT, LTC and KAIA. A KRW market is supported by the structure and not yet added.</span></div>
       <div class="pt fade"><b data-i18n="trade.2.t">Limit and market orders</b><span data-i18n="trade.2.d">A limit order rests on the book at its price. A market order fills against the best prices on the book at once.</span></div>
-      <div class="pt fade"><b data-i18n="trade.3.t">Price-time priority</b><span data-i18n="trade.3.d">Better price first, then earlier order at the same price. Self-trade prevention keeps an account's order from filling against its own. Matching is built on nodejs-order-book.</span></div>
+      <div class="pt fade"><b data-i18n="trade.3.t">Price-time priority</b><span data-i18n="trade.3.d">Better price first, then earlier order at the same price. Self-trade prevention keeps an account's order from filling against its own. Settlement runs on integer units with BigInt arithmetic.</span></div>
       <div class="pt fade"><b data-i18n="trade.4.t">Maker and taker 0.05%</b><span data-i18n="trade.4.d">One fee rate on both sides, adjustable from the admin side along with the markets and pairs that are open.</span></div>
     </div>
   </div>
@@ -193,7 +193,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="fact fade"><b data-i18n="build.f2.t">Security layers</b><span data-i18n="build.f2.d">CSP and other security headers, blocking of cross-origin writes, rate limiting, lockout against brute force on the admin side, and integer validation of input.</span></div>
       <div class="fact fade"><b data-i18n="build.f3.t">Regression tests</b><span data-i18n="build.f3.d">The suite covers the matching engine, API behavior, security, chain integration, performance and API rate caps.</span></div>
       <div class="fact fade"><b data-i18n="build.f4.t">Screens</b><span data-i18n="build.f4.d">Mobile first, with a three-column trading layout on desktop. Korean and English, light and dark, line-glyph SVG icons.</span></div>
-      <div class="fact fade"><b data-i18n="build.f5.t">Open source</b><span data-i18n="build.f5.d">nodejs-order-book (MIT) for matching, TradingView Lightweight Charts (Apache-2.0) for charts, viem (MIT), bitcoinjs-lib (MIT), Fastify and React.</span></div>
+      <div class="fact fade"><b data-i18n="build.f5.t">Open source</b><span data-i18n="build.f5.d">TradingView Lightweight Charts (Apache-2.0) for charts, viem (MIT), bitcoinjs-lib (MIT), Fastify and React. The matching engine is built in-house on an open-source order-book core.</span></div>
     </div>
   </div>
 </section>
@@ -261,7 +261,7 @@ const _L = {
     "trade.2.t":"Limit and market orders",
     "trade.2.d":"A limit order rests on the book at its price. A market order fills against the best prices on the book at once.",
     "trade.3.t":"Price-time priority",
-    "trade.3.d":"Better price first, then earlier order at the same price. Self-trade prevention keeps an account's order from filling against its own. Matching is built on nodejs-order-book.",
+    "trade.3.d":"Better price first, then earlier order at the same price. Self-trade prevention keeps an account's order from filling against its own. Settlement runs on integer units with BigInt arithmetic.",
     "trade.4.t":"Maker and taker 0.05%",
     "trade.4.d":"One fee rate on both sides, adjustable from the admin side along with the markets and pairs that are open.",
     "chain.tag":"Deposits",
@@ -323,7 +323,7 @@ const _L = {
     "build.f4.t":"Screens",
     "build.f4.d":"Mobile first, with a three-column trading layout on desktop. Korean and English, light and dark, line-glyph SVG icons.",
     "build.f5.t":"Open source",
-    "build.f5.d":"nodejs-order-book (MIT) for matching, TradingView Lightweight Charts (Apache-2.0) for charts, viem (MIT), bitcoinjs-lib (MIT), Fastify and React.",
+    "build.f5.d":"TradingView Lightweight Charts (Apache-2.0) for charts, viem (MIT), bitcoinjs-lib (MIT), Fastify and React. The matching engine is built in-house on an open-source order-book core.",
     "limits.tag":"Limits",
     "limits.h2":"What this does not claim",
     "limits.lead":"Exchange mechanics are implemented end to end. Real value, mainnet and regulatory standing are outside the scope.",
@@ -372,7 +372,7 @@ const _L = {
     "trade.2.t":"지정가·시장가",
     "trade.2.d":"지정가 주문은 그 가격으로 호가창에 남고, 시장가 주문은 호가창의 최우선 가격부터 즉시 체결됩니다.",
     "trade.3.t":"가격·시간 우선",
-    "trade.3.d":"좋은 가격이 먼저, 같은 가격이면 먼저 들어온 주문이 먼저. 자기체결 방지로 한 계정의 주문끼리는 체결되지 않습니다. 매칭은 nodejs-order-book 기반.",
+    "trade.3.d":"좋은 가격이 먼저, 같은 가격이면 먼저 들어온 주문이 먼저. 자기체결 방지로 한 계정의 주문끼리는 체결되지 않습니다. 정산은 정수 단위·BigInt 연산.",
     "trade.4.t":"메이커·테이커 0.05%",
     "trade.4.d":"양쪽 같은 수수료율. 열어 둘 마켓·거래쌍과 함께 관리자단에서 조정합니다.",
     "chain.tag":"입출금",
@@ -434,7 +434,7 @@ const _L = {
     "build.f4.t":"화면",
     "build.f4.d":"모바일 우선, 데스크톱은 3열 거래 화면. 한국어·영어, 라이트·다크, 선 글리프 SVG 아이콘.",
     "build.f5.t":"오픈소스",
-    "build.f5.d":"매칭 nodejs-order-book(MIT), 차트 TradingView Lightweight Charts(Apache-2.0), viem(MIT), bitcoinjs-lib(MIT), Fastify, React.",
+    "build.f5.d":"차트 TradingView Lightweight Charts(Apache-2.0), viem(MIT), bitcoinjs-lib(MIT), Fastify, React. 매칭 엔진은 오픈소스 호가창 코어 위에 자체 구현.",
     "limits.tag":"한계",
     "limits.h2":"주장하지 않는 것",
     "limits.lead":"거래소 구조는 끝까지 구현했습니다. 실제 가치·메인넷·인허가는 범위 밖입니다.",
