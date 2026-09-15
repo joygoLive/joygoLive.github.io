@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SHOP — A multi-vendor shopping mall, by joygoLive</title>
+<meta name="description" content="SHOP is a multi-vendor shopping mall: a buyer storefront, a seller center per brand and an operator console on one domain. Orders split per seller at payment, each seller ships its own share with a tracking number, and the buyer sees combined shipment status. Korean commerce rules throughout; payment, carrier tracking and e-tax invoices are integration points with simulated providers." />
+<meta property="og:title" content="SHOP — A multi-vendor shopping mall" />
+<meta property="og:description" content="One cart, one payment, an order split per seller. Seller center with shipping and e-tax invoice preview, Korean delivery and tax rules, operated for presentations." />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
+<meta name="theme-color" id="themeColor" content="#ffffff" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+/* 연동 지점 표. 영역마다 지금(시연)과 운영 전환 시 바뀌는 자리가 한 줄에 읽혀야 한다. */
+.rv-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:30px 0 8px}
+.rv{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px}
+.rv th,.rv td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+.rv th{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
+.rv tr:last-child td{border-bottom:0}
+.rv .nm{font-weight:700;white-space:nowrap}
+
+.reward{margin:18px 0 0;padding:13px 16px;max-width:46em;
+  font-size:13.5px;line-height:1.7;color:var(--text2);
+  background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:var(--radius)}
+.reward b{color:var(--text);font-weight:700}
+</style>
+<script>try{var t=localStorage.getItem('joygo_theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}
+/* 주소창 색은 첫 칠 전에 정해야 한다 — 나중에 고치면 흰 띠가 한 번 번쩍인다. */
+try{var d=document.documentElement.getAttribute('data-theme');
+document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(prefers-color-scheme:dark)').matches))?'#0b0e11':'#ffffff';}catch(e){}</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand-group">
+      <a href="../" class="brand" aria-label="joygoLive">
+        <svg viewBox="0 0 32 32" aria-hidden="true" class="mk"><rect class="mk-bg" x=".6" y=".6" width="30.8" height="30.8" rx="6.6"/><rect class="mk-joy" x="6.5" y="12.5" width="5" height="13.5" rx="1"/><rect class="mk-go" x="13.5" y="17" width="5" height="9" rx="1"/><rect class="mk-live" x="20.5" y="8" width="5" height="18" rx="1"/></svg>
+        <span>joy<span class="go">go</span><span class="dot">Live</span></span>
+      </a>
+      <span class="brand-sep" aria-hidden="true">/</span>
+      <a href="./" class="svc-name">SHOP</a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#why" data-i18n="nav.why">Design</a>
+      <a href="#flow" data-i18n="nav.flow">Orders</a>
+      <a href="#seller" data-i18n="nav.seller">Sellers</a>
+      <a href="#ops" data-i18n="nav.ops">Operations</a>
+      <a href="#kr" data-i18n="nav.kr">Integrations</a>
+      <a href="#limits" data-i18n="nav.limits">Limits</a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="language">
+      <button data-lang="en" onclick="setLang('en')">EN</button>
+      <button data-lang="ko" onclick="setLang('ko')">한국어</button>
+    </div>
+    <div class="theme-toggle" role="group" aria-label="theme">
+      <button data-theme-set="light" onclick="setTheme('light')" aria-label="Light" title="Light">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button data-theme-set="dark" onclick="setTheme('dark')" aria-label="Dark" title="Dark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+    <button class="menu-btn" aria-label="menu" aria-expanded="false" aria-controls="navLinks" onclick="toggleNav(this)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-kicker mono" data-i18n="hero.kicker">SHOP · Multi-vendor commerce</div>
+    <h1 data-i18n-html="hero.title">A <span class="grad">multi-vendor</span> shopping mall.</h1>
+    <p class="lead" data-i18n="hero.sub">A buyer storefront, a seller center for each brand and an operator console, served from one domain. Buyers put several brands in one cart and pay once; at payment the order splits into one order per seller, each seller ships its own share, and the buyer follows every shipment from one order. Prices, delivery fees, carriers and tax invoices follow Korean commerce rules.</p>
+    <div class="cta-row">
+      <a href="https://shop.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta0">Open the shop</a>
+      <a href="#flow" class="btn btn-ghost" data-i18n="hero.cta1">How an order flows</a>
+      <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">What this does not claim</a>
+    </div>
+    <p class="reward" data-i18n-html="hero.reward"><b>One order, followed end to end.</b> Payment, the split per seller, shipping with a tracking number, the buyer's tracking history and the seller's e-tax invoice all run on the same order. The whole path is replayed as an automated check after every change.</p>
+    <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here. Open since September 15, 2026, operated for presentations with simulated payment and delivery.</div>
+  </div>
+</section>
+
+<!-- DESIGN -->
+<section id="why" class="section alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="why.tag">Design</div>
+    <h2 data-i18n="why.h2">Three decisions that shaped it</h2>
+    <p class="lead" data-i18n="why.lead">Built as three connected sides of one store: buying, selling and operating.</p>
+    </div>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="why.f1.t">The order splits at payment</b><span data-i18n="why.f1.d">Each order line is tagged with the seller of its product. When payment settles, the order splits into one order per seller, carrying that seller's lines and delivery fee. The buyer's order stays whole and aggregates the sellers' progress.</span></div>
+      <div class="fact fade"><b data-i18n="why.f2.t">Sellers isolated by channel</b><span data-i18n="why.f2.d">Every brand has its own sales channel, role and accounts. A seller account reads and updates only its own products and orders; a request for the shared catalog or another brand is refused by the server, not hidden by the screen.</span></div>
+      <div class="fact fade"><b data-i18n="why.f3.t">Integration points in place of providers</b><span data-i18n="why.f3.d">Payment, carrier tracking and the e-tax invoice sit behind the interfaces a real provider plugs into, with simulated providers inside. Moving to production replaces the inside of each point; orders, screens and data stay as they are.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER FLOW -->
+<section id="flow" class="section">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="flow.tag">Orders</div>
+    <h2 data-i18n="flow.h2">From cart to delivery</h2>
+    <p class="lead" data-i18n="flow.lead">The buyer side, in the order a purchase goes through it.</p>
+    </div>
+    <div class="pts">
+      <div class="pt fade"><b data-i18n="flow.1.t">Five brands, one catalog</b><span data-i18n="flow.1.d">Clothing, home goods, coffee, electronics and digital content in one storefront, 10 products and 34 variants by size, color and edition. Webtoon episodes and web novels are sold through the same product structure as physical goods.</span></div>
+      <div class="pt fade"><b data-i18n="flow.2.t">Checkout</b><span data-i18n="flow.2.d">Guest checkout or a signed-in account. Domestic address, the delivery fee computed from the cart, then payment. Prices are in won with no decimals and include 10% VAT.</span></div>
+      <div class="pt fade"><b data-i18n="flow.3.t">Shipment status per seller</b><span data-i18n="flow.3.d">The order page lists each seller's shipment with carrier, tracking number and tracking history. The order status is derived from the sellers' orders: shipped, partially delivered, delivered.</span></div>
+      <div class="pt fade"><b data-i18n="flow.4.t">Korean first, three languages</b><span data-i18n="flow.4.d">Korean by default, with English and German. Laid out for phone screens first, in light and dark themes.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SELLER CENTER -->
+<section id="seller" class="section alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="seller.tag">Sellers</div>
+    <h2 data-i18n="seller.h2">The seller center</h2>
+    <p class="lead" data-i18n="seller.lead">A separate screen for each brand, from its own dashboard to the invoice for a single order.</p>
+    </div>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="seller.f1.t">Dashboard and products</b><span data-i18n="seller.f1.d">Products, variants, orders and sales for the brand, and its own product list with stock.</span></div>
+      <div class="fact fade"><b data-i18n="seller.f2.t">Orders and shipping</b><span data-i18n="seller.f2.d">Each paid order is shipped by choosing a carrier and entering the tracking number. Spaces and hyphens are removed, anything other than 10 to 14 digits is rejected, and the lines to ship are read again on the server. A shipped order is then marked delivered.</span></div>
+      <div class="fact fade"><b data-i18n="seller.f3.t">Tracking lookup</b><span data-i18n="seller.f3.d">Carrier and tracking number in, the tracking history out, from the order or on its own.</span></div>
+      <div class="fact fade"><b data-i18n="seller.f4.t">E-tax invoice preview</b><span data-i18n="seller.f4.d">A preview laid out with the required fields of a Korean e-tax invoice. The seller is the supplier, and each line is split into supply value and VAT.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- OPERATIONS -->
+<section id="ops" class="section">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="ops.tag">Operations</div>
+    <h2 data-i18n="ops.h2">The operator console</h2>
+    <p class="lead" data-i18n="ops.lead">The operator sees every seller at once, in Korean.</p>
+    </div>
+    <div class="pts">
+      <div class="pt fade"><b data-i18n="ops.1.t">All orders</b><span data-i18n="ops.1.d">Buyer orders and the seller orders split from them, with payments, shipments and the tax summary per order.</span></div>
+      <div class="pt fade"><b data-i18n="ops.2.t">Catalog and brands</b><span data-i18n="ops.2.d">Products, variants, stock, collections and the seller channels behind each brand.</span></div>
+      <div class="pt fade"><b data-i18n="ops.3.t">Rules as settings</b><span data-i18n="ops.3.d">Delivery fee, free-delivery threshold, remote-area surcharge and payment options are arguments of each method, changed from the console without a deployment.</span></div>
+      <div class="pt fade"><b data-i18n="ops.4.t">Metrics</b><span data-i18n="ops.4.d">Order count, order total and average order value over a chosen period.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section id="kr" class="section alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="kr.tag">Integrations</div>
+    <h2 data-i18n="kr.h2">What is simulated, and what replaces it</h2>
+    <p class="lead" data-i18n="kr.lead">Each point already carries real orders. Only the provider behind it is simulated.</p>
+    </div>
+    <div class="rv-wrap">
+      <table class="rv">
+        <thead><tr>
+          <th data-i18n="kr.c0">Point</th>
+          <th data-i18n="kr.c1">Now</th>
+          <th data-i18n="kr.c2">In production</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="nm" data-i18n="kr.r1">Payment</td><td data-i18n="kr.r1b">Simulated domestic PG: authorized and settled at once, refunds recorded</td><td data-i18n="kr.r1c">A card and simple-pay PG contract behind the same payment method</td></tr>
+          <tr><td class="nm" data-i18n="kr.r2">Delivery fee</td><td data-i18n="kr.r2b">₩3,000, free from ₩50,000, remote areas +₩3,000, Korean addresses only</td><td data-i18n="kr.r2c">Same rule, values set per operator</td></tr>
+          <tr><td class="nm" data-i18n="kr.r3">Carrier tracking</td><td data-i18n="kr.r3b">CJ Logistics, Hanjin, Lotte, Korea Post, Logen; history simulated from the tracking number</td><td data-i18n="kr.r3c">Carrier or aggregator tracking API, same result format</td></tr>
+          <tr><td class="nm" data-i18n="kr.r4">E-tax invoice</td><td data-i18n="kr.r4b">Preview document per seller order, not issued</td><td data-i18n="kr.r4c">Issuing and transmission to the National Tax Service through an e-invoice service provider</td></tr>
+          <tr><td class="nm" data-i18n="kr.r5">Currency and tax</td><td data-i18n="kr.r5b">Won with no decimals, prices include 10% VAT</td><td data-i18n="kr.r5c">Unchanged</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- LIMITS -->
+<section id="limits" class="section">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="limits.tag">Limits</div>
+    <h2 data-i18n="limits.h2">What this does not claim</h2>
+    <p class="lead" data-i18n="limits.lead">The commerce flow is implemented end to end. Money, parcels, tax filing and the brands themselves are outside the scope.</p>
+    </div>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="limits.f1.t">No real payment</b><span data-i18n="limits.f1.d">The PG is simulated. No money moves and no card details are collected.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f2.t">No real parcels</b><span data-i18n="limits.f2.d">Tracking histories are generated from the tracking number. No carrier is connected.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f3.t">No tax invoice issued</b><span data-i18n="limits.f3.d">The invoice is a preview. Nothing is transmitted to the National Tax Service, and business registration numbers are placeholders.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f4.t">Fictional brands</b><span data-i18n="limits.f4.d">The five brands and their products are made up for the presentation, with stock photography. Outbound mail such as order confirmations is not sent.</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand"><svg viewBox="0 0 32 32" aria-hidden="true" class="mk"><rect class="mk-bg" x=".6" y=".6" width="30.8" height="30.8" rx="6.6"/><rect class="mk-joy" x="6.5" y="12.5" width="5" height="13.5" rx="1"/><rect class="mk-go" x="13.5" y="17" width="5" height="9" rx="1"/><rect class="mk-live" x="20.5" y="8" width="5" height="18" rx="1"/></svg><span>joy<span class="go">go</span><span class="dot" style="color:var(--accent)">Live</span></span></span>
+    <nav class="foot-links">
+      <a href="../"><span data-i18n="ft.home">Home</span></a>
+    </nav>
+    <span data-i18n="ft.copy">© 2026 joygoLive. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+const _L = {
+  en:{
+    "ft.home":"Home",
+    "ft.copy":"© 2026 joygoLive. All rights reserved.",
+    "nav.why":"Design",
+    "nav.flow":"Orders",
+    "nav.seller":"Sellers",
+    "nav.ops":"Operations",
+    "nav.kr":"Integrations",
+    "nav.limits":"Limits",
+    "hero.kicker":"SHOP · Multi-vendor commerce",
+    "hero.title":"A <span class=\"grad\">multi-vendor</span> shopping mall.",
+    "hero.sub":"A buyer storefront, a seller center for each brand and an operator console, served from one domain. Buyers put several brands in one cart and pay once; at payment the order splits into one order per seller, each seller ships its own share, and the buyer follows every shipment from one order. Prices, delivery fees, carriers and tax invoices follow Korean commerce rules.",
+    "hero.cta0":"Open the shop",
+    "hero.cta1":"How an order flows",
+    "hero.cta2":"What this does not claim",
+    "hero.reward":"<b>One order, followed end to end.</b> Payment, the split per seller, shipping with a tracking number, the buyer's tracking history and the seller's e-tax invoice all run on the same order. The whole path is replayed as an automated check after every change.",
+    "hero.byline":"A service by joygoLive, built here and operated here. Open since September 15, 2026, operated for presentations with simulated payment and delivery.",
+    "why.tag":"Design",
+    "why.h2":"Three decisions that shaped it",
+    "why.lead":"Built as three connected sides of one store: buying, selling and operating.",
+    "why.f1.t":"The order splits at payment",
+    "why.f1.d":"Each order line is tagged with the seller of its product. When payment settles, the order splits into one order per seller, carrying that seller's lines and delivery fee. The buyer's order stays whole and aggregates the sellers' progress.",
+    "why.f2.t":"Sellers isolated by channel",
+    "why.f2.d":"Every brand has its own sales channel, role and accounts. A seller account reads and updates only its own products and orders; a request for the shared catalog or another brand is refused by the server, not hidden by the screen.",
+    "why.f3.t":"Integration points in place of providers",
+    "why.f3.d":"Payment, carrier tracking and the e-tax invoice sit behind the interfaces a real provider plugs into, with simulated providers inside. Moving to production replaces the inside of each point; orders, screens and data stay as they are.",
+    "flow.tag":"Orders",
+    "flow.h2":"From cart to delivery",
+    "flow.lead":"The buyer side, in the order a purchase goes through it.",
+    "flow.1.t":"Five brands, one catalog",
+    "flow.1.d":"Clothing, home goods, coffee, electronics and digital content in one storefront, 10 products and 34 variants by size, color and edition. Webtoon episodes and web novels are sold through the same product structure as physical goods.",
+    "flow.2.t":"Checkout",
+    "flow.2.d":"Guest checkout or a signed-in account. Domestic address, the delivery fee computed from the cart, then payment. Prices are in won with no decimals and include 10% VAT.",
+    "flow.3.t":"Shipment status per seller",
+    "flow.3.d":"The order page lists each seller's shipment with carrier, tracking number and tracking history. The order status is derived from the sellers' orders: shipped, partially delivered, delivered.",
+    "flow.4.t":"Korean first, three languages",
+    "flow.4.d":"Korean by default, with English and German. Laid out for phone screens first, in light and dark themes.",
+    "seller.tag":"Sellers",
+    "seller.h2":"The seller center",
+    "seller.lead":"A separate screen for each brand, from its own dashboard to the invoice for a single order.",
+    "seller.f1.t":"Dashboard and products",
+    "seller.f1.d":"Products, variants, orders and sales for the brand, and its own product list with stock.",
+    "seller.f2.t":"Orders and shipping",
+    "seller.f2.d":"Each paid order is shipped by choosing a carrier and entering the tracking number. Spaces and hyphens are removed, anything other than 10 to 14 digits is rejected, and the lines to ship are read again on the server. A shipped order is then marked delivered.",
+    "seller.f3.t":"Tracking lookup",
+    "seller.f3.d":"Carrier and tracking number in, the tracking history out, from the order or on its own.",
+    "seller.f4.t":"E-tax invoice preview",
+    "seller.f4.d":"A preview laid out with the required fields of a Korean e-tax invoice. The seller is the supplier, and each line is split into supply value and VAT.",
+    "ops.tag":"Operations",
+    "ops.h2":"The operator console",
+    "ops.lead":"The operator sees every seller at once, in Korean.",
+    "ops.1.t":"All orders",
+    "ops.1.d":"Buyer orders and the seller orders split from them, with payments, shipments and the tax summary per order.",
+    "ops.2.t":"Catalog and brands",
+    "ops.2.d":"Products, variants, stock, collections and the seller channels behind each brand.",
+    "ops.3.t":"Rules as settings",
+    "ops.3.d":"Delivery fee, free-delivery threshold, remote-area surcharge and payment options are arguments of each method, changed from the console without a deployment.",
+    "ops.4.t":"Metrics",
+    "ops.4.d":"Order count, order total and average order value over a chosen period.",
+    "kr.tag":"Integrations",
+    "kr.h2":"What is simulated, and what replaces it",
+    "kr.lead":"Each point already carries real orders. Only the provider behind it is simulated.",
+    "kr.c0":"Point",
+    "kr.c1":"Now",
+    "kr.c2":"In production",
+    "kr.r1":"Payment",
+    "kr.r1b":"Simulated domestic PG: authorized and settled at once, refunds recorded",
+    "kr.r1c":"A card and simple-pay PG contract behind the same payment method",
+    "kr.r2":"Delivery fee",
+    "kr.r2b":"₩3,000, free from ₩50,000, remote areas +₩3,000, Korean addresses only",
+    "kr.r2c":"Same rule, values set per operator",
+    "kr.r3":"Carrier tracking",
+    "kr.r3b":"CJ Logistics, Hanjin, Lotte, Korea Post, Logen; history simulated from the tracking number",
+    "kr.r3c":"Carrier or aggregator tracking API, same result format",
+    "kr.r4":"E-tax invoice",
+    "kr.r4b":"Preview document per seller order, not issued",
+    "kr.r4c":"Issuing and transmission to the National Tax Service through an e-invoice service provider",
+    "kr.r5":"Currency and tax",
+    "kr.r5b":"Won with no decimals, prices include 10% VAT",
+    "kr.r5c":"Unchanged",
+    "limits.tag":"Limits",
+    "limits.h2":"What this does not claim",
+    "limits.lead":"The commerce flow is implemented end to end. Money, parcels, tax filing and the brands themselves are outside the scope.",
+    "limits.f1.t":"No real payment",
+    "limits.f1.d":"The PG is simulated. No money moves and no card details are collected.",
+    "limits.f2.t":"No real parcels",
+    "limits.f2.d":"Tracking histories are generated from the tracking number. No carrier is connected.",
+    "limits.f3.t":"No tax invoice issued",
+    "limits.f3.d":"The invoice is a preview. Nothing is transmitted to the National Tax Service, and business registration numbers are placeholders.",
+    "limits.f4.t":"Fictional brands",
+    "limits.f4.d":"The five brands and their products are made up for the presentation, with stock photography. Outbound mail such as order confirmations is not sent."
+  },
+  ko:{
+    "ft.home":"홈",
+    "ft.copy":"© 2026 joygoLive. All rights reserved.",
+    "nav.why":"설계",
+    "nav.flow":"주문",
+    "nav.seller":"판매자",
+    "nav.ops":"운영",
+    "nav.kr":"연동",
+    "nav.limits":"한계",
+    "hero.kicker":"SHOP · 멀티벤더 커머스",
+    "hero.title":"입점형 <span class=\"grad\">멀티벤더</span> 쇼핑몰.",
+    "hero.sub":"구매자 스토어, 브랜드별 판매자 센터, 운영자 콘솔을 한 도메인에서 제공합니다. 구매자는 여러 브랜드를 한 장바구니에 담아 한 번에 결제하고, 결제 시점에 주문이 판매자별로 분할되어 각 판매자가 자기 몫을 출고합니다. 구매자는 주문 하나에서 모든 배송을 추적합니다. 가격·배송비·택배사·세금계산서는 국내 커머스 기준.",
+    "hero.cta0":"쇼핑몰 열기",
+    "hero.cta1":"주문 흐름 보기",
+    "hero.cta2":"주장하지 않는 것",
+    "hero.reward":"<b>주문 하나를 끝까지.</b> 결제, 판매자별 분할, 운송장 출고, 구매자의 배송 이력, 판매자의 전자세금계산서가 모두 같은 주문 위에서 진행됩니다. 이 전 과정을 변경 때마다 자동 점검으로 재현합니다.",
+    "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 2026-09-15 공개 운영 시작, 모의 결제·배송 기반 시연용 운영.",
+    "why.tag":"설계",
+    "why.h2":"형태를 정한 세 가지 결정",
+    "why.lead":"구매·판매·운영, 한 스토어의 세 면을 서로 연결된 구조로 구축했습니다.",
+    "why.f1.t":"결제 시점의 주문 분할",
+    "why.f1.d":"주문 라인마다 해당 상품의 판매자를 기록합니다. 결제가 확정되면 주문은 판매자별 주문으로 분할되고, 각 주문은 그 판매자의 라인과 배송비를 가집니다. 구매자의 주문은 하나로 남아 판매자들의 진행 상황을 집계합니다.",
+    "why.f2.t":"채널 단위 판매자 격리",
+    "why.f2.d":"브랜드마다 판매 채널·역할·계정이 따로 있습니다. 판매자 계정은 자기 상품과 주문만 조회·수정하고, 공용 카탈로그나 다른 브랜드 요청은 화면이 아니라 서버가 거부합니다.",
+    "why.f3.t":"공급사 대신 연동 지점",
+    "why.f3.d":"결제·배송조회·전자세금계산서는 실제 공급사가 붙는 인터페이스 뒤에 두고, 그 안을 모의 구현으로 채웠습니다. 운영 전환은 각 지점의 내부 교체. 주문·화면·데이터는 그대로입니다.",
+    "flow.tag":"주문",
+    "flow.h2":"장바구니에서 배송완료까지",
+    "flow.lead":"구매자 쪽 흐름, 구매가 거치는 순서대로.",
+    "flow.1.t":"브랜드 다섯, 카탈로그 하나",
+    "flow.1.d":"의류·홈·커피·전자기기·디지털 콘텐츠를 한 스토어에서. 상품 10개, 사이즈·색상·구성별 옵션 34개. 웹툰 회차와 웹소설도 실물 상품과 같은 상품 구조로 판매합니다.",
+    "flow.2.t":"결제",
+    "flow.2.d":"비회원 주문 또는 로그인 계정. 국내 배송지, 장바구니 기준 배송비 산정, 결제 순서. 가격은 소수점 없는 원화, 부가세 10% 포함.",
+    "flow.3.t":"판매자별 배송 현황",
+    "flow.3.d":"주문 화면에 판매자별 출고를 택배사·운송장번호·배송 이력과 함께 표시합니다. 주문 상태는 판매자 주문들에서 도출: 배송중·부분 배송완료·배송완료.",
+    "flow.4.t":"한국어 기본, 3개 언어",
+    "flow.4.d":"한국어 기본에 영어·독일어. 폰 화면 우선 레이아웃, 라이트·다크 테마.",
+    "seller.tag":"판매자",
+    "seller.h2":"판매자 센터",
+    "seller.lead":"브랜드별 전용 화면. 대시보드부터 주문 한 건의 세금계산서까지.",
+    "seller.f1.t":"대시보드·상품",
+    "seller.f1.d":"브랜드의 상품·옵션·주문·매출 요약, 재고를 포함한 자기 상품 목록.",
+    "seller.f2.t":"주문·출고",
+    "seller.f2.d":"결제된 주문은 택배사 선택과 운송장번호 입력으로 출고합니다. 공백·하이픈 제거 후 숫자 10~14자리만 허용하고, 출고할 라인은 서버에서 주문을 다시 읽어 정합니다. 출고 뒤 배송완료 처리.",
+    "seller.f3.t":"배송조회",
+    "seller.f3.d":"택배사와 운송장번호로 배송 이력 조회. 주문 화면에서 바로 또는 단독으로.",
+    "seller.f4.t":"전자세금계산서 미리보기",
+    "seller.f4.d":"국내 전자세금계산서 필수 기재사항 구조의 미리보기 문서. 공급자는 판매자, 품목마다 공급가액과 세액을 분리합니다.",
+    "ops.tag":"운영",
+    "ops.h2":"운영자 콘솔",
+    "ops.lead":"모든 판매자를 한 화면에서, 한국어로.",
+    "ops.1.t":"전체 주문",
+    "ops.1.d":"구매자 주문과 그로부터 분할된 판매자 주문, 주문별 결제·출고·세금 요약.",
+    "ops.2.t":"카탈로그·브랜드",
+    "ops.2.d":"상품·옵션·재고·컬렉션, 그리고 브랜드마다의 판매자 채널.",
+    "ops.3.t":"규칙은 설정값",
+    "ops.3.d":"배송비·무료배송 기준·도서산간 추가비·결제 옵션은 각 수단의 인자값. 배포 없이 콘솔에서 변경합니다.",
+    "ops.4.t":"지표",
+    "ops.4.d":"기간별 주문 수·주문 합계·평균 주문 금액.",
+    "kr.tag":"연동",
+    "kr.h2":"모의 구현과 교체 지점",
+    "kr.lead":"각 지점은 이미 실제 주문을 처리합니다. 뒤의 공급사만 모의입니다.",
+    "kr.c0":"지점",
+    "kr.c1":"현재",
+    "kr.c2":"운영 전환 시",
+    "kr.r1":"결제",
+    "kr.r1b":"국내 PG 모의 구현: 승인·정산 즉시, 환불 기록",
+    "kr.r1c":"같은 결제수단 뒤에 카드·간편결제 PG 계약 연결",
+    "kr.r2":"배송비",
+    "kr.r2b":"3,000원, 5만 원 이상 무료, 도서산간 +3,000원, 국내 주소만",
+    "kr.r2c":"같은 규칙, 운영자별 값 설정",
+    "kr.r3":"배송조회",
+    "kr.r3b":"CJ대한통운·한진·롯데·우체국·로젠, 운송장번호 기반 모의 이력",
+    "kr.r3c":"택배사 또는 통합 조회 API, 결과 형식 동일",
+    "kr.r4":"전자세금계산서",
+    "kr.r4b":"판매자 주문별 미리보기 문서, 발행 없음",
+    "kr.r4c":"전자세금계산서 발행 대행 서비스를 통한 발행·국세청 전송",
+    "kr.r5":"통화·세금",
+    "kr.r5b":"소수점 없는 원화, 부가세 10% 포함 가격",
+    "kr.r5c":"변경 없음",
+    "limits.tag":"한계",
+    "limits.h2":"주장하지 않는 것",
+    "limits.lead":"커머스 흐름은 끝까지 구현했습니다. 실제 돈·택배·세무 신고·브랜드 자체는 범위 밖입니다.",
+    "limits.f1.t":"실제 결제 없음",
+    "limits.f1.d":"PG는 모의 구현입니다. 돈이 오가지 않고 카드 정보도 받지 않습니다.",
+    "limits.f2.t":"실제 택배 없음",
+    "limits.f2.d":"배송 이력은 운송장번호로 생성한 모의 이력입니다. 연결된 택배사는 없습니다.",
+    "limits.f3.t":"세금계산서 발행 없음",
+    "limits.f3.d":"세금계산서는 미리보기입니다. 국세청 전송은 없고, 사업자등록번호는 자리표시 값입니다.",
+    "limits.f4.t":"가상 브랜드",
+    "limits.f4.d":"브랜드 다섯과 그 상품은 시연용으로 만든 가상 브랜드이고, 사진은 스톡 이미지입니다. 주문 확인 메일 같은 발신 메일은 보내지 않습니다."
+  }
+};
+</script>
+<script src="../assets/i18n.js"></script>
+<script data-goatcounter="https://joygolive.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

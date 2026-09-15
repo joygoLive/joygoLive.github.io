@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>joygoLive — Service incubation lab</title>
-<meta name="description" content="joygoLive is a service incubation lab: quantum middleware, motion coaching, an on-chain raffle, web measurement, memory training, wireless environment checks, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, notifications per organization, an order-book exchange. Built here, run here." />
+<meta name="description" content="joygoLive is a service incubation lab: quantum middleware, motion coaching, an on-chain raffle, web measurement, memory training, wireless environment checks, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, notifications per organization, an order-book exchange, a multi-vendor shop. Built here, run here." />
 <meta property="og:title" content="joygoLive — Service incubation lab" />
-<meta property="og:description" content="Quantum infrastructure, motion coaching, an on-chain raffle, web measurement, memory training, wireless environment checks, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, notifications per organization, an order-book exchange. Unrelated fields, all built here and already running." />
+<meta property="og:description" content="Quantum infrastructure, motion coaching, an on-chain raffle, web measurement, memory training, wireless environment checks, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, notifications per organization, an order-book exchange, a multi-vendor shop. Unrelated fields, all built here and already running." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2" />
 <meta name="theme-color" id="themeColor" content="#ffffff" />
@@ -76,7 +76,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="sec-head">
       <div class="eyebrow" data-i18n="svc.tag">Portfolio</div>
       <h2 data-i18n="svc.h2">What has shipped so far</h2>
-      <p class="lead" data-i18n="svc.lead">Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, notifications per organization, an order-book exchange on testnets, and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house, neither licensed nor resold.</p>
+      <p class="lead" data-i18n="svc.lead">Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, notifications per organization, an order-book exchange on testnets, a multi-vendor shopping mall, and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house, neither licensed nor resold.</p>
     </div>
 
     <div class="svc-grid">
@@ -310,6 +310,25 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
         </div>
       </a>
 
+      <!-- SHOP -->
+      <a class="svc-card fade" href="shop/">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8h14l-1.2 12.5H6.2Z"/><path d="M9 10.5V6.5a3 3 0 0 1 6 0v4"/></svg>
+        <div class="svc-head">
+          <h3>SHOP</h3>
+          <span class="badge dev" data-i18n="svc.b.demo">Demo</span>
+        </div>
+        <span class="svc-full" data-i18n="svc.shop.full">Multi-vendor shopping mall · Commerce</span>
+        <p data-i18n="svc.shop.d">A buyer storefront, a seller center per brand and an operator console on one domain. One cart and one payment across brands; at payment the order splits per seller, each seller ships its own share, and the buyer follows every shipment from one order.</p>
+        <ul class="svc-points">
+          <li data-i18n="svc.shop.1">Sellers isolated by channel: each account reaches only its own products and orders</li>
+          <li data-i18n="svc.shop.2">Shipping with carrier and tracking number, tracking history, e-tax invoice preview per seller order</li>
+          <li data-i18n="svc.shop.3">Korean commerce rules: won with VAT included, domestic delivery fee, five carriers</li>
+        </ul>
+        <div class="svc-foot">
+          <span class="svc-go"><span data-i18n="svc.more">Read more</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
     </div>
 
   </div>
@@ -394,7 +413,7 @@ const _L = {
     "hero.byline":"<b class=\"t-joy\">joy</b>, realized when it <b class=\"t-go\">go</b>es <b class=\"t-live\">Live</b>.",
 
     "svc.tag":"Portfolio","svc.h2":"What has shipped so far",
-    "svc.lead":"Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, notifications per organization, an order-book exchange on testnets, and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house, neither licensed nor resold.",
+    "svc.lead":"Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, notifications per organization, an order-book exchange on testnets, a multi-vendor shopping mall, and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house, neither licensed nor resold.",
     "svc.more":"Read more","svc.b.beta":"Beta","svc.b.dev":"In development","svc.b.test":"Testnet","svc.b.demo":"Demo",
 
     "svc.uqh.full":"Universal Quantum Hub · Quantum computing",
@@ -462,6 +481,11 @@ const _L = {
     "svc.jgx.1":"Three markets and 33 pairs. Price-time matching with self-trade prevention",
     "svc.jgx.2":"Deposits credited on block confirmation; withdrawals sent automatically within limits, with operator approval above them",
     "svc.jgx.3":"Real-time order book and charts that follow live market prices",
+    "svc.shop.full":"Multi-vendor shopping mall · Commerce",
+    "svc.shop.d":"A buyer storefront, a seller center per brand and an operator console on one domain. One cart and one payment across brands; at payment the order splits per seller, each seller ships its own share, and the buyer follows every shipment from one order.",
+    "svc.shop.1":"Sellers isolated by channel: each account reaches only its own products and orders",
+    "svc.shop.2":"Shipping with carrier and tracking number, tracking history, e-tax invoice preview per seller order",
+    "svc.shop.3":"Korean commerce rules: won with VAT included, domestic delivery fee, five carriers",
 
     "nav.ideas":"Bring an idea",
     "id.tag":"Bring an idea",
@@ -488,7 +512,7 @@ const _L = {
     "hero.byline":"<b class=\"t-joy\">joy</b>, realized when it <b class=\"t-go\">go</b>es <b class=\"t-live\">Live</b>.",
 
     "svc.tag":"포트폴리오","svc.h2":"지금까지 출시한 것",
-    "svc.lead":"양자 인프라, 운동 코칭, 온체인 복권, 웹 실측, 무선 환경 점검, 동시 청취, 같은 공간 매칭, 웹 AR, 정물 스튜디오, 기관별 알림, 테스트넷 호가창 거래소, 그리고 개발 중인 하나: 기억 훈련. 서로 무관한 분야이며 전부 실제 운영 중인 서비스입니다. 각각 직접 개발하고 직접 운영합니다. 라이선스 도입도 재판매도 없습니다.",
+    "svc.lead":"양자 인프라, 운동 코칭, 온체인 복권, 웹 실측, 무선 환경 점검, 동시 청취, 같은 공간 매칭, 웹 AR, 정물 스튜디오, 기관별 알림, 테스트넷 호가창 거래소, 멀티벤더 쇼핑몰, 그리고 개발 중인 하나: 기억 훈련. 서로 무관한 분야이며 전부 실제 운영 중인 서비스입니다. 각각 직접 개발하고 직접 운영합니다. 라이선스 도입도 재판매도 없습니다.",
     "svc.more":"자세히 보기","svc.b.beta":"베타","svc.b.dev":"개발 중","svc.b.test":"테스트넷","svc.b.demo":"시연",
 
     "svc.uqh.full":"Universal Quantum Hub · 양자컴퓨팅",
@@ -556,6 +580,11 @@ const _L = {
     "svc.jgx.1":"마켓 셋, 거래쌍 33개. 가격·시간 우선 매칭과 자기체결 방지",
     "svc.jgx.2":"입금은 블록 확정으로 반영, 출금은 한도 안 자동 전송, 초과 시 관리자 승인",
     "svc.jgx.3":"실제 시세를 따르는 실시간 호가창과 차트",
+    "svc.shop.full":"멀티벤더 쇼핑몰 · 커머스",
+    "svc.shop.d":"구매자 스토어, 브랜드별 판매자 센터, 운영자 콘솔을 한 도메인에서. 여러 브랜드를 한 장바구니·한 번의 결제로 사고, 결제 시점에 주문이 판매자별로 분할되어 각 판매자가 자기 몫을 출고합니다. 구매자는 주문 하나에서 모든 배송을 추적합니다.",
+    "svc.shop.1":"채널 단위 판매자 격리. 계정마다 자기 상품·주문만 접근",
+    "svc.shop.2":"택배사·운송장 출고, 배송 이력, 판매자 주문별 전자세금계산서 미리보기",
+    "svc.shop.3":"국내 커머스 기준: 부가세 포함 원화, 국내 배송비 규칙, 택배사 5곳",
 
     "nav.ideas":"제안",
     "id.tag":"제안",
