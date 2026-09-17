@@ -218,7 +218,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <p class="lead" data-i18n="ops.lead">One console across the verticals, filterable by vertical, laid out for phones as well.</p>
     </div>
     <div class="pts">
-      <div class="pt fade"><b data-i18n="ops.1.t">Work queues and metrics</b><span data-i18n="ops.1.d">Providers awaiting approval, open disputes, reviews to write, deposits and payouts. Thirty-day paid GMV and revenue split into commission, credits and reviews, match rate, time to first quote and masked contacts, per vertical.</span></div>
+      <div class="pt fade"><b data-i18n="ops.1.t">Work queues and metrics</b><span data-i18n="ops.1.d">Providers awaiting approval, open disputes, reviews to write, deposits and payouts. Thirty-day paid GMV and revenue split into commission, credits and reviews, match rate, time to first quote and masked contacts, per vertical. A request posted by a real sign-up is sent to the joygoLive team at once, with the brief and the sign-up email.</span></div>
       <div class="pt fade"><b data-i18n="ops.2.t">Dispute desk</b><span data-i18n="ops.2.d">The claim, the statement, the milestones and recent chat on one sheet, with a slider that splits the held funds and shows the refund, the release and the commission before the decision.</span></div>
       <div class="pt fade"><b data-i18n="ops.3.t">Policy per vertical</b><span data-i18n="ops.3.d">Commission in basis points, auto-release hours, and the deal count, rating and discount of each grade, changed without a deployment.</span></div>
       <div class="pt fade"><b data-i18n="ops.4.t">Money and the gateway console</b><span data-i18n="ops.4.d">Payments with a query to the gateway, settlement runs, the trial balance and reconciliation. The simulated gateway reproduces deposits to virtual accounts, expirations, webhook resends and fault injection.</span></div>
@@ -264,7 +264,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="facts">
       <div class="fact fade"><b data-i18n="limits.f1.t">No real payment or payout</b><span data-i18n="limits.f1.d">The gateway and the payout service are simulated. No money moves, no card details are collected and no bank account is contacted.</span></div>
       <div class="fact fade"><b data-i18n="limits.f2.t">No real verification or signatures</b><span data-i18n="limits.f2.d">Identity, business status, account holder checks, e-contracts and NDAs are simulated. Only the business number checksum is a real calculation.</span></div>
-      <div class="fact fade"><b data-i18n="limits.f3.t">Fictional providers, customers and ratings</b><span data-i18n="limits.f3.d">Seventy days of history across the three verticals are generated through the platform’s own flows, and seeded accounts keep adding requests, quotes, bookings and ratings. The demo accounts are shared by every visitor and can be reset from the console.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f3.t">Fictional providers, customers and ratings</b><span data-i18n="limits.f3.d">Seventy days of history across the three verticals are generated through the platform’s own flows, and seeded accounts keep adding requests, quotes, bookings and ratings. The demo accounts are shared by every visitor and can be reset from the console. Fictional providers answer only seeded accounts and the shared demo customer: a request from a real sign-up receives no simulated proposals, is marked as a demo platform on screen, and is answered by the joygoLive team by email.</span></div>
       <div class="fact fade"><b data-i18n="limits.f4.t">Not yet implemented</b><span data-i18n="limits.f4.d">Recurring bookings and holiday hours, credit subscriptions, access control over dispute evidence, and renegotiating milestone amounts inside a dispute. Legal review of the contract, NDA and refund terms has not been done.</span></div>
     </div>
   </div>
@@ -416,7 +416,7 @@ const _L = {
     "ops.h2":"The operator console",
     "ops.lead":"One console across the verticals, filterable by vertical, laid out for phones as well.",
     "ops.1.t":"Work queues and metrics",
-    "ops.1.d":"Providers awaiting approval, open disputes, reviews to write, deposits and payouts. Thirty-day paid GMV and revenue split into commission, credits and reviews, match rate, time to first quote and masked contacts, per vertical.",
+    "ops.1.d":"Providers awaiting approval, open disputes, reviews to write, deposits and payouts. Thirty-day paid GMV and revenue split into commission, credits and reviews, match rate, time to first quote and masked contacts, per vertical. A request posted by a real sign-up is sent to the joygoLive team at once, with the brief and the sign-up email.",
     "ops.2.t":"Dispute desk",
     "ops.2.d":"The claim, the statement, the milestones and recent chat on one sheet, with a slider that splits the held funds and shows the refund, the release and the commission before the decision.",
     "ops.3.t":"Policy per vertical",
@@ -464,7 +464,7 @@ const _L = {
     "limits.f2.t":"No real verification or signatures",
     "limits.f2.d":"Identity, business status, account holder checks, e-contracts and NDAs are simulated. Only the business number checksum is a real calculation.",
     "limits.f3.t":"Fictional providers, customers and ratings",
-    "limits.f3.d":"Seventy days of history across the three verticals are generated through the platform’s own flows, and seeded accounts keep adding requests, quotes, bookings and ratings. The demo accounts are shared by every visitor and can be reset from the console.",
+    "limits.f3.d":"Seventy days of history across the three verticals are generated through the platform’s own flows, and seeded accounts keep adding requests, quotes, bookings and ratings. The demo accounts are shared by every visitor and can be reset from the console. Fictional providers answer only seeded accounts and the shared demo customer: a request from a real sign-up receives no simulated proposals, is marked as a demo platform on screen, and is answered by the joygoLive team by email.",
     "limits.f4.t":"Not yet implemented",
     "limits.f4.d":"Recurring bookings and holiday hours, credit subscriptions, access control over dispute evidence, and renegotiating milestone amounts inside a dispute. Legal review of the contract, NDA and refund terms has not been done."
   },
@@ -602,7 +602,7 @@ const _L = {
     "ops.h2":"운영자 콘솔",
     "ops.lead":"업종 공통 콘솔, 업종 필터, 폰 화면에서도.",
     "ops.1.t":"업무 대기열과 지표",
-    "ops.1.d":"승인 대기 공급자, 진행 중 분쟁, 작성할 검토, 입금·정산 대기. 30일 결제 거래액과 수수료·견적권·검토로 나눈 수익, 매칭률, 첫 견적까지 시간, 연락처 가림 수를 업종별로.",
+    "ops.1.d":"승인 대기 공급자, 진행 중 분쟁, 작성할 검토, 입금·정산 대기. 30일 결제 거래액과 수수료·견적권·검토로 나눈 수익, 매칭률, 첫 견적까지 시간, 연락처 가림 수를 업종별로. 실제 가입자가 올린 요청은 본문과 가입 이메일을 담아 joygoLive 운영자에게 즉시 전달.",
     "ops.2.t":"분쟁 조정 데스크",
     "ops.2.d":"신청 내용·소명·마일스톤·최근 채팅을 한 화면에, 보관 대금 분할 슬라이더로 환불·지급·수수료를 확정 전에 표시합니다.",
     "ops.3.t":"업종별 정책",
@@ -650,7 +650,7 @@ const _L = {
     "limits.f2.t":"실제 검증·서명 없음",
     "limits.f2.d":"본인인증·사업자 상태·예금주 확인·전자계약·NDA 서명은 모의 구현입니다. 사업자등록번호 검증식만 실제 계산입니다.",
     "limits.f3.t":"가상 공급자·고객·후기",
-    "limits.f3.d":"세 업종의 70일치 이력을 플랫폼 자체 흐름으로 생성했고, 시드 계정이 요청·견적·예약·후기를 계속 추가합니다. 데모 계정은 모든 방문자가 공유하며 콘솔에서 초기화합니다.",
+    "limits.f3.d":"세 업종의 70일치 이력을 플랫폼 자체 흐름으로 생성했고, 시드 계정이 요청·견적·예약·후기를 계속 추가합니다. 데모 계정은 모든 방문자가 공유하며 콘솔에서 초기화합니다. 가상 공급자는 시드 계정과 공용 데모 고객에게만 응답합니다. 실제 가입자의 요청에는 가상 제안이 가지 않고, 화면에 시연용 플랫폼임을 표시하며, joygoLive 운영자가 이메일로 직접 회신합니다.",
     "limits.f4.t":"미구현",
     "limits.f4.d":"반복 예약과 공휴일 운영 시간, 견적권 정기 구독, 분쟁 증빙 열람 권한 세분화, 분쟁 중 마일스톤 금액 재조정. 계약·NDA·환불 조항의 법률 검토는 거치지 않았습니다."
   }
