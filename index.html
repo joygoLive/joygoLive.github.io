@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>joygoLive — Service incubation lab</title>
-<meta name="description" content="joygoLive is a service incubation lab: quantum middleware, motion coaching, an on-chain raffle, web measurement, memory training, wireless environment checks, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, notifications per organization, an order-book exchange, a multi-vendor shop. Built here, run here." />
+<meta name="description" content="joygoLive is a service incubation lab: quantum middleware, motion coaching, an on-chain raffle, web measurement, memory training, wireless environment checks, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, notifications per organization, an order-book exchange, a multi-vendor shop, an escrow marketplace. Built here, run here." />
 <meta property="og:title" content="joygoLive — Service incubation lab" />
-<meta property="og:description" content="Quantum infrastructure, motion coaching, an on-chain raffle, web measurement, memory training, wireless environment checks, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, notifications per organization, an order-book exchange, a multi-vendor shop. Unrelated fields, all built here and already running." />
+<meta property="og:description" content="Quantum infrastructure, motion coaching, an on-chain raffle, web measurement, memory training, wireless environment checks, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, notifications per organization, an order-book exchange, a multi-vendor shop, an escrow marketplace. Unrelated fields, all built here and already running." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2" />
 <meta name="theme-color" id="themeColor" content="#ffffff" />
@@ -76,7 +76,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="sec-head">
       <div class="eyebrow" data-i18n="svc.tag">Portfolio</div>
       <h2 data-i18n="svc.h2">What has shipped so far</h2>
-      <p class="lead" data-i18n="svc.lead">Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, notifications per organization, an order-book exchange on testnets, a multi-vendor shopping mall, and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house, neither licensed nor resold.</p>
+      <p class="lead" data-i18n="svc.lead">Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, notifications per organization, an order-book exchange on testnets, a multi-vendor shopping mall, an escrow marketplace, and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house, neither licensed nor resold.</p>
     </div>
 
     <div class="svc-grid">
@@ -329,6 +329,25 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
         </div>
       </a>
 
+      <!-- JGM -->
+      <a class="svc-card fade" href="jgm/">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6.5" cy="8" r="2.5"/><circle cx="17.5" cy="8" r="2.5"/><path d="M2.5 19a4 4 0 0 1 8 0"/><path d="M13.5 19a4 4 0 0 1 8 0"/><path d="M10 8.5h4"/><path d="M12 4.5v3"/></svg>
+        <div class="svc-head">
+          <h3>JGM</h3>
+          <span class="badge dev" data-i18n="svc.b.demo">Demo</span>
+        </div>
+        <span class="svc-full" data-i18n="svc.jgm.full">joygoLive Match · Service marketplace</span>
+        <p data-i18n="svc.jgm.d">A renovation marketplace with escrow. One request brings quotes from matching pros; the chosen quote becomes an e-contract, the payment is held, and the money is released milestone by milestone as the customer approves each stage.</p>
+        <ul class="svc-points">
+          <li data-i18n="svc.jgm.1">Customer, pro and operator views of one project, switched in one browser</li>
+          <li data-i18n="svc.jgm.2">Double-entry ledger reconciled against payments, projects and payouts</li>
+          <li data-i18n="svc.jgm.3">Paid expert reviews convert into requests, with the fee credited on contract</li>
+        </ul>
+        <div class="svc-foot">
+          <span class="svc-go"><span data-i18n="svc.more">Read more</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
     </div>
 
   </div>
@@ -413,7 +432,7 @@ const _L = {
     "hero.byline":"<b class=\"t-joy\">joy</b>, realized when it <b class=\"t-go\">go</b>es <b class=\"t-live\">Live</b>.",
 
     "svc.tag":"Portfolio","svc.h2":"What has shipped so far",
-    "svc.lead":"Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, notifications per organization, an order-book exchange on testnets, a multi-vendor shopping mall, and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house, neither licensed nor resold.",
+    "svc.lead":"Quantum infrastructure, exercise coaching, an on-chain raffle, web measurement, a wireless environment check, shared listening with an AI DJ, in-venue matching, web AR, a still-life studio, notifications per organization, an order-book exchange on testnets, a multi-vendor shopping mall, an escrow marketplace, and one still being built: a memory-training room. Unrelated fields, all in production. Each was built and is operated in-house, neither licensed nor resold.",
     "svc.more":"Read more","svc.b.beta":"Beta","svc.b.dev":"In development","svc.b.test":"Testnet","svc.b.demo":"Demo",
 
     "svc.uqh.full":"Universal Quantum Hub · Quantum computing",
@@ -486,6 +505,11 @@ const _L = {
     "svc.shop.1":"Sellers isolated by channel: each account reaches only its own products and orders",
     "svc.shop.2":"Shipping with carrier and tracking number, tracking history, e-tax invoice preview per seller order",
     "svc.shop.3":"Korean commerce rules: won with VAT included, domestic delivery fee, five carriers",
+    "svc.jgm.full":"joygoLive Match · Service marketplace",
+    "svc.jgm.d":"A renovation marketplace with escrow. One request brings quotes from matching pros; the chosen quote becomes an e-contract, the payment is held, and the money is released milestone by milestone as the customer approves each stage.",
+    "svc.jgm.1":"Customer, pro and operator views of one project, switched in one browser",
+    "svc.jgm.2":"Double-entry ledger reconciled against payments, projects and payouts",
+    "svc.jgm.3":"Paid expert reviews convert into requests, with the fee credited on contract",
 
     "nav.ideas":"Bring an idea",
     "id.tag":"Bring an idea",
@@ -512,7 +536,7 @@ const _L = {
     "hero.byline":"<b class=\"t-joy\">joy</b>, realized when it <b class=\"t-go\">go</b>es <b class=\"t-live\">Live</b>.",
 
     "svc.tag":"포트폴리오","svc.h2":"지금까지 출시한 것",
-    "svc.lead":"양자 인프라, 운동 코칭, 온체인 복권, 웹 실측, 무선 환경 점검, 동시 청취, 같은 공간 매칭, 웹 AR, 정물 스튜디오, 기관별 알림, 테스트넷 호가창 거래소, 멀티벤더 쇼핑몰, 그리고 개발 중인 하나: 기억 훈련. 서로 무관한 분야이며 전부 실제 운영 중인 서비스입니다. 각각 직접 개발하고 직접 운영합니다. 라이선스 도입도 재판매도 없습니다.",
+    "svc.lead":"양자 인프라, 운동 코칭, 온체인 복권, 웹 실측, 무선 환경 점검, 동시 청취, 같은 공간 매칭, 웹 AR, 정물 스튜디오, 기관별 알림, 테스트넷 호가창 거래소, 멀티벤더 쇼핑몰, 안전결제 중개 플랫폼, 그리고 개발 중인 하나: 기억 훈련. 서로 무관한 분야이며 전부 실제 운영 중인 서비스입니다. 각각 직접 개발하고 직접 운영합니다. 라이선스 도입도 재판매도 없습니다.",
     "svc.more":"자세히 보기","svc.b.beta":"베타","svc.b.dev":"개발 중","svc.b.test":"테스트넷","svc.b.demo":"시연",
 
     "svc.uqh.full":"Universal Quantum Hub · 양자컴퓨팅",
@@ -585,6 +609,11 @@ const _L = {
     "svc.shop.1":"채널 단위 판매자 격리. 계정마다 자기 상품·주문만 접근",
     "svc.shop.2":"택배사·운송장 출고, 배송 이력, 판매자 주문별 전자세금계산서 미리보기",
     "svc.shop.3":"국내 커머스 기준: 부가세 포함 원화, 국내 배송비 규칙, 택배사 5곳",
+    "svc.jgm.full":"joygoLive Match · 서비스 중개 플랫폼",
+    "svc.jgm.d":"안전결제 기반 인테리어 시공 중개. 요청서 한 장으로 조건이 맞는 업체들의 견적을 받고, 선택한 견적은 전자계약이 되며, 결제 대금은 플랫폼이 보관했다가 고객이 단계를 승인할 때마다 나누어 지급합니다.",
+    "svc.jgm.1":"한 거래의 고객·공급자·운영자 화면, 한 브라우저에서 역할 전환",
+    "svc.jgm.2":"결제·거래·지급 기록과 대사하는 복식부기 원장",
+    "svc.jgm.3":"견적 요청서로 전환되는 유료 전문가 검토, 계약 시 검토비 차감",
 
     "nav.ideas":"제안",
     "id.tag":"제안",
