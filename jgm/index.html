@@ -93,7 +93,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">What this does not claim</a>
     </div>
     <p class="reward" data-i18n-html="hero.reward"><b>Three deal modes, one ledger.</b> A quote accepted into escrow, a matched RFQ with contacts revealed and an hourly booking refunded by cancellation time all post to the same double-entry ledger and reconcile against payments, payouts and credit lots. A role switch moves between the customer, a provider in each vertical and the operator in one browser.</p>
-    <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here. Open since September 17, 2026, operated for presentations with simulated payment and payout.</div>
+    <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here. Open since September 17, 2026. Payment and payout stay simulated; since September 18 the platform also takes real briefs from invited users, which joygoLive answers as the provider, with the contract and the money settled outside the platform.</div>
   </div>
 </section>
 <!-- DESIGN -->
@@ -222,6 +222,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="pt fade"><b data-i18n="ops.2.t">Dispute desk</b><span data-i18n="ops.2.d">The claim, the statement, the milestones and recent chat on one sheet, with a slider that splits the held funds and shows the refund, the release and the commission before the decision.</span></div>
       <div class="pt fade"><b data-i18n="ops.3.t">Policy per vertical</b><span data-i18n="ops.3.d">Commission in basis points, auto-release hours, and the deal count, rating and discount of each grade, changed without a deployment.</span></div>
       <div class="pt fade"><b data-i18n="ops.4.t">Money and the gateway console</b><span data-i18n="ops.4.d">Payments with a query to the gateway, settlement runs, the trial balance and reconciliation. The simulated gateway reproduces deposits to virtual accounts, expirations, webhook resends and fault injection.</span></div>
+      <div class="pt fade"><b data-i18n="ops.5.t">Invite-gated beta</b><span data-i18n="ops.5.d">Real sign-ups need a one-time invite code issued from the console, with terms and a privacy policy accepted at sign-up. Account deletion removes the personal data, attachments and chat contents while acceptance records and ratings stay anonymized. The database and the attachments are backed up once a day and kept for fourteen days.</span></div>
     </div>
   </div>
 </section>
@@ -243,7 +244,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
           <tr><td class="nm" data-i18n="int.r1">Payment</td><td data-i18n="int.r1b">Simulated domestic PG for escrow deals, bookings, credit packs and reviews: checkout window, server approval, partial cancellation for refunds and disputes, virtual account deposits and signed webhooks</td><td data-i18n="int.r1c">A PG contract behind the same checkout, approval, cancellation and webhook calls</td></tr>
           <tr><td class="nm" data-i18n="int.r2">Payout</td><td data-i18n="int.r2b">Simulated payout service: seller registration, scheduled payouts, completion and failure</td><td data-i18n="int.r2c">A PG payout service holding and transferring the funds</td></tr>
           <tr><td class="nm" data-i18n="int.r3">Identity</td><td data-i18n="int.r3b">Simulated phone verification window, code shown on screen</td><td data-i18n="int.r3c">A mobile identity verification provider</td></tr>
-          <tr><td class="nm" data-i18n="int.r4">Business and account</td><td data-i18n="int.r4b">Registration number checksum computed; status and account holder simulated</td><td data-i18n="int.r4c">National Tax Service status lookup and an account holder inquiry</td></tr>
+          <tr><td class="nm" data-i18n="int.r4">Business and account</td><td data-i18n="int.r4b">Implemented: registration number, owner name and opening date checked against the National Tax Service lookup (public data portal); a mismatch blocks the provider review. Account holder simulated</td><td data-i18n="int.r4c">An account holder inquiry through open banking</td></tr>
           <tr><td class="nm" data-i18n="int.r5">Messaging</td><td data-i18n="int.r5b">In-app notifications plus a recorded outbox by template code</td><td data-i18n="int.r5c">KakaoTalk business messages with approved templates, SMS, mail and web push</td></tr>
           <tr><td class="nm" data-i18n="int.r6">E-tax invoice</td><td data-i18n="int.r6b">Commission invoice recorded per payout, not transmitted</td><td data-i18n="int.r6c">Issuing and transmission through an e-invoice service provider</td></tr>
           <tr><td class="nm" data-i18n="int.r7">E-contract</td><td data-i18n="int.r7b">Contract created from the proposal, signatures recorded for both sides; NDA signatures recorded per manufacturer</td><td data-i18n="int.r7c">An e-signature service</td></tr>
@@ -262,9 +263,9 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <p class="lead" data-i18n="limits.lead">The three deal loops are implemented end to end. Money, identity, the businesses and the people are outside the scope.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="limits.f1.t">No real payment or payout</b><span data-i18n="limits.f1.d">The gateway and the payout service are simulated. No money moves, no card details are collected and no bank account is contacted.</span></div>
-      <div class="fact fade"><b data-i18n="limits.f2.t">No real verification or signatures</b><span data-i18n="limits.f2.d">Identity, business status, account holder checks, e-contracts and NDAs are simulated. Only the business number checksum is a real calculation.</span></div>
-      <div class="fact fade"><b data-i18n="limits.f3.t">Fictional providers, customers and ratings</b><span data-i18n="limits.f3.d">Seventy days of history across the three verticals are generated through the platform’s own flows, and seeded accounts keep adding requests, quotes, bookings and ratings. The demo accounts are shared by every visitor and can be reset from the console. Fictional providers answer only seeded accounts and the shared demo customer: a request from a real sign-up receives no simulated proposals, is marked as a demo platform on screen, and is answered by the joygoLive team by email.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f1.t">No real payment or payout</b><span data-i18n="limits.f1.d">The gateway and the payout service are simulated. No money moves, no card details are collected and no bank account is contacted. A deal opened by an invited user skips payment, escrow and the ledger entirely: the contract and the money are agreed outside the platform, and the screen keeps the acceptance record.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f2.t">No real verification or signatures</b><span data-i18n="limits.f2.d">Identity, account holder checks, e-contracts and NDAs are simulated. The business registration lookup is the exception: number, owner name and opening date go to the National Tax Service and a mismatch blocks the provider review.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f3.t">Fictional providers, customers and ratings</b><span data-i18n="limits.f3.d">Seventy days of history across the three verticals are generated through the platform’s own flows, and seeded accounts keep adding requests, quotes, bookings and ratings. The demo accounts are shared by every visitor and can be reset from the console. An invited account sees none of it: fictional providers, listings and ratings are hidden, the aggregate figures carry a note that they come from demo data, and the only provider on screen is joygoLive. A brief from an invited user receives no simulated proposals and is read by the joygoLive team.</span></div>
       <div class="fact fade"><b data-i18n="limits.f4.t">Not yet implemented</b><span data-i18n="limits.f4.d">Recurring bookings and holiday hours, credit subscriptions, access control over dispute evidence, and renegotiating milestone amounts inside a dispute. Legal review of the contract, NDA and refund terms has not been done.</span></div>
     </div>
   </div>
@@ -299,7 +300,7 @@ const _L = {
     "hero.cta1":"Compare the verticals",
     "hero.cta2":"What this does not claim",
     "hero.reward":"<b>Three deal modes, one ledger.</b> A quote accepted into escrow, a matched RFQ with contacts revealed and an hourly booking refunded by cancellation time all post to the same double-entry ledger and reconcile against payments, payouts and credit lots. A role switch moves between the customer, a provider in each vertical and the operator in one browser.",
-    "hero.byline":"A service by joygoLive, built here and operated here. Open since September 17, 2026, operated for presentations with simulated payment and payout.",
+    "hero.byline":"A service by joygoLive, built here and operated here. Open since September 17, 2026. Payment and payout stay simulated; since September 18 the platform also takes real briefs from invited users, which joygoLive answers as the provider, with the contract and the money settled outside the platform.",
     "why.tag":"Design",
     "why.h2":"Three decisions that shaped it",
     "why.lead":"The loop is the product; the vertical is a setting.",
@@ -421,6 +422,8 @@ const _L = {
     "ops.2.d":"The claim, the statement, the milestones and recent chat on one sheet, with a slider that splits the held funds and shows the refund, the release and the commission before the decision.",
     "ops.3.t":"Policy per vertical",
     "ops.3.d":"Commission in basis points, auto-release hours, and the deal count, rating and discount of each grade, changed without a deployment.",
+    "ops.5.t":"Invite-gated beta",
+    "ops.5.d":"Real sign-ups need a one-time invite code issued from the console, with terms and a privacy policy accepted at sign-up. Account deletion removes the personal data, attachments and chat contents while acceptance records and ratings stay anonymized. The database and the attachments are backed up once a day and kept for fourteen days.",
     "ops.4.t":"Money and the gateway console",
     "ops.4.d":"Payments with a query to the gateway, settlement runs, the trial balance and reconciliation. The simulated gateway reproduces deposits to virtual accounts, expirations, webhook resends and fault injection.",
     "int.tag":"Integrations",
@@ -439,8 +442,8 @@ const _L = {
     "int.r3b":"Simulated phone verification window, code shown on screen",
     "int.r3c":"A mobile identity verification provider",
     "int.r4":"Business and account",
-    "int.r4b":"Registration number checksum computed; status and account holder simulated",
-    "int.r4c":"National Tax Service status lookup and an account holder inquiry",
+    "int.r4b":"Implemented: registration number, owner name and opening date checked against the National Tax Service lookup (public data portal); a mismatch blocks the provider review. Account holder simulated",
+    "int.r4c":"An account holder inquiry through open banking",
     "int.r5":"Messaging",
     "int.r5b":"In-app notifications plus a recorded outbox by template code",
     "int.r5c":"KakaoTalk business messages with approved templates, SMS, mail and web push",
@@ -460,11 +463,11 @@ const _L = {
     "limits.h2":"What this does not claim",
     "limits.lead":"The three deal loops are implemented end to end. Money, identity, the businesses and the people are outside the scope.",
     "limits.f1.t":"No real payment or payout",
-    "limits.f1.d":"The gateway and the payout service are simulated. No money moves, no card details are collected and no bank account is contacted.",
+    "limits.f1.d":"The gateway and the payout service are simulated. No money moves, no card details are collected and no bank account is contacted. A deal opened by an invited user skips payment, escrow and the ledger entirely: the contract and the money are agreed outside the platform, and the screen keeps the acceptance record.",
     "limits.f2.t":"No real verification or signatures",
-    "limits.f2.d":"Identity, business status, account holder checks, e-contracts and NDAs are simulated. Only the business number checksum is a real calculation.",
+    "limits.f2.d":"Identity, account holder checks, e-contracts and NDAs are simulated. The business registration lookup is the exception: number, owner name and opening date go to the National Tax Service and a mismatch blocks the provider review.",
     "limits.f3.t":"Fictional providers, customers and ratings",
-    "limits.f3.d":"Seventy days of history across the three verticals are generated through the platform’s own flows, and seeded accounts keep adding requests, quotes, bookings and ratings. The demo accounts are shared by every visitor and can be reset from the console. Fictional providers answer only seeded accounts and the shared demo customer: a request from a real sign-up receives no simulated proposals, is marked as a demo platform on screen, and is answered by the joygoLive team by email.",
+    "limits.f3.d":"Seventy days of history across the three verticals are generated through the platform’s own flows, and seeded accounts keep adding requests, quotes, bookings and ratings. The demo accounts are shared by every visitor and can be reset from the console. An invited account sees none of it: fictional providers, listings and ratings are hidden, the aggregate figures carry a note that they come from demo data, and the only provider on screen is joygoLive. A brief from an invited user receives no simulated proposals and is read by the joygoLive team.",
     "limits.f4.t":"Not yet implemented",
     "limits.f4.d":"Recurring bookings and holiday hours, credit subscriptions, access control over dispute evidence, and renegotiating milestone amounts inside a dispute. Legal review of the contract, NDA and refund terms has not been done."
   },
@@ -485,7 +488,7 @@ const _L = {
     "hero.cta1":"업종 셋 비교",
     "hero.cta2":"주장하지 않는 것",
     "hero.reward":"<b>거래 모드 셋, 원장 하나.</b> 에스크로로 채택된 견적, 연락처가 공개되는 발주 매칭, 취소 시점별로 환불되는 시간 예약이 모두 같은 복식부기 원장에 기록되고 결제·지급·크레딧 잔량과 대사합니다. 역할 전환으로 고객, 업종별 공급자 셋, 운영자 화면을 한 브라우저에서 오갑니다.",
-    "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 2026-09-17 공개 운영 시작, 모의 결제·지급 기반 시연용 운영.",
+    "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 2026-09-17 공개 운영 시작. 결제·지급은 모의 그대로, 2026-09-18부터 초대 이용자의 실제 의뢰도 접수합니다. 공급자는 joygoLive, 계약과 대금은 플랫폼 밖에서 처리합니다.",
     "why.tag":"설계",
     "why.h2":"형태를 정한 세 가지 결정",
     "why.lead":"거래 루프가 제품이고 업종은 설정값입니다.",
@@ -607,6 +610,8 @@ const _L = {
     "ops.2.d":"신청 내용·소명·마일스톤·최근 채팅을 한 화면에, 보관 대금 분할 슬라이더로 환불·지급·수수료를 확정 전에 표시합니다.",
     "ops.3.t":"업종별 정책",
     "ops.3.d":"수수료(bp), 자동 확정 시간, 등급별 완료 거래 수·평점·할인폭. 배포 없이 콘솔에서 변경.",
+    "ops.5.t":"초대 기반 베타",
+    "ops.5.d":"실제 가입은 콘솔에서 발급한 1회용 초대 코드가 있어야 하고, 가입 시 이용약관·개인정보처리방침에 동의합니다. 탈퇴하면 개인정보·첨부·대화 내용을 지우고 검수 기록과 후기는 익명으로 남습니다. DB와 첨부는 하루 한 번 백업해 14일 보관합니다.",
     "ops.4.t":"돈과 게이트웨이 콘솔",
     "ops.4.d":"PG 조회를 포함한 결제, 정산 실행, 시산표와 대사. 모의 게이트웨이에서 가상계좌 입금·기한 만료·웹훅 재전송·장애 주입을 재현합니다.",
     "int.tag":"연동",
@@ -625,8 +630,8 @@ const _L = {
     "int.r3b":"모의 휴대폰 인증 창, 인증번호 화면 표시",
     "int.r3c":"휴대폰 본인인증 서비스",
     "int.r4":"사업자·계좌",
-    "int.r4b":"사업자등록번호 검증식은 실제 계산, 상태 조회·예금주 확인은 모의",
-    "int.r4c":"국세청 사업자 상태조회와 예금주 조회",
+    "int.r4b":"구현 완료: 사업자등록번호·대표자명·개업일을 국세청 사업자등록정보 조회(공공데이터포털)로 확인, 불일치면 공급자 심사 차단. 예금주 확인은 모의",
+    "int.r4c":"오픈뱅킹 예금주 조회",
     "int.r5":"알림",
     "int.r5b":"인앱 알림, 템플릿 코드 기준 발송함 기록",
     "int.r5c":"승인 템플릿 기반 카카오 알림톡, SMS, 메일, 웹 푸시",
@@ -646,11 +651,11 @@ const _L = {
     "limits.h2":"주장하지 않는 것",
     "limits.lead":"거래 루프 셋은 끝까지 구현했습니다. 실제 돈·신원·사업자·사람은 범위 밖입니다.",
     "limits.f1.t":"실제 결제·지급 없음",
-    "limits.f1.d":"결제 게이트웨이와 지급대행은 모의 구현입니다. 돈이 오가지 않고, 카드 정보를 받지 않으며, 은행 계좌를 조회하지 않습니다.",
+    "limits.f1.d":"결제 게이트웨이와 지급대행은 모의 구현입니다. 돈이 오가지 않고, 카드 정보를 받지 않으며, 은행 계좌를 조회하지 않습니다. 초대 이용자의 거래는 결제·에스크로·원장을 아예 거치지 않습니다. 계약과 대금은 플랫폼 밖에서 합의하고, 화면은 검수 기록만 남깁니다.",
     "limits.f2.t":"실제 검증·서명 없음",
-    "limits.f2.d":"본인인증·사업자 상태·예금주 확인·전자계약·NDA 서명은 모의 구현입니다. 사업자등록번호 검증식만 실제 계산입니다.",
+    "limits.f2.d":"본인인증·예금주 확인·전자계약·NDA 서명은 모의 구현입니다. 사업자등록 조회만 예외로, 번호·대표자명·개업일을 국세청에 조회해 불일치면 공급자 심사를 막습니다.",
     "limits.f3.t":"가상 공급자·고객·후기",
-    "limits.f3.d":"세 업종의 70일치 이력을 플랫폼 자체 흐름으로 생성했고, 시드 계정이 요청·견적·예약·후기를 계속 추가합니다. 데모 계정은 모든 방문자가 공유하며 콘솔에서 초기화합니다. 가상 공급자는 시드 계정과 공용 데모 고객에게만 응답합니다. 실제 가입자의 요청에는 가상 제안이 가지 않고, 화면에 시연용 플랫폼임을 표시하며, joygoLive 운영자가 이메일로 직접 회신합니다.",
+    "limits.f3.d":"세 업종의 70일치 이력을 플랫폼 자체 흐름으로 생성했고, 시드 계정이 요청·견적·예약·후기를 계속 추가합니다. 데모 계정은 모든 방문자가 공유하며 콘솔에서 초기화합니다. 초대 이용자 화면에서는 이 데이터가 전부 빠집니다. 가상 공급자·목록·후기는 감추고, 집계 숫자에는 시연 데이터 기준이라는 단서를 붙이며, 화면에 뜨는 공급자는 joygoLive 하나입니다. 초대 이용자의 의뢰에는 가상 제안이 가지 않고 joygoLive 운영자가 직접 읽습니다.",
     "limits.f4.t":"미구현",
     "limits.f4.d":"반복 예약과 공휴일 운영 시간, 견적권 정기 구독, 분쟁 증빙 열람 권한 세분화, 분쟁 중 마일스톤 금액 재조정. 계약·NDA·환불 조항의 법률 검토는 거치지 않았습니다."
   }
