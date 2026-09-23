@@ -6,7 +6,7 @@
 <title>YumJam — This dish, this song, by joygoLive</title>
 <meta name="description" content="YumJam pairs a dish with a song and the moment it was eaten. The same bowl of ramen gets a different song at 3 a.m. and the morning after, and people post, react to and compare those pairings." />
 <meta property="og:title" content="YumJam — This dish, this song" />
-<meta property="og:description" content="Dish × song × moment pairings posted by the people eating. Three reactions, one catalog id per song, a share card per pairing, and no venue names." />
+<meta property="og:description" content="Dish × song × moment pairings posted by the people eating. Three reactions, one catalog id per song, and a share card per pairing." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
 <meta name="theme-color" id="themeColor" content="#ffffff" />
@@ -93,7 +93,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <a href="https://yumjam.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta1">Open YumJam</a>
       <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">What this does not claim</a>
     </div>
-    <p class="reward" data-i18n-html="hero.reward"><b>No venue names, on purpose.</b> YumJam started as venue × dish × song. People held back in case an owner objected, and a named venue invited jokes at its expense, so the comparison now runs across moments and people instead.</p>
+    <p class="reward" data-i18n-html="hero.reward"><b>One meal, one song, one card.</b> Pick the song that fits what you are eating right now, and it becomes a story-sized card to share. Cup noodles at a convenience store at 2 a.m. count as a meal.</p>
     <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here. Beta.</div>
   </div>
 </section>
@@ -170,7 +170,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
         </tbody>
       </table>
     </div>
-    <p class="reward" data-i18n-html="pages.reward"><b>Moments, not venues.</b> A venue page said nothing until ten pairings had piled up in one place, which a new service rarely reaches. A moment fills up from the first few pairings posted anywhere.</p>
+    <p class="reward" data-i18n-html="pages.reward"><b>Moments fill up fast.</b> A moment is shared by every pairing tagged with it, wherever it was eaten, so a dish page has something to compare from the first few posts.</p>
   </div>
 </section>
 
@@ -184,7 +184,6 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="facts">
       <div class="fact fade"><b data-i18n="ops.f1.t">Adults only, confirmed once</b><span data-i18n="ops.f1.d">Before the first post: 19 or older and the house rules. Reading needs neither.</span></div>
       <div class="fact fade"><b data-i18n="ops.f2.t">Three reports hide a post</b><span data-i18n="ops.f2.d">From three different people. The post stays hidden until an operator keeps it, hides it, or hides it and restricts the author. Each report and each automatic hide notifies the operator immediately.</span></div>
-      <div class="fact fade"><b data-i18n="ops.f3.t">No naming or mocking a venue</b><span data-i18n="ops.f3.d">There is no venue field, and the house rules and the comment field both rule out naming or mocking a specific venue. Reports have a matching reason, since sarcasm without abuse falls outside "abuse or hate". Pairings posted before the change keep their venue in storage only; no page or API response shows it.</span></div>
       <div class="fact fade"><b data-i18n="ops.f4.t">Reactions reach you, at most hourly</b><span data-i18n="ops.f4.d">Web push, one notification per pairing per hour, carrying the counts accumulated since the last one. A conditional update on the pairing's last-sent time acts as the lock, so simultaneous reactions cannot each send one.</span></div>
       <div class="fact fade"><b data-i18n="ops.f5.t">Counts recomputed on every reaction</b><span data-i18n="ops.f5.d">The three reaction counts are recounted from the reaction table each time. Incrementing and decrementing drifts under concurrent requests, and a drifted count never corrects itself.</span></div>
       <div class="fact fade"><b data-i18n="ops.f6.t">Deleting keeps the row</b><span data-i18n="ops.f6.d">Deleting your own pairing takes it down and removes the photo from storage, but keeps the record, so report history and reaction totals stay consistent.</span></div>
@@ -201,7 +200,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <div class="facts">
       <div class="fact fade"><b data-i18n="limits.f1.t">No music is served</b><span data-i18n="limits.f1.d">A 30-second preview from the catalog and links out to listen. No audio file is stored or streamed from here.</span></div>
-      <div class="fact fade"><b data-i18n="limits.f2.t">Not a review site</b><span data-i18n="limits.f2.d">No ratings, prices, opening hours or venues. Where a dish was eaten is not recorded.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f2.t">Not a review site</b><span data-i18n="limits.f2.d">No ratings, prices or opening hours. Where a dish was eaten is not recorded.</span></div>
       <div class="fact fade"><b data-i18n="limits.f3.t">One browser, one identity</b><span data-i18n="limits.f3.d">Identity is a one-year cookie in one browser, with no transfer between devices. Safari clears it after seven days without a visit; the next visit starts a new nickname, and earlier posts stay up.</span></div>
       <div class="fact fade"><b data-i18n="limits.f4.t">Eight moments, fixed</b><span data-i18n="limits.f4.d">Chosen to cover most meals without overlapping. They change only in code, when the share per moment shows one crowding out the rest.</span></div>
       <div class="fact fade"><b data-i18n="limits.f5.t">Catalog coverage has gaps</b><span data-i18n="limits.f5.d">Some Korean songs appear under English titles or romanized artist names. A song known in Korea by a translated title is found only by its original title.</span></div>
@@ -233,7 +232,7 @@ const _L = {
     "hero.title":"이 메뉴엔 <span class=\"grad\">이 노래</span>.",
     "hero.sub":"지금 먹는 것과 어울리는 노래 한 곡을 혼밥·회식·새벽·해장 같은 상황과 함께 올립니다. 같은 라면에도 상황마다 다른 노래가 붙고, 그 차이가 곧 콘텐츠입니다.",
     "hero.cta1":"YumJam 열기","hero.cta2":"주장하지 않는 것",
-    "hero.reward":"<b>가게 이름은 의도적으로 받지 않습니다.</b> 처음 단위는 가게 × 메뉴 × 곡이었습니다. 사장의 항의를 걱정해 올리기를 망설이는 사람이 있었고, 가게 이름이 붙은 글은 가게를 비꼬는 농담으로 흐르기 쉬웠습니다. 그래서 비교 축을 가게 대신 상황과 사람으로 바꿨습니다.",
+    "hero.reward":"<b>한 끼, 한 곡, 한 장.</b> 지금 먹는 것에 어울리는 노래 한 곡을 고르면 공유용 스토리 카드 한 장이 됩니다. 새벽 2시 편의점 컵라면도 한 끼입니다.",
     "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 베타.",
 
     "why.tag":"설계","why.h2":"방향을 정한 세 가지 결정",
@@ -273,13 +272,12 @@ const _L = {
     "pages.r3":"오늘의 논쟁","pages.r3a":"서로 다른 곡이 가장 많이 붙은 메뉴, 홈 상단","pages.r3b":"같은 메뉴에 곡 둘 이상",
     "pages.r4":"공유 링크","pages.r4a":"메신저·SNS 미리보기에 사진·곡·반응 수 표시, 링크를 연 사람은 해당 페어링 화면으로 이동","pages.r4b":"모든 페어링",
     "pages.r5":"내 얌잼","pages.r5a":"별명·받은 반응·알림 설정·내 페어링","pages.r5b":"첫 방문부터",
-    "pages.reward":"<b>가게 대신 상황.</b> 가게 페이지는 한 가게에 페어링 열 개가 쌓여야 의미가 생겨 초기 서비스에 불리했습니다. 상황은 어디서 올린 페어링이든 처음 몇 개부터 채워집니다.",
+    "pages.reward":"<b>상황은 금방 채워집니다.</b> 어디서 먹었든 같은 상황을 고른 페어링이 한데 모이므로, 메뉴 페이지는 처음 몇 개부터 비교할 거리가 생깁니다.",
 
     "ops.tag":"운영","ops.h2":"손님이 올리는 콘텐츠의 바닥선",
     "ops.lead":"콘텐츠 대부분이 술자리에서 나옵니다. 규칙은 적게 두고 매번 같은 방식으로 적용해, 운영을 건별 판단 대신 대기열 처리로 만듭니다.",
     "ops.f1.t":"성인 확인, 한 번","ops.f1.d":"첫 올리기 전에 만 19세 이상 확인과 이용 규칙 동의를 받습니다. 보기만 할 때는 둘 다 필요 없습니다.",
     "ops.f2.t":"신고 셋이면 가림","ops.f2.d":"서로 다른 세 명 기준입니다. 운영자가 유지·가림·가림 + 이용 제한 중 하나로 처리할 때까지 노출되지 않습니다. 신고 접수와 자동 가림은 운영자에게 즉시 알림이 갑니다.",
-    "ops.f3.t":"한 줄에도 가게 이름·비방 금지","ops.f3.d":"가게 칸이 없고, 이용 규칙과 한 줄 입력칸 안내가 특정 가게 이름 언급과 가게 비방을 금지합니다. 욕설 없는 비꼬기는 「욕설·혐오」로 잡히지 않아 같은 이름의 신고 사유를 따로 둡니다. 전환 전 페어링의 가게 정보는 저장소에만 남고 어떤 화면과 API 응답에도 나오지 않습니다.",
     "ops.f4.t":"반응 알림, 한 시간에 한 번","ops.f4.d":"웹 푸시, 페어링당 시간당 1회이며 그 사이 쌓인 수를 한 번에 보여 줍니다. 페어링의 마지막 발송 시각에 대한 조건부 UPDATE가 락 역할을 해, 동시에 들어온 반응이 각각 알림을 보내지 않습니다.",
     "ops.f5.t":"반응 수: 매번 재집계","ops.f5.d":"반응이 들어올 때마다 반응 표에서 세 가지 수를 다시 셉니다. 더하고 빼는 방식은 동시 요청에서 어긋나고, 한 번 어긋난 수는 스스로 복구되지 않습니다.",
     "ops.f6.t":"삭제: 행 유지, 사진 제거","ops.f6.d":"내 페어링을 지우면 노출을 내리고 저장소의 사진을 삭제하되 행은 남깁니다. 신고 이력과 반응 집계의 정합성을 지키기 위해서입니다.",
@@ -287,7 +285,7 @@ const _L = {
     "limits.tag":"한계","limits.h2":"주장하지 않는 것",
     "limits.lead":"기능 목록보다 범위 밖 목록이 더 유용합니다. 대부분은 의도적으로 뺀 것입니다.",
     "limits.f1.t":"음원 제공 없음","limits.f1.d":"카탈로그 30초 미리듣기와 외부 듣기 링크뿐입니다. 음원 파일을 보관하거나 스트리밍하지 않습니다.",
-    "limits.f2.t":"리뷰 사이트 아님","limits.f2.d":"별점·가격·영업시간·가게 정보가 없습니다. 어디서 먹었는지는 기록하지 않습니다.",
+    "limits.f2.t":"리뷰 사이트 아님","limits.f2.d":"별점·가격·영업시간이 없습니다. 어디서 먹었는지는 기록하지 않습니다.",
     "limits.f3.t":"브라우저 하나 = 신원 하나","limits.f3.d":"신원은 브라우저 하나에 저장되는 1년짜리 쿠키이며 기기 간 이전이 없습니다. Safari는 7일간 방문이 없으면 쿠키를 지우고, 다음 방문은 새 별명으로 시작합니다. 이전 글은 그대로 남습니다.",
     "limits.f4.t":"상황 여덟 개, 고정","limits.f4.d":"대부분의 식사를 겹치지 않게 덮도록 골랐습니다. 상황별 비중이 한쪽으로 쏠리는 게 보일 때만 코드에서 바꿉니다.",
     "limits.f5.t":"카탈로그 공백","limits.f5.d":"일부 국내 곡은 영문 제목이나 로마자 가수명으로 나옵니다. 번안 제목으로 알려진 곡은 원제로 검색해야 찾을 수 있습니다.",
