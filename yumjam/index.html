@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YumJam — This photo, this song, by joygoLive</title>
-<meta name="description" content="YumJam pairs a photo of your own with one song and a one-line hint. People vote, and after 24 hours the post survives or disappears." />
+<meta name="description" content="YumJam pairs a photo of your own with one song and a one-line hint. People vote for 30 days, and then the post survives or disappears." />
 <meta property="og:title" content="YumJam — This photo, this song" />
-<meta property="og:description" content="Photo × song × moment. One photo, one song, one line, and a 24-hour survival vote." />
+<meta property="og:description" content="Photo × song × moment. One photo, one song, one line, and a 30-day survival vote." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
 <meta name="theme-color" id="themeColor" content="#ffffff" />
@@ -88,12 +88,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="hero-kicker mono" data-i18n="hero.kicker">YumJam · Photo × song × moment</div>
     <h1 data-i18n-html="hero.title">This photo, <span class="grad">this song</span>.</h1>
-    <p class="lead" data-i18n="hero.sub">Post one photo of your own, the one song it calls for and a line that hints at the joke. It does not have to be food: a bowl of kibble, the commute, a cat. People vote, and 24 hours later the post either survives or disappears.</p>
+    <p class="lead" data-i18n="hero.sub">Post one photo of your own, the one song it calls for and a line that hints at the joke. It does not have to be food: a bowl of kibble, the commute, a cat. People vote for 30 days, and then the post either survives or disappears.</p>
     <div class="cta-row">
       <a href="https://yumjam.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta1">Open YumJam</a>
       <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">What this does not claim</a>
     </div>
-    <p class="reward" data-i18n-html="hero.reward"><b>A 24-hour survival game.</b> Each post takes votes for a day: agree, funny, or not so sure. If "not so sure" outnumbers the other two when the day is up, the post disappears; otherwise it stays with a survivor badge.</p>
+    <p class="reward" data-i18n-html="hero.reward"><b>A 30-day survival game.</b> Each post takes votes for 30 days: agree, funny, or not so sure. If "not so sure" outnumbers the other two when the time is up, the post disappears; otherwise it stays with a survivor badge. A post nobody voted on survives.</p>
     <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here. Beta.</div>
   </div>
 </section>
@@ -230,9 +230,9 @@ const _L = {
     "nav.why":"설계","nav.how":"올리기","nav.songs":"곡","nav.pages":"페이지","nav.ops":"운영","nav.limits":"한계",
     "hero.kicker":"YumJam · 사진 × 곡 × 상황",
     "hero.title":"이 사진엔 <span class=\"grad\">이 노래</span>.",
-    "hero.sub":"내 사진 한 장에 어울리는 노래 한 곡과 슬쩍 암시하는 한 줄을 붙여 올립니다. 음식이 아니어도 됩니다. 강아지 사료, 출근길, 고양이도 됩니다. 사람들이 투표하고, 24시간 뒤 그 글은 살아남거나 사라집니다.",
+    "hero.sub":"내 사진 한 장에 어울리는 노래 한 곡과 슬쩍 암시하는 한 줄을 붙여 올립니다. 음식이 아니어도 됩니다. 강아지 사료, 출근길, 고양이도 됩니다. 사람들이 30일 동안 투표하고, 그 뒤 글은 살아남거나 사라집니다.",
     "hero.cta1":"YumJam 열기","hero.cta2":"주장하지 않는 것",
-    "hero.reward":"<b>24시간 생존 게임.</b> 글마다 하루 동안 공감·웃김·글쎄 투표를 받습니다. 하루가 지났을 때 글쎄가 공감과 웃김을 합한 것보다 많으면 사라지고, 아니면 「생존」 표시를 달고 남습니다.",
+    "hero.reward":"<b>30일 생존 게임.</b> 글마다 30일 동안 공감·웃김·글쎄 투표를 받습니다. 기간이 끝났을 때 글쎄가 공감과 웃김을 합한 것보다 많으면 사라지고, 아니면 「생존」 표시를 달고 남습니다. 아무도 투표하지 않은 글은 생존합니다.",
     "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 베타.",
 
     "why.tag":"설계","why.h2":"방향을 정한 세 가지 결정",
