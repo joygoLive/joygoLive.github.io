@@ -122,7 +122,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <div class="steps">
       <div class="step fade"><div><b data-i18n="how.s1.t">A photo, if you want one</b><span data-i18n="how.s1.d">Re-encoded in the browser to at most 1440 px on the long edge before upload, which also strips the location stored in the photo. The server identifies the format from the file's first bytes, not its name.</span></div></div>
-      <div class="step fade"><div><b data-i18n="how.s2.t">The moment</b><span data-i18n="how.s2.d">One of eight: eating alone, with friends, team dinner, date, late night, hangover, rainy day, delivery. It is the axis a dish page compares along.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s2.t">The moment</b><span data-i18n="how.s2.d">One of eight: eating alone, with friends, team dinner, date, late night, hangover, rainy day, delivery. Or a few words of your own, such as "three minutes to deadline"; those show on the card as written and are grouped as "other" when a dish page compares moments.</span></div></div>
       <div class="step fade"><div><b data-i18n="how.s3.t">The dish</b><span data-i18n="how.s3.d">Spacing and punctuation are ignored when dishes are compared, so every spelling of the same dish lands on the same page.</span></div></div>
       <div class="step fade"><div><b data-i18n="how.s4.t">One song and one line</b><span data-i18n="how.s4.d">Picked from a public music catalog with a 30-second preview, plus a comment of up to 140 characters. How the song is found and checked is described in the next section.</span></div></div>
     </div>
@@ -202,7 +202,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="fact fade"><b data-i18n="limits.f1.t">No music is served</b><span data-i18n="limits.f1.d">A 30-second preview from the catalog and links out to listen. No audio file is stored or streamed from here.</span></div>
       <div class="fact fade"><b data-i18n="limits.f2.t">Not a review site</b><span data-i18n="limits.f2.d">No ratings, prices or opening hours. Where a dish was eaten is not recorded.</span></div>
       <div class="fact fade"><b data-i18n="limits.f3.t">One browser, one identity</b><span data-i18n="limits.f3.d">Identity is a one-year cookie in one browser, with no transfer between devices. Safari clears it after seven days without a visit; the next visit starts a new nickname, and earlier posts stay up.</span></div>
-      <div class="fact fade"><b data-i18n="limits.f4.t">Eight moments, fixed</b><span data-i18n="limits.f4.d">Chosen to cover most meals without overlapping. They change only in code, when the share per moment shows one crowding out the rest.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f4.t">Eight moments, plus your own</b><span data-i18n="limits.f4.d">The eight cover most meals without overlapping. Anything else can be written in, but dish pages compare it as one "other" group; a written-in moment that keeps coming back is promoted to the list in code.</span></div>
       <div class="fact fade"><b data-i18n="limits.f5.t">Catalog coverage has gaps</b><span data-i18n="limits.f5.d">Some Korean songs appear under English titles or romanized artist names. A song known in Korea by a translated title is found only by its original title.</span></div>
       <div class="fact fade"><b data-i18n="limits.f6.t">iPhone alerts need the home screen</b><span data-i18n="limits.f6.d">Safari does not deliver web push to a browser tab. The app suggests adding it to the home screen right after the first pairing and on the My YumJam page.</span></div>
     </div>
@@ -247,7 +247,7 @@ const _L = {
     "how.tag":"올리기","how.h2":"네 칸, 그중 하나는 선택",
     "how.lead":"올리는 데 드는 시간이 올리지 않기로 마음먹는 시간보다 짧아야 합니다. 메뉴 칸은 이미 올라온 메뉴를 먼저 제안해 같은 메뉴가 여러 표기로 갈라지지 않게 합니다.",
     "how.s1.t":"사진(선택)","how.s1.d":"업로드 전에 브라우저에서 긴 변 1440px 이하로 다시 인코딩하며, 이때 사진 속 위치 정보가 제거됩니다. 서버는 파일 이름 대신 첫 바이트로 형식을 판별합니다.",
-    "how.s2.t":"상황","how.s2.d":"혼밥·친구랑·회식·데이트·새벽·해장·비 오는 날·배달 중 하나를 고릅니다. 메뉴 페이지가 비교하는 축입니다.",
+    "how.s2.t":"상황","how.s2.d":"혼밥·친구랑·회식·데이트·새벽·해장·비 오는 날·배달 중 하나를 고르거나, 「마감 3분 전」처럼 10자 이내로 직접 적습니다. 직접 적은 상황은 카드에 그대로 보이고, 메뉴 페이지 비교에서는 「그 외」로 묶입니다.",
     "how.s3.t":"메뉴","how.s3.d":"비교할 때 띄어쓰기와 문장부호를 무시하므로 표기가 달라도 같은 메뉴 페이지로 모입니다.",
     "how.s4.t":"노래 한 곡과 한 줄","how.s4.d":"공개 음악 카탈로그에서 30초 미리듣기로 고르고, 140자 이내의 한 줄을 붙입니다. 곡을 찾고 검증하는 방식은 다음 절에 있습니다.",
     "how.reward":"<b>페어링마다 공유 카드 한 장.</b> 스토리 규격(1080 × 1920) 세로 이미지와, 열기 전부터 메신저 미리보기에 사진과 곡이 표시되는 링크가 함께 만들어집니다.",
@@ -287,7 +287,7 @@ const _L = {
     "limits.f1.t":"음원 제공 없음","limits.f1.d":"카탈로그 30초 미리듣기와 외부 듣기 링크뿐입니다. 음원 파일을 보관하거나 스트리밍하지 않습니다.",
     "limits.f2.t":"리뷰 사이트 아님","limits.f2.d":"별점·가격·영업시간이 없습니다. 어디서 먹었는지는 기록하지 않습니다.",
     "limits.f3.t":"브라우저 하나 = 신원 하나","limits.f3.d":"신원은 브라우저 하나에 저장되는 1년짜리 쿠키이며 기기 간 이전이 없습니다. Safari는 7일간 방문이 없으면 쿠키를 지우고, 다음 방문은 새 별명으로 시작합니다. 이전 글은 그대로 남습니다.",
-    "limits.f4.t":"상황 여덟 개, 고정","limits.f4.d":"대부분의 식사를 겹치지 않게 덮도록 골랐습니다. 상황별 비중이 한쪽으로 쏠리는 게 보일 때만 코드에서 바꿉니다.",
+    "limits.f4.t":"상황 여덟 개와 직접 입력","limits.f4.d":"여덟 개는 대부분의 식사를 겹치지 않게 덮도록 골랐습니다. 그 밖의 상황은 직접 적을 수 있지만 메뉴 페이지에서는 「그 외」 한 묶음으로 비교되며, 자주 쓰이는 직접 입력은 코드에서 정식 목록으로 올립니다.",
     "limits.f5.t":"카탈로그 공백","limits.f5.d":"일부 국내 곡은 영문 제목이나 로마자 가수명으로 나옵니다. 번안 제목으로 알려진 곡은 원제로 검색해야 찾을 수 있습니다.",
     "limits.f6.t":"iPhone 알림은 홈 화면 추가 후","limits.f6.d":"Safari는 브라우저 탭에 웹 푸시를 보내지 않습니다. 첫 페어링 직후와 내 얌잼 화면에서 홈 화면 추가를 안내합니다.",
 
