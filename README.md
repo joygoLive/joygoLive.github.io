@@ -22,7 +22,7 @@ jgx/index.html      JGX — joygoLive Exchange, an order-book centralized exchan
 shop/index.html     SHOP — a multi-vendor shopping mall demo (order split per seller, seller center, simulated PG · carrier · e-tax invoice; shop.joygolive.com)
 jgm/index.html      JGM — joygoLive Match, a marketplace core demo with three verticals (IT outsourcing escrow · manufacturing lead credits · space booking; disputes, grades, contact masking; simulated PG · payout · identity; jgm.joygolive.com)
 dmon/index.html     DMON — a drone operations console demo (simulated aircraft on real MAVLink, mission upload, Korean airspace check, flight replay; dmon.joygolive.com)
-yumjam/index.html   YUMJAM — venue × dish × song pairing web app (guest posts, three reactions, theme song per venue after ten pairings, share cards, web push; yumjam.joygolive.com)
+picjam/index.html   PICJAM (formerly YUMJAM) — photo × song × moment pairing web app (own photo, one song, one line, 30-day survival vote, share cards, web push; yumjam.joygolive.com)
 assets/site.css     shared design system — tokens, shell, every component
 assets/i18n.js      shared runtime — EN/KO switch, scroll fade-in, mobile menu
 favicon.svg

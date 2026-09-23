@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>YumJam — This photo, this song, by joygoLive</title>
-<meta name="description" content="YumJam pairs a photo of your own with one song and a one-line hint. People vote for 30 days, and then the post survives or disappears." />
-<meta property="og:title" content="YumJam — This photo, this song" />
+<title>PicJam — This photo, this song, by joygoLive</title>
+<meta name="description" content="PicJam pairs a photo of your own with one song and a one-line hint. People vote for 30 days, and then the post survives or disappears." />
+<meta property="og:title" content="PicJam — This photo, this song" />
 <meta property="og:description" content="Photo × song × moment. One photo, one song, one line, and a 30-day survival vote." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
@@ -54,7 +54,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
         <span>joy<span class="go">go</span><span class="dot">Live</span></span>
       </a>
       <span class="brand-sep" aria-hidden="true">/</span>
-      <a href="./" class="svc-name">YUMJAM</a>
+      <a href="./" class="svc-name">PICJAM</a>
     </div>
     <nav class="nav-links" id="navLinks">
       <a href="#why" data-i18n="nav.why">Design</a>
@@ -86,11 +86,11 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <div class="hero-kicker mono" data-i18n="hero.kicker">YumJam · Photo × song × moment</div>
+    <div class="hero-kicker mono" data-i18n="hero.kicker">PicJam · Photo × song × moment</div>
     <h1 data-i18n-html="hero.title">This photo, <span class="grad">this song</span>.</h1>
     <p class="lead" data-i18n="hero.sub">Post one photo of your own, the one song it calls for and a line that hints at the joke. It does not have to be food: a bowl of kibble, the commute, a cat. People vote for 30 days, and then the post either survives or disappears.</p>
     <div class="cta-row">
-      <a href="https://yumjam.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta1">Open YumJam</a>
+      <a href="https://picjam.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta1">Open PicJam</a>
       <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">What this does not claim</a>
     </div>
     <p class="reward" data-i18n-html="hero.reward"><b>A 30-day survival game.</b> Each post takes votes for 30 days: agree, funny, or not so sure. If "not so sure" outnumbers the other two when the time is up, the post disappears; otherwise it stays with a survivor badge. A post nobody voted on survives.</p>
@@ -166,7 +166,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
           <tr><td class="nm" data-i18n="pages.r2">Home</td><td data-i18n="pages.r2a">Latest pairings, filterable by moment</td><td data-i18n="pages.r2b">Always</td></tr>
           <tr><td class="nm" data-i18n="pages.r3">Today's debate</td><td data-i18n="pages.r3a">The dish with the most different songs attached, on the home screen</td><td data-i18n="pages.r3b">When a dish has at least two different songs</td></tr>
           <tr><td class="nm" data-i18n="pages.r4">Share link</td><td data-i18n="pages.r4a">Photo, song and reaction counts in chat and social previews; a person following it lands on the pairing</td><td data-i18n="pages.r4b">Every pairing</td></tr>
-          <tr><td class="nm" data-i18n="pages.r5">My YumJam</td><td data-i18n="pages.r5a">Nickname, reactions received, alert setting, own pairings</td><td data-i18n="pages.r5b">From the first visit</td></tr>
+          <tr><td class="nm" data-i18n="pages.r5">My PicJam</td><td data-i18n="pages.r5a">Nickname, reactions received, alert setting, own pairings</td><td data-i18n="pages.r5b">From the first visit</td></tr>
         </tbody>
       </table>
     </div>
@@ -204,7 +204,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="fact fade"><b data-i18n="limits.f3.t">One browser, one identity</b><span data-i18n="limits.f3.d">Identity is a one-year cookie in one browser, with no transfer between devices. Safari clears it after seven days without a visit; the next visit starts a new nickname, and earlier posts stay up.</span></div>
       <div class="fact fade"><b data-i18n="limits.f4.t">Eight moments, plus your own</b><span data-i18n="limits.f4.d">The eight cover most meals without overlapping. Anything else can be written in, but dish pages compare it as one "other" group; a written-in moment that keeps coming back is promoted to the list in code.</span></div>
       <div class="fact fade"><b data-i18n="limits.f5.t">Catalog coverage has gaps</b><span data-i18n="limits.f5.d">Some Korean songs appear under English titles or romanized artist names. A song known in Korea by a translated title is found only by its original title.</span></div>
-      <div class="fact fade"><b data-i18n="limits.f6.t">iPhone alerts need the home screen</b><span data-i18n="limits.f6.d">Safari does not deliver web push to a browser tab. The app suggests adding it to the home screen right after the first pairing and on the My YumJam page.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f6.t">iPhone alerts need the home screen</b><span data-i18n="limits.f6.d">Safari does not deliver web push to a browser tab. The app suggests adding it to the home screen right after the first pairing and on the My PicJam page.</span></div>
     </div>
   </div>
 </section>
@@ -228,10 +228,10 @@ const _L = {
   },
   ko:{
     "nav.why":"설계","nav.how":"올리기","nav.songs":"곡","nav.pages":"페이지","nav.ops":"운영","nav.limits":"한계",
-    "hero.kicker":"YumJam · 사진 × 곡 × 상황",
+    "hero.kicker":"PicJam · 사진 × 곡 × 상황",
     "hero.title":"이 사진엔 <span class=\"grad\">이 노래</span>.",
     "hero.sub":"내 사진 한 장에 어울리는 노래 한 곡과 슬쩍 암시하는 한 줄을 붙여 올립니다. 음식이 아니어도 됩니다. 강아지 사료, 출근길, 고양이도 됩니다. 사람들이 30일 동안 투표하고, 그 뒤 글은 살아남거나 사라집니다.",
-    "hero.cta1":"YumJam 열기","hero.cta2":"주장하지 않는 것",
+    "hero.cta1":"PicJam 열기","hero.cta2":"주장하지 않는 것",
     "hero.reward":"<b>30일 생존 게임.</b> 글마다 30일 동안 공감·웃김·글쎄 투표를 받습니다. 기간이 끝났을 때 글쎄가 공감과 웃김을 합한 것보다 많으면 사라지고, 아니면 「생존」 표시를 달고 남습니다. 아무도 투표하지 않은 글은 생존합니다.",
     "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 베타.",
 
@@ -271,7 +271,7 @@ const _L = {
     "pages.r2":"홈","pages.r2a":"최신 페어링, 상황별 필터","pages.r2b":"항상",
     "pages.r3":"오늘의 논쟁","pages.r3a":"서로 다른 곡이 가장 많이 붙은 메뉴, 홈 상단","pages.r3b":"같은 메뉴에 곡 둘 이상",
     "pages.r4":"공유 링크","pages.r4a":"메신저·SNS 미리보기에 사진·곡·반응 수 표시, 링크를 연 사람은 해당 페어링 화면으로 이동","pages.r4b":"모든 페어링",
-    "pages.r5":"내 얌잼","pages.r5a":"별명·받은 반응·알림 설정·내 페어링","pages.r5b":"첫 방문부터",
+    "pages.r5":"내 픽잼","pages.r5a":"별명·받은 반응·알림 설정·내 페어링","pages.r5b":"첫 방문부터",
     "pages.reward":"<b>상황은 금방 채워집니다.</b> 어디서 먹었든 같은 상황을 고른 페어링이 한데 모이므로, 메뉴 페이지는 처음 몇 개부터 비교할 거리가 생깁니다.",
 
     "ops.tag":"운영","ops.h2":"손님이 올리는 콘텐츠의 바닥선",
@@ -289,7 +289,7 @@ const _L = {
     "limits.f3.t":"브라우저 하나 = 신원 하나","limits.f3.d":"신원은 브라우저 하나에 저장되는 1년짜리 쿠키이며 기기 간 이전이 없습니다. Safari는 7일간 방문이 없으면 쿠키를 지우고, 다음 방문은 새 별명으로 시작합니다. 이전 글은 그대로 남습니다.",
     "limits.f4.t":"상황 여덟 개와 직접 입력","limits.f4.d":"여덟 개는 대부분의 식사를 겹치지 않게 덮도록 골랐습니다. 그 밖의 상황은 직접 적을 수 있지만 메뉴 페이지에서는 「그 외」 한 묶음으로 비교되며, 자주 쓰이는 직접 입력은 코드에서 정식 목록으로 올립니다.",
     "limits.f5.t":"카탈로그 공백","limits.f5.d":"일부 국내 곡은 영문 제목이나 로마자 가수명으로 나옵니다. 번안 제목으로 알려진 곡은 원제로 검색해야 찾을 수 있습니다.",
-    "limits.f6.t":"iPhone 알림은 홈 화면 추가 후","limits.f6.d":"Safari는 브라우저 탭에 웹 푸시를 보내지 않습니다. 첫 페어링 직후와 내 얌잼 화면에서 홈 화면 추가를 안내합니다.",
+    "limits.f6.t":"iPhone 알림은 홈 화면 추가 후","limits.f6.d":"Safari는 브라우저 탭에 웹 푸시를 보내지 않습니다. 첫 페어링 직후와 내 픽잼 화면에서 홈 화면 추가를 안내합니다.",
 
     "ft.home":"홈","ft.copy":"© 2026 joygoLive. All rights reserved."
   }
