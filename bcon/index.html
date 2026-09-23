@@ -20,7 +20,7 @@
    표에 넣으면 그 설명이 칸에 눌려 한 줄로 잘린다. */
 /* 다섯 장이라 열 수가 중요하다. 250 이면 넓은 화면에서 4열이 잡혀 **4+1** 로
    갈리고 마지막 한 장이 외따로 남는다. 290 이면 3열이라 3+2 로 떨어진다. */
-.sig{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;margin-top:30px}
+.sig{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:16px;margin-top:30px}
 .scard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:19px 18px}
 .scard .sw{display:flex;align-items:baseline;gap:9px;margin-bottom:9px}
 .scard .sk{font-size:14.5px;font-weight:700}
@@ -127,7 +127,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <a href="#fix" class="btn btn-ghost" data-i18n="hero.cta2">What to do about it</a>
     </div>
     <p class="reward" data-i18n-html="hero.reward"><b>Receive-only.</b> Beacon frames are broadcast in the clear by design; BCON receives them and stops there. It never connects, never authenticates, never attacks, and never identifies an individual access point on screen.</p>
-    <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here.</div>
+    <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here. Beta.</div>
   </div>
 </section>
 
@@ -287,7 +287,7 @@ const _L = {
     "hero.cta1":"무엇을 점검하나",
     "hero.cta2":"조치 항목",
     "hero.reward":"<b>수신 전용입니다.</b> 비콘 프레임은 본래 평문으로 브로드캐스트되고, BCON은 그것을 수신하는 데서 멈춥니다. 접속하지 않고, 인증하지 않고, 침투하지 않으며, 개별 AP를 화면에 특정하지 않습니다.",
-    "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다.",
+    "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 베타.",
 
     "why.tag":"전제","why.h2":"대부분은 내 소유가 아닌 장비",
     "why.lead":"무선 환경의 전반적 취약 수준은 이미 보고서로 존재하고, 전국 평균을 안다고 내일 할 일이 바뀌지는 않습니다. 게다가 수신 범위 안의 장비는 거의 전부 타인 소유라 보안 강화는 선택지에 없습니다. 남는 것은 어느 것이 위험한지 알고 그에 맞게 행동하는 일이고, 그것은 점검이 조치 항목으로 끝날 때만 성립합니다.",
@@ -355,5 +355,7 @@ const _L = {
   },
 };</script>
 <script src="../assets/i18n.js"></script>
+<script data-goatcounter="https://joygolive.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

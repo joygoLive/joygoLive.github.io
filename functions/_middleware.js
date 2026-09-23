@@ -15,7 +15,7 @@
  */
 const BLOCKED = [
   /(^|\/)\.[^/]/,                      // 점으로 시작하는 것 전부 (.gitignore · .secrets.local …)
-  /\.(sql|toml|md|ya?ml|lock|log|sh|env|bak)$/i,
+  /\.(sql|toml|md|ya?ml|lock|log|sh|py|env|bak)$/i,
   /^\/(migrations|node_modules)(\/|$)/i,
 ];
 // 인증서 발급·소유 확인이 쓰는 자리. 점으로 시작하지만 이건 열려 있어야 한다.

@@ -45,6 +45,24 @@ for p in sorted(glob.glob('*/index.html')) + ['index.html']:
         for k in sorted(used - have):
             bad.append(f'{p}: ko 사전에 "{k}" 없음')
 
+    # 새 페이지를 옛 페이지에서 복사하지 않고 쓰면 아래 넷이 빠진 채 나갔다(2026-09-23 전수 점검).
+    if p != 'index.html':
+        # 바이라인은 고정 문장으로 시작하고 상태를 뒤에 붙인다
+        if 'A service by joygoLive, built here and operated here.' not in s:
+            bad.append(f'{p}: EN 바이라인이 표준 문장으로 시작하지 않는다')
+        if ko and 'joygoLive의 서비스. 직접 개발하고 직접 운영합니다.' not in ko.group(0):
+            bad.append(f'{p}: KO 바이라인이 표준 문장으로 시작하지 않는다')
+        if '주장하지 않는 것' not in s or 'What this does not claim' not in s:
+            bad.append(f'{p}: 한계 절 「주장하지 않는 것」 / "What this does not claim" 없음')
+    if 'gc.zgo.at/count.js' not in s:
+        bad.append(f'{p}: GoatCounter 스크립트 없음')
+    # 웹앱이면 누구나 갖는 성질은 차별점이 아니다. 개인정보 주장(이름·연락처 미수집)은 여기 안 걸린다
+    for m in re.finditer(r'(?i)no install|no sign-?up|store review|설치도 |설치 없|스토어 심사|가입 없|가입도 없', s):
+        bad.append(f'{p}: 웹앱 기본값을 차별점처럼 씀 → 서비스 고유 특징으로 (…{s[max(0, m.start()-30):m.end()+10]!r})')
+    # 영문 철자는 US
+    for m in re.finditer(r'(?i)\b(catalogue|cancelled|labelled|licence|judgement|centimetre|colour|behaviour|summaris|optimis|organis)\w*', s):
+        bad.append(f'{p}: UK 철자 {m.group(0)} → US')
+
 for b in bad:
     print('  ✗', b)
 print(f'\n{len(bad)}건' if bad else '\n전부 통과')

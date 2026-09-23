@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YumJam — This dish, this song, by joygoLive</title>
-<meta name="description" content="YumJam pairs a dish with a song, per venue. The same bowl of soup gets a different song in every place that serves it, and people post, react to and compare those pairings. A web app, no sign-up." />
+<meta name="description" content="YumJam pairs a dish with a song, per venue. The same bowl of soup gets a different song in every place that serves it, and people post, react to and compare those pairings." />
 <meta property="og:title" content="YumJam — This dish, this song" />
-<meta property="og:description" content="Venue × dish × song pairings posted by the people eating there. Three reactions, a theme song per venue once enough people agree, and a share card per pairing." />
+<meta property="og:description" content="Venue × dish × song pairings posted by the people eating there. Three reactions, a theme song per venue once ten pairings agree, one catalog id per song, and a share card per pairing." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
 <meta name="theme-color" id="themeColor" content="#ffffff" />
@@ -59,6 +59,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <nav class="nav-links" id="navLinks">
       <a href="#why" data-i18n="nav.why">Design</a>
       <a href="#how" data-i18n="nav.how">Posting</a>
+      <a href="#songs" data-i18n="nav.songs">Songs</a>
       <a href="#pages" data-i18n="nav.pages">Pages</a>
       <a href="#ops" data-i18n="nav.ops">Moderation</a>
       <a href="#limits" data-i18n="nav.limits">Limits</a>
@@ -105,8 +106,8 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <p class="lead" data-i18n="why.lead">Food-and-music pairing has been tried several times. The earlier attempts either paired photos with songs and were absorbed by larger social apps, relied on curators and did not scale, or treated pairing as a formula and stopped being fun.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="why.f1.t">The unit is venue × dish × song</b><span data-i18n="why.f1.d">A dish alone produces a single right answer, which is a recipe site. Tying each pairing to the place it was eaten turns the difference between places into the thing people compare.</span></div>
-      <div class="fact fade"><b data-i18n="why.f2.t">Posted by guests, not curated</b><span data-i18n="why.f2.d">Only someone who sat in that place can say what fits it. A pairing takes a photo, a venue, a dish and a song, and needs no account: the server names you after a dish.</span></div>
+      <div class="fact fade"><b data-i18n="why.f1.t">The unit is venue × dish × song</b><span data-i18n="why.f1.d">A dish alone converges on a single right answer, which is a recipe site. Tying each pairing to the place it was eaten turns the difference between places into the thing people compare.</span></div>
+      <div class="fact fade"><b data-i18n="why.f2.t">Posted by guests, not curated</b><span data-i18n="why.f2.d">Only someone who sat in that place can say what fits it. A pairing is a venue, a dish and a song, with an optional photo. No name, phone number or email is collected; the server issues each person a nickname built from something to eat.</span></div>
       <div class="fact fade"><b data-i18n="why.f3.t">Humor is a reaction, not a genre</b><span data-i18n="why.f3.d">Three reactions: a perfect fit, a forced fit, and one that does not fit but is funny. The third keeps absurd pairings in the ranking instead of burying them.</span></div>
     </div>
   </div>
@@ -120,17 +121,34 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <p class="lead" data-i18n="how.lead">Posting has to be quicker than deciding not to. Each field offers what already exists before asking for anything new, so the same venue or dish does not split into several spellings.</p>
     </div>
     <div class="steps">
-      <div class="step fade"><div><b data-i18n="how.s1.t">A photo, if you want one</b><span data-i18n="how.s1.d">Resized in the browser before upload, which also drops the location stored inside the photo.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s1.t">A photo, if you want one</b><span data-i18n="how.s1.d">Re-encoded in the browser to at most 1440 px on the long edge before upload, which also strips the location stored in the photo. The server identifies the format from the file's first bytes, not its name.</span></div></div>
       <div class="step fade"><div><b data-i18n="how.s2.t">A venue, or somewhere else</b><span data-i18n="how.s2.d">Existing venues in the neighborhood come first. Home, delivery, office and outdoors cover the pairings that happen away from any venue.</span></div></div>
       <div class="step fade"><div><b data-i18n="how.s3.t">The dish</b><span data-i18n="how.s3.d">Spacing and punctuation are ignored when dishes are compared, so every spelling of the same dish lands on the same page.</span></div></div>
-      <div class="step fade"><div><b data-i18n="how.s4.t">One song and one line</b><span data-i18n="how.s4.d">Searched in a public music catalog with a 30-second preview. The server looks the song up again by its id rather than trusting what the page sent.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s4.t">One song and one line</b><span data-i18n="how.s4.d">Picked from a public music catalog with a 30-second preview, plus a comment of up to 140 characters. How the song is found and checked is described in the next section.</span></div></div>
     </div>
-    <p class="reward" data-i18n-html="how.reward"><b>Every pairing becomes a share card.</b> A portrait image sized for stories, and a link that shows the photo and song in chat previews before anyone opens it.</p>
+    <p class="reward" data-i18n-html="how.reward"><b>Every pairing becomes a share card.</b> A 1080 × 1920 portrait image sized for stories, and a link that shows the photo and song in chat previews before anyone opens it.</p>
+  </div>
+</section>
+
+<!-- SONGS -->
+<section id="songs" class="section alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="songs.tag">Song catalog</div>
+    <h2 data-i18n="songs.h2">One fixed id per song</h2>
+    <p class="lead" data-i18n="songs.lead">Counting a venue's theme song requires every guest who picks the same recording to land on the same key. A free-text title cannot guarantee that; a catalog id can.</p>
+    </div>
+    <div class="pts">
+      <div class="pt fade"><b data-i18n="songs.1.t">Apple's public catalog, US storefront</b><span data-i18n="songs.1.d">The iTunes Search API needs no key and gives each track a fixed id. The Korean storefront returns no songs at all, so the US storefront is used; Korean songs keep their Hangul titles, with artist names romanized.</span></div>
+      <div class="pt fade"><b data-i18n="songs.2.t">Search runs in the visitor's browser</b><span data-i18n="songs.2.d">Called from Cloudflare, the catalog sees a shared egress address used by many services and throttles it per minute, answering with an empty list rather than an error. Called from each browser, every visitor has a separate quota. A server-side search remains as the fallback and caches only non-empty results.</span></div>
+      <div class="pt fade"><b data-i18n="songs.3.t">US and Japan in parallel</b><span data-i18n="songs.3.d">Japanese songs and recordings by Japanese performers are often missing from the US store, which returns a similar but different track instead. Both stores are queried at once: US results first, Japanese results only where they do not overlap. A query with no hits is retried word by word.</span></div>
+      <div class="pt fade"><b data-i18n="songs.4.t">Re-lookup on submit</b><span data-i18n="songs.4.d">The server looks the track up again by id and caches found tracks for a month. If that lookup is throttled, the track sent by the page is accepted only when its id matches and its artwork, preview and link URLs point to the catalog's own hosts.</span></div>
+    </div>
+    <p class="reward" data-i18n-html="songs.reward"><b>Listening links: YouTube search and Apple Music.</b> Most listeners in Korea use YouTube, so each pairing offers a YouTube search next to the catalog link and the 30-second preview.</p>
   </div>
 </section>
 
 <!-- PAGES -->
-<section id="pages" class="section alt">
+<section id="pages" class="section">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="pages.tag">Pages</div>
     <h2 data-i18n="pages.h2">Same dish, a different song per venue</h2>
@@ -145,8 +163,10 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
         </tr></thead>
         <tbody>
           <tr><td class="nm" data-i18n="pages.r1">Dish</td><td data-i18n="pages.r1a">The top song per venue for one dish, venues first and home or delivery after</td><td data-i18n="pages.r1b">From the first pairing</td></tr>
-          <tr><td class="nm" data-i18n="pages.r2">Venue</td><td data-i18n="pages.r2a">Theme song ranking, the funniest pick, one song per dish on the menu</td><td data-i18n="pages.r2b">Ranking after ten pairings; until then, a progress bar</td></tr>
+          <tr><td class="nm" data-i18n="pages.r2">Venue</td><td data-i18n="pages.r2a">Theme song top five, the funniest pick, one song per dish on the menu</td><td data-i18n="pages.r2b">Ranking after ten pairings; until then, a progress bar</td></tr>
           <tr><td class="nm" data-i18n="pages.r3">Today's debate</td><td data-i18n="pages.r3a">The dish with the most venues attached, on the home screen</td><td data-i18n="pages.r3b">When at least two venues share a dish</td></tr>
+          <tr><td class="nm" data-i18n="pages.r4">Share link</td><td data-i18n="pages.r4a">Photo, song and reaction counts in chat and social previews; a person following it lands on the pairing</td><td data-i18n="pages.r4b">Every pairing</td></tr>
+          <tr><td class="nm" data-i18n="pages.r5">My YumJam</td><td data-i18n="pages.r5a">Nickname, reactions received, alert setting, own pairings</td><td data-i18n="pages.r5b">From the first visit</td></tr>
         </tbody>
       </table>
     </div>
@@ -155,7 +175,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 </section>
 
 <!-- MODERATION -->
-<section id="ops" class="section">
+<section id="ops" class="section alt">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="ops.tag">Moderation</div>
     <h2 data-i18n="ops.h2">Content posted by guests needs a floor</h2>
@@ -163,15 +183,17 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <div class="facts">
       <div class="fact fade"><b data-i18n="ops.f1.t">Adults only, confirmed once</b><span data-i18n="ops.f1.d">Before the first post: 19 or older and the house rules. Reading needs neither.</span></div>
-      <div class="fact fade"><b data-i18n="ops.f2.t">Three reports hide a post</b><span data-i18n="ops.f2.d">From three different people. The post stays hidden until an operator keeps it, hides it, or hides it and restricts the author.</span></div>
-      <div class="fact fade"><b data-i18n="ops.f3.t">Duplicate venues are suggested, not merged</b><span data-i18n="ops.f3.d">Names that differ only by neighborhood or branch suffix are joined when posted. Names that merely contain one another are listed for an operator, since a second branch is a different venue.</span></div>
-      <div class="fact fade"><b data-i18n="ops.f4.t">Reactions reach you, at most hourly</b><span data-i18n="ops.f4.d">Web push, one notification per pairing per hour. Reactions arrive in bursts right after a share, and a phone that buzzes each time gets its notifications turned off.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f2.t">Three reports hide a post</b><span data-i18n="ops.f2.d">From three different people. The post stays hidden until an operator keeps it, hides it, or hides it and restricts the author. Each report and each automatic hide notifies the operator immediately.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f3.t">Duplicate venues are suggested, not merged</b><span data-i18n="ops.f3.d">Names that differ only by neighborhood or branch suffix are joined when posted. Names that merely contain one another are listed for an operator, since a second branch is a different venue. A merged venue forwards its old links to the venue it joined.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f4.t">Reactions reach you, at most hourly</b><span data-i18n="ops.f4.d">Web push, one notification per pairing per hour, carrying the counts accumulated since the last one. A conditional update on the pairing's last-sent time acts as the lock, so simultaneous reactions cannot each send one.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f5.t">Counts recomputed on every reaction</b><span data-i18n="ops.f5.d">The three reaction counts are recounted from the reaction table each time. Incrementing and decrementing drifts under concurrent requests, and a drifted count never corrects itself.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f6.t">Deleting keeps the row</b><span data-i18n="ops.f6.d">Deleting your own pairing takes it down and removes the photo from storage, but keeps the record, so report history and reaction totals stay consistent.</span></div>
     </div>
   </div>
 </section>
 
 <!-- LIMITS -->
-<section id="limits" class="section alt">
+<section id="limits" class="section">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="limits.tag">Limits</div>
     <h2 data-i18n="limits.h2">What this does not claim</h2>
@@ -180,8 +202,10 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="facts">
       <div class="fact fade"><b data-i18n="limits.f1.t">No music is served</b><span data-i18n="limits.f1.d">A 30-second preview from the catalog and links out to listen. No audio file is stored or streamed from here.</span></div>
       <div class="fact fade"><b data-i18n="limits.f2.t">Not a review site</b><span data-i18n="limits.f2.d">No ratings, prices or opening hours. A venue is identified by its name and neighborhood only; there is no map yet.</span></div>
-      <div class="fact fade"><b data-i18n="limits.f3.t">One device, one identity</b><span data-i18n="limits.f3.d">No sign-up means no account to move. Clearing the browser starts a new name; posts stay where they were.</span></div>
-      <div class="fact fade"><b data-i18n="limits.f4.t">Four neighborhoods first</b><span data-i18n="limits.f4.d">Seongsu, Euljiro, Pangyo and Bundang (Sunae · Jeongja · Seohyeon), where a venue page can actually fill up. Spreading thin across a city leaves every page empty.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f3.t">One browser, one identity</b><span data-i18n="limits.f3.d">Identity is a one-year cookie in one browser, with no transfer between devices. Safari clears it after seven days without a visit; the next visit starts a new nickname, and earlier posts stay up.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f4.t">Three neighborhoods first</b><span data-i18n="limits.f4.d">Seongsu, Euljiro and Pangyo, where a venue page can actually fill up; anywhere else is filed under Other. Spreading thin across a city leaves every page empty.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f5.t">Catalog coverage has gaps</b><span data-i18n="limits.f5.d">Some Korean songs appear under English titles or romanized artist names. A song known in Korea by a translated title is found only by its original title.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f6.t">iPhone alerts need the home screen</b><span data-i18n="limits.f6.d">Safari does not deliver web push to a browser tab. The app suggests adding it to the home screen right after the first pairing and on the My YumJam page.</span></div>
     </div>
   </div>
 </section>
@@ -197,104 +221,77 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 </footer>
 
 <script>
+/* 영문 본문은 HTML 에 한 벌만 둔다. en 사전에 문구를 복제하면 HTML 만 고쳤을 때 토글에서 옛 문구가 돌아온다. */
 const _L = {
   en:{
-    "nav.why":"Design","nav.how":"Posting","nav.pages":"Pages","nav.ops":"Moderation","nav.limits":"Limits",
-    "hero.kicker":"YumJam · Venue × dish × song",
-    "hero.title":"This dish, <span class=\"grad\">this song</span>.",
-    "hero.sub":"Post what you are eating and the one song it calls for. Pairings collect per venue, so the same bowl of soup ends up with a different song in every place that serves it, and those differences are the content.",
-    "hero.cta1":"Open YumJam","hero.cta2":"What this does not claim",
-    "hero.reward":"<b>A venue page is written by the people who ate there.</b> Stars and reviews say whether a place is good. A list of songs its guests picked says what it feels like to sit there.",
-    "hero.byline":"A service by joygoLive, built here and operated here. Beta.",
-
-    "why.tag":"Design","why.h2":"Three decisions that shaped it",
-    "why.lead":"Food-and-music pairing has been tried several times. The earlier attempts either paired photos with songs and were absorbed by larger social apps, relied on curators and did not scale, or treated pairing as a formula and stopped being fun.",
-    "why.f1.t":"The unit is venue × dish × song",
-    "why.f1.d":"A dish alone produces a single right answer, which is a recipe site. Tying each pairing to the place it was eaten turns the difference between places into the thing people compare.",
-    "why.f2.t":"Posted by guests, not curated",
-    "why.f2.d":"Only someone who sat in that place can say what fits it. A pairing takes a photo, a venue, a dish and a song, and needs no account: the server names you after a dish.",
-    "why.f3.t":"Humor is a reaction, not a genre",
-    "why.f3.d":"Three reactions: a perfect fit, a forced fit, and one that does not fit but is funny. The third keeps absurd pairings in the ranking instead of burying them.",
-
-    "how.tag":"Posting","how.h2":"Four fields, one of them optional",
-    "how.lead":"Posting has to be quicker than deciding not to. Each field offers what already exists before asking for anything new, so the same venue or dish does not split into several spellings.",
-    "how.s1.t":"A photo, if you want one","how.s1.d":"Resized in the browser before upload, which also drops the location stored inside the photo.",
-    "how.s2.t":"A venue, or somewhere else","how.s2.d":"Existing venues in the neighborhood come first. Home, delivery, office and outdoors cover the pairings that happen away from any venue.",
-    "how.s3.t":"The dish","how.s3.d":"Spacing and punctuation are ignored when dishes are compared, so every spelling of the same dish lands on the same page.",
-    "how.s4.t":"One song and one line","how.s4.d":"Searched in a public music catalog with a 30-second preview. The server looks the song up again by its id rather than trusting what the page sent.",
-    "how.reward":"<b>Every pairing becomes a share card.</b> A portrait image sized for stories, and a link that shows the photo and song in chat previews before anyone opens it.",
-
-    "pages.tag":"Pages","pages.h2":"Same dish, a different song per venue",
-    "pages.lead":"A dish page lines venues up side by side. A venue page shows what its guests agreed on, but only once enough of them have posted.",
-    "pages.c0":"Page","pages.c1":"What it shows","pages.c2":"When it appears",
-    "pages.r1":"Dish","pages.r1a":"The top song per venue for one dish, venues first and home or delivery after","pages.r1b":"From the first pairing",
-    "pages.r2":"Venue","pages.r2a":"Theme song ranking, the funniest pick, one song per dish on the menu","pages.r2b":"Ranking after ten pairings; until then, a progress bar",
-    "pages.r3":"Today's debate","pages.r3a":"The dish with the most venues attached, on the home screen","pages.r3b":"When at least two venues share a dish",
-    "pages.reward":"<b>Ten, not two.</b> Declaring a venue's theme song from two posts would let the first guest define the place. The threshold is an operator setting, and a venue can be opened or held manually.",
-
-    "ops.tag":"Moderation","ops.h2":"Content posted by guests needs a floor",
-    "ops.lead":"Most of this content happens over drinks. The rules are few and applied the same way every time, so moderation is a queue rather than a judgment call per post.",
-    "ops.f1.t":"Adults only, confirmed once","ops.f1.d":"Before the first post: 19 or older and the house rules. Reading needs neither.",
-    "ops.f2.t":"Three reports hide a post","ops.f2.d":"From three different people. The post stays hidden until an operator keeps it, hides it, or hides it and restricts the author.",
-    "ops.f3.t":"Duplicate venues are suggested, not merged","ops.f3.d":"Names that differ only by neighborhood or branch suffix are joined when posted. Names that merely contain one another are listed for an operator, since a second branch is a different venue.",
-    "ops.f4.t":"Reactions reach you, at most hourly","ops.f4.d":"Web push, one notification per pairing per hour. Reactions arrive in bursts right after a share, and a phone that buzzes each time gets its notifications turned off.",
-
-    "limits.tag":"Limits","limits.h2":"What this does not claim",
-    "limits.lead":"Listing what is out of scope is more useful than listing features, because most of it was left out on purpose.",
-    "limits.f1.t":"No music is served","limits.f1.d":"A 30-second preview from the catalog and links out to listen. No audio file is stored or streamed from here.",
-    "limits.f2.t":"Not a review site","limits.f2.d":"No ratings, prices or opening hours. A venue is identified by its name and neighborhood only; there is no map yet.",
-    "limits.f3.t":"One device, one identity","limits.f3.d":"No sign-up means no account to move. Clearing the browser starts a new name; posts stay where they were.",
-    "limits.f4.t":"Four neighborhoods first","limits.f4.d":"Seongsu, Euljiro, Pangyo and Bundang (Sunae · Jeongja · Seohyeon), where a venue page can actually fill up. Spreading thin across a city leaves every page empty.",
-
-    "ft.home":"Home","ft.copy":"© 2026 joygoLive. All rights reserved."
+    "nav.why":"Design","nav.how":"Posting","nav.songs":"Songs","nav.pages":"Pages","nav.ops":"Moderation","nav.limits":"Limits",
+    "ft.home":"Home","ft.copy":"© 2026 joygoLive. All rights reserved.",
   },
   ko:{
-    "nav.why":"설계","nav.how":"올리기","nav.pages":"페이지","nav.ops":"운영","nav.limits":"한계",
+    "nav.why":"설계","nav.how":"올리기","nav.songs":"곡","nav.pages":"페이지","nav.ops":"운영","nav.limits":"한계",
     "hero.kicker":"YumJam · 가게 × 메뉴 × 곡",
     "hero.title":"이 메뉴엔 <span class=\"grad\">이 노래</span>.",
-    "hero.sub":"지금 먹는 것과 거기 어울리는 노래 한 곡. 페어링은 가게 단위로 쌓임. 같은 국밥도 가게마다 다른 노래, 그 차이가 곧 콘텐츠.",
+    "hero.sub":"지금 먹는 것과 거기에 어울리는 노래 한 곡을 올립니다. 페어링은 가게 단위로 쌓이므로 같은 국밥에도 가게마다 다른 노래가 붙고, 그 차이가 곧 콘텐츠입니다.",
     "hero.cta1":"YumJam 열기","hero.cta2":"주장하지 않는 것",
-    "hero.reward":"<b>가게 페이지의 작성자: 거기서 먹은 손님.</b> 별점 · 리뷰: 맛집 여부. 손님이 고른 노래 목록: 그 자리의 분위기.",
-    "hero.byline":"joygoLive 직접 개발 · 직접 운영. 베타.",
+    "hero.reward":"<b>가게 페이지의 작성자는 거기서 먹은 손님.</b> 별점과 리뷰는 맛집인지를 알려 줍니다. 손님들이 고른 노래 목록은 그 자리에 앉았을 때의 분위기를 알려 줍니다.",
+    "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 베타.",
 
-    "why.tag":"설계","why.h2":"방향을 정한 세 가지",
-    "why.lead":"음식 × 음악 페어링의 선행 시도: 사진 + 음악 SNS는 큰 SNS에 흡수, 큐레이터 방식은 확장 실패, 공식 기반 매칭은 재미 부족.",
+    "why.tag":"설계","why.h2":"방향을 정한 세 가지 결정",
+    "why.lead":"음식 × 음악 페어링의 선행 시도는 세 갈래였습니다. 사진 + 음악 SNS는 더 큰 SNS에 흡수됐고, 큐레이터 방식은 확장되지 못했고, 공식 기반 매칭은 재미를 잃었습니다.",
     "why.f1.t":"기본 단위: 가게 × 메뉴 × 곡",
-    "why.f1.d":"메뉴만으로는 정답 하나짜리 레시피 사이트. 먹은 가게에 페어링을 묶는 순간, 가게 간 차이가 비교 대상.",
+    "why.f1.d":"메뉴만으로는 정답 하나로 수렴해 레시피 사이트가 됩니다. 페어링을 먹은 가게에 묶으면 가게 간 차이가 비교 대상이 됩니다.",
     "why.f2.t":"큐레이터 대신 손님",
-    "why.f2.d":"그 자리에 앉아 본 사람만 아는 어울림. 사진 · 가게 · 메뉴 · 곡이면 끝. 가입 없음, 별명은 서버가 먹는 것 이름으로 발급.",
-    "why.f3.t":"유머: 장르가 아닌 반응",
-    "why.f3.d":"반응 세 가지: 찰떡 · 억지 · 웃김(안 어울리는데 웃김). 세 번째 덕분에 엉뚱한 조합도 순위에 생존.",
+    "why.f2.d":"어울림은 그 자리에 앉아 본 사람만 판단할 수 있습니다. 페어링은 가게·메뉴·곡, 그리고 선택 사진으로 구성됩니다. 이름·전화번호·이메일은 받지 않고, 별명은 서버가 먹는 것 이름으로 발급합니다.",
+    "why.f3.t":"유머는 장르 대신 반응",
+    "why.f3.d":"반응은 찰떡·억지·웃김(안 어울리는데 웃김) 세 가지입니다. 세 번째 반응이 있어 엉뚱한 조합도 순위에서 묻히지 않습니다.",
 
     "how.tag":"올리기","how.h2":"네 칸, 그중 하나는 선택",
-    "how.lead":"목표: 안 올리기로 마음먹는 것보다 빠른 올리기. 칸마다 기존 값 먼저 제안 → 같은 가게 · 메뉴가 여러 표기로 갈라지지 않음.",
-    "how.s1.t":"사진(선택)","how.s1.d":"업로드 전 브라우저에서 축소. 사진 속 위치 정보도 이때 제거.",
-    "how.s2.t":"가게, 또는 가게 밖","how.s2.d":"같은 동네 기존 가게 우선 제안. 집 · 배달 · 회사 · 야외: 가게 밖 페어링용.",
-    "how.s3.t":"메뉴","how.s3.d":"띄어쓰기 · 문장부호 무시 비교. 표기가 달라도 같은 메뉴 페이지로.",
-    "how.s4.t":"노래 한 곡과 한 줄","how.s4.d":"공개 음악 카탈로그 검색 · 30초 미리듣기. 서버가 곡 id로 재조회, 화면이 보낸 곡 정보 불신.",
-    "how.reward":"<b>페어링마다 공유 카드 한 장.</b> 스토리 크기 세로 이미지, 그리고 메신저 미리보기에 사진 · 곡이 바로 뜨는 링크.",
+    "how.lead":"올리는 데 드는 시간이 올리지 않기로 마음먹는 시간보다 짧아야 합니다. 칸마다 기존 값을 먼저 제안해 같은 가게·메뉴가 여러 표기로 갈라지지 않게 합니다.",
+    "how.s1.t":"사진(선택)","how.s1.d":"업로드 전에 브라우저에서 긴 변 1440px 이하로 다시 인코딩하며, 이때 사진 속 위치 정보가 제거됩니다. 서버는 파일 이름 대신 첫 바이트로 형식을 판별합니다.",
+    "how.s2.t":"가게, 또는 가게 밖","how.s2.d":"같은 동네의 기존 가게를 먼저 제안합니다. 집·배달·회사·야외는 가게 밖에서 생긴 페어링용입니다.",
+    "how.s3.t":"메뉴","how.s3.d":"비교할 때 띄어쓰기와 문장부호를 무시하므로 표기가 달라도 같은 메뉴 페이지로 모입니다.",
+    "how.s4.t":"노래 한 곡과 한 줄","how.s4.d":"공개 음악 카탈로그에서 30초 미리듣기로 고르고, 140자 이내의 한 줄을 붙입니다. 곡을 찾고 검증하는 방식은 다음 절에 있습니다.",
+    "how.reward":"<b>페어링마다 공유 카드 한 장.</b> 스토리 규격(1080 × 1920) 세로 이미지와, 열기 전부터 메신저 미리보기에 사진과 곡이 표시되는 링크가 함께 만들어집니다.",
+
+    "songs.tag":"곡 카탈로그","songs.h2":"곡마다 고정 id 하나",
+    "songs.lead":"가게의 주제가를 세려면 같은 음원을 고른 손님이 모두 같은 키로 모여야 합니다. 자유 입력 제목으로는 보장되지 않고, 카탈로그 id로는 보장됩니다.",
+    "songs.1.t":"애플 공개 카탈로그, US 스토어",
+    "songs.1.d":"iTunes Search API는 키가 필요 없고 곡마다 고정 id를 줍니다. 한국 스토어프론트는 곡이 0건이라 US 스토어를 씁니다. 국내 곡은 한글 제목 그대로, 가수명만 로마자로 나옵니다.",
+    "songs.2.t":"검색은 방문자 브라우저에서",
+    "songs.2.d":"Cloudflare에서 호출하면 여러 서비스가 함께 쓰는 공용 출구 IP 기준으로 분당 한도가 걸리고, 오류 대신 빈 목록이 돌아옵니다. 브라우저에서 직접 호출하면 방문자마다 한도가 따로 적용됩니다. 서버 검색은 대체 경로로 남기고, 결과가 있을 때만 캐시합니다.",
+    "songs.3.t":"US·일본 스토어 동시 검색",
+    "songs.3.d":"일본 곡과 일본 연주자 음반은 US 스토어에 없는 경우가 많고, 그때 US는 비슷한 다른 곡을 돌려줍니다. 두 스토어를 동시에 조회해 US 결과를 앞에, 겹치지 않는 일본 결과를 뒤에 둡니다. 0건인 검색어는 낱말 단위로 다시 검색합니다.",
+    "songs.4.t":"올릴 때 id로 재조회",
+    "songs.4.d":"서버가 곡 id로 다시 조회하고, 찾은 곡은 한 달간 캐시합니다. 이 조회가 한도에 걸리면 화면이 보낸 곡 정보를 받되, id가 일치하고 표지·미리듣기·링크 주소가 카탈로그 자체 도메인일 때만 받습니다.",
+    "songs.reward":"<b>듣기 링크: YouTube 검색과 Apple Music.</b> 국내 이용자 다수가 YouTube를 쓰므로, 30초 미리듣기와 카탈로그 링크 옆에 YouTube 검색을 함께 둡니다.",
 
     "pages.tag":"페이지","pages.h2":"같은 메뉴, 가게마다 다른 노래",
-    "pages.lead":"메뉴 페이지: 가게를 나란히 비교. 가게 페이지: 손님들이 모은 결론, 단 충분히 쌓인 뒤에만.",
+    "pages.lead":"메뉴 페이지는 가게를 나란히 놓고 비교합니다. 가게 페이지는 손님들이 모은 결론을 보여 주되, 충분히 쌓인 뒤에만 공개합니다.",
     "pages.c0":"페이지","pages.c1":"보여 주는 것","pages.c2":"공개 시점",
-    "pages.r1":"메뉴","pages.r1a":"한 메뉴의 가게별 대표곡. 가게 먼저, 집 · 배달은 뒤","pages.r1b":"첫 페어링부터",
-    "pages.r2":"가게","pages.r2a":"주제가 순위 · 웃김 1위 · 메뉴별 한 곡","pages.r2b":"페어링 10개부터 순위. 그 전엔 집계 진행 막대",
+    "pages.r1":"메뉴","pages.r1a":"한 메뉴의 가게별 대표곡. 가게 먼저, 집·배달은 뒤","pages.r1b":"첫 페어링부터",
+    "pages.r2":"가게","pages.r2a":"주제가 TOP 5 · 웃김 1위 · 메뉴별 한 곡","pages.r2b":"페어링 10개부터 순위. 그 전에는 집계 진행 막대",
     "pages.r3":"오늘의 논쟁","pages.r3a":"가게가 가장 많이 붙은 메뉴, 홈 상단","pages.r3b":"같은 메뉴에 가게 둘 이상",
-    "pages.reward":"<b>둘이 아니라 열.</b> 페어링 두 개로 주제가를 정하면 첫 손님 취향이 가게 정체성으로 고정. 기준값은 운영 설정, 가게별 수동 공개 · 보류 가능.",
+    "pages.r4":"공유 링크","pages.r4a":"메신저·SNS 미리보기에 사진·곡·반응 수 표시, 링크를 연 사람은 해당 페어링 화면으로 이동","pages.r4b":"모든 페어링",
+    "pages.r5":"내 얌잼","pages.r5a":"별명·받은 반응·알림 설정·내 페어링","pages.r5b":"첫 방문부터",
+    "pages.reward":"<b>둘이 아니라 열.</b> 페어링 두 개로 주제가를 정하면 첫 손님의 취향이 가게의 정체성으로 굳습니다. 기준값은 운영 설정이며, 가게별로 수동 공개·보류할 수 있습니다.",
 
     "ops.tag":"운영","ops.h2":"손님이 올리는 콘텐츠의 바닥선",
-    "ops.lead":"콘텐츠 대부분이 술자리. 규칙은 적게, 적용은 매번 같게 → 운영은 건별 판단이 아닌 대기열 처리.",
-    "ops.f1.t":"성인 확인, 한 번","ops.f1.d":"첫 올리기 전: 만 19세 이상 · 이용 규칙 동의. 보기만 할 때는 불필요.",
-    "ops.f2.t":"신고 셋이면 가림","ops.f2.d":"서로 다른 세 명 기준. 운영자 결정(유지 · 가림 · 가림 + 이용 제한) 전까지 비노출.",
-    "ops.f3.t":"중복 가게: 병합 대신 제안","ops.f3.d":"동네명 · 지점 표기만 다른 이름은 올릴 때 자동 합침. 포함 관계 이름은 운영자 후보 목록으로. 2호점은 다른 가게.",
-    "ops.f4.t":"반응 알림, 한 시간에 한 번","ops.f4.d":"웹 푸시, 페어링당 시간당 1회. 반응은 공유 직후 몰림, 매번 울리면 결국 알림 끄기.",
+    "ops.lead":"콘텐츠 대부분이 술자리에서 나옵니다. 규칙은 적게 두고 매번 같은 방식으로 적용해, 운영을 건별 판단 대신 대기열 처리로 만듭니다.",
+    "ops.f1.t":"성인 확인, 한 번","ops.f1.d":"첫 올리기 전에 만 19세 이상 확인과 이용 규칙 동의를 받습니다. 보기만 할 때는 둘 다 필요 없습니다.",
+    "ops.f2.t":"신고 셋이면 가림","ops.f2.d":"서로 다른 세 명 기준입니다. 운영자가 유지·가림·가림 + 이용 제한 중 하나로 처리할 때까지 노출되지 않습니다. 신고 접수와 자동 가림은 운영자에게 즉시 알림이 갑니다.",
+    "ops.f3.t":"중복 가게: 병합 대신 제안","ops.f3.d":"동네명·지점 표기만 다른 이름은 올릴 때 자동으로 합칩니다. 한쪽이 다른 쪽을 포함하는 이름은 운영자 후보 목록으로 보냅니다. 2호점은 다른 가게이기 때문입니다. 병합된 가게의 옛 링크는 합쳐진 가게로 이동합니다.",
+    "ops.f4.t":"반응 알림, 한 시간에 한 번","ops.f4.d":"웹 푸시, 페어링당 시간당 1회이며 그 사이 쌓인 수를 한 번에 보여 줍니다. 페어링의 마지막 발송 시각에 대한 조건부 UPDATE가 락 역할을 해, 동시에 들어온 반응이 각각 알림을 보내지 않습니다.",
+    "ops.f5.t":"반응 수: 매번 재집계","ops.f5.d":"반응이 들어올 때마다 반응 표에서 세 가지 수를 다시 셉니다. 더하고 빼는 방식은 동시 요청에서 어긋나고, 한 번 어긋난 수는 스스로 복구되지 않습니다.",
+    "ops.f6.t":"삭제: 행 유지, 사진 제거","ops.f6.d":"내 페어링을 지우면 노출을 내리고 저장소의 사진을 삭제하되 행은 남깁니다. 신고 이력과 반응 집계의 정합성을 지키기 위해서입니다.",
 
     "limits.tag":"한계","limits.h2":"주장하지 않는 것",
-    "limits.lead":"기능 목록보다 범위 밖 목록이 더 쓸모 있음. 대부분 못 한 것이 아니라 안 하기로 한 것.",
-    "limits.f1.t":"음원 제공 없음","limits.f1.d":"카탈로그 30초 미리듣기와 외부 듣기 링크뿐. 음원 파일 보관 · 스트리밍 없음.",
-    "limits.f2.t":"리뷰 사이트 아님","limits.f2.d":"별점 · 가격 · 영업시간 없음. 가게 식별: 이름 + 동네. 지도 아직 없음.",
-    "limits.f3.t":"한 기기 = 한 신원","limits.f3.d":"가입이 없으니 옮길 계정도 없음. 브라우저 초기화 시 새 별명, 올린 글은 그대로.",
-    "limits.f4.t":"동네 네 곳부터","limits.f4.d":"성수 · 을지로 · 판교 · 분당(수내 · 정자 · 서현). 가게 페이지가 실제로 차는 범위. 도시 전체에 얇게 퍼지면 모든 페이지가 빈칸.",
+    "limits.lead":"기능 목록보다 범위 밖 목록이 더 유용합니다. 대부분은 의도적으로 뺀 것입니다.",
+    "limits.f1.t":"음원 제공 없음","limits.f1.d":"카탈로그 30초 미리듣기와 외부 듣기 링크뿐입니다. 음원 파일을 보관하거나 스트리밍하지 않습니다.",
+    "limits.f2.t":"리뷰 사이트 아님","limits.f2.d":"별점·가격·영업시간이 없습니다. 가게는 이름과 동네로만 식별하며, 지도는 아직 없습니다.",
+    "limits.f3.t":"브라우저 하나 = 신원 하나","limits.f3.d":"신원은 브라우저 하나에 저장되는 1년짜리 쿠키이며 기기 간 이전이 없습니다. Safari는 7일간 방문이 없으면 쿠키를 지우고, 다음 방문은 새 별명으로 시작합니다. 이전 글은 그대로 남습니다.",
+    "limits.f4.t":"동네 세 곳부터","limits.f4.d":"성수·을지로·판교. 가게 페이지가 실제로 채워질 수 있는 범위이며, 그 밖은 「기타」로 묶습니다. 도시 전체로 얇게 펼치면 모든 페이지가 빈칸이 됩니다.",
+    "limits.f5.t":"카탈로그 공백","limits.f5.d":"일부 국내 곡은 영문 제목이나 로마자 가수명으로 나옵니다. 번안 제목으로 알려진 곡은 원제로 검색해야 찾을 수 있습니다.",
+    "limits.f6.t":"iPhone 알림은 홈 화면 추가 후","limits.f6.d":"Safari는 브라우저 탭에 웹 푸시를 보내지 않습니다. 첫 페어링 직후와 내 얌잼 화면에서 홈 화면 추가를 안내합니다.",
 
     "ft.home":"홈","ft.copy":"© 2026 joygoLive. All rights reserved."
   }
