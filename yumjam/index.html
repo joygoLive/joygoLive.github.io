@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>YumJam — This dish, this song, by joygoLive</title>
-<meta name="description" content="YumJam pairs a dish with a song and the moment it was eaten. The same bowl of ramen gets a different song at 3 a.m. and the morning after, and people post, react to and compare those pairings." />
-<meta property="og:title" content="YumJam — This dish, this song" />
-<meta property="og:description" content="Dish × song × moment pairings posted by the people eating. Three reactions, one catalog id per song, and a share card per pairing." />
+<title>YumJam — This photo, this song, by joygoLive</title>
+<meta name="description" content="YumJam pairs a photo of your own with one song and a one-line hint. People vote, and after 24 hours the post survives or disappears." />
+<meta property="og:title" content="YumJam — This photo, this song" />
+<meta property="og:description" content="Photo × song × moment. One photo, one song, one line, and a 24-hour survival vote." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
 <meta name="theme-color" id="themeColor" content="#ffffff" />
@@ -86,14 +86,14 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <div class="hero-kicker mono" data-i18n="hero.kicker">YumJam · Dish × song × moment</div>
-    <h1 data-i18n-html="hero.title">This dish, <span class="grad">this song</span>.</h1>
-    <p class="lead" data-i18n="hero.sub">Post what you are eating and the one song it calls for, tagged with the moment: eating alone, a team dinner, 3 a.m., the morning after. The same bowl of ramen gets a different song at every moment, and those differences are the content.</p>
+    <div class="hero-kicker mono" data-i18n="hero.kicker">YumJam · Photo × song × moment</div>
+    <h1 data-i18n-html="hero.title">This photo, <span class="grad">this song</span>.</h1>
+    <p class="lead" data-i18n="hero.sub">Post one photo of your own, the one song it calls for and a line that hints at the joke. It does not have to be food: a bowl of kibble, the commute, a cat. People vote, and 24 hours later the post either survives or disappears.</p>
     <div class="cta-row">
       <a href="https://yumjam.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta1">Open YumJam</a>
       <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">What this does not claim</a>
     </div>
-    <p class="reward" data-i18n-html="hero.reward"><b>One meal, one song, one card.</b> Pick the song that fits what you are eating right now, and it becomes a story-sized card to share. Cup noodles at a convenience store at 2 a.m. count as a meal.</p>
+    <p class="reward" data-i18n-html="hero.reward"><b>A 24-hour survival game.</b> Each post takes votes for a day: agree, funny, or not so sure. If "not so sure" outnumbers the other two when the day is up, the post disappears; otherwise it stays with a survivor badge.</p>
     <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here. Beta.</div>
   </div>
 </section>
@@ -106,7 +106,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <p class="lead" data-i18n="why.lead">Food-and-music pairing has been tried several times. The earlier attempts either paired photos with songs and were absorbed by larger social apps, relied on curators and did not scale, or treated pairing as a formula and stopped being fun.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="why.f1.t">The unit is dish × song × moment</b><span data-i18n="why.f1.d">A dish alone converges on a single right answer, which is a recipe site. Tagging each pairing with when and with whom it was eaten turns the difference between moments into the thing people compare.</span></div>
+      <div class="fact fade"><b data-i18n="why.f1.t">The unit is photo × song × moment</b><span data-i18n="why.f1.d">A photo alone is an image feed. The song gives it a mood and the moment (late night, hangover, alone) gives the comparison: the same subject gets a different song depending on when and with whom.</span></div>
       <div class="fact fade"><b data-i18n="why.f2.t">Posted by the people eating, not curated</b><span data-i18n="why.f2.d">Only someone who ate it can say what fits. A pairing is a moment, a dish and a song, with an optional photo. No name, phone number or email is collected; the server issues each person a nickname built from something to eat.</span></div>
       <div class="fact fade"><b data-i18n="why.f3.t">Humor is a reaction, not a genre</b><span data-i18n="why.f3.d">Reactions work as a vote: agree, not so sure, and funny. The third keeps an absurd pairing in the ranking instead of letting it sink under disagreement.</span></div>
     </div>
@@ -151,7 +151,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="pages" class="section">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="pages.tag">Pages</div>
-    <h2 data-i18n="pages.h2">Same dish, a different song per moment</h2>
+    <h2 data-i18n="pages.h2">Same subject, a different song per moment</h2>
     <p class="lead" data-i18n="pages.lead">A dish page lines moments up side by side, such as the same ramen at 3 a.m. and the morning after.</p>
     </div>
     <div class="rv-wrap">
@@ -162,7 +162,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
           <th data-i18n="pages.c2">When it appears</th>
         </tr></thead>
         <tbody>
-          <tr><td class="nm" data-i18n="pages.r1">Dish</td><td data-i18n="pages.r1a">The top song per moment for one dish, plus the funniest picks</td><td data-i18n="pages.r1b">From the first pairing</td></tr>
+          <tr><td class="nm" data-i18n="pages.r1">Subject</td><td data-i18n="pages.r1a">The top song per moment for one dish, plus the funniest picks</td><td data-i18n="pages.r1b">From the first pairing</td></tr>
           <tr><td class="nm" data-i18n="pages.r2">Home</td><td data-i18n="pages.r2a">Latest pairings, filterable by moment</td><td data-i18n="pages.r2b">Always</td></tr>
           <tr><td class="nm" data-i18n="pages.r3">Today's debate</td><td data-i18n="pages.r3a">The dish with the most different songs attached, on the home screen</td><td data-i18n="pages.r3b">When a dish has at least two different songs</td></tr>
           <tr><td class="nm" data-i18n="pages.r4">Share link</td><td data-i18n="pages.r4a">Photo, song and reaction counts in chat and social previews; a person following it lands on the pairing</td><td data-i18n="pages.r4b">Every pairing</td></tr>
@@ -228,17 +228,17 @@ const _L = {
   },
   ko:{
     "nav.why":"설계","nav.how":"올리기","nav.songs":"곡","nav.pages":"페이지","nav.ops":"운영","nav.limits":"한계",
-    "hero.kicker":"YumJam · 메뉴 × 곡 × 상황",
-    "hero.title":"이 메뉴엔 <span class=\"grad\">이 노래</span>.",
-    "hero.sub":"지금 먹는 것과 어울리는 노래 한 곡을 혼밥·회식·새벽·해장 같은 상황과 함께 올립니다. 같은 라면에도 상황마다 다른 노래가 붙고, 그 차이가 곧 콘텐츠입니다.",
+    "hero.kicker":"YumJam · 사진 × 곡 × 상황",
+    "hero.title":"이 사진엔 <span class=\"grad\">이 노래</span>.",
+    "hero.sub":"내 사진 한 장에 어울리는 노래 한 곡과 슬쩍 암시하는 한 줄을 붙여 올립니다. 음식이 아니어도 됩니다. 강아지 사료, 출근길, 고양이도 됩니다. 사람들이 투표하고, 24시간 뒤 그 글은 살아남거나 사라집니다.",
     "hero.cta1":"YumJam 열기","hero.cta2":"주장하지 않는 것",
-    "hero.reward":"<b>한 끼, 한 곡, 한 장.</b> 지금 먹는 것에 어울리는 노래 한 곡을 고르면 공유용 스토리 카드 한 장이 됩니다. 새벽 2시 편의점 컵라면도 한 끼입니다.",
+    "hero.reward":"<b>24시간 생존 게임.</b> 글마다 하루 동안 공감·웃김·글쎄 투표를 받습니다. 하루가 지났을 때 글쎄가 공감과 웃김을 합한 것보다 많으면 사라지고, 아니면 「생존」 표시를 달고 남습니다.",
     "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 베타.",
 
     "why.tag":"설계","why.h2":"방향을 정한 세 가지 결정",
     "why.lead":"음식 × 음악 페어링의 선행 시도는 세 갈래였습니다. 사진 + 음악 SNS는 더 큰 SNS에 흡수됐고, 큐레이터 방식은 확장되지 못했고, 공식 기반 매칭은 재미를 잃었습니다.",
-    "why.f1.t":"기본 단위: 메뉴 × 곡 × 상황",
-    "why.f1.d":"메뉴만으로는 정답 하나로 수렴해 레시피 사이트가 됩니다. 페어링에 언제·누구와 먹었는지를 붙이면 상황 간 차이가 비교 대상이 됩니다.",
+    "why.f1.t":"기본 단위: 사진 × 곡 × 상황",
+    "why.f1.d":"사진만으로는 흔한 이미지 피드가 됩니다. 노래가 분위기를, 상황(새벽·해장·혼밥)이 비교 축을 만들어 같은 대상에도 언제·누구와냐에 따라 다른 노래가 붙습니다.",
     "why.f2.t":"큐레이터 대신 먹은 사람",
     "why.f2.d":"어울림은 직접 먹어 본 사람만 판단할 수 있습니다. 페어링은 상황·메뉴·곡, 그리고 선택 사진으로 구성됩니다. 이름·전화번호·이메일은 받지 않고, 별명은 서버가 먹는 것 이름으로 발급합니다.",
     "why.f3.t":"유머는 장르 대신 반응",
@@ -264,10 +264,10 @@ const _L = {
     "songs.4.d":"서버가 곡 id로 다시 조회하고, 찾은 곡은 한 달간 캐시합니다. 이 조회가 한도에 걸리면 화면이 보낸 곡 정보를 받되, id가 일치하고 표지·미리듣기·링크 주소가 카탈로그 자체 도메인일 때만 받습니다.",
     "songs.reward":"<b>듣기 링크: YouTube 검색과 Apple Music.</b> 국내 이용자 다수가 YouTube를 쓰므로, 30초 미리듣기와 카탈로그 링크 옆에 YouTube 검색을 함께 둡니다.",
 
-    "pages.tag":"페이지","pages.h2":"같은 메뉴, 상황마다 다른 노래",
+    "pages.tag":"페이지","pages.h2":"같은 대상, 상황마다 다른 노래",
     "pages.lead":"메뉴 페이지는 상황을 나란히 놓고 비교합니다. 같은 라면의 새벽과 해장처럼.",
     "pages.c0":"페이지","pages.c1":"보여 주는 것","pages.c2":"공개 시점",
-    "pages.r1":"메뉴","pages.r1a":"한 메뉴의 상황별 대표곡과 웃김 TOP","pages.r1b":"첫 페어링부터",
+    "pages.r1":"모아보기","pages.r1a":"한 메뉴의 상황별 대표곡과 웃김 TOP","pages.r1b":"첫 페어링부터",
     "pages.r2":"홈","pages.r2a":"최신 페어링, 상황별 필터","pages.r2b":"항상",
     "pages.r3":"오늘의 논쟁","pages.r3a":"서로 다른 곡이 가장 많이 붙은 메뉴, 홈 상단","pages.r3b":"같은 메뉴에 곡 둘 이상",
     "pages.r4":"공유 링크","pages.r4a":"메신저·SNS 미리보기에 사진·곡·반응 수 표시, 링크를 연 사람은 해당 페어링 화면으로 이동","pages.r4b":"모든 페어링",
