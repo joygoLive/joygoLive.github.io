@@ -163,7 +163,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="fact fade"><b data-i18n="game.f1.t">Score: wit 1, agree 0.5, not so sure −0.5</b><span data-i18n="game.f1.d">Wit weighs twice as much as agree. The same weights drive the popular sort and the song rankings, kept in one place with a test that the database query and the page compute the same number.</span></div>
       <div class="fact fade"><b data-i18n="game.f2.t">"Higher than before", with a ceiling</b><span data-i18n="game.f2.d">Each period has to beat the previous one, and a tie means out. Without a ceiling, a pairing that took off in its first month would have to beat that record again, so the best ones would die first. With the target capped at 10, about ten wit votes a period carries a pairing through any gate.</span></div>
       <div class="fact fade"><b data-i18n="game.f3.t">React again every period</b><span data-i18n="game.f3.d">A reaction belongs to the period it was made in. After a gate the buttons reset, so the same people can keep a favourite alive, and a finished period's score can no longer be changed.</span></div>
-      <div class="fact fade"><b data-i18n="game.f4.t">You can see where a post stands</b><span data-i18n="game.f4.d">Each card shows the next gate, the time left and whether it would pass today; from the second period on it also shows this period's score against the target. The At risk tab collects posts that would fail their next gate, so anyone can step in.</span></div>
+      <div class="fact fade"><b data-i18n="game.f4.t">You can see where a post stands</b><span data-i18n="game.f4.d">Each card shows the next gate, the time left and whether it would pass today; from the second period on it also shows this period's score against the target. Posts past the one-year and two-year gates carry a "1 year survived" or "2 years survived" badge. The At risk tab collects posts that would fail their next gate, so anyone can step in.</span></div>
     </div>
     <p class="reward" data-i18n-html="game.reward"><b>Old pairings are not buried.</b> Posts that have passed three gates appear in a strip at the top of the home screen, "On the way to the hall of fame", because a gate can only be passed by pairings people still get to see.</p>
   </div>
@@ -179,7 +179,8 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="facts">
       <div class="fact fade"><b data-i18n="hall.f1.t">Six gates, no exceptions</b><span data-i18n="hall.f1.d">30 days, 90 days, six months, one year, two years, five years. Failing any one gate ends the run; there is no second chance and no shortcut by early popularity, because each period is judged on its own votes.</span></div>
       <div class="fact fade"><b data-i18n="hall.f2.t">Kept for good</b><span data-i18n="hall.f2.d">Once in, no gate can remove it: photo, song and line stay as they were. Voting and song battles close and the scores are frozen, so the record of how it got there does not change. Only the poster's own deletion or a moderation decision can take it down.</span></div>
-      <div class="fact fade"><b data-i18n="hall.f3.t">The way there is visible</b><span data-i18n="hall.f3.d">Posts past three gates are shown in the "On the way to the hall of fame" strip at the top of the home screen, and the survivors tab lists posts by gates passed, with the hall of fame first. Anyone can help a candidate through its next gate.</span></div>
+      <div class="fact fade"><b data-i18n="hall.f3.t">The way there is visible</b><span data-i18n="hall.f3.d">A trophy button at the top of the home screen always leads to the hall. Posts past three gates also appear in the "On the way to the hall of fame" strip, and the survivors tab lists posts by gates passed, hall of fame first. Anyone can help a candidate through its next gate.</span></div>
+      <div class="fact fade"><b data-i18n="hall.f5.t">Numbered, announced, exhibited</b><span data-i18n="hall.f5.d">Each entry gets a number in order of arrival, No.1 onward. The poster is notified on their phone, and the entry joins the hall gallery, where entries are shown by number with the date they got in. While the hall is empty the gallery shows the earliest possible date for the first entry and how many candidates are on the way.</span></div>
       <div class="fact fade"><b data-i18n="hall.f4.t">Why it is worth visiting</b><span data-i18n="hall.f4.d">Every entry has outlasted countless others, so the hall is a collection of lines that still work years later. For the person who posted it, it is proof that their way of seeing, hearing and reading a moment reached many people.</span></div>
     </div>
     <p class="reward" data-i18n-html="hall.reward"><b>The first entry arrives no earlier than September 2031.</b> The service opened in September 2026 and the five-year gate cannot be shortened. Until then the hall is empty, and every candidate on the way is still in play.</p>
@@ -257,6 +258,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
           <tr><td class="nm" data-i18n="pages.r4">Share link</td><td data-i18n="pages.r4a">Photo, song and reaction counts in chat and social previews; a person following it lands on the pairing</td><td data-i18n="pages.r4b">Every pairing</td></tr>
           <tr><td class="nm" data-i18n="pages.r5">My PicJam</td><td data-i18n="pages.r5a">Nickname, reactions received, alert setting, own pairings</td><td data-i18n="pages.r5b">From the first visit</td></tr>
           <tr><td class="nm" data-i18n="pages.r6">Song battle</td><td data-i18n="pages.r6a">On someone else's pairing, challenge with another song and one line; viewers vote for the original or a challenger. The photo stays the original poster's</td><td data-i18n="pages.r6b">Until the hall of fame</td></tr>
+          <tr><td class="nm" data-i18n="pages.r7">Hall of fame</td><td data-i18n="pages.r7a">Entries in order of arrival (No.1 onward) with the date each got in; the earliest possible date and candidates while empty</td><td data-i18n="pages.r7b">Always, from the trophy at the top of home</td></tr>
         </tbody>
       </table>
     </div>
@@ -359,14 +361,15 @@ const _L = {
     "game.f1.t":"점수: 위트 1·공감 0.5·글쎄 −0.5","game.f1.d":"위트 반응이 공감의 두 배입니다. 인기 정렬과 곡 순위도 같은 무게를 쓰며, 무게는 코드 한 곳에만 두고 DB 쿼리와 화면 계산이 같은 값을 내는지 시험으로 맞춰 봅니다.",
     "game.f2.t":"「이전보다 높게」, 단 상한","game.f2.d":"기간마다 직전 기간 점수를 넘어야 하고, 같으면 탈락입니다. 상한이 없으면 첫 달에 크게 뜬 조합일수록 그 기록을 다시 넘어야 해서 가장 잘된 조합이 먼저 사라집니다. 목표를 최대 10점으로 두어, 기간마다 위트 열 개 남짓이면 어느 관문이든 넘습니다.",
     "game.f3.t":"기간마다 다시 반응","game.f3.d":"반응은 누른 기간에 속합니다. 관문을 지나면 버튼이 다시 열려 같은 사람이 아끼는 글을 계속 살릴 수 있고, 끝난 기간의 점수는 더 바뀌지 않습니다.",
-    "game.f4.t":"형세가 보임","game.f4.d":"카드마다 다음 관문·남은 시간·지금 기준 통과 여부가 붙고, 두 번째 기간부터는 이번 기간 점수와 목표도 함께 보입니다. 「위기」 탭은 다음 관문에서 떨어질 글을 모아 누구나 살릴 수 있게 합니다.",
+    "game.f4.t":"형세가 보임","game.f4.d":"카드마다 다음 관문·남은 시간·지금 기준 통과 여부가 붙고, 두 번째 기간부터는 이번 기간 점수와 목표도 함께 보입니다. 1년·2년 관문을 넘은 글에는 「1년 생존」·「2년 생존」 배지가 붙습니다. 「위기」 탭은 다음 관문에서 떨어질 글을 모아 누구나 살릴 수 있게 합니다.",
     "game.reward":"<b>오래된 조합도 묻히지 않습니다.</b> 관문 셋을 넘은 글은 홈 상단 「명예의 전당 도전 중」 띠에 올라갑니다. 보는 사람이 있어야 관문도 넘을 수 있기 때문입니다.",
 
     "hall.tag":"명예의 전당","hall.h2":"5년 동안 통한 위트",
     "hall.lead":"대부분의 페어링은 끝까지 가지 못합니다. 여섯 관문을 모두 넘어야 명예의 전당에 오르며, 이는 5년 동안 기간마다 여러 사람이 그 사진·노래·한 줄을 계속 위트 있다고 알아봤다는 뜻입니다. 남는 것은 한때의 운이 아니라 거듭 실현된 기쁨입니다.",
     "hall.f1.t":"관문 여섯 개, 예외 없음","hall.f1.d":"30일·90일·반년·1년·2년·5년. 한 관문이라도 떨어지면 거기서 끝이며, 다시 도전하는 길은 없습니다. 기간마다 그 기간의 투표로만 판정하므로 초반 인기로 건너뛸 수도 없습니다.",
     "hall.f2.t":"영구 보존","hall.f2.d":"오른 뒤에는 어떤 관문도 내리지 못하며 사진·노래·한 줄이 그대로 남습니다. 투표와 노래 대결이 마감되고 점수가 굳어, 그곳까지 온 기록도 바뀌지 않습니다. 내리는 길은 올린 사람의 삭제나 운영 조치뿐입니다.",
-    "hall.f3.t":"가는 길이 보임","hall.f3.d":"관문 셋을 넘은 글은 홈 상단 「명예의 전당 도전 중」 띠에 오르고, 생존 탭은 넘은 관문 수 순으로 명예의 전당을 맨 위에 둡니다. 누구나 후보의 다음 관문을 도울 수 있습니다.",
+    "hall.f3.t":"가는 길이 보임","hall.f3.d":"홈 상단 트로피 아이콘이 늘 명예의 전당으로 이어집니다. 관문 셋을 넘은 글은 「명예의 전당 도전 중」 띠에도 오르고, 생존 탭은 넘은 관문 수 순으로 명예의 전당을 맨 위에 둡니다. 누구나 후보의 다음 관문을 도울 수 있습니다.",
+    "hall.f5.t":"번호 · 알림 · 전시","hall.f5.d":"입성 순서대로 No.1부터 번호가 붙습니다. 올린 사람에게 휴대폰 알림이 가고, 전시관에 번호와 입성일과 함께 걸립니다. 비어 있는 동안 전시관은 첫 입성 가능일과 도전 중인 후보 수를 보여 줍니다.",
     "hall.f4.t":"들러 볼 이유","hall.f4.d":"입성작마다 수많은 글을 제치고 살아남았으므로, 명예의 전당은 몇 년이 지나도 통하는 한 줄의 모음집입니다. 올린 사람에게는 그 순간을 보고 듣고 해석한 방식이 많은 사람에게 닿았다는 증명입니다.",
     "hall.reward":"<b>첫 입성은 빨라야 2031년 9월.</b> 2026년 9월에 문을 열었고 5년 관문은 줄일 수 없습니다. 그때까지 명예의 전당은 비어 있고, 가는 길의 후보들은 모두 아직 진행 중입니다.",
 
@@ -406,6 +409,7 @@ const _L = {
     "pages.r4":"공유 링크","pages.r4a":"메신저·SNS 미리보기에 사진·곡·반응 수 표시, 링크를 연 사람은 해당 페어링 화면으로 이동","pages.r4b":"모든 페어링",
     "pages.r5":"내 픽잼","pages.r5a":"별명·받은 반응·알림 설정·내 페어링","pages.r5b":"첫 방문부터",
     "pages.r6":"노래 대결","pages.r6a":"남의 페어링에 다른 노래 한 곡과 한 줄로 도전하고, 보는 사람은 원곡과 도전곡 중 한 표를 줍니다. 사진은 원래 올린 사람 것 그대로입니다","pages.r6b":"명예의 전당 전까지",
+    "pages.r7":"명예의 전당","pages.r7a":"입성 순서(No.1부터)와 입성일, 비어 있으면 첫 입성 가능일과 도전 중 후보 수","pages.r7b":"항상, 홈 상단 트로피에서",
     "pages.reward":"<b>태그는 금방 채워집니다.</b> 많이 붙은 태그가 저절로 홈 필터 칩이 되고, 새 태그는 승인 없이 바로 쓰입니다.",
 
     "ops.tag":"운영","ops.h2":"손님이 올리는 콘텐츠의 바닥선",
