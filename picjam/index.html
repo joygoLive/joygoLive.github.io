@@ -301,7 +301,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="fact fade"><b data-i18n="limits.f5.t">Catalog coverage has gaps</b><span data-i18n="limits.f5.d">Some Korean songs appear under English titles or romanized artist names. A song known in Korea by a translated title is found only by its original title.</span></div>
       <div class="fact fade"><b data-i18n="limits.f6.t">iPhone alerts need the home screen</b><span data-i18n="limits.f6.d">Safari does not deliver web push to a browser tab. The app suggests adding it to the home screen right after the first pairing and on the My PicJam page.</span></div>
       <div class="fact fade"><b data-i18n="limits.f7.t">The hall of fame is empty for now</b><span data-i18n="limits.f7.d">The service opened in September 2026. The first 30-day gate falls in late October 2026 and the first possible hall of fame in 2031; until then the survivors tab is waiting on the clock.</span></div>
-      <div class="fact fade"><b data-i18n="limits.f8.t">Screening is a model, not a promise</b><span data-i18n="limits.f8.d">The pre-upload check catches clear hate and sexual content in tests, but slang and context can slip past it or be flagged wrongly. Reports and the operator queue stay the backstop. It does not match images against databases of known abuse material.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f8.t">Screening is a model, not a promise</b><span data-i18n="limits.f8.d">The pre-upload check catches clear hate and sexual content in tests, but slang and context can slip past it or be flagged wrongly. Reports and the operator queue stay the backstop. Matching against known abuse material is done separately by Cloudflare's CSAM Scanning Tool, which blocks a matching image and alerts the operator.</span></div>
     </div>
   </div>
 </section>
@@ -434,7 +434,7 @@ const _L = {
     "limits.f6.t":"iPhone 알림은 홈 화면 추가 후","limits.f6.d":"Safari는 브라우저 탭에 웹 푸시를 보내지 않습니다. 첫 페어링 직후와 내 픽잼 화면에서 홈 화면 추가를 안내합니다.",
 
     "limits.f7.t":"명예의 전당은 아직 비어 있음","limits.f7.d":"2026년 9월에 문을 열었습니다. 첫 30일 관문은 2026년 10월 하순, 첫 명예의 전당은 빨라야 2031년입니다. 그전까지 생존 탭은 시간을 기다리는 중입니다.",
-    "limits.f8.t":"검수는 모델, 약속 아님","limits.f8.d":"올리기 전 검수는 시험에서 명백한 혐오·음란 콘텐츠를 잡았지만, 신조어와 맥락은 빠져나가거나 잘못 걸릴 수 있습니다. 신고와 운영자 대기열이 뒤를 받칩니다. 알려진 아동 성착취물 데이터베이스와 이미지를 대조하지는 않습니다.",
+    "limits.f8.t":"검수는 모델, 약속 아님","limits.f8.d":"올리기 전 검수는 시험에서 명백한 혐오·음란 콘텐츠를 잡았지만, 신조어와 맥락은 빠져나가거나 잘못 걸릴 수 있습니다. 신고와 운영자 대기열이 뒤를 받칩니다. 알려진 아동 성착취물과의 대조는 Cloudflare CSAM Scanning Tool이 따로 맡아, 일치하는 이미지를 막고 운영자에게 알립니다.",
 
     "ft.home":"홈","ft.copy":"© 2026 joygoLive. All rights reserved."
   }
