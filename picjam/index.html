@@ -196,9 +196,9 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <div class="pts">
       <div class="pt fade"><b data-i18n="play.1.t">Song battle</b><span data-i18n="play.1.d">On someone else's pairing, challenge with another song and a line of up to 60 characters. Viewers give one vote to the original or a challenger; pressing again cancels, pressing another moves the vote. The photo stays the original poster's: challengers never upload anyone's photo.</span></div>
-      <div class="pt fade"><b data-i18n="play.2.t">Battle rules</b><span data-i18n="play.2.d">One challenge per person per pairing, not on your own post, not with the song already on it. Challenge lines go through the same screening as posts. Battles stay open until the pairing reaches the hall of fame.</span></div>
+      <div class="pt fade"><b data-i18n="play.2.t">Battle rules</b><span data-i18n="play.2.d">One challenge per person per pairing, not on your own post, not with the song already on it. Challenge lines go through the same screening as posts and can be reported on their own: three reports hide that challenge until an operator decides, without touching the original post. Battles stay open until the pairing reaches the hall of fame.</span></div>
       <div class="pt fade"><b data-i18n="play.3.t">Today's debate</b><span data-i18n="play.3.d">The tag with the most different songs attached sits at the top of the home screen, with a link to its song ranking.</span></div>
-      <div class="pt fade"><b data-i18n="play.4.t">Share card</b><span data-i18n="play.4.d">A 1080 × 1920 story image of photo, line and song, drawn from the data each time rather than stored, so a hidden line never survives in an old image.</span></div>
+      <div class="pt fade"><b data-i18n="play.4.t">Share card</b><span data-i18n="play.4.d">A 1080 × 1920 story image of photo, line, tag and song, with the hall-of-fame number or a 1- or 2-year survival badge when the post has one. Drawn from the data each time rather than stored, so a hidden line never survives in an old image.</span></div>
     </div>
   </div>
 </section>
@@ -213,7 +213,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="steps">
       <div class="step fade"><div><b data-i18n="how.s1.t">A photo, required</b><span data-i18n="how.s1.d">Re-encoded in the browser to at most 1440 px on the long edge before upload, which also strips the location stored in the photo. The server identifies the format from the file's first bytes, not its name.</span></div></div>
       <div class="step fade"><div><b data-i18n="how.s2.t">One tag</b><span data-i18n="how.s2.d">Pick a suggestion (late night, the commute, the ride home, weekend, travel, rainy day, cat, dog) or a popular tag, or write one word of your own up to 12 characters. Spacing and punctuation are ignored when tags are grouped, so every spelling lands on the same page. It used to be two fields, a moment and a subject; one is quicker and keeps the photo clear.</span></div></div>
-      <div class="step fade"><div><b data-i18n="how.s5.t">A witty line, required</b><span data-i18n="how.s5.d">Up to 140 characters, typed in the middle of the photo. Why this song, for this photo, right now. The shorter the line, the larger it is drawn, so a three-word punchline fills the card. A post without a line is refused, because the line is where the joke lives.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s5.t">A witty line, required</b><span data-i18n="how.s5.d">Up to 140 characters, typed in the middle of the photo. Why this song, for this photo, right now. The shorter the line, the larger it is drawn, so a three-word punchline fills the card. A post without a line is refused, because the line is where the joke lives. For ten minutes after posting the line can be fixed, and the fix is screened again; after that it stays as people voted on it.</span></div></div>
       <div class="step fade"><div><b data-i18n="how.s4.t">One song</b><span data-i18n="how.s4.d">Picked from a public music catalog with a 30-second preview. How the song is found and checked is described in the song catalog section.</span></div></div>
     </div>
     <p class="reward" data-i18n-html="how.reward"><b>Every pairing becomes a share card.</b> A 1080 × 1920 portrait image sized for stories, and a link that shows the photo and song in chat previews before anyone opens it.</p>
@@ -280,6 +280,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="fact fade"><b data-i18n="ops.f7.t">Reactions from people, not scripts</b><span data-i18n="ops.f7.d">Clearing cookies used to mint a new identity, and reactions now decide survival. Reacting, posting, battling, voting, reporting and changing a nickname need a one-time invisible check (Cloudflare Turnstile); real visitors see nothing. One network can verify at most 10 identities a day and give at most 3 reactions to one post per period, and 20 reactions on one post within 10 minutes alerts the operator.</span></div>
       <div class="fact fade"><b data-i18n="ops.f4.t">Reactions reach you, at most hourly</b><span data-i18n="ops.f4.d">Web push, one notification per pairing per hour, carrying the counts accumulated since the last one. A conditional update on the pairing's last-sent time acts as the lock, so simultaneous reactions cannot each send one.</span></div>
       <div class="fact fade"><b data-i18n="ops.f5.t">Counts recomputed on every reaction</b><span data-i18n="ops.f5.d">Totals and the score for the current period are recounted from the reaction table each time. Incrementing and decrementing drifts under concurrent requests, and a drifted count never corrects itself; a period's score is frozen once its gate is passed.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f8.t">A hidden post closes its photo</b><span data-i18n="ops.f8.d">Once a post is hidden, its photo address answers only the person who posted it and the operator reviewing it. Visible photos are cached at the edge for an hour rather than a year, so a copy of a photo that was later hidden stops circulating soon after.</span></div>
       <div class="fact fade"><b data-i18n="ops.f6.t">Deleting keeps the row</b><span data-i18n="ops.f6.d">Deleting your own pairing takes it down and removes the photo from storage, but keeps the record, so report history and reaction totals stay consistent.</span></div>
     </div>
   </div>
@@ -376,16 +377,16 @@ const _L = {
     "play.tag":"놀이","play.h2":"더 맞는 노래가 있다면",
     "play.lead":"사진에 노래를 붙이는 데서 다른 앱은 끝납니다. 여기서 사진은 문제이고, 누구나 다른 노래와 더 날카로운 한 줄로 답할 수 있으며, 나머지 사람들이 고릅니다.",
     "play.1.t":"노래 대결","play.1.d":"남의 페어링에 다른 노래 한 곡과 60자 이내 한 줄로 도전합니다. 보는 사람은 원곡과 도전곡 중 하나에 한 표를 주고, 다시 누르면 취소, 다른 곳을 누르면 표가 옮겨 갑니다. 사진은 원래 올린 사람 것 그대로이며, 도전하는 사람은 남의 사진을 올리지 않습니다.",
-    "play.2.t":"대결 규칙","play.2.d":"한 사람이 한 페어링에 한 번, 내 글에는 불가, 이미 붙은 노래로는 불가. 도전 한 줄도 올리기와 같은 검수를 거칩니다. 대결은 그 페어링이 명예의 전당에 오를 때까지 열려 있습니다.",
+    "play.2.t":"대결 규칙","play.2.d":"한 사람이 한 페어링에 한 번, 내 글에는 불가, 이미 붙은 노래로는 불가. 도전 한 줄도 올리기와 같은 검수를 거치고 따로 신고할 수 있습니다: 신고 셋이면 그 도전만 운영자 판단 전까지 가려지고 원래 글은 그대로입니다. 대결은 그 페어링이 명예의 전당에 오를 때까지 열려 있습니다.",
     "play.3.t":"오늘의 논쟁","play.3.d":"서로 다른 노래가 가장 많이 붙은 태그가 홈 상단에 오르고, 그 태그의 노래 순위로 이어집니다.",
-    "play.4.t":"공유 카드","play.4.d":"사진·한 줄·노래를 담은 1080 × 1920 스토리 이미지. 저장해 두지 않고 매번 데이터로 그리므로, 가려진 한 줄이 옛 이미지에 남지 않습니다.",
+    "play.4.t":"공유 카드","play.4.d":"사진·한 줄·태그·노래를 담은 1080 × 1920 스토리 이미지. 명예의 전당 번호나 1년·2년 생존 배지가 있으면 함께 찍힙니다. 저장해 두지 않고 매번 데이터로 그리므로, 가려진 한 줄이 옛 이미지에 남지 않습니다.",
 
     "how.tag":"올리기","how.h2":"스토리처럼 사진 위에 바로",
     "how.lead":"올리는 데 드는 시간이 올리지 않기로 마음먹는 시간보다 짧아야 합니다. 사진을 화면 가득 펼치고 그 위에 바로 위트 한 줄을 입력하며, 태그와 노래는 사진 위 칩으로 고릅니다. 올리는 동안 보이는 화면이 곧 공유 카드입니다.",
     "how.s1.t":"사진(필수)","how.s1.d":"업로드 전에 브라우저에서 긴 변 1440px 이하로 다시 인코딩하며, 이때 사진 속 위치 정보가 제거됩니다. 서버는 파일 이름 대신 첫 바이트로 형식을 판별합니다.",
     "how.s2.t":"태그 하나","how.s2.d":"추천(새벽·출근길·퇴근길·주말·여행·비 오는 날·고양이·강아지)이나 많이 붙은 태그를 고르거나, 12자 이내 한 단어를 직접 적습니다. 묶을 때 띄어쓰기와 문장부호를 무시하므로 표기가 달라도 같은 페이지로 모입니다. 예전에는 상황과 대상 두 칸이었고, 하나로 줄여 올리기가 빨라지고 사진이 덜 가려집니다.",
     "how.s4.t":"노래 한 곡","how.s4.d":"공개 음악 카탈로그에서 30초 미리듣기로 고릅니다. 곡을 찾고 검증하는 방식은 곡 카탈로그 절에 있습니다.",
-    "how.s5.t":"위트 한 줄(필수)","how.s5.d":"140자 이내, 사진 한가운데에 바로 입력합니다. 왜 이 사진에 왜 지금 이 노래인지. 짧을수록 크게 그려져 세 단어짜리 한 방이 카드를 채웁니다. 농담은 한 줄에 있으므로 한 줄 없는 올리기는 받지 않습니다.",
+    "how.s5.t":"위트 한 줄(필수)","how.s5.d":"140자 이내, 사진 한가운데에 바로 입력합니다. 왜 이 사진에 왜 지금 이 노래인지. 짧을수록 크게 그려져 세 단어짜리 한 방이 카드를 채웁니다. 농담은 한 줄에 있으므로 한 줄 없는 올리기는 받지 않습니다. 올린 뒤 10분 동안은 고칠 수 있고 고친 한 줄도 다시 검수합니다. 그 뒤로는 사람들이 투표한 그대로 남습니다.",
     "how.reward":"<b>페어링마다 공유 카드 한 장.</b> 스토리 규격(1080 × 1920) 세로 이미지와, 열기 전부터 메신저 미리보기에 사진과 곡이 표시되는 링크가 함께 만들어집니다.",
 
     "songs.tag":"곡 카탈로그","songs.h2":"곡마다 고정 id 하나",
@@ -420,6 +421,7 @@ const _L = {
     "ops.f7.t":"반응은 사람만","ops.f7.d":"예전에는 쿠키만 지우면 새 신원이 생겼고, 이제 반응이 생존을 가릅니다. 반응·올리기·대결·투표·신고·별명 변경 전에 보이지 않는 사람 확인(Cloudflare Turnstile)을 한 번 거치며, 실제 방문자에게는 아무것도 보이지 않습니다. 한 네트워크에서 하루 10명까지만 확인하고, 한 글에 한 기간 반응은 3개까지이며, 한 글에 10분 새 반응 20개가 몰리면 운영자에게 알림이 갑니다.",
     "ops.f4.t":"반응 알림, 한 시간에 한 번","ops.f4.d":"웹 푸시, 페어링당 시간당 1회이며 그 사이 쌓인 수를 한 번에 보여 줍니다. 페어링의 마지막 발송 시각에 대한 조건부 UPDATE가 락 역할을 해, 동시에 들어온 반응이 각각 알림을 보내지 않습니다.",
     "ops.f5.t":"반응 수: 매번 재집계","ops.f5.d":"반응이 들어올 때마다 합계와 지금 기간 점수를 반응 표에서 다시 셉니다. 더하고 빼는 방식은 동시 요청에서 어긋나고, 한 번 어긋난 수는 스스로 복구되지 않습니다. 관문을 지난 기간의 점수는 그대로 굳습니다.",
+    "ops.f8.t":"가린 글은 사진도 닫힘","ops.f8.d":"글이 가려지면 그 사진 주소는 올린 사람과 검수하는 운영자에게만 열립니다. 보이는 사진의 가장자리 캐시는 1년 대신 1시간이라, 나중에 가려진 사진의 사본도 곧 돌지 않게 됩니다.",
     "ops.f6.t":"삭제: 행 유지, 사진 제거","ops.f6.d":"내 페어링을 지우면 노출을 내리고 저장소의 사진을 삭제하되 행은 남깁니다. 신고 이력과 반응 집계의 정합성을 지키기 위해서입니다.",
 
     "limits.tag":"한계","limits.h2":"주장하지 않는 것",
