@@ -197,7 +197,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="pts">
       <div class="pt fade"><b data-i18n="play.1.t">Song battle</b><span data-i18n="play.1.d">On someone else's pairing, challenge with another song and a line of up to 60 characters. Viewers give one vote to the original or a challenger; pressing again cancels, pressing another moves the vote. The photo stays the original poster's: challengers never upload anyone's photo.</span></div>
       <div class="pt fade"><b data-i18n="play.2.t">Battle rules</b><span data-i18n="play.2.d">One challenge per person per pairing, not on your own post, not with the song already on it. Challenge lines go through the same screening as posts and can be reported on their own: three reports hide that challenge until an operator decides, without touching the original post. Battles stay open until the pairing reaches the hall of fame.</span></div>
-      <div class="pt fade"><b data-i18n="play.3.t">Today's debate</b><span data-i18n="play.3.d">The tag with the most different songs attached sits at the top of the home screen, with a link to its song ranking.</span></div>
+      <div class="pt fade"><b data-i18n="play.3.t">Soundtracks by tag</b><span data-i18n="play.3.d">Tags that collected different songs from different people sit at the top of the home screen: one big card, or several cards to swipe through, each leading to that tag's song ranking.</span></div>
       <div class="pt fade"><b data-i18n="play.4.t">Share card</b><span data-i18n="play.4.d">A 1080 × 1920 story image of photo, line, tag and song, with the hall-of-fame number or a 1- or 2-year survival badge when the post has one. Drawn from the data each time rather than stored, so a hidden line never survives in an old image.</span></div>
     </div>
   </div>
@@ -254,7 +254,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
         <tbody>
           <tr><td class="nm" data-i18n="pages.r1">Tag</td><td data-i18n="pages.r1a">Song ranking for one tag, with the best line per song, plus the wittiest picks</td><td data-i18n="pages.r1b">From the first pairing</td></tr>
           <tr><td class="nm" data-i18n="pages.r2">Home</td><td data-i18n="pages.r2a">Latest, popular, at-risk (would fail the next gate) and survivors (most gates passed, hall of fame first), filterable by popular tags</td><td data-i18n="pages.r2b">Always</td></tr>
-          <tr><td class="nm" data-i18n="pages.r3">Today's debate</td><td data-i18n="pages.r3a">The tag with the most different songs attached, on the home screen</td><td data-i18n="pages.r3b">When a tag has at least two different songs</td></tr>
+          <tr><td class="nm" data-i18n="pages.r3">Soundtracks by tag</td><td data-i18n="pages.r3a">Up to five tags with the most different songs in the last 30 days, on the home screen</td><td data-i18n="pages.r3b">When a tag has at least two different songs</td></tr>
           <tr><td class="nm" data-i18n="pages.r4">Share link</td><td data-i18n="pages.r4a">Photo, song and reaction counts in chat and social previews; a person following it lands on the pairing</td><td data-i18n="pages.r4b">Every pairing</td></tr>
           <tr><td class="nm" data-i18n="pages.r5">My PicJam</td><td data-i18n="pages.r5a">Nickname, reactions received, alert setting, own pairings</td><td data-i18n="pages.r5b">From the first visit</td></tr>
           <tr><td class="nm" data-i18n="pages.r6">Song battle</td><td data-i18n="pages.r6a">On someone else's pairing, challenge with another song and one line; viewers vote for the original or a challenger. The photo stays the original poster's</td><td data-i18n="pages.r6b">Until the hall of fame</td></tr>
@@ -378,7 +378,7 @@ const _L = {
     "play.lead":"사진에 노래를 붙이는 데서 다른 앱은 끝납니다. 여기서 사진은 문제이고, 누구나 다른 노래와 더 날카로운 한 줄로 답할 수 있으며, 나머지 사람들이 고릅니다.",
     "play.1.t":"노래 대결","play.1.d":"남의 페어링에 다른 노래 한 곡과 60자 이내 한 줄로 도전합니다. 보는 사람은 원곡과 도전곡 중 하나에 한 표를 주고, 다시 누르면 취소, 다른 곳을 누르면 표가 옮겨 갑니다. 사진은 원래 올린 사람 것 그대로이며, 도전하는 사람은 남의 사진을 올리지 않습니다.",
     "play.2.t":"대결 규칙","play.2.d":"한 사람이 한 페어링에 한 번, 내 글에는 불가, 이미 붙은 노래로는 불가. 도전 한 줄도 올리기와 같은 검수를 거치고 따로 신고할 수 있습니다: 신고 셋이면 그 도전만 운영자 판단 전까지 가려지고 원래 글은 그대로입니다. 대결은 그 페어링이 명예의 전당에 오를 때까지 열려 있습니다.",
-    "play.3.t":"오늘의 논쟁","play.3.d":"서로 다른 노래가 가장 많이 붙은 태그가 홈 상단에 오르고, 그 태그의 노래 순위로 이어집니다.",
+    "play.3.t":"태그별 사운드트랙","play.3.d":"사람마다 다른 노래가 붙은 태그가 홈 상단에 오릅니다. 하나면 큰 카드, 여럿이면 옆으로 넘기는 카드이며, 누르면 그 태그의 노래 순위로 이어집니다.",
     "play.4.t":"공유 카드","play.4.d":"사진·한 줄·태그·노래를 담은 1080 × 1920 스토리 이미지. 명예의 전당 번호나 1년·2년 생존 배지가 있으면 함께 찍힙니다. 저장해 두지 않고 매번 데이터로 그리므로, 가려진 한 줄이 옛 이미지에 남지 않습니다.",
 
     "how.tag":"올리기","how.h2":"스토리처럼 사진 위에 바로",
@@ -406,7 +406,7 @@ const _L = {
     "pages.c0":"페이지","pages.c1":"보여 주는 것","pages.c2":"공개 시점",
     "pages.r1":"태그","pages.r1a":"한 태그의 노래 순위(곡마다 대표 한 줄)와 위트 TOP","pages.r1b":"첫 페어링부터",
     "pages.r2":"홈","pages.r2a":"최신·인기·위기(다음 관문 탈락 위기)·생존(관문 많이 넘은 순, 명예의 전당 맨 위) 정렬, 많이 붙은 태그 필터","pages.r2b":"항상",
-    "pages.r3":"오늘의 논쟁","pages.r3a":"서로 다른 곡이 가장 많이 붙은 태그, 홈 상단","pages.r3b":"같은 태그에 곡 둘 이상",
+    "pages.r3":"태그별 사운드트랙","pages.r3a":"최근 30일 서로 다른 노래가 많이 붙은 태그 최대 다섯, 홈 상단","pages.r3b":"같은 태그에 노래 둘 이상",
     "pages.r4":"공유 링크","pages.r4a":"메신저·SNS 미리보기에 사진·곡·반응 수 표시, 링크를 연 사람은 해당 페어링 화면으로 이동","pages.r4b":"모든 페어링",
     "pages.r5":"내 픽잼","pages.r5a":"별명·받은 반응·알림 설정·내 페어링","pages.r5b":"첫 방문부터",
     "pages.r6":"노래 대결","pages.r6a":"남의 페어링에 다른 노래 한 곡과 한 줄로 도전하고, 보는 사람은 원곡과 도전곡 중 한 표를 줍니다. 사진은 원래 올린 사람 것 그대로입니다","pages.r6b":"명예의 전당 전까지",
