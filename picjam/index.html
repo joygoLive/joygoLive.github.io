@@ -103,11 +103,11 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="why.tag">Design</div>
     <h2 data-i18n="why.h2">Three decisions that shaped it</h2>
-    <p class="lead" data-i18n="why.lead">Food-and-music pairing has been tried several times. The earlier attempts either paired photos with songs and were absorbed by larger social apps, relied on curators and did not scale, or treated pairing as a formula and stopped being fun.</p>
+    <p class="lead" data-i18n="why.lead">Photo-and-music pairing has been tried several times. The earlier attempts either were absorbed by larger social apps, relied on curators and did not scale, or treated pairing as a formula and stopped being fun.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="why.f1.t">The unit is photo × song × moment</b><span data-i18n="why.f1.d">A photo alone is an image feed. The song gives it a mood and the moment (late night, hangover, alone) gives the comparison: the same subject gets a different song depending on when and with whom.</span></div>
-      <div class="fact fade"><b data-i18n="why.f2.t">Posted by the people eating, not curated</b><span data-i18n="why.f2.d">Only someone who ate it can say what fits. A pairing is a moment, a dish and a song, with an optional photo. No name, phone number or email is collected; the server issues each person a nickname built from something to eat.</span></div>
+      <div class="fact fade"><b data-i18n="why.f1.t">The unit is photo × song × moment</b><span data-i18n="why.f1.d">A photo alone is an image feed. The song gives it a mood and the moment (late night, the commute, alone) gives the comparison: the same subject gets a different song depending on when and with whom.</span></div>
+      <div class="fact fade"><b data-i18n="why.f2.t">Posted by the people who took the photo, not curated</b><span data-i18n="why.f2.d">Only the person who was there can say what fits. A pairing is a photo of your own, a moment, what is in it and a song. No name, phone number or email is collected; the server issues each person a nickname such as an adjective plus a thing or an animal.</span></div>
       <div class="fact fade"><b data-i18n="why.f3.t">Humor is a reaction, not a genre</b><span data-i18n="why.f3.d">Reactions work as a vote: agree, not so sure, and funny. The third keeps an absurd pairing in the ranking instead of letting it sink under disagreement.</span></div>
     </div>
   </div>
@@ -118,12 +118,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="how.tag">Posting</div>
     <h2 data-i18n="how.h2">Write on the photo, like a story</h2>
-    <p class="lead" data-i18n="how.lead">Posting has to be quicker than deciding not to. The photo fills the screen and the line is typed straight onto it; the moment, the dish and the song are chips on the photo. What you see while posting is the share card.</p>
+    <p class="lead" data-i18n="how.lead">Posting has to be quicker than deciding not to. The photo fills the screen and the line is typed straight onto it; the moment, what is in the photo and the song are chips on the photo. What you see while posting is the share card.</p>
     </div>
     <div class="steps">
       <div class="step fade"><div><b data-i18n="how.s1.t">A photo, required</b><span data-i18n="how.s1.d">Re-encoded in the browser to at most 1440 px on the long edge before upload, which also strips the location stored in the photo. The server identifies the format from the file's first bytes, not its name.</span></div></div>
-      <div class="step fade"><div><b data-i18n="how.s2.t">The moment</b><span data-i18n="how.s2.d">One of eight: eating alone, with friends, team dinner, date, late night, hangover, rainy day, delivery. Or a few words of your own, such as "three minutes to deadline"; those show on the card as written and are grouped as "other" when a dish page compares moments.</span></div></div>
-      <div class="step fade"><div><b data-i18n="how.s3.t">The dish</b><span data-i18n="how.s3.d">Spacing and punctuation are ignored when dishes are compared, so every spelling of the same dish lands on the same page.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s2.t">The moment</b><span data-i18n="how.s2.d">One of eight: alone, with friends, the morning commute, the ride home, late night, weekend, travel, rainy day. Or a few words of your own, such as "three minutes to deadline"; those show on the card as written and are grouped as "other" when moments are compared.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s3.t">What is in it</b><span data-i18n="how.s3.d">One word for what the photo shows: a cat, kibble, the commute. Spacing and punctuation are ignored when subjects are compared, so every spelling lands on the same page.</span></div></div>
       <div class="step fade"><div><b data-i18n="how.s4.t">One song and one line</b><span data-i18n="how.s4.d">Picked from a public music catalog with a 30-second preview, plus a comment of up to 140 characters. How the song is found and checked is described in the next section.</span></div></div>
     </div>
     <p class="reward" data-i18n-html="how.reward"><b>Every pairing becomes a share card.</b> A 1080 × 1920 portrait image sized for stories, and a link that shows the photo and song in chat previews before anyone opens it.</p>
@@ -135,7 +135,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="songs.tag">Song catalog</div>
     <h2 data-i18n="songs.h2">One fixed id per song</h2>
-    <p class="lead" data-i18n="songs.lead">Counting which song fits a dish requires everyone who picks the same recording to land on the same key. A free-text title cannot guarantee that; a catalog id can.</p>
+    <p class="lead" data-i18n="songs.lead">Counting which song fits a subject requires everyone who picks the same recording to land on the same key. A free-text title cannot guarantee that; a catalog id can.</p>
     </div>
     <div class="pts">
       <div class="pt fade"><b data-i18n="songs.1.t">Apple's public catalog, US storefront</b><span data-i18n="songs.1.d">The iTunes Search API needs no key and gives each track a fixed id. The Korean storefront returns no songs at all, so the US storefront is used; Korean songs keep their Hangul titles, with artist names romanized.</span></div>
@@ -152,7 +152,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="pages.tag">Pages</div>
     <h2 data-i18n="pages.h2">Same subject, a different song per moment</h2>
-    <p class="lead" data-i18n="pages.lead">A dish page lines moments up side by side, such as the same ramen at 3 a.m. and the morning after.</p>
+    <p class="lead" data-i18n="pages.lead">A subject page lines moments up side by side, such as the same cat at dawn and on a rainy day.</p>
     </div>
     <div class="rv-wrap">
       <table class="rv">
@@ -162,15 +162,16 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
           <th data-i18n="pages.c2">When it appears</th>
         </tr></thead>
         <tbody>
-          <tr><td class="nm" data-i18n="pages.r1">Subject</td><td data-i18n="pages.r1a">The top song per moment for one dish, plus the funniest picks</td><td data-i18n="pages.r1b">From the first pairing</td></tr>
-          <tr><td class="nm" data-i18n="pages.r2">Home</td><td data-i18n="pages.r2a">Latest pairings, filterable by moment</td><td data-i18n="pages.r2b">Always</td></tr>
-          <tr><td class="nm" data-i18n="pages.r3">Today's debate</td><td data-i18n="pages.r3a">The dish with the most different songs attached, on the home screen</td><td data-i18n="pages.r3b">When a dish has at least two different songs</td></tr>
+          <tr><td class="nm" data-i18n="pages.r1">Subject</td><td data-i18n="pages.r1a">The top song per moment for one subject, plus the funniest picks</td><td data-i18n="pages.r1b">From the first pairing</td></tr>
+          <tr><td class="nm" data-i18n="pages.r2">Home</td><td data-i18n="pages.r2a">Latest, popular, at-risk and survivor sorts, filterable by moment</td><td data-i18n="pages.r2b">Always</td></tr>
+          <tr><td class="nm" data-i18n="pages.r3">Today's debate</td><td data-i18n="pages.r3a">The subject with the most different songs attached, on the home screen</td><td data-i18n="pages.r3b">When a subject has at least two different songs</td></tr>
           <tr><td class="nm" data-i18n="pages.r4">Share link</td><td data-i18n="pages.r4a">Photo, song and reaction counts in chat and social previews; a person following it lands on the pairing</td><td data-i18n="pages.r4b">Every pairing</td></tr>
           <tr><td class="nm" data-i18n="pages.r5">My PicJam</td><td data-i18n="pages.r5a">Nickname, reactions received, alert setting, own pairings</td><td data-i18n="pages.r5b">From the first visit</td></tr>
+          <tr><td class="nm" data-i18n="pages.r6">Song battle</td><td data-i18n="pages.r6a">On someone else's pairing, challenge with another song and one line; viewers vote for the original or a challenger. The photo stays the original poster's</td><td data-i18n="pages.r6b">During the 30-day vote</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="reward" data-i18n-html="pages.reward"><b>Moments fill up fast.</b> A moment is shared by every pairing tagged with it, wherever it was eaten, so a dish page has something to compare from the first few posts.</p>
+    <p class="reward" data-i18n-html="pages.reward"><b>Moments fill up fast.</b> A moment is shared by every pairing tagged with it, wherever the photo was taken, so a subject page has something to compare from the first few posts.</p>
   </div>
 </section>
 
@@ -200,9 +201,9 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <div class="facts">
       <div class="fact fade"><b data-i18n="limits.f1.t">No music is served</b><span data-i18n="limits.f1.d">A 30-second preview from the catalog and links out to listen. No audio file is stored or streamed from here.</span></div>
-      <div class="fact fade"><b data-i18n="limits.f2.t">Not a review site</b><span data-i18n="limits.f2.d">No ratings, prices or opening hours. Where a dish was eaten is not recorded.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f2.t">Not a review site</b><span data-i18n="limits.f2.d">No ratings, prices or places. Where a photo was taken is not recorded.</span></div>
       <div class="fact fade"><b data-i18n="limits.f3.t">One browser, one identity</b><span data-i18n="limits.f3.d">Identity is a one-year cookie in one browser, with no transfer between devices. Safari clears it after seven days without a visit; the next visit starts a new nickname, and earlier posts stay up.</span></div>
-      <div class="fact fade"><b data-i18n="limits.f4.t">Eight moments, plus your own</b><span data-i18n="limits.f4.d">The eight cover most meals without overlapping. Anything else can be written in, but dish pages compare it as one "other" group; a written-in moment that keeps coming back is promoted to the list in code.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f4.t">Eight moments, plus your own</b><span data-i18n="limits.f4.d">The eight cover most everyday moments without overlapping. Anything else can be written in, but subject pages compare it as one "other" group; a written-in moment that keeps coming back is promoted to the list in code.</span></div>
       <div class="fact fade"><b data-i18n="limits.f5.t">Catalog coverage has gaps</b><span data-i18n="limits.f5.d">Some Korean songs appear under English titles or romanized artist names. A song known in Korea by a translated title is found only by its original title.</span></div>
       <div class="fact fade"><b data-i18n="limits.f6.t">iPhone alerts need the home screen</b><span data-i18n="limits.f6.d">Safari does not deliver web push to a browser tab. The app suggests adding it to the home screen right after the first pairing and on the My PicJam page.</span></div>
     </div>
@@ -236,24 +237,24 @@ const _L = {
     "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 베타.",
 
     "why.tag":"설계","why.h2":"방향을 정한 세 가지 결정",
-    "why.lead":"음식 × 음악 페어링의 선행 시도는 세 갈래였습니다. 사진 + 음악 SNS는 더 큰 SNS에 흡수됐고, 큐레이터 방식은 확장되지 못했고, 공식 기반 매칭은 재미를 잃었습니다.",
+    "why.lead":"사진 × 음악 페어링의 선행 시도는 세 갈래였습니다. 사진 + 음악 SNS는 더 큰 SNS에 흡수됐고, 큐레이터 방식은 확장되지 못했고, 공식 기반 매칭은 재미를 잃었습니다.",
     "why.f1.t":"기본 단위: 사진 × 곡 × 상황",
-    "why.f1.d":"사진만으로는 흔한 이미지 피드가 됩니다. 노래가 분위기를, 상황(새벽·해장·혼밥)이 비교 축을 만들어 같은 대상에도 언제·누구와냐에 따라 다른 노래가 붙습니다.",
-    "why.f2.t":"큐레이터 대신 먹은 사람",
-    "why.f2.d":"어울림은 직접 먹어 본 사람만 판단할 수 있습니다. 페어링은 상황·메뉴·곡, 그리고 선택 사진으로 구성됩니다. 이름·전화번호·이메일은 받지 않고, 별명은 서버가 먹는 것 이름으로 발급합니다.",
+    "why.f1.d":"사진만으로는 흔한 이미지 피드가 됩니다. 노래가 분위기를, 상황(새벽·출근길·혼자)이 비교 축을 만들어 같은 대상에도 언제·누구와냐에 따라 다른 노래가 붙습니다.",
+    "why.f2.t":"큐레이터 대신 찍은 사람",
+    "why.f2.d":"어울림은 그 자리에 있던 사람만 판단할 수 있습니다. 페어링은 내 사진·상황·사진 속 무엇·곡으로 구성됩니다. 이름·전화번호·이메일은 받지 않고, 별명은 서버가 형용사 + 사물·동물 이름으로 발급합니다.",
     "why.f3.t":"유머는 장르 대신 반응",
     "why.f3.d":"반응은 공감·글쎄·웃김 세 가지 투표입니다. 세 번째 반응이 있어 엉뚱한 조합도 글쎄에 묻히지 않고 순위에 남습니다.",
 
     "how.tag":"올리기","how.h2":"스토리처럼 사진 위에 바로",
-    "how.lead":"올리는 데 드는 시간이 올리지 않기로 마음먹는 시간보다 짧아야 합니다. 사진을 화면 가득 펼치고 그 위에 바로 한 줄을 입력하며, 상황·메뉴·곡은 사진 위 칩으로 고릅니다. 올리는 동안 보이는 화면이 곧 공유 카드입니다.",
+    "how.lead":"올리는 데 드는 시간이 올리지 않기로 마음먹는 시간보다 짧아야 합니다. 사진을 화면 가득 펼치고 그 위에 바로 한 줄을 입력하며, 상황·무엇·곡은 사진 위 칩으로 고릅니다. 올리는 동안 보이는 화면이 곧 공유 카드입니다.",
     "how.s1.t":"사진(필수)","how.s1.d":"업로드 전에 브라우저에서 긴 변 1440px 이하로 다시 인코딩하며, 이때 사진 속 위치 정보가 제거됩니다. 서버는 파일 이름 대신 첫 바이트로 형식을 판별합니다.",
-    "how.s2.t":"상황","how.s2.d":"혼밥·친구랑·회식·데이트·새벽·해장·비 오는 날·배달 중 하나를 고르거나, 「마감 3분 전」처럼 10자 이내로 직접 적습니다. 직접 적은 상황은 카드에 그대로 보이고, 메뉴 페이지 비교에서는 「그 외」로 묶입니다.",
-    "how.s3.t":"메뉴","how.s3.d":"비교할 때 띄어쓰기와 문장부호를 무시하므로 표기가 달라도 같은 메뉴 페이지로 모입니다.",
+    "how.s2.t":"상황","how.s2.d":"혼자·친구랑·출근길·퇴근길·새벽·주말·여행·비 오는 날 중 하나를 고르거나, 「마감 3분 전」처럼 10자 이내로 직접 적습니다. 직접 적은 상황은 카드에 그대로 보이고, 모아보기 비교에서는 「그 외」로 묶입니다.",
+    "how.s3.t":"무엇","how.s3.d":"사진 속 대상 한 단어: 고양이·사료·출근길 등. 비교할 때 띄어쓰기와 문장부호를 무시하므로 표기가 달라도 같은 모아보기로 모입니다.",
     "how.s4.t":"노래 한 곡과 한 줄","how.s4.d":"공개 음악 카탈로그에서 30초 미리듣기로 고르고, 140자 이내의 한 줄을 붙입니다. 곡을 찾고 검증하는 방식은 다음 절에 있습니다.",
     "how.reward":"<b>페어링마다 공유 카드 한 장.</b> 스토리 규격(1080 × 1920) 세로 이미지와, 열기 전부터 메신저 미리보기에 사진과 곡이 표시되는 링크가 함께 만들어집니다.",
 
     "songs.tag":"곡 카탈로그","songs.h2":"곡마다 고정 id 하나",
-    "songs.lead":"메뉴에 어울리는 곡을 세려면 같은 음원을 고른 사람이 모두 같은 키로 모여야 합니다. 자유 입력 제목으로는 보장되지 않고, 카탈로그 id로는 보장됩니다.",
+    "songs.lead":"대상에 어울리는 곡을 세려면 같은 음원을 고른 사람이 모두 같은 키로 모여야 합니다. 자유 입력 제목으로는 보장되지 않고, 카탈로그 id로는 보장됩니다.",
     "songs.1.t":"애플 공개 카탈로그, US 스토어",
     "songs.1.d":"iTunes Search API는 키가 필요 없고 곡마다 고정 id를 줍니다. 한국 스토어프론트는 곡이 0건이라 US 스토어를 씁니다. 국내 곡은 한글 제목 그대로, 가수명만 로마자로 나옵니다.",
     "songs.2.t":"검색은 방문자 브라우저에서",
@@ -265,14 +266,15 @@ const _L = {
     "songs.reward":"<b>듣기 링크: YouTube 검색과 Apple Music.</b> 국내 이용자 다수가 YouTube를 쓰므로, 30초 미리듣기와 카탈로그 링크 옆에 YouTube 검색을 함께 둡니다.",
 
     "pages.tag":"페이지","pages.h2":"같은 대상, 상황마다 다른 노래",
-    "pages.lead":"메뉴 페이지는 상황을 나란히 놓고 비교합니다. 같은 라면의 새벽과 해장처럼.",
+    "pages.lead":"모아보기는 상황을 나란히 놓고 비교합니다. 같은 고양이의 새벽과 비 오는 날처럼.",
     "pages.c0":"페이지","pages.c1":"보여 주는 것","pages.c2":"공개 시점",
-    "pages.r1":"모아보기","pages.r1a":"한 메뉴의 상황별 대표곡과 웃김 TOP","pages.r1b":"첫 페어링부터",
-    "pages.r2":"홈","pages.r2a":"최신 페어링, 상황별 필터","pages.r2b":"항상",
-    "pages.r3":"오늘의 논쟁","pages.r3a":"서로 다른 곡이 가장 많이 붙은 메뉴, 홈 상단","pages.r3b":"같은 메뉴에 곡 둘 이상",
+    "pages.r1":"모아보기","pages.r1a":"같은 대상의 상황별 대표곡과 웃김 TOP","pages.r1b":"첫 페어링부터",
+    "pages.r2":"홈","pages.r2a":"최신·인기·탈락 위기·생존(명예의 전당) 정렬, 상황별 필터","pages.r2b":"항상",
+    "pages.r3":"오늘의 논쟁","pages.r3a":"서로 다른 곡이 가장 많이 붙은 대상, 홈 상단","pages.r3b":"같은 대상에 곡 둘 이상",
     "pages.r4":"공유 링크","pages.r4a":"메신저·SNS 미리보기에 사진·곡·반응 수 표시, 링크를 연 사람은 해당 페어링 화면으로 이동","pages.r4b":"모든 페어링",
     "pages.r5":"내 픽잼","pages.r5a":"별명·받은 반응·알림 설정·내 페어링","pages.r5b":"첫 방문부터",
-    "pages.reward":"<b>상황은 금방 채워집니다.</b> 어디서 먹었든 같은 상황을 고른 페어링이 한데 모이므로, 메뉴 페이지는 처음 몇 개부터 비교할 거리가 생깁니다.",
+    "pages.r6":"노래 대결","pages.r6a":"남의 페어링에 다른 노래 한 곡과 한 줄로 도전하고, 보는 사람은 원곡과 도전곡 중 한 표를 줍니다. 사진은 원래 올린 사람 것 그대로입니다","pages.r6b":"30일 판정 기간 동안",
+    "pages.reward":"<b>상황은 금방 채워집니다.</b> 어디서 찍었든 같은 상황을 고른 페어링이 한데 모이므로, 모아보기는 처음 몇 개부터 비교할 거리가 생깁니다.",
 
     "ops.tag":"운영","ops.h2":"손님이 올리는 콘텐츠의 바닥선",
     "ops.lead":"콘텐츠 대부분이 술자리에서 나옵니다. 규칙은 적게 두고 매번 같은 방식으로 적용해, 운영을 건별 판단 대신 대기열 처리로 만듭니다.",
@@ -285,9 +287,9 @@ const _L = {
     "limits.tag":"한계","limits.h2":"주장하지 않는 것",
     "limits.lead":"기능 목록보다 범위 밖 목록이 더 유용합니다. 대부분은 의도적으로 뺀 것입니다.",
     "limits.f1.t":"음원 제공 없음","limits.f1.d":"카탈로그 30초 미리듣기와 외부 듣기 링크뿐입니다. 음원 파일을 보관하거나 스트리밍하지 않습니다.",
-    "limits.f2.t":"리뷰 사이트 아님","limits.f2.d":"별점·가격·영업시간이 없습니다. 어디서 먹었는지는 기록하지 않습니다.",
+    "limits.f2.t":"리뷰 사이트 아님","limits.f2.d":"별점·가격·장소 정보가 없습니다. 어디서 찍었는지는 기록하지 않습니다.",
     "limits.f3.t":"브라우저 하나 = 신원 하나","limits.f3.d":"신원은 브라우저 하나에 저장되는 1년짜리 쿠키이며 기기 간 이전이 없습니다. Safari는 7일간 방문이 없으면 쿠키를 지우고, 다음 방문은 새 별명으로 시작합니다. 이전 글은 그대로 남습니다.",
-    "limits.f4.t":"상황 여덟 개와 직접 입력","limits.f4.d":"여덟 개는 대부분의 식사를 겹치지 않게 덮도록 골랐습니다. 그 밖의 상황은 직접 적을 수 있지만 메뉴 페이지에서는 「그 외」 한 묶음으로 비교되며, 자주 쓰이는 직접 입력은 코드에서 정식 목록으로 올립니다.",
+    "limits.f4.t":"상황 여덟 개와 직접 입력","limits.f4.d":"여덟 개는 대부분의 일상 순간을 겹치지 않게 덮도록 골랐습니다. 그 밖의 상황은 직접 적을 수 있지만 모아보기에서는 「그 외」 한 묶음으로 비교되며, 자주 쓰이는 직접 입력은 코드에서 정식 목록으로 올립니다.",
     "limits.f5.t":"카탈로그 공백","limits.f5.d":"일부 국내 곡은 영문 제목이나 로마자 가수명으로 나옵니다. 번안 제목으로 알려진 곡은 원제로 검색해야 찾을 수 있습니다.",
     "limits.f6.t":"iPhone 알림은 홈 화면 추가 후","limits.f6.d":"Safari는 브라우저 탭에 웹 푸시를 보내지 않습니다. 첫 페어링 직후와 내 픽잼 화면에서 홈 화면 추가를 안내합니다.",
 
