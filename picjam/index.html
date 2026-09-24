@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>PicJam — This photo, this song, by joygoLive</title>
-<meta name="description" content="PicJam pairs a photo of your own with one song and a one-line hint. People vote for 30 days, and then the post survives or disappears." />
+<meta name="description" content="PicJam pairs a photo of your own with one song and a one-line hint. People vote, and the post has to pass survival gates from 30 days to five years; five years makes the hall of fame." />
 <meta property="og:title" content="PicJam — This photo, this song" />
-<meta property="og:description" content="Photo × song × moment. One photo, one song, one line, and a 30-day survival vote." />
+<meta property="og:description" content="Photo × song × moment. One photo, one song, one line, and survival gates from 30 days to five years." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2" />
 <meta name="theme-color" id="themeColor" content="#ffffff" />
@@ -88,12 +88,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="hero-kicker mono" data-i18n="hero.kicker">PicJam · Photo × song × moment</div>
     <h1 data-i18n-html="hero.title">This photo, <span class="grad">this song</span>.</h1>
-    <p class="lead" data-i18n="hero.sub">Post one photo of your own, the one song it calls for and a line that hints at the joke. It does not have to be food: a bowl of kibble, the commute, a cat. People vote for 30 days, and then the post either survives or disappears.</p>
+    <p class="lead" data-i18n="hero.sub">Post one photo of your own, the one song it calls for and a line that hints at the joke. It does not have to be food: a bowl of kibble, the commute, a cat. People vote, and the post has to keep earning it: gates at 30 days, 90 days, six months, one year, two years and five years.</p>
     <div class="cta-row">
       <a href="https://picjam.joygolive.com/" class="btn btn-primary" data-i18n="hero.cta1">Open PicJam</a>
       <a href="#limits" class="btn btn-ghost" data-i18n="hero.cta2">What this does not claim</a>
     </div>
-    <p class="reward" data-i18n-html="hero.reward"><b>A 30-day survival game.</b> Each post takes votes for 30 days: agree, funny, or not so sure. If "not so sure" outnumbers the other two when the time is up, the post disappears; otherwise it stays with a survivor badge. A post nobody voted on survives.</p>
+    <p class="reward" data-i18n-html="hero.reward"><b>A survival game with six gates.</b> At 30 days a post disappears if "not so sure" outnumbers agree and funny together; a post nobody voted on passes. At every later gate the score earned in that period (agree 1, funny 0.5, not so sure −0.5) has to beat the previous period's, and a tie means out. Reactions open again each period. Five years survived puts a post in the hall of fame, kept for good.</p>
     <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here. Beta.</div>
   </div>
 </section>
@@ -163,11 +163,11 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
         </tr></thead>
         <tbody>
           <tr><td class="nm" data-i18n="pages.r1">Subject</td><td data-i18n="pages.r1a">The top song per moment for one subject, plus the funniest picks</td><td data-i18n="pages.r1b">From the first pairing</td></tr>
-          <tr><td class="nm" data-i18n="pages.r2">Home</td><td data-i18n="pages.r2a">Latest, popular, at-risk and survivor sorts, filterable by moment</td><td data-i18n="pages.r2b">Always</td></tr>
+          <tr><td class="nm" data-i18n="pages.r2">Home</td><td data-i18n="pages.r2a">Latest, popular, at-risk (would fail the next gate) and survivors (most gates passed, hall of fame first), filterable by moment</td><td data-i18n="pages.r2b">Always</td></tr>
           <tr><td class="nm" data-i18n="pages.r3">Today's debate</td><td data-i18n="pages.r3a">The subject with the most different songs attached, on the home screen</td><td data-i18n="pages.r3b">When a subject has at least two different songs</td></tr>
           <tr><td class="nm" data-i18n="pages.r4">Share link</td><td data-i18n="pages.r4a">Photo, song and reaction counts in chat and social previews; a person following it lands on the pairing</td><td data-i18n="pages.r4b">Every pairing</td></tr>
           <tr><td class="nm" data-i18n="pages.r5">My PicJam</td><td data-i18n="pages.r5a">Nickname, reactions received, alert setting, own pairings</td><td data-i18n="pages.r5b">From the first visit</td></tr>
-          <tr><td class="nm" data-i18n="pages.r6">Song battle</td><td data-i18n="pages.r6a">On someone else's pairing, challenge with another song and one line; viewers vote for the original or a challenger. The photo stays the original poster's</td><td data-i18n="pages.r6b">During the 30-day vote</td></tr>
+          <tr><td class="nm" data-i18n="pages.r6">Song battle</td><td data-i18n="pages.r6a">On someone else's pairing, challenge with another song and one line; viewers vote for the original or a challenger. The photo stays the original poster's</td><td data-i18n="pages.r6b">Until the hall of fame</td></tr>
         </tbody>
       </table>
     </div>
@@ -180,11 +180,12 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="ops.tag">Moderation</div>
     <h2 data-i18n="ops.h2">Content posted by guests needs a floor</h2>
-    <p class="lead" data-i18n="ops.lead">Most of this content happens over drinks. The rules are few and applied the same way every time, so moderation is a queue rather than a judgment call per post.</p>
+    <p class="lead" data-i18n="ops.lead">Everything here is posted by visitors. Most of the floor is automatic and applied the same way every time, so moderation is a queue rather than a judgment call per post.</p>
     </div>
     <div class="facts">
       <div class="fact fade"><b data-i18n="ops.f1.t">Adults only, confirmed once</b><span data-i18n="ops.f1.d">Before the first post: 19 or older and the house rules. Reading needs neither.</span></div>
       <div class="fact fade"><b data-i18n="ops.f2.t">Three reports hide a post</b><span data-i18n="ops.f2.d">From three different people. The post stays hidden until an operator keeps it, hides it, or hides it and restricts the author. Each report and each automatic hide notifies the operator immediately.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f3.t">Screened before it goes up</b><span data-i18n="ops.f3.d">The photo and every piece of text (the line, the subject, a written-in moment) are judged together by an AI model before anything is stored, so a harmless photo with a hateful line, or hateful text inside an image, is caught. Categories: hate, sexual content, sexualised minors, covert filming, gore, personal data, illegal sales, harassment. A clear violation is refused and never stored; a borderline one is kept hidden until an operator approves it, and a model failure is treated as borderline. Battle lines and nicknames are checked too.</span></div>
       <div class="fact fade"><b data-i18n="ops.f4.t">Reactions reach you, at most hourly</b><span data-i18n="ops.f4.d">Web push, one notification per pairing per hour, carrying the counts accumulated since the last one. A conditional update on the pairing's last-sent time acts as the lock, so simultaneous reactions cannot each send one.</span></div>
       <div class="fact fade"><b data-i18n="ops.f5.t">Counts recomputed on every reaction</b><span data-i18n="ops.f5.d">The three reaction counts are recounted from the reaction table each time. Incrementing and decrementing drifts under concurrent requests, and a drifted count never corrects itself.</span></div>
       <div class="fact fade"><b data-i18n="ops.f6.t">Deleting keeps the row</b><span data-i18n="ops.f6.d">Deleting your own pairing takes it down and removes the photo from storage, but keeps the record, so report history and reaction totals stay consistent.</span></div>
@@ -231,9 +232,9 @@ const _L = {
     "nav.why":"설계","nav.how":"올리기","nav.songs":"곡","nav.pages":"페이지","nav.ops":"운영","nav.limits":"한계",
     "hero.kicker":"PicJam · 사진 × 곡 × 상황",
     "hero.title":"이 사진엔 <span class=\"grad\">이 노래</span>.",
-    "hero.sub":"내 사진 한 장에 어울리는 노래 한 곡과 슬쩍 암시하는 한 줄을 붙여 올립니다. 음식이 아니어도 됩니다. 강아지 사료, 출근길, 고양이도 됩니다. 사람들이 30일 동안 투표하고, 그 뒤 글은 살아남거나 사라집니다.",
+    "hero.sub":"내 사진 한 장에 어울리는 노래 한 곡과 슬쩍 암시하는 한 줄을 붙여 올립니다. 음식이 아니어도 됩니다. 강아지 사료, 출근길, 고양이도 됩니다. 사람들이 투표하고, 글은 30일·90일·반년·1년·2년·5년 관문을 넘어야 살아남습니다.",
     "hero.cta1":"PicJam 열기","hero.cta2":"주장하지 않는 것",
-    "hero.reward":"<b>30일 생존 게임.</b> 글마다 30일 동안 공감·웃김·글쎄 투표를 받습니다. 기간이 끝났을 때 글쎄가 공감과 웃김을 합한 것보다 많으면 사라지고, 아니면 「생존」 표시를 달고 남습니다. 아무도 투표하지 않은 글은 생존합니다.",
+    "hero.reward":"<b>관문 여섯 개의 생존 게임.</b> 30일 관문에서는 글쎄가 공감과 웃김을 합한 것보다 많으면 사라지고, 아무도 투표하지 않은 글은 통과합니다. 그 뒤 관문마다 그 기간에 받은 점수(공감 1·웃김 0.5·글쎄 −0.5)가 직전 기간 점수보다 높아야 하며, 같으면 탈락입니다. 반응은 기간마다 다시 누를 수 있습니다. 5년을 버틴 글은 명예의 전당에 올라 영구 보존됩니다.",
     "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 베타.",
 
     "why.tag":"설계","why.h2":"방향을 정한 세 가지 결정",
@@ -269,17 +270,18 @@ const _L = {
     "pages.lead":"모아보기는 상황을 나란히 놓고 비교합니다. 같은 고양이의 새벽과 비 오는 날처럼.",
     "pages.c0":"페이지","pages.c1":"보여 주는 것","pages.c2":"공개 시점",
     "pages.r1":"모아보기","pages.r1a":"같은 대상의 상황별 대표곡과 웃김 TOP","pages.r1b":"첫 페어링부터",
-    "pages.r2":"홈","pages.r2a":"최신·인기·탈락 위기·생존(명예의 전당) 정렬, 상황별 필터","pages.r2b":"항상",
+    "pages.r2":"홈","pages.r2a":"최신·인기·위기(다음 관문 탈락 위기)·생존(관문 많이 넘은 순, 명예의 전당 맨 위) 정렬, 상황별 필터","pages.r2b":"항상",
     "pages.r3":"오늘의 논쟁","pages.r3a":"서로 다른 곡이 가장 많이 붙은 대상, 홈 상단","pages.r3b":"같은 대상에 곡 둘 이상",
     "pages.r4":"공유 링크","pages.r4a":"메신저·SNS 미리보기에 사진·곡·반응 수 표시, 링크를 연 사람은 해당 페어링 화면으로 이동","pages.r4b":"모든 페어링",
     "pages.r5":"내 픽잼","pages.r5a":"별명·받은 반응·알림 설정·내 페어링","pages.r5b":"첫 방문부터",
-    "pages.r6":"노래 대결","pages.r6a":"남의 페어링에 다른 노래 한 곡과 한 줄로 도전하고, 보는 사람은 원곡과 도전곡 중 한 표를 줍니다. 사진은 원래 올린 사람 것 그대로입니다","pages.r6b":"30일 판정 기간 동안",
+    "pages.r6":"노래 대결","pages.r6a":"남의 페어링에 다른 노래 한 곡과 한 줄로 도전하고, 보는 사람은 원곡과 도전곡 중 한 표를 줍니다. 사진은 원래 올린 사람 것 그대로입니다","pages.r6b":"명예의 전당 전까지",
     "pages.reward":"<b>상황은 금방 채워집니다.</b> 어디서 찍었든 같은 상황을 고른 페어링이 한데 모이므로, 모아보기는 처음 몇 개부터 비교할 거리가 생깁니다.",
 
     "ops.tag":"운영","ops.h2":"손님이 올리는 콘텐츠의 바닥선",
-    "ops.lead":"콘텐츠 대부분이 술자리에서 나옵니다. 규칙은 적게 두고 매번 같은 방식으로 적용해, 운영을 건별 판단 대신 대기열 처리로 만듭니다.",
+    "ops.lead":"콘텐츠는 모두 방문자가 올립니다. 바닥선 대부분을 자동으로 두고 매번 같은 방식으로 적용해, 운영을 건별 판단 대신 대기열 처리로 만듭니다.",
     "ops.f1.t":"성인 확인, 한 번","ops.f1.d":"첫 올리기 전에 만 19세 이상 확인과 이용 규칙 동의를 받습니다. 보기만 할 때는 둘 다 필요 없습니다.",
     "ops.f2.t":"신고 셋이면 가림","ops.f2.d":"서로 다른 세 명 기준입니다. 운영자가 유지·가림·가림 + 이용 제한 중 하나로 처리할 때까지 노출되지 않습니다. 신고 접수와 자동 가림은 운영자에게 즉시 알림이 갑니다.",
+    "ops.f3.t":"올리기 전 자동 검수","ops.f3.d":"사진과 모든 글(한 줄·무엇·직접 적은 상황)을 저장 전에 AI 모델이 함께 판정합니다. 멀쩡한 사진에 혐오 문구, 이미지 속 혐오 글자도 걸러집니다. 대상: 혐오·음란·미성년 성적 묘사·불법 촬영·잔혹·개인정보·불법 거래·괴롭힘. 명백한 위반은 거절하고 저장하지 않으며, 애매한 경우는 가린 채 두고 운영자 승인 뒤 공개합니다. 모델이 답하지 못하면 애매한 쪽으로 처리합니다. 노래 대결 한 줄과 별명도 같은 검수를 거칩니다.",
     "ops.f4.t":"반응 알림, 한 시간에 한 번","ops.f4.d":"웹 푸시, 페어링당 시간당 1회이며 그 사이 쌓인 수를 한 번에 보여 줍니다. 페어링의 마지막 발송 시각에 대한 조건부 UPDATE가 락 역할을 해, 동시에 들어온 반응이 각각 알림을 보내지 않습니다.",
     "ops.f5.t":"반응 수: 매번 재집계","ops.f5.d":"반응이 들어올 때마다 반응 표에서 세 가지 수를 다시 셉니다. 더하고 빼는 방식은 동시 요청에서 어긋나고, 한 번 어긋난 수는 스스로 복구되지 않습니다.",
     "ops.f6.t":"삭제: 행 유지, 사진 제거","ops.f6.d":"내 페어링을 지우면 노출을 내리고 저장소의 사진을 삭제하되 행은 남깁니다. 신고 이력과 반응 집계의 정합성을 지키기 위해서입니다.",
