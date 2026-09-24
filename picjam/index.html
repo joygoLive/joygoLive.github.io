@@ -232,6 +232,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="pt fade"><b data-i18n="songs.2.t">Search: the browser first, then a relay</b><span data-i18n="songs.2.d">The page asks the catalog directly first, so every visitor has a separate quota. iPhone Safari never gets an answer that way, because Apple redirects the request to the Music app, and Cloudflare's shared egress address is throttled to empty results. Those searches go through a relay on an always-on Mac with an ordinary home connection, limited to 18 calls a minute and retried once when throttled.</span></div>
       <div class="pt fade"><b data-i18n="songs.3.t">US first, Japan only when needed</b><span data-i18n="songs.3.d">Most searches are Korean pop or Western pop, so the US store answers first. The Japanese store is asked only when the query contains Japanese characters or the US store returns nothing; asking both every time filled pop results with katakana artist names.</span></div>
       <div class="pt fade"><b data-i18n="songs.4.t">Re-lookup on submit</b><span data-i18n="songs.4.d">The server looks the track up again by id and caches found tracks for a month. If that lookup is throttled, the track sent by the page is accepted only when its id matches and its artwork, preview and link URLs point to the catalog's own hosts.</span></div>
+      <div class="pt fade"><b data-i18n="songs.5.t">AI suggestions, checked against the catalog</b><span data-i18n="songs.5.d">A model looking at the photo and the line proposes eight songs, but models also invent songs or pick covers. Each proposal is searched in the catalog and kept only when title and artist match the original recording; for Korean artist names written in Hangul, which the catalog romanizes, a title match that is not a cover or instrumental is accepted. Up to five survive, each with a preview.</span></div>
     </div>
     <p class="reward" data-i18n-html="songs.reward"><b>Listening links: YouTube search and Apple Music.</b> Most listeners in Korea use YouTube, so each pairing offers a YouTube search next to the catalog link and the 30-second preview.</p>
   </div>
@@ -399,6 +400,7 @@ const _L = {
     "songs.3.d":"검색 대부분이 가요와 팝송이라 US 스토어가 먼저 답합니다. 검색어에 일본 글자가 있거나 US 결과가 0건일 때만 일본 스토어를 조회합니다. 매번 둘 다 조회하면 팝송 결과에 가타카나 가수명이 잔뜩 섞였습니다.",
     "songs.4.t":"올릴 때 id로 재조회",
     "songs.4.d":"서버가 곡 id로 다시 조회하고, 찾은 곡은 한 달간 캐시합니다. 이 조회가 한도에 걸리면 화면이 보낸 곡 정보를 받되, id가 일치하고 표지·미리듣기·링크 주소가 카탈로그 자체 도메인일 때만 받습니다.",
+    "songs.5.t":"AI 추천도 카탈로그로 검증","songs.5.d":"사진과 한 줄을 본 모델이 여덟 곡을 제안하지만, 모델은 없는 곡을 지어내거나 커버를 고르기도 합니다. 제안마다 카탈로그에서 찾아 제목과 가수가 원곡과 맞을 때만 남기며, 카탈로그가 로마자로 적는 한글 가수명은 커버·연주 버전이 아닌 제목 일치까지 받습니다. 최대 다섯 곡이 미리듣기와 함께 남습니다.",
     "songs.reward":"<b>듣기 링크: YouTube 검색과 Apple Music.</b> 국내 이용자 다수가 YouTube를 쓰므로, 30초 미리듣기와 카탈로그 링크 옆에 YouTube 검색을 함께 둡니다.",
 
     "pages.tag":"페이지","pages.h2":"같은 태그, 사람마다 다른 노래",
