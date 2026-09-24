@@ -127,8 +127,8 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <p class="lead" data-i18n="why.lead">Photo-and-music pairing has been tried several times. The earlier attempts either were absorbed by larger social apps, relied on curators and did not scale, or treated pairing as a formula and stopped being fun.</p>
     </div>
     <div class="facts">
-      <div class="fact fade"><b data-i18n="why.f1.t">The unit is photo × song × a witty line</b><span data-i18n="why.f1.d">A photo alone is an image feed, and a photo with a song is a mood board. The line is what turns the pair into a joke: why this song, for this photo, right now. The moment (late night, the commute, alone) is the axis for comparison, so the same subject collects different songs and different jokes.</span></div>
-      <div class="fact fade"><b data-i18n="why.f2.t">Posted by the people who took the photo, not curated</b><span data-i18n="why.f2.d">Only the person who was there can say what fits. A pairing is a photo of your own, a moment, what is in it and a song. No name, phone number or email is collected; the server issues each person a nickname such as an adjective plus a thing or an animal.</span></div>
+      <div class="fact fade"><b data-i18n="why.f1.t">The unit is photo × song × a witty line</b><span data-i18n="why.f1.d">A photo alone is an image feed, and a photo with a song is a mood board. The line is what turns the pair into a joke: why this song, for this photo, right now. One tag (late night, the commute, a cat) groups posts, so the same tag collects different songs and different jokes.</span></div>
+      <div class="fact fade"><b data-i18n="why.f2.t">Posted by the people who took the photo, not curated</b><span data-i18n="why.f2.d">Only the person who was there can say what fits. A pairing is a photo of your own, a song, a witty line and one tag. No name, phone number or email is collected; the server issues each person a nickname such as an adjective plus a thing or an animal.</span></div>
       <div class="fact fade"><b data-i18n="why.f3.t">Wit is the score, not a genre</b><span data-i18n="why.f3.d">Reactions work as a vote: wit, agree and not so sure. Wit weighs twice as much as agree everywhere a score is used, from the popular sort to the survival gates. The aim is refined humor: a pairing whose photo, song and line click together beats both one that merely fits and one that is merely absurd.</span></div>
     </div>
   </div>
@@ -196,7 +196,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="pts">
       <div class="pt fade"><b data-i18n="play.1.t">Song battle</b><span data-i18n="play.1.d">On someone else's pairing, challenge with another song and a line of up to 60 characters. Viewers give one vote to the original or a challenger; pressing again cancels, pressing another moves the vote. The photo stays the original poster's: challengers never upload anyone's photo.</span></div>
       <div class="pt fade"><b data-i18n="play.2.t">Battle rules</b><span data-i18n="play.2.d">One challenge per person per pairing, not on your own post, not with the song already on it. Challenge lines go through the same screening as posts. Battles stay open until the pairing reaches the hall of fame.</span></div>
-      <div class="pt fade"><b data-i18n="play.3.t">Today's debate</b><span data-i18n="play.3.d">The subject with the most different songs attached sits at the top of the home screen, with a link to compare them moment by moment.</span></div>
+      <div class="pt fade"><b data-i18n="play.3.t">Today's debate</b><span data-i18n="play.3.d">The tag with the most different songs attached sits at the top of the home screen, with a link to its song ranking.</span></div>
       <div class="pt fade"><b data-i18n="play.4.t">Share card</b><span data-i18n="play.4.d">A 1080 × 1920 story image of photo, line and song, drawn from the data each time rather than stored, so a hidden line never survives in an old image.</span></div>
     </div>
   </div>
@@ -207,12 +207,11 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="how.tag">Posting</div>
     <h2 data-i18n="how.h2">Write on the photo, like a story</h2>
-    <p class="lead" data-i18n="how.lead">Posting has to be quicker than deciding not to. The photo fills the screen and the witty line is typed straight onto it; the moment, what is in the photo and the song are chips on the photo. What you see while posting is the share card.</p>
+    <p class="lead" data-i18n="how.lead">Posting has to be quicker than deciding not to. The photo fills the screen and the witty line is typed straight onto it; the tag and the song are chips on the photo. What you see while posting is the share card.</p>
     </div>
     <div class="steps">
       <div class="step fade"><div><b data-i18n="how.s1.t">A photo, required</b><span data-i18n="how.s1.d">Re-encoded in the browser to at most 1440 px on the long edge before upload, which also strips the location stored in the photo. The server identifies the format from the file's first bytes, not its name.</span></div></div>
-      <div class="step fade"><div><b data-i18n="how.s2.t">The moment</b><span data-i18n="how.s2.d">One of eight: alone, with friends, the morning commute, the ride home, late night, weekend, travel, rainy day. Or a few words of your own, such as "three minutes to deadline"; those show on the card as written and are grouped as "other" when moments are compared.</span></div></div>
-      <div class="step fade"><div><b data-i18n="how.s3.t">What is in it</b><span data-i18n="how.s3.d">One word for what the photo shows: a cat, kibble, the commute. Spacing and punctuation are ignored when subjects are compared, so every spelling lands on the same page.</span></div></div>
+      <div class="step fade"><div><b data-i18n="how.s2.t">One tag</b><span data-i18n="how.s2.d">Pick a suggestion (late night, the commute, the ride home, weekend, travel, rainy day, cat, dog) or a popular tag, or write one word of your own up to 12 characters. Spacing and punctuation are ignored when tags are grouped, so every spelling lands on the same page. It used to be two fields, a moment and a subject; one is quicker and keeps the photo clear.</span></div></div>
       <div class="step fade"><div><b data-i18n="how.s5.t">A witty line, required</b><span data-i18n="how.s5.d">Up to 140 characters, typed in the middle of the photo. Why this song, for this photo, right now. The shorter the line, the larger it is drawn, so a three-word punchline fills the card. A post without a line is refused, because the line is where the joke lives.</span></div></div>
       <div class="step fade"><div><b data-i18n="how.s4.t">One song</b><span data-i18n="how.s4.d">Picked from a public music catalog with a 30-second preview. How the song is found and checked is described in the song catalog section.</span></div></div>
     </div>
@@ -241,8 +240,8 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 <section id="pages" class="section">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow" data-i18n="pages.tag">Pages</div>
-    <h2 data-i18n="pages.h2">Same subject, a different song per moment</h2>
-    <p class="lead" data-i18n="pages.lead">A subject page lines moments up side by side, such as the same cat at dawn and on a rainy day.</p>
+    <h2 data-i18n="pages.h2">Same tag, different songs</h2>
+    <p class="lead" data-i18n="pages.lead">A tag page ranks the songs people attached to it, with the line that carried each one.</p>
     </div>
     <div class="rv-wrap">
       <table class="rv">
@@ -252,16 +251,16 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
           <th data-i18n="pages.c2">When it appears</th>
         </tr></thead>
         <tbody>
-          <tr><td class="nm" data-i18n="pages.r1">Subject</td><td data-i18n="pages.r1a">The top song per moment for one subject, plus the wittiest picks</td><td data-i18n="pages.r1b">From the first pairing</td></tr>
-          <tr><td class="nm" data-i18n="pages.r2">Home</td><td data-i18n="pages.r2a">Latest, popular, at-risk (would fail the next gate) and survivors (most gates passed, hall of fame first), filterable by moment</td><td data-i18n="pages.r2b">Always</td></tr>
-          <tr><td class="nm" data-i18n="pages.r3">Today's debate</td><td data-i18n="pages.r3a">The subject with the most different songs attached, on the home screen</td><td data-i18n="pages.r3b">When a subject has at least two different songs</td></tr>
+          <tr><td class="nm" data-i18n="pages.r1">Tag</td><td data-i18n="pages.r1a">Song ranking for one tag, with the best line per song, plus the wittiest picks</td><td data-i18n="pages.r1b">From the first pairing</td></tr>
+          <tr><td class="nm" data-i18n="pages.r2">Home</td><td data-i18n="pages.r2a">Latest, popular, at-risk (would fail the next gate) and survivors (most gates passed, hall of fame first), filterable by popular tags</td><td data-i18n="pages.r2b">Always</td></tr>
+          <tr><td class="nm" data-i18n="pages.r3">Today's debate</td><td data-i18n="pages.r3a">The tag with the most different songs attached, on the home screen</td><td data-i18n="pages.r3b">When a tag has at least two different songs</td></tr>
           <tr><td class="nm" data-i18n="pages.r4">Share link</td><td data-i18n="pages.r4a">Photo, song and reaction counts in chat and social previews; a person following it lands on the pairing</td><td data-i18n="pages.r4b">Every pairing</td></tr>
           <tr><td class="nm" data-i18n="pages.r5">My PicJam</td><td data-i18n="pages.r5a">Nickname, reactions received, alert setting, own pairings</td><td data-i18n="pages.r5b">From the first visit</td></tr>
           <tr><td class="nm" data-i18n="pages.r6">Song battle</td><td data-i18n="pages.r6a">On someone else's pairing, challenge with another song and one line; viewers vote for the original or a challenger. The photo stays the original poster's</td><td data-i18n="pages.r6b">Until the hall of fame</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="reward" data-i18n-html="pages.reward"><b>Moments fill up fast.</b> A moment is shared by every pairing tagged with it, wherever the photo was taken, so a subject page has something to compare from the first few posts.</p>
+    <p class="reward" data-i18n-html="pages.reward"><b>Tags fill up fast.</b> Popular tags become the filter chips on the home screen by themselves, and a new tag needs no approval.</p>
   </div>
 </section>
 
@@ -275,7 +274,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     <div class="facts">
       <div class="fact fade"><b data-i18n="ops.f1.t">Adults only, confirmed once</b><span data-i18n="ops.f1.d">Before the first post: 19 or older and the house rules. Reading needs neither.</span></div>
       <div class="fact fade"><b data-i18n="ops.f2.t">Three reports hide a post</b><span data-i18n="ops.f2.d">From three different people. The post stays hidden until an operator keeps it, hides it, or hides it and restricts the author. Each report and each automatic hide notifies the operator immediately.</span></div>
-      <div class="fact fade"><b data-i18n="ops.f3.t">Screened before it goes up</b><span data-i18n="ops.f3.d">The photo and every piece of text (the line, the subject, a written-in moment) are judged together by an AI model before anything is stored, so a harmless photo with a hateful line, or hateful text inside an image, is caught. Categories: hate, sexual content, sexualised minors, covert filming, gore, personal data, illegal sales, harassment. A clear violation is refused and never stored; a borderline one is kept hidden until an operator approves it, and a model failure is treated as borderline. Battle lines and nicknames are checked too.</span></div>
+      <div class="fact fade"><b data-i18n="ops.f3.t">Screened before it goes up</b><span data-i18n="ops.f3.d">The photo and every piece of text (the witty line and the tag) are judged together by an AI model before anything is stored, so a harmless photo with a hateful line, or hateful text inside an image, is caught. Categories: hate, sexual content, sexualised minors, covert filming, gore, personal data, illegal sales, harassment. A clear violation is refused and never stored; a borderline one is kept hidden until an operator approves it, and a model failure is treated as borderline. Battle lines and nicknames are checked too.</span></div>
       <div class="fact fade"><b data-i18n="ops.f7.t">Reactions from people, not scripts</b><span data-i18n="ops.f7.d">Clearing cookies used to mint a new identity, and reactions now decide survival. Reacting, posting, battling, voting, reporting and changing a nickname need a one-time invisible check (Cloudflare Turnstile); real visitors see nothing. One network can verify at most 10 identities a day and give at most 3 reactions to one post per period, and 20 reactions on one post within 10 minutes alerts the operator.</span></div>
       <div class="fact fade"><b data-i18n="ops.f4.t">Reactions reach you, at most hourly</b><span data-i18n="ops.f4.d">Web push, one notification per pairing per hour, carrying the counts accumulated since the last one. A conditional update on the pairing's last-sent time acts as the lock, so simultaneous reactions cannot each send one.</span></div>
       <div class="fact fade"><b data-i18n="ops.f5.t">Counts recomputed on every reaction</b><span data-i18n="ops.f5.d">Totals and the score for the current period are recounted from the reaction table each time. Incrementing and decrementing drifts under concurrent requests, and a drifted count never corrects itself; a period's score is frozen once its gate is passed.</span></div>
@@ -295,7 +294,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="fact fade"><b data-i18n="limits.f1.t">No music is served</b><span data-i18n="limits.f1.d">A 30-second preview from the catalog and links out to listen. No audio file is stored or streamed from here.</span></div>
       <div class="fact fade"><b data-i18n="limits.f2.t">Not a review site</b><span data-i18n="limits.f2.d">No ratings, prices or places. Where a photo was taken is not recorded.</span></div>
       <div class="fact fade"><b data-i18n="limits.f3.t">One browser, one identity</b><span data-i18n="limits.f3.d">Identity is a one-year cookie in one browser, with no transfer between devices. Safari clears it after seven days without a visit; the next visit starts a new nickname, and earlier posts stay up.</span></div>
-      <div class="fact fade"><b data-i18n="limits.f4.t">Eight moments, plus your own</b><span data-i18n="limits.f4.d">The eight cover most everyday moments without overlapping. Anything else can be written in, but subject pages compare it as one "other" group; a written-in moment that keeps coming back is promoted to the list in code.</span></div>
+      <div class="fact fade"><b data-i18n="limits.f4.t">One free tag</b><span data-i18n="limits.f4.d">Tags are free words, so the same idea can split across spellings or synonyms (dog, puppy). Spacing and punctuation are merged; different words are not. The eight suggestions are there to pull common posts onto the same tags.</span></div>
       <div class="fact fade"><b data-i18n="limits.f5.t">Catalog coverage has gaps</b><span data-i18n="limits.f5.d">Some Korean songs appear under English titles or romanized artist names. A song known in Korea by a translated title is found only by its original title.</span></div>
       <div class="fact fade"><b data-i18n="limits.f6.t">iPhone alerts need the home screen</b><span data-i18n="limits.f6.d">Safari does not deliver web push to a browser tab. The app suggests adding it to the home screen right after the first pairing and on the My PicJam page.</span></div>
       <div class="fact fade"><b data-i18n="limits.f7.t">The hall of fame is empty for now</b><span data-i18n="limits.f7.d">The service opened in September 2026. The first 30-day gate falls in late October 2026 and the first possible hall of fame in 2031; until then the survivors tab is waiting on the clock.</span></div>
@@ -341,9 +340,9 @@ const _L = {
     "why.tag":"설계","why.h2":"방향을 정한 세 가지 결정",
     "why.lead":"사진 × 음악 페어링의 선행 시도는 세 갈래였습니다. 사진 + 음악 SNS는 더 큰 SNS에 흡수됐고, 큐레이터 방식은 확장되지 못했고, 공식 기반 매칭은 재미를 잃었습니다.",
     "why.f1.t":"기본 단위: 사진 × 노래 × 위트 한 줄",
-    "why.f1.d":"사진만으로는 흔한 이미지 피드, 사진에 노래만 붙이면 분위기 모음입니다. 한 줄이 둘을 농담으로 만듭니다: 왜 이 사진에, 왜 지금, 왜 이 노래인지. 상황(새벽·출근길·혼자)은 비교 축이라 같은 대상에 서로 다른 노래와 서로 다른 농담이 모입니다.",
+    "why.f1.d":"사진만으로는 흔한 이미지 피드, 사진에 노래만 붙이면 분위기 모음입니다. 한 줄이 둘을 농담으로 만듭니다: 왜 이 사진에, 왜 지금, 왜 이 노래인지. 태그 하나(새벽·출근길·고양이)가 글을 묶어, 같은 태그에 서로 다른 노래와 서로 다른 농담이 모입니다.",
     "why.f2.t":"큐레이터 대신 찍은 사람",
-    "why.f2.d":"어울림은 그 자리에 있던 사람만 판단할 수 있습니다. 페어링은 내 사진·상황·사진 속 무엇·곡으로 구성됩니다. 이름·전화번호·이메일은 받지 않고, 별명은 서버가 형용사 + 사물·동물 이름으로 발급합니다.",
+    "why.f2.d":"어울림은 그 자리에 있던 사람만 판단할 수 있습니다. 페어링은 내 사진·노래·위트 한 줄·태그 하나로 구성됩니다. 이름·전화번호·이메일은 받지 않고, 별명은 서버가 형용사 + 사물·동물 이름으로 발급합니다.",
     "why.f3.t":"위트가 점수의 중심",
     "why.f3.d":"반응은 위트·공감·글쎄 세 가지 투표입니다. 인기 정렬부터 생존 관문까지 점수가 쓰이는 모든 곳에서 위트가 공감의 두 배입니다. 겨냥하는 것은 세련된 유머: 그럴듯하게 어울리기만 한 조합도, 그냥 어이없는 조합도 아닌, 사진·노래·한 줄이 딱 맞물린 조합이 앞섭니다.",
 
@@ -375,14 +374,13 @@ const _L = {
     "play.lead":"사진에 노래를 붙이는 데서 다른 앱은 끝납니다. 여기서 사진은 문제이고, 누구나 다른 노래와 더 날카로운 한 줄로 답할 수 있으며, 나머지 사람들이 고릅니다.",
     "play.1.t":"노래 대결","play.1.d":"남의 페어링에 다른 노래 한 곡과 60자 이내 한 줄로 도전합니다. 보는 사람은 원곡과 도전곡 중 하나에 한 표를 주고, 다시 누르면 취소, 다른 곳을 누르면 표가 옮겨 갑니다. 사진은 원래 올린 사람 것 그대로이며, 도전하는 사람은 남의 사진을 올리지 않습니다.",
     "play.2.t":"대결 규칙","play.2.d":"한 사람이 한 페어링에 한 번, 내 글에는 불가, 이미 붙은 노래로는 불가. 도전 한 줄도 올리기와 같은 검수를 거칩니다. 대결은 그 페어링이 명예의 전당에 오를 때까지 열려 있습니다.",
-    "play.3.t":"오늘의 논쟁","play.3.d":"서로 다른 노래가 가장 많이 붙은 대상이 홈 상단에 오르고, 상황별로 나란히 비교하는 화면으로 이어집니다.",
+    "play.3.t":"오늘의 논쟁","play.3.d":"서로 다른 노래가 가장 많이 붙은 태그가 홈 상단에 오르고, 그 태그의 노래 순위로 이어집니다.",
     "play.4.t":"공유 카드","play.4.d":"사진·한 줄·노래를 담은 1080 × 1920 스토리 이미지. 저장해 두지 않고 매번 데이터로 그리므로, 가려진 한 줄이 옛 이미지에 남지 않습니다.",
 
     "how.tag":"올리기","how.h2":"스토리처럼 사진 위에 바로",
-    "how.lead":"올리는 데 드는 시간이 올리지 않기로 마음먹는 시간보다 짧아야 합니다. 사진을 화면 가득 펼치고 그 위에 바로 위트 한 줄을 입력하며, 상황·무엇·노래는 사진 위 칩으로 고릅니다. 올리는 동안 보이는 화면이 곧 공유 카드입니다.",
+    "how.lead":"올리는 데 드는 시간이 올리지 않기로 마음먹는 시간보다 짧아야 합니다. 사진을 화면 가득 펼치고 그 위에 바로 위트 한 줄을 입력하며, 태그와 노래는 사진 위 칩으로 고릅니다. 올리는 동안 보이는 화면이 곧 공유 카드입니다.",
     "how.s1.t":"사진(필수)","how.s1.d":"업로드 전에 브라우저에서 긴 변 1440px 이하로 다시 인코딩하며, 이때 사진 속 위치 정보가 제거됩니다. 서버는 파일 이름 대신 첫 바이트로 형식을 판별합니다.",
-    "how.s2.t":"상황","how.s2.d":"혼자·친구랑·출근길·퇴근길·새벽·주말·여행·비 오는 날 중 하나를 고르거나, 「마감 3분 전」처럼 10자 이내로 직접 적습니다. 직접 적은 상황은 카드에 그대로 보이고, 모아보기 비교에서는 「그 외」로 묶입니다.",
-    "how.s3.t":"무엇","how.s3.d":"사진 속 대상 한 단어: 고양이·사료·출근길 등. 비교할 때 띄어쓰기와 문장부호를 무시하므로 표기가 달라도 같은 모아보기로 모입니다.",
+    "how.s2.t":"태그 하나","how.s2.d":"추천(새벽·출근길·퇴근길·주말·여행·비 오는 날·고양이·강아지)이나 많이 붙은 태그를 고르거나, 12자 이내 한 단어를 직접 적습니다. 묶을 때 띄어쓰기와 문장부호를 무시하므로 표기가 달라도 같은 페이지로 모입니다. 예전에는 상황과 대상 두 칸이었고, 하나로 줄여 올리기가 빨라지고 사진이 덜 가려집니다.",
     "how.s4.t":"노래 한 곡","how.s4.d":"공개 음악 카탈로그에서 30초 미리듣기로 고릅니다. 곡을 찾고 검증하는 방식은 곡 카탈로그 절에 있습니다.",
     "how.s5.t":"위트 한 줄(필수)","how.s5.d":"140자 이내, 사진 한가운데에 바로 입력합니다. 왜 이 사진에 왜 지금 이 노래인지. 짧을수록 크게 그려져 세 단어짜리 한 방이 카드를 채웁니다. 농담은 한 줄에 있으므로 한 줄 없는 올리기는 받지 않습니다.",
     "how.reward":"<b>페어링마다 공유 카드 한 장.</b> 스토리 규격(1080 × 1920) 세로 이미지와, 열기 전부터 메신저 미리보기에 사진과 곡이 표시되는 링크가 함께 만들어집니다.",
@@ -399,22 +397,22 @@ const _L = {
     "songs.4.d":"서버가 곡 id로 다시 조회하고, 찾은 곡은 한 달간 캐시합니다. 이 조회가 한도에 걸리면 화면이 보낸 곡 정보를 받되, id가 일치하고 표지·미리듣기·링크 주소가 카탈로그 자체 도메인일 때만 받습니다.",
     "songs.reward":"<b>듣기 링크: YouTube 검색과 Apple Music.</b> 국내 이용자 다수가 YouTube를 쓰므로, 30초 미리듣기와 카탈로그 링크 옆에 YouTube 검색을 함께 둡니다.",
 
-    "pages.tag":"페이지","pages.h2":"같은 대상, 상황마다 다른 노래",
-    "pages.lead":"모아보기는 상황을 나란히 놓고 비교합니다. 같은 고양이의 새벽과 비 오는 날처럼.",
+    "pages.tag":"페이지","pages.h2":"같은 태그, 사람마다 다른 노래",
+    "pages.lead":"태그 페이지는 그 태그에 붙은 노래를 순위로 보여 주고, 곡마다 가장 반응이 좋았던 한 줄을 함께 둡니다.",
     "pages.c0":"페이지","pages.c1":"보여 주는 것","pages.c2":"공개 시점",
-    "pages.r1":"모아보기","pages.r1a":"같은 대상의 상황별 대표곡과 위트 TOP","pages.r1b":"첫 페어링부터",
-    "pages.r2":"홈","pages.r2a":"최신·인기·위기(다음 관문 탈락 위기)·생존(관문 많이 넘은 순, 명예의 전당 맨 위) 정렬, 상황별 필터","pages.r2b":"항상",
-    "pages.r3":"오늘의 논쟁","pages.r3a":"서로 다른 곡이 가장 많이 붙은 대상, 홈 상단","pages.r3b":"같은 대상에 곡 둘 이상",
+    "pages.r1":"태그","pages.r1a":"한 태그의 노래 순위(곡마다 대표 한 줄)와 위트 TOP","pages.r1b":"첫 페어링부터",
+    "pages.r2":"홈","pages.r2a":"최신·인기·위기(다음 관문 탈락 위기)·생존(관문 많이 넘은 순, 명예의 전당 맨 위) 정렬, 많이 붙은 태그 필터","pages.r2b":"항상",
+    "pages.r3":"오늘의 논쟁","pages.r3a":"서로 다른 곡이 가장 많이 붙은 태그, 홈 상단","pages.r3b":"같은 태그에 곡 둘 이상",
     "pages.r4":"공유 링크","pages.r4a":"메신저·SNS 미리보기에 사진·곡·반응 수 표시, 링크를 연 사람은 해당 페어링 화면으로 이동","pages.r4b":"모든 페어링",
     "pages.r5":"내 픽잼","pages.r5a":"별명·받은 반응·알림 설정·내 페어링","pages.r5b":"첫 방문부터",
     "pages.r6":"노래 대결","pages.r6a":"남의 페어링에 다른 노래 한 곡과 한 줄로 도전하고, 보는 사람은 원곡과 도전곡 중 한 표를 줍니다. 사진은 원래 올린 사람 것 그대로입니다","pages.r6b":"명예의 전당 전까지",
-    "pages.reward":"<b>상황은 금방 채워집니다.</b> 어디서 찍었든 같은 상황을 고른 페어링이 한데 모이므로, 모아보기는 처음 몇 개부터 비교할 거리가 생깁니다.",
+    "pages.reward":"<b>태그는 금방 채워집니다.</b> 많이 붙은 태그가 저절로 홈 필터 칩이 되고, 새 태그는 승인 없이 바로 쓰입니다.",
 
     "ops.tag":"운영","ops.h2":"손님이 올리는 콘텐츠의 바닥선",
     "ops.lead":"콘텐츠는 모두 방문자가 올립니다. 바닥선 대부분을 자동으로 두고 매번 같은 방식으로 적용해, 운영을 건별 판단 대신 대기열 처리로 만듭니다.",
     "ops.f1.t":"성인 확인, 한 번","ops.f1.d":"첫 올리기 전에 만 19세 이상 확인과 이용 규칙 동의를 받습니다. 보기만 할 때는 둘 다 필요 없습니다.",
     "ops.f2.t":"신고 셋이면 가림","ops.f2.d":"서로 다른 세 명 기준입니다. 운영자가 유지·가림·가림 + 이용 제한 중 하나로 처리할 때까지 노출되지 않습니다. 신고 접수와 자동 가림은 운영자에게 즉시 알림이 갑니다.",
-    "ops.f3.t":"올리기 전 자동 검수","ops.f3.d":"사진과 모든 글(한 줄·무엇·직접 적은 상황)을 저장 전에 AI 모델이 함께 판정합니다. 멀쩡한 사진에 혐오 문구, 이미지 속 혐오 글자도 걸러집니다. 대상: 혐오·음란·미성년 성적 묘사·불법 촬영·잔혹·개인정보·불법 거래·괴롭힘. 명백한 위반은 거절하고 저장하지 않으며, 애매한 경우는 가린 채 두고 운영자 승인 뒤 공개합니다. 모델이 답하지 못하면 애매한 쪽으로 처리합니다. 노래 대결 한 줄과 별명도 같은 검수를 거칩니다.",
+    "ops.f3.t":"올리기 전 자동 검수","ops.f3.d":"사진과 모든 글(위트 한 줄·태그)을 저장 전에 AI 모델이 함께 판정합니다. 멀쩡한 사진에 혐오 문구, 이미지 속 혐오 글자도 걸러집니다. 대상: 혐오·음란·미성년 성적 묘사·불법 촬영·잔혹·개인정보·불법 거래·괴롭힘. 명백한 위반은 거절하고 저장하지 않으며, 애매한 경우는 가린 채 두고 운영자 승인 뒤 공개합니다. 모델이 답하지 못하면 애매한 쪽으로 처리합니다. 노래 대결 한 줄과 별명도 같은 검수를 거칩니다.",
     "ops.f7.t":"반응은 사람만","ops.f7.d":"예전에는 쿠키만 지우면 새 신원이 생겼고, 이제 반응이 생존을 가릅니다. 반응·올리기·대결·투표·신고·별명 변경 전에 보이지 않는 사람 확인(Cloudflare Turnstile)을 한 번 거치며, 실제 방문자에게는 아무것도 보이지 않습니다. 한 네트워크에서 하루 10명까지만 확인하고, 한 글에 한 기간 반응은 3개까지이며, 한 글에 10분 새 반응 20개가 몰리면 운영자에게 알림이 갑니다.",
     "ops.f4.t":"반응 알림, 한 시간에 한 번","ops.f4.d":"웹 푸시, 페어링당 시간당 1회이며 그 사이 쌓인 수를 한 번에 보여 줍니다. 페어링의 마지막 발송 시각에 대한 조건부 UPDATE가 락 역할을 해, 동시에 들어온 반응이 각각 알림을 보내지 않습니다.",
     "ops.f5.t":"반응 수: 매번 재집계","ops.f5.d":"반응이 들어올 때마다 합계와 지금 기간 점수를 반응 표에서 다시 셉니다. 더하고 빼는 방식은 동시 요청에서 어긋나고, 한 번 어긋난 수는 스스로 복구되지 않습니다. 관문을 지난 기간의 점수는 그대로 굳습니다.",
@@ -425,7 +423,7 @@ const _L = {
     "limits.f1.t":"음원 제공 없음","limits.f1.d":"카탈로그 30초 미리듣기와 외부 듣기 링크뿐입니다. 음원 파일을 보관하거나 스트리밍하지 않습니다.",
     "limits.f2.t":"리뷰 사이트 아님","limits.f2.d":"별점·가격·장소 정보가 없습니다. 어디서 찍었는지는 기록하지 않습니다.",
     "limits.f3.t":"브라우저 하나 = 신원 하나","limits.f3.d":"신원은 브라우저 하나에 저장되는 1년짜리 쿠키이며 기기 간 이전이 없습니다. Safari는 7일간 방문이 없으면 쿠키를 지우고, 다음 방문은 새 별명으로 시작합니다. 이전 글은 그대로 남습니다.",
-    "limits.f4.t":"상황 여덟 개와 직접 입력","limits.f4.d":"여덟 개는 대부분의 일상 순간을 겹치지 않게 덮도록 골랐습니다. 그 밖의 상황은 직접 적을 수 있지만 모아보기에서는 「그 외」 한 묶음으로 비교되며, 자주 쓰이는 직접 입력은 코드에서 정식 목록으로 올립니다.",
+    "limits.f4.t":"태그는 자유 한 단어","limits.f4.d":"태그는 자유 입력이라 같은 뜻이 다른 말로 갈릴 수 있습니다(강아지·강쥐). 띄어쓰기와 문장부호 차이는 합쳐지지만 다른 단어는 따로입니다. 추천 여덟 개는 흔한 글이 같은 태그로 모이도록 둔 것입니다.",
     "limits.f5.t":"카탈로그 공백","limits.f5.d":"일부 국내 곡은 영문 제목이나 로마자 가수명으로 나옵니다. 번안 제목으로 알려진 곡은 원제로 검색해야 찾을 수 있습니다.",
     "limits.f6.t":"iPhone 알림은 홈 화면 추가 후","limits.f6.d":"Safari는 브라우저 탭에 웹 푸시를 보내지 않습니다. 첫 페어링 직후와 내 픽잼 화면에서 홈 화면 추가를 안내합니다.",
 
