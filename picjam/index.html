@@ -57,6 +57,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <a href="./" class="svc-name">PICJAM</a>
     </div>
     <nav class="nav-links" id="navLinks">
+      <a href="#idea" data-i18n="nav.idea">Idea</a>
       <a href="#why" data-i18n="nav.why">Design</a>
       <a href="#game" data-i18n="nav.game">Survival</a>
       <a href="#play" data-i18n="nav.play">Play</a>
@@ -97,6 +98,23 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
     </div>
     <p class="reward" data-i18n-html="hero.reward"><b>Wit counts the most.</b> Reactions are a vote: wit 1, agree 0.5, not so sure −0.5. Wit here means a sharp, well-made joke rather than a random laugh. A pairing whose wit keeps landing passes gate after gate; five years survived puts it in the hall of fame, kept for good. The rules are in the survival game section.</p>
     <div class="byline" data-i18n-html="hero.byline">A service by joygoLive, built here and operated here. Beta.</div>
+  </div>
+</section>
+
+<!-- IDEA -->
+<section id="idea" class="section">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="idea.tag">Idea</div>
+    <h2 data-i18n="idea.h2">See, hear, interpret, and let many agree</h2>
+    <p class="lead" data-i18n="idea.lead">joygoLive builds around one habit: seeing, hearing and feeling the world. PicJam turns that into a post. The photo is what you saw, the song is what you heard, and the witty line is how you read the moment. Then many people vote, and only the readings that others recognise stay.</p>
+    </div>
+    <div class="steps">
+      <div class="step fade"><div><b data-i18n="idea.s1.t">See: the photo</b><span data-i18n="idea.s1.d">One photo of your own. What was in front of you.</span></div></div>
+      <div class="step fade"><div><b data-i18n="idea.s2.t">Hear: the song</b><span data-i18n="idea.s2.d">The one song that moment calls for. What was playing, or should have been.</span></div></div>
+      <div class="step fade"><div><b data-i18n="idea.s3.t">Interpret: the witty line</b><span data-i18n="idea.s3.d">Why this song, for this photo, right now. Refined humor rather than a random laugh.</span></div></div>
+      <div class="step fade"><div><b data-i18n="idea.s4.t">Agreed: the vote</b><span data-i18n="idea.s4.d">Wit, agree or not so sure from many people, period after period. What survives is an insight others share.</span></div></div>
+    </div>
+    <p class="reward" data-i18n-html="idea.reward"><b>Why all three are required.</b> Seeing and hearing alone make a record. The interpretation makes it yours, and the vote of many turns it into an insight.</p>
   </div>
 </section>
 
@@ -282,17 +300,25 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 /* 영문 본문은 HTML 에 한 벌만 둔다. en 사전에 문구를 복제하면 HTML 만 고쳤을 때 토글에서 옛 문구가 돌아온다. */
 const _L = {
   en:{
-    "nav.why":"Design","nav.game":"Survival","nav.play":"Play","nav.how":"Posting","nav.songs":"Songs","nav.pages":"Pages","nav.ops":"Moderation","nav.limits":"Limits",
+    "nav.idea":"Idea","nav.why":"Design","nav.game":"Survival","nav.play":"Play","nav.how":"Posting","nav.songs":"Songs","nav.pages":"Pages","nav.ops":"Moderation","nav.limits":"Limits",
     "ft.home":"Home","ft.copy":"© 2026 joygoLive. All rights reserved.",
   },
   ko:{
-    "nav.why":"설계","nav.game":"생존 게임","nav.play":"놀이","nav.how":"올리기","nav.songs":"곡","nav.pages":"페이지","nav.ops":"운영","nav.limits":"한계",
+    "nav.idea":"생각","nav.why":"설계","nav.game":"생존 게임","nav.play":"놀이","nav.how":"올리기","nav.songs":"곡","nav.pages":"페이지","nav.ops":"운영","nav.limits":"한계",
     "hero.kicker":"PicJam · 사진 × 노래 × 위트 한 줄",
     "hero.title":"이 사진엔 <span class=\"grad\">이 노래</span>.",
     "hero.sub":"내 사진 한 장, 딱 맞는 노래 한 곡, 둘을 비트는 위트 한 줄. 셋이 한 조합이고 셋 다 필수입니다. 어이없는 웃음보다 무릎을 치게 하는 세련된 한 줄. 강아지 사료든 출근길이든 고양이든 대상은 자유입니다. 사람들이 투표하고, 글은 30일부터 5년까지 관문을 넘어야 살아남습니다.",
     "hero.cta1":"PicJam 열기","hero.cta2":"주장하지 않는 것",
     "hero.reward":"<b>위트가 가장 무겁습니다.</b> 반응은 투표이고 점수는 위트 1·공감 0.5·글쎄 −0.5입니다. 여기서 위트는 어이없는 웃음보다 잘 다듬어진 세련된 유머입니다. 위트가 계속 통하는 조합이 관문을 차례로 넘고, 5년을 버티면 명예의 전당에 올라 영구 보존됩니다. 규칙은 생존 게임 절에 있습니다.",
     "hero.byline":"joygoLive의 서비스. 직접 개발하고 직접 운영합니다. 베타.",
+
+    "idea.tag":"생각","idea.h2":"보고, 듣고, 해석하고, 공감받다",
+    "idea.lead":"세상을 보고 듣고 느끼는 것, 조이고라이브가 서비스를 만드는 출발점입니다. PicJam은 그것을 글 한 장으로 옮깁니다. 사진은 본 것, 노래는 들은 것, 위트 한 줄은 그 순간의 해석입니다. 여기에 다수의 투표가 더해져, 다른 사람도 알아본 해석만 남습니다.",
+    "idea.s1.t":"보고: 사진","idea.s1.d":"내 사진 한 장. 눈앞에 있던 것.",
+    "idea.s2.t":"듣고: 노래","idea.s2.d":"그 순간에 맞는 노래 한 곡. 흐르던 노래, 혹은 흘렀어야 할 노래.",
+    "idea.s3.t":"해석하고: 위트 한 줄","idea.s3.d":"왜 이 사진에 왜 지금 이 노래인지. 어이없는 웃음보다 세련된 유머.",
+    "idea.s4.t":"공감받다: 투표","idea.s4.d":"여러 사람의 위트·공감·글쎄가 기간마다 쌓입니다. 살아남는 것은 다수가 공감한 통찰입니다.",
+    "idea.reward":"<b>셋 다 필수인 이유.</b> 보고 듣기만 하면 기록입니다. 해석이 붙어야 내 것이 되고, 다수의 공감을 얻어야 통찰이 됩니다.",
 
     "why.tag":"설계","why.h2":"방향을 정한 세 가지 결정",
     "why.lead":"사진 × 음악 페어링의 선행 시도는 세 갈래였습니다. 사진 + 음악 SNS는 더 큰 SNS에 흡수됐고, 큐레이터 방식은 확장되지 못했고, 공식 기반 매칭은 재미를 잃었습니다.",
