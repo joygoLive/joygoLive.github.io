@@ -60,6 +60,7 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <a href="#idea" data-i18n="nav.idea">Idea</a>
       <a href="#why" data-i18n="nav.why">Design</a>
       <a href="#game" data-i18n="nav.game">Survival</a>
+      <a href="#hall" data-i18n="nav.hall">Hall of fame</a>
       <a href="#play" data-i18n="nav.play">Play</a>
       <a href="#how" data-i18n="nav.how">Posting</a>
       <a href="#songs" data-i18n="nav.songs">Songs</a>
@@ -165,6 +166,23 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
       <div class="fact fade"><b data-i18n="game.f4.t">You can see where a post stands</b><span data-i18n="game.f4.d">Each card shows the next gate, the time left and whether it would pass today; from the second period on it also shows this period's score against the target. The At risk tab collects posts that would fail their next gate, so anyone can step in.</span></div>
     </div>
     <p class="reward" data-i18n-html="game.reward"><b>Old pairings are not buried.</b> Posts that have passed three gates appear in a strip at the top of the home screen, "On the way to the hall of fame", because a gate can only be passed by pairings people still get to see.</p>
+  </div>
+</section>
+
+<!-- HALL OF FAME -->
+<section id="hall" class="section alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow" data-i18n="hall.tag">Hall of fame</div>
+    <h2 data-i18n="hall.h2">Wit that held up for five years</h2>
+    <p class="lead" data-i18n="hall.lead">Most pairings do not make it. A pairing enters the hall of fame only after passing all six gates, which means many people, period after period over five years, kept finding its photo, song and line witty. What remains is not a lucky hit but joy that was realized again and again.</p>
+    </div>
+    <div class="facts">
+      <div class="fact fade"><b data-i18n="hall.f1.t">Six gates, no exceptions</b><span data-i18n="hall.f1.d">30 days, 90 days, six months, one year, two years, five years. Failing any one gate ends the run; there is no second chance and no shortcut by early popularity, because each period is judged on its own votes.</span></div>
+      <div class="fact fade"><b data-i18n="hall.f2.t">Kept for good</b><span data-i18n="hall.f2.d">Once in, no gate can remove it: photo, song and line stay as they were. Voting and song battles close and the scores are frozen, so the record of how it got there does not change. Only the poster's own deletion or a moderation decision can take it down.</span></div>
+      <div class="fact fade"><b data-i18n="hall.f3.t">The way there is visible</b><span data-i18n="hall.f3.d">Posts past three gates are shown in the "On the way to the hall of fame" strip at the top of the home screen, and the survivors tab lists posts by gates passed, with the hall of fame first. Anyone can help a candidate through its next gate.</span></div>
+      <div class="fact fade"><b data-i18n="hall.f4.t">Why it is worth visiting</b><span data-i18n="hall.f4.d">Every entry has outlasted countless others, so the hall is a collection of lines that still work years later. For the person who posted it, it is proof that their way of seeing, hearing and reading a moment reached many people.</span></div>
+    </div>
+    <p class="reward" data-i18n-html="hall.reward"><b>The first entry arrives no earlier than September 2031.</b> The service opened in September 2026 and the five-year gate cannot be shortened. Until then the hall is empty, and every candidate on the way is still in play.</p>
   </div>
 </section>
 
@@ -300,11 +318,11 @@ document.getElementById('themeColor').content=(d==='dark'||(!d&&matchMedia('(pre
 /* 영문 본문은 HTML 에 한 벌만 둔다. en 사전에 문구를 복제하면 HTML 만 고쳤을 때 토글에서 옛 문구가 돌아온다. */
 const _L = {
   en:{
-    "nav.idea":"Idea","nav.why":"Design","nav.game":"Survival","nav.play":"Play","nav.how":"Posting","nav.songs":"Songs","nav.pages":"Pages","nav.ops":"Moderation","nav.limits":"Limits",
+    "nav.idea":"Idea","nav.why":"Design","nav.game":"Survival","nav.hall":"Hall of fame","nav.play":"Play","nav.how":"Posting","nav.songs":"Songs","nav.pages":"Pages","nav.ops":"Moderation","nav.limits":"Limits",
     "ft.home":"Home","ft.copy":"© 2026 joygoLive. All rights reserved.",
   },
   ko:{
-    "nav.idea":"생각","nav.why":"설계","nav.game":"생존 게임","nav.play":"놀이","nav.how":"올리기","nav.songs":"곡","nav.pages":"페이지","nav.ops":"운영","nav.limits":"한계",
+    "nav.idea":"생각","nav.why":"설계","nav.game":"생존 게임","nav.hall":"명예의 전당","nav.play":"놀이","nav.how":"올리기","nav.songs":"곡","nav.pages":"페이지","nav.ops":"운영","nav.limits":"한계",
     "hero.kicker":"PicJam · 사진 × 노래 × 위트 한 줄",
     "hero.title":"이 사진엔 <span class=\"grad\">이 노래</span>.",
     "hero.sub":"내 사진 한 장, 딱 맞는 노래 한 곡, 둘을 비트는 위트 한 줄. 셋이 한 조합이고 셋 다 필수입니다. 어이없는 웃음보다 무릎을 치게 하는 세련된 한 줄. 강아지 사료든 출근길이든 고양이든 대상은 자유입니다. 사람들이 투표하고, 글은 30일부터 5년까지 관문을 넘어야 살아남습니다.",
@@ -344,6 +362,14 @@ const _L = {
     "game.f3.t":"기간마다 다시 반응","game.f3.d":"반응은 누른 기간에 속합니다. 관문을 지나면 버튼이 다시 열려 같은 사람이 아끼는 글을 계속 살릴 수 있고, 끝난 기간의 점수는 더 바뀌지 않습니다.",
     "game.f4.t":"형세가 보임","game.f4.d":"카드마다 다음 관문·남은 시간·지금 기준 통과 여부가 붙고, 두 번째 기간부터는 이번 기간 점수와 목표도 함께 보입니다. 「위기」 탭은 다음 관문에서 떨어질 글을 모아 누구나 살릴 수 있게 합니다.",
     "game.reward":"<b>오래된 조합도 묻히지 않습니다.</b> 관문 셋을 넘은 글은 홈 상단 「명예의 전당 도전 중」 띠에 올라갑니다. 보는 사람이 있어야 관문도 넘을 수 있기 때문입니다.",
+
+    "hall.tag":"명예의 전당","hall.h2":"5년 동안 통한 위트",
+    "hall.lead":"대부분의 페어링은 끝까지 가지 못합니다. 여섯 관문을 모두 넘어야 명예의 전당에 오르며, 이는 5년 동안 기간마다 여러 사람이 그 사진·노래·한 줄을 계속 위트 있다고 알아봤다는 뜻입니다. 남는 것은 한때의 운이 아니라 거듭 실현된 기쁨입니다.",
+    "hall.f1.t":"관문 여섯 개, 예외 없음","hall.f1.d":"30일·90일·반년·1년·2년·5년. 한 관문이라도 떨어지면 거기서 끝이며, 다시 도전하는 길은 없습니다. 기간마다 그 기간의 투표로만 판정하므로 초반 인기로 건너뛸 수도 없습니다.",
+    "hall.f2.t":"영구 보존","hall.f2.d":"오른 뒤에는 어떤 관문도 내리지 못하며 사진·노래·한 줄이 그대로 남습니다. 투표와 노래 대결이 마감되고 점수가 굳어, 그곳까지 온 기록도 바뀌지 않습니다. 내리는 길은 올린 사람의 삭제나 운영 조치뿐입니다.",
+    "hall.f3.t":"가는 길이 보임","hall.f3.d":"관문 셋을 넘은 글은 홈 상단 「명예의 전당 도전 중」 띠에 오르고, 생존 탭은 넘은 관문 수 순으로 명예의 전당을 맨 위에 둡니다. 누구나 후보의 다음 관문을 도울 수 있습니다.",
+    "hall.f4.t":"들러 볼 이유","hall.f4.d":"입성작마다 수많은 글을 제치고 살아남았으므로, 명예의 전당은 몇 년이 지나도 통하는 한 줄의 모음집입니다. 올린 사람에게는 그 순간을 보고 듣고 해석한 방식이 많은 사람에게 닿았다는 증명입니다.",
+    "hall.reward":"<b>첫 입성은 빨라야 2031년 9월.</b> 2026년 9월에 문을 열었고 5년 관문은 줄일 수 없습니다. 그때까지 명예의 전당은 비어 있고, 가는 길의 후보들은 모두 아직 진행 중입니다.",
 
     "play.tag":"놀이","play.h2":"더 맞는 노래가 있다면",
     "play.lead":"사진에 노래를 붙이는 데서 다른 앱은 끝납니다. 여기서 사진은 문제이고, 누구나 다른 노래와 더 날카로운 한 줄로 답할 수 있으며, 나머지 사람들이 고릅니다.",
